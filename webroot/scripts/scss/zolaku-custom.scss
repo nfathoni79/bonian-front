@@ -1,0 +1,439 @@
+$color--grey: #E1E1E1;
+$color--white: #FFFFFF;
+$color--black:#717171;
+$shadow--primary: 0px 2px 20px 0px rgba(164,164,164,0.16);
+$color--primary: #DC5054;
+$color--secondary: #9E9E9E;
+/*! ########## Product List custom styling ########## */
+
+@mixin card__base--default{
+    border-radius: 10px;
+	background-color: $color--white;
+	box-shadow: $shadow--primary;
+}
+
+
+.c-content--category__product-list {
+	@include card__base--default;
+}
+
+.c-content--category__product-description {
+    @include card__base--default;
+}
+
+.o-badge__pill{
+    font-size: 12px;
+    padding: 10px;
+    font-weight: medium;
+    min-width: 60px;
+    min-height: 35px;
+    font-weight: 500;
+}
+
+.o-badge--primary{
+    border:1px solid $color--grey;
+    color: $color--primary;
+    background-color: transparent;
+    border-radius: 20px;
+}
+
+.o-product__title{
+    font-weight: 600;
+    font-size: 25px;
+}
+
+.o-product__info{
+    font-weight: 400;
+    font-size: 15px;
+    color: $color--secondary;
+}
+
+.o-badge__product{
+    min-width: 115px;
+    min-height: 40px;
+    border:1px solid $color--grey;
+    color: $color--white;
+    background: linear-gradient(#174564 0%, #4493e2 53.14%, #278bce 100%);
+    border-radius: 50px;
+    font-size: 18px;
+}
+
+@mixin rating{
+    font-size: 20px;
+    margin:0px 5px;
+}
+
+.o-product__rating--primary{
+    color:#F3B82E;
+    @include rating;
+}
+
+.o-product__rating--secondary{
+    color: $color--grey;
+    @include rating;
+}
+
+.c-product__price{
+    color: $color--primary;
+    font-weight: 600;
+}
+
+.o-product__price--discount{
+    color: $color--secondary;
+    font-size: 18px;
+    font-weight: 500;
+    margin-left: 15px;
+    text-decoration: line-through;
+}
+
+.c-content__social-share{
+    background-color: #FFF6F6;
+    border:1px solid #E2E2E2;
+    padding: 20px;
+    border-radius: 10px;
+    min-width: 100%;
+}
+
+.o-share__info{
+    font-size: 1em;
+    font-weight: 400;
+    color: #000000;
+}
+
+.c-content__social-button{
+    min-height: 50px;
+    max-height: 100px;
+    border-radius: 5px;    
+    margin-top: 15px;
+}
+
+@mixin o-social__button{
+    min-height:50px; 
+    color: $color--white;
+}
+
+.o-social__button--whatsapp{
+    @include o-social__button;
+    background-color:#65BC54; 
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.o-social__button--instagram{
+    @include o-social__button;
+    background-color: #FF9741;
+}
+
+.o-social__button--facebook{
+    @include o-social__button;
+    background-color: #2861AC;
+}
+
+.o-social__button--sms{
+    @include o-social__button;
+    background-color: #1B8BA8;
+}
+
+.o-social__button--line{
+    @include o-social__button;
+    background-color: #3ACD01;
+}
+
+.o-social__button--twitter{
+    @include o-social__button;
+    background-color: #37B3DB;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.c-product__detail{
+    padding-top: 20px;
+}
+
+.o-product__detail--title{
+    font-weight: 400;
+    font-size: 14px;
+    text-align: left;
+}
+
+.c-button{
+    display: inline-block;
+	font-weight: normal;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	user-select: none;
+	line-height: 1.25;
+	border-radius: 3px;
+    transition: all 0.15s ease-in-out;
+}
+
+.c-button.active{
+    background-color: #DC5054;
+    color:$color--white
+}
+
+@mixin o-btn{
+    color: #000000;
+    text-transform: uppercase;
+    font-size: 1em;
+    font-weight: 400;
+    background-color: white;
+    border: 1px solid #EBEBEB;
+    border-radius: 0px;
+}
+
+.o-btn__warna{
+    @include o-btn;
+    min-width: 100px;  
+    min-height: 50px;  
+}
+
+
+.o-btn__ukuran{
+    @include o-btn;
+    min-width: 60px;  
+    min-height: 50px;  
+}
+
+.o-btn__stok{
+    border: 2px solid #CCCCCC;
+    background-color: white;
+    min-height: 40px;  
+    padding: 0.3rem 0.8rem;
+    margin-right: 10px;
+}
+
+.o-btn__stok--disabled{
+    border: 2px solid #CCCCCC;
+    background-color: white;
+    min-height: 40px;  
+    padding: 0.3rem 0.8rem;
+    color:#BBBBBB;
+    .o-badge__ukuran{
+        background-color: #BBBBBB !important;
+    }
+}
+
+.o-badge{
+    display: inline-block;
+    margin-left: 10px;
+    padding: .7em .7em;
+    font-size: 1em;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+    transition: color .15s;
+}
+
+.o-badge__ukuran{
+    background-color: #97AA55;
+    color: $color--white;
+}
+
+@mixin o-btn__transaksi{
+    text-transform: uppercase;
+    font-size: 1.1em;
+    font-weight: 500;
+    min-height: 50px;
+}
+
+.o-btn__bayar{
+    @include o-btn__transaksi;
+    background-color: $color--primary;
+    color: $color--white;   
+}
+
+.o-btn__keranjang{
+    @include o-btn__transaksi;
+    background-color: transparent;
+    color: $color--primary;
+    border: 1px solid $color--primary;
+}
+
+@mixin o-nav-tab__description-link {
+    min-height: 50px;
+    padding-top: 15px;
+    border-bottom: 0px;
+}
+
+.c-nav-tab__description{
+    border-bottom: 0px;
+    .c-nav-tab__description-item{
+        text-transform: uppercase;
+        font-size: 15px;
+        font-weight: 500;
+        .o-nav-tab__description-link.active{
+            @include o-nav-tab__description-link;
+            background-color: $color--primary;
+            color: $color--white;            
+        }
+        .o-nav-tab__description-link{
+            @include o-nav-tab__description-link;
+            background-color: $color--grey;
+            border-radius: 0;
+            color: #717171;
+        }
+        .o-nav-tab__description-link--start{
+            @include o-nav-tab__description-link;
+            border-top-left-radius: 15px;
+            background-color: $color--grey;
+            color: #717171;
+        }
+        .o-nav-tab__description-link--start.active{
+            @include o-nav-tab__description-link;
+            background-color: $color--primary;
+            color: $color--white;
+        }
+        .o-nav-tab__description-link--end{
+            @include o-nav-tab__description-link;
+            border-bottom-right-radius: 15px;
+            background-color: $color--grey;
+            color: #717171;
+        }
+        .o-nav-tab__description-link--end.active{
+            @include o-nav-tab__description-link;
+            background-color: $color--primary;
+            color:$color--white;
+        }
+    }
+}
+
+@mixin o-product--title {
+    font-weight: 600;
+    font-size: 1.5em;
+    text-align: left;
+}
+
+@mixin o-product--detail {
+    font-weight: 400;
+    font-size: 14px;
+    text-align: left;
+    padding-top: 20px;
+}
+
+.o-product__deskripsi--title{
+    @include o-product--title;
+}
+
+.o-product__deskripsi--detail{
+    @include o-product--detail;
+}
+
+.c-product__deskripsi--table{
+    margin-top: 25px;
+}
+
+@mixin c-product__diskusi--komentar{    
+    border:1px solid $color--grey;
+    padding: 25px;  
+    margin-top: 25px; 
+    border-radius: 10px;
+}
+
+.c-product__diskusi--komentar-isi{
+    @include c-product__diskusi--komentar;
+    background-color: #FFF6F6;
+    .media-body{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+.c-product__diskusi--komentar-posted{
+    @include c-product__diskusi--komentar;
+    background-color: $color--white;
+    .media-body{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+
+#o-product__diskusi--kolom-komentar{
+    padding:15px;
+    margin-bottom:15px;
+    box-shadow: 0px 2px 25px rgba(142, 142, 142, 0.25);
+    border-radius: 5px;
+}
+
+@mixin o-btn__komentar{
+    font-weight: 500;
+    min-height: 40px;
+}
+
+.o-btn__komentar--unggah{
+    @include o-btn__komentar;
+    background-color: $color--white;
+    border:1px solid $color--grey;
+    color: $color--primary;      
+}
+
+.o-btn__komentar--hapus{
+    @include o-btn__komentar;
+    background-color: $color--grey;
+    border:1px solid $color--grey;
+    color: #A2A2A2;      
+    text-transform: uppercase;
+}
+
+.o-btn__komentar--kirim{
+    @include o-btn__komentar;
+    background-color: $color--primary;
+    color: $color--white;     
+    text-transform: uppercase; 
+}
+
+.o-product__deskripsi--komentar-nama{
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.o-komentar__tanggal{
+    font-size: 1em;
+    font-weight: 400;
+    padding-left: 20px;
+    text-transform: capitalize;
+}
+
+.c-product__ulasan--rating{
+    @include c-product__diskusi--komentar;
+    background-color: #FFF6F6;
+    .media-body{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+@mixin rating{
+    font-weight: 400;
+    text-transform: capitalize;
+}
+
+.o-rating{
+    @include rating;
+    font-size: 1.1em;
+}
+
+.o-rating__bintang{
+    @include rating;
+    font-size: 0.5em;
+    padding-top: 10px;
+}
+
+.c-product__rating-bar{
+    display: flex;
+    /* height: 1rem; */
+    overflow: hidden;
+    font-size: .75rem;
+    background-color: #e9ecef;
+    border-radius: .25rem;
+}
+
+.o-rating__bar{
+    height: 10px;
+    background-color: #F3B82E;
+}
