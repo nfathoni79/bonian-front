@@ -53,7 +53,7 @@
 
 <body class="zolaku-app">
 
-<?= $this->Element('Partials/Home/headpanel'); ?>
+<?= $this->Element('Partials/headpanel'); ?>
 
 <?= $this->fetch('content') ?>
 
