@@ -37,9 +37,6 @@
     <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
     <!-- css link custom -->
-    <link href="scripts/css-custom/zolaku-overides.css" rel="stylesheet">
-    <link href="scripts/css-custom/zolaku-pages.css" rel="stylesheet">
-    <link href="scripts/css-custom/zolaku-media-query.css" rel="stylesheet">
     <?= $this->Html->css([
         '/scripts/css-custom/zolaku-overides',
         '/scripts/css-custom/zolaku-pages',
