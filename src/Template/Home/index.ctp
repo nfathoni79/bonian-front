@@ -1,5 +1,5 @@
 
-<?= $this->Element('Partials/Home/banner'); ?>
+<?= $this->Element('Partials/Home/banner', ['banners' => $_banners]); ?>
 
 
 <!-- start : main content -->

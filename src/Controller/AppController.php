@@ -15,6 +15,7 @@
 namespace App\Controller;
 
 use Cake\Controller\Controller;
+use Cake\Core\Configure;
 use Cake\Event\Event;
 
 /**
@@ -61,8 +62,10 @@ class AppController extends Controller
 
     public function beforeRender(Event $event)
     {
+        $_basePath = Configure::read('Images.url');
         $_categories = $this->getCategories();
-        $this->set(compact('_categories'));
+        $_banners = $this->getTopHomeBanner();
+        $this->set(compact('_categories', '_banners', '_basePath'));
 
         return parent::beforeRender($event);
     }
@@ -77,6 +80,23 @@ class AppController extends Controller
                 $json = $response->parse();
                 $categories = $json['result']['categories'];
                 return $categories;
+
+            }
+        } catch(\Exception $e) {
+            //TODO set log
+        }
+    }
+
+    protected function getTopHomeBanner()
+    {
+        try {
+            $banner = $this->Api->makeRequest()
+                ->get('v1/banner/top');
+
+            if ($response = $this->Api->success($banner)) {
+                $json = $response->parse();
+                $banners = $json['result']['banner'];
+                return $banners;
 
             }
         } catch(\Exception $e) {

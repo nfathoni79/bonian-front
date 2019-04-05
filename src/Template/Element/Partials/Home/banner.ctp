@@ -6,7 +6,9 @@
             <!-- slider banner -->
             <div class="c-card c-card--banner__v1">
                 <!-- start : image slideshow -->
-                <img class="u-img--fluid u-ht--100p" src="<?= $this->Url->build('/images/jpeg/slider-banner/slider_banner_1.jpg'); ?>" alt="image banner">
+                <?php foreach($banners as $banner) : ?>
+                <img class="u-img--fluid u-ht--100p" src="<?= $this->Url->build($_basePath . 'images/806x353/' . $banner['image']); ?>" alt="image banner">
+                <?php break; endforeach; ?>
                 <!-- end : image slideshow -->
             </div>
             <!-- slider banner -->
