@@ -48,9 +48,9 @@
                             <!-- id select category -->
                             <select name="" onchange="" onclick="return false;" id="">
                                 <option value="">Semua Kategori</option>
-                                <option value="1">Fashion Wanita</option>
-                                <option value="2">Fashion Pria</option>
-                                <option value="3">Elektronik</option>
+                                <?php foreach($categories as $category) : ?>
+                                <option value="<?= $category['id']; ?>"><?= $this->Text->truncate($category['name'], 23); ?></option>
+                                <?php endforeach; ?>
                             </select>
 
                             <p class="c-default-searchbar--select__option" onclick="open_select(this)" ></p>

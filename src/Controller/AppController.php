@@ -22,6 +22,7 @@ use Cake\Event\Event;
  *
  * Add your application-wide methods in the class below, your controllers
  * will inherit them.
+ * @property \App\Controller\Component\ApiComponent $Api
  *
  * @link https://book.cakephp.org/3.0/en/controllers.html#the-app-controller
  */
@@ -34,6 +35,7 @@ class AppController extends Controller
      * Use this method to add common initialization code like loading components.
      *
      * e.g. `$this->loadComponent('Security');`
+     * @throws \Exception
      *
      * @return void
      */
@@ -44,6 +46,9 @@ class AppController extends Controller
         $this->loadComponent('RequestHandler', [
             'enableBeforeRedirect' => false,
         ]);
+        $this->loadComponent('Api', [
+            'provider' => 'development'
+        ]);
         $this->loadComponent('Flash');
 
         /*
@@ -51,5 +56,31 @@ class AppController extends Controller
          * see https://book.cakephp.org/3.0/en/controllers/components/security.html
          */
         //$this->loadComponent('Security');
+    }
+
+
+    public function beforeRender(Event $event)
+    {
+        $_categories = $this->getCategories();
+        $this->set(compact('_categories'));
+
+        return parent::beforeRender($event);
+    }
+
+    protected function getCategories()
+    {
+        try {
+            $category = $this->Api->makeRequest()
+                ->get('v1/categories/view');
+
+            if ($response = $this->Api->success($category)) {
+                $json = $response->parse();
+                $categories = $json['result']['categories'];
+                return $categories;
+
+            }
+        } catch(\Exception $e) {
+            //TODO set log
+        }
     }
 }
