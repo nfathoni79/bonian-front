@@ -125,6 +125,8 @@
                             </div>
                         </div>
                     </div>
+
+                    <?= $this->element('Partials/Home/top_products', ['topProducts' => $topProducts]); ?>
                </div>
             </div>
         </div>
