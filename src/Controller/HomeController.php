@@ -76,7 +76,7 @@ class HomeController extends AppController
             switch ($type) {
                 case 'arrivals':
                     $topProducts = $this->Api->makeRequest()
-                        ->get('v1/products/best-sellers');
+                        ->get('v1/products/new-arrivals');
                 break;
                 case 'popularproduct':
                     $topProducts = $this->Api->makeRequest()
@@ -84,7 +84,7 @@ class HomeController extends AppController
                  break;
                 case 'bestseller':
                     $topProducts = $this->Api->makeRequest()
-                        ->get('v1/products/new-arrivals');
+                        ->get('v1/products/best-sellers');
                 break;
             }
             if ($response = $this->Api->success($topProducts)) {
