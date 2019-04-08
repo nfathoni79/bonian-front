@@ -53,7 +53,23 @@ class HomeController extends AppController
             //TODO set log
         }
 
-        $this->set(compact('bannerLeft','bannerRight', 'flashSales'));
+        $topProducts = [];
+
+        //new arrivals
+        try {
+            $newArrivals = $this->Api->makeRequest()
+                ->get('v1/products/new-arrivals');
+            if ($response = $this->Api->success($newArrivals)) {
+                $json = $response->parse();
+                $newArrivals = $json['result']['data'];
+            }
+        } catch(\Exception $e) {
+            //TODO set log
+        }
+
+        $topProducts['new_arrivals'] =  $newArrivals;
+
+        $this->set(compact('bannerLeft','bannerRight', 'flashSales','topProducts'));
     }
 
 
