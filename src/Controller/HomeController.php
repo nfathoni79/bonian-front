@@ -17,7 +17,7 @@ class HomeController extends AppController
      */
     public function index()
     {
-        
+
 
         try {
             $bannerLeft = $this->Api->makeRequest()
