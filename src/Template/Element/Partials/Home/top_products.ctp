@@ -9,7 +9,7 @@
             <div id="so_listing_tabs_1" class="so-listing-tabs first-load">
                 <div class="loadeding"></div>
                 <div class="ltabs-wrap">
-                    <div class="ltabs-tabs-container" data-delay="300" data-duration="600" data-effect="starwars" data-ajaxurl="" data-type_source="0" data-lg="5" data-md="4" data-sm="3"  data-xxs="3" data-xs="1" data-margin="0">
+                    <div class="ltabs-tabs-container" data-delay="300" data-duration="600" data-effect="starwars" data-ajaxurl="" data-type_source="0" data-lg="5" data-md="4" data-sm="3"  data-xxs="3" data-xs="1" data-margin="20" data-autoheight="yes">
                         <!--Begin Tabs-->
                         <div class="ltabs-tabs-wrap">
                             <span class="ltabs-tab-selected">Best sellers</span> <span class="ltabs-tab-arrow">▼</span>
