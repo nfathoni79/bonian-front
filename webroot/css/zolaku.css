@@ -23,9 +23,50 @@
     line-height: 1.33;
     border-radius: 35px;
 }
-
+footer .footer-top{
+    background: #dc5054;
+    background: linear-gradient(160deg,#dc5054 0%, #a41d21 100%);
+    background: -webkit-linear-gradient(160deg,#dc5054 0%, #a41d21 100%);
+    background: -moz-linear-gradient(160deg,#dc5054 0%, #a41d21 100%);
+}
+footer.typefooter-4 .footer-top .find-store-last p{
+    text-align: left;
+    margin: 0px 0 45px 0 !important;
+    color: #fff !important;
+}
+div.module.custom-listingtab .box-title h2{
+    background: #dc5054;
+    background: linear-gradient(160deg,#dc5054 0%, #a41d21 100%);
+    background: -webkit-linear-gradient(160deg,#dc5054 0%, #a41d21 100%);
+    background: -moz-linear-gradient(160deg,#dc5054 0%, #a41d21 100%);
+}
+.price .price-new, .price span.price{
+    color: #EC6E6E !important;
+}
+.products-list.grid .product-item-container .right-block .addToCart{
+    background-color: #EC6E6E !important;
+}
+.products-list.grid .product-item-container .right-block .cartinfo--static .btn-button{
+    background-color: #EC6E6E !important;
+    color: #ffffff;
+}
+.products-list.grid .product-item-container .left-block.left-b .quickview{
+    background-color: #EC6E6E !important;
+    color: #ffffff;
+}
+.label-sale{
+    background-color: #EC6E6E !important;
+}
+footer .footer-top .block-infos .info{
+    width: 33.3%;
+    float: left;
+}
+div.module.custom-listingtab .owl2-controls .owl2-nav > div:hover{
+    border: none;
+    background: #EC6E6E !important;
+}
 @media (min-width: 1200px) {
-    div.module.top-product-home .ltabs-wrap .ltabs-items-container {
-        margin-left: 0px !important;
-    }
+div.module.top-product-home .ltabs-wrap .ltabs-items-container {
+margin-left: 0px !important;
+}
 }

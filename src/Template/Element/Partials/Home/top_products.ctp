@@ -72,7 +72,15 @@
                                                         <div class="col-lg-5"><span class="badge"><?= $vals['point']; ?> Poin</span></div>
                                                     </div>
                                                     <div class="caption">
-                                                        <h4><a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug']]); ?>" title="<?= h($vals['name']); ?>" target="_self"><?= h($vals['name']); ?> </a></h4>
+                                                        <h4><a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug']]); ?>" title="<?= h($vals['name']); ?>" target="_self">  <?php echo $this->Text->truncate(
+                                                            h($vals['name']),
+                                                            30,
+                                                            [
+                                                            'ellipsis' => '...',
+                                                            'exact' => false
+                                                            ]
+                                                            );?>
+                                                        </a></h4>
 
                                                         <div class="price">
                                                             <span class="price-new">Rp. <?= $this->Number->format($vals['price_sale']); ?></span>
