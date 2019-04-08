@@ -91,7 +91,7 @@
 
 <body class="common-home res layout-6">
 
-    <div id="wrapper" class="wrapper-fluid banners-effect-6">
+    <div id="wrapper" class="wrapper-fluid banners-effect-7">
 
         <?= $this->element('Partials/headpanel', ['categories' => $_categories]); ?>
 
@@ -106,6 +106,25 @@
                 <div class="container ">
 
                     <?= $this->element('Partials/Home/flash_sale', ['categories' => $_categories]); ?>
+
+                    <div class="block block_6">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="banners">
+                                    <div>
+                                        <a href="<?php echo $bannerLeft['url'];?>"><img src="<?= $this->Url->build($_basePath . 'images/570x220/' . $bannerLeft['image']); ?>" alt="banner img" class="responsive"></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="banners">
+                                    <div>
+                                        <a href="<?php echo $bannerRight['url'];?>"><img src="<?= $this->Url->build($_basePath . 'images/570x220/' . $bannerRight['image']); ?>" alt="banner img" class="responsive"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                </div>
             </div>
         </div>
