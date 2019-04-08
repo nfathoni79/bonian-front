@@ -53,26 +53,47 @@ class HomeController extends AppController
             //TODO set log
         }
 
-        $topProducts = [];
-
         //new arrivals
         try {
-            $newArrivals = $this->Api->makeRequest()
-                ->get('v1/products/new-arrivals');
-            if ($response = $this->Api->success($newArrivals)) {
+            $topProducts = $this->Api->makeRequest()
+                ->get('v1/products/best-sellers');
+            if ($response = $this->Api->success($topProducts)) {
                 $json = $response->parse();
-                $newArrivals = $json['result']['data'];
+                $topProducts = $json['result']['data'];
             }
         } catch(\Exception $e) {
             //TODO set log
         }
 
-        $topProducts['new_arrivals'] =  $newArrivals;
 
         $this->set(compact('bannerLeft','bannerRight', 'flashSales','topProducts'));
     }
 
     function top($type = null){
-        //$this->viewBuilder()->enableAutoLayout(false);
+
+        $this->viewBuilder()->enableAutoLayout(false);
+        try {
+            switch ($type) {
+                case 'arrivals':
+                    $topProducts = $this->Api->makeRequest()
+                        ->get('v1/products/best-sellers');
+                break;
+                case 'popularproduct':
+                    $topProducts = $this->Api->makeRequest()
+                        ->get('v1/products/popular-products');
+                 break;
+                case 'bestseller':
+                    $topProducts = $this->Api->makeRequest()
+                        ->get('v1/products/new-arrivals');
+                break;
+            }
+            if ($response = $this->Api->success($topProducts)) {
+                $json = $response->parse();
+                $topProducts = $json['result']['data'];
+            }
+        } catch(\Exception $e) {
+            //TODO set log
+        }
+        $this->set(compact('topProducts'));
     }
 }

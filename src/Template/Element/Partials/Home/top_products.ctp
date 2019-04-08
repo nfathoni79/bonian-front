@@ -1,7 +1,7 @@
 
 <div class="block block_3">
     <!-- Listing tabs -->
-    <div class="module custom-listingtab default-nav">
+    <div class="module custom-listingtab top-product-home default-nav">
         <div class="box-title font-ct">
             <h2 class="modtitle">Top Products</h2>
         </div>
@@ -14,20 +14,21 @@
                         <div class="ltabs-tabs-wrap">
                             <span class="ltabs-tab-selected">Best sellers</span> <span class="ltabs-tab-arrow">▼</span>
                             <ul class="ltabs-tabs cf font-ct list-sub-cat">
-                                <li class="ltabs-tab tab-sel" data-category-id="bestseller" data-url="home/top/" data-active-content=".items-category-11"> <span class="ltabs-tab-label">Best sellers</span> </li>
-                                <li class="ltabs-tab" data-category-id="mostratting" data-url="home/top/" data-active-content=".items-category-12"> <span class="ltabs-tab-label">Most Rating</span> </li>
-                                <li class="ltabs-tab" data-category-id="arrivals" data-url="home/top/" data-active-content=".items-category-13"> <span class="ltabs-tab-label">New Arrivals</span> </li>
+                                <li class="ltabs-tab tab-sel" data-category-id="bestseller" data-url="home/top/" data-active-content=".items-category-bestseller"> <span class="ltabs-tab-label">Best sellers</span> </li>
+                                <li class="ltabs-tab" data-category-id="popularproduct" data-url="home/top/" data-active-content=".items-category-popularproduct"> <span class="ltabs-tab-label">Popular Products</span> </li>
+                                <li class="ltabs-tab" data-category-id="arrivals" data-url="home/top/" data-active-content=".items-category-arrivals"> <span class="ltabs-tab-label">New Arrivals</span> </li>
                             </ul>
 
                         </div>
                         <!-- End Tabs-->
                     </div>
                     <div class="wap-listing-tabs products-list grid">
+                        <div class="ltabs-items-container">
                             <!--Begin Items-->
-                            <div class="ltabs-items ltabs-items-selected items-category-11" data-total="16">
+                            <div class="ltabs-items ltabs-items-selected items-category-bestseller" data-total="16">
 
                                 <div class="ltabs-items-inner ltabs-slider">
-                                    <?php foreach($topProducts['new_arrivals'] as $vals):?>
+                                    <?php foreach($topProducts as $vals):?>
                                     <div class="ltabs-item">
                                         <div class="item-inner product-thumb transition product-layout">
                                             <div class="product-item-container">
@@ -72,14 +73,14 @@
 
                                 </div>
                             </div>
-                            <div class="ltabs-items items-category-12 grid" data-total="16">
+                            <div class="ltabs-items items-category-popularproduct grid" data-total="16">
                                 <div class="ltabs-loading"></div>
-
                             </div>
-                            <div class="ltabs-items  items-category-13 grid" data-total="16">
+                            <div class="ltabs-items  items-category-arrivals grid" data-total="16">
                                 <div class="ltabs-loading"></div>
                             </div>
                             <!--End Items-->
+                        </div>
                     </div>
                 </div>
             </div>

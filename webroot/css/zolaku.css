@@ -23,3 +23,9 @@
     line-height: 1.33;
     border-radius: 35px;
 }
+
+@media (min-width: 1200px) {
+    div.module.top-product-home .ltabs-wrap .ltabs-items-container {
+        margin-left: 0px !important;
+    }
+}
