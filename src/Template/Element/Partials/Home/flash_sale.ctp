@@ -4,6 +4,7 @@
         <span>Flash Sale <small class="contertime">Berakhir dalam 01:00:00</small></span>
     </h3> 
     <div class="modcontent" style="background-color: #ffffff;">
+        <div class="flash-sale">
         <div id="so_extra_slider_1" class="so-extraslider" >
             <!-- Begin extraslider-inner -->
             <div class="yt-content-slider extraslider-inner" data-rtl="yes" data-pagination="no" data-autoplay="no" data-delay="4" data-speed="0.6" data-margin="0" data-items_column0="5" data-items_column1="5" data-items_column2="4" data-items_column3="3" data-items_column4="2" data-arrows="yes" data-lazyload="yes" data-loop="no" data-buttonpage="top">
@@ -62,6 +63,7 @@
                 <?php endforeach; ?>
             </div>
             <!--End extraslider-inner -->
+        </div>
         </div>
     </div>
 </div>

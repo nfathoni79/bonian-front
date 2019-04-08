@@ -306,6 +306,7 @@ $(document).ready(function ($) {
 					categoryid: category_id,
 					setting: setting,
 					lbmoduleid: 1,
+					_csrfToken: $('meta[name="_csrfToken"]').attr('content')
 				},
 				success: function (data) {
 					

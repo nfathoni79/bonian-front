@@ -8,6 +8,7 @@
 
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="width=1200" name="viewport">
+    <meta content="<?= $this->request->getParam('_csrfToken'); ?>" name="_csrfToken" />
 
     <meta property="og:url" content="https://zolaku.com"/>
     <meta property="og:type" content="website"/>
