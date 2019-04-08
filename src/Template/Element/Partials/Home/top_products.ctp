@@ -3,7 +3,7 @@
     <!-- Listing tabs -->
     <div class="module custom-listingtab top-product-home default-nav">
         <div class="box-title font-ct">
-            <h2 class="modtitle">Top Products</h2>
+            <h2 class="modtitle">Produk Teratas</h2>
         </div>
         <div class="modcontent">
             <div id="so_listing_tabs_1" class="so-listing-tabs first-load">
@@ -12,11 +12,11 @@
                     <div class="ltabs-tabs-container" data-delay="300" data-duration="600" data-effect="starwars" data-ajaxurl="" data-type_source="0" data-lg="5" data-md="4" data-sm="3"  data-xxs="3" data-xs="1" data-margin="20" data-autoheight="yes">
                         <!--Begin Tabs-->
                         <div class="ltabs-tabs-wrap">
-                            <span class="ltabs-tab-selected">Best sellers</span> <span class="ltabs-tab-arrow">▼</span>
+                            <span class="ltabs-tab-selected">Penjualan Terbaik</span> <span class="ltabs-tab-arrow">▼</span>
                             <ul class="ltabs-tabs cf font-ct list-sub-cat">
-                                <li class="ltabs-tab tab-sel" data-category-id="bestseller" data-url="home/top/" data-active-content=".items-category-bestseller"> <span class="ltabs-tab-label">Best sellers</span> </li>
-                                <li class="ltabs-tab" data-category-id="popularproduct" data-url="home/top/" data-active-content=".items-category-popularproduct"> <span class="ltabs-tab-label">Popular Products</span> </li>
-                                <li class="ltabs-tab" data-category-id="arrivals" data-url="home/top/" data-active-content=".items-category-arrivals"> <span class="ltabs-tab-label">New Arrivals</span> </li>
+                                <li class="ltabs-tab tab-sel" data-category-id="bestseller" data-url="home/top/" data-active-content=".items-category-bestseller"> <span class="ltabs-tab-label">Penjualan Terbaik</span> </li>
+                                <li class="ltabs-tab" data-category-id="popularproduct" data-url="home/top/" data-active-content=".items-category-popularproduct"> <span class="ltabs-tab-label">Produk Populer</span> </li>
+                                <li class="ltabs-tab" data-category-id="arrivals" data-url="home/top/" data-active-content=".items-category-arrivals"> <span class="ltabs-tab-label">Produk Terbaru</span> </li>
                             </ul>
 
                         </div>

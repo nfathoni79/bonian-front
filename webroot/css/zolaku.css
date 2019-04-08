@@ -127,8 +127,8 @@ margin-left: 0px !important;
 
 footer .footer-center .module ul.links-footer li a:hover, footer .footer-center .module ul.menu li a:hover{
     color: #EC6E6E !important;
-    font-size: 12px;
-    padding-left: 10px !important;
+
+    padding-left: 0px !important;
 }
 
 footer .module .footer-block-title h3, footer .module h3.footertitle{

@@ -14,9 +14,9 @@
                 </div>
                 <div class="header-top-right collapsed-block col-lg-6 col-md-6 col-sm-7 col-xs-12">
                     <ul class="top-link list-inline">
-                        <li><a class="link-lg" href="#">Be Zolaku Members</a></li>
-                        <li><a class="link-lg" href="#">Redeem Points</a></li>
-                        <li><a class="link-lg" href="#">Track Order</a></li>
+                        <li><a class="link-lg" href="#">Menjadi Member Zolaku</a></li>
+                        <li><a class="link-lg" href="#">Penukaran Point</a></li>
+                        <li><a class="link-lg" href="#">Lacak Pengiriman</a></li>
                     </ul>
                 </div>
             </div>
@@ -70,7 +70,7 @@
                                 <a data-loading-text="Loading... " class="btn-group top_cart dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                     <div class="shopcart">
                                         <span class="handle pull-left"></span>
-                                        <p class="title-cart-h6">My cart</p>
+                                        <p class="title-cart-h6">Keranjang Belanja</p>
                                         <span class="total-shopping-cart cart-total-full">
                                                 <span class="items_cart">2 </span><span class="items_cart1">item(s)</span>
                                             </span>
