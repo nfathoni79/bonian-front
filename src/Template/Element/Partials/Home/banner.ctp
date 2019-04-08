@@ -1,51 +1,34 @@
-<!-- start : banner -->
-<div class="o-container-wrapper l-banner-content">
-    <div class="o-container">
-        <!-- layout banner -->
-        <div class="o-flex o-justify-content--between o-align-items--center">
-            <!-- slider banner -->
-            <div class="c-card c-card--banner__v1">
-                <!-- start : image slideshow -->
-                <?php foreach($banners as $banner) : ?>
-                <img class="u-img--fluid u-ht--100p" src="<?= $this->Url->build($_basePath . 'images/806x353/' . $banner['image']); ?>" alt="image banner">
-                <?php break; endforeach; ?>
-                <!-- end : image slideshow -->
-            </div>
-            <!-- slider banner -->
 
-            <!-- card board -->
-            <div class="u-mrg-l--20 u-wd--35p">
-                <!-- leaderboard -->
-                <div class="c-card c-card--banner__v2 u-bg--soft-blue" style="height: 167px !important;">
-                    <div class="o-flex o-justify-content--between o-align-items--center">
-                        <img class="u-img--fluid" src="<?= $this->Url->build('/images/png/icon-board/leaderboard.png'); ?>" width="96" alt="icon leaderboard">
+<div class="slider-full">
+    <div class="container ">
+        <div class="row">
+            <div class="col-sm-12 col-xs-12 block-slide">
+                <div class="row">
+                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 block-left">
+                        <div class="module sohomepage-slider ">
+                            <div class="yt-content-slider"  data-rtl="yes" data-autoplay="no" data-autoheight="no" data-delay="4" data-speed="0.6" data-margin="0" data-items_column0="1" data-items_column1="1" data-items_column2="1"  data-items_column3="1" data-items_column4="1" data-arrows="no" data-pagination="yes" data-lazyload="yes" data-loop="no" data-hoverpause="yes">
 
-                        <div class="c-board--text">
-                            <h6>Leaderboard</h6>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor</p>
-                            <a href="">Lihat selengkapnya</a>
+                                <?php foreach($_banners as $banner) : ?>
+                                <div class="yt-content-slide">
+                                    <a href="<?php echo $banner['url'];?>"><img src="<?= $this->Url->build($_basePath . 'images/806x353/' . $banner['image']); ?>" alt="slide img" class="responsive"></a>
+                                </div>
+                                <?php endforeach; ?>
+                            </div>
+                            <div class="loadeding"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 block-right">
+                        <div class="module">
+                            <div class="block-image-1">
+                                <ul class="static-image">
+                                    <li><a title="Static Image" href="#"><img src="/frontend/images/catalog/demo/banners/home1/1.jpg" alt="Static Image"></a></li>
+                                    <li><a title="Static Image" href="#"><img src="/frontend/images/catalog/demo/banners/home1/2.jpg" alt="Static Image"></a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!-- leaderboard -->
-
-                <!-- panduan -->
-                <div class="c-card c-card--banner__v2 u-bg--soft-orange u-mrg-t--20" style="height: 167px !important;">
-                    <div class="o-flex o-justify-content--between o-align-items--center">
-                        <img class="u-img--fluid" src="<?= $this->Url->build('/images/png/icon-board/bantuan.png'); ?>" width="96" alt="icon bantuan">
-
-                        <div class="c-board--text">
-                            <h6>Leaderboard</h6>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor</p>
-                            <a href="">Lihat selengkapnya</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- panduan -->
             </div>
-            <!-- card board -->
         </div>
-        <!-- layout banner -->
     </div>
 </div>
-<!-- end : banner -->

@@ -92,7 +92,6 @@ class AppController extends Controller
         try {
             $banner = $this->Api->makeRequest()
                 ->get('v1/banner/top');
-
             if ($response = $this->Api->success($banner)) {
                 $json = $response->parse();
                 $banners = $json['result']['banner'];

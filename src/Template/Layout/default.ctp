@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="utf-8">
     <meta name="description" content="Pengalaman berbelanja terbaik di Indonesia">
     <meta name="author" content="PT. Zolaku | Zolaku Indonesia">
@@ -17,120 +18,125 @@
 
     <?= $this->fetch('meta') ?>
 
+    <!-- Favicon
+    ============================================ -->
     <link rel="icon" href="<?= $this->Url->build('/images/png/logo/favicon.png'); ?>">
 
-    <title><?= $this->fetch('title') ?></title>
 
     <!-- mobile screen -->
     <link href="https://m.zolaku.com/" media="only screen and (max-width: 640px)" rel="alternate">
 
     <!-- css link vendor -->
     <?= $this->Html->css([
-        '/scripts/css-vendor/blockbox',
-        '/scripts/vendor/Ionicons/css/ionicons',
-        '/scripts/vendor/owl.carousel/owl.carousel',
-        '/scripts/vendor/perfect-scrollbar/css/perfect-scrollbar',
-        '/scripts/vendor/swiper-js/css/swiper',
+        '/css/bootstrap/css/bootstrap.min',
+        '/css/font-awesome/css/font-awesome.min',
+        '/js/datetimepicker/bootstrap-datetimepicker.min',
+        '/js/owl-carousel/owl.carousel',
+        '/css/themecss/lib',
+        '/js/jquery-ui/jquery-ui.min',
+        '/js/minicolors/miniColors',
     ]); ?>
-
-    <!-- fontawesome link -->
-    <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
     <!-- css link custom -->
     <?= $this->Html->css([
-        '/scripts/css-custom/zolaku-overides',
-        '/scripts/css-custom/zolaku-pages',
-        '/scripts/css-custom/zolaku-media-query',
+        '/css/themecss/so_searchpro',
+        '/css/themecss/so_megamenu',
+        '/css/themecss/so-categories',
+        '/css/themecss/so-listing-tabs',
+        '/css/themecss/so-newletter-popup',
+        '/css/themecss/slick',
     ]); ?>
 
 
-    <?= $this->fetch('css') ?>
+    <?= $this->Html->css([
+        '/css/footer/footer6',
+        '/css/header/header6',
+    ]); ?>
+    <?= $this->Html->css([
+        '/css/home6',
+        '/css/theme',
+    ],['id' => 'color_scheme']); ?>
+    <?= $this->Html->css([
+        '/css/responsive',
+    ]); ?>
+
+
+    <!-- Google web fonts
+   ============================================ -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:600,700" rel='stylesheet' type='text/css'>
+    <style>
+        body{font-family:'Open Sans', sans-serif}
+        .font-ct, h1, h2, h3,
+        .des_deal,
+        .item-time-w,
+        .item-time-w .name-time,
+        .static-menu a.main-menu,
+        .container-megamenu.vertical .vertical-wrapper ul li > a strong,
+        .container-megamenu.vertical .vertical-wrapper ul.megamenu li .sub-menu .content .static-menu .menu ul li a.main-menu,
+        .horizontal ul.megamenu > li > a, .footertitle,
+        .module h3.modtitle span, .breadcrumb li a, .item-title a,
+        .best-seller-custom .item-info, .product-box-desc, .product_page_price .price-new,
+        .list-group-item a, #menu ul.nav > li > a, .megamenuToogle-pattern,
+        .right-block .caption h4, .price, .box-price {
+            font-family: Raleway, sans-serif;
+        }
+    </style>
+
 </head>
 
+<body class="common-home res layout-6">
 
-<body class="zolaku-app">
+    <div id="wrapper" class="wrapper-fluid banners-effect-6">
 
-<?= $this->element('Partials/headpanel', ['categories' => $_categories]); ?>
-
-<?= $this->fetch('content') ?>
-
-<?= $this->Element('Partials/footer'); ?>
+        <?= $this->element('Partials/headpanel', ['categories' => $_categories]); ?>
 
 
-<!-- start : javascript vendor -->
+        <!-- Main Container  -->
+        <div class="main-container">
+            <div id="content" style="background: #FFF6F6;">
+
+                <?= $this->element('Partials/Home/banner', ['banners' => $_banners]); ?>
+
+
+                <div class="container ">
+
+                    <?= $this->element('Partials/Home/flash_sale', ['categories' => $_categories]); ?>
+               </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+<!-- Include Libs & Plugins  -->
 <?= $this->Html->script([
-    '/scripts/vendor/jquery/jquery',
-    '/scripts/vendor/popper.js/popper',
-    '/scripts/vendor/bootstrap/bootstrap',
-    '/scripts/vendor/owl.carousel/owl.carousel',
-    '/scripts/vendor/perfect-scrollbar/js/perfect-scrollbar.jquery',
-    '/scripts/vendor/swiper-js/js/swiper',
-    '/scripts/js-vendor/typeahead.bundle',
-    '/scripts/js-vendor/typeahead.jquery',
-    '/scripts/js-vendor/bloodhound',
+'/js/jquery-2.2.4.min',
+'/js/bootstrap.min',
+'/js/owl-carousel/owl.carousel',
+'/js/themejs/libs',
+'/js/unveil/jquery.unveil',
+'/js/countdown/jquery.countdown.min',
+'/js/dcjqaccordion/jquery.dcjqaccordion.2.8.min',
+'/js/datetimepicker/moment',
+'/js/datetimepicker/bootstrap-datetimepicker.min',
+'/js/jquery-ui/jquery-ui.min',
+'/js/modernizr/modernizr-2.6.2.min',
+'/js/minicolors/jquery.miniColors.min',
 ]); ?>
-<!-- end : javascript vendor -->
 
-<!-- start : headpanel show/hide -->
-<script>
-    $(document).ready(function() {
-        'use strict'
-
-        if($(document).scrollTop() > 10) {
-            $('.c-headpanel').addClass('u-mrg-t--35__neg');
-        }
-
-        $(window).scroll(function() {
-            if ($(document).scrollTop() > 10) {
-                $('.c-headpanel').addClass('u-mrg-t--35__neg');
-            } else {
-                $('.c-headpanel').removeClass('u-mrg-t--35__neg');
-            }
-        });
-    });
-</script>
-<!-- end : headpanel show/hide -->
-
-<!-- start : countdown timer -->
-<script>
-    // Set the date we're counting down to
-    var countDownDate = new Date("Jan 5, 2021 15:37:25").getTime();
-
-    // Update the count down every 1 second
-    var x = setInterval(function() {
-
-        // Get todays date and time
-        var now = new Date().getTime();
-
-        // Find the distance between now and the count down date
-        var distance = countDownDate - now;
-
-        // Time calculations for days, hours, minutes and seconds
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        // Output the result in an element with id="c-flash-sale--countdown-timer"
-        document.getElementById("c-flash-sale--countdown-timer").innerHTML = hours + " : "
-            + minutes + " : " + seconds;
-
-        // If the count down is over, write some text
-        if (distance < 0) {
-            clearInterval(x);
-            document.getElementById("c-flash-sale--countdown-timer").innerHTML = "EXPIRED";
-        }
-    }, 1000);
-</script>
-<!-- end : countdown timer -->
-
-<!-- start : searchbar -->
+<!-- Theme files -->
 <?= $this->Html->script([
-    '/scripts/js-custom/zolaku-searchbar-select',
-    '/scripts/js-custom/zolaku-searchbar-typehead',
+'/js/themejs/application',
+'/js/themejs/homepage',
+'/js/themejs/so_megamenu',
+'/js/themejs/addtocart',
+'/js/themejs/cpanel',
 ]); ?>
 
 <?= $this->fetch('script') ?>
 
-<!-- end : searchbar -->
+
 </body>
 </html>

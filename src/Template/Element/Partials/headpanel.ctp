@@ -1,188 +1,168 @@
-<!-- start : headpanel -->
-<div class="c-headpanel c-headpanel--shadow u-pos-fixed--top z-index-100">
-    <!-- navbar top -->
-    <div class="u-bg-grad--red-y__v1">
-        <div class="o-container c-navbar-default--top">
-            <!-- left navigation -->
-            <nav class="c-nav c-nav--inline c-nav--white">
-                <a href="contact-us.html" class="c-nav--link c-separator">Kontak Kami</a>
-                <a href="chat-app.html" class="c-nav--link c-separator">Chat</a>
-            </nav>
-            <!-- left navigation -->
 
-            <!-- right navigation -->
-            <nav class="c-nav c-nav--inline c-nav--white">
-                <a href="contact-us.html" class="c-nav--link c-separator">Be Zolaku Members</a>
-                <a href="chat-app.html" class="c-nav--link c-separator">Redeem Points</a>
-                <a href="chat-app.html" class="c-nav--link c-separator">Track Order</a>
-            </nav>
-            <!-- right navigation -->
+<!-- Header Container  -->
+<header id="header" class=" typeheader-6">
+    <!-- Header Top -->
+    <div class="header-top hidden-compact">
+        <div class="container">
+            <div class="row">
+                <div class="header-top-left  col-lg-6 col-sm-5 col-md-6 hidden-xs">
+                    <ul class="list-inlines">
+                        <li class="hidden-xs">
+                            Default welcome msg!
+                        </li>
+                    </ul>
+                </div>
+                <div class="header-top-right collapsed-block col-lg-6 col-md-6 col-sm-7 col-xs-12">
+                    <ul class="top-link list-inline">
+                        <li><a class="link-lg" href="#">Be Zolaku Members</a></li>
+                        <li><a class="link-lg" href="#">Redeem Points</a></li>
+                        <li><a class="link-lg" href="#">Track Order</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
-    <!-- navbar top -->
+    <!-- //Header Top -->
 
-    <!-- navbar bottom -->
-    <div class="u-bg--white">
-        <!-- navbar #1 -->
-        <div class="o-container c-navbar-default--middle">
-            <!-- main logo -->
-            <h1 class="c-logo o-block">
-                <img class="u-img--fluid" src="images/png/logo/logo-wide.png" width="120" alt="logo zolaku">
-            </h1>
-            <!-- main logo -->
 
-            <!-- input searchbar & select category -->
-            <div class="c-default-searchbar">
-                <form name="SearchForm" method="GET" action="">
-                    <!-- input form -->
-                    <div class="c-default-searchbar--layout-center">
-                        <div id="z-searchbar" class="c-default-searchbar--layout__input" style="margin-left: 169px;">
-                            <input type="text" class="c-default-searchbar--form__input typeahead tt-input" name="prd_category" placeholder="Masukan kata pencarian ..." autocomplete="off" spellcheck="false" dir="auto">
+    <!-- Header center -->
+    <div class="header-center">
+        <div class="container">
+            <div class="row">
+                <!-- Logo -->
+                <div class="navbar-logo col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="logo"><a href="/"><?php echo $this->Html->image('/images/png/logo/logo-wide.png', ['alt' => 'Zolaku', 'width' => '155']); ?></a></div>
+                </div>
+                <!-- //end Logo -->
+
+                <!-- Main menu -->
+                <div class="header-center-right col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                    <!-- Search -->
+                    <div class="header_search">
+                        <div id="sosearchpro" class="sosearchpro-wrapper so-search">
+                            <form method="GET" action="index.php">
+                                <div id="search0" class="search input-group form-group">
+                                    <div class="select_category filter_type  icon-select">
+                                        <select name="category_id" onchange="" onclick="return false;" id="" class="no-border">
+                                            <option value="">Semua Kategori</option>
+                                            <?php foreach($categories as $category) : ?>
+                                            <option value="<?= $category['id']; ?>"><?= $this->Text->truncate($category['name'], 23); ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <input class="autosearch-input form-control" type="text" value="" size="50" autocomplete="off" placeholder="Search" name="search"><ul class="dropdown-menu" style="display: none;"></ul>
+                                    <span class="input-group-btn">
+                                                <button type="submit" class="button-search btn btn-default btn-lg" name="submit_search"><i class="fa fa-search"></i></button>
+                                            </span>
+                                </div>
+                                <input type="hidden" name="route" value="product/search">
+                            </form>
                         </div>
                     </div>
 
-                    <!-- select category -->
-                    <div class="c-default-searchbar--layout-left" style="width: 160px;">
-                        <!-- cat title is selected -->
-                        <div class="c-default-searchbar--select__cat" data-mate-select="active" >
-                            <!-- id select category -->
-                            <select name="" onchange="" onclick="return false;" id="">
-                                <option value="">Semua Kategori</option>
-                                <?php foreach($categories as $category) : ?>
-                                <option value="<?= $category['id']; ?>"><?= $this->Text->truncate($category['name'], 23); ?></option>
-                                <?php endforeach; ?>
-                            </select>
+                    <div class="block_link hidden-sm hidden-xs">
+                        <a href="wishlist.html" id="wishlist-total" class="top-link-wishlist" title="Wish List (0) "><i class="fa fa-heart-o"></i></a>
+                    </div>
+                    <!--cart-->
+                    <div class="block-cart">
+                        <div class="shopping_cart">
+                            <div id="cart" class="btn-shopping-cart">
+                                <a data-loading-text="Loading... " class="btn-group top_cart dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                    <div class="shopcart">
+                                        <span class="handle pull-left"></span>
+                                        <p class="title-cart-h6">My cart</p>
+                                        <span class="total-shopping-cart cart-total-full">
+                                                <span class="items_cart">2 </span><span class="items_cart1">item(s)</span>
+                                            </span>
+                                    </div>
+                                </a>
 
-                            <p class="c-default-searchbar--select__option" onclick="open_select(this)" ></p>
-                            <!-- up/down arrow -->
-                            <span onclick="open_select(this)" class="c-default-searchbar--select__icon" >
-										<svg fill="#DC5054" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-											<path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"/>
-											<path d="M0-.75h24v24H0z" fill="none"/>
-										</svg>
-									</span>
-
-                            <div class="c-default-searchbar--select__list">
-                                <ul class="c-default-searchbar--select__list-item"></ul>
+                                <ul class="dropdown-menu pull-right shoppingcart-box" role="menu">
+                                    <li>
+                                        <table class="table table-striped">
+                                            <tbody>
+                                            <tr>
+                                                <td class="text-center" style="width:70px">
+                                                    <a href="product.html">
+                                                        <img src="image/catalog/demo/product/80/1.jpg" style="width:70px" alt="Yutculpa ullamcon" title="Yutculpa ullamco" class="preview">
+                                                    </a>
+                                                </td>
+                                                <td class="text-left"> <a class="cart_product_name" href="product.html">Yutculpa ullamco</a>
+                                                </td>
+                                                <td class="text-center">x1</td>
+                                                <td class="text-center">$80.00</td>
+                                                <td class="text-right">
+                                                    <a href="product.html" class="fa fa-edit"></a>
+                                                </td>
+                                                <td class="text-right">
+                                                    <a onclick="cart.remove('2');" class="fa fa-times fa-delete"></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center" style="width:70px">
+                                                    <a href="product.html">
+                                                        <img src="image/catalog/demo/product/80/2.jpg" style="width:70px" alt="Xancetta bresao" title="Xancetta bresao" class="preview">
+                                                    </a>
+                                                </td>
+                                                <td class="text-left"> <a class="cart_product_name" href="product.html">Xancetta bresao</a>
+                                                </td>
+                                                <td class="text-center">x1</td>
+                                                <td class="text-center">$60.00</td>
+                                                <td class="text-right">
+                                                    <a href="product.html" class="fa fa-edit"></a>
+                                                </td>
+                                                <td class="text-right">
+                                                    <a onclick="cart.remove('1');" class="fa fa-times fa-delete"></a>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <table class="table table-bordered">
+                                                <tbody>
+                                                <tr>
+                                                    <td class="text-left"><strong>Sub-Total</strong>
+                                                    </td>
+                                                    <td class="text-right">$140.00</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left"><strong>Eco Tax (-2.00)</strong>
+                                                    </td>
+                                                    <td class="text-right">$2.00</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left"><strong>VAT (20%)</strong>
+                                                    </td>
+                                                    <td class="text-right">$20.00</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left"><strong>Total</strong>
+                                                    </td>
+                                                    <td class="text-right">$162.00</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <p class="text-center total-carts"> <a class="btn view-cart" href="cart.html"><i class="fa fa-shopping-cart"></i>View Cart</a>&nbsp;&nbsp;&nbsp; <a class="btn btn-mega checkout-cart" href="checkout.html"><i class="fa fa-share"></i>Checkout</a>
+                                            </p>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
-                        </div>
-                        <!-- cat title is selected -->
-                    </div>
-                    <!-- select category -->
 
-                    <!-- action button -->
-                    <div class="c-default-searchbar--layout-right">
-                        <div class="c-default-searchbar--btn-wrap">
-                            <button type="submit" class="c-default-searchbar--btn c-searchbar-icon c-searchbar-icon--search">
-                                <i aria-label="searching" class="fas fa-search"></i>
-                            </button>
                         </div>
                     </div>
-                    <!-- action button -->
-                </form>
-            </div>
-            <!-- input searchbar & select category -->
-
-            <!-- shoping action -->
-            <nav class="c-nav c-nav--inline c-nav--gray">
-                <a href="" class="c-nav--link u-font--20 u-mrg-r--25">
-                    <!-- menu icon -->
-                    <div class="c-nav-menu__icon">
-                        <i aria-label="wishlist" class="fas fa-heart"></i>
-                    </div>
-                </a>
-
-                <a href="" class="c-nav--link u-font--20 u-mrg-r--15">
-                    <!-- menu icon -->
-                    <div class="c-nav-menu__icon">
-                        <i aria-label="cart" class="fas fa-shopping-cart"></i>
-                    </div>
-                    <!-- menu badge -->
-                    <div class="c-nav-menu__badge">
-                        <div class="c-nav-menu__badge-cart-count">12</div>
-                    </div>
-                </a>
-            </nav>
-            <!-- shoping action -->
-        </div>
-        <!-- navbar #1 -->
-
-        <!-- navbar #2 -->
-        <div class="o-container c-navbar-default--bottom">
-            <!-- market category -->
-            <nav class="c-nav c-nav--inline u-font--14 u-font--500">
-                <a href="" class="c-nav--link u-fg--green">Gadget & Accesories</a>
-                <a href="" class="c-nav--link u-fg--soft-purple">Health & Beauty</a>
-                <a href="" class="c-nav--link u-fg--soft-pink">Home & Living</a>
-                <a href="" class="c-nav--link u-fg--teal-blue">Man</a>
-                <a href="" class="c-nav--link u-fg--pink">Women</a>
-            </nav>
-            <!-- market category -->
-
-            <!-- login link -->
-            <nav class="c-nav c-nav--inline c-nav--red u-font--14 u-font--500">
-                <a href="" class="c-nav--link u-pad-r--0">
-                    <i class="fas fa-user"></i>
-                </a>
-                <a href="" data-toggle="modal" data-target="#m_form_login" class="c-nav--link u-font--500 c-separator--slash">Masuk</a>
-                <a href="" data-toggle="modal" data-target="#m_form_register" class="c-nav--link u-font--500">Daftar</a>
-            </nav>
-            <!-- login link -->
-        </div>
-        <!-- navbar #2 -->
-    </div>
-    <!-- navbar bottom -->
-</div>
-<!-- end : headpanel -->
-
-
-<!-- start : login modal show -->
-<div id="#m_form_login" class="modal fade">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content tx-size-sm">
-            <div class="modal-header pd-x-20">
-                <h5 class="modal-title">Message Preview</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <div class="modal-body pd-20">
-                <h4 class=" lh-3 mg-b-20"><a href="" class="tx-inverse hover-primary">Why We Use Electoral College, Not Popular Vote</a></h4>
-                <p class="mg-b-5">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Save changes</button>
-                <button type="button" class="btn btn-secondary bd-0" data-dismiss="modal">Close</button>
+                    <!--//cart-->
+                </div>
+                <!-- //end Main menu -->
             </div>
         </div>
     </div>
-</div>
-<!-- end : login modal show -->
+    <!-- //Header center -->
 
 
-<!-- start : register modal show -->
-<div id="#m_form_register" class="modal fade">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content tx-size-sm">
-            <div class="modal-header pd-x-20">
-                <h5 class="modal-title">Message Preview</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+</header>
+<!-- //Header Container  -->
 
-            <div class="modal-body pd-20">
-                <h4 class=" lh-3 mg-b-20"><a href="" class="tx-inverse hover-primary">Why We Use Electoral College, Not Popular Vote</a></h4>
-                <p class="mg-b-5">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-            </div>
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Save changes</button>
-                <button type="button" class="btn btn-secondary bd-0" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- end : register modal show -->
