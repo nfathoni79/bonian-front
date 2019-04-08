@@ -30,13 +30,13 @@
         <div class="container">
             <div class="row">
                 <!-- Logo -->
-                <div class="navbar-logo col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="navbar-logo col-lg-2 col-md-2 col-sm-12 col-xs-12">
                     <div class="logo"><a href="/"><?php echo $this->Html->image('/images/png/logo/logo-wide.png', ['alt' => 'Zolaku', 'width' => '155']); ?></a></div>
                 </div>
                 <!-- //end Logo -->
 
                 <!-- Main menu -->
-                <div class="header-center-right col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                <div class="header-center-right col-lg-10 col-md-10 col-sm-12 col-xs-12">
                     <!-- Search -->
                     <div class="header_search">
                         <div id="sosearchpro" class="sosearchpro-wrapper so-search">

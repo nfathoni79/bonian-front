@@ -59,6 +59,10 @@
     <?= $this->Html->css([
         '/css/responsive',
     ]); ?>
+    <!-- css custom other -->
+    <?= $this->Html->css([
+        '/css/zolaku',
+    ]); ?>
 
 
     <!-- Google web fonts
