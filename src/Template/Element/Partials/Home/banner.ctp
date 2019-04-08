@@ -1,8 +1,6 @@
-
-<div class="slider-full">
-    <div class="container ">
-        <div class="row">
-            <div class="col-sm-12 col-xs-12 block-slide">
+<section class="slider-full">
+    <div class="container">
+        <div class= block-slide">
                 <div class="row">
                     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 block-left">
                         <div class="module sohomepage-slider ">
@@ -10,7 +8,7 @@
 
                                 <?php foreach($_banners as $banner) : ?>
                                 <div class="yt-content-slide">
-                                    <a href="<?php echo $banner['url'];?>"><img src="<?= $this->Url->build($_basePath . 'images/806x353/' . $banner['image']); ?>" alt="slide img" class="responsive"></a>
+                                    <a href="<?php echo $banner['url'];?>"><img src="<?= $this->Url->build($_basePath . 'images/870x353/' . $banner['image']); ?>" alt="slide img" class="responsive"></a>
                                 </div>
                                 <?php endforeach; ?>
                             </div>
@@ -28,7 +26,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
-</div>
+</section>
