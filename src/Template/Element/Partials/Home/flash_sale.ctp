@@ -1,71 +1,85 @@
+<!-- flash sale Products -->
+<div class="related flash-sale titleLine products-list grid module " style="margin-top: 20px;">
+    <h3 class="modtitle" style="padding: 10px !important;"><i class="fa fa-tags"></i>Flash Sale <small class="contertime">Berakhir dalam 01:00:00</small> </h3>
+    <div id="so_extra_slider_1" class="so-extraslider" >
+        <div class="releate-products yt-content-slider products-list" data-rtl="no" data-loop="yes" data-autoplay="no" data-autoheight="yes" data-autowidth="no" data-delay="4" data-speed="0.6" data-margin="20" data-items_column0="5" data-items_column1="3" data-items_column2="3" data-items_column3="2" data-items_column4="1" data-arrows="yes" data-pagination="no" data-lazyload="yes" data-hoverpause="yes">
+            <?php foreach($flashSales['product_deal_details'] as $flash_sale) : ?>
+            <div class="item">
+                <div class="product-layout">
+                    <div class="product-item-container">
+                        <div class="left-block left-b">
+                            <?php /*
+                            <div class="product-card__gallery product-card__left">
+                                <div class="item-img thumb-active" data-src="image/catalog/demo/product/electronic/600x600/9.jpg"><img src="image/catalog/demo/product/electronic/90x90/9.jpg"  alt="image"></div>
+                                <div class="item-img" data-src="image/catalog/demo/product/electronic/600x600/10.jpg"><img src="image/catalog/demo/product/electronic/90x90/10.jpg"  alt="image"></div>
+                                <div class="item-img" data-src="image/catalog/demo/product/electronic/600x600/11.jpg"><img src="image/catalog/demo/product/electronic/90x90/11.jpg"  alt="image"></div>
+                            </div>*/ ?>
+                            <div class="product-image-container">
+                                <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $flash_sale['product']['slug']]); ?>" title="<?= h($flash_sale['product']['name']); ?>" target="_self">
+                                    <?php foreach($flash_sale['product']['images'] as $image) : ?>
+                                        <img src="<?= $this->Url->build($_basePath . 'images/213x150/' . $image); ?>"  class="img-responsive" alt="image">
+                                        <?php break; endforeach; ?>
+                                </a>
+                            </div>
+                            <div class="box-label"> <span class="label-product label-sale"> <?= $flash_sale['product']['percent']; ?>% </span></div>
 
-<div class="module best-seller best-seller-custom" style="margin-top: 20px;">
-    <h3 class="modtitle" style="padding: 10px !important;">
-        <span>Flash Sale <small class="contertime">Berakhir dalam 01:00:00</small></span>
-    </h3> 
-    <div class="modcontent" style="background-color: #ffffff;">
-        <div class="flash-sale">
-        <div id="so_extra_slider_1" class="so-extraslider" >
-            <!-- Begin extraslider-inner -->
-            <div class="yt-content-slider extraslider-inner" data-rtl="yes" data-pagination="no" data-autoplay="no" data-delay="4" data-speed="0.6" data-margin="0" data-items_column0="5" data-items_column1="5" data-items_column2="4" data-items_column3="3" data-items_column4="2" data-arrows="yes" data-lazyload="yes" data-loop="no" data-buttonpage="top">
-                <?php foreach($flashSales['product_deal_details'] as $flash_sale) : ?>
-                <div class="item ">
-                    <div class="item-wrap style1">
-                        <div class="item-wrap-inner">
+                            <!--quickview-->
+                            <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span></span></a>
+                            <!--end quickview-->
+                        </div>
+                        <div class="right-block right-b">
+                            <?php /*<ul class="colorswatch">
+                                <li class="item-img active" data-src="image/catalog/demo/product/electronic/600x600/9.jpg"><a href="javascript:void(0);" title="gray"><img src="image/demo/colors/gray.jpg"  alt="image"></a></li>
+                                <li class="item-img" data-src="image/catalog/demo/product/electronic/600x600/10.jpg"><a href="javascript:void(0);" title="pink"><img src="image/demo/colors/pink.jpg"  alt="image"></a></li>
+                                <li class="item-img" data-src="image/catalog/demo/product/electronic/600x600/11.jpg"><a href="javascript:void(0);" title="black"><img src="image/demo/colors/black.jpg"  alt="image"></a></li>
+                            </ul>*/ ?>
 
-                            <div class="media-body">
-                                <div class="product-item-container">
-                                    <div class="left-block left-b">
-                                        <div class="product-image-container">
-                                            <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $flash_sale['product']['slug']]); ?>" title="<?= h($flash_sale['product']['name']); ?>" target="_self">
-                                                <?php foreach($flash_sale['product']['images'] as $image) : ?>
-                                                <img src="<?= $this->Url->build($_basePath . 'images/213x150/' . $image); ?>"  class="img-responsive" alt="image">
-                                                <?php break; endforeach; ?>
-                                            </a>
+                            <div class="caption">
+                                <div class="row">
+                                    <div class="col-lg-7">
+                                        <div class="progress" style="margin-top: 10px;margin-bottom: 0px; height: 10px !important;">
+                                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="<?= $flash_sale['product']['salestock']; ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?= $flash_sale['product']['salestock']; ?>%"></div>
                                         </div>
-                                        <!--quickview-->
-                                        <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span></span></a>
-                                        <!--end quickview-->
+                                        <small><?= $flash_sale['product']['noted']; ?></small>
                                     </div>
-                                    <div class="right-block right-b">
-                                        <div class="box-label"> <span class="label-product label-sale"> <?= $flash_sale['product']['percent']; ?>% </span></div>
-                                        <div class="caption">
-                                            <div class="row">
-                                                <div class="col-lg-7">
-                                                    <div class="progress" style="margin-top: 10px;margin-bottom: 0px; height: 10px !important;">
-                                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="<?= $flash_sale['product']['salestock']; ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?= $flash_sale['product']['salestock']; ?>%"></div>
-                                                    </div>
-                                                    <small><?= $flash_sale['product']['noted']; ?></small>
-                                                </div>
-                                                <div class="col-lg-5"><span class="badge"><?= $flash_sale['product']['point']; ?> Poin</span></div>
-                                            </div>
+                                    <div class="col-lg-5"><span class="badge"><?= $flash_sale['product']['point']; ?> Poin</span></div>
+                                </div>
+                                <h4><a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $flash_sale['product']['slug']]); ?>" title="<?= h($flash_sale['product']['name']); ?>" target="_self">
+                                        <?php echo $this->Text->truncate(
+                                            h($flash_sale['product']['name']),
+                                            30,
+                                            [
+                                                'ellipsis' => '...',
+                                                'exact' => false
+                                            ]
+                                        );?>
+                                    </a></h4>
 
-                                            <h4><a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $flash_sale['product']['slug']]); ?>" title="<?= h($flash_sale['product']['name']); ?>" target="_self"><?= $flash_sale['product']['name']; ?></a></h4>
-                                            <div class="row">
-                                                <div class="col-lg-9">
-                                                    <div class="price">
-                                                        <span class="price-old">Rp. <?= $this->Number->format($flash_sale['product']['price']); ?></span><br/>
-                                                        <span class="price-new">Rp. <?= $this->Number->format($flash_sale['product']['price_sale']); ?></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-3">
-                                                    <button type="button" class="btn btn-danger btn-circle"><i class="fa fa-share-alt"></i></button></div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="price">
+                                    <span class="price-new">Rp. <?= $this->Number->format($flash_sale['product']['price_sale']); ?></span> <br/>
+                                    <?php if($flash_sale['product']['price_sale'] != $flash_sale['product']['price']):?>
+                                        <span class="price-old">Rp. <?= $this->Number->format($flash_sale['product']['price']); ?></span>
+                                    <?php endif;?>
+                                </div>
+                                <div class="button-group so-quickview cartinfo--static">
+                                    <button type="button" class="addToCart" title="Add to cart" onclick="cart.add('60 ');">  <i class="fa fa-shopping-basket"></i>
+                                        <span>Add to cart </span>
+                                    </button>
+                                    <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('60');"><i class="fa fa-heart"></i><span></span>
+                                    </button>
+                                    <button type="button" class="compare btn-button" title="Compare this Product " onclick="compare.add('60');"><i class="fa fa-refresh"></i><span></span>
+                                    </button>
                                 </div>
                             </div>
-                            <!-- End item-info -->
                         </div>
                     </div>
-                    <!-- End item-wrap -->
                 </div>
-                <?php endforeach; ?>
             </div>
-            <!--End extraslider-inner -->
-        </div>
+            <?php endforeach; ?>
+
         </div>
     </div>
 </div>
 
+<!-- end flash sale  Products-->
 

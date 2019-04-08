@@ -86,3 +86,51 @@ div.module.top-product-home .ltabs-wrap .ltabs-items-container {
 margin-left: 0px !important;
 }
 }
+
+.flash-sale .product-item-container {
+    min-height: 329px;
+}
+
+.flash-sale .releate-products .owl2-nav {
+    right: 10px;
+}
+
+.flash-sale .releate-products .owl2-nav div {
+    border: none !important;
+    text-align: center;
+    margin: 0;
+    width: 28px;
+}
+
+.flash-sale .releate-products .owl2-nav div.owl2-prev, .flash-sale .releate-products .owl2-nav div.owl2-next {
+    background: none !important;
+}
+
+.flash-sale .owl2-controls .owl2-prev:before {
+    content: "\f104";
+    font-family: FontAwesome;
+    font-size: 28px;
+}
+
+.flash-sale .owl2-controls .owl2-next:before {
+    content: "\f105";
+    font-family: FontAwesome;
+    font-size: 28px;
+}
+
+.flash-sale .owl2-controls .owl2-nav > div:hover{
+    border: none;
+    background: #EC6E6E !important;
+    color: #ffffff;
+}
+
+
+footer .footer-center .module ul.links-footer li a:hover, footer .footer-center .module ul.menu li a:hover{
+    color: #EC6E6E !important;
+    font-size: 12px;
+    padding-left: 10px !important;
+}
+
+footer .module .footer-block-title h3, footer .module h3.footertitle{
+    font-size: 1.2rem !important;
+}
