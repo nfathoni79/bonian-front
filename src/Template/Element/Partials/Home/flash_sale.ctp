@@ -16,7 +16,7 @@
                                 <div class="product-item-container">
                                     <div class="left-block left-b">
                                         <div class="product-image-container">
-                                            <a  href="product.html" target="_self" title="Cupim should">
+                                            <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $flash_sale['product']['slug']]); ?>" title="<?= h($flash_sale['product']['name']); ?>" target="_self">
                                                 <?php foreach($flash_sale['product']['images'] as $image) : ?>
                                                 <img src="<?= $this->Url->build($_basePath . 'images/213x150/' . $image); ?>"  class="img-responsive" alt="image">
                                                 <?php break; endforeach; ?>
