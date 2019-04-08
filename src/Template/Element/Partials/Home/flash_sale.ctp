@@ -22,6 +22,9 @@
                                                 <?php break; endforeach; ?>
                                             </a>
                                         </div>
+                                        <!--quickview-->
+                                        <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span></span></a>
+                                        <!--end quickview-->
                                     </div>
                                     <div class="right-block right-b">
                                         <div class="box-label"> <span class="label-product label-sale"> <?= $flash_sale['product']['percent']; ?>% </span></div>
