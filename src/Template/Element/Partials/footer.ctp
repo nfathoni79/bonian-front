@@ -97,7 +97,8 @@
                     <div class="module clearfix">
                         <h3 class="footertitle">Ikuti Kami</h3>
                         <div class="modcontent">
-                            <div class="logo"><a href="/"><img src="/zolaku-front/images/png/logo/logo-wide.png" alt="Zolaku" width="155"></a></div>
+
+                            <div class="logo"><a href="/"><?php echo $this->Html->image('/images/png/logo/logo-wide.png', ['alt' => 'Zolaku', 'width' => '155']); ?></a></div>
                             <ul class="links-footer" style="margin-top: 20px;">
                                 <li class="li-social facebook-social">
                                     <a title="Facebook" href="http://www.facebook.com/#" target="_blank">
