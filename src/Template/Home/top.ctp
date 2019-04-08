@@ -12,10 +12,15 @@
                             <?php break; endforeach; ?>
                         </a>
                     </div>
-                    <?php $dics = 100 - (($vals['price_sale'] / $vals['price']) * 100);?>
-                    <?php if($vals['price_sale'] != $vals['price']):?>
-                        <div class="box-label"> <span class="label-product label-sale"> <?php echo  $this->Number->precision($dics, 0);?>% </span></div>
-                    <?php endif;?>
+                    <div class="box-label">
+                        <?php $dics = 100 - (($vals['price_sale'] / $vals['price']) * 100);?>
+                        <?php if($vals['price_sale'] != $vals['price']):?>
+                             <span class="label-product label-sale"> <?php echo  $this->Number->precision($dics, 0);?>% </span>
+                        <?php endif;?>
+                        <?php if($vals['is_new']): ?>
+                            <span class="label-product label-new"> New </span>
+                        <?php endif;?>
+                    </div>
                     <!--quickview-->
                     <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug']]); ?>" title="<?= h($vals['name']); ?>" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span></span></a>
                     <!--end quickview-->

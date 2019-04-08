@@ -50,7 +50,7 @@
 
 
     <?= $this->Html->css([
-        '/css/footer/footer6',
+        '/css/footer/footer4',
         '/css/header/header6',
     ]); ?>
     <?= $this->Html->css([
@@ -131,6 +131,99 @@
                </div>
             </div>
         </div>
+
+
+        <footer class="footer-container typefooter-4">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            <div class="module">
+                                <div class="find-store f-top">
+                                    <div class="block-title font-title"><i class="fa fa-map-marker"></i>Find your nearest store</div>
+                                    <div class="block-content">
+                                        <p>A contemporary grooming collection infused with the invigorating and sensual scent of Revoshop</p>
+                                        <a href="#">find your store</a> <a class="active" href="#">Shop System</a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            <div class="module news-letter">
+                                <div class="so-custom-default newsletter" style="width:100%; background-color: #fff ; ">
+                                    <div class="btn-group title-block">
+                                        <div class="popup-title page-heading">
+                                            <i class="fa fa-envelope"></i>Newsletter
+                                        </div>
+                                        <div class="newsletter_promo">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</div>
+                                    </div>
+                                    <div class="modcontent block_content">
+                                        <form method="post" id="signup" name="signup" class="form-group form-inline signup send-mail">
+                                            <div class="input-group ">
+                                                <div class="input-box">
+                                                    <input type="email" placeholder="Your email address..." value="" class="form-control" id="txtemail" name="txtemail" size="55">
+                                                </div>
+                                                <div class="input-group-btn subcribe">
+                                                    <button class="btn btn-primary" type="submit" onclick="return subscribe_newsletter();" name="submit">
+                                                        Subscribe
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!--/.modcontent-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            <div class="module">
+                                <div class="follow-us f-top">
+                                    <div class="block-title">
+                                        Follow us
+                                    </div>
+                                    <ul>
+                                        <li class="li-social facebook-social">
+                                            <a title="Facebook" href="http://www.facebook.com/MagenTech" target="_blank">
+                                                <i class="fa fa-facebook icon-social"></i>
+                                                <p>on</p>
+                                                <span class="name-social">Facebook</span>
+                                            </a>
+                                        </li>
+
+                                        <li class="li-social twitter-social">
+                                            <a title="Twitter" href="https://twitter.com/magentech" target="_blank">
+                                                <i class="fa fa-twitter icon-social"></i>
+                                                <p>on</p>
+                                                <span class="name-social">Twitter</span>
+                                            </a>
+                                        </li>
+
+                                        <li class="li-social linkedin-social">
+                                            <a title="Linkedin" href="#" target="_blank">
+                                                <i class="fa fa-linkedin icon-social"></i>
+                                                <p>on</p>
+                                                <span class="name-social">Linkedin</span>
+                                            </a>
+                                        </li>
+
+                                        <li class="li-social pinterest-social">
+                                            <a title="Pinterest" href="#" target="_blank">
+                                                <i class="fa fa-pinterest icon-social"></i>
+                                                <p>on</p>
+                                                <span class="name-social">Pinterest</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <div class="app">
+                                        <a href="#"><img src="image/catalog/demo/banners/home4/h4-ft-1.png" alt="Image Client"></a>
+                                        <a href="#"><img src="image/catalog/demo/banners/home4/h4-ft-2.png" alt="Image Client"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
     </div>
 
