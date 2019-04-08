@@ -81,6 +81,7 @@ class HomeController extends AppController
                 case 'popularproduct':
                     $topProducts = $this->Api->makeRequest()
                         ->get('v1/products/popular-products');
+
                  break;
                 case 'bestseller':
                     $topProducts = $this->Api->makeRequest()

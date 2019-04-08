@@ -40,19 +40,39 @@
                                                             <?php break; endforeach; ?>
                                                         </a>
                                                     </div>
-
+                                                    <?php if($vals['price_sale'] != $vals['price']):?>
+                                                        <div class="box-label"> <span class="label-product label-sale"> -9% </span></div>
+                                                    <?php endif;?>
                                                     <!--quickview-->
                                                     <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug']]); ?>" title="<?= h($vals['name']); ?>" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span></span></a>
                                                     <!--end quickview-->
                                                 </div>
                                                 <div class="right-block right-b">
 
+                                                    <div class="row">
+                                                        <div class="col-lg-7">
+                                                            <div class="rating">
+                                                                <?php
+                                                                    $rate = $vals['rating'];
+                                                                    for ($x = 0; $x < $rate; $x++) {
+                                                                        echo '<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>';
+                                                                    }
+                                                                    for ($x = 0; $x < 5-$rate; $x++) {
+                                                                    echo '<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>';
+                                                                    }
+                                                                ?>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-5"><span class="badge"><?= $vals['point']; ?> Poin</span></div>
+                                                    </div>
                                                     <div class="caption">
                                                         <h4><a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug']]); ?>" title="<?= h($vals['name']); ?>" target="_self"><?= h($vals['name']); ?> </a></h4>
 
                                                         <div class="price">
                                                             <span class="price-new">Rp. <?= $this->Number->format($vals['price_sale']); ?></span>
+                                                            <?php if($vals['price_sale'] != $vals['price']):?>
                                                             <span class="price-old">Rp. <?= $this->Number->format($vals['price']); ?></span>
+                                                            <?php endif;?>
                                                         </div>
 
                                                         <div class="button-group so-quickview cartinfo--static">
