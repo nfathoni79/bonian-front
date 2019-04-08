@@ -72,5 +72,7 @@ class HomeController extends AppController
         $this->set(compact('bannerLeft','bannerRight', 'flashSales','topProducts'));
     }
 
-
+    function top($type = null){
+        //$this->viewBuilder()->enableAutoLayout(false);
+    }
 }

@@ -291,9 +291,9 @@ $(document).ready(function ($) {
 		type_show =$tabs.parents('.ltabs-tabs-container').attr('data-type_show');
 		if (!loaded && !_items_active.hasClass('ltabs-process')) {
 			_items_active.addClass('ltabs-process');
-			var category_id 		= $this.attr('data-category-id'),
-			path_url 	= 'ajax/listingtab_',
-			ajax_url = $tabs.parents('.ltabs-tabs-container').attr('data-ajaxurl')+path_url+category_id+ '.html';
+			var category_id 		= $this.attr('data-category-id');
+			var path_url 		= $this.attr('data-url');
+			ajax_url = $tabs.parents('.ltabs-tabs-container').attr('data-ajaxurl')+path_url+category_id;
 			
 			$loading.show();
 			$.ajax({
