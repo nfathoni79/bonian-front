@@ -29,7 +29,7 @@
                                             <div class="row">
                                                 <div class="col-lg-7">
                                                     <div class="progress" style="margin-top: 10px;margin-bottom: 0px; height: 10px !important;">
-                                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%"></div>
+                                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="<?= $flash_sale['product']['salestock']; ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?= $flash_sale['product']['salestock']; ?>%"></div>
                                                     </div>
                                                     <small><?= $flash_sale['product']['noted']; ?></small>
                                                 </div>
@@ -40,8 +40,8 @@
                                             <div class="row">
                                                 <div class="col-lg-9">
                                                     <div class="price">
-                                                        <span class="price-old"><?= $this->Number->format($flash_sale['product']['price']); ?></span><br/>
-                                                        <span class="price-new"><?= $this->Number->format($flash_sale['product']['price_sale']); ?></span>
+                                                        <span class="price-old">Rp. <?= $this->Number->format($flash_sale['product']['price']); ?></span><br/>
+                                                        <span class="price-new">Rp. <?= $this->Number->format($flash_sale['product']['price_sale']); ?></span>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-3">
