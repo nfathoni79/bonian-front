@@ -40,7 +40,19 @@ class HomeController extends AppController
             //TODO set log
         }
 
-        $this->set(compact('bannerLeft','bannerRight'));
+        //flash sale
+        try {
+            $flashSales = $this->Api->makeRequest()
+                ->get('v1/flash-sale');
+            if ($response = $this->Api->success($flashSales)) {
+                $json = $response->parse();
+                $flashSales = $json['result']['flashsale'];
+            }
+        } catch(\Exception $e) {
+            //TODO set log
+        }
+
+        $this->set(compact('bannerLeft','bannerRight', 'flashSales'));
     }
 
 
