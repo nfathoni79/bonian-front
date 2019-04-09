@@ -1,0 +1,228 @@
+/**
+ *
+ * @param formEL
+ */
+function ajaxValidation(formEL) {
+    this.form = formEL;
+    this.blockUIelement = '';
+}
+
+/**
+ *
+ * @param element
+ * @param field
+ * @param matched
+ */
+ajaxValidation.prototype.checkFieldName = function(element, field, matched) {
+    let inputs = [];
+    element.find(':input:visible').each(function() {
+        if (String($(this).attr('name')).replace('[]', '') === field && inputs.indexOf($(this).attr('name')) == -1) {
+            inputs.push($(this).attr('name'));
+            if (typeof matched === 'function') {
+                matched($(this));
+            }
+            return;
+        }
+    });
+}
+
+/**
+ *
+ * @param object
+ * @returns {*}
+ */
+ajaxValidation.prototype.extractMessage = function (object) {
+    if (this.ObjectLength(object) === 0) {
+        return object;
+    }
+}
+
+/**
+ *
+ * @param object
+ * @returns {Array}
+ * @private
+ */
+ajaxValidation.prototype.extractFields_ = function (object) {
+    var o = [];
+    var self = this;
+    Object.keys(object).map(e => {
+        if (typeof object[e] === 'object' && self.ObjectLength(object[e]) > 0) {
+            var n = [];
+            for( var [key, value] of Object.entries(object[e]) ) {
+                if (self.ObjectLength(value) > 0) {
+                    n.push('[' + key + ']');
+                    for(var f of Object.keys(value)) {
+                        var i = '[' + f + ']';
+                        o.push({field: e + n.join('') + i, message: self.extractMessage(value[f])});
+                    }
+                    n = [];
+                } else {
+                    o.push({field: e + '[' + key + ']', message: self.extractMessage(value)});
+                }
+            }
+        } else {
+            o.push({field: e, message: self.extractMessage(object[e])});
+        }
+    });
+    return o;
+};
+/**
+ *
+ * @param object
+ * @returns {Array}
+ */
+ajaxValidation.prototype.extractFields = function (object) {
+    var form = this.flattenObject(object);
+    var o = [];
+    for(var [key, value] of Object.entries(form)) {
+
+        o.push({field: key, message: value});
+    }
+    return o;
+};
+
+/**
+ * https://jsfiddle.net/089qtpfh/2/
+ * @param obj
+ * @param inRet
+ * @param inPrefix
+ * @returns {*|{}}
+ */
+ajaxValidation.prototype.flattenObject = function(obj, inRet, inPrefix) {
+    const ret = inRet || {};
+    const prefix = inPrefix || '';
+    var self = this;
+    if (typeof obj === 'object' && obj != null && self.ObjectLength(obj) >= 1) {
+        Object.keys(obj).forEach((key) => {
+            self.flattenObject(obj[key], ret, prefix === '' ? key : `${prefix}[${key}]`);
+        });
+    } else if (prefix !== '') {
+        ret[prefix] = obj;
+    }
+
+    return ret;
+}
+
+
+/**
+ *
+ * @param object
+ * @returns {number}
+ * @constructor
+ */
+ajaxValidation.prototype.ObjectLength = function( object ) {
+    var length = 0;
+    for( var [key, value] of Object.entries(object) ) {
+        if (typeof value === 'object') {
+            length += 1 + this.ObjectLength(value);
+        }
+    }
+    return length;
+};
+
+/**
+ * serialize form :input all https://jsfiddle.net/7Lwfx8ty/
+ * @param input
+ */
+ajaxValidation.prototype.post = function(url, input, callback) {
+    var that = this;
+    if (typeof input === 'object') {
+
+        var p = input.serializeArray();
+        p.push({name: "_csrfToken", value: $("input[name=_csrfToken]").val()});
+        var f = new FormData();
+
+        $.each(that.form.find('input[type="file"]'), function(i, tag) {
+            $.each($(tag)[0].files, function(i, file) {
+                f.append(tag.name, file);
+            });
+        });
+
+        $.each(p, function(i, val) {
+            f.append(val.name, val.value);
+        });
+
+
+        that.removeError();
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: f,
+            processData: false,
+            contentType: false,
+            //dataType: "json",
+            success: function(data) {
+                //var obj = jQuery.parseJSON(data); if the dataType is not specified as json uncomment this
+                // do what ever you want with the server response
+                if (data.error instanceof Array) {
+                    callback({success: true}, data);
+
+                } else if (typeof data.error === 'object') {
+                    if (typeof callback === 'function') {
+                        callback({success: false}, data);
+                    }
+
+                    let fields = that.extractFields(data.error);
+                    for(var field in fields) {
+                        //console.log(fields[field].field)
+                        that.checkFieldName(that.form, fields[field].field, function(m) {
+                            that.appendTextInput(m, fields[field].message);
+                        });
+                    }
+                }
+            },
+            error: function(data) {
+                console.log('error', data.status, data)
+            },
+        });
+    }
+}
+
+
+/**
+ * remove error message
+ */
+ajaxValidation.prototype.removeError = function() {
+    this.form.find('.form-group.is-invalid').removeClass('is-invalid');
+    this.form.find('.error.form-control-feedback').remove();
+    this.form.find('.is-invalid').removeClass('is-invalid');
+}
+
+/**
+ *
+ * @param el
+ * @param message
+ */
+ajaxValidation.prototype.appendTextInput = function (el, message) {
+    let out = '<div class="error form-control-feedback">';
+    let len = Object.entries(message).length;
+    if (len > 1) {
+        out += '<ul style="margin-left: -30px;">';
+    }
+    for (let [key, value] of Object.entries(message)) {
+        out += len > 1 ? `<li>${value}</li>` : value;
+    }
+    if (len > 1) {
+        out += '</ul>';
+    }
+    out += '</div>';
+
+
+    el.parents('.form-group').addClass('has-danger');
+    if (el.parents('.input-group').find('.input-group-append').length || el.parents('.input-group').find('.input-group-prepend').length) {
+        el.parents('.input-group').after(out);
+    } else if (el.attr('type') === 'checkbox') {
+        el.parents('.m-checkbox-inline').after(out);
+    } else if (el.attr('type') === 'radio') {
+        el.parents('.m-radio-list-inline').after(out);
+    } else {
+
+        if (el.hasClass('select2-hidden-accessible')) {
+            el.next().after(out);
+        } else {
+            el.after(out);
+        }
+
+    }
+}

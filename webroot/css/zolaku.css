@@ -134,3 +134,62 @@ footer .footer-center .module ul.links-footer li a:hover, footer .footer-center 
 footer .module .footer-block-title h3, footer .module h3.footertitle{
     font-size: 1.2rem !important;
 }
+
+.modal {
+    text-align: center;
+    padding: 0!important;
+}
+
+.modal:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -4px;
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.login-popup {
+    width: 420px !important;
+}
+
+.login-popup .modal-header, .login-popup .modal-footer {
+    background: #FFF6F6;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.login-popup a {
+    font-weight: bold;
+    color: #dc5054;
+}
+
+.login-popup form button {
+    background: #dc5054;
+    border: none;
+}
+
+.login-popup button:hover {
+    background: #ef5d61;
+}
+
+form .form-group label {
+    font-weight: bold;
+}
+
+input::-webkit-input-placeholder { /* Edge */
+    color: #afafaf !important;
+}
+
+input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #afafaf !important;
+}
+
+input::placeholder {
+    color: #afafaf !important;
+}

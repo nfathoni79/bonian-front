@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Controller;
+
+use Cake\Controller\Controller;
+use Cake\Core\Configure;
+use Cake\Event\Event;
+
+/**
+ * Application Controller
+ *
+ * Add your application-wide methods in the class below, your controllers
+ * will inherit them.
+ * @property \App\Controller\Component\ApiComponent $Api
+ *
+ * @link https://book.cakephp.org/3.0/en/controllers.html#the-app-controller
+ */
+class AuthController extends AppController
+{
+
+    public function initialize()
+    {
+        parent::initialize();
+
+        $this->loadComponent('Auth', [
+            'loginAction' => false,
+            'loginRedirect' => false,
+            'authorize' => 'Api',
+            'authenticate' => [
+                'Api' => [
+                    //'finder' => 'auth',
+                    'userModel' => 'Customers',
+                    'fields' => ['username' => 'email', 'password' => 'password']
+                ]
+            ],
+            'unauthorizedRedirect' => ['controller' => 'Home', 'action' => 'index'],
+            'storage' => [
+                'className' => 'Session',
+                'key' => 'Auth.Customers',
+            ],
+        ]);
+
+    }
+
+}

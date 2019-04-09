@@ -63,8 +63,12 @@ class AppController extends Controller
     public function beforeRender(Event $event)
     {
         $_basePath = Configure::read('Images.url');
-        $_categories = $this->getCategories();
-        $_banners = $this->getTopHomeBanner();
+        if (property_exists($this, 'Api')) {
+            $_categories = $this->getCategories();
+            $_banners = $this->getTopHomeBanner();
+        }
+
+
         $this->set(compact('_categories', '_banners', '_basePath'));
 
         return parent::beforeRender($event);

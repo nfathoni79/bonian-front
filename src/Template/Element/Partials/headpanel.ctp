@@ -17,6 +17,12 @@
                         <li><a class="link-lg" href="#">Menjadi Member Zolaku</a></li>
                         <li><a class="link-lg" href="#">Penukaran Point</a></li>
                         <li><a class="link-lg" href="#">Lacak Pengiriman</a></li>
+                        <?php if (!$this->request->getSession()->check('Auth')) : ?>
+                        <li><a class="link-lg" data-toggle="modal" data-target="#login-popup">Login</a></li>
+                        <li><a class="link-lg" href="#">Daftar</a></li>
+                        <?php else : ?>
+                        <li><?= $this->request->getSession()->read('Auth.Customers.first_name'); ?></li>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>
@@ -165,4 +171,78 @@
 </header>
 <!-- //Header Container  -->
 
+<!-- modal login -->
+<!-- Modal -->
+<div class="modal fade" id="login-popup" tabindex="-1" role="dialog" aria-labelledby="login-popupLabel">
+    <div class="modal-dialog login-popup" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="login-popupLabel" style="text-align: center;"><img src="<?= $this->Url->build('/images/png/logo/logo-wide.png'); ?>" width="120px" alt="logo" /></h4>
+            </div>
+            <div class="modal-body">
+                <h3>Masuk ke akun anda</h3>
+
+                <div class="alert alert-danger alert-dismissible hide" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <span class="error-message"></span>
+                </div>
+
+                <?= $this->Form->create(null, [
+                        'url' => [
+                                'controller' => 'Login'
+                        ],
+                        'id' => 'login-form'
+                ]); ?>
+                    <div class="form-group">
+                        <label for="input-email">Email atau nomor HP</label>
+                        <input type="text" name="email" value="" placeholder="Masukan nomor telepon di awali +62" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="input-email">Password</label>
+                        <input type="password" name="password" value="" placeholder="Masukkan password" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block">Masuk</button>
+                    </div>
+                <?= $this->Form->end(); ?>
+            </div>
+            <div class="modal-footer">
+                Belum memiliki akun zolaku? <a>Daftar Sekarang</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end modal login -->
+
+<?php
+$this->Html->script([
+    '/js/custom-libs/validation-render',
+], ['block' => true]);
+?>
+<?php $this->append('script'); ?>
+<script>
+    $(document).ready(function(){
+        //login-form
+        var formEl = $("#login-form");
+        formEl.submit(function(e) {
+            var ajaxRequest = new ajaxValidation(formEl);
+            ajaxRequest.post(formEl.attr('action'), formEl.find(':input'), function(response, data) {
+                if (response.success) {
+                    location.href = '<?= $this->Url->build(); ?>';
+                } else {
+                    console.log(data);
+                    var alert = $("#login-popup .alert");
+                    alert.find('.error-message').text(data.error.message);
+                    alert.removeClass('hide');
+                }
+            });
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+        });
+
+    });
+</script>
+<?php $this->end();
 
