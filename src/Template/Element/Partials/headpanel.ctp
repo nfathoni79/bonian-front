@@ -202,9 +202,10 @@
                         ],
                         'id' => 'login-form'
                 ]); ?>
-                    <div class="form-group">
+                    <div class="form-group error">
                         <label for="input-email">Email atau nomor HP</label>
                         <input type="text" name="email" value="" placeholder="Masukan nomor telepon di awali +62" class="form-control" />
+                        <!-- <span class="help-block">Example block-level help text here.</span> -->
                     </div>
 
                     <div class="form-group">

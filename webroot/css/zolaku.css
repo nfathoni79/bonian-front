@@ -183,6 +183,8 @@ footer .module .footer-block-title h3, footer .module h3.footertitle{
 .login-popup .social-media-button .google {
     border: 1px solid #dcdcdc;
     color: #999999;
+    padding-top: 6px;
+    height: 35px;
 }
 
 .login-popup .social-media-button .google img {
@@ -220,6 +222,12 @@ footer .module .footer-block-title h3, footer .module h3.footertitle{
 
 form .form-group label {
     font-weight: bold;
+}
+
+form .form-group.error .help-block {
+    color: #ef5d61;
+    font-size: 12px;
+    margin-top: 1px;
 }
 
 input::-webkit-input-placeholder { /* Edge */
