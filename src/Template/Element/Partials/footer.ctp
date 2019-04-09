@@ -97,8 +97,6 @@
                     <div class="module clearfix">
                         <h3 class="footertitle">Ikuti Kami</h3>
                         <div class="modcontent">
-
-                            <div class="logo"><a href="/"><?php echo $this->Html->image('/images/png/logo/logo-wide.png', ['alt' => 'Zolaku', 'width' => '155']); ?></a></div>
                             <ul class="links-footer" style="margin-top: 20px;">
                                 <li class="li-social facebook-social">
                                     <a title="Facebook" href="http://www.facebook.com/#" target="_blank">
@@ -139,7 +137,18 @@
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-style footer-contact">
                 <div class="module">
                     <div class="module footer-contact clearfix">
-                        <h3 class="footertitle">Metode Pembayaran</h3>
+                        <h3 class="footertitle">DOWNLOAD APLIKASI ZOLAKU</h3>
+                        <div class="row" style="margin-top: 10px;">
+                            <div class="col-sm-6">
+                                <?php echo $this->Html->image('/images/logo_apps/google_play.png', ['alt' => 'logo bca','class' => 'img-responsive']); ?>
+                            </div>
+                            <div class="col-sm-6">
+                                <?php echo $this->Html->image('/images/logo_apps/google_play.png', ['alt' => 'logo mandiri','class' => 'img-responsive']); ?>
+                            </div>
+                        </div>
+
+
+                        <h3 class="footertitle" style="margin-top: 20px;">Metode Pembayaran</h3>
                         <div class="row">
                             <div class="col-sm-4">
                                 <?php echo $this->Html->image('/images/logo_bank/bca.png', ['alt' => 'logo bca', 'width' => '77']); ?>
