@@ -50,7 +50,7 @@ class LoginController extends AuthController
    public function test()
    {
        $this->disableAutoRender();
-       //$this->Auth->logout();
+       $this->Auth->logout();
        debug($this->Auth->user());
    }
 }

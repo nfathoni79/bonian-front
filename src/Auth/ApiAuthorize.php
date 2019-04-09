@@ -26,7 +26,6 @@ class ApiAuthorize extends BaseAuthorize
     public function authorize($user, ServerRequest $request)
     {
         // Do things here.
-        debug($user); exit;
         return !empty($user);
     }
 
