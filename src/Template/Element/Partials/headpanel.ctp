@@ -173,7 +173,7 @@
 
 <!-- modal login -->
 <!-- Modal -->
-<div class="modal fade" id="login-popup" tabindex="-1" role="dialog" aria-labelledby="login-popupLabel">
+<div class="modal fade" id="login-popup" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="login-popupLabel">
     <div class="modal-dialog login-popup" role="document">
         <div class="modal-content">
             <div class="modal-header">

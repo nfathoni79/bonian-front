@@ -50,21 +50,28 @@ class ApiComponent extends Component
     }
 
     /**
-     * @param string $provider value development / productions
+     * @param null $withToken
      * @return Client
      */
-    public function makeRequest()
+    public function makeRequest($withToken = null)
     {
         $api = Configure::read('Api');
         $this->base_uri = rtrim($api[$this->_defaultConfig['provider']], '/') . '/';
+
+        $headers = [
+            'User-Agent' => 'zolaku/1.0'
+        ];
+
+        if ($withToken) {
+            $headers['Authorization'] = 'Bearer ' . $withToken;
+        }
+
         return new Client([
             // Base URI is used with relative requests
             'base_uri' => $this->base_uri,
             // You can set any number of default request options.
             'timeout'  => 30.0,
-            'headers' => [
-                'User-Agent' => 'zolaku/1.0'
-            ]
+            'headers' => $headers
         ]);
     }
 
