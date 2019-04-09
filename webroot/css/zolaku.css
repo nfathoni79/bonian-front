@@ -170,12 +170,12 @@ footer .module .footer-block-title h3, footer .module h3.footertitle{
 }
 
 .login-popup form button {
-    background: #dc5054;
+    background: #c93535;
     border: none;
 }
 
-.login-popup button:hover {
-    background: #ef5d61;
+.login-popup button:hover, .login-popup button:focus, .login-popup button:active {
+    background: #ef5d61 !important;
 }
 
 form .form-group label {
