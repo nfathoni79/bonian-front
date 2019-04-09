@@ -172,6 +172,46 @@ footer .module .footer-block-title h3, footer .module h3.footertitle{
 .login-popup form button {
     background: #c93535;
     border: none;
+    border-radius: 5px;
+}
+
+.login-popup .social-media-button .btn {
+    background: none;
+    border-radius: 5px;
+}
+
+.login-popup .social-media-button .google {
+    border: 1px solid #dcdcdc;
+    color: #999999;
+}
+
+.login-popup .social-media-button .google img {
+    height: 20px;
+}
+
+.login-popup .social-media-button .facebook:before {
+    content: "\f09a";
+    font-family: FontAwesome;
+    position:absolute;
+    top: 9px;
+    left: 50px;
+    background: #ffffff;
+    color: #3b5998;
+    padding: 0px 4px;
+    height: 17px;
+}
+
+.login-popup .social-media-button .facebook {
+    border: none;
+    background: #3b5998;
+    color: #ffffff;
+    height: 35px;
+    padding-top: 8px;
+}
+
+.login-popup .forgot-password-text {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .login-popup button:hover, .login-popup button:focus, .login-popup button:active {

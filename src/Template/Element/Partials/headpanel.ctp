@@ -208,6 +208,31 @@
                         <button type="submit" class="btn btn-primary btn-block">Masuk</button>
                     </div>
                 <?= $this->Form->end(); ?>
+
+                <div style="width: 100%; height: 13px; border-bottom: 1px solid #d1d1d1; text-align: center; margin: 25px auto;">
+                      <span style="font-size: 13px; background-color: #ffffff; padding: 0 10px;">
+                        Atau masuk dengan
+                      </span>
+                </div>
+
+                <div class="row social-media-button">
+                    <div class="col-md-6">
+                        <a class="btn btn-primary btn-block google">
+                            <img src="<?= $this->Url->build('/images/png/logo-media-social/google.png'); ?>" /> Google
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="btn btn-primary btn-block facebook">
+                            Facebook
+                        </a>
+                    </div>
+                </div>
+
+                <div class="text-center forgot-password-text">
+                    <a>Lupa Password?</a>
+                </div>
+
+
             </div>
             <div class="modal-footer">
                 Belum memiliki akun zolaku? <a>Daftar Sekarang</a>
