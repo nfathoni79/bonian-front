@@ -47,10 +47,10 @@ class LoginController extends AuthController
            ->withStringBody(json_encode($error));
    }
 
+
    public function test()
    {
        $this->disableAutoRender();
-       $this->Auth->logout();
        debug($this->Auth->user());
    }
 }

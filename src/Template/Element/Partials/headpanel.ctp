@@ -17,7 +17,7 @@
                         <li><a class="link-lg" href="#">Menjadi Member Zolaku</a></li>
                         <li><a class="link-lg" href="#">Penukaran Point</a></li>
                         <li><a class="link-lg" href="#">Lacak Pengiriman</a></li>
-                        <?php if (!$this->request->getSession()->check('Auth')) : ?>
+                        <?php if (!$this->request->getSession()->check('Auth.Customers')) : ?>
                         <li><a class="link-lg" data-toggle="modal" data-target="#login-popup">Login</a></li>
                         <li><a class="link-lg" href="#">Daftar</a></li>
                         <?php else : ?>

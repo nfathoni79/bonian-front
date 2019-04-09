@@ -40,6 +40,14 @@ class AuthController extends AppController
             ],
         ]);
 
+        $this->Auth->allow('logout');
+    }
+
+    public function logout()
+    {
+        $this->disableAutoRender();
+        $this->Auth->logout();
+        return $this->redirect('/');
     }
 
 }
