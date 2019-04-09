@@ -214,7 +214,7 @@ footer .module .footer-block-title h3, footer .module h3.footertitle{
     margin-bottom: 10px;
 }
 
-.login-popup button:hover, .login-popup button:focus, .login-popup button:active {
+.login-popup form button:hover, .login-popup form button:focus, .login-popup form button:active {
     background: #ef5d61 !important;
 }
 
@@ -232,4 +232,8 @@ input:-ms-input-placeholder { /* Internet Explorer 10-11 */
 
 input::placeholder {
     color: #afafaf !important;
+}
+
+.form-control, .btn {
+    height: 40px;
 }
