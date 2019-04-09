@@ -21,7 +21,18 @@
                         <li><a class="link-lg" data-toggle="modal" data-target="#login-popup">Login</a></li>
                         <li><a class="link-lg" href="#">Daftar</a></li>
                         <?php else : ?>
-                        <li><?= $this->request->getSession()->read('Auth.Customers.first_name'); ?></li>
+                        <li class="account" id="my_account">
+                            <a href="my-account.html" title="My Account " class="btn-xs dropdown-toggle" data-toggle="dropdown"> <span class="hidden-xs">My Account </span> <span class="fa fa-angle-down"></span></a>
+                            <ul class="dropdown-menu ">
+                                <li><a href="#">My Account </a></li>
+                                <li><a href="#">Order History </a></li>
+                                <li><a href="#">Transactions </a></li>
+                                <li><a href="#">Order Information </a></li>
+                                <li class="checkout"><a href="#" class="btn-link" title="Checkout "><span>Checkout </span></a></li>
+                                <li><a href="<?= $this->Url->build('/auth/logout'); ?>">Logout</a></li>
+
+                            </ul>
+                        </li>
                         <?php endif; ?>
                     </ul>
                 </div>
