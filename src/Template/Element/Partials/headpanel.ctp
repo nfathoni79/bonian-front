@@ -183,10 +183,7 @@
             <div class="modal-body">
                 <h3>Masuk ke akun anda</h3>
 
-                <div class="alert alert-danger alert-dismissible hide" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <span class="error-message"></span>
-                </div>
+                <div class="render-alert"></div>
 
                 <?= $this->Form->create(null, [
                         'url' => [
@@ -249,7 +246,15 @@ $this->Html->script([
 ?>
 <?php $this->append('script'); ?>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function() {
+
+        function render_error_message(message) {
+            $('#login-popup').find('.render-alert').html(`<div class="alert alert-danger alert-dismissible hide" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <span class="error-message">${message}</span>
+                </div>`);
+        }
+
         //login-form
         var formEl = $("#login-form");
         formEl.submit(function(e) {
@@ -258,9 +263,8 @@ $this->Html->script([
                 if (response.success) {
                     location.href = '<?= $this->Url->build(); ?>';
                 } else {
-                    console.log(data);
+                    render_error_message(data.error.message);
                     var alert = $("#login-popup .alert");
-                    alert.find('.error-message').text(data.error.message);
                     alert.removeClass('hide');
                 }
             });
