@@ -414,7 +414,10 @@ $this->Html->script([
         formReg.find('.phone-number').keyup(function(){
            var phone = $(this).val();
            var btn_otp = formReg.find('.btn-otp');
-           if (phone.match(/^0\d{9,11}$/)) {
+           if (btn_otp.attr('wait') === '1') {
+               btn_otp.attr('disabled', true);
+           }
+           else if (phone.match(/^0\d{9,11}$/)) {
                $(this).val('+62' + phone.substring(1));
                btn_otp.attr('disabled', false);
            } else if (phone.match(/^\+\d{11,}$/)) {
@@ -432,17 +435,17 @@ $this->Html->script([
             var ajaxOtp = new ajaxValidation(formReg);
             ajaxOtp.post('<?= $this->Url->build(['controller' => 'Register', 'action' => 'otp']); ?>', formReg.find('.phone-number'), function(response, data) {
                 if (response.success) {
-                    $(self).countdown('2019-04-10 16:42:00', function(event) {
-                        console.log(event);
-                        $(this).text(
+                    $(self).countdown(new Date((new Date()).getTime() + 1000 * 90), function(event) {
+                        $(this).attr('wait', 1).text(
                             'Ulangi ' + event.strftime('%M:%S')
                         );
                     }).on('finish.countdown', function(event) {
                         $(this).attr('disabled', false)
+                            .removeAttr('wait')
                             .text('Kirim Ulang');
                     });
                 } else {
-
+                    console.log('ajax error');
                 }
             });
 

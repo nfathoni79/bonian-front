@@ -68,14 +68,18 @@ class RegisterController extends AppController
                    ]);
                if ($response = $this->Api->success($login)) {
                    $json = $response->parse();
-
-                   debug($json);exit;
-
                }
            } catch(\GuzzleHttp\Exception\ClientException $e) {
                $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+               $error['error'] = [
+                   'phone' => [
+                       '_invalid' => 'Tunggu 15 menit sampai sesi habis.'
+                   ]
+               ];
            }
        }
+
+
 
        return $this->response->withType('application/json')
            ->withStringBody(json_encode($error));

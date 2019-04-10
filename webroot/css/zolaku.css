@@ -301,6 +301,7 @@ form .form-group.error .help-block {
 
 form.ajax-helper .form-group.error .help-block {
     position: absolute;
+    white-space: nowrap;
 }
 
 input::-webkit-input-placeholder { /* Edge */
