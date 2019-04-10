@@ -192,7 +192,7 @@
                 <h4 class="modal-title" id="login-popupLabel" style="text-align: center;"><img src="<?= $this->Url->build('/images/png/logo/logo-wide.png'); ?>" width="120px" alt="logo" /></h4>
             </div>
             <div class="modal-body">
-                <h3>Masuk ke akun anda</h3>
+                <h3 style="margin-top: 5px;">Masuk ke akun anda</h3>
 
                 <div class="render-alert"></div>
 
@@ -214,7 +214,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>&nbsp;</label>
+                        <label></label>
                         <button type="submit" class="btn btn-primary btn-block">Masuk</button>
                     </div>
                 <?= $this->Form->end(); ?>
