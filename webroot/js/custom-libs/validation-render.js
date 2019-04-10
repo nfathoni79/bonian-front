@@ -170,6 +170,10 @@ ajaxValidation.prototype.post = function(url, input, callback) {
                             that.appendTextInput(m, fields[field].message);
                         });
                     }
+                } else if (data.status === 'OK') {
+                    if (typeof callback === 'function') {
+                        callback({success: true}, data);
+                    }
                 } else if (data.status === 'ERROR') {
                     if (typeof callback === 'function') {
                         callback({success: false}, data);

@@ -29,10 +29,7 @@ class RegisterController extends AppController
                    'form_params' => $this->request->getData()
                ]);
            if ($response = $this->Api->success($login)) {
-               $json = $response->parse();
-
-               debug($json);exit;
-
+               $error = $response->parse();
            }
        } catch(\GuzzleHttp\Exception\ClientException $e) {
            $error = json_decode($e->getResponse()->getBody()->getContents(), true);
