@@ -164,6 +164,7 @@ footer .module .footer-block-title h3, footer .module h3.footertitle{
     text-align: center;
 }
 
+
 .login-popup a {
     font-weight: bold;
     color: #dc5054;
@@ -218,6 +219,70 @@ footer .module .footer-block-title h3, footer .module h3.footertitle{
 
 .login-popup form button:hover, .login-popup form button:focus, .login-popup form button:active {
     background: #ef5d61 !important;
+}
+
+#modal-register .modal-dialog {
+    width: 720px !important;
+}
+
+#modal-register .modal-header, #modal-register .modal-footer {
+    background: #FFF6F6;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#modal-register .modal-header h4  {
+    font-size: 18px;
+    color: #555555;
+    text-align: left;
+}
+
+#modal-register .container-register-phone {
+    background: #FFF6F6;
+    border-radius: 5px;
+    padding: 15px;
+    border: 1px solid #d1d1d1;
+}
+
+#modal-register .container-register-phone button {
+    border-radius: 5px;
+}
+
+#modal-register .social-media-button .btn {
+    background: none;
+    border-radius: 5px;
+}
+
+#modal-register .social-media-button .google {
+    border: 1px solid #dcdcdc;
+    color: #999999;
+    padding-top: 6px;
+    height: 35px;
+    background: #ffffff;
+}
+
+#modal-register .social-media-button .google img {
+    height: 20px;
+}
+
+#modal-register .social-media-button .facebook:before {
+    content: "\f09a";
+    font-family: FontAwesome;
+    position:absolute;
+    top: 9px;
+    left: 21%;
+    background: #ffffff;
+    color: #3b5998;
+    padding: 0px 4px;
+    height: 17px;
+}
+
+#modal-register .social-media-button .facebook {
+    border: none;
+    background: #3b5998;
+    color: #ffffff;
+    height: 35px;
+    padding-top: 8px;
 }
 
 form .form-group label {

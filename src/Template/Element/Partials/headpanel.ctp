@@ -19,7 +19,7 @@
                         <li><a class="link-lg" href="#">Lacak Pengiriman</a></li>
                         <?php if (!$this->request->getSession()->check('Auth.Customers')) : ?>
                         <li><a class="link-lg" data-toggle="modal" data-target="#login-popup">Login</a></li>
-                        <li><a class="link-lg" href="#">Daftar</a></li>
+                        <li><a class="link-lg" data-toggle="modal" data-target="#modal-register">Daftar</a></li>
                         <?php else : ?>
                         <li class="account" id="my_account">
                             <a href="my-account.html" title="My Account " class="btn-xs dropdown-toggle" data-toggle="dropdown"> <span class="hidden-xs">My Account </span> <span class="fa fa-angle-down"></span></a>
@@ -245,7 +245,131 @@
 
             </div>
             <div class="modal-footer">
-                Belum memiliki akun zolaku? <a>Daftar Sekarang</a>
+                Belum memiliki akun zolaku? <a data-toggle="modal" data-target="#modal-register" data-dismiss="modal">Daftar Sekarang</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end modal login -->
+
+<!-- modal login -->
+<!-- Modal -->
+<div class="modal fade" id="modal-register" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="login-popupLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="row">
+                    <div class="col-md-3">
+                        <img src="<?= $this->Url->build('/images/png/logo/logo-wide.png'); ?>" width="120px" alt="logo" />
+                    </div>
+                    <div class="col-md-4">
+                        <h4>Registrasi akun anda</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <?= $this->Form->create(null, [
+                    'url' => [
+                        'controller' => 'Register'
+                    ],
+                    'id' => 'form-register',
+                    'class' => 'ajax-helper'
+                ]); ?>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="container-register-phone">
+                            <div class="form-group">
+                                <label for="input-email">Nomor telepon</label>
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <input type="text" name="phone" value="" placeholder="Nomor telepon anda" class="form-control phone-number" />
+                                    </div>
+                                    <div class="col-md-5">
+                                        <button type="button" class="btn btn-block btn-primary btn-danger btn-otp" disabled>Kirim Kode</button>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="input-email">Masukan kode OTP</label>
+                                <input type="text" name="auth_code" value="" placeholder="Masukan kode OTP" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input-email">Email</label>
+                            <input type="text" name="email" value="" placeholder="Email" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input-email">Username</label>
+                            <input type="text" name="username" value="" placeholder="Username" class="form-control" />
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="input-email">Nama depan</label>
+                            <input type="text" name="first_name" value="" placeholder="Nama depan" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input-email">Nama belakang</label>
+                            <input type="text" name="last_name" value="" placeholder="Nama belakang" class="form-control" />
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="input-email">Password</label>
+                                    <input type="password" name="password" value="" placeholder="Password" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="input-email">Ulangi password</label>
+                                    <input type="password" name="cpassword" value="" placeholder="Ulangi password" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input-email">Verifikasi Captcha</label>
+                            <input type="text" name="captcha" value="" placeholder="Masukan kode captcha" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input-email"></label>
+                            <button type="submit" class="btn btn-block btn-danger">Daftar</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <?= $this->Form->end(); ?>
+
+            </div>
+            <div class="modal-footer">
+                <div class="row social-media-button">
+                    <div class="col-md-4">
+                        Atau daftar dengan
+                    </div>
+                    <div class="col-md-3">
+                        <a class="btn btn-primary btn-block google">
+                            <img src="<?= $this->Url->build('/images/png/logo-media-social/google.png'); ?>" /> Google
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a class="btn btn-primary btn-block facebook">
+                            Facebook
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -277,8 +401,61 @@ $this->Html->script([
                     location.href = '<?= $this->Url->build(); ?>';
                 } else {
                     //render_error_message(data.error.message);
-                    var alert = $("#login-popup .alert");
-                    alert.removeClass('hide');
+                    //var alert = $("#login-popup .alert");
+                    //alert.removeClass('hide');
+                }
+            });
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+        });
+
+        //register-form
+        var formReg = $("#form-register");
+
+        formReg.find('.phone-number').keyup(function(){
+           var phone = $(this).val();
+           var btn_otp = formReg.find('.btn-otp');
+           if (phone.match(/^0\d{9,11}$/)) {
+               $(this).val('+62' + phone.substring(1));
+               btn_otp.attr('disabled', false);
+           } else if (phone.match(/^\+\d{11,}$/)) {
+               btn_otp.attr('disabled', false);
+           } else {
+               btn_otp.attr('disabled', true);
+           }
+        });
+
+
+
+        formReg.find('.btn-otp').click(function() {
+            $(this).attr('disabled', true);
+            var self = this;
+            var ajaxOtp = new ajaxValidation(formReg);
+            ajaxOtp.post('<?= $this->Url->build(['controller' => 'Register', 'action' => 'otp']); ?>', formReg.find('.phone-number'), function(response, data) {
+                if (response.success) {
+                    $(self).countdown('2019-04-10 16:42:00', function(event) {
+                        console.log(event);
+                        $(this).text(
+                            'Ulangi ' + event.strftime('%M:%S')
+                        );
+                    }).on('finish.countdown', function(event) {
+                        $(this).attr('disabled', false)
+                            .text('Kirim Ulang');
+                    });
+                } else {
+
+                }
+            });
+
+
+        });
+
+        formReg.submit(function(e) {
+            var ajaxRequest = new ajaxValidation(formReg);
+            ajaxRequest.post(formReg.attr('action'), formReg.find(':input'), function(response, data) {
+                if (response.success) {
+                    location.href = '<?= $this->Url->build(); ?>';
+                } else {
+
                 }
             });
             e.preventDefault(); // avoid to execute the actual submit of the form.
