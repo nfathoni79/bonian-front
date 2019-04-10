@@ -2,7 +2,7 @@
     <div class="container">
         <div class= block-slide">
                 <div class="row">
-                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 block-left">
+                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 block-left">
                         <div class="module sohomepage-slider ">
                             <div class="yt-content-slider"  data-rtl="yes" data-autoplay="no" data-autoheight="no" data-delay="4" data-speed="0.6" data-margin="0" data-items_column0="1" data-items_column1="1" data-items_column2="1"  data-items_column3="1" data-items_column4="1" data-arrows="no" data-pagination="yes" data-lazyload="yes" data-loop="no" data-hoverpause="yes">
 
@@ -15,12 +15,12 @@
                             <div class="loadeding"></div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 block-right">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 block-right">
                         <div class="module">
                             <div class="block-image-1">
                                 <ul class="static-image">
-                                    <li><a title="Static Image" href="#"><img src="/frontend/images/catalog/demo/banners/home1/1.jpg" alt="Static Image"></a></li>
-                                    <li><a title="Static Image" href="#"><img src="/frontend/images/catalog/demo/banners/home1/2.jpg" alt="Static Image"></a></li>
+                                    <li><a href="#"><?php echo $this->Html->image('/images/catalog/banners/leaderboard.jpg', ['alt' => 'Leaderboard Zolaku']); ?></li>
+                                    <li><a href="#"><?php echo $this->Html->image('/images/catalog/banners/member.jpg', ['alt' => 'Panduan Mencari Member']); ?></li>
                                 </ul>
                             </div>
                         </div>
