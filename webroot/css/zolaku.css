@@ -226,8 +226,16 @@ form .form-group label {
 
 form .form-group.error .help-block {
     color: #ef5d61;
-    font-size: 12px;
-    margin-top: 1px;
+    font-size: 11px;
+    line-height: 8px;
+}
+
+.form-group.error .form-control {
+    border: 1px solid #ef5d61;
+}
+
+form.ajax-helper .form-group.error .help-block {
+    position: absolute;
 }
 
 input::-webkit-input-placeholder { /* Edge */

@@ -200,12 +200,12 @@
                         'url' => [
                                 'controller' => 'Login'
                         ],
-                        'id' => 'login-form'
+                        'id' => 'login-form',
+                        'class' => 'ajax-helper'
                 ]); ?>
-                    <div class="form-group error">
+                    <div class="form-group">
                         <label for="input-email">Email atau nomor HP</label>
                         <input type="text" name="email" value="" placeholder="Masukan nomor telepon di awali +62" class="form-control" />
-                        <!-- <span class="help-block">Example block-level help text here.</span> -->
                     </div>
 
                     <div class="form-group">
@@ -214,6 +214,7 @@
                     </div>
 
                     <div class="form-group">
+                        <label>&nbsp;</label>
                         <button type="submit" class="btn btn-primary btn-block">Masuk</button>
                     </div>
                 <?= $this->Form->end(); ?>
@@ -275,7 +276,7 @@ $this->Html->script([
                 if (response.success) {
                     location.href = '<?= $this->Url->build(); ?>';
                 } else {
-                    render_error_message(data.error.message);
+                    //render_error_message(data.error.message);
                     var alert = $("#login-popup .alert");
                     alert.removeClass('hide');
                 }

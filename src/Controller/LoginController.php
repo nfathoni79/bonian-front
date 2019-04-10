@@ -24,7 +24,7 @@ class LoginController extends AuthController
 
        $email = $this->request->getData('email');
        $password = $this->request->getData('password');
-       $error = ['error' => []];
+       //$error = ['error' => []];
        try {
            $login = $this->Api->makeRequest()
                ->post('v1/web/login', [
@@ -40,8 +40,9 @@ class LoginController extends AuthController
 
            }
        } catch(\GuzzleHttp\Exception\ClientException $e) {
-           $error['error'] = json_decode($e->getResponse()->getBody()->getContents(), true);
+           $error = json_decode($e->getResponse()->getBody()->getContents(), true);
        }
+
 
        return $this->response->withType('application/json')
            ->withStringBody(json_encode($error));

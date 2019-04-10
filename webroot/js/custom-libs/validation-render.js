@@ -184,9 +184,9 @@ ajaxValidation.prototype.post = function(url, input, callback) {
  * remove error message
  */
 ajaxValidation.prototype.removeError = function() {
-    this.form.find('.form-group.is-invalid').removeClass('is-invalid');
-    this.form.find('.error.form-control-feedback').remove();
-    this.form.find('.is-invalid').removeClass('is-invalid');
+    this.form.find('.form-group.error').removeClass('error');
+    this.form.find('.form-group .help-block').remove();
+    this.form.find('.help-block').removeClass('help-block');
 }
 
 /**
@@ -195,7 +195,7 @@ ajaxValidation.prototype.removeError = function() {
  * @param message
  */
 ajaxValidation.prototype.appendTextInput = function (el, message) {
-    let out = '<div class="error form-control-feedback">';
+    let out = '<div class="help-block">';
     let len = Object.entries(message).length;
     if (len > 1) {
         out += '<ul style="margin-left: -30px;">';
@@ -209,7 +209,7 @@ ajaxValidation.prototype.appendTextInput = function (el, message) {
     out += '</div>';
 
 
-    el.parents('.form-group').addClass('has-danger');
+    el.parents('.form-group').addClass('error');
     if (el.parents('.input-group').find('.input-group-append').length || el.parents('.input-group').find('.input-group-prepend').length) {
         el.parents('.input-group').after(out);
     } else if (el.attr('type') === 'checkbox') {
