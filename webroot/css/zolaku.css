@@ -292,7 +292,7 @@ form .form-group label {
 form .form-group.error .help-block {
     color: #ef5d61;
     font-size: 11px;
-    line-height: 8px;
+    line-height: 12px;
 }
 
 .form-group.error .form-control {
@@ -301,7 +301,7 @@ form .form-group.error .help-block {
 
 form.ajax-helper .form-group.error .help-block {
     position: absolute;
-    white-space: nowrap;
+    line-height: 8px;
 }
 
 input::-webkit-input-placeholder { /* Edge */

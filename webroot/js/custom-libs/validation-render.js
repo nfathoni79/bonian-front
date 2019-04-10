@@ -201,15 +201,19 @@ ajaxValidation.prototype.removeError = function() {
 ajaxValidation.prototype.appendTextInput = function (el, message) {
     let out = '<div class="help-block">';
     let len = Object.entries(message).length;
+    /*
     if (len > 1) {
         out += '<ul style="margin-left: -30px;">';
-    }
+    }*/
     for (let [key, value] of Object.entries(message)) {
-        out += len > 1 ? `<li>${value}</li>` : value;
+        //out += len > 1 ? `<li>${value}</li>` : value;
+        out += value;
+        break;
     }
+    /*
     if (len > 1) {
         out += '</ul>';
-    }
+    }*/
     out += '</div>';
 
 

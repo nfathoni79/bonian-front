@@ -274,7 +274,7 @@
                         'controller' => 'Register'
                     ],
                     'id' => 'form-register',
-                    'class' => 'ajax-helper'
+                    'class' => 'ajax-helper_'
                 ]); ?>
 
                 <div class="row">
