@@ -24,7 +24,7 @@ class LoginController extends AuthController
 
        $email = $this->request->getData('email');
        $password = $this->request->getData('password');
-       //$error = ['error' => []];
+       $error = ['error' => []];
        try {
            $login = $this->Api->makeRequest()
                ->post('v1/web/login', [
