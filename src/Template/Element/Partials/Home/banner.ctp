@@ -19,8 +19,8 @@
                         <div class="module">
                             <div class="block-image-1">
                                 <ul class="static-image">
-                                    <li><a href="#"><?php echo $this->Html->image('/images/catalog/banners/leaderboard.jpg', ['alt' => 'Leaderboard Zolaku']); ?></li>
-                                    <li><a href="#"><?php echo $this->Html->image('/images/catalog/banners/member.jpg', ['alt' => 'Panduan Mencari Member']); ?></li>
+                                    <li><a href="#"><?php echo $this->Html->image('/images/catalog/banners/leaderboard.jpg', ['alt' => 'Leaderboard Zolaku']); ?></a></li>
+                                    <li><a href="#"><?php echo $this->Html->image('/images/catalog/banners/member.jpg', ['alt' => 'Panduan Mencari Member']); ?></a></li>
                                 </ul>
                             </div>
                         </div>

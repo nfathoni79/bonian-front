@@ -69,6 +69,7 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
 
+    $routes->connect('/promotion/:slug', ['controller' => 'Promotion', 'action' => 'index'])->setPass(['slug']);
     /**
      * Connect catchall routes for all controllers.
      *
