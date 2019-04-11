@@ -87,6 +87,14 @@ class ApiComponent extends Component
         }
     }
 
+    public function handle(\Exception $e)
+    {
+        if ($e->getCode() == 401) {
+            $this->getController()->Auth->logout();
+            return $this->getController()->redirect(['controller' => 'Home', 'prefix' => false]);
+        }
+    }
+
 
     public function parse()
     {

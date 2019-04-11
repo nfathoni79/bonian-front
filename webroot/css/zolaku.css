@@ -318,13 +318,13 @@ input::placeholder {
 
 .form-control, .btn {
     height: 40px;
+    line-height: 1.7;
 }
 
 /* aside menu user */
 .content-aside .module.user-menu {
     border: none;
     background: #ffffff;
-    border-radius: 5px;
     -webkit-box-shadow: 1px 1px 5px 0px rgba(209,209,209,1);
     -moz-box-shadow: 1px 1px 5px 0px rgba(209,209,209,1);
     box-shadow: 1px 1px 5px 0px rgba(209,209,209,1);
@@ -375,9 +375,13 @@ input::placeholder {
     vertical-align: middle;
 }
 
+.container .user-content,
+.container .user-menu {
+    border-radius: 7px;
+}
+
 .container .user-content {
     background: #ffffff;
-    border-radius: 5px;
     -webkit-box-shadow: 1px 1px 5px 0px rgba(209,209,209,1);
     -moz-box-shadow: 1px 1px 5px 0px rgba(209,209,209,1);
     box-shadow: 1px 1px 5px 0px rgba(209,209,209,1);
@@ -386,7 +390,7 @@ input::placeholder {
 
 .container .user-content .user-content-header {
     border-bottom: 1px solid #efefef;
-    height:50px;
+    height: 60px;
     display: table;
     width: 100%;
     /*padding: 15px;*/
@@ -399,16 +403,18 @@ input::placeholder {
 }
 
 .container .user-content-header .nav > li > a {
-    padding: 18px 15px;
+    padding: 20px 5px;
     font-weight: bold;
     color: #c1c1c1;
     border: none;
+    margin-right: 30px;
 }
 
 .container .user-content-header .nav-tabs {
     border-bottom: none;
     vertical-align:middle;
     display: table-cell;
+    padding-left: 15px;
 }
 
 
@@ -420,6 +426,7 @@ input::placeholder {
     color: #c93535;
 }
 
+.container .user-content-header .nav-tabs > li > a:focus,
 .container .user-content-header .nav-tabs > li > a:hover {
     background: none;
     border: none;
@@ -437,4 +444,35 @@ input::placeholder {
 
 .profile-usermenu .nav > li.active > a {
     color: #c93535;
+}
+
+table.user-detail-info {
+    margin-top: 15px;
+}
+
+table.user-detail-info tr td {
+    border-top: none;
+    border-bottom: 1px dashed #d1d1d1;
+    padding: 7px 0;
+}
+
+table.user-detail-info td:nth-child(2) {
+    font-weight: bold;
+}
+
+a.link-referral {
+    color: #c93535;
+}
+
+.leaderboard-popover {
+    padding: 10px;
+}
+
+.leaderboard-popover button {
+    color: #c93535;
+    border-radius: 5px;
+}
+
+.btn {
+    border-radius: 5px;
 }
