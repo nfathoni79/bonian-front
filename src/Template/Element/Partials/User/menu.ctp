@@ -20,7 +20,7 @@
         <div class="modcontent profile-usermenu">
             <ul class="nav">
                 <li class="active">
-                    <a href="<?= $this->Url->build(['controller' => 'Profile', 'prefix' => 'user']); ?>">
+                    <a href="<?= $this->Url->build(['controller' => 'Profile', 'action' => 'index', 'prefix' => 'user']); ?>">
                         <i class="fa fa-user" aria-hidden="true"></i>
                         Profile saya </a>
                 </li>

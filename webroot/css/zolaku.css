@@ -396,10 +396,10 @@ input::placeholder {
     /*padding: 15px;*/
 }
 
-.container .user-content .user-content-header h4,
-.container .user-content .user-content-header h3,
-.container .user-content .user-content-header h2 {
+.container .user-content .user-content-header h4{
     padding: 15px;
+    margin-bottom: 0;
+    font-size: 15px;
 }
 
 .container .user-content-header .nav > li > a {

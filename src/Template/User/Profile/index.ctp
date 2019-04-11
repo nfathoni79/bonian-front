@@ -63,7 +63,7 @@
                                 </table>
 
                                 <div>
-                                    <a class="btn btn-danger">Edit Profil</a>
+                                    <a class="btn btn-danger" href="<?= $this->Url->build(['action' => 'edit', 'prefix' => 'user']); ?>">Edit Profil</a>
                                 </div>
 
                             </div>
