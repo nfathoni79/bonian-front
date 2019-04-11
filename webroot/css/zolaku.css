@@ -398,29 +398,29 @@ input::placeholder {
     padding: 15px;
 }
 
-.container .user-content .nav > li > a {
+.container .user-content-header .nav > li > a {
     padding: 18px 15px;
     font-weight: bold;
     color: #c1c1c1;
     border: none;
 }
 
-.container .user-content .nav-tabs {
+.container .user-content-header .nav-tabs {
     border-bottom: none;
     vertical-align:middle;
     display: table-cell;
 }
 
 
-.container .user-content .nav-tabs > li.active > a,
-.container .user-content .nav-tabs > li.active > a:focus,
-.container .user-content .nav-tabs > li.active > a:hover {
+.container .user-content-header .nav-tabs > li.active > a,
+.container .user-content-header .nav-tabs > li.active > a:focus,
+.container .user-content-header .nav-tabs > li.active > a:hover {
     border: none;
     border-bottom: 2px solid #c93535;
     color: #c93535;
 }
 
-.container .user-content .nav-tabs > li > a:hover {
+.container .user-content-header .nav-tabs > li > a:hover {
     background: none;
     border: none;
     color: #c93535;
