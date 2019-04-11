@@ -16,9 +16,9 @@
                                     'templates' => 'app_form'
                                 ]); ?>
 
-                                <?= $this->Form->input('name', ['label' => 'Nama Lengkap', 'class' => 'form-control']); ?>
-                                <?= $this->Form->input('dob', ['label' => 'Tanggal lahir', 'class' => 'form-control']); ?>
-                                <?= $this->Form->input('gender', [
+                                <?= $this->Form->control('name', ['label' => 'Nama Lengkap', 'class' => 'form-control']); ?>
+                                <?= $this->Form->control('dob', ['label' => 'Tanggal lahir', 'class' => 'form-control']); ?>
+                                <?= $this->Form->control('gender', [
                                     'label' => 'Jenis kelamin',
                                     'type' => 'select',
                                     'empty' => '-',
