@@ -33,7 +33,11 @@ class AuthController extends AppController
                     'fields' => ['username' => 'email', 'password' => 'password']
                 ]
             ],
-            'unauthorizedRedirect' => ['controller' => 'Home', 'action' => 'index'],
+            'unauthorizedRedirect' => [
+                'controller' => 'Home',
+                'action' => 'index',
+                'prefix' => false
+            ],
             'storage' => [
                 'className' => 'Session',
                 'key' => 'Auth.Customers',

@@ -24,11 +24,7 @@
                         <li class="account" id="my_account">
                             <a href="my-account.html" title="My Account " class="btn-xs dropdown-toggle" data-toggle="dropdown"> <span class="hidden-xs">My Account </span> <span class="fa fa-angle-down"></span></a>
                             <ul class="dropdown-menu ">
-                                <li><a href="#">My Account </a></li>
-                                <li><a href="#">Order History </a></li>
-                                <li><a href="#">Transactions </a></li>
-                                <li><a href="#">Order Information </a></li>
-                                <li class="checkout"><a href="#" class="btn-link" title="Checkout "><span>Checkout </span></a></li>
+                                <li><a href="<?= $this->Url->build(['controller' => 'Profile', 'prefix' => 'user']); ?>">My Account </a></li>
                                 <li><a href="<?= $this->Url->build('/auth/logout'); ?>">Logout</a></li>
 
                             </ul>

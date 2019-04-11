@@ -70,6 +70,10 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
 
     $routes->connect('/promotion/:slug', ['controller' => 'Promotion', 'action' => 'index'])->setPass(['slug']);
+
+    $routes->prefix('user', function (RouteBuilder $routes) {
+        $routes->fallbacks(DashedRoute::class);
+    });
     /**
      * Connect catchall routes for all controllers.
      *
