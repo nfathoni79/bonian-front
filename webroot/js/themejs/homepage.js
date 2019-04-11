@@ -1132,8 +1132,10 @@ $(document).ready(function ($) {
 			var category_id 		= $this.attr('data-category-id'),
 			path_url 	= 'ajax/listingtab_',
 			ajax_url = $tabs.parents('.ltabs-tabs-container').attr('data-ajaxurl')+path_url+category_id+ '.html';
-			
-			$loading.show();
+            $loading.show();
+            $loading.remove();
+			if (category_id == undefined) return;
+
 			$.ajax({
 				type: 'POST',
 				url: ajax_url,
