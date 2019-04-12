@@ -65,7 +65,7 @@
                                     </div>
                                     <input class="autosearch-input form-control" type="text" value="" size="50" autocomplete="off" placeholder="Search" name="search"><ul class="dropdown-menu" style="display: none;"></ul>
                                     <span class="input-group-btn">
-                                                <button type="submit" class="button-search btn btn-default btn-lg" name="submit_search"><i class="fa fa-search"></i></button>
+                                                <button type="submit" class="button-search btn btn-lg" name="submit_search"><i class="fa fa-search"></i></button>
                                             </span>
                                 </div>
                                 <input type="hidden" name="route" value="product/search">
