@@ -15,47 +15,56 @@
             </div>
             <div class="divider"></div>
         </div>
-
+        <?php
+            $nav = [
+                [
+                    'title' => 'Profile Saya',
+                    'url' => $this->Url->build(['controller' => 'Profile', 'action' => 'index', 'prefix' => 'user']),
+                    'icon' =>'zl zl-user'
+                ],
+                [
+                    'title' => 'Riwayat pesanan',
+                    'url' => $this->Url->build(['controller' => 'History', 'action' => 'index', 'prefix' => 'user']),
+                    'icon' =>'zl zl-history'
+                ],
+                [
+                    'title' => 'Notifikasi',
+                    'url' => $this->Url->build(['controller' => 'Notification', 'action' => 'index', 'prefix' => 'user']),
+                    'icon' =>'zl zl-notif'
+                ],
+                [
+                    'title' => 'Voucher',
+                    'url' => $this->Url->build(['controller' => 'Voucher', 'action' => 'index', 'prefix' => 'user']),
+                    'icon' =>'zl zl-voucher'
+                ],
+                [
+                    'title' => 'Point saya',
+                    'url' => $this->Url->build(['controller' => 'Point', 'action' => 'index', 'prefix' => 'user']),
+                    'icon' =>'zl zl-point'
+                ],
+                [
+                    'title' => 'Jaringan',
+                    'url' => $this->Url->build(['controller' => 'Network', 'action' => 'index', 'prefix' => 'user']),
+                    'icon' =>'zl zl-network'
+                ],
+                [
+                    'title' => 'Leaderboard',
+                    'url' => $this->Url->build(['controller' => 'Leaderboard', 'action' => 'index', 'prefix' => 'user']),
+                    'icon' =>'zl zl-leaderboard'
+                ],
+            ];
+        ?>
         <!-- SIDEBAR MENU -->
         <div class="modcontent profile-usermenu">
             <ul class="nav">
-                <li class="active">
-                    <a href="<?= $this->Url->build(['controller' => 'Profile', 'action' => 'index', 'prefix' => 'user']); ?>">
-                        <i class="zl zl-user" aria-hidden="true"></i>
-                        Profile saya </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="zl zl-history" aria-hidden="true"></i>
-                        Riwayat pesanan </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="zl zl-notif" aria-hidden="true"></i>
-                        Notifikasi </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="zl zl-voucher" aria-hidden="true"></i>
-                        Voucher </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="zl zl-point" aria-hidden="true"></i>
-                        Point saya </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="zl zl-network" aria-hidden="true"></i>
-                        Jaringan </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="zl zl-leaderboard" aria-hidden="true"></i>
-                        Leaderboard </a>
-                </li>
-
-
+                <?php foreach($nav as  $val):?>
+                    <?php if($this->request->here == $val['url']){ $active = 'active';}else{$active = '';}?>
+                    <li class="<?= $active;?>">
+                        <a href="<?= $val['url']; ?>">
+                            <i class="<?= $val['icon']; ?>" aria-hidden="true"></i>
+                            <?= $val['title']; ?> </a>
+                    </li>
+                <?php endforeach; ?>
             </ul>
         </div>
         <!-- END MENU -->

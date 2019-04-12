@@ -67,6 +67,7 @@
     ]); ?>
 
 
+    <?= $this->fetch('css') ?>
     <!-- Google web fonts
    ============================================ -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel='stylesheet' type='text/css'>
