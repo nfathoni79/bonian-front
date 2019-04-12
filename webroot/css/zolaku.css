@@ -316,10 +316,12 @@ input::placeholder {
     color: #afafaf !important;
 }
 
+/*
 .form-control, .btn {
     height: 40px;
     line-height: 1.7;
 }
+*/
 
 /* aside menu user */
 .content-aside .module.user-menu {
@@ -473,7 +475,7 @@ a.link-referral {
     border-radius: 5px;
 }
 
-.btn {
+.btn-radius {
     border-radius: 5px;
 }
 
