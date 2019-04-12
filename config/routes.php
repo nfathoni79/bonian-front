@@ -68,7 +68,7 @@ Router::scope('/', function (RouteBuilder $routes) {
      * ...and connect the rest of 'Pages' controller's URLs.
      */
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
-
+    $routes->connect('/promotion/point-redeem', ['controller' => 'Promotion', 'action' => 'pointRedeem']);
     $routes->connect('/promotion/:slug', ['controller' => 'Promotion', 'action' => 'index'])->setPass(['slug']);
 
     $routes->prefix('user', function (RouteBuilder $routes) {
