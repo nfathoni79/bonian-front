@@ -67,7 +67,7 @@
                                 <li><a href="#">Karir</a></li>
                                 <li><a href="#">Kebijakan Zolaku</a></li>
                                 <li><a href="#">Kebijakan Privasi</a></li>
-                                <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'syarat---ketentuan']);?>">Syarat & Ketentuan</a></li>
+                                <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'syarat-ketentuan','prefix' => false]);?>">Syarat & Ketentuan</a></li>
                             </ul>
                         </div>
                     </div>
