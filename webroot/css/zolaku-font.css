@@ -26,29 +26,22 @@
 
 .zl-history:before {
   content: "\e900";
-  color: #717171;
 }
 .zl-leaderboard:before {
   content: "\e901";
-  color: #717171;
 }
 .zl-network:before {
   content: "\e902";
-  color: #717171;
 }
 .zl-notif:before {
   content: "\e903";
-  color: #717171;
 }
 .zl-point:before {
   content: "\e904";
-  color: #717171;
 }
 .zl-voucher:before {
   content: "\e905";
-  color: #717171;
 }
 .zl-user:before {
   content: "\e906";
-  color: #717171;
 }
