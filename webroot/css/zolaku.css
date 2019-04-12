@@ -482,3 +482,8 @@ a.link-referral {
 .margin-b-15 {
     margin-bottom: 15px;
 }
+
+#flashsale-timer {
+    font-size: 12px;
+    font-weight: normal;
+}
