@@ -29,7 +29,7 @@
                                 <div style="display: table-cell;">
                                     <h4 style="margin-top: 0;"><?= $history['device']['browser']; ?> di <?= $history['device']['platform']; ?> </h4>
 
-                                    <?= $history['IpLocations']['city'] ? $history['IpLocations']['city'] : 'Tidak dikenali'; ?>, <?= $history['IpLocations']['country_code'] ? $history['IpLocations']['country_code'] : '-'; ?>  <?= $history['ip']; ?> <br/>
+                                    <?= $history['IpLocations']['city'] ? $history['IpLocations']['city'] : 'Tidak dikenali'; ?>, <?= $history['IpLocations']['country_code'] ? $history['IpLocations']['country_name'] . ' (' .$history['IpLocations']['country_code'] . ')' : '-'; ?>  <?= $history['ip']; ?> <br/>
                                     <?php if ($key == 0) : ?>
                                         <span class="label label-success" style="margin-bottom: 15px;">Sedang aktif</span>
                                     <?php else : ?>
