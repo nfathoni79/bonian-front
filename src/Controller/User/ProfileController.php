@@ -225,9 +225,50 @@ class ProfileController extends AuthController
         return $this->response->withType('application/json')
             ->withStringBody(json_encode($error));
     }
+    public function editAddress($id = null){
 
-    public function setAlamat($id = null){
+        $this->disableAutoRender();
+        $this->request->allowMethod('post');
 
+        $error = ['error' => []];
+        try {
+            $updateAddress = $this->Api->makeRequest($this->Auth->user('token'))
+                ->post('v1/web/addresses/update/'.$id, [
+                    'form_params' => $this->request->getData()
+                ]);
+            if ($response = $this->Api->success($updateAddress)) {
+                $error = $response->parse();
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+        }
+
+
+        return $this->response->withType('application/json')
+            ->withStringBody(json_encode($error));
+    }
+
+    public function getAddress($id = null){
+
+        $this->autoRender = false;
+        if($id){
+            try {
+                $getAddress = $this->Api->makeRequest($this->Auth->user('token'))
+                    ->get('v1/web/addresses/view/'.$id);
+                if ($response = $this->Api->success($getAddress)) {
+                    $json = $response->parse();
+                    $getAddress = $json['result']['data'];
+                }
+            } catch(\GuzzleHttp\Exception\ClientException $e) {
+                $this->Api->handle($e);
+                $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+                if (isset($error['error'])) {
+                    $getAddress->setErrors($error['error']);
+                }
+            }
+        }
+        return $this->response->withType('application/json')
+            ->withStringBody(json_encode($getAddress));
     }
 
 }
