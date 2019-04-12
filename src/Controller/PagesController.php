@@ -29,6 +29,7 @@ use Cake\View\Exception\MissingTemplateException;
 class PagesController extends AppController
 {
 
+
     /**
      * Displays a view
      *
@@ -38,32 +39,27 @@ class PagesController extends AppController
      * @throws \Cake\Http\Exception\NotFoundException When the view file could not
      *   be found or \Cake\View\Exception\MissingTemplateException in debug mode.
      */
-    public function display(...$path)
+    public function index($slug = null)
     {
-        $count = count($path);
-        if (!$count) {
-            return $this->redirect('/');
-        }
-        if (in_array('..', $path, true) || in_array('.', $path, true)) {
-            throw new ForbiddenException();
-        }
-        $page = $subpage = null;
 
-        if (!empty($path[0])) {
-            $page = $path[0];
-        }
-        if (!empty($path[1])) {
-            $subpage = $path[1];
-        }
-        $this->set(compact('page', 'subpage'));
+        $this->viewBuilder()->setLayout('promotion');
 
         try {
-            $this->render(implode('/', $path));
-        } catch (MissingTemplateException $exception) {
-            if (Configure::read('debug')) {
-                throw $exception;
+            $pages = $this->Api->makeRequest()
+                ->get('v1/pages/'.$slug);
+            if ($response = $this->Api->success($pages)) {
+                $json = $response->parse();
+                $pages = $json['result']['data'];
             }
-            throw new NotFoundException();
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $this->Api->handle($e);
+            $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+            if (isset($error['error'])) {
+                $pages->setErrors($error['error']);
+            }
         }
+//        debug($pages);
+//        exit;
+        $this->set(compact('pages'));
     }
 }
