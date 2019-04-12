@@ -73,9 +73,22 @@ $this->Html->script([
                 { "data": "description" },
                 { "data": "amount" },
                 { "data": "balance" },
+            ],
+            columnDefs: [
+                {
+                    targets: 4,
+                    render: function (data, type, row, meta) {
+                        return  parseInt(row.amount).format(0, 3, '.', ',');
+                    }
+                },
+                {
+                    targets: 5,
+                    render: function (data, type, row, meta) {
+                        return  parseInt(row.balance).format(0, 3, '.', ',');
+                    }
+                },
             ]
         });
-        console.log(datatable.dom);
 
 
     } );

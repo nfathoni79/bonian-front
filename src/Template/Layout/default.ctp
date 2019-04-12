@@ -139,7 +139,8 @@
 '/js/themejs/addtocart',
 '/js/themejs/cpanel',
 '/js/custom-libs/validation-render',
-'/js/sweetalert/sweetalert.js'
+'/js/sweetalert/sweetalert.js',
+'/js/lib-tools.js',
 ]); ?>
 
 <?= $this->fetch('script') ?>
