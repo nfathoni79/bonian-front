@@ -136,6 +136,7 @@
 '/js/themejs/so_megamenu',
 '/js/themejs/addtocart',
 '/js/themejs/cpanel',
+'/js/custom-libs/validation-render',
 ]); ?>
 
 <?= $this->fetch('script') ?>

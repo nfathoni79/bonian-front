@@ -376,11 +376,6 @@
 </div>
 <!-- end modal login -->
 
-<?php
-$this->Html->script([
-    '/js/custom-libs/validation-render',
-], ['block' => true]);
-?>
 <?php $this->append('script'); ?>
 <script>
     $(document).ready(function() {
