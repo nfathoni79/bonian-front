@@ -16,6 +16,14 @@
                     'action' => 'address',
                     'prefix' => 'user'
                 ]
+            ],
+            [
+                'title' => 'Keamanan',
+                'url' => [
+                    'controller' => 'Profile',
+                    'action' => 'secure',
+                    'prefix' => 'user'
+                ]
             ]
         ];
 
