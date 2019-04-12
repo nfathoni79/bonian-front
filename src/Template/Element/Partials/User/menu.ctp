@@ -58,7 +58,7 @@
         <div class="modcontent profile-usermenu">
             <ul class="nav">
                 <?php foreach($nav as  $val):?>
-                    <?php if($this->request->here == $val['url']){ $active = 'active';}else{$active = '';}?>
+                    <?php if($this->request->getAttribute("here") == $val['url']){ $active = 'active';}else{$active = '';}?>
                     <li class="<?= $active;?>">
                         <a href="<?= $val['url']; ?>">
                             <i class="<?= $val['icon']; ?>" aria-hidden="true"></i>
