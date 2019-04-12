@@ -45,20 +45,7 @@
                                     </dl>
                                 </li>
                             <?php endforeach; ?>
-                        </ul>
-                            <?php foreach($histories as $key => $history) : ?>
-                            <div style="width: 400px; display: table; margin: 15px auto; border-bottom: 1px dashed #d1d1d1; padding: 10px;">
-                                <div style="display: table-cell; font-size: 18px;"></div>
-                                <div style="display: table-cell;">
-
-
-
-                                </div>
-                            </div>
-
-                            <?php endforeach; ?>
-
-
+                        </ul> 
 
                     </div>
                 </div>
