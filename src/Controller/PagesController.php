@@ -42,7 +42,7 @@ class PagesController extends AppController
     public function index($slug = null)
     {
 
-        $this->viewBuilder()->setLayout('promotion');
+        $this->viewBuilder()->setLayout('pages');
 
         try {
             $pages = $this->Api->makeRequest()
