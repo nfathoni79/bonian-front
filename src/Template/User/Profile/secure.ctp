@@ -10,34 +10,48 @@
                     <div class="user-content-body">
                         <h4><strong>Aktivitas Login</strong></h4>
 
-                        <div class="alert alert-info">
+                        <div class="alert alert-warning">
                             Bila terdapat aktivitas tidak dikenal, segera klik "Keluar" dan <a>ubah kata sandi</a>
                         </div>
 
                         <?php
-                                function print_icon($platform) {
-                                    if (in_array($platform, ['Windows', 'Linux', 'Macintosh', 'Chrome OS'])) {
-                                        return '<i class="fa fa-desktop" aria-hidden="true"></i>';
-                                    } else {
-                                        return '<i class="fa fa-mobile" aria-hidden="true"></i>';
-                                    }
+                            function print_icon($platform) {
+                                if (in_array($platform, ['Windows', 'Linux', 'Macintosh', 'Chrome OS'])) {
+                                    return '<i class="fa fa-desktop fa-3x" aria-hidden="true"></i>';
+                                } else {
+                                    return '<i class="fa fa-mobile fa-5x" aria-hidden="true"></i>';
                                 }
+                            }
                         ?>
+                        <ul class="list-group">
                             <?php foreach($histories as $key => $history) : ?>
-                            <div style="width: 400px; display: table; margin: 15px auto; border-bottom: 1px dashed #d1d1d1; padding: 10px;">
-                                <div style="display: table-cell; font-size: 18px;"><?= print_icon($history['device']['platform']); ?></div>
-                                <div style="display: table-cell;">
-                                    <h4 style="margin-top: 0;"><?= $history['device']['browser']; ?> di <?= $history['device']['platform']; ?> </h4>
 
-                                    <?= $history['IpLocations']['city'] ? $history['IpLocations']['city'] : 'Tidak dikenali'; ?>, <?= $history['IpLocations']['country_code'] ? $history['IpLocations']['country_name'] . ' (' .$history['IpLocations']['country_code'] . ')' : '-'; ?>  <?= $history['ip']; ?> <br/>
-                                    <?php if ($key == 0) : ?>
-                                        <span class="label label-success" style="margin-bottom: 15px;">Sedang aktif</span>
-                                    <?php else : ?>
-                                        <?= $this->Time->timeAgoInWords($history['modified'], [
+                                <li class="list-group-item" <?php echo ($key == 0) ? 'style="background:#FFF6F6;"' : '';?>>
+                                    <dl class="dl-horizontal">
+                                        <dt style="width: 125px;pa"><?= print_icon($history['device']['platform']); ?></dt>
+                                        <dd>
+                                            <h4 style="margin-top: 0;"><?= $history['device']['browser']; ?> di <?= $history['device']['platform']; ?> </h4>
+
+                                            <?= $history['IpLocations']['city'] ? $history['IpLocations']['city'] : 'Tidak dikenali'; ?>, <?= $history['IpLocations']['country_code'] ? $history['IpLocations']['country_name'] . ' (' .$history['IpLocations']['country_code'] . ')' : '-'; ?>  <?= $history['ip']; ?> <br/>
+                                            <?php if ($key == 0) : ?>
+                                                <span class="label label-success" style="margin-bottom: 15px;">Sedang aktif</span>
+                                            <?php else : ?>
+                                            <?= $this->Time->timeAgoInWords($history['modified'], [
                                             'accuracy' => ['month' => 'month'],
                                             'end' => '1 year'
-                                        ]); ?>
-                                    <?php endif; ?>
+                                            ]); ?>
+                                            <?php endif; ?>
+                                        </dd>
+                                    </dl>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                            <?php foreach($histories as $key => $history) : ?>
+                            <div style="width: 400px; display: table; margin: 15px auto; border-bottom: 1px dashed #d1d1d1; padding: 10px;">
+                                <div style="display: table-cell; font-size: 18px;"></div>
+                                <div style="display: table-cell;">
+
+
 
                                 </div>
                             </div>
