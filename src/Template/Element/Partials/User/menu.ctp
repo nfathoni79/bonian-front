@@ -61,11 +61,11 @@
                 ],
             ];
         ?>
-        <!-- SIDEBAR MENU --> 
+        <!-- SIDEBAR MENU -->
         <div class="modcontent profile-usermenu">
             <ul class="nav">
                 <?php foreach($nav as  $val):?>
-                    <?php if($this->request->params['controller'] == $val['controller']){ $active = 'active';}else{$active = '';}?>
+                    <?php if($this->request->getParam('controller') == $val['controller']){ $active = 'active';}else{$active = '';}?>
                     <li class="<?= $active;?>">
                         <a href="<?= $val['url']; ?>">
                             <i class="<?= $val['icon']; ?>" aria-hidden="true"></i>
