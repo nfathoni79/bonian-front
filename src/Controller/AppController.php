@@ -17,6 +17,8 @@ namespace App\Controller;
 use Cake\Controller\Controller;
 use Cake\Core\Configure;
 use Cake\Event\Event;
+use Cake\Http\Cookie\Cookie;
+use Cake\Utility\Security;
 
 /**
  * Application Controller
@@ -57,6 +59,25 @@ class AppController extends Controller
          * see https://book.cakephp.org/3.0/en/controllers/components/security.html
          */
         //$this->loadComponent('Security');
+    }
+
+    /**
+     * @param Event $event
+     * @return \Cake\Http\Response|null
+     * @throws \Exception
+     */
+    public function beforeFilter(Event $event)
+    {
+        if (!$this->request->getCookie('bid')) {
+            $cookie = new Cookie(
+                'bid',
+                Security::randomString(),
+                (new \DateTime())->add(new \DateInterval('P5Y')),
+                $this->request->getAttribute('base')
+            );
+            $this->response = $this->response->withCookie($cookie);
+        }
+        return parent::beforeFilter($event);
     }
 
 

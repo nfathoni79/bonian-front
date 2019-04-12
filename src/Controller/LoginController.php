@@ -5,6 +5,7 @@ namespace App\Controller;
 use Cake\Core\Configure;
 use Cake\Http\Cookie\CookieInterface;
 use Cake\Utility\Security;
+use Cake\Http\Cookie\Cookie;
 
 /**
  * Login Controller controller
@@ -27,16 +28,6 @@ class LoginController extends AuthController
        $email = $this->request->getData('email');
        $password = $this->request->getData('password');
        $error = ['error' => []];
-
-       if (!$this->request->getCookie('bid')) {
-           $this->response = $this->response->withCookie('bid', [
-               'value' => Security::randomString(),
-               'path' => $this->request->getAttribute('base'),
-               'httpOnly' => true,
-               'secure' => false,
-               'expire' => strtotime('+5 year')
-           ]);
-       }
 
        try {
            $this->Api->addHeader('bid', $this->request->getCookie('bid'));
