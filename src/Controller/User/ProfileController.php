@@ -60,5 +60,116 @@ class ProfileController extends AuthController
     public function address()
     {
 
+        try {
+            $address = $this->Api->makeRequest($this->Auth->user('token'))
+                ->get('v1/web/addresses');
+            if ($response = $this->Api->success($address)) {
+                $json = $response->parse();
+                $address = $json['result']['data'];
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $this->Api->handle($e);
+            $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+            if (isset($error['error'])) {
+                $address->setErrors($error['error']);
+            }
+        }
+
+        try {
+            $province = $this->Api->makeRequest($this->Auth->user('token'))
+                ->get('v1/web/addresses/get-province');
+            if ($response = $this->Api->success($province)) {
+                $json = $response->parse();
+                $province = $json['result']['data'];
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $this->Api->handle($e);
+            $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+            if (isset($error['error'])) {
+                $province->setErrors($error['error']);
+            }
+        }
+        $this->set(compact('address','province'));
+
+
+
     }
+
+    public function getCity(){
+        $this->autoRender = false;
+        if($this->request->getData('id')){
+            try {
+                $city = $this->Api->makeRequest($this->Auth->user('token'))
+                    ->get('v1/web/addresses/get-city/'.$this->request->getData('id'));
+                if ($response = $this->Api->success($city)) {
+                    $json = $response->parse();
+                    $city = $json['result']['data'];
+                }
+            } catch(\GuzzleHttp\Exception\ClientException $e) {
+                $this->Api->handle($e);
+                $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+                if (isset($error['error'])) {
+                    $city->setErrors($error['error']);
+                }
+            }
+        }
+
+        return $this->response->withType('application/json')
+            ->withStringBody(json_encode($city));
+
+    }
+
+    public function getDistrict(){
+        $this->autoRender = false;
+        if($this->request->getData('id')){
+            try {
+                $district = $this->Api->makeRequest($this->Auth->user('token'))
+                    ->get('v1/web/addresses/get-district/'.$this->request->getData('id'));
+                if ($response = $this->Api->success($district)) {
+                    $json = $response->parse();
+                    $district = $json['result']['data'];
+                }
+            } catch(\GuzzleHttp\Exception\ClientException $e) {
+                $this->Api->handle($e);
+                $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+                if (isset($error['error'])) {
+                    $district->setErrors($error['error']);
+                }
+            }
+        }
+
+        return $this->response->withType('application/json')
+            ->withStringBody(json_encode($district));
+
+    }
+
+    public function addAddress(){
+
+        $this->disableAutoRender();
+        $this->request->allowMethod('post');
+
+        $error = ['error' => []];
+        try {
+            $addAddress = $this->Api->makeRequest($this->Auth->user('token'))
+                ->post('v1/web/addresses/add', [
+                    'form_params' => $this->request->getData()
+                ]);
+            if ($response = $this->Api->success($addAddress)) {
+                $json = $response->parse();
+                /* set user to Auth */
+                $this->Auth->setUser($json['result']['data']);
+
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+        }
+
+
+        return $this->response->withType('application/json')
+            ->withStringBody(json_encode($error));
+    }
+    public function setAlamat($id = null){
+
+    }
+
 }
