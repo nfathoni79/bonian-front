@@ -78,6 +78,15 @@
                                                         </a>
                                                     </div>
 
+                                                    <div class="box-label">
+                                                        <?php $dics = 100 - (($v['product']['price_sale'] / $v['product']['price']) * 100);?>
+                                                        <?php if($v['product']['price_sale'] != $v['product']['price']):?>
+                                                        <span class="label-product label-sale"> <?php echo  $this->Number->precision($dics, 0);?>% </span>
+                                                        <?php endif;?>
+                                                        <?php if($v['product']['is_new']): ?>
+                                                        <span class="label-product label-new"> New </span>
+                                                        <?php endif;?>
+                                                    </div>
                                                     <!--quickview-->
                                                     <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $v['product']['slug']]); ?>" title="<?= h($v['product']['name']); ?>" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span></span></a>
                                                     <!--end quickview-->

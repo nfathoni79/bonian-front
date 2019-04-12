@@ -28,4 +28,19 @@ class PromotionController extends AppController
         $this->set(compact('promotion'));
     }
 
+    public function pointRedeem(){
+        $this->viewBuilder()->setLayout('promotion');
+        try {
+            $point = $this->Api->makeRequest()
+                ->get('v1/point-redeem');
+            if ($response = $this->Api->success($point)) {
+                $json = $response->parse();
+                $point = $json['result']['data'];
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+
+        }
+        $this->set(compact('point'));
+    }
+
 }
