@@ -39,6 +39,8 @@ class ApiComponent extends Component
 
     ];
 
+    protected $_headers = [];
+
     /**
      * initialize components
      * @param array $config
@@ -47,6 +49,12 @@ class ApiComponent extends Component
     public function initialize(array $config)
     {
         $this->_defaultConfig += $config;
+    }
+
+    public function addHeader($name, $value)
+    {
+        $this->_headers[$name] = $value;
+        return $this;
     }
 
     /**
@@ -65,6 +73,9 @@ class ApiComponent extends Component
         if ($withToken) {
             $headers['Authorization'] = 'Bearer ' . $withToken;
         }
+
+        $headers = array_merge($headers, $this->_headers);
+
 
         return new Client([
             // Base URI is used with relative requests
