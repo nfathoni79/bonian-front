@@ -137,9 +137,18 @@
 
 
         $('.delete-address-button').click(function() {
-            if (confirm('Apakah ingin hapus alamat ini?')) {
-                location.href = '<?= $this->Url->build(['action' => 'deleteAddress']); ?>/' + $(this).data('id');
-            }
+            swal({
+                title: "Apakah ingin hapus alamat ini?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    location.href = '<?= $this->Url->build(['action' => 'deleteAddress']); ?>/' + $(this).data('id');
+                } else {
+                    swal("Data alamat tidak jadi di hapus.");
+                }
+            });
         });
 
         $('.set-primary-address-button').click(function() {

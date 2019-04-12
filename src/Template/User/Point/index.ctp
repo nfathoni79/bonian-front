@@ -40,16 +40,17 @@
 
 <?php
 $this->Html->css([
-'/css/datatable/dataTables.bootstrap.min.css'
+'/css/datatable/dataTables.bootstrap.min.css',
 ], ['block' => true]);
 $this->Html->script([
 '/js/datatable/jquery.dataTables.min.js',
-'/js/datatable/dataTables.bootstrap.min.js',
+'/js/datatable/dataTables.bootstrap.min.js'
 ], ['block' => true]);
 ?>
 <script>
 
     $(document).ready(function() {
+        swal("Hello world!");
         var datatable  = $('#table-point').DataTable({
             "initComplete": function(settings, json) {
                 var wrapper = $(settings.nTableWrapper);
