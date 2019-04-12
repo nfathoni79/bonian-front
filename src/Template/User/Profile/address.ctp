@@ -158,15 +158,15 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <?php echo $this->Form->control('province_id', ['type' => 'select', 'class' => 'form-control', 'label' => 'Provinsi', 'div' => false, 'options' => $province, 'empty' => 'Pilih Provinsi'])?>
+                            <?php echo $this->Form->control('province_id', ['id' => 'p-id','type' => 'select', 'class' => 'form-control', 'label' => 'Provinsi', 'div' => false, 'options' => $province, 'empty' => 'Pilih Provinsi'])?>
                         </div>
                         <div class="form-group">
-                            <?php echo $this->Form->control('subdistrict_id', ['type' => 'select', 'class' => 'form-control', 'label' => 'Kecamatan', 'div' => false, 'options' => [], 'empty' => 'Pilih Kecamatan'])?>
+                            <?php echo $this->Form->control('subdistrict_id', ['id' => 's-id','type' => 'select', 'class' => 'form-control', 'label' => 'Kecamatan', 'div' => false, 'options' => [], 'empty' => 'Pilih Kecamatan'])?>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <?php echo $this->Form->control('city_id', ['type' => 'select', 'class' => 'form-control', 'label' => 'Kota / Kabupaten', 'div' => false, 'options' => [], 'empty' => 'Pilih Kota / Kabupaten'])?>
+                            <?php echo $this->Form->control('city_id', ['id' => 'c-id','type' => 'select', 'class' => 'form-control', 'label' => 'Kota / Kabupaten', 'div' => false, 'options' => [], 'empty' => 'Pilih Kota / Kabupaten'])?>
                         </div>
                         <div class="form-group">
                             <label for="input-postal-code">Kode Pos</label>
@@ -207,6 +207,19 @@
             var url = "<?php echo $this->Url->build(['action' => 'getDistrict','prefix' => 'user']);?>/";
             var title = 'Kecamatan';
             drawTo('#subdistrict-id', selected,url,title);
+        });
+        $('#p-id').on('change',function(){
+            var selected = $(this).val();
+            var url = "<?php echo $this->Url->build(['action' => 'getCity','prefix' => 'user']);?>/";
+            var title = 'Kota / Kabupaten';
+            drawTo('#c-id', selected,url,title);
+        });
+
+        $('#c-id').on('change',function(){
+            var selected = $(this).val();
+            var url = "<?php echo $this->Url->build(['action' => 'getDistrict','prefix' => 'user']);?>/";
+            var title = 'Kecamatan';
+            drawTo('#s-id', selected,url,title);
         });
 
 
@@ -300,16 +313,17 @@
                         $('#form-address-edit').find('textarea[name='+k+']').val(v);
                     });
                     $('#form-address-edit').find('select[name=province_id]').val(data.province_id);
-                    drawTo('#form-address-edit #city-id', data.province_id ,"<?php echo $this->Url->build(['action' => 'getCity','prefix' => 'user']);?>/",'Kota / Kabupaten', function() {
+                    drawTo('#form-address-edit #c-id', data.province_id ,"<?php echo $this->Url->build(['action' => 'getCity','prefix' => 'user']);?>/",'Kota / Kabupaten', function() {
                         $('#form-address-edit').find('select[name=city_id]').val(data.city_id);
                     });
 
-                    drawTo('#form-address-edit #subdistrict-id', data.city_id ,"<?php echo $this->Url->build(['action' => 'getDistrict','prefix' => 'user']);?>/",'Kecamatan', function() {
+                    drawTo('#form-address-edit #s-id', data.city_id ,"<?php echo $this->Url->build(['action' => 'getDistrict','prefix' => 'user']);?>/",'Kecamatan', function() {
                         $('#form-address-edit').find('select[name=subdistrict_id]').val(data.subdistrict_id);
                     });
 
                 }
             });
+
         })
     })
 </script>
