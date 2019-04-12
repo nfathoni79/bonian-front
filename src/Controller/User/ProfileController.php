@@ -165,6 +165,24 @@ class ProfileController extends AuthController
         return $this->redirect(['action' => 'address']);
     }
 
+
+    public function secure()
+    {
+        $response = [];
+        try {
+            $history = $this->Api->makeRequest($this->Auth->user('token'))
+                ->get('v1/web/customers/login-history');
+            if ($response = $this->Api->success($history)) {
+                $response = $response->parse();
+                $histories = $response['result']['data'];
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $response = json_decode($e->getResponse()->getBody()->getContents(), true);
+        }
+
+        $this->set(compact('histories'));
+    }
+
     public function setPrimaryAddress($address_id)
     {
         $this->disableAutoRender();
