@@ -20,45 +20,52 @@
                 [
                     'title' => 'Profile Saya',
                     'url' => $this->Url->build(['controller' => 'Profile', 'action' => 'index', 'prefix' => 'user']),
-                    'icon' =>'zl zl-user'
+                    'icon' =>'zl zl-user',
+                    'controller' => 'Profile'
                 ],
                 [
                     'title' => 'Riwayat pesanan',
                     'url' => $this->Url->build(['controller' => 'History', 'action' => 'index', 'prefix' => 'user']),
-                    'icon' =>'zl zl-history'
+                    'icon' =>'zl zl-history',
+                    'controller' => 'History'
                 ],
                 [
                     'title' => 'Notifikasi',
                     'url' => $this->Url->build(['controller' => 'Notification', 'action' => 'index', 'prefix' => 'user']),
-                    'icon' =>'zl zl-notif'
+                    'icon' =>'zl zl-notif',
+                    'controller' => 'Notification'
                 ],
                 [
                     'title' => 'Voucher',
                     'url' => $this->Url->build(['controller' => 'Voucher', 'action' => 'index', 'prefix' => 'user']),
-                    'icon' =>'zl zl-voucher'
+                    'icon' =>'zl zl-voucher',
+                    'controller' => 'Voucher'
                 ],
                 [
                     'title' => 'Point saya',
                     'url' => $this->Url->build(['controller' => 'Point', 'action' => 'index', 'prefix' => 'user']),
-                    'icon' =>'zl zl-point'
+                    'icon' =>'zl zl-point',
+                    'controller' => 'Point'
                 ],
                 [
                     'title' => 'Jaringan',
                     'url' => $this->Url->build(['controller' => 'Network', 'action' => 'index', 'prefix' => 'user']),
-                    'icon' =>'zl zl-network'
+                    'icon' =>'zl zl-network',
+                    'controller' => 'Network'
                 ],
                 [
                     'title' => 'Leaderboard',
                     'url' => $this->Url->build(['controller' => 'Leaderboard', 'action' => 'index', 'prefix' => 'user']),
-                    'icon' =>'zl zl-leaderboard'
+                    'icon' =>'zl zl-leaderboard',
+                    'controller' => 'Leaderboard'
                 ],
             ];
         ?>
-        <!-- SIDEBAR MENU -->
+        <!-- SIDEBAR MENU --> 
         <div class="modcontent profile-usermenu">
             <ul class="nav">
                 <?php foreach($nav as  $val):?>
-                    <?php if($this->request->getAttribute("here") == $val['url']){ $active = 'active';}else{$active = '';}?>
+                    <?php if($this->request->params['controller'] == $val['controller']){ $active = 'active';}else{$active = '';}?>
                     <li class="<?= $active;?>">
                         <a href="<?= $val['url']; ?>">
                             <i class="<?= $val['icon']; ?>" aria-hidden="true"></i>

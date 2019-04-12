@@ -50,7 +50,6 @@ $this->Html->script([
 <script>
 
     $(document).ready(function() {
-        swal("Hello world!");
         var datatable  = $('#table-point').DataTable({
             "initComplete": function(settings, json) {
                 var wrapper = $(settings.nTableWrapper);
