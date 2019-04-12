@@ -68,7 +68,12 @@
 
                             </div>
                             <div class="col-md-6">
-
+                                <div class="bg-red margin-b-15">
+                                    image
+                                </div>
+                                <div class="bg-red margin-b-15">
+                                    qrcode
+                                </div>
                             </div>
                         </div>
                     </div>

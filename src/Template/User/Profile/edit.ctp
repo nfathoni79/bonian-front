@@ -17,7 +17,7 @@
                                 ]); ?>
 
                                 <?= $this->Form->control('name', ['label' => 'Nama Lengkap', 'class' => 'form-control']); ?>
-                                <?= $this->Form->control('dob', ['label' => 'Tanggal lahir', 'class' => 'form-control']); ?>
+                                <?= $this->Form->control('dob', ['label' => 'Tanggal lahir', 'class' => 'form-control datetimepicker']); ?>
                                 <?= $this->Form->control('gender', [
                                     'label' => 'Jenis kelamin',
                                     'type' => 'select',
@@ -44,3 +44,14 @@
         </div>
     </div>
 </div>
+<?php $this->append('script'); ?>
+<script>
+    $('.datetimepicker').datetimepicker({
+        minView: 2,
+        format: 'YYYY-MM-DD',
+        viewMode: 'years',
+        autoclose: true,
+        pickTime: false
+    });
+</script>
+<?php $this->end(); ?>

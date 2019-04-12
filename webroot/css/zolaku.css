@@ -237,7 +237,7 @@ footer .module .footer-block-title h3, footer .module h3.footertitle{
     text-align: left;
 }
 
-#modal-register .container-register-phone {
+#modal-register .container-register-phone, .bg-red {
     background: #FFF6F6;
     border-radius: 5px;
     padding: 15px;
@@ -475,4 +475,8 @@ a.link-referral {
 
 .btn {
     border-radius: 5px;
+}
+
+.margin-b-15 {
+    margin-bottom: 15px;
 }
