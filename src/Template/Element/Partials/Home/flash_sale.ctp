@@ -1,6 +1,7 @@
+<?php if ($flashSales['end']) : ?>
 <!-- flash sale Products -->
 <div class="related flash-sale titleLine products-list grid module " style="margin-top: 20px;">
-    <h3 class="modtitle" style="padding: 10px !important;"><i class="fa fa-tags"></i>Flash Sale <small class="contertime">Berakhir dalam 01:00:00</small> </h3>
+    <h3 class="modtitle" style="padding: 10px !important;"><i class="fa fa-tags"></i>Flash Sale <small class="contertime">Berakhir dalam </small><span id="flashsale-timer" data-timer="<?= $flashSales['end']; ?>"></span> </h3>
     <div id="so_extra_slider_1" class="so-extraslider" >
         <div class="releate-products yt-content-slider products-list" data-rtl="no" data-loop="yes" data-autoplay="no" data-autoheight="yes" data-autowidth="no" data-delay="4" data-speed="0.6" data-margin="20" data-items_column0="5" data-items_column1="3" data-items_column2="3" data-items_column3="2" data-items_column4="1" data-arrows="yes" data-pagination="no" data-lazyload="yes" data-hoverpause="yes">
             <?php foreach($flashSales['product_deal_details'] as $flash_sale) : ?>
@@ -82,4 +83,16 @@
 </div>
 
 <!-- end flash sale  Products-->
+<?php $this->append('script'); ?>
+<script>
+    var flash_sale = $('#flashsale-timer');
+    flash_sale.countdown(new Date(flash_sale.data('timer')), function(event) {
+        $(this).text(
+            event.strftime('%D days %H:%M:%S')
+        );
+    }).on('finish.countdown', function(event) {
 
+    });
+</script>
+<?php $this->end(); ?>
+<?php endif; ?>
