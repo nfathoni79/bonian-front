@@ -24,9 +24,9 @@
                                     <button class="btn btn-danger btn-radius btn-md btn-block" style="margin-bottom: 10px;"><i class="fa fa-check-square-o"></i> Alamat utama</button>
                                     <a href="#" class="pull-left"><strong class=""><i class="fa fa-edit"></i> Edit</strong></a>
                                 <?php else:?>
-                                    <button class="btn btn-default btn-radius btn-md btn-block" style="margin-bottom: 10px;"><i class="fa fa-square-o"></i> Set alamat utama</button>
+                                    <button data-id="<?= $val['id']; ?>" class="btn btn-default btn-radius btn-md btn-block set-primary-address-button" style="margin-bottom: 10px;"><i class="fa fa-square-o"></i> Set alamat utama</button>
                                     <a href="#" class="pull-left"><strong class=""><i class="fa fa-edit"></i> Edit</strong></a>
-                                    <a href="#" class="pull-right"><strong class=""><i class="fa fa-trash"></i> Hapus</strong></a>
+                                    <a href="#" data-id="<?= $val['id']; ?>" class="pull-right delete-address-button"><strong class=""><i class="fa fa-trash"></i> Hapus</strong></a>
                                 <?php endif;?>
                             </div>
                         </div>
@@ -135,6 +135,19 @@
             drawTo('#subdistrict-id', selected,url,title);
         });
 
+
+        $('.delete-address-button').click(function() {
+            if (confirm('Apakah ingin hapus alamat ini?')) {
+                location.href = '<?= $this->Url->build(['action' => 'deleteAddress']); ?>/' + $(this).data('id');
+            }
+        });
+
+        $('.set-primary-address-button').click(function() {
+            if (confirm('Set alamat ini menjadi utama?')) {
+                location.href = '<?= $this->Url->build(['action' => 'setPrimaryAddress']); ?>/' + $(this).data('id');
+            }
+        });
+
         function drawTo(target, selected, url, title){
             /* make ajax request */
             $.ajax({
@@ -161,13 +174,9 @@
         formEl.submit(function(e) {
             var ajaxRequest = new ajaxValidation(formEl);
             ajaxRequest.post(formEl.attr('action'), formEl.find(':input'), function(response, data) {
-                // if (response.success) {
-                //     location.href = '<?= $this->Url->build(); ?>';
-                // } else {
-                    //render_error_message(data.error.message);
-                    //var alert = $("#login-popup .alert");
-                    //alert.removeClass('hide');
-                // }
+                if (response.success) {
+                    location.href = '<?= $this->Url->build(); ?>';
+                }
             });
             e.preventDefault(); // avoid to execute the actual submit of the form.
         });

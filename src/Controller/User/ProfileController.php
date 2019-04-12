@@ -143,6 +143,48 @@ class ProfileController extends AuthController
 
     }
 
+    public function deleteAddress($address_id)
+    {
+        $this->disableAutoRender();
+        $this->request->allowMethod('get');
+
+        try {
+            $delete = $this->Api->makeRequest($this->Auth->user('token'))
+                ->post('v1/web/addresses/delete', [
+                    'form_params' => [
+                        'address_id' => $address_id
+                    ]
+                ]);
+            if ($response = $this->Api->success($delete)) {
+                $error = $response->parse();
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+        }
+
+        return $this->redirect(['action' => 'address']);
+    }
+
+    public function setPrimaryAddress($address_id)
+    {
+        $this->disableAutoRender();
+        $this->request->allowMethod('get');
+
+        try {
+            $delete = $this->Api->makeRequest($this->Auth->user('token'))
+                ->post('v1/web/addresses/set-primary/' . $address_id, [
+                    'form_params' => []
+                ]);
+            if ($response = $this->Api->success($delete)) {
+                $error = $response->parse();
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+        }
+
+        return $this->redirect(['action' => 'address']);
+    }
+
     public function addAddress(){
 
         $this->disableAutoRender();
@@ -155,10 +197,7 @@ class ProfileController extends AuthController
                     'form_params' => $this->request->getData()
                 ]);
             if ($response = $this->Api->success($addAddress)) {
-                $json = $response->parse();
-                /* set user to Auth */
-                $this->Auth->setUser($json['result']['data']);
-
+                $error = $response->parse();
             }
         } catch(\GuzzleHttp\Exception\ClientException $e) {
             $error = json_decode($e->getResponse()->getBody()->getContents(), true);
@@ -168,6 +207,7 @@ class ProfileController extends AuthController
         return $this->response->withType('application/json')
             ->withStringBody(json_encode($error));
     }
+
     public function setAlamat($id = null){
 
     }
