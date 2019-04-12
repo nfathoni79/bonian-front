@@ -24,9 +24,9 @@
                                     <button class="btn btn-danger btn-radius btn-md btn-block" style="margin-bottom: 10px;"><i class="fa fa-check-square-o"></i> Alamat utama</button>
                                     <a href="#" class="pull-left"><strong class=""><i class="fa fa-edit"></i> Edit</strong></a>
                                 <?php else:?>
-                                    <button data-id="<?= $val['id']; ?>" class="btn btn-default btn-radius btn-md btn-block set-primary-address-button" style="margin-bottom: 10px;"><i class="fa fa-square-o"></i> Set alamat utama</button>
+                                    <button data-id="<?= $val['id']; ?>" class="btn btn-default btn-radius btn-md btn-block set-primary-address-button" data-alias="<?= ucfirst($val['title']);?>" style="margin-bottom: 10px;"><i class="fa fa-square-o"></i> Set alamat utama</button>
                                     <a href="#" class="pull-left"><strong class=""><i class="fa fa-edit"></i> Edit</strong></a>
-                                    <a href="#" data-id="<?= $val['id']; ?>" class="pull-right delete-address-button"><strong class=""><i class="fa fa-trash"></i> Hapus</strong></a>
+                                    <a href="#" data-id="<?= $val['id']; ?>" class="pull-right delete-address-button" data-alias="<?= ucfirst($val['title']);?>"><strong class=""><i class="fa fa-trash"></i> Hapus</strong></a>
                                 <?php endif;?>
                             </div>
                         </div>
@@ -137,8 +137,9 @@
 
 
         $('.delete-address-button').click(function() {
+            var alias = $(this).data('alias');
             swal({
-                title: "Apakah ingin hapus alamat ini?",
+                title: 'Apakah ingin hapus alamat '+alias+' ini?',
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
@@ -146,15 +147,23 @@
                 if (willDelete) {
                     location.href = '<?= $this->Url->build(['action' => 'deleteAddress']); ?>/' + $(this).data('id');
                 } else {
-                    swal("Data alamat tidak jadi di hapus.");
+                    swal('Data alamat '+alias+' tidak jadi di hapus.');
                 }
             });
         });
 
         $('.set-primary-address-button').click(function() {
-            if (confirm('Set alamat ini menjadi utama?')) {
-                location.href = '<?= $this->Url->build(['action' => 'setPrimaryAddress']); ?>/' + $(this).data('id');
-            }
+            var alias = $(this).data('alias');
+            swal({
+                title: 'Set alamat '+alias+' menjadi alamat utama?',
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((confirm) => {
+                if (confirm) {
+                    location.href = '<?= $this->Url->build(['action' => 'setPrimaryAddress']); ?>/' + $(this).data('id');
+                }
+            });
         });
 
         function drawTo(target, selected, url, title){
