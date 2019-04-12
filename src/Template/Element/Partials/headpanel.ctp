@@ -194,7 +194,9 @@
 
                 <?= $this->Form->create(null, [
                         'url' => [
-                                'controller' => 'Login'
+                                'controller' => 'Login',
+                                'action' => 'index',
+                                'prefix' => false
                         ],
                         'id' => 'login-form',
                         'class' => 'ajax-helper'
@@ -267,7 +269,9 @@
             <div class="modal-body">
                 <?= $this->Form->create(null, [
                     'url' => [
-                        'controller' => 'Register'
+                        'controller' => 'Register',
+                        'action' => 'index',
+                        'prefix' => false
                     ],
                     'id' => 'form-register',
                     'class' => 'ajax-helper_'
