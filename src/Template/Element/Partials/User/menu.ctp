@@ -21,37 +21,37 @@
             <ul class="nav">
                 <li class="active">
                     <a href="<?= $this->Url->build(['controller' => 'Profile', 'action' => 'index', 'prefix' => 'user']); ?>">
-                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <i class="zl zl-user" aria-hidden="true"></i>
                         Profile saya </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-truck" aria-hidden="true"></i>
+                        <i class="zl zl-history" aria-hidden="true"></i>
                         Riwayat pesanan </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-bell" aria-hidden="true"></i>
+                        <i class="zl zl-notif" aria-hidden="true"></i>
                         Notifikasi </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-bell" aria-hidden="true"></i>
+                        <i class="zl zl-voucher" aria-hidden="true"></i>
                         Voucher </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-bell" aria-hidden="true"></i>
+                        <i class="zl zl-point" aria-hidden="true"></i>
                         Point saya </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-bell" aria-hidden="true"></i>
+                        <i class="zl zl-network" aria-hidden="true"></i>
                         Jaringan </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-bell" aria-hidden="true"></i>
+                        <i class="zl zl-leaderboard" aria-hidden="true"></i>
                         Leaderboard </a>
                 </li>
 

@@ -62,6 +62,7 @@
     ]); ?>
     <!-- css custom other -->
     <?= $this->Html->css([
+        '/css/zolaku-font',
         '/css/zolaku',
     ]); ?>
 
