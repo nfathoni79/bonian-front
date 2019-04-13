@@ -2,7 +2,6 @@
 namespace App\Controller\User;
 
 use App\Controller\AuthController;
-use App\Form\CustomerForm;
 
 class NetworkController extends AuthController{
 
