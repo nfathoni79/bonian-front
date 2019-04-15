@@ -63,179 +63,126 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
+                                <?php foreach($orders as $order) : ?>
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="title-panel pull-left">
-                                                    <strong>Invoice No. 12345678</strong>
-                                                    <p>03 Feb 2019 17:35 WIB</p>
+                                                    <strong>Invoice No. <?= $order['invoice']; ?></strong>
+                                                    <p><?= date('d M Y H:i', strtotime($order['created'])); ?> WIB</p>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="title-panel pull-right">
-                                                    <strong>Invoice Status : Di Proses</strong>
-                                                    <p>Dibayar pada : 03 Feb 2019 17:35 WIB</p>
+                                                    <strong>Invoice Status : <?= isset($order['transactions'][0]) && isset($transaction_statuses[$order['transactions'][0]['transaction_status']]) ? $transaction_statuses[$order['transactions'][0]['transaction_status']] : 'Pending'; ?></strong>
+                                                    <p>Dibayar pada : <?= isset($order['transactions'][0]) ? date('d M Y H:i', strtotime($order['transactions'][0]['modified'])) : '-'; ?> WIB</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="panel-body">
+                                        <?php foreach($order['order_details'] as $key => $detail) : ?>
                                         <div class="pull-left">
                                             <address>
-                                                <strong>Order ID : Z10012019</strong><br>
-                                                Shipping origin : jakarta
+                                                <strong>Order ID : <?= $detail['awb']; ?></strong><br>
+                                                Shipping origin : <?= $detail['branch']['name']; ?>
                                             </address>
                                         </div>
                                         <div class="pull-right">
                                             <address>
-                                                <strong>Rp. 622.000</strong><br>
+                                                <strong>Rp. <?= $this->Number->format($detail['total']); ?></strong><br>
                                                 Barang dikirim
                                             </address>
                                         </div>
                                         <div class="clearfix"></div>
-                                        <hr class="style3">
-                                        <div class="pull-left">
-                                            <address>
-                                                <strong>Order ID : Z10012019</strong><br>
-                                                Shipping origin : jakarta
-                                            </address>
-                                        </div>
-                                        <div class="pull-right">
-                                            <address>
-                                                <strong>Rp. 622.000</strong><br>
-                                                Barang dikirim
-                                            </address>
-                                        </div>
+                                        <?php if ($key >= 0 && $key < (count($order['order_details']) -1)  && count($order['order_details']) > 1) : ?>
+                                            <hr class="style3">
+                                        <?php endif; ?>
                                         <div class="clearfix"></div>
+                                        <?php endforeach; ?>
                                     </div>
                                     <div class="panel-footer">
                                         <div class="pull-left">
                                             <button class="btn btn-md btn-danger btn-radius">Rincian Pesanan</button>
                                         </div>
                                         <div class="pull-right">
-                                            <strong>Total Tagihan Rp. 750.000</strong>
+                                            <strong>Total Tagihan Rp. <?= $this->Number->format($order['total']); ?></strong>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>
+                                <?php endforeach; ?>
 
+                            </div>
+                        </div>
 
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="title-panel pull-left">
-                                                    <strong>Invoice No. 12345678</strong>
-                                                    <p>03 Feb 2019 17:35 WIB</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="title-panel pull-right">
-                                                    <strong>Invoice Status : Di Proses</strong>
-                                                    <p>Dibayar pada : 03 Feb 2019 17:35 WIB</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="pull-left">
-                                            <address>
-                                                <strong>Order ID : Z10012019</strong><br>
-                                                Shipping origin : jakarta
-                                            </address>
-                                        </div>
-                                        <div class="pull-right">
-                                            <address>
-                                                <strong>Rp. 622.000</strong><br>
-                                                Barang dikirim
-                                            </address>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                        <hr class="style3">
-                                        <div class="pull-left">
-                                            <address>
-                                                <strong>Order ID : Z10012019</strong><br>
-                                                Shipping origin : jakarta
-                                            </address>
-                                        </div>
-                                        <div class="pull-right">
-                                            <address>
-                                                <strong>Rp. 622.000</strong><br>
-                                                Barang dikirim
-                                            </address>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="panel-footer">
-                                        <div class="pull-left">
-                                            <button class="btn btn-md btn-danger btn-radius">Rincian Pesanan</button>
-                                        </div>
-                                        <div class="pull-right">
-                                            <strong>Total Tagihan Rp. 750.000</strong>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="title-panel pull-left">
-                                                    <strong>Invoice No. 12345678</strong>
-                                                    <p>03 Feb 2019 17:35 WIB</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="title-panel pull-right">
-                                                    <strong>Invoice Status : Di Proses</strong>
-                                                    <p>Dibayar pada : 03 Feb 2019 17:35 WIB</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="pull-left">
-                                            <address>
-                                                <strong>Order ID : Z10012019</strong><br>
-                                                Shipping origin : jakarta
-                                            </address>
-                                        </div>
-                                        <div class="pull-right">
-                                            <address>
-                                                <strong>Rp. 622.000</strong><br>
-                                                Barang dikirim
-                                            </address>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                        <hr class="style3">
-                                        <div class="pull-left">
-                                            <address>
-                                                <strong>Order ID : Z10012019</strong><br>
-                                                Shipping origin : jakarta
-                                            </address>
-                                        </div>
-                                        <div class="pull-right">
-                                            <address>
-                                                <strong>Rp. 622.000</strong><br>
-                                                Barang dikirim
-                                            </address>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="panel-footer">
-                                        <div class="pull-left">
-                                            <button class="btn btn-md btn-danger btn-radius">Rincian Pesanan</button>
-                                        </div>
-                                        <div class="pull-right">
-                                            <strong>Total Tagihan Rp. 750.000</strong>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-
-
+                        <div class="row">
+                            <div class="col-md-12">
+                                <?php
+                                //get indexes in page
+                                    $indexes = $pagination->getIndexes(new \Pagination\StrategySimple(5));
+                                    $iterator = $indexes->getIterator();
+                                    ?>
+                                <nav aria-label="Page navigation" style="margin: 0 auto; text-align: center;">
+                                    <ul class="pagination">
+                                        <li>
+                                            <a href="<?= $this->Url->build([
+                                                'controller' => 'History',
+                                                'action' => 'index',
+                                                'prefix' => 'user',
+                                                '?' => array_merge($this->request->getQuery(), ['page' => $pagination->getFirstPage()])
+                                            ]); ?>" aria-label="First">
+                                                <span aria-hidden="true">First</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="<?= $this->Url->build([
+                                                'controller' => 'History',
+                                                'action' => 'index',
+                                                'prefix' => 'user',
+                                                '?' => array_merge($this->request->getQuery(), ['page' => $pagination->getPreviousPage()])
+                                            ]); ?>" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+                                        <?php while ($iterator->valid()): ?>
+                                            <?php
+                                                $isActive = $this->request->getQuery('page') == $iterator->current();
+                                            ?>
+                                            <li class="<?= $isActive ? 'active': ''; ?>">
+                                                <a href="<?= $this->Url->build([
+                                                    'controller' => 'History',
+                                                    'action' => 'index',
+                                                    'prefix' => 'user',
+                                                    '?' => array_merge($this->request->getQuery(), ['page' => $iterator->current()])
+                                                ]); ?>">
+                                                    <?php echo $iterator->current() ?>
+                                                </a>
+                                            </li>
+                                            <?php $iterator->next(); endwhile; ?>
+                                        <li>
+                                            <a href="<?= $this->Url->build([
+                                                'controller' => 'History',
+                                                'action' => 'index',
+                                                'prefix' => 'user',
+                                                '?' => array_merge($this->request->getQuery(), ['page' => $pagination->getNextPage()])
+                                            ]); ?>" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="<?= $this->Url->build([
+                                                'controller' => 'History',
+                                                'action' => 'index',
+                                                'prefix' => 'user',
+                                                '?' => array_merge($this->request->getQuery(), ['page' => $pagination->getLastPage()])
+                                            ]); ?>" aria-label="Last">
+                                                <span aria-hidden="true">Last</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
                             </div>
                         </div>
                     </div>
