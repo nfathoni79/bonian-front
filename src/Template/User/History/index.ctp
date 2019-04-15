@@ -123,6 +123,7 @@
                                 //get indexes in page
                                     $indexes = $pagination->getIndexes(new \Pagination\StrategySimple(5));
                                     $iterator = $indexes->getIterator();
+                                    if ($iterator->count() > 1) :
                                     ?>
                                 <nav aria-label="Page navigation" style="margin: 0 auto; text-align: center;">
                                     <ul class="pagination">
@@ -183,6 +184,7 @@
                                         </li>
                                     </ul>
                                 </nav>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
