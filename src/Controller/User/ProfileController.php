@@ -159,6 +159,7 @@ class ProfileController extends AuthController
                 $error = $response->parse();
             }
         } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $this->Api->handle($e);
             $error = json_decode($e->getResponse()->getBody()->getContents(), true);
         }
 
@@ -177,6 +178,7 @@ class ProfileController extends AuthController
                 $histories = $response['result']['data'];
             }
         } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $this->Api->handle($e);
             $response = json_decode($e->getResponse()->getBody()->getContents(), true);
         }
 
@@ -197,6 +199,7 @@ class ProfileController extends AuthController
                 $error = $response->parse();
             }
         } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $this->Api->handle($e);
             $error = json_decode($e->getResponse()->getBody()->getContents(), true);
         }
 
@@ -218,6 +221,7 @@ class ProfileController extends AuthController
                 $error = $response->parse();
             }
         } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $this->Api->handle($e);
             $error = json_decode($e->getResponse()->getBody()->getContents(), true);
         }
 
@@ -240,6 +244,7 @@ class ProfileController extends AuthController
                 $error = $response->parse();
             }
         } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $this->Api->handle($e);
             $error = json_decode($e->getResponse()->getBody()->getContents(), true);
         }
 
@@ -269,6 +274,30 @@ class ProfileController extends AuthController
         }
         return $this->response->withType('application/json')
             ->withStringBody(json_encode($getAddress));
+    }
+
+    public function changePassword()
+    {
+        $this->disableAutoRender();
+        $this->request->allowMethod('post');
+
+        $error = ['error' => []];
+        try {
+            $updateAddress = $this->Api->makeRequest($this->Auth->user('token'))
+                ->post('v1/web/profile/change-password', [
+                    'form_params' => $this->request->getData()
+                ]);
+            if ($response = $this->Api->success($updateAddress)) {
+                $error = $response->parse();
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $this->Api->handle($e);
+            $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+        }
+
+
+        return $this->response->withType('application/json')
+            ->withStringBody(json_encode($error));
     }
 
 }

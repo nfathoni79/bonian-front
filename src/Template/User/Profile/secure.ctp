@@ -11,7 +11,7 @@
                         <h4><strong>Aktivitas Login</strong></h4>
 
                         <div class="alert alert-warning">
-                            Bila terdapat aktivitas tidak dikenal, segera klik "Keluar" dan <a>ubah kata sandi</a>
+                            Bila terdapat aktivitas tidak dikenal, segera klik "Keluar" dan <a data-toggle="modal" data-target="#change-password-modal">ubah kata sandi</a>
                         </div>
 
                         <?php
@@ -55,10 +55,63 @@
 </div>
 
 
+<!-- Modal -->
+<div class="modal fade" id="change-password-modal" tabindex="-1" role="dialog" aria-labelledby="login-popupLabel">
+    <div class="modal-dialog modal-md change-password-modal" role="document" style="width: 450px;">
+        <div class="modal-content modal-red">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="color: #ffffff;">&times;</span></button>
+                <h4 class="modal-title" id="login-popupLabel" style="text-align: left;">Ubah kata sandi</h4>
+            </div>
+            <?= $this->Form->create(null, [
+                'url' => [
+                    'controller' => 'Profile',
+                    'action' => 'changePassword',
+                    'prefix' => 'user'
+                ],
+                'id' => 'form-change-password',
+                'class' => 'ajax-helper'
+            ]); ?>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Kata Sandi Lama</label>
+                    <input type="password" name="current_password" value="" placeholder="Password Lama" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Kata Sandi Baru</label>
+                    <input type="password" name="password" value="" placeholder="Password Baru" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Kata Sandi Baru (ulangi)</label>
+                    <input type="password" name="repeat_password" value="" placeholder="Password Baru (ulangi)" class="form-control" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger btn-radius btn-md pull-left"><i class="fa fa-save"></i> Ganti password</button>
+            </div>
+            <?= $this->Form->end(); ?>
+
+        </div>
+    </div>
+</div>
+<!-- end modal add address -->
+
+
 
 
 <?php $this->append('script'); ?>
 <script>
-
+    $(document).ready(function(){
+        var formPassword = $("#form-change-password");
+        formPassword.submit(function(e) {
+            var ajaxRequest = new ajaxValidation(formPassword);
+            ajaxRequest.post(formPassword.attr('action'), formPassword.find(':input'), function(response, data) {
+                if (response.success) {
+                    location.href = '<?= $this->Url->build(); ?>';
+                }
+            });
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+        });
+    });
 </script>
 <?php $this->end();?>
