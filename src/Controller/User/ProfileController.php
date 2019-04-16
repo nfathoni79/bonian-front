@@ -267,9 +267,7 @@ class ProfileController extends AuthController
             } catch(\GuzzleHttp\Exception\ClientException $e) {
                 $this->Api->handle($e);
                 $error = json_decode($e->getResponse()->getBody()->getContents(), true);
-                if (isset($error['error'])) {
-                    $getAddress->setErrors($error['error']);
-                }
+
             }
         }
         return $this->response->withType('application/json')
@@ -298,6 +296,97 @@ class ProfileController extends AuthController
 
         return $this->response->withType('application/json')
             ->withStringBody(json_encode($error));
+    }
+
+
+    protected function _unmask($number)
+    {
+        if (preg_match('/(\d{6})-(\d+)/', $number, $matched)) {
+            //debug(substr($matched[1], 0, 4));
+            return substr($matched[1], 0, 4) .
+                ' ' .
+                substr($matched[1], 4, 2) . str_repeat('*', 2) .
+                ' ' .
+                str_repeat('*', 4) .
+                ' ' .
+                $matched[2];
+        }
+        return $number;
+    }
+
+
+
+    public function setPrimaryCc()
+    {
+        $this->disableAutoRender();
+        $this->request->allowMethod('post');
+        try {
+            $update = $this->Api->makeRequest($this->Auth->user('token'))
+                ->post('v1/web/cards/set-primary', [
+                    'form_params' => [
+                        'card_id' => $this->request->getData('card_id')
+                    ]
+                ]);
+            if ($response = $this->Api->success($update)) {
+                $error = $response->parse();
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $this->Api->handle($e);
+            $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+        }
+
+        return $this->response->withType('application/json')
+            ->withStringBody(json_encode($error));
+
+    }
+
+    public function deleteCc()
+    {
+        $this->disableAutoRender();
+        $this->request->allowMethod('post');
+        try {
+            $update = $this->Api->makeRequest($this->Auth->user('token'))
+                ->post('v1/web/cards/delete', [
+                    'form_params' => [
+                        'card_id' => $this->request->getData('card_id')
+                    ]
+                ]);
+            if ($response = $this->Api->success($update)) {
+                $error = $response->parse();
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $this->Api->handle($e);
+            $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+        }
+
+        return $this->response->withType('application/json')
+            ->withStringBody(json_encode($error));
+    }
+
+
+    public function payment()
+    {
+        try {
+            $cards = $this->Api->makeRequest($this->Auth->user('token'))
+                ->get('v1/web/cards');
+            if ($response = $this->Api->success($cards)) {
+                $json = $response->parse();
+                $cards = $json['result']['data'];
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $this->Api->handle($e);
+            $cards = json_decode($e->getResponse()->getBody()->getContents(), true);
+        }
+
+        if ($cards && is_array($cards)) {
+            foreach($cards as &$card) {
+                $card['mask'] = $this->_unmask($card['masked_card']);
+            }
+        }
+
+
+        //debug($cards);exit;
+        $this->set(compact('cards'));
     }
 
 }

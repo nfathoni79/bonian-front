@@ -24,6 +24,14 @@
                     'action' => 'secure',
                     'prefix' => 'user'
                 ]
+            ],
+            [
+                'title' => 'Pembayaran',
+                'url' => [
+                    'controller' => 'Profile',
+                    'action' => 'payment',
+                    'prefix' => 'user'
+                ]
             ]
         ];
 
