@@ -63,7 +63,7 @@
                                 </table>
 
                                 <div>
-                                    <a class="btn btn-danger" href="<?= $this->Url->build(['action' => 'edit', 'prefix' => 'user']); ?>">Edit Profil</a>
+                                    <a class="btn btn-danger btn-radius" href="<?= $this->Url->build(['action' => 'edit', 'prefix' => 'user']); ?>">Edit Profil</a>
                                 </div>
 
                             </div>
@@ -122,8 +122,8 @@ $this->Html->script([
         }).on("show.bs.popover", function(e){
             $(this).data("bs.popover").tip().css({"max-width": '350px'});
         });
- 
-        $('#qrcode').qrcode({width: 100,height: 100,text: "<?php echo $this->Url->build(['prefix' => false, 'controller' => 'Home', 'action' => 'index','reff' => $profile['reffcode']]);?>"});
+
+        $('#qrcode').qrcode({width: 100,height: 100,text: "<?php echo $this->Url->build(['prefix' => false, 'controller' => 'Home', 'action' => 'index','reff' => $profile['reffcode']], ['fullBase' => true]);?>"});
     })
 
 </script>
