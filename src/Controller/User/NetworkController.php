@@ -25,7 +25,6 @@ class NetworkController extends AuthController{
                     $network->setErrors($error['error']);
                 }
             }
-
             return $this->response->withType('application/json')
                 ->withStringBody(json_encode($network));
         }

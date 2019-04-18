@@ -316,6 +316,18 @@ input::placeholder {
     color: #afafaf !important;
 }
 
+.table-red {
+    border-collapse: collapse;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.table-red th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #c93535 !important;
+    color: white;
+}
 /*
 .form-control, .btn {
     height: 40px;

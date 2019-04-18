@@ -11,8 +11,10 @@
                     <div class="user-content-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="notif"></div>
-                                <table id="table-leaderboard" class="table table-striped table-hover" style="width:100%">
+                                <div class="alert alert-danger">
+                                    Anda tidak dapat melakukan follow, apabila refferal akun anda sudah terdaftar ke jaringan.
+                                </div>
+                                <table id="table-leaderboard" class="table table-striped table-hover table-red" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>Username</th>
@@ -27,9 +29,14 @@
                                             <td><?= $val['username']; ?></td>
                                             <td><?= $val['count']; ?></td>
                                             <td><?= $val['last_active']; ?></td>
-                                            <?php if($val['refferal_id'] != 0):?>
-                                                <td><a class="btn btn-danger btn-radius btn-sm"  href="<?php echo $this->Url->build(['action' => 'follow', $val['reffcode']]);?>"><span>Follow</span></a></td>
+                                            <?php if($val['refferal_id'] != $reff_cus_id):?>
+                                                <?php if($reff_cus_id == 0):?>
+                                                    <td><a class="btn btn-danger btn-radius btn-sm"  href="<?php echo $this->Url->build(['action' => 'follow', $val['reffcode']]);?>"><span>Follow</span></a></td>
+                                                <?php else:?>
+                                                    <td>-</td>
+                                                <?php endif;?>
                                             <?php else:?>
+                                                <td>-</td>
                                             <?php endif;?>
                                         </tr>
                                         <?php endforeach;?>

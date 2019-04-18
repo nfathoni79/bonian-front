@@ -11,7 +11,7 @@
                     <div class="user-content-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <table id="table-point" class="table table-striped table-hover" style="width:100%">
+                                <table id="table-point" class="table table-striped table-hover table-red" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>Tanggal</th>
