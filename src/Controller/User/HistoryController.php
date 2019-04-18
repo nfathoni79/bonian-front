@@ -13,7 +13,7 @@ class HistoryController extends AuthController
             $orders = $this->Api->makeRequest($this->Auth->user('token'))
                 ->get('v1/web/orders', [
                     'query' => [
-                        'limit' => 1,
+                        'limit' => 2,
                         'page' => $this->request->getQuery('page', 1)
                     ]
                 ]);
@@ -27,8 +27,8 @@ class HistoryController extends AuthController
             $response = json_decode($e->getResponse()->getBody()->getContents(), true);
         }
 
-        $pagination = new Pagination($paging['pageCount'], $paging['perPage'], $paging['page']);
-        //debug($paging);exit;
+        $pagination = new Pagination($paging['count'], $paging['perPage'], $paging['page']);
+
 
 
         $transaction_statuses = [

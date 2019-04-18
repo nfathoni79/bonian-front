@@ -87,7 +87,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-danger btn-radius btn-md pull-left"><i class="fa fa-save"></i> Ganti password</button>
+                <button class="btn btn-danger btn-radius btn-md pull-left"><i class="fa fa-lock"></i> Ganti password</button>
             </div>
             <?= $this->Form->end(); ?>
 
