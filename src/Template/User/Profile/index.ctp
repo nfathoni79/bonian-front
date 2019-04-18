@@ -72,7 +72,14 @@
                                     image
                                 </div>
                                 <div class="bg-red margin-b-15">
-                                    qrcode
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div id="qrcode"></div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            QR Code refferal saya, scan QR Code ini untuk menjadikan saya refferal
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -100,6 +107,11 @@
 
 
 <?php $this->append('script'); ?>
+<?php
+$this->Html->script([
+'/js/qrcode.js',
+], ['block' => true]);
+?>
 <script>
     $(document).ready(function() {
         $('.link-referral').popover({
@@ -110,6 +122,8 @@
         }).on("show.bs.popover", function(e){
             $(this).data("bs.popover").tip().css({"max-width": '350px'});
         });
+ 
+        $('#qrcode').qrcode({width: 100,height: 100,text: "<?php echo $this->Url->build(['prefix' => false, 'controller' => 'Home', 'action' => 'index','reff' => $profile['reffcode']]);?>"});
     })
 
 </script>
