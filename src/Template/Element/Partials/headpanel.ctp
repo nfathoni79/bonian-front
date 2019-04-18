@@ -74,7 +74,7 @@
                     </div>
 
                     <div class="block_link hidden-sm hidden-xs">
-                        <a href="wishlist.html" id="wishlist-total" class="top-link-wishlist" title="Wish List (0) "><i class="fa fa-heart-o"></i></a>
+                        <a href="<?= $this->Url->build(['controller' => 'Wishlist', 'prefix' => 'user']); ?>" id="wishlist-total" class="top-link-wishlist" title="Wish List (0) "><i class="fa fa-heart-o"></i></a>
                     </div>
                     <!--cart-->
                     <div class="block-cart">
