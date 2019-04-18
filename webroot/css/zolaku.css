@@ -342,7 +342,7 @@ input::placeholder {
 
 
 .v-colored-box{
-    background: url("/zolaku-front/images/voucher-bg.png") 100% 100% no-repeat;
+    background: url("../images/voucher-bg.png") 100% 100% no-repeat;
     background-color: #c93535;
     background-size: 6.25rem;
     color: #ffffff;
@@ -357,7 +357,7 @@ input::placeholder {
 }
 
 .v-colored-box-off{
-    background: url("/zolaku-front/images/voucher-bg.png") 100% 100% no-repeat;
+    background: url("../images/voucher-bg.png") 100% 100% no-repeat;
     background-color: #c1c1c1;
     background-size: 6.25rem;
     color: #ffffff;
