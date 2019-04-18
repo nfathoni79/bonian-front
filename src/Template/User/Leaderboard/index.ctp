@@ -11,8 +11,10 @@
                     <div class="user-content-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="notif"></div>
-                                <table id="table-leaderboard" class="table table-striped table-hover" style="width:100%">
+                                <div class="alert alert-danger">
+                                    Anda tidak dapat melakukan follow, apabila refferal akun anda sudah terdaftar ke jaringan.
+                                </div>
+                                <table id="table-leaderboard" class="table table-striped table-hover table-red" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>Username</th>
@@ -27,9 +29,14 @@
                                             <td><?= $val['username']; ?></td>
                                             <td><?= $val['count']; ?></td>
                                             <td><?= $val['last_active']; ?></td>
-                                            <?php if($val['refferal_id'] != 0):?>
-                                                <td><a class="btn btn-danger btn-radius btn-sm"  href="<?php echo $this->Url->build(['action' => 'follow', $val['reffcode']]);?>"><span>Follow</span></a></td>
+                                            <?php if($val['refferal_id'] != $reff_cus_id):?>
+                                                <?php if($reff_cus_id == 0):?>
+                                                    <td><a class="btn btn-danger btn-radius btn-sm"  href="<?php echo $this->Url->build(['action' => 'follow', $val['reffcode']]);?>"><span>Follow</span></a></td>
+                                                <?php else:?>
+                                                    <td>-</td>
+                                                <?php endif;?>
                                             <?php else:?>
+                                                <td>-</td>
                                             <?php endif;?>
                                         </tr>
                                         <?php endforeach;?>
@@ -40,14 +47,16 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-5">
+                            </div>
+                            <div class="col-md-7">
                                 <?php
                                 //get indexes in page
                                 $indexes = $pagination->getIndexes(new \Pagination\StrategySimple(5));
                                 $iterator = $indexes->getIterator();
                                 if ($iterator->count() > 1) :
                                 ?>
-                                <nav aria-label="Page navigation" style="margin: 0 auto; text-align: center;">
+                                <nav aria-label="Page navigation" style="margin: 0 auto; text-align: right;">
                                     <ul class="pagination">
                                         <li>
                                             <a href="<?= $this->Url->build([
@@ -66,7 +75,7 @@
                                                 'prefix' => 'user',
                                                 '?' => array_merge($this->request->getQuery(), ['page' => $pagination->getPreviousPage()])
                                             ]); ?>" aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
+                                                <span aria-hidden="true">Previous</span>
                                             </a>
                                         </li>
                                         <?php while ($iterator->valid()): ?>
@@ -91,7 +100,7 @@
                                                 'prefix' => 'user',
                                                 '?' => array_merge($this->request->getQuery(), ['page' => $pagination->getNextPage()])
                                             ]); ?>" aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
+                                                <span aria-hidden="true">Next</span>
                                             </a>
                                         </li>
                                         <li>

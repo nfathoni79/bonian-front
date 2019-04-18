@@ -11,7 +11,7 @@
                     <div class="user-content-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <table class="table table-striped table-bordered table-hover table-checkable" id="table-network">
+                                <table class="table table-striped table-hover table-red" id="table-network">
 
                                  </table>
                             </div>
@@ -58,29 +58,22 @@ $this->Html->script([
             }
         },
         {
-            title: 'Alamat Email',
-            target: 2,
-            data: function (item) {
-                return item.customer.email;
-            }
-        },
-        {
             title: 'Sponsor',
-            target: 3,
+            target: 2,
             data: function (item) {
                 return item.refferal.username;
             }
         },
         {
             title: 'Level Kedalaman',
-            target: 4,
+            target: 3,
             data: function (item) {
                 return 'Level '+item.level;
             }
         },
         {
             title: 'Tanggal',
-            target: 5,
+            target: 4,
             data: function (item) {
                 return item.created;
             }
