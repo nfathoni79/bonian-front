@@ -70,26 +70,43 @@
         $('.btn-claim').on('click',function(){
             var voucher = $(this).data('voucher');
 
-            $.ajax({
-                url: "<?php echo $this->Url->build(['action' => 'claim']);?>",
-                type: "post",
-                data: {
-                    voucher : voucher,
-                    _csrfToken: '<?= $this->request->getParam('_csrfToken'); ?>'
-                } ,
-                success: function (response) {
-                    if(response.is_error){
-                        $('.notification').html('<div class="alert alert-danger">'+response.message+'</div>');
-                    }else{
-                        $('.notification').html('<div class="alert alert-success">Voucher '+voucher+' berhasil di redeem.</div>');
-                    }
-                    return false;
+            swal({
+                title: 'Apakah ingin melakukan penukaran poin dengan voucher '+voucher+'?',
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((ok) => {
+                if (ok) {
+                    $.ajax({
+                        url: "<?php echo $this->Url->build(['action' => 'claim']);?>",
+                        type: "post",
+                        data: {
+                            voucher : voucher,
+                            _csrfToken: '<?= $this->request->getParam('_csrfToken'); ?>'
+                        } ,
+                        success: function (response) {
+                            if(response.is_error){
+                                swal({
+                                    title: "Redeem voucher gagal",
+                                    text: response.message,
+                                    icon: "error",
+                                });
+                            }else{
+                                swal({
+                                    title: "Redeem voucher behasil",
+                                    text: 'Voucher '+voucher+' berhasil di redeem.',
+                                    icon: "success",
+                                });
+                            }
+                            return false;
 
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    console.log(textStatus, errorThrown);
-                } 
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.log(textStatus, errorThrown);
+                        }
 
+                    });
+                }
             });
         });
     }) ;
