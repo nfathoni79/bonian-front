@@ -1,41 +1,3 @@
-<style>
-    .v-colored-box{
-        background: url("/zolaku-front/images/voucher-bg.png") 100% 100% no-repeat;
-        background-color: #c93535;
-        background-size: 6.25rem;
-        color: #ffffff;
-        font-size: 2.5rem;
-        font-weight: 500;
-        width : 100%;
-        height : 17.25rem;
-        position : relative;
-        justify-content: center;
-        overflow : hidden;
-        display: flex;
-    }
-    .v-text-box{
-
-    }
-    .v-text-discount{
-        align-items: center;
-        flex-direction: column;
-        display: flex;
-        vertical-align: middle !important;
-        margin: auto 0;
-        font-size: 3.5rem;
-    }
-    .v-title{
-        font-size: 1.4rem;
-        color: #222;
-    }
-    .v-end{
-        font-size: 1.4rem;
-        color: #c93535;
-    }
-    hr.style3 {
-        border-top: 1px dashed #8c8b8b;
-    }
-</style>
 
 <div class="container">
     <div class="block block_0">
@@ -49,22 +11,32 @@
 
                     <div class="user-content-body">
                         <div class="row">
+                            <?php
+                                $colored = ['1' => 'v-colored-box', '2' => 'v-colored-box-off', '3' => 'v-colored-box-off'];
+                                $texted = ['1' => 'label-danger', '2' => 'label-default', '3' => 'label-default'];
+                                $end = ['1' => 'v-end', '2' => 'v-end-off', '3' => 'v-end-off'];
+                            ?>
                             <?php foreach($voucher as $vals):?>
                             <div class="col-md-6">
                                 <div class="panel panel-default">
                                     <div class="panel-body" style="padding:0px;">
                                         <div class="row">
                                             <div class="col-md-5 pull-left">
-                                                <div class="v-colored-box">
+                                                <div class="<?php echo $colored[$this->request->getQuery('type')];?>">
                                                     <div class="v-text-discount">10%</div>
                                                 </div>
                                             </div>
                                             <div class="col-md-7 v-text-box pull-right">
                                                 <div class="v-title"><?= $vals['voucher']['code_voucher'];?></div>
                                                 Ekstra Diskon sebesar <?= $vals['voucher']['percent'];?>% dengan Max Rp <?php  echo $this->Number->precision($vals['voucher']['value'], 0);?>, tanpa Min Trx
-                                                <div class="v-code"><span class="label label-danger">Kode: <?= $vals['voucher']['code_voucher'];?></span></div>
+                                                <div class="v-code"><span class="label <?php echo $texted[$this->request->getQuery('type')];?>">Kode: <?= $vals['voucher']['code_voucher'];?></span></div>
                                                 <hr class="style3">
-                                                <span class="v-end">Berakhir Dlm: Tersisa 8 Jam</span>
+                                                <span class="<?php echo $end[$this->request->getQuery('type')];?>">Berakhir Dlm:
+                                                    <?= $this->Time->timeAgoInWords($vals['expired'], [
+                                            'accuracy' => ['month' => 'month'],
+                                            'end' => '1 year'
+                                            ]); ?>
+                                                </span>
                                             </div>
                                             <div class="clearfix"></div>
                                         </div>

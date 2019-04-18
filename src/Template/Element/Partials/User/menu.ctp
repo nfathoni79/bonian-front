@@ -37,7 +37,7 @@
                 ],
                 [
                     'title' => 'Voucher',
-                    'url' => $this->Url->build(['controller' => 'Voucher', 'action' => 'index', 'prefix' => 'user']),
+                    'url' => $this->Url->build(['controller' => 'Voucher', 'action' => 'index', 'prefix' => 'user','type' => '1']),
                     'icon' =>'zl zl-voucher',
                     'controller' => 'Voucher'
                 ],

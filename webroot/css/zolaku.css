@@ -339,6 +339,64 @@ input::placeholder {
 .pagination>li>a, .pagination>li>span{
     color: #7D7D7D;
 }
+
+
+.v-colored-box{
+    background: url("/zolaku-front/images/voucher-bg.png") 100% 100% no-repeat;
+    background-color: #c93535;
+    background-size: 6.25rem;
+    color: #ffffff;
+    font-size: 2.5rem;
+    font-weight: 500;
+    width : 100%;
+    height : 17.25rem;
+    position : relative;
+    justify-content: center;
+    overflow : hidden;
+    display: flex;
+}
+
+.v-colored-box-off{
+    background: url("/zolaku-front/images/voucher-bg.png") 100% 100% no-repeat;
+    background-color: #c1c1c1;
+    background-size: 6.25rem;
+    color: #ffffff;
+    font-size: 2.5rem;
+    font-weight: 500;
+    width : 100%;
+    height : 17.25rem;
+    position : relative;
+    justify-content: center;
+    overflow : hidden;
+    display: flex;
+}
+
+.v-text-box{
+
+}
+.v-text-discount{
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    vertical-align: middle !important;
+    margin: auto 0;
+    font-size: 3.5rem;
+}
+.v-title{
+    font-size: 1.4rem;
+    color: #222;
+}
+.v-end{
+    font-size: 1.2rem;
+    color: #c93535;
+}
+.v-end-off{
+    font-size: 1.2rem;
+    color: #c1c1c1;
+}
+hr.style3 {
+    border-top: 1px dashed #8c8b8b;
+}
 /*
 .form-control, .btn {
     height: 40px;

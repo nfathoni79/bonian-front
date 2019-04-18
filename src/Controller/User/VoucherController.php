@@ -4,6 +4,7 @@ namespace App\Controller\User;
 use App\Controller\AuthController;
 use Pagination\Pagination;
 use Cake\I18n\Number;
+use Cake\I18n\Time;
 
 
 class VoucherController  extends AuthController
@@ -15,7 +16,7 @@ class VoucherController  extends AuthController
             $voucher = $this->Api->makeRequest($this->Auth->user('token'))
                 ->get('v1/web/vouchers', [
                     'query' => [
-                        'limit' => 2,
+                        'limit' => 10,
                         'page' => $this->request->getQuery('page', 1),
                         'type' => $this->request->getQuery('type', 1),
                     ]
