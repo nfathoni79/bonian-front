@@ -11,7 +11,7 @@
                     <div class="user-content-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="alert alert-danger">
+                                <div class="alert alert-info">
                                     Anda tidak dapat melakukan follow, apabila refferal akun anda sudah terdaftar ke jaringan.
                                 </div>
                                 <table id="table-leaderboard" class="table table-striped table-hover table-red" style="width:100%">
@@ -157,9 +157,10 @@
                             }else{
                                 swal({
                                     title: "Follow berhasil",
-                                    text: 'Pengaitan akun berhasil, sponsor registerd '+reffcode+'.',
+                                    text: 'Registered sponsor '+username+'berhasil.',
                                     icon: "success",
                                 });
+                                setTimeout(function(){ location.reload(); }, 800);
                             }
                             return false;
 
