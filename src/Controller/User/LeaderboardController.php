@@ -45,6 +45,7 @@ class LeaderboardController extends AuthController{
             $response = json_decode($e->getResponse()->getBody()->getContents(), true);
         }
         $pagination = new Pagination($paging['count'], $paging['perPage'], $paging['page']);
+
         $this->set(compact('leaderboard', 'pagination','reff_cus_id'));
 
     }

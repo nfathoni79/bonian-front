@@ -47,14 +47,16 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-5">
+                            </div>
+                            <div class="col-md-7">
                                 <?php
                                 //get indexes in page
                                 $indexes = $pagination->getIndexes(new \Pagination\StrategySimple(5));
                                 $iterator = $indexes->getIterator();
                                 if ($iterator->count() > 1) :
                                 ?>
-                                <nav aria-label="Page navigation" style="margin: 0 auto; text-align: center;">
+                                <nav aria-label="Page navigation" style="margin: 0 auto; text-align: right;">
                                     <ul class="pagination">
                                         <li>
                                             <a href="<?= $this->Url->build([
@@ -73,7 +75,7 @@
                                                 'prefix' => 'user',
                                                 '?' => array_merge($this->request->getQuery(), ['page' => $pagination->getPreviousPage()])
                                             ]); ?>" aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
+                                                <span aria-hidden="true">Previous</span>
                                             </a>
                                         </li>
                                         <?php while ($iterator->valid()): ?>
@@ -98,7 +100,7 @@
                                                 'prefix' => 'user',
                                                 '?' => array_merge($this->request->getQuery(), ['page' => $pagination->getNextPage()])
                                             ]); ?>" aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
+                                                <span aria-hidden="true">Next</span>
                                             </a>
                                         </li>
                                         <li>
