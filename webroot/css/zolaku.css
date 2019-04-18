@@ -395,7 +395,7 @@ input::placeholder {
 
 .profile-usermenu .nav > li > a i.fa {
     font-size: 21px;
-    margin-right: 15px;
+    margin-right: 25px;
     height: 24px;
     vertical-align: middle;
 }
@@ -538,6 +538,32 @@ a.link-referral {
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
 
+}
+
+/*wishlist */
+.wishlist .caption {
+    text-align: center;
+    padding: 5px;
+}
+
+.wishlist .product-item-container {
+    border: 1px solid #efefef;
+    margin-bottom: 30px;
+    min-height: 250px;
+}
+
+.wishlist .product-image-container .btn-wishlist {
+    position: absolute;
+    top: 0px;
+    right: 15px;
+    font-size: 25px;
+    color: #EC6E6E;
+    cursor: pointer;
+    border: none;
+    background: #ffffff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
 }
 
 

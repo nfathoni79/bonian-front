@@ -59,6 +59,12 @@
                     'icon' =>'zl zl-leaderboard',
                     'controller' => 'Leaderboard'
                 ],
+                [
+                    'title' => 'Wishlist',
+                    'url' => $this->Url->build(['controller' => 'Wishlist', 'action' => 'index', 'prefix' => 'user']),
+                    'icon' =>'fa fa-heart',
+                    'controller' => 'Wishlist'
+                ],
             ];
         ?>
         <!-- SIDEBAR MENU -->
@@ -77,7 +83,7 @@
         <!-- END MENU -->
 
         <div class="modcontent ">
-            test
+
         </div>
     </div>
 
