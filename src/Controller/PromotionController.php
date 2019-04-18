@@ -29,7 +29,7 @@ class PromotionController extends AppController
     }
 
     public function pointRedeem(){
-        $this->viewBuilder()->setLayout('promotion');
+        $this->viewBuilder()->setLayout('pages');
         try {
             $point = $this->Api->makeRequest()
                 ->get('v1/point-redeem');

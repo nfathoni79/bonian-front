@@ -1,63 +1,106 @@
 
-<div id="content" style="background: #FFF6F6;">
+<!-- start: header part -->
+<div class="c-header__bg" style="z-index:0;">
     <div class="container">
-        <div class="block">
-            <div class="module sohomepage-slider ">
-                <div class="yt-content-slider"  data-rtl="yes" data-autoplay="no" data-autoheight="no" data-delay="4" data-speed="0.6" data-margin="0" data-items_column0="1" data-items_column1="1" data-items_column2="1"  data-items_column3="1" data-items_column4="1" data-arrows="no" data-pagination="yes" data-lazyload="yes" data-loop="no" data-hoverpause="yes">
-                    <div class="yt-content-slide">
-                        <a title="slide1" href="#"><div class="yt-content-slide"><img src="<?= $this->Url->build($_basePath . 'images/1170x400/32da38b66749491f81da01357f78a5f3.jpg'); ?>" class="responsive"></div></a>
+        <div class="row">
+            <ul class="breadcrumb">
+                <li><a href="<?php echo $this->Url->build('/'); ?>"><i class="fa fa-home"></i></a></li>
+                <li><a >Halaman</a></li>
+                <li><a href="<?php echo $this->Url->build(['controller' => 'Promotion','action' => 'pointRedeem']); ?>">Penukaran Point</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- end: header part -->
+
+<div class="c-help-main mb-5">
+    <div class="container">
+        <div class="row">
+            <div id="content" class="col-sm-12 item-article">
+                <div class="row box-1-about">
+                    <div class="col-md-12 our-member">
+                        <div class="title-pages title-about-us">
+                            <h2>Tukarkan point anda & dapatkan bonusnya</h2>
+                        </div>
+                        <div class="notification"></div>
+                        <div class="table-responsive">
+                            <table class="table table-hover table-red">
+                                <thead>
+                                <tr class="info">
+                                    <th class="text-left">No</th>
+                                    <th class="text-left">Point</th>
+                                    <th class="text-left">Kode Voucher</th>
+                                    <th class="text-left">Diskon</th>
+                                    <th class="text-left">Nilai Voucher</th>
+                                    <th class="text-left"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php $no = 1; ?>
+                                <?php foreach($point as $vals):?>
+                                <tr>
+                                    <td><?= $no;?></td>
+                                    <td><?= $vals['name'];?></td>
+                                    <td><?= $vals['code_voucher'];?></td>
+                                    <td><?= $vals['percent'];?>%</td>
+                                    <td>Rp. <?php echo $this->Number->precision($vals['value'], 0);?></td>
+                                    <td><a href="javascript:void(0);" class="btn btn-danger btn-sm btn-radius btn-claim" data-voucher="<?= $vals['code_voucher'];?>">Claim</a></td>
+                                </tr>
+                                <?php $no++; ?>
+                                <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="alert alert-info">
+                            Consectetur adipiscing elit. Donec pellentesque venenatis elit, quis aliquet mauris malesuada vel. Donec vitae libero dolor, eget dapibus justo.
+                            <br>Aenean facilisis aliquet feugiat. Suspendisse lacinia congue est ac semper. Nulla ut elit magna, vitae volutpat magna.
+                        </div>
+
                     </div>
                 </div>
-                <div class="loadeding"></div>
             </div>
         </div>
     </div>
 </div>
 
+<?php $this->append('script'); ?>
+<script>
+    $(document).ready(function(){
+        $('.btn-claim').on('click',function(){
+            var voucher = $(this).data('voucher');
 
-<div class="container">
-    <div id="content" class="col-sm-12 item-article">
-        <div class="row box-1-about">
-            <div class="col-md-12 our-member">
-                <div class="title-about-us">
-                    <h2>Tukarkan point anda & dapatkan bonusnya</h2>
-                </div>
-                <div class="short-des">Consectetur adipiscing elit. Donec pellentesque venenatis elit, quis aliquet mauris malesuada vel. Donec vitae libero dolor, eget dapibus justo.
-                    <br>Aenean facilisis aliquet feugiat. Suspendisse lacinia congue est ac semper. Nulla ut elit magna, vitae volutpat magna.</div>
-            </div>
-        </div>
-        <div class="block block_0">
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                    <tr class="info">
-                        <th class="text-left">No</th>
-                        <th class="text-left">Point</th>
-                        <th class="text-left">Kode Voucher</th>
-                        <th class="text-left">Diskon</th>
-                        <th class="text-left">Nilai Voucher</th>
-                        <th class="text-left"></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        <?php $no = 1; ?>
-                        <?php foreach($point as $vals):?>
-                        <tr>
-                            <td><?= $no;?></td>
-                            <td><?= $vals['name'];?></td>
-                            <td><?= $vals['code_voucher'];?></td>
-                            <td><?= $vals['percent'];?>%</td>
-                            <td>Rp. <?php echo $this->Number->precision($vals['value'], 0);?></td>
-                            <td><a href="#" class="btn btn-danger btn-sm btn-radius">Claim</a></td>
-                        </tr>
-                        <?php $no++; ?>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-            <div class="alert alert-danger">
-                Consectetur adipiscing elit. Donec pellentesque venenatis elit, quis aliquet mauris malesuada vel. Donec vitae libero dolor, eget dapibus justo.
-                <br>Aenean facilisis aliquet feugiat. Suspendisse lacinia congue est ac semper. Nulla ut elit magna, vitae volutpat magna.
-        </div>
-    </div>
-</div>
+            $.ajax({
+                url: "<?php echo $this->Url->build(['controller' => 'actions', 'action' => 'claim', 'prefix' => 'user']);?>",
+                type: "post",
+                data: {
+                    voucher : voucher,
+                    _csrfToken: '<?= $this->request->getParam('_csrfToken'); ?>'
+                } ,
+                success: function (response) {
+                    if(response.is_error){
+                        $('.notification').html('<div class="alert alert-danger">'+response.message+'</div>');
+                    }else{
+                        $('.notification').html('<div class="alert alert-success">Voucher '+voucher+' berhasil di redeem.</div>');
+                    }
+                    return false;
+
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus, errorThrown);
+                }
+
+
+            });
+
+
+            alert(voucher);
+        });
+    }) ;
+</script>
+<?php $this->end(); ?>
+
+
+
+
+

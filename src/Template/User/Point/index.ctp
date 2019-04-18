@@ -66,6 +66,7 @@ $this->Html->script([
                 "url": "<?php echo $this->Url->build()?>",
                 "dataSrc": ""
             },
+            "order": [[ 0, "desc" ]],
             "columns": [
                 { "data": "created" },
                 { "data": "kategori" },

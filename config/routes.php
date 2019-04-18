@@ -69,6 +69,7 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
 //    $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
     $routes->connect('/promotion/point-redeem', ['controller' => 'Promotion', 'action' => 'pointRedeem']);
+    $routes->connect('/promotion/claim', ['controller' => 'Promotion', 'action' => 'claim']);
     $routes->connect('/promotion/:slug', ['controller' => 'Promotion', 'action' => 'index'])->setPass(['slug']);
     $routes->connect('/pages/:slug', ['controller' => 'Pages', 'action' => 'index'])->setPass(['slug']);
 
