@@ -71,7 +71,7 @@
             var voucher = $(this).data('voucher');
 
             $.ajax({
-                url: "<?php echo $this->Url->build(['controller' => 'actions', 'action' => 'claim', 'prefix' => 'user']);?>",
+                url: "<?php echo $this->Url->build(['action' => 'claim']);?>",
                 type: "post",
                 data: {
                     voucher : voucher,
@@ -88,13 +88,9 @@
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     console.log(textStatus, errorThrown);
-                }
-
+                } 
 
             });
-
-
-            alert(voucher);
         });
     }) ;
 </script>
