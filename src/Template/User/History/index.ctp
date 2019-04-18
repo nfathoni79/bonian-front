@@ -120,7 +120,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <?php
-                                //get indexes in page
+                                if (isset($pagination) && $pagination instanceof \Pagination\Pagination) :
+                                    //get indexes in page
                                     $indexes = $pagination->getIndexes(new \Pagination\StrategySimple(5));
                                     $iterator = $indexes->getIterator();
                                     if ($iterator->count() > 1) :
@@ -184,6 +185,7 @@
                                         </li>
                                     </ul>
                                 </nav>
+                                <?php endif; ?>
                                 <?php endif; ?>
                             </div>
                         </div>
