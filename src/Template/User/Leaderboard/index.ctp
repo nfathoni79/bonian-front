@@ -22,13 +22,96 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php foreach($leaderboard as $val):?>
+                                        <tr>
+                                            <td><?= $val['username']; ?></td>
+                                            <td><?= $val['count']; ?></td>
+                                            <td><?= $val['last_active']; ?></td>
+                                            <?php if($val['refferal_id'] != 0):?>
+                                                <td><a class="btn btn-danger btn-radius btn-sm"  href="<?php echo $this->Url->build(['action' => 'follow', $val['reffcode']]);?>"><span>Follow</span></a></td>
+                                            <?php else:?>
+                                            <?php endif;?>
+                                        </tr>
+                                        <?php endforeach;?>
                                     </tbody>
                                 </table>
 
                             </div>
                         </div>
 
+                        <div class="row">
+                            <div class="col-md-12">
+                                <?php
+                                //get indexes in page
+                                $indexes = $pagination->getIndexes(new \Pagination\StrategySimple(5));
+                                $iterator = $indexes->getIterator();
+                                if ($iterator->count() > 1) :
+                                ?>
+                                <nav aria-label="Page navigation" style="margin: 0 auto; text-align: center;">
+                                    <ul class="pagination">
+                                        <li>
+                                            <a href="<?= $this->Url->build([
+                                                'controller' => 'Leaderboard',
+                                                'action' => 'index',
+                                                'prefix' => 'user',
+                                                '?' => array_merge($this->request->getQuery(), ['page' => $pagination->getFirstPage()])
+                                            ]); ?>" aria-label="First">
+                                                <span aria-hidden="true">First</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="<?= $this->Url->build([
+                                                'controller' => 'Leaderboard',
+                                                'action' => 'index',
+                                                'prefix' => 'user',
+                                                '?' => array_merge($this->request->getQuery(), ['page' => $pagination->getPreviousPage()])
+                                            ]); ?>" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+                                        <?php while ($iterator->valid()): ?>
+                                        <?php
+                                                $isActive = $this->request->getQuery('page') == $iterator->current();
+                                        ?>
+                                        <li class="<?= $isActive ? 'active': ''; ?>">
+                                            <a href="<?= $this->Url->build([
+                                                    'controller' => 'Leaderboard',
+                                                    'action' => 'index',
+                                                    'prefix' => 'user',
+                                                    '?' => array_merge($this->request->getQuery(), ['page' => $iterator->current()])
+                                                ]); ?>">
+                                                <?php echo $iterator->current() ?>
+                                            </a>
+                                        </li>
+                                        <?php $iterator->next(); endwhile; ?>
+                                        <li>
+                                            <a href="<?= $this->Url->build([
+                                                'controller' => 'Leaderboard',
+                                                'action' => 'index',
+                                                'prefix' => 'user',
+                                                '?' => array_merge($this->request->getQuery(), ['page' => $pagination->getNextPage()])
+                                            ]); ?>" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="<?= $this->Url->build([
+                                                'controller' => 'Leaderboard',
+                                                'action' => 'index',
+                                                'prefix' => 'user',
+                                                '?' => array_merge($this->request->getQuery(), ['page' => $pagination->getLastPage()])
+                                            ]); ?>" aria-label="Last">
+                                                <span aria-hidden="true">Last</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+
                     </div>
+
                 </div>
             </div>
         </div>
@@ -37,111 +120,4 @@
 
 <?php $this->append('script'); ?>
 
-<?php
-$this->Html->css([
-'/css/datatable/dataTables.bootstrap.min.css',
-], ['block' => true]);
-$this->Html->script([
-'/js/datatable/jquery.dataTables.min.js',
-'/js/datatable/dataTables.bootstrap.min.js'
-], ['block' => true]);
-?>
-<script>
-
-
-
-    $(document).ready(function() {
-        var datatable  = $('#table-leaderboard').DataTable({
-            "initComplete": function(settings, json) {
-                var wrapper = $(settings.nTableWrapper);
-
-                wrapper.find('select.form-control')
-                    .removeClass('input-sm')
-                    .addClass('input-md');
-                wrapper
-                    .find('input.form-control')
-                    .removeClass('input-sm')
-                    .addClass('input-md');
-            },
-            "ajax": {
-                "url": "<?php echo $this->Url->build()?>"
-            },
-
-            "initComplete": function(settings, json) {
-                var wrapper = $(settings.nTableWrapper);
-
-                wrapper.find('select.form-control')
-                    .removeClass('input-sm')
-                    .addClass('input-md');
-                wrapper
-                    .find('input.form-control')
-                    .removeClass('input-sm')
-                    .addClass('input-md');
-
-                $(".follows").click(function(){
-                    var reffcode = $(this).data('reff');
-                    $.ajax({
-                      url: "<?php echo $this->Url->build(['action' => 'follow']);?>",
-                      data: {
-                        reffcode:reffcode,
-                        _csrfToken: '<?= $this->request->getParam('_csrfToken'); ?>'
-                      },
-                      type: "POST",
-                      success: function(json) {
-                        if(json.status == "ERROR"){
-                            $('.notif').html('<div class="alert alert-danger">'+json.message+'</div>');
-                        }else{
-                            $('.notif').html('<div class="alert alert-success">Follow sponsor berhasil.</div>');
-                        }
-                        setTimeout(function(){
-                            location.href = '<?= $this->Url->build();?>';
-                        }, 500);
-                      }
-                    });
-
-                });
-            },
-            "columns": [
-                { "data": "username" },
-                { "data": "count" },
-                { "data": "last_active" },
-                { "data": "reffcode" },
-            ],
-            columnDefs: [
-
-                {
-                    targets: 0,
-                    render: function (data, type, row, meta) {
-                        return  row.username;
-                    }
-                },
-                {
-                    targets: 1,
-                    render: function (data, type, row, meta) {
-                        return  row.count;
-                    }
-                },
-                {
-                    targets: 2,
-                    render: function (data, type, row, meta) {
-                        return  row.last_active;
-                    }
-                },
-                {
-                    targets: 3,
-                    render: function (data, type, row, meta) {
-                        var status = "<?php echo $reff_cus_id;?>";
-                        if(status != '0'){
-                            return '';
-                        }else{
-                             return '<a class="btn btn-danger btn-radius btn-sm follows" data-reff="'+row.reffcode+'" href="javascript:void(0);"><span>Follow</span></a>';
-                        }
-                     }
-                },
-            ]
-        });
-
-
-    } );
-</script>
 <?php $this->end(); ?>

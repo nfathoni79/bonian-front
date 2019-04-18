@@ -3,6 +3,7 @@ namespace App\Controller\User;
 
 use App\Controller\AuthController;
 use App\Form\RefferalForm;
+use Pagination\Pagination;
 
 class LeaderboardController extends AuthController{
 
@@ -24,29 +25,29 @@ class LeaderboardController extends AuthController{
     public function index(){
 
         $reff_cus_id = $this->getProfile()['refferal_customer_id'];
-        $this->set(compact('reff_cus_id'));
 
-        if($this->request->is('Ajax')){
-            $this->autoRender = false;
-
-            try {
-                $leaderboard = $this->Api->makeRequest($this->Auth->user('token'))
-                    ->get('v1/web/leaderboards');
-                if ($response = $this->Api->success($leaderboard)) {
-                    $json = $response->parse();
-                    $leaderboard = $json['result'];
-                }
-            } catch(\GuzzleHttp\Exception\ClientException $e) {
-                $this->Api->handle($e);
-                $error = json_decode($e->getResponse()->getBody()->getContents(), true);
-                if (isset($error['error'])) {
-                    $leaderboard->setErrors($error['error']);
-                }
+        $response = [];
+        try {
+            $leaderboard = $this->Api->makeRequest($this->Auth->user('token'))
+                ->get('v1/web/leaderboards', [
+                    'query' => [
+                        'limit' => 2,
+                        'page' => $this->request->getQuery('page', 1)
+                    ]
+                ]);
+            if ($response = $this->Api->success($leaderboard)) {
+                $response = $response->parse();
+                $leaderboard = $response['result']['data'];
+                $paging = $response['paging'];
             }
-
-            return $this->response->withType('application/json')
-                ->withStringBody(json_encode($leaderboard));
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $this->Api->handle($e);
+            $response = json_decode($e->getResponse()->getBody()->getContents(), true);
         }
+        $pagination = new Pagination($paging['pageCount'], $paging['perPage'], $paging['page']);
+        debug($pagination);
+        exit;
+        $this->set(compact('leaderboard', 'pagination','reff_cus_id'));
 
     }
 
