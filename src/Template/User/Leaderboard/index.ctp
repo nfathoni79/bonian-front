@@ -31,7 +31,7 @@
                                             <td><?= $val['last_active']; ?></td>
                                             <?php if($val['refferal_id'] != $reff_cus_id):?>
                                                 <?php if($reff_cus_id == 0):?>
-                                                    <td><a class="btn btn-danger btn-radius btn-sm"  href="<?php echo $this->Url->build(['action' => 'follow', $val['reffcode']]);?>"><span>Follow</span></a></td>
+                                                    <td><a class="btn btn-danger btn-radius btn-sm btn-confirm"  href="javascript:void(0);" data-reffcode="<?= $val['reffcode'];?>" data-username="<?= $val['username'];?>"><span>Follow</span></a></td>
                                                 <?php else:?>
                                                     <td>-</td>
                                                 <?php endif;?>
@@ -128,5 +128,50 @@
 </div>
 
 <?php $this->append('script'); ?>
+<script>
+    $(document).ready(function(){
+        $('.btn-confirm').on('click',function(){
+            var reffcode = $(this).data('reffcode');
+            var username = $(this).data('username');
+            swal({
+                title: 'Apakah ingin melakakukan follow refferal '+username+' dengan kode '+reffcode+'?',
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((ok) => {
+                if (ok) {
+                    $.ajax({
+                        url: "<?php echo $this->Url->build(['action' => 'follow']);?>",
+                        type: "post",
+                        data: {
+                            reffcode : reffcode,
+                            _csrfToken: '<?= $this->request->getParam('_csrfToken'); ?>'
+                        } ,
+                        success: function (response) {
+                            if(response.is_error){
+                                swal({
+                                    title: "Gagal melakukan follow",
+                                    text: response.message,
+                                    icon: "error",
+                                });
+                            }else{
+                                swal({
+                                    title: "Follow berhasil",
+                                    text: 'Pengaitan akun berhasil, sponsor registerd '+reffcode+'.',
+                                    icon: "success",
+                                });
+                            }
+                            return false;
 
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.log(textStatus, errorThrown);
+                        }
+
+                    });
+                }
+            });
+        });
+    }) ;
+</script>
 <?php $this->end(); ?>

@@ -7,6 +7,12 @@ use Pagination\Pagination;
 
 class LeaderboardController extends AuthController{
 
+    public function initialize()
+    {
+        parent::initialize();
+        $this->Auth->allow(['follow']);
+    }
+
     protected function getProfile()
     {
         try {
@@ -56,23 +62,39 @@ class LeaderboardController extends AuthController{
     public function follow(){
 
         $this->disableAutoRender();
-        if ($this->request->is('post')) {
-            $error = ['error' => []];
+        $errors = [];
+        if($this->Auth->user('token')){
             try {
                 $leaderboards = $this->Api->makeRequest($this->Auth->user('token'))
-                        ->post('v1/web/leaderboards/follow', [
-                            'form_params' => $this->request->getData()
-                        ]);
-                    if ($response = $this->Api->success($leaderboards)) {
-                        $error = $response->parse();
+                    ->post('v1/web/leaderboards/follow', [
+                        'form_params' => $this->request->getData()
+                    ]);
+                if ($response = $this->Api->success($leaderboards)) {
+                    $error = $response->parse();
+                    if(isset($error['error'])){
+                        if(is_array($error['error'])){
+                            foreach($error['error'] as $vals){
+                                foreach($vals as $val){
+                                    $errors = ['is_error' => true, 'message' => $val];
+                                    break;
+                                }
+                            }
+                        }
+                    }else{
+                        $errors = ['is_error' => false];
                     }
+                }
             } catch(\GuzzleHttp\Exception\ClientException $e) {
                 $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+                $errors = ['is_error' => true, 'message' => $error['message']];
             }
 
-            return $this->response->withType('application/json')
-                ->withStringBody(json_encode($error));
+        }else{
+            $errors = ['is_error' => true, 'message' => 'Maaf, Silahkan login terlebih dahulu.'];
         }
+
+        return $this->response->withType('application/json')
+            ->withStringBody(json_encode($errors));
 
     }
 
