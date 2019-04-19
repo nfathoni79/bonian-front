@@ -1,10 +1,43 @@
 
 <div class="container">
+
     <div class="block block_0">
         <div class="row">
             <?= $this->element('Partials/User/menu'); ?>
             <div id="content" class="col-md-9 col-sm-8">
                 <div class="user-content">
+
+                    <div class="user-content-body">
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-1">
+                                <div class="well" style="margin: 0px !important;">
+                                    <?= $this->Form->create(null, [
+                                        'url' => [
+                                            'controller' => 'Voucher',
+                                            'action' => 'iclaim',
+                                            'prefix' => 'user'
+                                        ],
+                                        'id' => 'claim-form',
+                                        'class' => 'ajax-helpers'
+                                    ]); ?>
+                                        <div class="form-group row" style="margin: 2px !important;">
+                                            <label class="col-lg-4 col-form-label text-right">Masukkan kode voucher</label>
+                                            <div class="col-lg-6">
+                                                <input class="form-control" name="voucher" id="voucher" type="text" placeholder="Masukkan kode voucher" required>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <input type="submit" value="Simpan" class="btn btn-danger btn-md btn-radius" disabled="disabled" />
+                                            </div>
+                                        </div>
+                                    <?= $this->Form->end(); ?>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="user-content">
+
                     <div class="user-content-header">
                         <?= $this->element('Partials/Profile/voucher-nav'); ?>
                     </div>
@@ -130,4 +163,30 @@
 
 
 <?php $this->append('script'); ?>
+<script>
+    $(document).ready(function () {
+        $("#claim-form input[type='text']").on("keyup", function(){
+            if($(this).val() != "" == true){
+                $("input[type='submit']").removeAttr("disabled");
+            } else {
+                $("input[type='submit']").attr("disabled", "disabled");
+            }
+        });
+
+        var formEl = $("#claim-form");
+        formEl.submit(function(e) {
+            var ajaxRequest = new ajaxValidation(formEl);
+            ajaxRequest.post(formEl.attr('action'), formEl.find(':input'), function(response, data) {
+                if(data.is_error){
+                    swal(data.message);
+                }else {
+                    location.href = '<?= $this->Url->build(); ?>';
+                }
+                // console.log(data);
+                // console.log(response);
+            });
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+        });
+    })
+</script>
 <?php $this->end(); ?>
