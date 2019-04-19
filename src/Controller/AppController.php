@@ -69,13 +69,36 @@ class AppController extends Controller
     public function beforeFilter(Event $event)
     {
         if (!$this->request->getCookie('bid')) {
-            $cookie = new Cookie(
-                'bid',
-                Security::randomString(),
-                (new \DateTime())->add(new \DateInterval('P5Y')),
-                $this->request->getAttribute('base')
-            );
-            $this->response = $this->response->withCookie($cookie);
+            if (property_exists($this, 'Api')) {
+                try {
+                    $browser = $this->Api->makeRequest()
+                        ->post('v1/browsers', [
+                            'form_params' => [
+                                'user_agent' => env('HTTP_USER_AGENT')
+                            ]
+                        ]);
+
+                    if ($response = $this->Api->success($browser)) {
+                        $json = $response->parse();
+                        $browser = $json['result']['data'];
+                        if ($browser && isset($browser['bid'])) {
+                            $randomString = $browser['bid'] ? $browser['bid'] : Security::randomString();
+                            $cookie = new Cookie(
+                                'bid',
+                                $randomString,
+                                (new \DateTime())->add(new \DateInterval('P5Y')),
+                                $this->request->getAttribute('base')
+                            );
+                            $this->response = $this->response->withCookie($cookie);
+                        }
+                    }
+                } catch(\Exception $e) {
+                    //TODO set log
+                }
+
+
+            }
+
         }
         return parent::beforeFilter($event);
     }
