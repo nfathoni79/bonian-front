@@ -70,7 +70,6 @@ class AppController extends Controller
     {
         if (!$this->request->getCookie('bid')) {
             if (property_exists($this, 'Api')) {
-
                 try {
                     $browser = $this->Api->makeRequest()
                         ->post('v1/browsers', [
