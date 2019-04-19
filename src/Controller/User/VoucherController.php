@@ -36,5 +36,37 @@ class VoucherController  extends AuthController
         $this->set(compact('voucher', 'pagination'));
     }
 
+    public function iclaim(){
+        $this->disableAutoRender();
+        $errors = [];
+        if($this->request->is('Ajax')){
+
+            try {
+                $claim = $this->Api->makeRequest($this->Auth->user('token'))
+                    ->post('v1/web/claim/iclaim', [
+                        'form_params' => $this->request->getData()
+                    ]);
+                if ($response = $this->Api->success($claim)) {
+                    $json = $response->parse();
+
+                    if(isset($json['error'])){
+                        $errors = ['is_error' => true, 'status' => 'OK', 'message' => 'Maaf, kode ini tidak sah. Mohon coba kembali.'];
+                    }else{
+                        $errors = ['is_error' => false, 'status' => 'OK'];
+                    }
+                }
+            } catch(\GuzzleHttp\Exception\ClientException $e) {
+                $this->Api->handle($e);
+                $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+
+                $errors = ['is_error' => true, 'status' => 'OK', 'message' => 'Maaf, kode ini tidak sah. Mohon coba kembali.'];
+
+            }
+        }
+
+        return $this->response->withType('application/json')
+            ->withStringBody(json_encode($errors));
+    }
+
 
 }
