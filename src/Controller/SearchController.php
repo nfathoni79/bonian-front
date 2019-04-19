@@ -9,7 +9,7 @@ class SearchController  extends AuthController
     public function initialize()
     {
         parent::initialize();
-        $this->Auth->allow(['get']);
+        $this->Auth->allow(['get', 'history']);
     }
 
 
