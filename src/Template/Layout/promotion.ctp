@@ -66,6 +66,7 @@
     <?= $this->Html->css([
     '/css/zolaku',
     '/css/zolaku-custom-min',
+    '/css/jquery.smartsuggest.css'
     ]); ?>
 
 
@@ -137,7 +138,8 @@
 '/js/themejs/so_megamenu',
 '/js/themejs/addtocart',
 '/js/themejs/cpanel',
-'/js/custom-libs/validation-render'
+'/js/custom-libs/validation-render',
+'/js/jquery.smartsuggest.js'
 ]); ?>
 
 <?= $this->fetch('script') ?>

@@ -64,6 +64,7 @@
     <?= $this->Html->css([
     '/css/zolaku',
     '/css/zolaku-custom-min',
+    '/css/jquery.smartsuggest.css'
     ]); ?>
 
 
@@ -137,6 +138,7 @@
 '/js/themejs/cpanel',
 '/js/custom-libs/validation-render',
 '/js/sweetalert/sweetalert.js',
+'/js/jquery.smartsuggest.js'
 ]); ?>
 
 <?= $this->fetch('script') ?>

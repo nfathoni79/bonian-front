@@ -66,6 +66,7 @@
     <?= $this->Html->css([
         '/css/zolaku-font',
         '/css/zolaku',
+        '/css/jquery.smartsuggest.css'
     ]); ?>
 
 
@@ -143,6 +144,7 @@
 '/js/custom-libs/validation-render',
 '/js/sweetalert/sweetalert.js',
 '/js/lib-tools.js',
+'/js/jquery.smartsuggest.js'
 ]); ?>
 
 <?= $this->fetch('script') ?>

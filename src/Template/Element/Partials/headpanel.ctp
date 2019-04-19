@@ -55,18 +55,13 @@
                         <div id="sosearchpro" class="sosearchpro-wrapper so-search">
                             <form method="GET" action="index.php">
                                 <div id="search0" class="search input-group form-group">
-                                    <div class="select_category filter_type  icon-select">
-                                        <select name="category_id" onchange="" onclick="return false;" id="" class="no-border">
-                                            <option value="">Semua Kategori</option>
-                                            <?php foreach($categories as $category) : ?>
-                                            <option value="<?= $category['id']; ?>"><?= $this->Text->truncate($category['name'], 23); ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
-                                    <input class="autosearch-input form-control" type="text" value="" size="50" autocomplete="off" placeholder="Search" name="search"><ul class="dropdown-menu" style="display: none;"></ul>
+
+
+
+                                    <input class="autosearch-input form-control" type="text" value="" id="zolaku-search-panel" size="50"  placeholder="Pencarian" name="search"><ul class="dropdown-menu" style="display: none;"></ul>
                                     <span class="input-group-btn">
-                                                <button type="submit" class="button-search btn btn-lg" name="submit_search"><i class="fa fa-search"></i></button>
-                                            </span>
+                                        <button type="submit" class="button-search btn btn-lg" name="submit_search"><i class="fa fa-search"></i></button>
+                                    </span>
                                 </div>
                                 <input type="hidden" name="route" value="product/search">
                             </form>
@@ -459,6 +454,10 @@
             e.preventDefault(); // avoid to execute the actual submit of the form.
         });
 
+
+        $('#zolaku-search-panel').smartSuggest({
+            src: "<?php echo $this->Url->build(['controller' => 'search', 'action' => 'get'])?>"
+        });
     });
 </script>
 <?php $this->end();
