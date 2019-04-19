@@ -48,7 +48,7 @@ class LoginController extends AuthController
                        ->post('v1/web/customers/save-browser', [
                            'form_params' => [
                                'ip' => env('REMOTE_ADDR'),
-                               'browser' => env('HTTP_USER_AGENT'),
+                               //'browser' => env('HTTP_USER_AGENT'),
                            ]
                        ]);
                } catch(\GuzzleHttp\Exception\ClientException $e) {
