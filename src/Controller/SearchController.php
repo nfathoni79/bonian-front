@@ -12,6 +12,29 @@ class SearchController  extends AuthController
         $this->Auth->allow(['get']);
     }
 
+
+    public function history()
+    {
+        $this->disableAutoRender();
+        if($this->request->is('ajax')){
+            try {
+                $this->Api->addHeader('bid', $this->request->getCookie('bid'));
+                $search = $this->Api->makeRequest()
+                    ->get('v1/products/search-history', [
+                        'query' => []
+                    ]);
+                if ($response = $this->Api->success($search)) {
+                    $json = $response->parse();
+                    $search = $json['result']['data'];
+                }
+            } catch(\GuzzleHttp\Exception\ClientException $e) {
+
+            }
+            return $this->response->withType('application/json')
+                ->withStringBody(json_encode($search));
+        }
+    }
+
     public function get(){
         $this->disableAutoRender();
         if($this->request->is('Ajax')){

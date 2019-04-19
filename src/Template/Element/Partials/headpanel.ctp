@@ -455,8 +455,49 @@
         });
 
 
-        $('#zolaku-search-panel').smartSuggest({
+        var searchPanel = $('#zolaku-search-panel');
+        searchPanel.smartSuggest({
             src: "<?php echo $this->Url->build(['controller' => 'search', 'action' => 'get', 'prefix' => false])?>"
+        });
+
+        searchPanel.focus(function() {
+            var inputObj = $(this);
+            var box = $('#' + $(this).attr('id') + '-suggestions');
+
+            if (inputObj.val().trim() === "") {
+                box.css('position', 'absolute');
+                box.css('top', inputObj.outerHeight());
+                box.css('width', inputObj.outerWidth());
+                var cache = inputObj.data('cache-search-history');
+                if (cache) {
+                    box.html(cache);
+                    box.fadeIn();
+                } else {
+                    $.getJSON('<?php echo $this->Url->build(['controller' => 'search', 'action' => 'history', 'prefix' => false])?>', function(data, textStatus) {
+                        if (textStatus === 'success') {
+                            var list = `<li class="ss-header">
+                            <p class="ss-header-text">Riwayat Pencarian</p>
+                            </li>`;
+
+                            data.forEach(function(o) {
+                                var searchKeyword = encodeURIComponent(o.search_term.words).replace(/%20/g,'+');
+                                list += `<li class="ss-result">
+                                        <a href="<?= $this->Url->build(['controller' => 'search', 'action' => 'index', 'prefix' => false]); ?>?q=${searchKeyword}">
+                                        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                                        <tbody>
+                                        <tr>
+                                        <td>${o.search_term.words}</td>
+                                        </tr>
+                                        </tbody>
+                                        </table></a> </li>`;
+                            });
+                            inputObj.data('cache-search-history', list);
+                            box.html(list);
+                            box.fadeIn();
+                        }
+                    });
+                }
+            }
         });
     });
 </script>
