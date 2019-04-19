@@ -456,7 +456,7 @@
 
 
         $('#zolaku-search-panel').smartSuggest({
-            src: "<?php echo $this->Url->build(['controller' => 'search', 'action' => 'get'])?>"
+            src: "<?php echo $this->Url->build(['controller' => 'search', 'action' => 'get', 'prefix' => false])?>"
         });
     });
 </script>
