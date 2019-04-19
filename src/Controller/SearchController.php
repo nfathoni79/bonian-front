@@ -16,8 +16,13 @@ class SearchController  extends AuthController
         $this->disableAutoRender();
         if($this->request->is('Ajax')){
             try {
+                $this->Api->addHeader('bid', $this->request->getCookie('bid'));
                 $search = $this->Api->makeRequest()
-                    ->get('v1/products/search?keywords'.$this->request->getQuery('keywords'));
+                    ->get('v1/products/search', [
+                        'query' => [
+                            'keywords' => $this->request->getQuery('q')
+                        ]
+                    ]);
                 if ($response = $this->Api->success($search)) {
                     $json = $response->parse();
                     $search = $json['result']['data'];
