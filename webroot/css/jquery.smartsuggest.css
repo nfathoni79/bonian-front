@@ -30,7 +30,7 @@ ul.ss-box
 	padding: 0 !important;
 	width: 304px;
 	z-index: 999999;
-	border: 1px solid #919191;
+	border: 1px solid #FFF6F6;
 	font-size: 11px;
 	background: #fff;
 	-moz-box-shadow: 2px 2px 5px 0 #c5c5c5;
@@ -52,11 +52,12 @@ ul.ss-box
 
 	ul.ss-box li.ss-header
 	{
-		height: 28px;
+		height: 25px;
 		overflow: hidden;
-		padding: 5px 0;
+		/* padding: 5px 0; */
 		color: #fff;
-		background: transparent url(../images/search-header-bg.gif) repeat-x bottom;
+		background:#c93535;
+		/*background: transparent url(../images/search-header-bg.gif) repeat-x bottom;*/
 	}
 
 		ul.ss-box li.ss-header p.ss-header-text
@@ -81,7 +82,8 @@ ul.ss-box
 	{
 		margin: 0 !important;
 		padding: 0 !important;
-		border-bottom: 1px solid #c5c5c5;
+		background:#FFF6F6;
+		/*border-bottom: 1px solid #c5c5c5;*/
 	}
 
 		ul.ss-box li.ss-result a
@@ -94,7 +96,8 @@ ul.ss-box
 		
 		ul.ss-box li.ss-result a:hover
 		{
-			background: #cde0ff url(../images/search-item-hover.gif) repeat-x top; /* Also is set in JavaScript file for IE6 compatibility */
+			/*background: #cde0ff url(../images/search-item-hover.gif) repeat-x top; *//* Also is set in JavaScript file for IE6 compatibility */
+			background: #FFF6F6; /* Also is set in JavaScript file for IE6 compatibility */
 		}
 
 		ul.ss-box li.ss-result img

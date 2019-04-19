@@ -114,7 +114,7 @@
 											// Create the group wrapper and header.
 											output += '<li class="'+options.classPrefix+'header">'+"\n";
 											output += '<p class="'+options.classPrefix+'header-text">'+group['header']['title']+'</p>'+"\n";
-											output += '<p class="'+options.classPrefix+'header-limit">'+options.resultsText.replace("%", group['header']['num']).replace("$", (group['header']['limit'] < group['data'].length ? group['header']['limit'] : group['data'].length))+'</p>'+"\n";
+											//output += '<p class="'+options.classPrefix+'header-limit">'+options.resultsText.replace("%", group['header']['num']).replace("$", (group['header']['limit'] < group['data'].length ? group['header']['limit'] : group['data'].length))+'</p>'+"\n";
 											output += '</li>';
 
 											// Run through each of the group items in this group and add them to the HTML.
@@ -133,18 +133,25 @@
 													output += '<li class="'+options.classPrefix+'result">'+link_open+"\n";
 
 													// Create the various HTML elements, including the image, primary text, and secondary text.
-													output += '<table border="0" cellspacing="0" cellpadding="0" width="100%"><tr>';
-													output += (item['image'] != undefined && options.showImages) ? '<td width="40"><img src="'+item['image']+'" /></td>'+"\n" : '';
-													output += '<td>';
-													output += '<p>';
-													output += (item['primary'] != undefined) ? '<span class="'+options.classPrefix+'result-title">'+item['primary']+"</span><br />\n" : '';
-													output += (item['secondary'] != undefined) ? ''+item['secondary']+''+"\n" : '';
-													output += '</p>'+"\n";
-													output += '</td>';
-													output += '</tr></table>';
+													/* CUSTOM RESULT */
+                                                    output += '<table border="0" cellspacing="0" cellpadding="0" width="100%"><tr>';
+                                                    output += '<td>';
+                                                    output += (item['primary'] != undefined) ? '<span class="'+options.classPrefix+'result-title">'+item['primary']+"</span><br />\n" : '';
+                                                    output += '</td>';
+                                                    output += '</tr></table>';
+													// output += '<table border="0" cellspacing="0" cellpadding="0" width="100%"><tr>';
+													// output += (item['image'] != undefined && options.showImages) ? '<td width="40"><img src="'+item['image']+'" /></td>'+"\n" : '';
+													// output += '<td>';
+													// output += '<p>';
+													// output += (item['primary'] != undefined) ? '<span class="'+options.classPrefix+'result-title">'+item['primary']+"</span><br />\n" : '';
+													// output += (item['secondary'] != undefined) ? ''+item['secondary']+''+"\n" : '';
+													// output += '</p>'+"\n";
+													// output += '</td>';
+													// output += '</tr></table>';
 
 													// Close the item wrapper DIV and the anchor.
 													output += '</a></li>'+"\n";
+													console.log(output);
 												}
 
 												count++;
