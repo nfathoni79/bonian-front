@@ -5,7 +5,7 @@
     <div id="so_extra_slider_1" class="so-extraslider" >
         <div class="releate-products yt-content-slider products-list" data-rtl="no" data-loop="yes" data-autoplay="no" data-autoheight="yes" data-autowidth="no" data-delay="4" data-speed="0.6" data-margin="20" data-items_column0="5" data-items_column1="3" data-items_column2="3" data-items_column3="2" data-items_column4="1" data-arrows="yes" data-pagination="no" data-lazyload="yes" data-hoverpause="yes">
             <?php foreach($flashSales['product_deal_details'] as $flash_sale) : ?>
-            <div class="item">
+            <div class="item products">
                 <div class="product-layout">
                     <div class="product-item-container">
                         <div class="left-block left-b">
@@ -18,7 +18,7 @@
                             <div class="product-image-container">
                                 <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $flash_sale['product']['slug']]); ?>" title="<?= h($flash_sale['product']['name']); ?>" target="_self">
                                     <?php foreach($flash_sale['product']['images'] as $image) : ?>
-                                        <img src="<?= $this->Url->build($_basePath . 'images/213x150/' . $image); ?>"  class="img-responsive" alt="image">
+                                        <img src="<?= $this->Url->build($_basePath . 'images/213x150/' . $image); ?>" data-image-name="<?= $image; ?>"  class="img-responsive" alt="image">
                                         <?php break; endforeach; ?>
                                 </a>
                             </div>
@@ -63,12 +63,12 @@
                                     <?php endif;?>
                                 </div>
                                 <div class="button-group so-quickview cartinfo--static">
-                                    <button type="button" class="addToCart" title="Add to cart" onclick="cart.add('60 ');">  <i class="fa fa-shopping-basket"></i>
+                                    <button type="button" class="addToCart" title="Add to cart" onclick="cart.add('<?= $flash_sale['product']['id']; ?>', this);">  <i class="fa fa-shopping-basket"></i>
                                         <span>Add to cart </span>
                                     </button>
-                                    <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('60');"><i class="fa fa-heart"></i><span></span>
+                                    <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('<?= $flash_sale['product']['id']; ?>', this);"><i class="fa fa-heart"></i><span></span>
                                     </button>
-                                    <button type="button" class="compare btn-button" title="Compare this Product " onclick="compare.add('60');"><i class="fa fa-refresh"></i><span></span>
+                                    <button type="button" class="compare btn-button" title="Compare this Product " onclick="compare.add('<?= $flash_sale['product']['id']; ?>', this);"><i class="fa fa-refresh"></i><span></span>
                                     </button>
                                 </div>
                             </div>

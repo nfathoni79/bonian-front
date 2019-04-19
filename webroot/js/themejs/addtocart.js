@@ -16,8 +16,35 @@
 	}
 
 	var wishlist = {
-		'add': function(product_id) {
-			addProductNotice('Product added to Wishlist', '<img src="image/demo/shop/product/e11.jpg" alt="">', '<h3>You must <a href="#">login</a>  to save <a href="#">Apple Cinema 30"</a> to your <a href="#">wish list</a>!</h3>', 'success');
+		'add': function(product_id, object) {
+			var basePath = $('meta[name="_basePath"]').attr('content');
+			var baseImagePath = $('meta[name="_baseImagePath"]').attr('content');
+			var image = $(object).parents('.products').find('img');
+			image = baseImagePath + 'images/50x50/' + image.data('image-name');
+
+
+			$.ajax({
+				url: basePath + '/wishlist',
+				type : 'POST',
+				data : {
+					product_id : product_id,
+					_csrfToken: $('meta[name="_csrfToken"]').attr('content')
+				},
+				dataType : 'json',
+				success: function(response){
+
+					if (response && response.status === "OK") {
+						addProductNotice('Berhasil ditambahkan ke Wishlist', '<img src="'+image+'" alt="">', response.result.data.name, 'success');
+					} else {
+						addProductNotice('Sudah ada dalam wishlist', '<img src="'+image+'" alt="">', '', 'success');
+					}
+				},
+				error: function () {
+					$("#login-popup").modal('show');
+				}
+			});
+
+
 		}
 	}
 	var compare = {

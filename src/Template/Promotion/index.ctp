@@ -66,14 +66,14 @@
                                 <div class="ltabs-items-inner ltabs-slider">
 
                                     <?php foreach($val as $v):?>
-                                    <div class="ltabs-item">
+                                    <div class="ltabs-item products">
                                         <div class="item-inner product-thumb transition product-layout">
                                             <div class="product-item-container">
                                                 <div class="left-block left-b">
                                                     <div class="product-image-container">
                                                         <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $v['product']['slug']]); ?>" target="_self" title="<?= h($v['product']['name']); ?>">
                                                             <?php foreach($v['product']['images'] as $image) : ?>
-                                                            <img src="<?= $this->Url->build($_basePath . 'images/213x150/' . $image); ?>"  class="img-responsive" alt="image">
+                                                            <img src="<?= $this->Url->build($_basePath . 'images/213x150/' . $image); ?>" data-image-name="<?= $image; ?>"  class="img-responsive" alt="image">
                                                             <?php break; endforeach; ?>
                                                         </a>
                                                     </div>
@@ -110,10 +110,10 @@
                                                             <?php endif;?>
                                                         </div>
                                                         <div class="button-group so-quickview cartinfo--static">
-                                                            <button type="button" class="addToCart" title="Add to cart" onclick="cart.add('<?= ($v['product']['id']); ?>');">  <i class="fa fa-shopping-basket"></i>
+                                                            <button type="button" class="addToCart" title="Add to cart" onclick="cart.add('<?= ($v['product']['id']); ?>', this);">  <i class="fa fa-shopping-basket"></i>
                                                                 <span>Add to cart </span>
                                                             </button>
-                                                            <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('<?= ($v['product']['id']); ?>');"><i class="fa fa-heart"></i><span></span>
+                                                            <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('<?= ($v['product']['id']); ?>', this);"><i class="fa fa-heart"></i><span></span>
                                                             </button>
                                                             <button type="button" class="compare btn-button" title="Share this Product "><i class="fa fa-share-alt"></i><span></span>
                                                             </button>
