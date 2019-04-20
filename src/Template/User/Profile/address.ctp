@@ -134,17 +134,15 @@
                         <strong><a href="javascript:void(0);" class="lokasi" data-container="body" data-toggle="popover" data-placement="right" tabindex="0">Lokasi <i class="fa fa-question-circle"></i></a></strong>
                     </div>
                     <div class="pull-right">
-                        <strong><a href="javascript:void(0);" class="show-map" style="color:#a94442;" ><i class="fa fa-map-marker"></i> Pilih Lokasi</a></strong>
+                        <strong><a href="javascript:void(0);" class="show-map btn-map" style="color:#a94442;display:none;" ><i class="fa fa-map-marker"></i> Pilih Lokasi</a></strong>
                     </div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="map-form" style="display: none;">
                     <div class="msg-alamat"></div>
                     <div id="map-canvas" style="height: 300px"></div>
-                    <!--
-                    <input type="text" id="default_latitude" placeholder="Latitude" />
-                    <input type="text" id="default_longitude" placeholder="Longitude" />
-                    -->
+                    <input type="hidden" name="latitude" id="default_latitude" placeholder="Latitude" />
+                    <input type="hidden" name="longitude" id="default_longitude" placeholder="Longitude" />
                 </div>
             </div>
             <div class="modal-footer">
@@ -249,6 +247,9 @@ $this->Html->script([
 <script>
     $(document).ready(function(){
 
+        $( "#address-modal" ).on('shown.bs.modal', function(e){
+            showDef();
+        });
         /* GOOGLE MAP API */
         var map = null;
         var marker;
@@ -283,7 +284,7 @@ $this->Html->script([
         function initMap(lat, lang) {
             var mapOptions = {
                 center: new google.maps.LatLng(lat, lang),
-                zoom: 17,
+                zoom: 16,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
             map = new google.maps.Map(document.getElementById("map-canvas"),
@@ -292,37 +293,45 @@ $this->Html->script([
                 requestAjaxPoi(map.getCenter().lat(), map.getCenter().lng(), function(cb){
                     $('.msg-alamat').html('<div class="alert alert-info"><strong>Alamat : </strong>'+cb+'</div>');
                 });
-                // document.getElementById('default_latitude').value = map.getCenter().lat();
-                // document.getElementById('default_longitude').value = map.getCenter().lng();
+                document.getElementById('default_latitude').value = map.getCenter().lat();
+                document.getElementById('default_longitude').value = map.getCenter().lng();
             });
             $('<div/>').addClass('centerMarker').appendTo(map.getDiv())
             //do something onclick
                 .click(function() {
                     var that = $(this);
-                    if (!that.data('win')) {
-                        that.data('win', new google.maps.InfoWindow({
-                            content: 'this is the center'
-                        }));
-                        that.data('win').bindTo('position', map, 'center');
-                    }
+                    showDef();
+
+                    // if (!that.data('win')) {
+                        // that.data('win', new google.maps.InfoWindow({
+                        //     content: 'this is the center'
+                        // }));
+                    //     that.data('win').bindTo('position', map, 'center');
+                    // }
                     that.data('win').open(map);
                 });
         }
 
 
-
-
-        $('.show-map').on('click',function(){
-            $('.main-form').hide();
-            $('.map-form').show();
-            $('.btn-simpan').hide();
-            $('.btn-batal').show();
-        });
-        $('.btn-batal').on('click',function(){
+        function showDef(){
             $('.main-form').show();
             $('.map-form').hide();
             $('.btn-simpan').show();
             $('.btn-batal').hide();
+        }
+
+        function showMap(){
+            $('.main-form').hide();
+            $('.map-form').show();
+            $('.btn-simpan').hide();
+            $('.btn-batal').show();
+        }
+
+        $('.show-map').on('click',function(){
+            showMap();
+        });
+        $('.btn-batal').on('click',function(){
+            showDef();
         });
 
         $('.lokasi').popover({
@@ -364,7 +373,6 @@ $this->Html->script([
                     if (typeof callback == 'function') {
                         callback(response);
                     }
-
                 }
 
             })
@@ -397,7 +405,8 @@ $this->Html->script([
             var province = $('#province-id option:selected').text();
 
             requestAjax(province, city, subdistrict, function( cb ) {
-                initMap(cb.lat, cb.lang)
+                initMap(cb.lat, cb.lang);
+                $('.btn-map').show();
             });
 
         });

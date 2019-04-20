@@ -18,7 +18,7 @@ class SearchController  extends AuthController
 
         $this->disableAutoRender();
         if($this->request->is('ajax')){
-            $fullAddress = $this->request->getData('province') .' '.$this->request->getData('city'). ' '.$this->request->getData('subdistrict');
+            $fullAddress = $this->request->getData('province') .' '.$this->request->getData('city');
 
             $http = new Client();
             $response = $http->get('https://maps.googleapis.com/maps/api/geocode/json', [
