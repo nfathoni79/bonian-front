@@ -6,7 +6,7 @@
         <div id="so_extra_slider_1" class="so-extraslider" >
             <div class="releate-products yt-content-slider products-list" data-rtl="no" data-loop="yes" data-autoplay="no" data-autoheight="yes" data-autowidth="no" data-delay="4" data-speed="0.6" data-margin="20" data-items_column0="5" data-items_column1="3" data-items_column2="3" data-items_column3="2" data-items_column4="1" data-arrows="yes" data-pagination="no" data-lazyload="yes" data-hoverpause="yes">
                 <?php foreach($flashSales['product_deal_details'] as $flash_sale) : ?>
-                <div class="item">
+                <div class="item products">
                     <div class="product-layout">
                         <div class="product-item-container" style="box-shadow: 0px 0px #ffffff; height:80%;">
                             <div class="left-block left-b">
@@ -19,16 +19,16 @@
                                 <div class="product-image-container">
                                     <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $flash_sale['product']['slug']]); ?>" title="<?= h($flash_sale['product']['name']); ?>" target="_self">
                                         <?php foreach($flash_sale['product']['images'] as $image) : ?>
-                                            <img src="<?= $this->Url->build($_basePath . 'images/213x150/' . $image); ?>"  class="img-responsive" alt="image">
+                                            <img src="<?= $this->Url->build($_basePath . 'images/213x150/' . $image); ?>" data-image-name="<?= $image; ?>"  class="img-responsive" alt="image">
                                             <?php break; endforeach; ?>
                                     </a>
                                 </div>
                                 <div class="box-label"> <span class="label-product label-sale"> <?= $flash_sale['product']['percent']; ?>% </span></div>
 
                                 <!--quickview-->
-                                <button type="button" onclick="cart.add('60 ');" class="iframe-link btn-button quickview quickview_handler visible-lg" style="margin-left:-60px;" title="Add to cart" data-fancybox-type="iframe"><i class="fa fa-shopping-cart"></i><span></span></button>
+                                <button type="button" onclick="cart.add('<?= $flash_sale['product']['id']; ?>', this);" class="iframe-link btn-button quickview quickview_handler visible-lg" style="margin-left:-60px;" title="Add to cart" data-fancybox-type="iframe"><i class="fa fa-shopping-cart"></i><span></span></button>
                                 <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span></span></a>
-                                <button type="button" onclick="wishlist.add('60');" class="iframe-link btn-button quickview quickview_handler visible-lg" style="margin-left:25px;" title="Wishlist" data-fancybox-type="iframe"><i class="fa fa-heart"></i><span></span></button>
+                                <button type="button" onclick="wishlist.add('<?= $flash_sale['product']['id']; ?>', this);" class="iframe-link btn-button quickview quickview_handler visible-lg" style="margin-left:25px;" title="Wishlist" data-fancybox-type="iframe"><i class="fa fa-heart"></i><span></span></button>
                                 <!--end quickview-->
                             </div>
                             <div class="right-block right-b" style="min-height: 160px;">
