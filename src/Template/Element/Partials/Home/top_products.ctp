@@ -1,7 +1,7 @@
 
-<div class="block block_3">
+<div class="card-wrapper">
     <!-- Listing tabs -->
-    <div class="module custom-listingtab top-product-home default-nav">
+    <div class="module custom-listingtab top-product-home default-nav" style="margin-top: -20px; margin-left: -20px">
         <div class="box-title font-ct">
             <h2 class="modtitle">Produk Teratas</h2>
         </div>
