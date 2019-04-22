@@ -139,6 +139,10 @@
                                                     output += '<td>';
                                                     output += (item['primary'] != undefined) ? '<span class="'+options.classPrefix+'result-title'+((item['image'] != undefined && options.showImages) ? ' with-image' : '')+'">'+item['primary']+"</span><br />\n" : '';
                                                     output += '</td>';
+                                                    if (item['price_sale_format'] != undefined) {
+														output += '<td class="search-price">Rp. ' + item['price_sale_format'] + '</td>';
+													}
+
                                                     output += '</tr></table>';
 													// output += '<table border="0" cellspacing="0" cellpadding="0" width="100%"><tr>';
 													// output += (item['image'] != undefined && options.showImages) ? '<td width="40"><img src="'+item['image']+'" /></td>'+"\n" : '';

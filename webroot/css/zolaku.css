@@ -660,6 +660,12 @@ a.search-history-remove:before {
 
 li.ss-result:hover .search-history-remove {
     display: block !important;
+    background: inherit;
+}
+
+li.ss-result .search-price {
+    text-align: right;
+    color: #ff5e00;
 }
 
 
