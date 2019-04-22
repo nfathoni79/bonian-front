@@ -2,6 +2,11 @@
 namespace App\Controller;
 
 use App\Controller\AuthController;
+use Cake\Http\Client;
+use Cake\Http\Client\Response;
+use Cake\Core\Configure;
+use Cake\Routing\Router;
+
 
 class SearchController  extends AuthController
 {
@@ -10,6 +15,72 @@ class SearchController  extends AuthController
     {
         parent::initialize();
         $this->Auth->allow(['get', 'history']);
+    }
+
+    public function locator(){
+
+        $this->disableAutoRender();
+        if($this->request->is('ajax')){
+            $fullAddress = $this->request->getData('province') .' '.$this->request->getData('city');
+
+            $http = new Client();
+            $response = $http->get('https://maps.googleapis.com/maps/api/geocode/json', [
+                'address' => $fullAddress,
+                'sennsor' => false,
+                'key' => 'AIzaSyATYUOKzvV7zsw3dZ8tvziH2oGtbxFUhJY'
+            ]);
+            $response = json_decode($response->getBody()->getContents(), true);
+            if($response['status'] == 'OK'){
+                $location = ['lat' => $response['results'][0]['geometry']['location']['lat'], 'lang' => $response['results'][0]['geometry']['location']['lng']];
+            }else{
+                $location = ['lat' => '0', 'lang' => '0'];
+            }
+
+            return $this->response->withType('application/json')
+                ->withStringBody(json_encode($location));
+        }
+    }
+
+    public function poi(){
+
+        $this->disableAutoRender();
+        if($this->request->is('ajax')){
+            $latlng = $this->request->getData('lat') .','.$this->request->getData('lng');
+
+            $http = new Client();
+            $response = $http->get('https://maps.googleapis.com/maps/api/geocode/json', [
+                'latlng' => $latlng,
+                'key' => 'AIzaSyATYUOKzvV7zsw3dZ8tvziH2oGtbxFUhJY'
+            ]);
+            $response = json_decode($response->getBody()->getContents(), true);
+            if($response['status'] == 'OK'){
+                $address = $response['results'][0]['formatted_address'];
+            }else{
+                $address = 'unknown address';
+            }
+
+            return $this->response->withType('application/json')
+                ->withStringBody(json_encode($address));
+        }
+    }
+
+
+
+    public function index()
+    {
+        try {
+            $this->Api->addHeader('bid', $this->request->getCookie('bid'));
+            $search = $this->Api->makeRequest()
+                ->get('v1/products/search-history', [
+                    'query' => []
+                ]);
+            if ($response = $this->Api->success($search)) {
+                $json = $response->parse();
+                $search = $json['result']['data'];
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+
+        }
     }
 
 
@@ -35,17 +106,27 @@ class SearchController  extends AuthController
         }
     }
 
+    protected function highlight($text, $words)
+    {
+        preg_match_all('~\w+~', $words, $m);
+        if(!$m)
+            return $text;
+        $re = '~\\b(' . implode('|', $m[0]) . ')\\b~i';
+        return preg_replace($re, '<span class="search-highlight">$0</span>', $text);
+    }
+
     public function get(){
         $this->disableAutoRender();
         if($this->request->is('Ajax')){
+            $keyword = $this->request->getQuery('q');
             try {
                 $this->Api->addHeader('bid', $this->request->getCookie('bid'));
                 $search = $this->Api->makeRequest()
                     ->get('v1/products/search', [
                         'query' => [
-                            'keywords' => $this->request->getQuery('q')
+                            'keywords' => $keyword
                         ]
-                    ]);
+                    ]);//debug($search->getBody()->getContents());exit;
                 if ($response = $this->Api->success($search)) {
                     $json = $response->parse();
                     $search = $json['result']['data'];
@@ -53,6 +134,41 @@ class SearchController  extends AuthController
             } catch(\GuzzleHttp\Exception\ClientException $e) {
 
             }
+
+            //modified search API
+            if (isset($search[1]) && isset($search[1]['data'])) {
+                foreach($search[1]['data'] as $key => &$val) {
+                    $val['primary'] = $this->highlight($val['primary'], $keyword) .
+                        ' di <span class="search-category">' . $val['product_category']['name'] . '</span>';
+                    $val['url'] = Router::url([
+                        'controller' => 'Search',
+                        'action' => 'index',
+                        'prefix' => false,
+                        '?' => [
+                            'q' => $keyword,
+                            'category_id' => $val['product_category']['id']
+                        ]
+                    ]);
+                }
+            }
+
+            if (isset($search[2]) && isset($search[2]['data'])) {
+                foreach($search[2]['data'] as $key => &$val) {
+                    $val['primary'] = $this->highlight($val['primary'], $keyword);
+                    if (isset($val['product_images']) && isset($val['product_images'][0])) {
+                        $val['image'] = rtrim(Configure::read('Images.url'), '/')  . '/images/40x40/' . $val['product_images'][0]['name'];
+                    }
+                    $val['url'] = Router::url([
+                        'controller' => 'Products',
+                        'action' => 'detail',
+                        'prefix' => false,
+                        $val['slug']
+                    ]);
+                }
+            }
+
+
+            //debug($search);exit;
         }
 //        $this->set(compact('promotion'));
 
