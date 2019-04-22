@@ -183,33 +183,33 @@ class SearchController  extends AuthController
 
             if (isset($search[0]) && isset($search[0]['data'])) {
                 foreach ($search[0]['data'] as $key => &$val) {
-                    $val['primary'] = $this->highlight($val['primary'], $val['fill_text']);
                     $val['url'] = Router::url([
                         'controller' => 'Search',
                         'action' => 'index',
                         'prefix' => false,
                         '?' => [
-                            'q' => $keyword,
+                            'q' => $val['primary'],
                             'source' => 'click'
                         ]
                     ]);
+                    $val['primary'] = $this->highlight($val['primary'], $val['fill_text']);
                 }
             }
 
             if (isset($search[1]) && isset($search[1]['data'])) {
                 foreach($search[1]['data'] as $key => &$val) {
-                    $val['primary'] = $this->highlight($val['primary'], $keyword) .
-                        ' di <span class="search-category">' . $val['product_category']['name'] . '</span>';
                     $val['url'] = Router::url([
                         'controller' => 'Search',
                         'action' => 'index',
                         'prefix' => false,
                         '?' => [
-                            'q' => $keyword,
+                            'q' => $val['primary'],
                             'category_id' => $val['product_category']['id'],
                             'source' => 'click'
                         ]
                     ]);
+                    $val['primary'] = $this->highlight($val['primary'], $keyword) .
+                        ' di <span class="search-category">' . $val['product_category']['name'] . '</span>';
                 }
             }
 
