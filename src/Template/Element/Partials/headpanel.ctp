@@ -478,7 +478,7 @@
                             </li>`;
 
                             data.forEach(function(o) {
-                                var query = {q: encodeURIComponent(o.search_term.words).replace(/%20/g,'+')};
+                                var query = {q: o.search_term.words};
 
                                 var searchTermWord = o.search_term.words;
                                 if (typeof o.product_category != 'undefined' && o.product_category != null) {
