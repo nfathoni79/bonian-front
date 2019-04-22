@@ -4,20 +4,20 @@
     height: 100%;
     margin: 0;
 }
-#map-canvas .centerMarker {
+#map-canvas .centerMarker, #map-canvas-edit .centerMarker {
     position: absolute;
     /*url of the marker*/
-    background: url(http://maps.gstatic.com/mapfiles/markers2/marker.png) no-repeat;
+    background: url(/zolaku-front/images/marker.png) no-repeat;
     /*center the marker*/
     top: 50%;
     left: 50%;
     z-index: 1;
     /*fix offset when needed*/
-    margin-left: -10px;
+    margin-left: -50px;
     margin-top: -34px;
     /*size of the image*/
-    height: 34px;
-    width: 20px;
+    height: 60px;
+    width: 140px;
     cursor: pointer;
 }
 </style>
@@ -31,30 +31,42 @@
                         <?= $this->element('Partials/Profile/navigation'); ?>
                     </div>
                     <div class="user-content-body">
-                        <h4><strong>Daftar Alamat</strong></h4>
-                        <?php foreach($address as $val):?>
-                        <div class="row">
-                            <div class="col-lg-2"><strong><?= ucfirst($val['title']);?></strong></div>
-                            <div class="col-lg-4">
-                                <strong><?= ucfirst($val['recipient_name']);?></strong>
-                                <p><?= $val['address'];?>, <?= $val['subdistrict']['name'];?>, <?= $val['city']['type'];?> <?= $val['city']['name'];?>, <?= $val['province']['name'];?> <?= $val['postal_code'];?></p>
-                                <p><?= $val['recipient_phone'];?></p>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover table-red">
+                                <tr>
+                                    <td><strong>Penerima</strong></td>
+                                    <td><strong>Alamat Pengiriman</strong></td>
+                                    <td><strong>Daerah Pengiriman</strong></td>
+                                    <td></td>
+                                </tr>
+                                <?php foreach($address as $val):?>
+                                <tr>
+                                    <td>
+                                        <div><strong><?= ucfirst($val['recipient_name']);?></strong></div>
+                                        <div><?= $val['recipient_phone'];?></div>
+                                    </td>
+                                    <td>
+                                        <div><strong><?= ucfirst($val['title']);?></strong></div>
+                                        <div><?= $val['address'];?></div>
+                                    </td>
+                                    <td>
+                                        <div><?= $val['city']['type'];?> <?= $val['city']['name'];?>, <?= $val['province']['name'];?> <?= $val['postal_code'];?></div>
+                                    </td>
+                                    <td>
+                                        <?php if($val['is_primary']):?>
+                                        <button class="btn btn-danger btn-radius btn-md btn-block" style="margin-bottom: 10px;"><i class="fa fa-check-square-o"></i> Alamat utama</button>
+                                        <a href="#" class="pull-left edit-address-button"  data-toggle="modal" data-target="#address-edit" data-id="<?= $val['id']; ?>" data-alias="<?= ucfirst($val['title']);?>" ><strong class=""><i class="fa fa-edit"></i> Edit</strong></a>
+                                        <?php else:?>
+                                        <button data-id="<?= $val['id']; ?>" class="btn btn-default btn-radius btn-md btn-block set-primary-address-button" data-alias="<?= ucfirst($val['title']);?>" style="margin-bottom: 10px;"><i class="fa fa-square-o"></i> Set alamat utama</button>
+                                        <a href="#" class="pull-left edit-address-button"  data-toggle="modal" data-target="#address-edit" data-id="<?= $val['id']; ?>" data-alias="<?= ucfirst($val['title']);?>" ><strong class=""><i class="fa fa-edit"></i> Edit</strong></a>
+                                        <a href="#" data-id="<?= $val['id']; ?>" class="pull-right delete-address-button" data-alias="<?= ucfirst($val['title']);?>"><strong class=""><i class="fa fa-trash"></i> Hapus</strong></a>
+                                        <?php endif;?>
+                                    </td>
+                                </tr>
+                                <?php endforeach;?>
+                            </table>
 
-                            </div>
-                            <div class="col-lg-3 text-center"><a href="#"><strong class="" style="color:#a94442;"><i class="fa fa-map-marker"></i> Edit Koordinat</strong></a></div>
-                            <div class="col-lg-3">
-                                <?php if($val['is_primary']):?>
-                                    <button class="btn btn-danger btn-radius btn-md btn-block" style="margin-bottom: 10px;"><i class="fa fa-check-square-o"></i> Alamat utama</button>
-                                <a href="#" class="pull-left edit-address-button"  data-toggle="modal" data-target="#address-edit" data-id="<?= $val['id']; ?>" data-alias="<?= ucfirst($val['title']);?>" ><strong class=""><i class="fa fa-edit"></i> Edit</strong></a>
-                                <?php else:?>
-                                    <button data-id="<?= $val['id']; ?>" class="btn btn-default btn-radius btn-md btn-block set-primary-address-button" data-alias="<?= ucfirst($val['title']);?>" style="margin-bottom: 10px;"><i class="fa fa-square-o"></i> Set alamat utama</button>
-                                    <a href="#" class="pull-left edit-address-button"  data-toggle="modal" data-target="#address-edit" data-id="<?= $val['id']; ?>" data-alias="<?= ucfirst($val['title']);?>" ><strong class=""><i class="fa fa-edit"></i> Edit</strong></a>
-                                    <a href="#" data-id="<?= $val['id']; ?>" class="pull-right delete-address-button" data-alias="<?= ucfirst($val['title']);?>"><strong class=""><i class="fa fa-trash"></i> Hapus</strong></a>
-                                <?php endif;?>
-                            </div>
                         </div>
-                        <hr>
-                        <?php endforeach;?>
                         <div>
                             <a class="btn btn-danger btn-radius" data-toggle="modal" data-target="#address-modal">Tambah Alamat</a>
                         </div>
@@ -134,7 +146,7 @@
                         <strong><a href="javascript:void(0);" class="lokasi" data-container="body" data-toggle="popover" data-placement="right" tabindex="0">Lokasi <i class="fa fa-question-circle"></i></a></strong>
                     </div>
                     <div class="pull-right">
-                        <strong><a href="javascript:void(0);" class="show-map btn-map" style="color:#a94442;display:none;" ><i class="fa fa-map-marker"></i> Pilih Lokasi</a></strong>
+                        <strong><a href="javascript:void(0);" class="show-map btn-map" style="color:#a94442;" ><i class="fa fa-map-marker"></i> Pilih Lokasi</a></strong>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -176,54 +188,71 @@
                 'class' => 'ajax-helper_'
             ]); ?>
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="input-title">Nama alamat</label>
+                <div class="main-form-edit">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="input-title">Nama alamat</label>
 
-                            <input type="hidden" name="id" value="" class="form-control" id="edit-id" />
-                            <input type="text" name="title" value="" placeholder="Input nama alamat" class="form-control" />
+                                <input type="hidden" name="id" value="" class="form-control" id="edit-id" />
+                                <input type="text" name="title" value="" placeholder="Input nama alamat" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label for="input-recipient-phone">Nomot Telepon</label>
+                                <input type="text" name="recipient_phone" value="" placeholder="Telepon penerima barang" class="form-control" />
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="input-recipient-phone">Nomot Telepon</label>
-                            <input type="text" name="recipient_phone" value="" placeholder="Telepon penerima barang" class="form-control" />
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="input-recipient-name">Nama penerima</label>
+                                <input type="text" name="recipient_name" value="" placeholder="Nama penerima barang" class="form-control" />
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="input-recipient-name">Nama penerima</label>
-                            <input type="text" name="recipient_name" value="" placeholder="Nama penerima barang" class="form-control" />
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <?php echo $this->Form->control('province_id', ['id' => 'p-id','type' => 'select', 'class' => 'form-control', 'label' => 'Provinsi', 'div' => false, 'options' => $province, 'empty' => 'Pilih Provinsi'])?>
+                            </div>
+                            <div class="form-group">
+                                <?php echo $this->Form->control('subdistrict_id', ['id' => 's-id','type' => 'select', 'class' => 'form-control', 'label' => 'Kecamatan', 'div' => false, 'options' => [], 'empty' => 'Pilih Kecamatan'])?>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <?php echo $this->Form->control('city_id', ['id' => 'c-id','type' => 'select', 'class' => 'form-control', 'label' => 'Kota / Kabupaten', 'div' => false, 'options' => [], 'empty' => 'Pilih Kota / Kabupaten'])?>
+                            </div>
+                            <div class="form-group">
+                                <label for="input-postal-code">Kode Pos</label>
+                                <input type="text" name="postal_code" value="" placeholder="Input kode pos" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <?php echo $this->Form->control('address', ['type' => 'textarea','id'=> 'addresses', 'class' => 'form-control', 'label' => 'Alamat lengkap', 'div' => false,'placeholder' => 'Alamat lengkap penerima'])?>
+                            </div>
                         </div>
                     </div>
+                    <div class="pull-left">
+                        <strong><a href="javascript:void(0);" class="lokasi" data-container="body" data-toggle="popover" data-placement="right" tabindex="0">Lokasi <i class="fa fa-question-circle"></i></a></strong>
+                    </div>
+                    <div class="pull-right">
+                        <strong><a href="javascript:void(0);" class="show-map-edit btn-map-edit" style="color:#a94442;" ><i class="fa fa-map-marker"></i> Pilih Lokasi</a></strong>
+                    </div>
+                    <div class="clearfix"></div>
                 </div>
-                <hr>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <?php echo $this->Form->control('province_id', ['id' => 'p-id','type' => 'select', 'class' => 'form-control', 'label' => 'Provinsi', 'div' => false, 'options' => $province, 'empty' => 'Pilih Provinsi'])?>
-                        </div>
-                        <div class="form-group">
-                            <?php echo $this->Form->control('subdistrict_id', ['id' => 's-id','type' => 'select', 'class' => 'form-control', 'label' => 'Kecamatan', 'div' => false, 'options' => [], 'empty' => 'Pilih Kecamatan'])?>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <?php echo $this->Form->control('city_id', ['id' => 'c-id','type' => 'select', 'class' => 'form-control', 'label' => 'Kota / Kabupaten', 'div' => false, 'options' => [], 'empty' => 'Pilih Kota / Kabupaten'])?>
-                        </div>
-                        <div class="form-group">
-                            <label for="input-postal-code">Kode Pos</label>
-                            <input type="text" name="postal_code" value="" placeholder="Input kode pos" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <?php echo $this->Form->control('address', ['type' => 'textarea','id'=> 'addresses', 'class' => 'form-control', 'label' => 'Alamat lengkap', 'div' => false,'placeholder' => 'Alamat lengkap penerima'])?>
-                        </div>
-                    </div>
+                <div class="map-form-edit" style="display: none;">
+                    <div class="msg-alamat"></div>
+                    <div id="map-canvas-edit" style="height: 300px"></div>
+                    <input type="hidden" name="latitude" id="default_latitude_edit" placeholder="Latitude" />
+                    <input type="hidden" name="longitude" id="default_longitude_edit" placeholder="Longitude" />
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-danger btn-radius btn-md pull-left"><i class="fa fa-save"></i> Simpan alamat</button>
+                <button class="btn btn-danger btn-radius btn-md pull-left btn-simpan-edit"><i class="fa fa-save"></i> Simpan alamat</button>
+                <a class="btn btn-danger btn-radius btn-md pull-right btn-batal-edit" style="display:none;"> Batal</a>
+                <div class="clearfix"></div>
             </div>
             <?= $this->Form->end(); ?>
 
@@ -312,12 +341,50 @@ $this->Html->script([
                 });
         }
 
+        function initMapEdit(lat, lang) {
+            var mapOptions = {
+                center: new google.maps.LatLng(lat, lang),
+                zoom: 16,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            map = new google.maps.Map(document.getElementById("map-canvas-edit"),
+                mapOptions);
+            google.maps.event.addListener(map, 'dragend', function() {
+                requestAjaxPoi(map.getCenter().lat(), map.getCenter().lng(), function(cb){
+                    $('.msg-alamat').html('<div class="alert alert-info"><strong>Alamat : </strong>'+cb+'</div>');
+                });
+                document.getElementById('default_latitude_edit').value = map.getCenter().lat();
+                document.getElementById('default_longitude_edit').value = map.getCenter().lng();
+            });
+            $('<div/>').addClass('centerMarker').appendTo(map.getDiv())
+            //do something onclick
+                .click(function() {
+                    var that = $(this);
+                    showDefEdit();
+
+                    // if (!that.data('win')) {
+                        // that.data('win', new google.maps.InfoWindow({
+                        //     content: 'this is the center'
+                        // }));
+                    //     that.data('win').bindTo('position', map, 'center');
+                    // }
+                    that.data('win').open(map);
+                });
+        }
+
 
         function showDef(){
             $('.main-form').show();
             $('.map-form').hide();
             $('.btn-simpan').show();
             $('.btn-batal').hide();
+        }
+
+        function showDefEdit(){
+            $('.main-form-edit').show();
+            $('.map-form-edit').hide();
+            $('.btn-simpan-edit').show();
+            $('.btn-batal-edit').hide();
         }
 
         function showMap(){
@@ -327,8 +394,32 @@ $this->Html->script([
             $('.btn-batal').show();
         }
 
+        function showMapEdit(){
+            $('.main-form-edit').hide();
+            $('.map-form-edit').show();
+            $('.btn-simpan-edit').hide();
+            $('.btn-batal-edit').show();
+        }
+
         $('.show-map').on('click',function(){
-            showMap();
+            var check_city= $('#city-id').val();
+            if(check_city != ''){
+                showMap();
+            }else{
+                swal('silahkan pilih kota terlebih dahulu');
+            }
+        });
+
+        $('.show-map-edit').on('click',function(){
+            var check_city= $('#c-id').val();
+            if(check_city != ''){
+                showMapEdit();
+            }else{
+                swal('silahkan pilih kota terlebih dahulu');
+            }
+        });
+        $('.btn-batal-edit').on('click',function(){
+            showDefEdit();
         });
         $('.btn-batal').on('click',function(){
             showDef();
@@ -519,10 +610,12 @@ $this->Html->script([
                     drawTo('#form-address-edit #c-id', data.province_id ,"<?php echo $this->Url->build(['action' => 'getCity','prefix' => 'user']);?>/",'Kota / Kabupaten', function() {
                         $('#form-address-edit').find('select[name=city_id]').val(data.city_id);
                     });
-
                     drawTo('#form-address-edit #s-id', data.city_id ,"<?php echo $this->Url->build(['action' => 'getDistrict','prefix' => 'user']);?>/",'Kecamatan', function() {
                         $('#form-address-edit').find('select[name=subdistrict_id]').val(data.subdistrict_id);
                     });
+
+
+                    initMapEdit(data.latitude, data.longitude);
 
                 }
             });
