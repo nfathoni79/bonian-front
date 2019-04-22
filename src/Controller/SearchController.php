@@ -14,7 +14,7 @@ class SearchController  extends AuthController
     public function initialize()
     {
         parent::initialize();
-        $this->Auth->allow(['get', 'history', 'index']);
+        $this->Auth->allow(['get', 'history', 'index', 'removeHistory']);
     }
 
     public function locator(){
@@ -82,6 +82,31 @@ class SearchController  extends AuthController
         } catch(\GuzzleHttp\Exception\ClientException $e) {
             //debug($e->getResponse()->getBody()->getContents());exit;
         }
+    }
+
+    public function removeHistory()
+    {
+        $this->disableAutoRender();
+        $delete = [];
+
+        try {
+            $this->Api->addHeader('bid', $this->request->getCookie('bid'));
+            $delete = $this->Api->makeRequest()
+                ->post('v1/products/delete-history', [
+                    'form_params' => array_filter([
+                        'term_id' => $this->request->getData('term_id'),
+                    ])
+                ]);
+            if ($response = $this->Api->success($delete)) {
+                $json = $response->parse();
+                $delete = $json;
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            //debug($e->getResponse()->getBody()->getContents());exit;
+        }
+
+        return $this->response->withType('application/json')
+            ->withStringBody(json_encode($delete));
     }
 
     public function index()

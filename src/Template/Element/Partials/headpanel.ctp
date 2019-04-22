@@ -458,6 +458,30 @@
             src: "<?php echo $this->Url->build(['controller' => 'search', 'action' => 'get', 'prefix' => false])?>"
         });
 
+        function remove_search_history(e) {
+
+            var that = $(this);
+            $.ajax({
+                url: '<?= $this->Url->build(['controller' => 'Search', 'action' => 'removeHistory', 'prefix' => false]); ?>',
+                type : 'POST',
+                data : {
+                    term_id : $(this).data('term-id'),
+                    _csrfToken: $('meta[name="_csrfToken"]').attr('content')
+                },
+                //dataType : 'json',
+                success: function(response){
+                    console.log('oke')
+                    that.parents('li.ss-result').remove();
+                    searchPanel.data('cache-search-history', $('ul#zolaku-search-panel-suggestions').html());
+                    //var box = $('#' + searchPanel.attr('id') + '-suggestions').show();
+                },
+                error: function () {
+
+                }
+            });
+            e.preventDefault();
+        }
+
         searchPanel.focus(function() {
             var inputObj = $(this);
             var box = $('#' + $(this).attr('id') + '-suggestions');
@@ -468,7 +492,7 @@
                 box.css('width', inputObj.outerWidth());
                 var cache = inputObj.data('cache-search-history');
                 if (cache) {
-                    box.html(cache);
+                    box.html(cache).find('.search-history-remove').click(remove_search_history);;
                     box.fadeIn();
                 } else {
                     $.getJSON('<?php echo $this->Url->build(['controller' => 'search', 'action' => 'history', 'prefix' => false])?>', function(data, textStatus) {
@@ -491,19 +515,21 @@
                                         <table width="100%" cellspacing="0" cellpadding="0" border="0">
                                         <tbody>
                                         <tr>
-                                        <td><span class="ss-result-title">${searchTermWord}</span></td>
+                                        <td><span class="ss-result-title pull-left">${searchTermWord}</span> <a data-term-id="${o.search_term_id}" class="pull-right search-history-remove"></a></td>
                                         </tr>
                                         </tbody>
                                         </table></a> </li>`;
                             });
                             inputObj.data('cache-search-history', list);
-                            box.html(list);
+                            box.html(list).find('.search-history-remove').click(remove_search_history);
                             box.fadeIn();
                         }
                     });
                 }
             }
         });
+
+
     });
 </script>
 <?php $this->end();
