@@ -53,14 +53,15 @@
                     <!-- Search -->
                     <div class="header_search">
                         <div id="sosearchpro" class="sosearchpro-wrapper so-search">
-                            <form method="GET" action="<?= $this->Url->build(['controller' => 'Search', 'action' => 'index', 'prefix' => false]); ?>">
+                            <form method="POST" action="<?= $this->Url->build(['controller' => 'Search', 'action' => 'index', 'prefix' => false]); ?>">
                                 <div id="search0" class="search input-group form-group">
                                     <input class="autosearch-input form-control" type="text" value="" id="zolaku-search-panel" size="50"  placeholder="Pencarian" name="q"><ul class="dropdown-menu" style="display: none;"></ul>
                                     <span class="input-group-btn">
                                         <button type="submit" class="button-search btn btn-lg" name="submit_search"><i class="fa fa-search"></i></button>
                                     </span>
                                 </div>
-                                <input type="hidden" name="category_id" value="">
+                                <input type="hidden" name="_csrfToken" value="<?= $this->request->getParam('_csrfToken'); ?>" />
+                                <!-- <input type="hidden" name="category_id" value=""> -->
                             </form>
                         </div>
                     </div>

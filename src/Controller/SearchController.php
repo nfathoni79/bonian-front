@@ -14,7 +14,7 @@ class SearchController  extends AuthController
     public function initialize()
     {
         parent::initialize();
-        $this->Auth->allow(['get', 'history']);
+        $this->Auth->allow(['get', 'history', 'index']);
     }
 
     public function locator(){
@@ -68,19 +68,24 @@ class SearchController  extends AuthController
 
     public function index()
     {
-        try {
-            $this->Api->addHeader('bid', $this->request->getCookie('bid'));
-            $search = $this->Api->makeRequest()
-                ->get('v1/products/search-history', [
-                    'query' => []
-                ]);
-            if ($response = $this->Api->success($search)) {
-                $json = $response->parse();
-                $search = $json['result']['data'];
+        if ($this->request->is('post')) {
+            try {
+                $this->Api->addHeader('bid', $this->request->getCookie('bid'));
+                $search = $this->Api->makeRequest()
+                    ->post('v1/products/save-search', [
+                        'form_params' => [
+                            'keyword' => $this->request->getData('q')
+                        ]
+                    ]); //print_r($search->getBody()->getContents());exit;
+                if ($response = $this->Api->success($search)) {
+                    $json = $response->parse();
+                }
+            } catch(\GuzzleHttp\Exception\ClientException $e) {
+                //debug($e->getResponse()->getBody()->getContents());exit;
             }
-        } catch(\GuzzleHttp\Exception\ClientException $e) {
-
+            return $this->redirect(['q' => $this->request->getData('q')]);
         }
+
     }
 
 
