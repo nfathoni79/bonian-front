@@ -66,6 +66,8 @@
     <?= $this->Html->css([
         '/css/zolaku-font',
         '/css/zolaku',
+        '/css/zolaku-custom-min.css',
+        '/css/custom.css',
         '/css/jquery.smartsuggest.css'
     ]); ?>
 
