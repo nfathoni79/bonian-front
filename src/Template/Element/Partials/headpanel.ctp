@@ -478,13 +478,20 @@
                             </li>`;
 
                             data.forEach(function(o) {
-                                var searchKeyword = encodeURIComponent(o.search_term.words).replace(/%20/g,'+');
+                                var query = {q: encodeURIComponent(o.search_term.words).replace(/%20/g,'+')};
+
+                                var searchTermWord = o.search_term.words;
+                                if (typeof o.product_category != 'undefined' && o.product_category != null) {
+                                    searchTermWord += ` di <span class="search-category">${o.product_category.name}</span>`;
+                                    query.category_id = o.product_category.id;
+                                }
+                                var queryString = '?' + $.param( query );
                                 list += `<li class="ss-result">
-                                        <a href="<?= $this->Url->build(['controller' => 'search', 'action' => 'index', 'prefix' => false]); ?>?q=${searchKeyword}">
+                                        <a href="<?= $this->Url->build(['controller' => 'search', 'action' => 'index', 'prefix' => false]); ?>${queryString}">
                                         <table width="100%" cellspacing="0" cellpadding="0" border="0">
                                         <tbody>
                                         <tr>
-                                        <td>${o.search_term.words}</td>
+                                        <td><span class="ss-result-title">${searchTermWord}</span></td>
                                         </tr>
                                         </tbody>
                                         </table></a> </li>`;

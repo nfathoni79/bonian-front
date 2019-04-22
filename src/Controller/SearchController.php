@@ -65,27 +65,41 @@ class SearchController  extends AuthController
     }
 
 
+    protected function saveSearch($keyword, $category_id = null)
+    {
+        try {
+            $this->Api->addHeader('bid', $this->request->getCookie('bid'));
+            $search = $this->Api->makeRequest()
+                ->post('v1/products/save-search', [
+                    'form_params' => array_filter([
+                        'keyword' => $keyword,
+                        'category_id' => $category_id
+                    ])
+                ]); //print_r($search->getBody()->getContents());exit;
+            if ($response = $this->Api->success($search)) {
+                $json = $response->parse();
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            //debug($e->getResponse()->getBody()->getContents());exit;
+        }
+    }
 
     public function index()
     {
+        $query_string = $this->request->getQueryParams();
         if ($this->request->is('post')) {
-            try {
-                $this->Api->addHeader('bid', $this->request->getCookie('bid'));
-                $search = $this->Api->makeRequest()
-                    ->post('v1/products/save-search', [
-                        'form_params' => [
-                            'keyword' => $this->request->getData('q')
-                        ]
-                    ]); //print_r($search->getBody()->getContents());exit;
-                if ($response = $this->Api->success($search)) {
-                    $json = $response->parse();
-                }
-            } catch(\GuzzleHttp\Exception\ClientException $e) {
-                //debug($e->getResponse()->getBody()->getContents());exit;
-            }
-            return $this->redirect(['q' => $this->request->getData('q')]);
+            $this->saveSearch($this->request->getData('q'));
+            $query_string['q'] = $this->request->getData('q');
+            return $this->redirect([
+                '?' => $query_string
+            ]);
+        } else if ($this->request->getQuery('source') == 'click') {
+            $this->saveSearch($this->request->getQuery('q'), $this->request->getQuery('category_id', null));
+            unset($query_string['source']);
+            return $this->redirect([
+                '?' => $query_string
+            ]);
         }
-
     }
 
 
@@ -141,6 +155,22 @@ class SearchController  extends AuthController
             }
 
             //modified search API
+
+            if (isset($search[0]) && isset($search[0]['data'])) {
+                foreach ($search[0]['data'] as $key => &$val) {
+                    $val['primary'] = $this->highlight($val['primary'], $val['fill_text']);
+                    $val['url'] = Router::url([
+                        'controller' => 'Search',
+                        'action' => 'index',
+                        'prefix' => false,
+                        '?' => [
+                            'q' => $keyword,
+                            'source' => 'click'
+                        ]
+                    ]);
+                }
+            }
+
             if (isset($search[1]) && isset($search[1]['data'])) {
                 foreach($search[1]['data'] as $key => &$val) {
                     $val['primary'] = $this->highlight($val['primary'], $keyword) .
@@ -151,7 +181,8 @@ class SearchController  extends AuthController
                         'prefix' => false,
                         '?' => [
                             'q' => $keyword,
-                            'category_id' => $val['product_category']['id']
+                            'category_id' => $val['product_category']['id'],
+                            'source' => 'click'
                         ]
                     ]);
                 }
