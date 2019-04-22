@@ -13,10 +13,10 @@
     left: 50%;
     z-index: 1;
     /*fix offset when needed*/
-    margin-left: -50px;
-    margin-top: -34px;
+    margin-left: -68px;
+    margin-top: -60px;
     /*size of the image*/
-    height: 60px;
+    height: 61px;
     width: 140px;
     cursor: pointer;
 }
@@ -615,7 +615,19 @@ $this->Html->script([
                     });
 
 
-                    initMapEdit(data.latitude, data.longitude);
+
+                    if((data.latitude != '0') && (data.longitude != '0')){
+                        initMapEdit(data.latitude, data.longitude);
+                    }else{
+                        setTimeout(function(){
+                            var province = $('#form-address-edit').find('select[name=province_id] option:selected').text();
+                            var city = $('#form-address-edit').find('select[name=city_id] option:selected').text();
+                            var subdistrict = $('#form-address-edit').find('select[name=subdistrict_id] option:selected').text();
+                            requestAjax(province, city,subdistrict, function( cb ) {
+                                initMapEdit(cb.lat, cb.lang);
+                            });
+                        }, 1000);
+                    }
 
                 }
             });
