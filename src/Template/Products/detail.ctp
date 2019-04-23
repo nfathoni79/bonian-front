@@ -51,8 +51,162 @@
     .vcenter {
         display: flex;
         align-items: center;
-        justify-content: center;
         flex-direction: row;
+        margin: 10px 0;
+    }
+    .vcenter div span.zl-text{
+        color: #444;
+        font-weight: 600;
+    }
+    .vcenter div .box-info-product{
+        margin: 0 !important;
+    }
+    .left-content-product .content-product-right .box-info-product .quantity .quantity-control span.product_quantity_down{
+        background: none repeat scroll 0 0 #fff6f6;
+        font-size: 13px;
+        padding: 0 4px;
+        position: relative;
+        top: unset;
+        width: 25px;
+        height: 35px;
+        line-height: 35px;
+        right: unset;
+        border: 1px solid #ddd;
+        color: #444;
+        border-right: 0;
+        border-radius: 5px  0 0 5px;
+        margin: 0;
+    }
+    .left-content-product .content-product-right .box-info-product .quantity .quantity-control input.form-control{
+        min-width: 50px;
+        width: 50px;
+        text-align: center;
+    }
+    .left-content-product .content-product-right .box-info-product .quantity .quantity-control span.product_quantity_up{
+        background: none repeat scroll 0 0 #fff6f6;
+        font-size: 13px;
+        padding: 0 4px;
+        position: relative;
+        top: unset;
+        width: 25px;
+        height: 35px;
+        line-height: 35px;
+        right: unset;
+        border: 1px solid #ddd;
+        color: #444;
+        border-left: 0;
+        border-radius: 0 5px 5px 0;
+        margin: 0;
+    }
+    .coupon-left, .coupon-right{
+        display: flex;
+        border: 2px solid #65bc54;
+        vertical-align: middle;
+        float: left;
+        padding: 5px 20px;
+    }
+    .coupon-left{
+        color: #65bc54 ;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 1.115em;
+    }
+    .coupon-right{
+        background: #65bc54;
+        color: #fff;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+    .help-btn a{
+        padding: 20px;
+        font-size: 20px;
+        vertical-align: middle;
+    }
+    .color-form-wrapper .form-group{
+        display: flex;
+        margin-bottom: 0;
+    }
+    .color-form-wrapper .form-group .color-item{
+        width: 70px;
+        padding: 5px;
+        margin: auto 0px;
+        border:1px solid #F0F0F0;
+        text-align: center;
+    }
+    .color-form-wrapper .form-group .color-item.active, .color-form-wrapper .form-group .color-item:hover{
+        background: #c93535;
+        border: 1px solid #c93535;
+        color: #fff;
+    }
+    .color-form-wrapper .form-group .color-item.inactive, .color-form-wrapper .form-group .color-item.inactive:hover{
+        background: #fff;
+        border: 1px solid #F0F0F0;
+        color: #eaeaea;
+    }
+    .color-form-wrapper .form-group .color-item input{
+        display:none;
+    }
+    label.color-name{
+        margin: auto 0px;
+    }
+    .wh-wrapper{
+        border: 1px solid #ddd;
+        padding: 5px 10px;
+        border-radius: 5px;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        float: left;
+    }
+    .wh-wrapper .wh-item .wh-label{
+        float: left;
+    }
+    .wh-wrapper .wh-item .wh-label label{
+        margin: 0;
+        font-weight: 700;
+    }
+    .wh-wrapper .wh-item .wh-stock{
+        float: right;
+        padding: 0px 5px;
+        background: #97aa55;
+        border-radius: 5px;
+        color: #fff;
+        font-weight: 700;
+    }
+    .wh-wrapper .wh-item .wh-label input{
+        display: none;
+    }
+    .wh-wrapper.active{
+        background: #fff6f6;
+        border: 1px solid #f78181;
+    }
+    .wh-wrapper.inactive .wh-item .wh-stock{
+        background: #ddd;
+    }
+    .panel-danger{
+        background: #fff6f6;
+        border: 1px solid #ddd;
+    }
+    .btn-pay{
+        padding: 15px 40px;
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: 600;
+        margin-right: 10px;
+    }
+    .btn-add{
+        padding: .875em 40px;
+        font-size: 14px;
+        font-weight: 600;
+        background: #fff;
+        border: 1px solid #d9534f;
+        color: #d9534f;
+    }
+    .btn-add:hover{
+        color: #d9534f;
+    }
+    .btn-add i{
+        font-size: 24px;
+        margin-right: 8px;
     }
 </style>
 
@@ -101,6 +255,7 @@
                                     </a>
                                     <?php endforeach;?>
                                 </div>
+
                             </div>
 
                             <div class="content-product-right col-md-7 col-sm-12 col-xs-12">
@@ -110,7 +265,13 @@
                                     </div>
                                 </div>
                                 <div class="pull-right">
-                                    <span class="label label-primary label-point">150 Point</span>
+                                    <span class="badge u-bg--badge__blue">150 Point</span>
+                                    <!--Jenis badge-->
+                                    <!--.u-bg&#45;&#45;badge__silver -> 1-30-->
+                                    <!--.u-bg&#45;&#45;badge__blue -> 31-50-->
+                                    <!--.u-bg&#45;&#45;badge__gold -> 51-100-->
+                                    <!--.u-bg&#45;&#45;badge__diamond -> >100-->
+
                                     <div class="rating">
                                         <div class="rating-box">
                                             <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
@@ -161,99 +322,135 @@
                                     </div>
                                 </div>
                                 <div class="row vcenter">
-                                    <div class="col-sm-2"><span class="text-">Jumlah</span></div>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-3"><span class="zl-text">Jumlah</span></div>
+                                    <div class="col-sm-9">
                                         <div class="form-group box-info-product">
                                             <div class="option quantity">
                                                 <div class="input-group quantity-control" unselectable="on" style="-webkit-user-select: none;">
+                                                    <span class="input-group-addon product_quantity_down">−</span>
                                                     <input class="form-control" type="text" name="quantity" value="1">
                                                     <input type="hidden" name="product_id" value="50">
-                                                    <span class="input-group-addon product_quantity_down">−</span>
                                                     <span class="input-group-addon product_quantity_up">+</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="product-box-desc">
-                                    <div class="inner-box-desc">
-
-                                        <div class="brand">
-                                        </div>
-                                        <div class="brand"><span>Brand:</span><a href="#"> SamSung</a>		</div>
-                                        <div class="model"><span>Product Code:</span> 23UC97</div>
-                                        <div class="stock"><span>Availability:</span> <i class="fa fa-check-square-o"></i> In Stock</div>
-
-                                    </div>
-                                </div>
-
-                                <div class="short_description form-group">
-                                    <h3>OverView</h3>
-
-                                    The 30-inch Apple Cinema HD Display delivers an amazing 2560 x 1600 pixel resolution. Designed specifically for the creative professional, this display provid...
-                                </div>
-                                <div id="product">
-                                    <h4>Available Options</h4>
-                                    <div class="image_option_type form-group required">
-                                        <label class="control-label">Colors</label>
-                                        <ul class="product-options clearfix" id="input-option231">
-                                            <li class="radio">
-                                                <label>
-                                                    <input class="image_radio" type="radio" name="option[231]" value="33">
-                                                    <img src="/zolaku-front/images/demo/colors/blue.jpg" data-original-title="blue +$12.00" class="img-thumbnail icon icon-color">				<i class="fa fa-check"></i>
-                                                    <label> </label>
-                                                </label>
-                                            </li>
-                                            <li class="radio">
-                                                <label>
-                                                    <input class="image_radio" type="radio" name="option[231]" value="34">
-                                                    <img src="/zolaku-front/images/demo/colors/brown.jpg" data-original-title="brown -$12.00" class="img-thumbnail icon icon-color">				<i class="fa fa-check"></i>
-                                                    <label> </label>
-                                                </label>
-                                            </li>
-                                            <li class="radio">
-                                                <label>
-                                                    <input class="image_radio" type="radio" name="option[231]" value="35"> <img src="/zolaku-front/images/demo/colors/green.jpg"
-                                                                                                                                data-original-title="green +$12.00" class="img-thumbnail icon icon-color">				<i class="fa fa-check"></i>
-                                                    <label> </label>
-                                                </label>
-                                            </li>
-                                            <li class="selected-option">
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="form-group box-info-product">
-                                        <div class="option quantity">
-                                            <div class="input-group quantity-control" unselectable="on" style="-webkit-user-select: none;">
-
-                                                <input class="form-control" type="text" name="quantity"
-                                                       value="1">
-                                                <input type="hidden" name="product_id" value="50">
-                                                <span class="input-group-addon product_quantity_down">−</span>
-                                                <span class="input-group-addon product_quantity_up">+</span>
+                                <div class="row vcenter">
+                                    <div class="col-sm-3"><span class="zl-text">Kupon</span></div>
+                                    <div class="col-sm-9">
+                                        <div class="coupon-wrapper">
+                                            <div class="coupon-left">
+                                                <span>Rp. 25.000</span>
+                                            </div>
+                                            <div class="coupon-right">
+                                                <span>Dapatkan Sekarang</span>
                                             </div>
                                         </div>
-                                        <div class="cart">
-                                            <input type="button" data-toggle="tooltip" title="" value="Add to Cart" data-loading-text="Loading..." id="button-cart" class="btn btn-mega btn-lg" onclick="cart.add('42', '1');" data-original-title="Add to Cart">
-                                        </div>
-                                        <div class="add-to-links wish_comp">
-                                            <ul class="blank list-inline">
-                                                <li class="wishlist">
-                                                    <a class="icon" data-toggle="tooltip" title=""
-                                                       onclick="wishlist.add('50');" data-original-title="Add to Wish List"><i class="fa fa-heart"></i>
-                                                    </a>
-                                                </li>
-                                                <li class="compare">
-                                                    <a class="icon" data-toggle="tooltip" title=""
-                                                       onclick="compare.add('50');" data-original-title="Compare this Product"><i class="fa fa-exchange"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                        <span class="help-btn">
+                                            <strong><a href="javascript:void(0);" class="lokasi" data-container="body" data-toggle="popover" data-placement="right" tabindex="0"><i class="fa fa-question-circle"></i></a></strong>
+                                        </span>
 
                                     </div>
-
+                                </div>
+                                <div class="row vcenter">
+                                    <div class="col-sm-3"><span class="zl-text">Warna</span></div>
+                                    <div class="col-sm-9">
+                                        <div class="color-form-wrapper">
+                                            <div class="form-group">
+                                                <div class="color-item">
+                                                    <input type="radio" name="color" value="1">
+                                                    <label class="color-name">Merah</label>
+                                                </div>
+                                                <div class="color-item active">
+                                                    <input type="radio" name="color" value="1">
+                                                    <label class="color-name">Putih</label>
+                                                </div>
+                                                <div class="color-item">
+                                                    <input type="radio" name="color" value="1">
+                                                    <label class="color-name">Abu</label>
+                                                </div>
+                                                <div class="color-item inactive">
+                                                    <input type="radio" name="color" value="1" disabled>
+                                                    <label class="color-name">Hitam</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row vcenter">
+                                    <div class="col-sm-3"><span class="zl-text">Ukuran</span></div>
+                                    <div class="col-sm-9">
+                                        <div class="color-form-wrapper">
+                                            <div class="form-group">
+                                                <div class="color-item inactive">
+                                                    <input type="radio" name="color" value="1">
+                                                    <label class="color-name">S</label>
+                                                </div>
+                                                <div class="color-item">
+                                                    <input type="radio" name="color" value="1">
+                                                    <label class="color-name">M</label>
+                                                </div>
+                                                <div class="color-item active">
+                                                    <input type="radio" name="color" value="1">
+                                                    <label class="color-name">L</label>
+                                                </div>
+                                                <div class="color-item">
+                                                    <input type="radio" name="color" value="1">
+                                                    <label class="color-name">XL</label>
+                                                </div>
+                                                <div class="color-item inactive">
+                                                    <input type="radio" name="color" value="1">
+                                                    <label class="color-name">XXL</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row vcenter">
+                                    <div class="col-sm-3"><span class="zl-text">Stok Tersedia</span></div>
+                                    <div class="col-sm-9">
+                                        <div class="col-sm-4 wh-wrapper">
+                                            <div class="wh-item">
+                                                <span class="wh-label">
+                                                    <label>Jakarta</label>
+                                                    <input type="radio" name="stock" value="jakarta">
+                                                </span>
+                                                <span class="wh-stock">18 Stok</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 wh-wrapper active">
+                                            <div class="wh-item">
+                                                <span class="wh-label">
+                                                    <label>Bandung</label>
+                                                    <input type="radio" name="stock" value="jakarta">
+                                                </span>
+                                                <span class="wh-stock">18 Stok</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 wh-wrapper inactive">
+                                            <div class="wh-item">
+                                                <span class="wh-label">
+                                                    <label>Surabaya</label>
+                                                    <input type="radio" name="stock" value="jakarta">
+                                                </span>
+                                                <span class="wh-stock">18 Stok</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 wh-wrapper">
+                                            <div class="wh-item">
+                                                <span class="wh-label">
+                                                    <label>Malang</label>
+                                                    <input type="radio" name="stock" value="jakarta" disabled>
+                                                </span>
+                                                <span class="wh-stock">18 Stok</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button class="btn btn-lg btn-radius btn-danger btn-pay">Bayar sekarang</button>
+                                    <button class="btn btn-lg btn-radius btn-add"><i class="fa fa-shopping-cart"></i> Tambah ke keranjang</button>
                                 </div>
                                 <!-- end box info product -->
 
