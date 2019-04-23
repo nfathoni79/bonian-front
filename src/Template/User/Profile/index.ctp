@@ -69,7 +69,15 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="bg-red margin-b-15">
-                                    image
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div id="profile-pic"><img src="http://localhost/zolaku-front/images/jpeg/users-profile/user-1.jpg" class="img-responsive img-rounded"></div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <button class="btn btn-default btn-block"><i class="fa fa-camera"></i> Ganti Foto</button>
+                                            Ukuran gambar maksimum 1MB, Format gambar JPEG, PNG
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="bg-red margin-b-15">
                                     <div class="row">
