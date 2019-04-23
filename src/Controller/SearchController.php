@@ -14,7 +14,7 @@ class SearchController  extends AuthController
     public function initialize()
     {
         parent::initialize();
-        $this->Auth->allow(['get', 'history', 'index', 'removeHistory']);
+        $this->Auth->allow(['get', 'history', 'index', 'removeHistory', 'loadCategory']);
     }
 
     public function locator(){
@@ -125,6 +125,28 @@ class SearchController  extends AuthController
                 '?' => $query_string
             ]);
         }
+    }
+
+    public function loadCategory()
+    {
+        $this->disableAutoRender();
+        $query_string = $this->request->getQueryParams();
+        try {
+            $this->Api->addHeader('bid', $this->request->getCookie('bid'));
+            $category = $this->Api->makeRequest()
+                ->get('v1/product-filters/categories', [
+                    'query' => array_filter($query_string)
+                ]);
+            if ($response = $this->Api->success($category)) {
+                $json = $response->parse();
+                $category = $json['result']['categories'];
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            //debug($e->getResponse()->getBody()->getContents());exit;
+        }
+
+        return $this->response->withType('application/json')
+            ->withStringBody(json_encode($category));
     }
 
 

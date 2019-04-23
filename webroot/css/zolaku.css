@@ -668,7 +668,29 @@ li.ss-result .search-price {
     color: #ff5e00;
 }
 
+.node-selected {
+    font-weight: bold;
+}
+.list-group-item {
+    padding: 5px 10px;
+    border: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
+.list-group-item.collapsed {
+    font-weight: bold;
+}
+
+.treeview {
+    font-size: 12px;
+}
+
+.treeview span.indent {
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+}
 
 
 
