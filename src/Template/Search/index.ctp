@@ -391,7 +391,7 @@ $this->Html->script([
             enableLinks: true,
             //data: data,
             dataUrl: {
-                url: '<?= $this->Url->build(['action' => 'loadCategory', 'prefix' => false, '?' => $this->request->getQueryParams()]); ?>'
+                url: '<?= $this->Url->build(['action' => 'loadCategory', 'prefix' => false, '?' => $this->request->getQueryParams()], ['escape' => false]); ?>'
             },
             onNodeSelectedx: function(event, data) {
                 // Your logic goes here
