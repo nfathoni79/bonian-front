@@ -284,3 +284,27 @@
     margin:0 auto;
     padding: 20px;
 }
+
+.producttab div ul li a img{
+    display: block;
+    text-align: center;
+    margin: 10px auto 10px auto;
+}
+.producttab div ul li.pulsa a{
+    color: #63a2c2 !important;
+}
+.producttab div ul li.paket-data a{
+    color: #a2bf65 !important;
+}
+.producttab div ul li.listrik a{
+    color: #dc956c !important;
+}
+.producttab div ul li.tagihan a{
+    color: #bc69a6 !important;
+}
+.producttab div ul li.bpjs a{
+    color: #db4343 !important;
+}
+.producttab div ul li.pdam a{
+    color: #34b0c0 !important;
+}

@@ -21,12 +21,12 @@
                 <div class="producttab">
                     <div class="tabsslider horizontal-tabs col-xs-12">
                         <ul class="nav nav-tabs">
-                            <li class="item active"><a data-toggle="tab" href="#tab-1">Pulsa</a></li>
-                            <li class="item"><a data-toggle="tab" href="#tab-2">Paket Data</a></li>
-                            <li class="item"><a data-toggle="tab" href="#tab-3">Listrik</a></li>
-                            <li class="item"><a data-toggle="tab" href="#tab-4">Tagihan</a></li>
-                            <li class="item"><a data-toggle="tab" href="#tab-5">PDAM</a></li>
-                            <li class="item"><a data-toggle="tab" href="#tab-6">BPJS</a></li>
+                            <li class="item pulsa active"><a data-toggle="tab" href="#tab-1"><img src="images/digital_product/pulsa.svg">Pulsa</a></li>
+                            <li class="item paket-data"><a data-toggle="tab" href="#tab-2"><img src="images/digital_product/paket-data.svg">Paket Data</a></li>
+                            <li class="item listrik"><a data-toggle="tab" href="#tab-3"><img src="images/digital_product/listrik.svg">Listrik</a></li>
+                            <li class="item tagihan"><a data-toggle="tab" href="#tab-4"><img src="images/digital_product/tagihan.svg">Tagihan</a></li>
+                            <li class="item pdam"><a data-toggle="tab" href="#tab-5"><img src="images/digital_product/pdam.svg">PDAM</a></li>
+                            <li class="item bpjs"><a data-toggle="tab" href="#tab-6"><img src="images/digital_product/bpjs.svg">BPJS</a></li>
                         </ul>
                         <div class="tab-content p-0">
                             <div id="tab-1" class="tab-pane fade active in">
