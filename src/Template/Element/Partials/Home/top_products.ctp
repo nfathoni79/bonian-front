@@ -2,21 +2,21 @@
 <div class="card-wrapper">
     <!-- Listing tabs -->
     <div class="module custom-listingtab top-product-home default-nav" style="margin-top: -20px; margin-left: -20px">
-        <div class="box-title font-ct">
+      <div class="box-title font-ct">
             <h2 class="modtitle">Produk Teratas</h2>
         </div>
         <div class="modcontent">
             <div id="so_listing_tabs_1" class="so-listing-tabs first-load">
                 <div class="loadeding"></div>
                 <div class="ltabs-wrap">
-                    <div class="ltabs-tabs-container" data-delay="300" data-duration="600" data-effect="starwars" data-ajaxurl="" data-type_source="0" data-lg="5" data-md="4" data-sm="3"  data-xxs="3" data-xs="1" data-margin="20" data-autoheight="yes">
+                    <div class="ltabs-tabs-container" style="; margin-bottom: 30px;" data-delay="300" data-duration="600" data-effect="starwars" data-ajaxurl="" data-type_source="0" data-lg="5" data-md="4" data-sm="3"  data-xxs="3" data-xs="1" data-margin="20" data-autoheight="yes">
                         <!--Begin Tabs-->
                         <div class="ltabs-tabs-wrap">
                             <span class="ltabs-tab-selected">Penjualan Terbaik</span> <span class="ltabs-tab-arrow">▼</span>
-                            <ul class="ltabs-tabs cf font-ct list-sub-cat">
-                                <li class="ltabs-tab tab-sel" data-category-id="bestseller" data-url="home/top/" data-active-content=".items-category-bestseller"> <span class="ltabs-tab-label">Penjualan Terbaik</span> </li>
-                                <li class="ltabs-tab" data-category-id="popularproduct" data-url="home/top/" data-active-content=".items-category-popularproduct"> <span class="ltabs-tab-label">Produk Populer</span> </li>
-                                <li class="ltabs-tab" data-category-id="arrivals" data-url="home/top/" data-active-content=".items-category-arrivals"> <span class="ltabs-tab-label">Produk Terbaru</span> </li>
+                            <ul class="ltabs-tabs cf font-ct list-sub-cat" style=" background-color:#ffffff; padding:0px">
+                                <li class="ltabs-tab tab-sel toptab"data-category-id="bestseller" data-url="home/top/" data-active-content=".items-category-bestseller"> <span class="ltabs-tab-label">Penjualan Terbaik</span> </li>
+                                <li class="ltabs-tab toptab" data-category-id="popularproduct" data-url="home/top/" data-active-content=".items-category-popularproduct"> <span class="ltabs-tab-label">Produk Populer</span> </li>
+                                <li class="ltabs-tab toptab" data-category-id="arrivals" data-url="home/top/" data-active-content=".items-category-arrivals"> <span class="ltabs-tab-label">Produk Terbaru</span> </li>
                             </ul>
 
                         </div>
@@ -50,7 +50,8 @@
                                                         <?php endif;?>
                                                     </div>
                                                     <!--quickview-->
-                                                    <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug']]); ?>" title="<?= h($vals['name']); ?>" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span></span></a>
+                                                        <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="quickview.html" style="margin-left:-40px;" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span></span></a>
+                                                        <button type="button" onclick="wishlist.add('<?= ($vals['id']); ?>', this);" class="iframe-link btn-button quickview quickview_handler visible-lg" style="margin-left:10px;" title="Wishlist" data-fancybox-type="iframe"><i class="fa fa-heart"></i><span></span></button>
                                                     <!--end quickview-->
                                                 </div>
                                                 <div class="right-block right-b">
@@ -74,7 +75,7 @@
                                                     <div class="caption">
                                                         <h4><a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug']]); ?>" title="<?= h($vals['name']); ?>" target="_self">  <?php echo $this->Text->truncate(
                                                             h($vals['name']),
-                                                            30,
+                                                            25,
                                                             [
                                                             'ellipsis' => '...',
                                                             'exact' => false
@@ -90,13 +91,14 @@
                                                         </div>
 
                                                         <div class="button-group so-quickview cartinfo--static">
-                                                            <button type="button" class="addToCart" title="Add to cart" onclick="cart.add('<?= ($vals['id']); ?>', this);">  <i class="fa fa-shopping-basket"></i>
-                                                                <span>Add to cart </span>
-                                                            </button>
-                                                            <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('<?= ($vals['id']); ?>', this);"><i class="fa fa-heart"></i><span></span>
-                                                            </button>
-                                                            <button type="button" class="compare btn-button" title="Share this Product "><i class="fa fa-share-alt"></i><span></span>
-                                                            </button>
+                                                          <button type="button" class="btn-share" style="background-color:#2c558b; padding-left: 12px; padding-right: 12px;" title="Share" onclick=""><i class="fa fa-facebook"></i><span> </span>
+                                                          </button>
+                                                          <button type="button" class="btn-share" style="background-color:#1e99d0; padding-left: 9px; padding-right: 9px;" title="Share" onclick=""><i class="fa fa-twitter"></i>
+                                                          </button>
+                                                          <button type="button" class="btn-share" style="background-color:#6e5f4c; padding-left: 10px; padding-right: 10px;" title="Share" onclick=""><i class="fa fa-instagram"></i>
+                                                          </button>
+                                                          <button type="button" class="btn-share" style="background-color:#79bc25; padding-left: 10px; padding-right: 10px;" title="Share" onclick=""><i class="fa fa-whatsapp"></i>
+                                                          </button>
                                                         </div>
                                                     </div>
                                                 </div>
