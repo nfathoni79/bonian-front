@@ -1,5 +1,7 @@
 <?= $this->element('Partials/Home/banner', ['banners' => $_banners]); ?>
 <div class="container ">
+    <?= $this->element('Partials/Home/product_digital'); ?>
+    <?= $this->element('Partials/Home/bonus_and_game'); ?>
     <?= $this->element('Partials/Home/flash_sale', ['categories' => $_categories]); ?>
     <div class="block block_6">
         <div class="row">
