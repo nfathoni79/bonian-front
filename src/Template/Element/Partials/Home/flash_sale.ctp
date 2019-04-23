@@ -46,7 +46,7 @@
                                             </div>
                                             <small><?= $flash_sale['product']['noted']; ?></small>
                                         </div>
-                                        <div class="col-lg-5"><span class="badge"><?= $flash_sale['product']['point']; ?> Poin</span></div>
+                                        <div class="col-lg-5"><span class="badge u-bg--badge__blue"><?= $flash_sale['product']['point']; ?> Poin</span></div>
                                     </div>
                                     <h4 class="text-justify"><a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $flash_sale['product']['slug']]); ?>" title="<?= h($flash_sale['product']['name']); ?>" target="_self">
                                             <?php echo $this->Text->truncate(
