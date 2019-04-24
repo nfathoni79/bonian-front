@@ -29,10 +29,14 @@ class ProductsController extends AppController
             $error = json_decode($e->getResponse()->getBody()->getContents(), true);
             $details = ['is_error' => true, 'message' => 'Produk tidak ditemukan'];
         }
-//        debug($details);
-//        exit;
 
-        $this->set(compact('details'));
+        if($this->request->is('Ajax')){
+            $this->disableAutoRender();
+            return $this->response->withType('application/json')
+                ->withStringBody(json_encode($details['data']));
+        }else{
+            $this->set(compact('details'));
+        }
     }
 
 }
