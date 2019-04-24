@@ -395,6 +395,10 @@ $this->Html->script([
             dataUrl: {
                 url: '<?= $this->Url->build(['action' => 'loadCategory', 'prefix' => false, '?' => $this->request->getQueryParams()], ['escape' => false]); ?>'
             },
+            onNodeRendered: function (event, node) {
+                node.total = node.total > 1000 ? numeral(node.total).format('0.0a') : node.total;
+                node.$el.append($(`<span class="category-counter">(${node.total})</span>`));
+            },
             onNodeSelected: function(event, data) {
                 // Your logic goes here
 

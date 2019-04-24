@@ -676,6 +676,12 @@ li.ss-result .search-price {
     font-weight: bold;
 }
 
+.treeview .category-counter {
+    margin-left: 5px;
+    color: #999999;
+    font-weight: normal;
+}
+
 .treeview .list-group-item {
     padding: 5px 5px;
     border: none;
