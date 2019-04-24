@@ -171,7 +171,7 @@
                                                 <div class="form-group">
                                                     <?php foreach($vals as $k => $v):?>
                                                         <!-- active - inactive-->
-                                                        <div class="color-item zl-color" data-option="<?php echo strtolower($key);?>" data-label="<?php echo strtolower($v);?>">
+                                                        <div class="color-item zl-color <?php echo $key;?>" data-option="<?php echo $key;?>" data-label="<?php echo $v;?>">
                                                             <input type="radio" name="<?php echo strtolower($key);?>" value="<?= $v;?>">
                                                             <label class="color-name"><?= $v;?></label>
                                                         </div>
