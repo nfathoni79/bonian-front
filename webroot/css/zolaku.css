@@ -704,7 +704,11 @@ li.ss-result .search-price {
 }
 
 .treeview span.icon {
-    margin-top: 5px;
+    margin-top: 7px;
+}
+
+.title-category .search-keyword {
+    color: #999999;
 }
 
 

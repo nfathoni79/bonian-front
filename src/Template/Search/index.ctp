@@ -2,23 +2,23 @@
 <div class="main-container product-listing container">
     <div class="row">
         <!-- start: breadcumb -->
+
         <div class="col-lg-12">
-            <ul class="breadcrumb c-breadcumbs">
+            <ul class="breadcrumb">
                 <li><a href="#" class="o-breadcumbs-item">Home</i></a></li>
-                <li><a href="#" class="o-breadcumbs-item--active">Fashion Pria</a></li>
             </ul>
         </div>
         <!-- end: breadcumb -->
 
         <!-- start: bagian kiri -->
         <div class=" col-lg-3 content-aside left_column sidebar-offcanvas c-filter">
-            <h3 class="modtitle">Filter Produk</span> </h3>
+            <h3 class="modtitle">Filter Produk </h3>
             <span id="close-sidebar" class="fa fa-times"></span>
 
 
             <!-- start: componen category -->
             <div class="module">
-                <h3 class="modtitle o-filter-title">Berdasarkan Category</span> </h3>
+                <h3 class="modtitle o-filter-title">Berdasarkan Category </h3>
                 <div class="table_layout filter-shopby">
                     <div class="table_row">
                         <!-- - - - - - - - - - - - - - Price - - - - - - - - - - - - - - - - -->
@@ -35,7 +35,7 @@
 
             <!-- start: componen harga -->
             <div class="module">
-                <h3 class="modtitle o-filter-title">Berdasarkan harga</span> </h3>
+                <h3 class="modtitle o-filter-title">Berdasarkan harga </h3>
                 <div class="table_layout filter-shopby">
                     <div class="table_row">
                         <!-- - - - - - - - - - - - - - Price - - - - - - - - - - - - - - - - -->
@@ -69,7 +69,7 @@
 
             <!-- start: componen warna -->
             <div class="module">
-                <h3 class="modtitle o-filter-title">Berdasarkan warna</span> </h3>
+                <h3 class="modtitle o-filter-title">Berdasarkan warna </h3>
                 <div class="table_layout filter-shopby">
                     <div class="table_row">
                         <!-- - - - - - - - - - - - - - Price - - - - - - - - - - - - - - - - -->
@@ -151,7 +151,7 @@
 
             <!-- start: componen ukuran -->
             <div class="module">
-                <h3 class="modtitle o-filter-title">Berdasarkan ukuran</span> </h3>
+                <h3 class="modtitle o-filter-title">Berdasarkan ukuran </h3>
                 <div class="table_layout filter-shopby">
                     <div class="table_row">
                         <!-- - - - - - - - - - - - - - Price - - - - - - - - - - - - - - - - -->
@@ -280,6 +280,8 @@
         <!-- start: bagian kanan -->
         <div id="content" class="col-md-9 col-sm-12">
             <div class="products-category c-main-content">
+
+                <?php /*
                 <!-- start: banner atas -->
                 <div class="category-derc">
                     <div class="row">
@@ -295,14 +297,17 @@
                     </div>
                 </div>
                 <!-- end: banner atas -->
+ */ ?>
 
                 <!-- start:filter produk -->
                 <div class="row">
                     <div class="col-md-5">
-                        <h3 class="title-category">Fashion pria</h3>
+                        <?php if ($query = $this->request->getQuery('q')) : ?>
+                        <h3 class="title-category">Hasil pencarian untuk <span class="search-keyword"><?= h($query); ?></span></h3>
+                        <?php endif; ?>
                     </div>
-                    <div class="short-by-show form-inline text-right col-md-5 col-sm-9 col-xs-12"
-                         style="margin-top:25px;">
+
+                    <div class="short-by-show form-inline text-right col-md-5 col-sm-9 col-xs-12">
                         <div class="form-group short-by">
                             <label class="control-label o-control-label" for="input-sort">Urutkan
                                 berdasarkan</label>
@@ -313,7 +318,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-2 col-sm-3 col-xs-12 view-mode" style="margin-top:25px;">
+                    <div class="col-md-2 col-sm-3 col-xs-12 view-mode">
 
                         <div class="list-view">
                             <button class="btn btn-default grid active" data-view="grid" data-toggle="tooltip"
@@ -333,7 +338,136 @@
                 <!-- start: list produk -->
                 <div class="products-list row nopadding-xs so-filter-gird">
 
+                    <?php foreach($products as $product) : ?>
+                        <!-- start: item Produk -->
+                        <div class="product-layout products col-lg-3 col-md-4 col-sm-4 col-xxs-6 col-xs-12">
+                            <div class="product-item-container">
+                                <div class="left-block left-b">
+                                    <div class="product-card__gallery product-card__left">
+                                        <div class="item-img thumb-active" data-src="assets/img/item-img.png"><img
+                                                    src="assets/img/item-img.png" alt="image">
+                                        </div>
+                                        <div class="item-img" data-src="assets/img/item-img.png"><img
+                                                    src="assets/img/item-img.png" alt="image">
+                                        </div>
+                                        <div class="item-img" data-src="assets/img/item-img-2.png"><img
+                                                    src="assets/img/item-img-2.png" alt="image">
+                                        </div>
+                                    </div>
+                                    <div class="product-image-container">
+                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $product['slug']]); ?>" title="<?= h($product['name']); ?>">
+                                            <?php foreach($product['images'] as $image) : ?>
+                                                <img src="<?= $this->Url->build($_basePath . 'images/213x150/' . $image); ?>" data-image-name="<?= $image; ?>"  class="img-responsive" alt="image">
+                                                <?php break; endforeach; ?>
+                                        </a>
+                                    </div>
 
+                                    <!--quickview-->
+                                    <a class="iframe-link btn-button quickview quickview_handler visible-lg"
+                                       href="quickview.html" title="Quick view" data-fancybox-type="iframe"><i
+                                                class="fa fa-eye"></i><span></span></a>
+                                    <!--end quickview-->
+                                </div>
+                                <div class="right-block right-b">
+                                    <ul class="colorswatch">
+                                        <li class="item-img active"
+                                            data-src="image/catalog/demo/product/electronic/600x600/9.jpg"><a
+                                                    href="javascript:void(0);" title="gray"><img
+                                                        src="image/demo/colors/gray.jpg" alt="image"></a></li>
+                                        <li class="item-img"
+                                            data-src="image/catalog/demo/product/electronic/600x600/10.jpg"><a
+                                                    href="javascript:void(0);" title="pink"><img
+                                                        src="image/demo/colors/pink.jpg" alt="image"></a></li>
+                                        <li class="item-img"
+                                            data-src="image/catalog/demo/product/electronic/600x600/11.jpg"><a
+                                                    href="javascript:void(0);" title="black"><img
+                                                        src="image/demo/colors/black.jpg" alt="image"></a>
+                                        </li>
+                                    </ul>
+                                    <div class="caption">
+                                        <h4>
+                                            <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $product['slug']]); ?>" title="<?= h($product['name']); ?>">
+                                                <?php echo $this->Text->truncate(
+                                                    h($product['name']),
+                                                    25,
+                                                    [
+                                                        'ellipsis' => '...',
+                                                        'exact' => false
+                                                    ]
+                                                );?>
+                                            </a>
+                                        </h4>
+                                        <div class="rate-history">
+                                            <div class="ratings">
+                                                <div class="rating-box">
+                                                        <span class="fa fa-stack"><i
+                                                                    class="fa fa-star fa-stack-1x"></i><i
+                                                                    class="fa fa-star-o fa-stack-1x"></i></span>
+                                                    <span class="fa fa-stack"><i
+                                                                class="fa fa-star fa-stack-1x"></i><i
+                                                                class="fa fa-star-o fa-stack-1x"></i></span>
+                                                    <span class="fa fa-stack"><i
+                                                                class="fa fa-star fa-stack-1x"></i><i
+                                                                class="fa fa-star-o fa-stack-1x"></i></span>
+                                                    <span class="fa fa-stack"><i
+                                                                class="fa fa-star fa-stack-1x"></i><i
+                                                                class="fa fa-star-o fa-stack-1x"></i></span>
+                                                    <span class="fa fa-stack"><i
+                                                                class="fa fa-star-o fa-stack-1x"></i></span>
+                                                </div>
+                                                <a class="rating-num" href="#" target="_blank">(1)</a>
+                                            </div>
+                                            <div class="order-num">Orders (0)</div>
+                                        </div>
+                                        <div class="price">
+                                            <span class="price-new">$254.00 </span>
+                                        </div>
+                                        <div class="button-group so-quickview cartinfo--static">
+                                            <button type="button" class="addToCart" title="Add to cart"
+                                                    onclick="cart.add('60 ');"> <i class="fa fa-shopping-basket"></i>
+                                                <span>Add to cart </span>
+                                            </button>
+                                            <button type="button" class="wishlist btn-button"
+                                                    title="Add to Wish List" onclick="wishlist.add('60');"><i
+                                                        class="fa fa-heart"></i><span></span>
+                                            </button>
+                                            <button type="button" class="compare btn-button"
+                                                    title="Compare this Product " onclick="compare.add('60');"><i
+                                                        class="fa fa-refresh"></i><span></span>
+                                            </button>
+                                        </div>
+                                        <div class="description item-desc">
+                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                                                nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+                                                erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                                                et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+                                                . </p>
+                                        </div>
+                                        <div class="list-block">
+                                            <button class="addToCart btn-button" type="button" title="Add to Cart"
+                                                    onclick="cart.add('101', '1');"><i
+                                                        class="fa fa-shopping-basket"></i>
+                                            </button>
+                                            <button class="wishlist btn-button" type="button"
+                                                    title="Add to Wish List" onclick="wishlist.add('101');"><i
+                                                        class="fa fa-heart"></i>
+                                            </button>
+                                            <button class="compare btn-button" type="button"
+                                                    title="Compare this Product" onclick="compare.add('101');"><i
+                                                        class="fa fa-refresh"></i>
+                                            </button>
+                                            <!--quickview-->
+                                            <a class="iframe-link btn-button quickview quickview_handler visible-lg"
+                                               href="quickview.html" title="Quick view"
+                                               data-fancybox-type="iframe"><i class="fa fa-eye"></i></a>
+                                            <!--end quickview-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end: item produk -->
+                    <?php endforeach; ?>
 
                 </div>
                 <!-- end: list produk -->
@@ -373,6 +507,15 @@ $this->Html->script([
 ], ['block' => true]);
 ?>
 <?php $this->append('script'); ?>
+<script type="text/javascript">
+    // Check if Cookie exists
+    if ($.cookie('display')) {
+        view = $.cookie('display');
+    } else {
+        view = 'grid';
+    }
+    if (view) display(view);
+</script>
 <script>
 
     $(document).ready(function(){

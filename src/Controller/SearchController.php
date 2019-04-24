@@ -125,6 +125,26 @@ class SearchController  extends AuthController
                 '?' => $query_string
             ]);
         }
+
+        try {
+            $this->Api->addHeader('bid', $this->request->getCookie('bid'));
+            $search = $this->Api->makeRequest()
+                ->get('v1/product-filters', [
+                    'query' => array_filter($this->request->getQueryParams())
+                ]); //print_r($search->getBody()->getContents());exit;
+            if ($response = $this->Api->success($search)) {
+                $response = $response->parse();
+                $products = $response['result']['data'];
+                $paging = $response['paging'];
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            //debug($e->getResponse()->getBody()->getContents());exit;
+        }
+
+
+
+        $this->set(compact('products'));
+
     }
 
     public function loadCategory()
