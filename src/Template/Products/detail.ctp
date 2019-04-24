@@ -163,6 +163,7 @@
 
                                         </div>
                                     </div>
+                                    <?php $i = 0;?>
                                     <?php foreach($details['data']['options'] as $key => $vals):?>
                                     <div class="row vcenter">
                                         <div class="col-sm-3"><span class="zl-text"><?= $key;?></span></div>
@@ -171,7 +172,7 @@
                                                 <div class="form-group">
                                                     <?php foreach($vals as $k => $v):?>
                                                         <!-- active - inactive-->
-                                                        <div class="color-item zl-color <?php echo $key;?>" data-option="<?php echo $key;?>" data-label="<?php echo $v;?>">
+                                                        <div class="color-item zl-color <?php echo $key;?>" data-item="<?php echo $i;?>" data-option="<?php echo $key;?>" data-label="<?php echo $v;?>">
                                                             <input type="radio" name="<?php echo strtolower($key);?>" value="<?= $v;?>">
                                                             <label class="color-name"><?= $v;?></label>
                                                         </div>
@@ -180,7 +181,15 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <?php $i++;?>
                                     <?php endforeach;?>
+                                    <div class="row vcenter add-price" style="display:none;">
+                                        <div class="col-sm-3"><span class="zl-text">Tambahan Harga</span></div>
+                                        <div class="col-sm-9">
+                                            <span class="zl-text text-add-price"></span>
+                                        </div>
+                                    </div>
                                     <div class="row vcenter">
                                         <div class="col-sm-3"><span class="zl-text">Stok Tersedia</span></div>
                                         <div class="col-sm-9">

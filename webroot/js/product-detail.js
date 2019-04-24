@@ -30,7 +30,10 @@ function startInit(){
         // var selected = $(this).find(':input:checked').val();
         var selected = $(this).data('label');
         var variant = $(this).data('option');
-        comboEnabeled(variant, selected);
+        var item = $(this).data('item');
+        comboEnabeled(variant, selected,item);
+        triggerCheckPrice();
+
     });
 
     $('.wh-wrapper').on('click',function(){
@@ -53,39 +56,62 @@ function startInit(){
     console.log(data);
 }
 
-function comboEnabeled(variant, selected){
+function triggerCheckPrice(){
+    var listInputName = new Array();
+    $('.zl-color').find(':input').each(function(){
+        var found = jQuery.inArray($(this).attr('name'), listInputName);
+        if (found <= -1) {
+            listInputName.push($(this).attr('name'));
+        }
+    });
+    var warna =  $('.zl-color').find(':input[name="warna"]:checked').val();
+    var ukuran =  $('.zl-color').find(':input[name="ukuran"]:checked').val();
+    if(warna && ukuran){
+        $.each(data.variant, function(key, value){
+            if((value.options.Warna == warna) && (value.options.Ukuran == ukuran) ){
+                if(value.price != 0){
+                    $('.text-add-price').html('Rp.'+value.price)
+                    $('.add-price').show();
+                }else{
+                    $('.add-price').hide();
+                }
+            }
+        })
+    }
+}
+
+function comboEnabeled(variant, selected, item){
     var list = new Array();
+
     $.each(data.spesific, function(k, v){
         $.each(v, function(kk,vv){
             var keyVariant = kk.split(',');
             if($.inArray(selected, keyVariant) !== -1){
-                list.push(kk);
+                if(keyVariant[1] != undefined){
+                    list.push(kk);
+                }
             }
         })
     });
-    // ["Merah,m", "Merah,XL", "Merah,L"]
-    // ["Merah,XL"]
-    var listAvailable =  new Array();
-    $('.zl-color').not('.'+variant+', .inactive' ).each(function(){
-        listAvailable.push($(this).data('label'));
-    });
-    console.log(listAvailable); //["Merah", "Biru"]
 
+    $('.zl-color').not('.'+variant).addClass('inactive');
+    // $('.zl-color').not('.'+variant).find(':input[name!="'+variant+'"]').prop('checked',false);
 
-    $.each(list, function(k,v){
-         /* AVAILABE MERAH SAJA*/
-        var attribute = v.split(',');
-        $.each(attribute, function(kk,vv){
-            if($.inArray(vv,listAvailable) !== -1){
-                console.log(vv);
-                $.each(listAvailable, function(kkk,vvv){
-                    if(vvv != vv){
-                        $('.zl-color').not('.'+variant).filter('[data-label="'+vvv+'"]').addClass('inactive');
-                    }else{
-                        $('.zl-color').not('.'+variant).filter('[data-label="'+vvv+'"]').removeClass('inactive');
-                    }
-                })
-            }
+    console.log(list);
+    list.forEach(function(data) {
+        var combination = data.split(',');
+        combination.forEach(function(i, v){
+            // $('.zl-color').not('.'+variant).find(':input[value="'+combination[v]+'"]').prop('checked',true);
+            $('.zl-color').not('.'+variant).filter('[data-label="'+combination[v]+'"]').removeClass('inactive');
+            $('.zl-color').not('.'+variant).filter('[data-item="0"]').removeClass('inactive');
         })
+    });
+
+
+    $('.active').each(function(){
+        var check = $(this).data('label');
+        if(check != undefined){
+            $('.zl-color').find(':input[value="'+check+'"]').prop('checked',true);
+        }
     });
 }
