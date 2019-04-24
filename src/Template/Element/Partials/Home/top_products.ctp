@@ -1,5 +1,5 @@
 
-<div class="card-wrapper">
+<div class="card-wrapper" >
     <!-- Listing tabs -->
     <div class="module custom-listingtab top-product-home default-nav" style="margin-top: -20px; margin-left: -20px">
       <div class="box-title font-ct">
@@ -32,7 +32,7 @@
                                     <?php foreach($topProducts as $vals): ?>
                                     <div class="ltabs-item products">
                                         <div class="item-inner product-thumb transition product-layout">
-                                            <div class="product-item-container">
+                                            <div class="product-item-container" style="margin-top:15px !important;" >
                                                 <div class="left-block left-b">
                                                     <div class="product-image-container">
                                                         <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug']]); ?>" target="_self" title="<?= h($vals['name']); ?>">
@@ -56,7 +56,7 @@
                                                     <!--end quickview-->
                                                 </div>
 
-                                                <div class="right-block right-b">
+                                                <div class="right-block right-b" style="min-height: 160px;">
                                                     <div class="row">
                                                         <div class="col-lg-7">
                                                             <div class="rating">
@@ -111,12 +111,12 @@
                             </div>
 
                             <!-- Popular Products -->
-                            <div class="ltabs-items items-category-popularproduct grid" data-total="16">
+                            <div class="ltabs-items items-category-popularproduct grid" data-total="16" >
                               <div class="ltabs-items-inner ltabs-slider">
                                   <?php foreach($popularProducts as $vals): ?>
                                   <div class="ltabs-item products">
                                       <div class="item-inner product-thumb transition product-layout">
-                                          <div class="product-item-container">
+                                          <div class="product-item-container" style="margin-top:15px !important;">
                                               <div class="left-block left-b">
                                                   <div class="product-image-container">
                                                       <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug']]); ?>" target="_self" title="<?= h($vals['name']); ?>">
@@ -140,7 +140,7 @@
                                                   <!--end quickview-->
                                               </div>
 
-                                              <div class="right-block right-b">
+                                              <div class="right-block right-b" style="min-height: 160px;">
                                                   <div class="row">
                                                       <div class="col-lg-7">
                                                           <div class="rating">
@@ -201,7 +201,7 @@
                                   <?php foreach($newProducts as $vals): ?>
                                   <div class="ltabs-item products">
                                       <div class="item-inner product-thumb transition product-layout">
-                                          <div class="product-item-container">
+                                          <div class="product-item-container" style="margin-top:15px !important;">
                                               <div class="left-block left-b">
                                                   <div class="product-image-container">
                                                       <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug']]); ?>" target="_self" title="<?= h($vals['name']); ?>">
@@ -225,7 +225,7 @@
                                                   <!--end quickview-->
                                               </div>
 
-                                              <div class="right-block right-b">
+                                              <div class="right-block right-b" style="min-height: 160px;">
                                                   <div class="row">
                                                       <div class="col-lg-7">
                                                           <div class="rating">
