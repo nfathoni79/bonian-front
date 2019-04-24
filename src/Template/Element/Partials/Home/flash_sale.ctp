@@ -8,7 +8,7 @@
                 <?php foreach($flashSales['product_deal_details'] as $flash_sale) : ?>
                 <div class="item products">
                     <div class="product-layout">
-                        <div class="product-item-container" style="box-shadow: 0px 0px #ffffff; height:80%;">
+                        <div class="product-item-container">
                             <div class="left-block left-b">
                                 <?php /*
                                 <div class="product-card__gallery product-card__left">

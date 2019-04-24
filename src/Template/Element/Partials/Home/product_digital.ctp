@@ -1,17 +1,17 @@
 <!-- produk digital -->
 <!-- title -->
   <div class="o-flex o-justify-content--start o-align-items--center" style="margin-top: 20px;">
-      <h3 class="c-content--title" style="font-weight:bold; font-size: large; color: #000000; display:inline;">Produk Digital </h3>
-      <p class="c-content--subtitle" style="font-size: 15px; padding-left: 20px; display:inline;" > Poin tambah, penghasilan berlimpah</p>
+      <h3 class="c-content--title">Produk Digital </h3>
+      <p class="c-content--subtitle"> Poin tambah, penghasilan berlimpah</p>
   </div>
 
   <div class="card-wrapper" style="margin-top: 20px;">
-    <div id="produk_digital" class="o-container" style="width: 80%; margin:auto;">
+    <div id="produk_digital" class="o-container" style="width: 100%; margin:auto; text-align: center!important;">
         <!-- select category -->
         <div class="c-card c-content--category__home u-pad-v--25 u-pad-h--80 u-mrg-t--20">
             <div class="o-flex o-justify-content--between o-align-items--center">
                 <!-- #pulsa -->
-                <a href="" id="pulsa" class="c-category--item" style="padding-left:50px;">
+                <a href="" id="pulsa" class="c-category--item">
                     <img class="u-img--fluid o-block" src="<?= $this->Url->build('/images/png/icon-produk-digital/pulsa.png'); ?>" width="32" alt="icon pulsa">
                     <p class="c-content--cat__title u-fg--softest-blue" style="display:inline; padding-left:10px; font-size:15px; color:#63a1c3;">Pulsa</p>
                 </a>
