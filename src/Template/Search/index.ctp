@@ -392,11 +392,13 @@ $this->Html->script([
             selectedBackColor: '#ffffff',
             enableLinks: true,
             //data: data,
+            wrapNodeText: true,
             dataUrl: {
                 url: '<?= $this->Url->build(['action' => 'loadCategory', 'prefix' => false, '?' => $this->request->getQueryParams()], ['escape' => false]); ?>'
             },
             onNodeRendered: function (event, node) {
                 node.total = node.total > 1000 ? numeral(node.total).format('0.0a') : node.total;
+                $(node.$el[0]).find('.text').text(truncate(node.text, 28, {ellipsis: '...'})).attr('title', node.text);
                 node.$el.append($(`<span class="category-counter">(${node.total})</span>`));
             },
             onNodeSelected: function(event, data) {
