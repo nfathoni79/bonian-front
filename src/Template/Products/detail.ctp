@@ -28,7 +28,7 @@
                             <div class="content-product-left class-honizol col-md-5 col-sm-12 col-xs-12">
                                 <div class="large-image">
                                     <?php foreach($details['data']['images'] as $image):?>
-                                        <img itemprop="image" class="product-image-zoom" src="<?= $this->Url->build($_basePath . 'images/600x600/' . $image); ?>" data-zoom-image="<?= $this->Url->build($_basePath . 'images/600x600/' . $image); ?>" title="<?php echo $details['data']['name']; ?>" alt="<?php echo $details['data']['name']; ?>">
+                                        <img itemprop="image" class="product-image-zoom" src="<?= $this->Url->build($_basePath . 'images/600x600/' . $image); ?>" data-zoom-image="<?= $this->Url->build($_basePath . 'images/600x600/' . $image); ?>" data-image-name="<?= $image;?>" title="<?php echo $details['data']['name']; ?>" alt="<?php echo $details['data']['name']; ?>">
                                         <?php break;?>
                                     <?php endforeach;?>
                                 </div>
@@ -49,51 +49,54 @@
                             <div class="content-product-right col-md-7 col-sm-12 col-xs-12">
 
                                 <form id="form-cart">
-                                    <div class="pull-left">
-                                        <div class="title-product">
-                                            <h1><?php echo $details['data']['name']; ?></h1>
+                                    <input type="hidden" name="stock_id" value="" id="stockId">
+                                    <input type="hidden" name="price_id" value="" id="priceId">
+                                    <input type="hidden" name="type" value="force" >
+                                    <div class="row">
+                                        <div class="col-sm-9">
+                                            <div class="title-product">
+                                                <h1><?php echo $details['data']['name']; ?></h1>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="pull-right">
-                                        <?php
+                                        <div class="col-sm-3">
+                                            <?php
                                             $badge = [
                                                 'silver' => [
-                                                    'min' => 1,
-                                                    'max' => 30
-                                                ],
-                                                'blue' => [
-                                                    'min' => 31,
-                                                    'max' => 50
-                                                ],
-                                                'gold' => [
-                                                    'min' => 51,
-                                                    'max' => 100
-                                                ],
-                                                'diamond' => [
-                                                    'min' => 1,
-                                                    'max' => 100
-                                                ],
+                                            'min' => 1,
+                                            'max' => 30
+                                            ],
+                                            'blue' => [
+                                            'min' => 31,
+                                            'max' => 50
+                                            ],
+                                            'gold' => [
+                                            'min' => 51,
+                                            'max' => 100
+                                            ],
+                                            'diamond' => [
+                                            'min' => 1,
+                                            'max' => 100
+                                            ],
                                             ];
-                                        ?>
-                                        <span class="badge u-bg--badge__blue">150 Point</span>
-                                        <!--Jenis badge-->
-                                        <!--.u-bg&#45;&#45;badge__silver -> 1-30-->
-                                        <!--.u-bg&#45;&#45;badge__blue -> 31-50-->
-                                        <!--.u-bg&#45;&#45;badge__gold -> 51-100-->
-                                        <!--.u-bg&#45;&#45;badge__diamond -> >100-->
+                                            ?>
+                                            <span class="badge u-bg--badge__blue">150 Point</span>
 
-                                        <div class="rating">
-                                            <div class="rating-box">
-                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                            <div class="rating">
+                                                <div class="rating-box">
+
+                                                    <?php
+                                                    $rate = $details['data']['rating'];
+                                                    for ($x = 0; $x < $rate; $x++) {
+                                                        echo '<span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span> ';
+                                                    }
+                                                    for ($x = 0; $x < 5-$rate; $x++) {
+                                                    echo '<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span> ';
+                                                    }
+                                                    ?>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="clearfix"></div>
-
 
                                     <!-- Review ---->
                                     <div class="box-review">
@@ -138,8 +141,8 @@
                                                 <div class="option quantity">
                                                     <div class="input-group quantity-control" unselectable="on" style="-webkit-user-select: none;">
                                                         <span class="input-group-addon product_quantity_down">−</span>
-                                                        <input class="form-control" type="text" name="quantity" value="1">
-                                                        <input type="hidden" name="product_id" value="50">
+                                                        <input class="form-control" type="text" name="qty" value="1">
+                                                        <input type="hidden" name="product_id" value="<?= $details['data']['id'];?>">
                                                         <span class="input-group-addon product_quantity_up">+</span>
                                                     </div>
                                                 </div>
@@ -163,6 +166,43 @@
 
                                         </div>
                                     </div>
+
+                                    <div class="row vcenter">
+                                        <div class="col-sm-3"><span class="zl-text">Model</span></div>
+                                        <div class="col-sm-9">
+                                            <span class="zl-text"><?= $details['data']['model'];?></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row vcenter notification" style="display:none;">
+                                        <div class="col-sm-3"></div>
+                                        <div class="col-sm-9">
+                                            <div class="message"></div>
+                                        </div>
+                                    </div>
+<?php
+$branch = array();
+foreach($details['data']['variant'] as $vals){
+    foreach($vals['stocks'] as $val){
+        if(!in_array($val['branch_name'],$branch)){
+            $branch[] = $val['branch_name'];
+        }
+    }
+}
+$branches = array();
+foreach($branch as $k => $vals){
+    $total = 0;
+    foreach($details['data']['variant'] as $val){
+        foreach($val['stocks'] as $v){
+            if($v['branch_name'] == $vals){
+                $total += $v['stock'];
+            }
+        }
+    }
+    $branches[$k]['name'] = $vals;
+    $branches[$k]['total'] = $total;
+}
+?>
                                     <?php $i = 0;?>
                                     <?php foreach($details['data']['options'] as $key => $vals):?>
                                     <div class="row vcenter">
@@ -185,7 +225,7 @@
                                     <?php $i++;?>
                                     <?php endforeach;?>
                                     <div class="row vcenter add-price" style="display:none;">
-                                        <div class="col-sm-3"><span class="zl-text">Tambahan Harga</span></div>
+                                        <div class="col-sm-3"><span class="zl-text">Tambahan harga</span></div>
                                         <div class="col-sm-9">
                                             <span class="zl-text text-add-price"></span>
                                         </div>
@@ -193,47 +233,23 @@
                                     <div class="row vcenter">
                                         <div class="col-sm-3"><span class="zl-text">Stok Tersedia</span></div>
                                         <div class="col-sm-9">
-                                            <div class="col-sm-4 wh-wrapper">
-                                                <div class="wh-item">
-                                                    <span class="wh-label">
-                                                        <label>Jakarta</label>
-                                                        <input type="radio" name="stock" value="jakarta">
-                                                    </span>
-                                                    <span class="wh-stock">18 Stok</span>
+                                            <?php foreach($branches as $vals):?>
+                                                <?php $status = ($vals['total'] <= 0) ? 'inactive': '';?>
+                                                <div class="col-sm-4 wh-wrapper <?= $status;?>">
+                                                    <div class="wh-item">
+                                                        <span class="wh-label">
+                                                            <label><?= $vals['name'];?></label>
+                                                            <input type="radio" name="stock" value="<?= $vals['name'];?>">
+                                                        </span>
+                                                        <span class="wh-stock"><?= $vals['total'];?> Stok</span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-sm-4 wh-wrapper active">
-                                                <div class="wh-item">
-                                                    <span class="wh-label">
-                                                        <label>Bandung</label>
-                                                        <input type="radio" name="stock" value="jakarta">
-                                                    </span>
-                                                    <span class="wh-stock">18 Stok</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4 wh-wrapper inactive">
-                                                <div class="wh-item">
-                                                    <span class="wh-label">
-                                                        <label>Surabaya</label>
-                                                        <input type="radio" name="stock" value="jakarta">
-                                                    </span>
-                                                    <span class="wh-stock">18 Stok</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4 wh-wrapper">
-                                                <div class="wh-item">
-                                                    <span class="wh-label">
-                                                        <label>Malang</label>
-                                                        <input type="radio" name="stock" value="jakarta" disabled>
-                                                    </span>
-                                                    <span class="wh-stock">18 Stok</span>
-                                                </div>
-                                            </div>
+                                            <?php endforeach;?>
                                         </div>
                                     </div>
                                     <div>
-                                        <button class="btn btn-lg btn-radius btn-danger btn-pay">Bayar sekarang</button>
-                                        <button class="btn btn-lg btn-radius btn-add"><i class="fa fa-shopping-cart"></i> Tambah ke keranjang</button>
+                                        <a class="btn btn-lg btn-radius btn-danger btn-pay">Bayar sekarang</a>
+                                        <a class="btn btn-lg btn-radius btn-add"><i class="fa fa-shopping-cart"></i> Tambah ke keranjang</a>
                                     </div>
                                     <!-- end box info product -->
                                 </form>
