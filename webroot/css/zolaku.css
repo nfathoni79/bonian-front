@@ -668,11 +668,16 @@ li.ss-result .search-price {
     color: #ff5e00;
 }
 
-.node-selected {
+.treeview .node-selected {
     font-weight: bold;
 }
-.list-group-item {
-    padding: 5px 10px;
+
+.treeview .node-checked {
+    font-weight: bold;
+}
+
+.treeview .list-group-item {
+    padding: 5px 5px;
     border: none;
     white-space: nowrap;
     overflow: hidden;
@@ -690,6 +695,10 @@ li.ss-result .search-price {
 .treeview span.indent {
     margin-left: 5px !important;
     margin-right: 5px !important;
+}
+
+.treeview span.icon {
+    margin-top: 5px;
 }
 
 

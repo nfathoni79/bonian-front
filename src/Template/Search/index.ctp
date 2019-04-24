@@ -368,11 +368,13 @@ $this->Html->css([
 
 
 $this->Html->script([
+    '/js/bundle',
     '/js/bootstrap-treeview.min',
 ], ['block' => true]);
 ?>
 <?php $this->append('script'); ?>
 <script>
+
     $(document).ready(function(){
         var $tree = $('#category_view').treeview({
             color: '#000000', // '#000000',
@@ -393,31 +395,42 @@ $this->Html->script([
             dataUrl: {
                 url: '<?= $this->Url->build(['action' => 'loadCategory', 'prefix' => false, '?' => $this->request->getQueryParams()], ['escape' => false]); ?>'
             },
-            onNodeSelectedx: function(event, data) {
+            onNodeSelected: function(event, data) {
                 // Your logic goes here
 
-                var x = $tree.treeview('getParents', data);
-                if (x != undefined) {
-                    x.forEach(function(o) {
-                        if (o.$el && o.$el['0']) {
-                            $(o.$el[0]).addClass('collapsed');
-                        }
-                    });
-                }
+                (function checkedNode(arg) {
+                    var x = $tree.treeview('getParents', arg);
+                    if (x != undefined) {
+                        x.forEach(function(o) {
+                            $(o.$el[0]).addClass('node-checked');
+                            checkedNode(o);
+                        });
 
-                //history.pushState(null, null, 'keren');
+                    }
+                })(data);
+
+                parsed = queryString.parse(location.search, {arrayFormat: 'bracket'});
+                parsed.category_id = $(data.$el[0]).attr('id');
+                history.pushState(null, null, '?' + queryString.stringify(parsed, {strict: true}));
 
             },
-            onNodeUnselectedx: function(event, data) {
+            onNodeUnselected: function(event, data) {
                 // Your logic goes here
-                console.log('unchecked');
-                var x = $tree.treeview('getParents', data);
-                if (x != undefined) {
-                    x.forEach(function(o) {
-                        if (o.$el && o.$el['0']) {
-                            $(o.$el[0]).removeClass('collapsed');
+                if (typeof $tree != 'undefined') {
+                    $(data.$el[0]).removeClass('node-checked')
+                        .removeClass('node-selected');
+
+                    (function uncheckedNode(arg) {
+                        var x = $tree.treeview('getParents', arg);
+                        if (x != undefined) {
+                            x.forEach(function(o) {
+                                $(o.$el[0]).removeClass('node-checked')
+                                    .removeClass('node-selected');
+                                uncheckedNode(o);
+                            });
+
                         }
-                    });
+                    })(data);
                 }
             }
         });
