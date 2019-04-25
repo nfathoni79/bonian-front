@@ -151,6 +151,7 @@ class SearchController  extends AuthController
             }
         } catch(\GuzzleHttp\Exception\ClientException $e) {
             //debug($e->getResponse()->getBody()->getContents());exit;
+            return false;
         }
 
         return [
@@ -181,9 +182,13 @@ class SearchController  extends AuthController
             $data = $this->_index($query_string);
         }
 
+        if ($data) {
+            $products = $data['products'];
+            $paging = $data['paging'];
+        } else {
+            $this->Flash->error('Product tidak di temukan');
+        }
 
-        $products = $data['products'];
-        $paging = $data['paging'];
 
 
         if (isset($paging) && $paging['count'] > 0) {
@@ -260,6 +265,7 @@ class SearchController  extends AuthController
 
     protected function _variant($query_string)
     {
+        $data = [];
         try {
             $this->Api->addHeader('bid', $this->request->getCookie('bid'));
             $data = $this->Api->makeRequest()

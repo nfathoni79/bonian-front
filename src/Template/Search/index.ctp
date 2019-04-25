@@ -233,6 +233,7 @@
 
                 <!-- start: list produk -->
                 <div id="product-container-layout">
+                <?php if (isset($products)) : ?>
                 <div class="products-list row nopadding-xs so-filter-gird" style="margin-top: 15px;">
                     <?php foreach($products as $product) : ?>
                         <!-- start: item Produk -->
@@ -355,7 +356,9 @@
                         </div>
                         <!-- end: item produk -->
                     <?php endforeach; ?>
-
+                <?php else : ?>
+                    Product tidak di temukan
+                <?php endif; ?>
                 </div>
                 <!-- end: list produk -->
 
@@ -501,7 +504,14 @@ $this->Html->script([
 
         }
 
-
+        function querystringParse()
+        {
+            parsed = queryString.parse(location.search, {arrayFormat: 'index'});
+            if (parsed.page) {
+                delete parsed.page;
+            }
+            return parsed;
+        }
 
 
         function paginationClick() {
@@ -561,7 +571,7 @@ $this->Html->script([
                     }
                 })(data);
 
-                parsed = queryString.parse(location.search, {arrayFormat: 'index'});
+                parsed = querystringParse();
                 parsed.category_id = $(data.$el[0]).attr('id');
                 history.replaceState(null, null, '?' + queryString.stringify(parsed, {strict: true, arrayFormat: 'index'}));
                 refreshPage();
@@ -590,17 +600,17 @@ $this->Html->script([
 
 
         $('input.variant-value').change(function() {
-            parsed = queryString.parse(location.search, {arrayFormat: 'index'});
-            parsed.options = parsed.options || [];
+            parsed = querystringParse();
+            parsed.variants = parsed.variants || [];
             var value = String($(this).data('id'));
             if(this.checked) {
-                if (parsed.options.indexOf(value) === -1) {
-                    parsed.options.push(value);
+                if (parsed.variants.indexOf(value) === -1) {
+                    parsed.variants.push(value);
                 }
             } else {
-                var index = parsed.options.indexOf(value);
+                var index = parsed.variants.indexOf(value);
                 if (index > -1) {
-                    parsed.options.splice(index, 1);
+                    parsed.variants.splice(index, 1);
                 }
             }
             history.replaceState(null, null, '?' + queryString.stringify(parsed, {strict: true, arrayFormat: 'index'}));
@@ -615,10 +625,12 @@ $this->Html->script([
             $('#pricing-range').slider({
 
                 range : true,
-                min : min_price >= 1000 ? (min_price - 1000) : min_price ,
-                max : max_price + 1000 ,
+                //min : min_price >= 1000 ? (min_price - 1000) : min_price ,
+                //max : max_price + 1000 ,
+                min: 0,
+                max: 100000000,
                 values : window.startRangeValues,
-                step : 1000,
+                step : 10000,
 
                 slide : function(event, ui){
 
@@ -632,7 +644,10 @@ $this->Html->script([
                 },
                 stop: function(event, ui) {
                     //console.log('released handle');
-                    parsed = queryString.parse(location.search, {arrayFormat: 'bracket'});
+                    parsed =querystringParse();
+                    if (parsed.page) {
+                        delete parsed.page;
+                    }
                     parsed.min_price = $(this).slider("values", 0);
                     parsed.max_price = $(this).slider("values", 1);
                     history.replaceState(null, null, '?' + queryString.stringify(parsed, {strict: true, arrayFormat: 'index'}));
