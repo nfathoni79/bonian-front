@@ -26,8 +26,8 @@
                                 <div class="box-label"> <span class="label-product label-sale"> <?= $flash_sale['product']['percent']; ?>% </span></div>
 
                                 <!--quickview-->
-                                <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="quickview.html" style="margin-left:-40px;" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span></span></a>
-                                <button type="button" onclick="wishlist.add('<?= $flash_sale['product']['id']; ?>', this);" class="iframe-link btn-button quickview quickview_handler visible-lg" style="margin-left:10px;" title="Wishlist" data-fancybox-type="iframe"><i class="fa fa-heart"></i><span></span></button>
+                                <a class="iframe-link btn-button quickview quickview_handler visible-lg" style="margin-left:-40px;" href="quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span></span></a>
+                                <button type="button" style="margin-left:10px;" onclick="wishlist.add('<?= $flash_sale['product']['id']; ?>', this);" class="iframe-link btn-button quickview quickview_handler visible-lg" title="Wishlist" data-fancybox-type="iframe"><i class="fa fa-heart"></i><span></span></button>
                                 <!--end quickview-->
                             </div>
                             <div class="right-block right-b" style="min-height: 160px;">
