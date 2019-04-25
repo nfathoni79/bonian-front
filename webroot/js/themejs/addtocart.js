@@ -17,6 +17,9 @@
             var image = $(object).parents('.products-cart').find('img');
             var name = image.attr('title');
             image = baseImagePath + 'images/50x50/' + image.data('image-name');
+
+            var cart = parseInt($('.items_cart').text());
+            var cartcounter = parseInt($('.cart-counter').text());
             $.ajax({
                 url: basePath + '/cart/delete',
                 type : 'POST',
@@ -30,6 +33,9 @@
                     if (response && response.status === "OK") {
                         addProductNotice('Berhasil dihapus', '<img src="'+image+'" alt="">', name, 'success');
                         $('.'+cart_key).remove();
+                        $('.items_cart').html((cart-1));
+                        $('.cart-counter').html((cartcounter-1));
+
                     } else {
                         addProductNotice('Gagal dihapus dari cart', '<img src="'+image+'" alt="">', '', 'success');
                     }

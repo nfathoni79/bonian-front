@@ -79,9 +79,28 @@ function sendFrom(callback){
         dataType : 'json',
         success: function(response){
 
+            var cart = parseInt($('.items_cart').text());
+            var cartcounter = parseInt($('.cart-counter').text());
             if (response && response.status === "OK") {
                 $(".notification").hide();
                 addProductNotice('Berhasil ditambahkan ke keranjang belanja', '<img src="'+image+'" alt="">', tittle, 'success');
+                $('.items_cart').html((cart+1));
+                if(cart > 5){
+                    $('.cart-counter').html((cartcounter+1));
+                }
+                var lengtrow = $('.products-cart').length;
+                if(lengtrow < 5){
+                    $("<tr class=\"products-cart cart-'+(lengtrow+1)+'\">\n" +
+                        "<td class=\"text-center\" style=\"width:70px\">\n" +
+                        "<a href=\"'+$(location).attr('href')+'\">\n" +
+                        "<img src=\"'+basePath+'images/60x60/'+image+'\" data-image-name=\"'+image+'\" title=\"'+tittle+'\" alt=\"'+tittle+'\" class=\"preview\">\n" +
+                        "</a>\n" +
+                        "</td>\n" +
+                        "<td class=\"text-left\">\n" +
+                        "<a class=\"cart_product_name\" href=\"'+$(location).attr('href')+'\">'+tittle+'</a></td>\n" +
+                        "<td class=\"text-center\">x1</td><td class=\"text-center\">Rp. '+$('#price-special').text()+'</td><td class=\"text-right\"><a onclick=\"cart.remove('+$('#productId').val()+', '+(lengtrow+1)+', this);\" class=\"fa fa-times fa-delete\"></a></td>\n" +
+                        "</tr>").prependTo("#cart-table > tbody");
+                }
             } else {
                 $('.message').html('<div class="alert alert-danger" style="margin-bottom:0px !important;padding: 5px 10px !important;">'+response.message+'</div>')
                 $(".notification").show();
