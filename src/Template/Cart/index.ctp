@@ -76,7 +76,7 @@
                             <!-- end: konten kiri -->
 
                             <!-- start: konten tengah -->
-                            <div class="col-lg-9">
+                            <div class="col-lg-11">
 
                                 <!-- start: card item content -->
                                 <div class="row">
@@ -84,45 +84,73 @@
                                     <div class="col-lg-3">
 
                                         <?php foreach($cart['images'] as $image):?>
-                                              <img class="img-responsive" src="<?= $this->Url->build($_basePath . 'images/600x600/' . $image); ?>" data-zoom-image="<?= $this->Url->build($_basePath . 'images/600x600/' . $image); ?>" data-image-name="<?= $image;?>" title="<?php echo $cart['name']; ?>" alt="<?php echo $cart['name']; ?>">
+                                              <img class="img-responsive" src="<?= $this->Url->build($_basePath . 'images/132x132/' . $image); ?>" data-zoom-image="<?= $this->Url->build($_basePath . 'images/600x600/' . $image); ?>" data-image-name="<?= $image;?>" title="<?php echo $cart['name']; ?>" alt="<?php echo $cart['name']; ?>">
                                         <?php break;?>
                                         <?php endforeach;?>
                                     </div>
                                     <div class="col-lg-9">
 
                                         <div class="o-card__item-content">
-                                            <div class="row">
                                                 <div class="col-lg-12">
                                                     <h5><?php echo h($cart['name']); ?></h5>
                                                 </div>
 
-                                                <div class="col-lg-5 text-left">
+                                                <div class="col-lg-4 text-left">
                                                     <p>SKU : <?php echo $cart['sku']; ?></p>
                                                 </div>
 
-                                                <div class="col-lg-7 text-left">
-                                                    <p>Product origin : Gudang <?php echo $cart['product_option_stock']['branch']['name']; ?></p>
+                                                <div class="col-lg-3 text-left">
+                                                    <p>Origin : <?php echo $cart['product_option_stock']['branch']['name']; ?></p>
                                                 </div>
 
-                                                <div class="col-lg-12">
-                                                    <div class="row">
-                                                        <div class="col-lg-4">
-                                                            <div class="c-card__item-point">
-                                                                <h5>
-                                                                    <?php echo $cart['point']; ?> poin
-                                                                </h5>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4">
-                                                            <button type="button"
-                                                                    class="btn btn-danger c-card__item-button">
-                                                                bagikan
-                                                            </button>
+                                                <div class="col-lg-5 text-left">
+                                                    <p><?php echo $cart['variant']; ?></p>
+                                                </div>
+
+                                            <div class="col-lg-12">
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <div class="c-card__item-point">
+                                                            <h5>
+                                                                <?php echo $cart['point']; ?> poin
+                                                            </h5>
                                                         </div>
                                                     </div>
+                                                    <div class="col-lg-4">
+                                                        <button type="button"
+                                                                class="btn btn-danger c-card__item-button">
+                                                            bagikan
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <!-- start: konten kanan -->
+                                                        <div class="text-center" style="padding: 0px; padding-right: 15px;">
+                                                            <a href="#" data-toggle="modal" data-target="#modalProduct">
+                                                                <i class="fas fa-trash-alt" style="font-size: 1.5em;"></i>
+                                                            </a>
 
+                                                            <!-- start: button increment decrement -->
+                                                            <div class="input-group">
+                                                                <span class="input-group-btn">
+                                                                    <input type="button" class="btn btn-default" value='-' id='qtyminus'
+                                                                           field='quantity'>
+                                                                </span>
+                                                                <input type="text" class="form-control text-center" name="quantity"
+                                                                       class="qty" value="<?php echo $cart['qty']; ?>">
+
+                                                                <span class="input-group-btn">
+                                                                    <input type="button" class="btn btn-default" value="+" id="qtyplus"
+                                                                           field="quantity">+</input>
+                                                                </span>
+                                                            </div>
+                                                            <!-- end: button increment decrement -->
+
+                                                        </div>
+                                                    </div>
                                                 </div>
+                                            </div>
 
+                                            <div class="row">
                                                 <div class="col-lg-12">
                                                     <h2>RP.<?php echo $this->Number->format($cart['price']); ?></h2>
                                                 </div>
@@ -133,43 +161,22 @@
                                 </div>
                                 <!-- end: card item content -->
 
-                                <!-- start: tulis catatan content -->
-                                <div class="col-lg-12 c-card__item-catatan">
-                                    <i class="fas fa-pen" style="padding-right: 10px;"></i>
-                                    tulis catatan barang
+                                <div class="col-lg-11 col-lg-offset-1 c-card__item-catatan">
+                                    catatan barang
+                                    <div class="col-lg-12 o-item-catatan">
+                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
+                                        commodo
+                                        ligula eget dolor. Aenean massa. Cum sociis
+                                        natoque penatibus et magnis dis parturient montes, nascetur
+                                        ridiculus
+                                        mus.
+                                    </div>
                                 </div>
-                                <!-- end: tulis catatan content -->
-
 
 
                             </div>
                             <!-- end: konten tengah -->
 
-                            <!-- start: konten kanan -->
-                            <div class="col-lg-2 text-center" style="padding: 0px; padding-right: 15px;">
-                                <a href="#" data-toggle="modal" data-target="#modalProduct">
-                                    <i class="fas fa-trash-alt" style="font-size: 1.5em;"></i>
-                                </a>
-
-                                <!-- start: button increment decrement -->
-                                <div class="input-group" style="margin-top: 5em;">
-                                            <span class="input-group-btn">
-                                                <input type="button" class="btn btn-default" value='-' id='qtyminus'
-                                                       field='quantity'>
-                                            </span>
-
-                                    <input type="text" class="form-control text-center" name="quantity"
-                                           class="qty" value="<?php echo $cart['qty']; ?>">
-
-                                    <span class="input-group-btn">
-                                                <input type="button" class="btn btn-default" value="+" id="qtyplus"
-                                                       field="quantity">+</input>
-                                            </span>
-                                </div>
-                                <!-- end: button increment decrement -->
-
-                            </div>
-                            <!-- start: konten kanan -->
 
                             <!-- start: product modal item -->
                             <div class="modal fade" id="modalProduct" tabindex="-1" role="dialog"
