@@ -1,11 +1,14 @@
-
-  <style>
+<style>
   div.module.custom-listingtab .owl2-controls .owl2-nav {
       position: absolute;
       top: 0px;
       right: 15px;
   }
-  </style>
+
+  .products-list .product-layout .product-item-container{
+      box-shadow:none !important;
+  }
+</style>
 <div class="card-wrapper" >
     <!-- Listing tabs -->
     <div class="module custom-listingtab top-product-home default-nav" style="margin-top: -20px; margin-left: -20px">
