@@ -549,6 +549,7 @@ $this->Html->script([
             enableLinks: true,
             //data: data,
             wrapNodeText: true,
+            showCheckbox: true,
             dataUrl: {
                 url: '<?= $this->Url->build(['action' => 'loadCategory', 'prefix' => false, '?' => $this->request->getQueryParams()], ['escape' => false]); ?>'
             },
@@ -558,19 +559,17 @@ $this->Html->script([
                 node.$el.append($(`<span class="category-counter">(${node.total})</span>`));
             },
             onNodeSelected: function(event, data) {
-                // Your logic goes here
-
-                (function checkedNode(arg) {
+                /*(function checkedNode(arg) {
                     var x = $tree.treeview('getParents', arg);
                     if (x != undefined) {
                         x.forEach(function(o) {
-                            $(o.$el[0]).addClass('node-checked');
+                            //$(o.$el[0]).addClass('node-checked');
                             checkedNode(o);
                         });
 
                     }
-                })(data);
-
+                })(data);*/
+                $tree.treeview('checkNode', [ data, { silent: false } ]);
                 parsed = querystringParse();
                 parsed.category_id = $(data.$el[0]).attr('id');
                 history.replaceState(null, null, '?' + queryString.stringify(parsed, {strict: true, arrayFormat: 'index'}));
@@ -579,21 +578,37 @@ $this->Html->script([
             },
             onNodeUnselected: function(event, data) {
                 // Your logic goes here
-                if (typeof $tree != 'undefined') {
-                    $(data.$el[0]).removeClass('node-checked')
-                        .removeClass('node-selected');
 
-                    (function uncheckedNode(arg) {
+
+
+                if (typeof $tree != 'undefined') {
+
+                    /*(function uncheckedNodes(arg) {
                         var x = $tree.treeview('getParents', arg);
                         if (x != undefined) {
                             x.forEach(function(o) {
-                                $(o.$el[0]).removeClass('node-checked')
-                                    .removeClass('node-selected');
-                                uncheckedNode(o);
+                                //$tree.treeview('uncheckNode', [ o, { silent: false } ]);
+                                //$tree.treeview('unselectNode', [ o, { silent: false } ]);
+                                //$(o.$el[0])
+                                //    .removeClass('node-selected');
+                                uncheckedNodes(o);
                             });
 
                         }
-                    })(data);
+                    })(data);*/
+                    $(data.$el)
+                        .removeClass('node-selected')
+                        .removeClass('node-checked')
+                        .find('.check-icon')
+                        .removeClass('glyphicon-check')
+                        .addClass('glyphicon-unchecked');
+
+                    parsed = querystringParse();
+                    if (parsed.category_id) {
+                        delete parsed.category_id;
+                    }
+                    history.replaceState(null, null, '?' + queryString.stringify(parsed, {strict: true, arrayFormat: 'index'}));
+                    refreshPage();
                 }
             }
         });
