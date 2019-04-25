@@ -90,16 +90,7 @@ function sendFrom(callback){
                 }
                 var lengtrow = $('.products-cart').length;
                 if(lengtrow < 5){
-                    $("<tr class=\"products-cart cart-'+(lengtrow+1)+'\">\n" +
-                        "<td class=\"text-center\" style=\"width:70px\">\n" +
-                        "<a href=\"'+$(location).attr('href')+'\">\n" +
-                        "<img src=\"'+basePath+'images/60x60/'+image+'\" data-image-name=\"'+image+'\" title=\"'+tittle+'\" alt=\"'+tittle+'\" class=\"preview\">\n" +
-                        "</a>\n" +
-                        "</td>\n" +
-                        "<td class=\"text-left\">\n" +
-                        "<a class=\"cart_product_name\" href=\"'+$(location).attr('href')+'\">'+tittle+'</a></td>\n" +
-                        "<td class=\"text-center\">x1</td><td class=\"text-center\">Rp. '+$('#price-special').text()+'</td><td class=\"text-right\"><a onclick=\"cart.remove('+$('#productId').val()+', '+(lengtrow+1)+', this);\" class=\"fa fa-times fa-delete\"></a></td>\n" +
-                        "</tr>").prependTo("#cart-table > tbody");
+                    $('<tr class="products-cart cart-'+(lengtrow+1)+'"><td class="text-center" style="width:70px"><a href="'+$(location).attr('href')+'"><img src="'+image+'" data-image-name="'+image+'" title="'+tittle+'" alt="'+tittle+'" class="preview"></a></td><td class="text-left"><a class="cart_product_name" href="'+$(location).attr('href')+'">'+tittle+'</a></td><td class="text-center">x1</td><td class="text-center">Rp. '+$('#price-special').text()+'</td><td class="text-right"><a onclick="cart.remove('+$('#productId').val()+', '+(lengtrow+1)+', this);" class="fa fa-times fa-delete"></a></td></tr>').prependTo("#cart-table > tbody");
                 }
             } else {
                 $('.message').html('<div class="alert alert-danger" style="margin-bottom:0px !important;padding: 5px 10px !important;">'+response.message+'</div>')
@@ -139,7 +130,7 @@ function triggerCheckPrice(){
             })
         }
     })
-
+    console.table(data)
 }
 
 function comboEnabeled(variant, selected, item){

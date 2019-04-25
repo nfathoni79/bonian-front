@@ -6,7 +6,7 @@
                 <li><a href="<?php echo $this->Url->build('/'); ?>"><i class="fa fa-home"></i></a></li>
                 <?php
                     foreach ($details['data']['categories'] as $crumb) {
-                        echo '<li><a href="#">'.$crumb['name'].'</a></li>';
+                        echo '<li><a href="'.$this->Url->build(['controller' => 'Search', 'action' => 'index', '?' => ['category_id' => $crumb['id']]]).'">'.$crumb['name'].'</a></li>';
                     }
                 ?>
             </ul>
@@ -149,12 +149,13 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <?php if($details['data']['use_coupon']):?>
                                     <div class="row vcenter">
                                         <div class="col-sm-3"><span class="zl-text">Kupon</span></div>
                                         <div class="col-sm-9">
                                             <div class="coupon-wrapper">
                                                 <div class="coupon-left">
-                                                    <span>Rp. 25.000</span>
+                                                    <span>Rp. <?php echo $this->Number->format($details['data']['coupon_price']);?></span>
                                                 </div>
                                                 <div class="coupon-right">
                                                     <span>Dapatkan Sekarang</span>
@@ -166,6 +167,7 @@
 
                                         </div>
                                     </div>
+                                    <?php endif;?>
 
                                     <div class="row vcenter">
                                         <div class="col-sm-3"><span class="zl-text">Model</span></div>

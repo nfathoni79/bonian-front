@@ -29,7 +29,6 @@ class ProductsController extends AppController
             $error = json_decode($e->getResponse()->getBody()->getContents(), true);
             $details = ['is_error' => true, 'message' => 'Produk tidak ditemukan'];
         }
-
         if($this->request->is('Ajax')){
             $this->disableAutoRender();
             return $this->response->withType('application/json')
