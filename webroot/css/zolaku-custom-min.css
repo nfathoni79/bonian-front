@@ -12,6 +12,10 @@
 
 /*! ########## Badge Background Gradient ########## */
 
+.products-list .product-layout .product-item-container {
+    box-shadow: 0 2px 20px rgba(88, 88, 88, .16) !important;
+}
+
 .badge {
     min-width: 65px;
     padding: 5px;
