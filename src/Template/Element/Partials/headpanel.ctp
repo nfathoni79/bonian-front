@@ -78,12 +78,13 @@
                                         <span class="handle pull-left"></span>
                                         <p class="title-cart-h6">Keranjang Belanja</p>
                                         <span class="total-shopping-cart cart-total-full">
-                                            <span class="items_cart"><?php echo $_carts['pagging']['count']; ?></span> <span class="items_cart1">item(s)</span>
+                                            <span class="items_cart"><?php echo ($_carts['pagging']['count'] > 0) ? $_carts['pagging']['count'] : '0'; ?></span> <span class="items_cart1">item(s)</span>
                                         </span>
                                     </div>
                                 </a>
 
                                 <ul class="dropdown-menu pull-right shoppingcart-box" role="menu">
+                                    <?php if(!empty($_carts['carts'])):?>
                                     <li>
                                         <table class="table table-striped">
                                             <tbody>
@@ -127,17 +128,30 @@
                                     <li>
                                         <table class="table table-striped">
                                             <tbody>
-                                                </tr>
-                                                    <td class="text-left">
-                                                        3 produk lainnya
-                                                    </td>
-                                                    <td class="text-right">
-                                                        <a class="btn view-cart" href="<?php echo $this->Url->build(['controller' => 'cart', 'action' => 'index' ]);?>"><i class="fa fa-shopping-cart"></i>Keranjang belanja</a>&nbsp;
-                                                    </td>
-                                                </tr>
+                                            </tr>
+                                            <td class="text-left">
+                                                3 produk lainnya
+                                            </td>
+                                            <td class="text-right">
+                                                <a class="btn view-cart" href="<?php echo $this->Url->build(['controller' => 'cart', 'action' => 'index' ]);?>"><i class="fa fa-shopping-cart"></i>Keranjang belanja</a>&nbsp;
+                                            </td>
+                                            </tr>
                                             </tbody>
-                                        </table> 
+                                        </table>
                                     </li>
+                                    <?php else:?>
+                                    <li>
+                                        <table class="table table-striped">
+                                            <tbody>
+                                            </tr>
+                                                <td class="text-center">
+                                                    Keranjang belanja kosong.
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </li>
+                                    <?php endif;?>
                                 </ul>
                             </div>
 
