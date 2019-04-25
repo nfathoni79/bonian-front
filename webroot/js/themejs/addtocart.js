@@ -37,6 +37,7 @@
                         if(cartcounter > 0){
                             $('.cart-counter').html((cartcounter-1));
 						}
+                        cartDropdown();
 
                     } else {
                         addProductNotice('Gagal dihapus dari cart', '<img src="'+image+'" alt="">', '', 'success');
