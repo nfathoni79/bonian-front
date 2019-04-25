@@ -130,7 +130,7 @@
                                             <tbody>
                                             </tr>
                                             <td class="text-left">
-                                                3 produk lainnya
+                                                <?php echo ($_carts['pagging']['count']-$_carts['pagging']['current'])?> produk lainnya
                                             </td>
                                             <td class="text-right">
                                                 <a class="btn view-cart" href="<?php echo $this->Url->build(['controller' => 'cart', 'action' => 'index' ]);?>"><i class="fa fa-shopping-cart"></i>Keranjang belanja</a>&nbsp;
