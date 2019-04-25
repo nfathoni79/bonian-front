@@ -502,6 +502,7 @@ $this->Html->script([
                 }
             });
 
+            generateTree('<?= $this->Url->build(['action' => 'loadCategory', 'prefix' => false]); ?>' + location.search);
         }
 
         function querystringParse()
@@ -531,7 +532,7 @@ $this->Html->script([
         paginationClick();
 
 
-
+    function generateTree(url) {
         var $tree = $('#category_view').treeview({
             color: '#000000', // '#000000',
             backColor: '#FFFFFF', // '#FFFFFF',
@@ -551,14 +552,14 @@ $this->Html->script([
             wrapNodeText: true,
             showCheckbox: true,
             dataUrl: {
-                url: '<?= $this->Url->build(['action' => 'loadCategory', 'prefix' => false, '?' => $this->request->getQueryParams()], ['escape' => false]); ?>'
+                url: url || '<?= $this->Url->build(['action' => 'loadCategory', 'prefix' => false, '?' => $this->request->getQueryParams()], ['escape' => false]); ?>'
             },
             onNodeRendered: function (event, node) {
                 node.total = node.total > 1000 ? numeral(node.total).format('0.0a') : node.total;
                 $(node.$el[0]).find('.text').text(truncate(node.text, 28, {ellipsis: '...'})).attr('title', node.text);
                 node.$el.append($(`<span class="category-counter">(${node.total})</span>`));
             },
-            onNodeSelected: function(event, data) {
+            onNodeSelected: function (event, data) {
                 /*(function checkedNode(arg) {
                     var x = $tree.treeview('getParents', arg);
                     if (x != undefined) {
@@ -569,16 +570,18 @@ $this->Html->script([
 
                     }
                 })(data);*/
-                $tree.treeview('checkNode', [ data, { silent: false } ]);
+                $tree.treeview('checkNode', [data, {silent: false}]);
                 parsed = querystringParse();
                 parsed.category_id = $(data.$el[0]).attr('id');
-                history.replaceState(null, null, '?' + queryString.stringify(parsed, {strict: true, arrayFormat: 'index'}));
+                history.replaceState(null, null, '?' + queryString.stringify(parsed, {
+                    strict: true,
+                    arrayFormat: 'index'
+                }));
                 refreshPage();
 
             },
-            onNodeUnselected: function(event, data) {
+            onNodeUnselected: function (event, data) {
                 // Your logic goes here
-
 
 
                 if (typeof $tree != 'undefined') {
@@ -603,10 +606,13 @@ $this->Html->script([
                         .removeClass('glyphicon-check')
                         .addClass('glyphicon-unchecked');
 
-                    
+
                 }
             }
         });
+    }
+
+        generateTree();
 
 
         $('input.variant-value').change(function() {
