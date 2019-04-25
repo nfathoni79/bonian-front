@@ -603,12 +603,7 @@ $this->Html->script([
                         .removeClass('glyphicon-check')
                         .addClass('glyphicon-unchecked');
 
-                    parsed = querystringParse();
-                    if (parsed.category_id) {
-                        delete parsed.category_id;
-                    }
-                    history.replaceState(null, null, '?' + queryString.stringify(parsed, {strict: true, arrayFormat: 'index'}));
-                    refreshPage();
+                    
                 }
             }
         });
