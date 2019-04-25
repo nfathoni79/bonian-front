@@ -39,7 +39,7 @@
                                     <?php foreach($topProducts as $vals): ?>
                                     <div class="ltabs-item products">
                                         <div class="item-inner product-thumb transition product-layout">
-                                            <div class="product-item-container" style="margin-top:15px !important;" >
+                                            <div class="product-item-container" style="min-height: 210px; margin-top:15px !important;">
                                                 <div class="left-block left-b">
                                                     <div class="product-image-container">
                                                         <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug']]); ?>" target="_self" title="<?= h($vals['name']); ?>">
@@ -63,9 +63,9 @@
                                                     <!--end quickview-->
                                                 </div>
 
-                                                <div class="right-block right-b" style="min-height: 160px;">
+                                                <div class="right-block right-b" style="min-height: 140px;">
                                                     <div class="row">
-                                                        <div class="col-lg-7">
+                                                        <div class="col-lg-7"  style="width: 47.333333%!important; display: inline-block;">
                                                             <div class="rating">
                                                                 <?php
                                                                     $rate = $vals['rating'];
@@ -78,7 +78,7 @@
                                                                 ?>
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-5"><span class="badge"><?= $vals['point']; ?> Poin</span></div>
+                                                        <div class="col-lg-5" style="width: 50.333333%!important display: inline-block;"><span class="badge" style="margin-top: 0px !important;"><?= $vals['point']; ?> Poin</span></div>
                                                     </div>
                                                     <div class="caption">
                                                         <h4><a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug']]); ?>" title="<?= h($vals['name']); ?>" target="_self">  <?php echo $this->Text->truncate(
@@ -123,7 +123,7 @@
                                   <?php foreach($popularProducts as $vals): ?>
                                   <div class="ltabs-item products">
                                       <div class="item-inner product-thumb transition product-layout">
-                                          <div class="product-item-container" style="margin-top:15px !important;">
+                                          <div class="product-item-container" style="min-height: 210px; margin-top:15px !important;">
                                               <div class="left-block left-b">
                                                   <div class="product-image-container">
                                                       <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug']]); ?>" target="_self" title="<?= h($vals['name']); ?>">
@@ -147,9 +147,9 @@
                                                   <!--end quickview-->
                                               </div>
 
-                                              <div class="right-block right-b" style="min-height: 160px;">
+                                              <div class="right-block right-b" style="min-height: 140px;">
                                                   <div class="row">
-                                                      <div class="col-lg-7">
+                                                      <div class="col-lg-7"  style="width: 47.333333%!important; display: inline-block;">
                                                           <div class="rating">
                                                               <?php
                                                                   $rate = $vals['rating'];
@@ -162,7 +162,7 @@
                                                               ?>
                                                           </div>
                                                       </div>
-                                                      <div class="col-lg-5"><span class="badge"><?= $vals['point']; ?> Poin</span></div>
+                                                      <div class="col-lg-5" style="width: 50.333333%!important display: inline-block;"><span class="badge" style="margin-top: 0px !important;"><?= $vals['point']; ?> Poin</span></div>
                                                   </div>
                                                   <div class="caption">
                                                       <h4><a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug']]); ?>" title="<?= h($vals['name']); ?>" target="_self">  <?php echo $this->Text->truncate(
@@ -208,7 +208,7 @@
                                   <?php foreach($newProducts as $vals): ?>
                                   <div class="ltabs-item products">
                                       <div class="item-inner product-thumb transition product-layout">
-                                          <div class="product-item-container" style="margin-top:15px !important;">
+                                          <div class="product-item-container" style="min-height: 210px; margin-top:15px !important;">
                                               <div class="left-block left-b">
                                                   <div class="product-image-container">
                                                       <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug']]); ?>" target="_self" title="<?= h($vals['name']); ?>">
@@ -232,9 +232,9 @@
                                                   <!--end quickview-->
                                               </div>
 
-                                              <div class="right-block right-b" style="min-height: 160px;">
+                                              <div class="right-block right-b" style="min-height: 140px;">
                                                   <div class="row">
-                                                      <div class="col-lg-7">
+                                                      <div class="col-lg-7"  style="width: 47.333333%!important; display: inline-block;">
                                                           <div class="rating">
                                                               <?php
                                                                   $rate = $vals['rating'];
@@ -247,7 +247,7 @@
                                                               ?>
                                                           </div>
                                                       </div>
-                                                      <div class="col-lg-5"><span class="badge"><?= $vals['point']; ?> Poin</span></div>
+                                                      <div class="col-lg-5" style="width: 50.333333%!important display: inline-block;"><span class="badge" style="margin-top: 0px !important;"><?= $vals['point']; ?> Poin</span></div>
                                                   </div>
                                                   <div class="caption">
                                                       <h4><a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug']]); ?>" title="<?= h($vals['name']); ?>" target="_self">  <?php echo $this->Text->truncate(
