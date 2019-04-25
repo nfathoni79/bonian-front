@@ -1,4 +1,5 @@
 <style>
+
     .module h3.modtitles{
         background: #f2f2f2;
         line-height: 100%;
@@ -21,45 +22,52 @@
         margin-right: -50vw;
     }
 
-    .box-title h2 {
-    background: #dc5054;
-    background: linear-gradient(160deg,#dc5054 0%, #a41d21 100%);
-    background: -webkit-linear-gradient(160deg,#dc5054 0%, #a41d21 100%);
-    background: -moz-linear-gradient(160deg,#dc5054 0%, #a41d21 100%);
+    .box-title h2{
+        background: #dc5054;
+        background: linear-gradient(160deg,#dc5054 0%, #a41d21 100%);
+        background: -webkit-linear-gradient(160deg,#dc5054 0%, #a41d21 100%);
+        background: -moz-linear-gradient(160deg,#dc5054 0%, #a41d21 100%);
     }
 
     .box-title h2 {
-    line-height: 48px;
-    background-color: #ff5e00;
-    font-size: 18px;
-    padding: 0 16px;
-    color: #fff;
-    margin: 0;
-    font-weight: bold;
-    border-radius: 0 7px 0 0;
-    position: relative;
-    text-transform: uppercase;
-    box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.1);
+        line-height: 48px;
+        background-color: #ff5e00;
+        font-size: 18px;
+        padding: 0 16px;
+        color: #fff;
+        margin: 0;
+        font-weight: bold;
+        border-radius: 0 7px 0 0;
+        position: relative;
+        text-transform: uppercase;
+        box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.1);
     }
 
     .box-title h2:before {
-    content: '';
-    width: 0;
-    height: 0;
-    border-bottom: 8px solid transparent;
-    bottom: -8px;
-    position: absolute;
-    border-right: 8px solid #cc4b00;
-    left: 1px;
+        content: '';
+        width: 0;
+        height: 0;
+        border-bottom: 8px solid transparent;
+        bottom: -8px;
+        position: absolute;
+        border-right: 8px solid #cc4b00;
+        left: 1px;
     }
 
     .box-title {
-    position: relative;
-    top: -5px;
-    min-width: 205px;
-    left: -9px;    
-}
+        position: relative;
+        top: -5px;
+        min-width: 205px;
+        left: -9px;
+    }
 
+    .pd-l-20{
+        padding-left: 20px;
+    }
+
+    .pd-b-10{
+      padding-bottom: 10px;
+    }
 </style>
 
 
@@ -184,8 +192,8 @@
                             <div class="ltabs-items items-category-72 grid" data-total="8">
                                 <div class="ltabs-loading"></div>
                                 <div class="short_description form-group">
-                                    <h3>SYARAT & KETENTUAN UMUM :</h3>
-                                    <?php echo $promotion['tos'];?>
+                                    <h3 class="pd-l-20">SYARAT & KETENTUAN UMUM :</h3>
+                                    <div class="pd-l-20 pd-b-10"><?php echo $promotion['tos'];?></div>
 
                                     <div class="alert alert-warning">
                                         Dengan mengikuti promo ini, customer dianggap mengerti dan menyetujui semua syarat & ketentuan berlaku.<br><br>
