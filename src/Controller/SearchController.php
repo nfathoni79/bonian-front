@@ -6,6 +6,7 @@ use Cake\Http\Client;
 use Cake\Http\Client\Response;
 use Cake\Core\Configure;
 use Cake\Routing\Router;
+use Pagination\Pagination;
 
 
 class SearchController  extends AuthController
@@ -141,9 +142,14 @@ class SearchController  extends AuthController
             //debug($e->getResponse()->getBody()->getContents());exit;
         }
 
+        if (isset($paging) && $paging['count'] > 0) {
+            $pagination = new Pagination($paging['count'], $paging['perPage'], $paging['page']);
+        } else {
+            //unset($query_string['page']);
+            //return $this->redirect(['action' => 'index', 'prefix' => false, '?' => $query_string]);
+        }
 
-
-        $this->set(compact('products'));
+        $this->set(compact('products', 'pagination'));
 
     }
 
