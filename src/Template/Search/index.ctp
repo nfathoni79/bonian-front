@@ -7,6 +7,8 @@
             <ul class="breadcrumb">
                 <li><a href="#" class="o-breadcumbs-item">Home</i></a></li>
             </ul>
+
+
         </div>
         <!-- end: breadcumb -->
 
@@ -67,78 +69,31 @@
             </div>
             <!-- end: componen harga -->
 
-            <!-- start: componen warna -->
+
+
+            <?php foreach($variants as $variant) : ?>
+            <!-- start: componen variant -->
             <div class="module">
-                <h3 class="modtitle o-filter-title">Berdasarkan warna </h3>
+                <h3 class="modtitle o-filter-title">Berdasarkan <?= $variant['Options']['name']; ?></h3>
                 <div class="table_layout filter-shopby">
                     <div class="table_row">
                         <!-- - - - - - - - - - - - - - Price - - - - - - - - - - - - - - - - -->
 
                         <div class="table_cell" style="padding-top:20px;">
-                            <fieldset>
-                                <div class="row">
 
-                                    <div class="col-sm-6">
-                                        <ul class="simple_vertical_list">
-                                            <li>
-                                                <input type="checkbox" name="" id="color_btn_1">
-                                                <label for="color_btn_1" class="color_btn red">Merah</label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" name="" id="color_btn_2">
-                                                <label for="color_btn_2" class="color_btn red">Kuning</label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" name="" id="color_btn_4">
-                                                <label for="color_btn_4" class="color_btn red">Orange</label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" name="" id="color_btn_5">
-                                                <label for="color_btn_5" class="color_btn red">Putih</label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" name="" id="color_btn_6">
-                                                <label for="color_btn_6" class="color_btn red">Ungu</label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" name="" id="color_btn_7">
-                                                <label for="color_btn_7" class="color_btn red">Pink</label>
-                                            </li>
-                                        </ul>
-                                    </div>
+                            <?php foreach(array_chunk($variant['values'], ceil(count($variant['values']) / 2)) as $group) : ?>
+                            <div class="col-md-6">
 
-                                    <div class="col-sm-6">
-                                        <ul class="simple_vertical_list">
-                                            <li>
-                                                <input type="checkbox" name="" id="color_btn_8">
-                                                <label for="color_btn_8" class="color_btn red">Biru</label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" name="" id="color_btn_9">
-                                                <label for="color_btn_9" class="color_btn red">Hitam</label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" name="" id="color_btn_10">
-                                                <label for="color_btn_10" class="color_btn red">Hijau</label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" name="" id="color_btn_11">
-                                                <label for="color_btn_11" class="color_btn red">Abu</label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" name="" id="color_btn_12">
-                                                <label for="color_btn_12" class="color_btn red">Coklat</label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" name="" id="color_btn_13">
-                                                <label for="color_btn_13" class="color_btn red">Maroon</label>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                </div>
-
-                            </fieldset>
+                                <ul class="simple_vertical_list">
+                                    <?php foreach($group as $value) : ?>
+                                        <li>
+                                            <input type="checkbox" data-id="<?= $value['option_value_id']; ?>" class="variant-value" id="variant_btn_<?= $value['option_value_id']; ?>">
+                                            <label for="variant_btn_<?= $value['option_value_id']; ?>" class="color_btn"><?= $value['name']; ?></label>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+                            <?php endforeach; ?>
 
                         </div>
                         <!--/ .table_cell -->
@@ -147,70 +102,10 @@
                     </div>
                 </div>
             </div>
-            <!-- end: componen warna -->
+            <!-- end: componen variant -->
+            <?php endforeach; ?>
 
-            <!-- start: componen ukuran -->
-            <div class="module">
-                <h3 class="modtitle o-filter-title">Berdasarkan ukuran </h3>
-                <div class="table_layout filter-shopby">
-                    <div class="table_row">
-                        <!-- - - - - - - - - - - - - - Price - - - - - - - - - - - - - - - - -->
-
-                        <div class="table_cell" style="padding-top:20px;">
-                            <fieldset>
-                                <div class="row">
-
-                                    <div class="col-sm-6">
-                                        <ul class="simple_vertical_list">
-                                            <li>
-                                                <input type="checkbox" name="" id="color_btn_1">
-                                                <label for="color_btn_1" class="color_btn red">XXS</label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" name="" id="color_btn_2">
-                                                <label for="color_btn_2" class="color_btn red">XS</label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" name="" id="color_btn_4">
-                                                <label for="color_btn_4" class="color_btn red">S</label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" name="" id="color_btn_5">
-                                                <label for="color_btn_5" class="color_btn red">M</label>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <ul class="simple_vertical_list">
-                                            <li>
-                                                <input type="checkbox" name="" id="color_btn_6">
-                                                <label for="color_btn_6" class="color_btn red">L</label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" name="" id="color_btn_7">
-                                                <label for="color_btn_7" class="color_btn red">XXL</label>
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" name="" id="color_btn_7">
-                                                <label for="color_btn_7" class="color_btn red">XXXL</label>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                </div>
-
-                            </fieldset>
-
-                        </div>
-                        <!--/ .table_cell -->
-
-                        <!-- - - - - - - - - - - - - - End price - - - - - - - - - - - - - - - - -->
-                    </div>
-                </div>
-            </div>
-            <!-- end: componen ukuran -->
-
+            <?php /*
             <!-- start: componen fitur -->
             <div class="module">
                 <h3 class="modtitle o-filter-title">Berdasarkan fitur</span> </h3>
@@ -272,6 +167,7 @@
                 </div>
             </div>
             <!-- end: componen fitur -->
+            */ ?>
 
 
         </div>
@@ -336,7 +232,7 @@
                 <!-- end: filter produk -->
 
                 <!-- start: list produk -->
-                <div class="product-container-layout">
+                <div id="product-container-layout">
                 <div class="products-list row nopadding-xs so-filter-gird" style="margin-top: 15px;">
                     <?php foreach($products as $product) : ?>
                         <!-- start: item Produk -->
@@ -478,7 +374,7 @@
                                         if ($iterator->count() > 1) :
                                             ?>
                                             <nav aria-label="Page navigation" style="margin: 0 auto; text-align: center;">
-                                                <ul class="pagination">
+                                                <ul class="pagination ajax-pagination">
                                                     <li>
                                                         <a href="<?= $this->Url->build([
                                                             'controller' => $this->request->getParam('controller'),
@@ -560,6 +456,7 @@
 
 $this->Html->css([
     '/css/bootstrap-treeview',
+    '/css/plugin.min.css'
 ], ['block' => true]);
 
 
@@ -581,6 +478,49 @@ $this->Html->script([
 <script>
 
     $(document).ready(function(){
+
+
+        function refreshPage(target) {
+            //var parsed = queryString.parse(location.search, {arrayFormat: 'bracket'});
+            target = target || location.search;
+            $.ajax({
+                url: target,
+                type : 'POST',
+                data : {
+                    _csrfToken: $('meta[name="_csrfToken"]').attr('content')
+                },
+                success: function(response){
+                    $("#product-container-layout").html(response);
+                    paginationClick();
+                },
+                error: function () {
+
+                }
+            });
+
+        }
+
+
+        
+
+        function paginationClick() {
+            var container = document.querySelector('.ajax-pagination');
+            if (container) {
+                container.addEventListener('click', function(e) {
+                    if (e.target != e.currentTarget) {
+                        e.preventDefault();
+                        console.log('page', e.target.href)
+                        refreshPage(e.target.href);
+                    }
+                    e.stopPropagation();
+                }, false);
+            }
+
+        }
+        paginationClick();
+
+
+
         var $tree = $('#category_view').treeview({
             color: '#000000', // '#000000',
             backColor: '#FFFFFF', // '#FFFFFF',
@@ -620,9 +560,10 @@ $this->Html->script([
                     }
                 })(data);
 
-                parsed = queryString.parse(location.search, {arrayFormat: 'bracket'});
+                parsed = queryString.parse(location.search, {arrayFormat: 'index'});
                 parsed.category_id = $(data.$el[0]).attr('id');
-                history.pushState(null, null, '?' + queryString.stringify(parsed, {strict: true}));
+                history.replaceState(null, null, '?' + queryString.stringify(parsed, {strict: true, arrayFormat: 'index'}));
+                refreshPage();
 
             },
             onNodeUnselected: function(event, data) {
@@ -647,39 +588,65 @@ $this->Html->script([
         });
 
 
+        $('input.variant-value').change(function() {
+            parsed = queryString.parse(location.search, {arrayFormat: 'index'});
+            parsed.options = parsed.options || [];
+            var value = String($(this).data('id'));
+            if(this.checked) {
+                if (parsed.options.indexOf(value) === -1) {
+                    parsed.options.push(value);
+                }
+            } else {
+                var index = parsed.options.indexOf(value);
+                if (index > -1) {
+                    parsed.options.splice(index, 1);
+                }
+            }
+            history.replaceState(null, null, '?' + queryString.stringify(parsed, {strict: true, arrayFormat: 'index'}));
+            refreshPage();
+        })
+
+
         if($('#pricing-range').length) {
-            var min_price = $('input[name="min_price"]').val();
-            var max_price = $('input[name="max_price"]').val();
+            var min_price = parseInt($('input[name="min_price"]').val());
+            var max_price = parseInt($('input[name="max_price"]').val());
             window.startRangeValues = [min_price, max_price];
             $('#pricing-range').slider({
 
                 range : true,
-                min : min_price > 5000 ? (parseInt(min_price) - 1000) : min_price,
-                max : parseInt(max_price) + 50000,
+                min : min_price >= 1000 ? (min_price - 1000) : min_price ,
+                max : max_price + 1000 ,
                 values : window.startRangeValues,
-                step : 10000,
+                step : 1000,
 
                 slide : function(event, ui){
 
-                    var min = numeral(ui.values[0]).format('0,0'),
-                        max = numeral(ui.values[1]).format('0,0'),
+                    var min = ui.values[0],
+                        max = ui.values[1],
                         range = $(this).siblings('.range');
 
                     range.children('.min_value').val(min).next().val(max);
-                    range.children('.min_val').text('Rp.' + min).next().text('Rp.' + max);
+                    range.children('.min_val').text('Rp.' + numeral(min).format('0,0')).next().text('Rp.' + numeral(max).format('0,0'));
 
                 },
+                stop: function(event, ui) {
+                    //console.log('released handle');
+                    parsed = queryString.parse(location.search, {arrayFormat: 'bracket'});
+                    parsed.min_price = $(this).slider("values", 0);
+                    parsed.max_price = $(this).slider("values", 1);
+                    history.replaceState(null, null, '?' + queryString.stringify(parsed, {strict: true, arrayFormat: 'index'}));
+                    refreshPage();
 
+                },
                 create : function(event, ui){
-
                     var $this = $(this),
-                        min = numeral($this.slider("values", 0)).format('0,0'),
-                        max = numeral($this.slider("values", 1)).format('0,0'),
+                        min = $this.slider("values", 0),
+                        max = $this.slider("values", 1),
                         range = $this.siblings('.range');
 
                     range.children('.min_value').val(min).next().val(max);
 
-                    range.children('.min_val').text('Rp.' + min).next().text('Rp.' + max);
+                    range.children('.min_val').text('Rp.' + numeral(min).format('0,0')).next().text('Rp.' + numeral(max).format('0,0'));
 
                 }
 

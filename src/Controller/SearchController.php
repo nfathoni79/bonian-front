@@ -15,7 +15,7 @@ class SearchController  extends AuthController
     public function initialize()
     {
         parent::initialize();
-        $this->Auth->allow(['get', 'history', 'index', 'removeHistory', 'loadCategory']);
+        $this->Auth->allow(['get', 'history', 'index', 'removeHistory', 'loadCategory', 'fetch']);
     }
 
     public function locator(){
@@ -110,23 +110,8 @@ class SearchController  extends AuthController
             ->withStringBody(json_encode($delete));
     }
 
-    public function index()
+    public function fetch()
     {
-        $query_string = $this->request->getQueryParams();
-        if ($this->request->is('post')) {
-            $this->saveSearch($this->request->getData('q'));
-            $query_string['q'] = $this->request->getData('q');
-            return $this->redirect([
-                '?' => $query_string
-            ]);
-        } else if ($this->request->getQuery('source') == 'click') {
-            $this->saveSearch($this->request->getQuery('q'), $this->request->getQuery('category_id', null));
-            unset($query_string['source']);
-            return $this->redirect([
-                '?' => $query_string
-            ]);
-        }
-
         try {
             $this->Api->addHeader('bid', $this->request->getCookie('bid'));
             $search = $this->Api->makeRequest()
@@ -145,13 +130,72 @@ class SearchController  extends AuthController
         if (isset($paging) && $paging['count'] > 0) {
             $pagination = new Pagination($paging['count'], $paging['perPage'], $paging['page']);
         } else {
-            //unset($query_string['page']);
-            //return $this->redirect(['action' => 'index', 'prefix' => false, '?' => $query_string]);
+
+        }
+
+        $this->set(compact('products', 'pagination'));
+    }
+
+
+    protected function _index($query_string) {
+        try {
+            $this->Api->addHeader('bid', $this->request->getCookie('bid'));
+            $search = $this->Api->makeRequest()
+                ->get('v1/product-filters', [
+                    'query' => array_filter($this->request->getQueryParams())
+                ]); //print_r($search->getBody()->getContents());exit;
+            if ($response = $this->Api->success($search)) {
+                $response = $response->parse();
+                $products = $response['result']['data'];
+                $paging = $response['paging'];
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            //debug($e->getResponse()->getBody()->getContents());exit;
+        }
+
+        return [
+          'products' => $products,
+          'paging' => $paging
+        ];
+    }
+
+    public function index()
+    {
+        $query_string = $this->request->getQueryParams();
+        if ($this->request->is('ajax')) {
+            $data = $this->_index($query_string);
+            $this->viewBuilder()->setTemplate('fetch');
+        } else if ($this->request->is('post')) {
+            $this->saveSearch($this->request->getData('q'));
+            $query_string['q'] = $this->request->getData('q');
+            return $this->redirect([
+                '?' => $query_string
+            ]);
+        } else if ($this->request->getQuery('source') == 'click') {
+            $this->saveSearch($this->request->getQuery('q'), $this->request->getQuery('category_id', null));
+            unset($query_string['source']);
+            return $this->redirect([
+                '?' => $query_string
+            ]);
+        } else {
+            $data = $this->_index($query_string);
+        }
+
+
+        $products = $data['products'];
+        $paging = $data['paging'];
+
+
+        if (isset($paging) && $paging['count'] > 0) {
+            $pagination = new Pagination($paging['count'], $paging['perPage'], $paging['page']);
+        } else {
+
         }
 
         $pricing = $this->_price($query_string);
+        $variants = $this->_variant($query_string);
 
-        $this->set(compact('products', 'pagination', 'pricing'));
+        $this->set(compact('products', 'pagination', 'pricing', 'variants'));
 
     }
 
@@ -201,6 +245,33 @@ class SearchController  extends AuthController
         $this->disableAutoRender();
         $query_string = $this->request->getQueryParams();
         $data = $this->_price($query_string);
+        return $this->response->withType('application/json')
+            ->withStringBody(json_encode($data));
+    }
+
+    protected function _variant($query_string)
+    {
+        try {
+            $this->Api->addHeader('bid', $this->request->getCookie('bid'));
+            $data = $this->Api->makeRequest()
+                ->get('v1/product-filters/variant', [
+                    'query' => array_filter($query_string)
+                ]);
+            if ($response = $this->Api->success($data)) {
+                $json = $response->parse();
+                $data = $json['result']['data'];
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            //debug($e->getResponse()->getBody()->getContents());exit;
+        }
+        return $data;
+    }
+
+    public function loadVariant()
+    {
+        $this->disableAutoRender();
+        $query_string = $this->request->getQueryParams();
+        $data = $this->_variant($query_string);
         return $this->response->withType('application/json')
             ->withStringBody(json_encode($data));
     }
