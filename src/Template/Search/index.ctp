@@ -644,7 +644,7 @@ $this->Html->script([
                 //min : min_price >= 1000 ? (min_price - 1000) : min_price ,
                 //max : max_price + 1000 ,
                 min: 0,
-                max: 100000000,
+                max: max_price,
                 values : window.startRangeValues,
                 step : 10000,
 
