@@ -142,7 +142,7 @@
                                                     <div class="input-group quantity-control" unselectable="on" style="-webkit-user-select: none;">
                                                         <span class="input-group-addon product_quantity_down">−</span>
                                                         <input class="form-control" type="text" name="qty" value="1">
-                                                        <input type="hidden" name="product_id" value="<?= $details['data']['id'];?>">
+                                                        <input type="hidden" name="product_id" id="productId" value="<?= $details['data']['id'];?>">
                                                         <span class="input-group-addon product_quantity_up">+</span>
                                                     </div>
                                                 </div>

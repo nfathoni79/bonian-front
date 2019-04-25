@@ -86,7 +86,7 @@
                                 <ul class="dropdown-menu pull-right shoppingcart-box" role="menu">
                                     <?php if(!empty($_carts['carts'])):?>
                                     <li>
-                                        <table class="table table-striped">
+                                        <table class="table table-striped" id="cart-table">
                                             <tbody>
                                             <?php foreach($_carts['carts'] as $key => $cart):?>
                                             <tr class="products-cart cart-<?php echo $key ;?>">
@@ -130,7 +130,7 @@
                                             <tbody>
                                             </tr>
                                             <td class="text-left">
-                                                <?php echo ($_carts['pagging']['count']-$_carts['pagging']['current'])?> produk lainnya
+                                                <span class="cart-counter"><?php echo ($_carts['pagging']['count']-$_carts['pagging']['current'])?></span> produk lainnya
                                             </td>
                                             <td class="text-right">
                                                 <a class="btn view-cart" href="<?php echo $this->Url->build(['controller' => 'cart', 'action' => 'index' ]);?>"><i class="fa fa-shopping-cart"></i>Keranjang belanja</a>&nbsp;
