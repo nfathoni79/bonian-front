@@ -34,8 +34,7 @@
                                     <div class="state p-success">
                                         <!-- svg path -->
                                         <svg class="svg svg-icon" viewBox="0 0 20 20">
-                                            <path
-                                                    d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"
+                                            <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"
                                                     style="stroke: white;fill:white;"></path>
                                         </svg>
                                         <label class="o-card__item-checkbox" style="padding-left:10px;">
@@ -53,6 +52,7 @@
                     <!-- end: card item #1 -->
 
                     <!-- start: card item #2 -->
+                    <?php foreach($carts['carts'] as $cart):?>
                     <div class="c-cart-card__item u-mt-10">
                         <div class="row">
 
@@ -63,8 +63,7 @@
                                     <div class="state p-success">
                                         <!-- svg path -->
                                         <svg class="svg svg-icon" viewBox="0 0 20 20">
-                                            <path
-                                                    d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"
+                                            <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"
                                                     style="stroke: white;fill:white;"></path>
                                         </svg>
                                         <label class="o-card__item-checkbox" style="padding-left:10px;">
@@ -81,23 +80,28 @@
 
                                 <!-- start: card item content -->
                                 <div class="row">
+
                                     <div class="col-lg-3">
-                                        <img src="assets/img/item-img-3.png" alt="item" class="img-responsive">
+
+                                        <?php foreach($cart['images'] as $image):?>
+                                              <img class="img-responsive" src="<?= $this->Url->build($_basePath . 'images/600x600/' . $image); ?>" data-zoom-image="<?= $this->Url->build($_basePath . 'images/600x600/' . $image); ?>" data-image-name="<?= $image;?>" title="<?php echo $cart['name']; ?>" alt="<?php echo $cart['name']; ?>">
+                                        <?php break;?>
+                                        <?php endforeach;?>
                                     </div>
                                     <div class="col-lg-9">
 
                                         <div class="o-card__item-content">
                                             <div class="row">
                                                 <div class="col-lg-12">
-                                                    <h5>Samsung Galaxy Gear VR version 1 / SM-R322-Intl</h5>
+                                                    <h5><?php echo h($cart['name']); ?></h5>
                                                 </div>
 
                                                 <div class="col-lg-5 text-left">
-                                                    <p>SKU : ZL-0001BRJ-02</p>
+                                                    <p>SKU : <?php echo $cart['sku']; ?></p>
                                                 </div>
 
                                                 <div class="col-lg-7 text-left">
-                                                    <p>Product origin : Gudang Surabaya</p>
+                                                    <p>Product origin : Gudang <?php echo $cart['product_option_stock']['branch']['name']; ?></p>
                                                 </div>
 
                                                 <div class="col-lg-12">
@@ -105,7 +109,7 @@
                                                         <div class="col-lg-4">
                                                             <div class="c-card__item-point">
                                                                 <h5>
-                                                                    152 poin
+                                                                    <?php echo $cart['point']; ?> poin
                                                                 </h5>
                                                             </div>
                                                         </div>
@@ -120,7 +124,7 @@
                                                 </div>
 
                                                 <div class="col-lg-12">
-                                                    <h2>RP.800.000</h2>
+                                                    <h2>RP.<?php echo $this->Number->format($cart['price']); ?></h2>
                                                 </div>
                                             </div>
                                         </div>
@@ -135,6 +139,9 @@
                                     tulis catatan barang
                                 </div>
                                 <!-- end: tulis catatan content -->
+
+
+
                             </div>
                             <!-- end: konten tengah -->
 
@@ -152,7 +159,7 @@
                                             </span>
 
                                     <input type="text" class="form-control text-center" name="quantity"
-                                           class="qty" value="0">
+                                           class="qty" value="<?php echo $cart['qty']; ?>">
 
                                     <span class="input-group-btn">
                                                 <input type="button" class="btn btn-default" value="+" id="qtyplus"
@@ -210,258 +217,12 @@
                                 </div>
                             </div>
                             <!-- end: product modal item -->
-
                         </div>
                     </div>
+
+                    <?php endforeach; ?>
                     <!-- end: card item #2-->
 
-                    <!-- start: card item #3 -->
-                    <div class="c-cart-card__item u-mt-10">
-                        <div class="row">
-
-                            <!-- start: konten kiri -->
-                            <div class="col-lg-1">
-                                <div class="pretty p-svg p-curve p-smooth p-bigger">
-                                    <input type="checkbox" class="checkboxes" />
-                                    <div class="state p-success">
-                                        <!-- svg path -->
-                                        <svg class="svg svg-icon" viewBox="0 0 20 20">
-                                            <path
-                                                    d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"
-                                                    style="stroke: white;fill:white;"></path>
-                                        </svg>
-                                        <label class="o-card__item-checkbox" style="padding-left:10px;">
-
-                                        </label>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <!-- end: konten kiri -->
-
-                            <!-- start: konten tengah -->
-                            <div class="col-lg-9">
-
-                                <!-- start: card item content -->
-                                <div class="row">
-                                    <div class="col-lg-3">
-                                        <img src="assets/img/item-img-4.png" alt="item" class="img-responsive">
-                                    </div>
-                                    <div class="col-lg-9">
-
-                                        <div class="o-card__item-content">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <h5>
-                                                        Gamepad Ipega PG-9099 Wolverine with Backlight
-                                                        Bluetooth
-                                                        LED
-                                                    </h5>
-                                                </div>
-
-                                                <div class="col-lg-5 text-left">
-                                                    <p>SKU : ZL-0001BRJ-02</p>
-                                                </div>
-
-                                                <div class="col-lg-7 text-left">
-                                                    <p>Product origin : Gudang Bandung</p>
-                                                </div>
-
-                                                <div class="col-lg-12">
-                                                    <div class="row">
-                                                        <div class="col-lg-4">
-                                                            <div class="c-card__item-point">
-                                                                <h5>
-                                                                    152 poin
-                                                                </h5>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4">
-                                                            <button type="button"
-                                                                    class="btn btn-danger c-card__item-button">
-                                                                bagikan
-                                                            </button>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="col-lg-12">
-                                                    <h2>RP.270.000</h2>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <!-- end: card item content -->
-
-                                <!-- start: tulis catatan content -->
-                                <div class="col-lg-12 c-card__item-catatan">
-                                    <i class="fas fa-pen" style="padding-right: 10px;"></i>
-                                    tulis catatan barang
-                                </div>
-                                <!-- end: tulis catatan content -->
-                            </div>
-                            <!-- end: konten tengah -->
-
-                            <!-- start: konten kanan -->
-                            <div class="col-lg-2 text-center" style="padding: 0px; padding-right: 15px;">
-                                <i class="fas fa-trash-alt" style="font-size: 1.5em;"></i>
-
-                                <!-- start: button increment decrement -->
-                                <div class="input-group" style="margin-top: 5em;">
-                                            <span class="input-group-btn">
-                                                <input type="button" class="btn btn-default" value='-' id='qtyminus'
-                                                       field='quantity'>
-                                            </span>
-
-                                    <input type="text" class="form-control text-center" name="quantity"
-                                           class="qty" value="0">
-
-                                    <span class="input-group-btn">
-                                                <input type="button" class="btn btn-default" value="+" id="qtyplus"
-                                                       field="quantity">+</input>
-                                            </span>
-                                </div>
-                                <!-- end: button increment decrement -->
-
-                            </div>
-                            <!-- start: konten kanan -->
-
-                        </div>
-                    </div>
-                    <!-- end: card item #3-->
-
-                    <!-- start: card item #4 -->
-                    <div class="c-cart-card__item u-mt-10">
-                        <div class="row">
-
-                            <!-- start: konten kiri -->
-                            <div class="col-lg-1">
-                                <div class="pretty p-svg p-curve p-smooth p-bigger">
-                                    <input type="checkbox" class="checkboxes" />
-                                    <div class="state p-success">
-                                        <!-- svg path -->
-                                        <svg class="svg svg-icon" viewBox="0 0 20 20">
-                                            <path
-                                                    d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"
-                                                    style="stroke: white;fill:white;"></path>
-                                        </svg>
-                                        <label class="o-card__item-checkbox" style="padding-left:10px;">
-
-                                        </label>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <!-- end: konten kiri -->
-
-                            <!-- start: konten tengah -->
-                            <div class="col-lg-9">
-
-                                <!-- start: card item content -->
-                                <div class="row">
-                                    <div class="col-lg-3">
-                                        <img src="assets/img/item-img-5.png" alt="item" class="img-responsive">
-                                    </div>
-                                    <div class="col-lg-9">
-
-                                        <div class="o-card__item-content">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <h5>
-                                                        Joystick VR Box Bluetooth Smartphone Ios Android
-                                                        Gamepad
-                                                        Controller
-                                                    </h5>
-                                                </div>
-
-                                                <div class="col-lg-5 text-left">
-                                                    <p>SKU : ZL-0001BRJ-02</p>
-                                                </div>
-
-                                                <div class="col-lg-7 text-left">
-                                                    <p>Product origin : Gudang Jakarta</p>
-                                                </div>
-
-                                                <div class="col-lg-12">
-                                                    <div class="row">
-                                                        <div class="col-lg-4">
-                                                            <div class="c-card__item-point">
-                                                                <h5>
-                                                                    152 poin
-                                                                </h5>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4">
-                                                            <button type="button"
-                                                                    class="btn btn-danger c-card__item-button">
-                                                                bagikan
-                                                            </button>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="col-lg-12">
-                                                    <div class="row">
-                                                        <div class="col-lg-6 text-left">
-                                                            <h2>RP.38.500</h2>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <!-- end: card item content -->
-
-                            </div>
-                            <!-- end: konten tengah -->
-
-                            <!-- start: konten kanan -->
-                            <div class="col-lg-2 text-center" style="padding: 0px; padding-right: 15px;">
-                                <i class="fas fa-trash-alt" style="font-size: 1.5em;"></i>
-
-                                <!-- start: button increment decrement -->
-                                <div class="input-group" style="margin-top: 5em;">
-                                            <span class="input-group-btn">
-                                                <input type="button" class="btn btn-default" value='-' id='qtyminus'
-                                                       field='quantity'>
-                                            </span>
-
-                                    <input type="text" class="form-control text-center" name="quantity"
-                                           class="qty" value="0">
-
-                                    <span class="input-group-btn">
-                                                <input type="button" class="btn btn-default" value="+" id="qtyplus"
-                                                       field="quantity">+</input>
-                                            </span>
-                                </div>
-                                <!-- end: button increment decrement -->
-
-                            </div>
-                            <!-- start: konten kanan -->
-
-                            <!-- start: tulis catatan content -->
-                            <div class="col-lg-11 col-lg-offset-1 c-card__item-catatan">
-                                catatan barang
-                                <div class="col-lg-12 o-item-catatan">
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-                                    commodo
-                                    ligula eget dolor. Aenean massa. Cum sociis
-                                    natoque penatibus et magnis dis parturient montes, nascetur
-                                    ridiculus
-                                    mus.
-                                </div>
-                            </div>
-                            <!-- end: tulis catatan content -->
-
-                        </div>
-                    </div>
-                    <!-- end: card item #-->
 
                 </div>
                 <!-- end: card kanan -->

@@ -10,8 +10,34 @@
 
 	// Cart add remove functions
 	var cart = {
-		'add': function(product_id, quantity) {
-			addProductNotice('Product added to Cart', '<img src="image/demo/shop/product/e11.jpg" alt="">', '<h3><a href="#">Apple Cinema 30"</a> added to <a href="#">shopping cart</a>!</h3>', 'success');
+		'remove': function(product_id, cart_key, object) {
+
+            var basePath = $('meta[name="_basePath"]').attr('content');
+            var baseImagePath = $('meta[name="_baseImagePath"]').attr('content');
+            var image = $(object).parents('.products-cart').find('img');
+            var name = image.attr('title');
+            image = baseImagePath + 'images/50x50/' + image.data('image-name');
+            $.ajax({
+                url: basePath + '/cart/delete',
+                type : 'POST',
+                data : {
+                    cartid : product_id,
+                    _csrfToken: $('meta[name="_csrfToken"]').attr('content')
+                },
+                dataType : 'json',
+                success: function(response){
+
+                    if (response && response.status === "OK") {
+                        addProductNotice('Berhasil dihapus', '<img src="'+image+'" alt="">', name, 'success');
+                        $('.'+cart_key).remove();
+                    } else {
+                        addProductNotice('Gagal dihapus dari cart', '<img src="'+image+'" alt="">', '', 'success');
+                    }
+                },
+                error: function () {
+                    $("#login-popup").modal('show');
+                }
+            });
 		}
 	}
 
