@@ -127,8 +127,7 @@ span.fa-stack{
     margin-bottom: 0;
 }
 .color-form-wrapper .form-group .color-item{
-    width: 70px;
-    padding: 5px;
+    padding: 5px 15px;
     margin: auto 0px;
     border:1px solid #F0F0F0;
     text-align: center;
