@@ -2,7 +2,7 @@
     .module h3.modtitles{
         background: #f2f2f2;
         line-height: 100%;
-        padding: 10px 0 9px 15px;
+        padding: 10px 0 9px 30px;
         border-bottom: 1px solid #e8e8e8;
         margin-bottom: 0;
         margin-top: 0;
@@ -11,13 +11,59 @@
         font-size: 16px;
         font-weight: bold;
         margin-top: 20px;
-        margin-bottom: 20px;
+        margin-bottom: 20px
+        margin-right: auto;
         border: 1px solid #e8e8e8;
+        width: 100vw;
+        left: 50%;
+        right: 50%;
+        margin-left: -2vw;
+        margin-right: -50vw;
     }
+
+    .box-title h2 {
+    background: #dc5054;
+    background: linear-gradient(160deg,#dc5054 0%, #a41d21 100%);
+    background: -webkit-linear-gradient(160deg,#dc5054 0%, #a41d21 100%);
+    background: -moz-linear-gradient(160deg,#dc5054 0%, #a41d21 100%);
+    }
+
+    .box-title h2 {
+    line-height: 48px;
+    background-color: #ff5e00;
+    font-size: 18px;
+    padding: 0 16px;
+    color: #fff;
+    margin: 0;
+    font-weight: bold;
+    border-radius: 0 7px 0 0;
+    position: relative;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.1);
+    }
+
+    .box-title h2:before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-bottom: 8px solid transparent;
+    bottom: -8px;
+    position: absolute;
+    border-right: 8px solid #cc4b00;
+    left: 1px;
+    }
+
+    .box-title {
+    position: relative;
+    top: -5px;
+    min-width: 205px;
+    left: -9px;
+}
+
 </style>
 
 
-<div id="content" style="background: #FFF6F6;">
+<div id="content" style="background: #FFF6F6; background-color: #dc5053; padding: 20px;">
     <div class="container">
         <div class="block">
             <div class="module sohomepage-slider ">
@@ -58,7 +104,12 @@
                             <!--Begin Items-->
                             <div class="ltabs-items ltabs-items-selected items-category-71" data-total="8">
                                 <?php foreach($promotion['voucher_details'] as $vals):?>
-                                <h3 class="modtitles"><span>Kategori <?php echo $vals['product_category']['name']; ?> Pada Fashion Wanita</span></h3>
+                                  <div class="box-title font-ct" style="width: 204px; display:inline-block !important;">
+                                        <h2 class="modtitle">Produk Teratas</h2>
+                                    </div>
+
+                                    <h3 class="modtitles" style="display:inline-block!important;"><span>Kategori <?php echo $vals['product_category']['name']; ?> Pada Fashion Wanita</span></h3>
+
                                 <?php
                                     $chunk = array_chunk($vals['product_category']['products'],5);
                                 ?>
