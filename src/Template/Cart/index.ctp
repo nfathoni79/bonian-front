@@ -76,53 +76,63 @@
                             <!-- end: konten kiri -->
 
                             <!-- start: konten tengah -->
-                            <div class="col-lg-11">
+                            <div class="col-lg-11 p-0">
 
                                 <!-- start: card item content -->
                                 <div class="row">
 
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-3 p-0">
 
                                         <?php foreach($cart['images'] as $image):?>
                                               <img class="img-responsive" src="<?= $this->Url->build($_basePath . 'images/132x132/' . $image); ?>" data-zoom-image="<?= $this->Url->build($_basePath . 'images/600x600/' . $image); ?>" data-image-name="<?= $image;?>" title="<?php echo $cart['name']; ?>" alt="<?php echo $cart['name']; ?>">
                                         <?php break;?>
                                         <?php endforeach;?>
                                     </div>
-                                    <div class="col-lg-9">
+                                    <div class="col-lg-9 pl-0">
 
                                         <div class="o-card__item-content">
-                                                <div class="col-lg-12">
+                                                <div class="col-lg-12 p-0">
                                                     <h5><?php echo h($cart['name']); ?></h5>
                                                 </div>
 
-                                                <div class="col-lg-4 text-left">
+                                                <div class="col-lg-4 text-left p-0">
                                                     <p>SKU : <?php echo $cart['sku']; ?></p>
                                                 </div>
 
-                                                <div class="col-lg-3 text-left">
+                                                <div class="col-lg-3 text-left p-0">
                                                     <p>Origin : <?php echo $cart['product_option_stock']['branch']['name']; ?></p>
                                                 </div>
 
-                                                <div class="col-lg-5 text-left">
+                                                <div class="col-lg-5 text-left pl-0">
                                                     <p><?php echo $cart['variant']; ?></p>
                                                 </div>
 
                                             <div class="col-lg-12">
                                                 <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <div class="c-card__item-point">
-                                                            <h5>
-                                                                <?php echo $cart['point']; ?> poin
-                                                            </h5>
+                                                    <div class="col-lg-2 p-0">
+                                                        <div>
+                                                            <span class="badge u-bg--badge__blue"><?php echo $cart['point']; ?> poin</span>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-4">
-                                                        <button type="button"
+                                                    <div class="col-lg-7 text-center p-0">
+                                                        <!-- <button type="button"
                                                                 class="btn btn-danger c-card__item-button">
                                                             bagikan
-                                                        </button>
+                                                        </button> -->
+
+                                                        <div class="button-group so-quickview cartinfo--static share-container" style="margin-left: 10px; width: 90%; padding: 5px;">
+                                                            <button type="button" class="btn-share" style="background-color:#2c558b; padding-left: 12px; padding-right: 12px;" title="Share" onclick=""><i class="fa fa-facebook"></i><span> </span>
+                                                            </button>
+                                                            <button type="button" class="btn-share" style="background-color:#1e99d0; padding-left: 9px; padding-right: 9px;" title="Share" onclick=""><i class="fa fa-twitter"></i>
+                                                            </button>
+                                                            <button type="button" class="btn-share" style="background-color:#6e5f4c; padding-left: 10px; padding-right: 10px;" title="Share" onclick=""><i class="fa fa-instagram"></i>
+                                                            </button>
+                                                            <button type="button" class="btn-share" style="background-color:#79bc25; padding-left: 10px; padding-right: 10px;" title="Share" onclick=""><i class="fa fa-whatsapp"></i>
+                                                            </button>
+                                                        </div>
+
                                                     </div>
-                                                    <div class="col-lg-4">
+                                                    <div class="col-lg-3 p-0">
                                                         <!-- start: konten kanan -->
                                                         <div class="text-center" style="padding: 0px; padding-right: 15px;">
                                                             <a href="#" data-toggle="modal" data-target="#modalProduct">
@@ -132,14 +142,14 @@
                                                             <!-- start: button increment decrement -->
                                                             <div class="input-group">
                                                                 <span class="input-group-btn">
-                                                                    <input type="button" class="btn btn-default" value='-' id='qtyminus'
+                                                                    <input type="button" class="btn btn-default minus" value='-' id='qtyminus'
                                                                            field='quantity'>
                                                                 </span>
                                                                 <input type="text" class="form-control text-center" name="quantity"
                                                                        class="qty" value="<?php echo $cart['qty']; ?>">
 
                                                                 <span class="input-group-btn">
-                                                                    <input type="button" class="btn btn-default" value="+" id="qtyplus"
+                                                                    <input type="button" class="btn btn-default plus" value="+" id="qtyplus"
                                                                            field="quantity">+</input>
                                                                 </span>
                                                             </div>
@@ -161,7 +171,7 @@
                                 </div>
                                 <!-- end: card item content -->
 
-                                <div class="col-lg-11 col-lg-offset-1 c-card__item-catatan">
+                                <div class="col-lg-12 c-card__item-catatan">
                                     catatan barang
                                     <div class="col-lg-12 o-item-catatan">
                                         Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
@@ -266,9 +276,8 @@
                                 </h5>
                             </div>
                             <div class="col-lg-12 text-center">
-                                <button type="button"
-                                        class="btn btn-danger btn-lg btn-block c-ringkasan-button">
-                                    lanjut berbelanja
+                                <button type="button"class="btn btn-danger btn-lg btn-block c-ringkasan-button">
+                                    Bayar Sekarang (2 Item)
                                 </button>
                             </div>
                         </div>
@@ -290,7 +299,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <h4 class="text-left">
-                                    Samsung Galaxy Gear VR version 1 / SM-R...
+                                    Samsung Galaxy VR version 1 / SM-R...
                                 </h4>
                             </div>
                             <div class="col-lg-6 text-left">
@@ -298,36 +307,26 @@
                                     SKU : ZL-0001BRJ-02
                                 </h5>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="c-card__item-point">
-                                    <h5>
-                                        152 poin
-                                    </h5>
-                                </div>
+                            <div class="col-lg-6 c-wishlist-badge">
+                                <span class="badge u-bg--badge__blue"><?php echo $cart['point']; ?> poin</span>
                             </div>
-                            <div class="col-lg-12">
-                                <h5
-                                        style="text-align:left; margin-top:1em !important; margin-bottom: 1.5em !important">
-                                    Product origin : Gudang Surabaya
-                                </h5>
+                            <div class="col-lg-12 c-wishlist-origin">
+                                <h5> Product origin : Gudang Surabaya </h5>
                             </div>
                             <div style="margin-top: 2em;">
                                 <div class="col-lg-5">
 
                                     <!-- start: button increment decrement -->
                                     <div class="input-group">
-                                                <span class="input-group-btn">
-                                                    <input type="button" class="btn btn-default" value='-' id='qtyminus'
-                                                           field='quantity'>
-                                                </span>
+                                        <span class="input-group-btn">
+                                            <input type="button" class="btn btn-default minus" value='-' id='qtyminus'field='quantity'>
+                                        </span>
 
-                                        <input type="text" class="form-control text-center" name="quantity"
-                                               class="qty" value="0">
+                                        <input type="text" class="form-control text-center" name="quantity"class="qty" value="0">
 
                                         <span class="input-group-btn">
-                                                    <input type="button" class="btn btn-default" value="+" id="qtyplus"
-                                                           field="quantity">+</input>
-                                                </span>
+                                            <input type="button" class="btn btn-default plus" value="+" id="qtyplus"field="quantity">+</input>
+                                        </span>
                                     </div>
                                     <!-- end: button increment decrement -->
 
@@ -346,7 +345,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <h4 class="text-left">
-                                    Samsung Galaxy Gear VR version 1 / SM-R...
+                                    Samsung Galaxy VR version 1 / SM-R...
                                 </h4>
                             </div>
                             <div class="col-lg-6 text-left">
@@ -354,36 +353,26 @@
                                     SKU : ZL-0001BRJ-02
                                 </h5>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="c-card__item-point">
-                                    <h5>
-                                        152 poin
-                                    </h5>
-                                </div>
+                            <div class="col-lg-6 c-wishlist-badge">
+                                <span class="badge u-bg--badge__blue"><?php echo $cart['point']; ?> poin</span>
                             </div>
-                            <div class="col-lg-12">
-                                <h5
-                                        style="text-align:left; margin-top:1em !important; margin-bottom: 1.5em !important">
-                                    Product origin : Gudang Surabaya
-                                </h5>
+                            <div class="col-lg-12 c-wishlist-origin">
+                                <h5> Product origin : Gudang Surabaya </h5>
                             </div>
                             <div style="margin-top: 2em;">
                                 <div class="col-lg-5">
 
                                     <!-- start: button increment decrement -->
                                     <div class="input-group">
-                                                <span class="input-group-btn">
-                                                    <input type="button" class="btn btn-default" value='-' id='qtyminus'
-                                                           field='quantity'>
-                                                </span>
+                                        <span class="input-group-btn">
+                                            <input type="button" class="btn btn-default minus" value='-' id='qtyminus'field='quantity'>
+                                        </span>
 
-                                        <input type="text" class="form-control text-center" name="quantity"
-                                               class="qty" value="0">
+                                        <input type="text" class="form-control text-center" name="quantity"class="qty" value="0">
 
                                         <span class="input-group-btn">
-                                                    <input type="button" class="btn btn-default" value="+" id="qtyplus"
-                                                           field="quantity">+</input>
-                                                </span>
+                                            <input type="button" class="btn btn-default plus" value="+" id="qtyplus"field="quantity">+</input>
+                                        </span>
                                     </div>
                                     <!-- end: button increment decrement -->
 
@@ -402,7 +391,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <h4 class="text-left">
-                                    Samsung Galaxy Gear VR version 1 / SM-R...
+                                    Samsung Galaxy VR version 1 / SM-R...
                                 </h4>
                             </div>
                             <div class="col-lg-6 text-left">
@@ -410,36 +399,26 @@
                                     SKU : ZL-0001BRJ-02
                                 </h5>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="c-card__item-point">
-                                    <h5>
-                                        152 poin
-                                    </h5>
-                                </div>
+                            <div class="col-lg-6 c-wishlist-badge">
+                                <span class="badge u-bg--badge__blue"><?php echo $cart['point']; ?> poin</span>
                             </div>
-                            <div class="col-lg-12">
-                                <h5
-                                        style="text-align:left; margin-top:1em !important; margin-bottom: 1.5em !important">
-                                    Product origin : Gudang Surabaya
-                                </h5>
+                            <div class="col-lg-12 c-wishlist-origin">
+                                <h5> Product origin : Gudang Surabaya </h5>
                             </div>
                             <div style="margin-top: 2em;">
                                 <div class="col-lg-5">
 
                                     <!-- start: button increment decrement -->
                                     <div class="input-group">
-                                                <span class="input-group-btn">
-                                                    <input type="button" class="btn btn-default" value='-' id='qtyminus'
-                                                           field='quantity'>
-                                                </span>
+                                        <span class="input-group-btn">
+                                            <input type="button" class="btn btn-default minus" value='-' id='qtyminus'field='quantity'>
+                                        </span>
 
-                                        <input type="text" class="form-control text-center" name="quantity"
-                                               class="qty" value="0">
+                                        <input type="text" class="form-control text-center" name="quantity"class="qty" value="0">
 
                                         <span class="input-group-btn">
-                                                    <input type="button" class="btn btn-default" value="+" id="qtyplus"
-                                                           field="quantity">+</input>
-                                                </span>
+                                            <input type="button" class="btn btn-default plus" value="+" id="qtyplus"field="quantity">+</input>
+                                        </span>
                                     </div>
                                     <!-- end: button increment decrement -->
 
@@ -452,20 +431,6 @@
                         </div>
                     </div>
                     <!-- end: card wishlist content -->
-
-                    <!-- start: card wishlist content -->
-                    <div class="c-cart-card-wishlist__content">
-                        <div class="row">
-                            <div class="col-lg-12 text-center">
-                                <a class="btn btn-link c-wishlist-button-more" href="#" role="button">
-                                    lihat semua wishlist
-                                </a>
-                            </div>
-                        </div>
-                        <!-- end: card wishlist content -->
-
-                    </div>
-                    <!-- end: card wishlist -->
 
                 </div>
 
