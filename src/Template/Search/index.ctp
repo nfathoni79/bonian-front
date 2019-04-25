@@ -491,6 +491,7 @@ $this->Html->script([
                 },
                 success: function(response){
                     $("#product-container-layout").html(response);
+                    history.replaceState(null, null, target);
                     paginationClick();
                 },
                 error: function () {
@@ -501,7 +502,7 @@ $this->Html->script([
         }
 
 
-        
+
 
         function paginationClick() {
             var container = document.querySelector('.ajax-pagination');

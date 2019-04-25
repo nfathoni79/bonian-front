@@ -192,7 +192,16 @@ class SearchController  extends AuthController
 
         }
 
-        $pricing = $this->_price($query_string);
+
+        if (!isset($query_string['min_price']) && !isset($query_string['max_price'])) {
+            $pricing = $this->_price($query_string);
+        } else {
+            $pricing = [
+                'min_price' => $query_string['min_price'],
+                'max_price' => $query_string['max_price'],
+            ];
+        }
+
         $variants = $this->_variant($query_string);
 
         $this->set(compact('products', 'pagination', 'pricing', 'variants'));
