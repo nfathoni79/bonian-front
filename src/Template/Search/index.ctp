@@ -591,16 +591,16 @@ $this->Html->script([
 
         $('input.variant-value').change(function() {
             parsed = queryString.parse(location.search, {arrayFormat: 'index'});
-            parsed.options = parsed.options || [];
+            parsed.variants = parsed.variants || [];
             var value = String($(this).data('id'));
             if(this.checked) {
-                if (parsed.options.indexOf(value) === -1) {
-                    parsed.options.push(value);
+                if (parsed.variants.indexOf(value) === -1) {
+                    parsed.variants.push(value);
                 }
             } else {
-                var index = parsed.options.indexOf(value);
+                var index = parsed.variants.indexOf(value);
                 if (index > -1) {
-                    parsed.options.splice(index, 1);
+                    parsed.variants.splice(index, 1);
                 }
             }
             history.replaceState(null, null, '?' + queryString.stringify(parsed, {strict: true, arrayFormat: 'index'}));
@@ -615,10 +615,12 @@ $this->Html->script([
             $('#pricing-range').slider({
 
                 range : true,
-                min : min_price >= 1000 ? (min_price - 1000) : min_price ,
-                max : max_price + 1000 ,
+                //min : min_price >= 1000 ? (min_price - 1000) : min_price ,
+                //max : max_price + 1000 ,
+                min: 0,
+                max: 100000000,
                 values : window.startRangeValues,
-                step : 1000,
+                step : 10000,
 
                 slide : function(event, ui){
 
