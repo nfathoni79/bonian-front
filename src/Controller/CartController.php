@@ -33,28 +33,41 @@ class CartController  extends AuthController
             ->withStringBody(json_encode($error));
     }
 
+    public function delete()
+    {
+        $this->disableAutoRender();
+        $this->request->allowMethod('post');
+        try {
+            $delete = $this->Api->makeRequest($this->Auth->user('token'))
+                ->post('v1/web/cart/delete', [
+                    'form_params' => $this->request->getData()
+                ]);
+            if ($response = $this->Api->success($delete)) {
+                $error = $response->parse();
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $this->Api->handle($e);
+            $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+        }
+
+        return $this->response->withType('application/json')
+            ->withStringBody(json_encode($error));
+    }
+
+
     public function index(){
 
         try {
-            $cart = $this->Api->makeRequest($this->Auth->user('token'))
+            $carts = $this->Api->makeRequest($this->Auth->user('token'))
                 ->get('v1/web/cart/view');
-            if ($response = $this->Api->success($cart)) {
+            if ($response = $this->Api->success($carts)) {
                 $json = $response->parse();
-//                debug($json);
-//                exit;
-//                $details = ['is_error' => false, 'data' => $json['result']['data'], 'variant' => ['warna', 'ukuran']];
+                $carts = ['carts' => $json['result']['data'], 'pagging' => $json['paging']];
             }
         } catch(\GuzzleHttp\Exception\ClientException $e) {
-            $error = json_decode($e->getResponse()->getBody()->getContents(), true);
-//            $details = ['is_error' => true, 'message' => 'Produk tidak ditemukan'];
+            //TODO set log
         }
-
-//        if($this->request->is('Ajax')){
-//            $this->disableAutoRender();
-//            return $this->response->withType('application/json')
-//                ->withStringBody(json_encode($details));
-//        }else{
-//            $this->set(compact('details'));
-//        }
+//        debug($carts);exit;
+        $this->set(compact('carts'));
     }
 }

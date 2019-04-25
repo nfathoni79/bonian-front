@@ -78,82 +78,80 @@
                                         <span class="handle pull-left"></span>
                                         <p class="title-cart-h6">Keranjang Belanja</p>
                                         <span class="total-shopping-cart cart-total-full">
-                                                <span class="items_cart">2 </span><span class="items_cart1">item(s)</span>
-                                            </span>
+                                            <span class="items_cart"><?php echo ($_carts['pagging']['count'] > 0) ? $_carts['pagging']['count'] : '0'; ?></span> <span class="items_cart1">item(s)</span>
+                                        </span>
                                     </div>
                                 </a>
 
                                 <ul class="dropdown-menu pull-right shoppingcart-box" role="menu">
+                                    <?php if(!empty($_carts['carts'])):?>
                                     <li>
                                         <table class="table table-striped">
                                             <tbody>
-                                            <tr>
+                                            <?php foreach($_carts['carts'] as $key => $cart):?>
+                                            <tr class="products-cart cart-<?php echo $key ;?>">
                                                 <td class="text-center" style="width:70px">
-                                                    <a href="product.html">
-                                                        <img src="image/catalog/demo/product/80/1.jpg" style="width:70px" alt="Yutculpa ullamcon" title="Yutculpa ullamco" class="preview">
+                                                    <a href="<?php echo $this->Url->build(['controller' => 'products', 'action' => 'detail',$cart['slug'] ]);?>">
+                                                        <?php foreach($cart['images'] as $image):?>
+                                                        <img src="<?= $this->Url->build($_basePath . 'images/60x60/' . $image); ?>" data-zoom-image="<?= $this->Url->build($_basePath . 'images/600x600/' . $image); ?>" data-image-name="<?= $image;?>" title="<?php echo $cart['name']; ?>" alt="<?php echo $cart['name']; ?>" class="preview">
+                                                        <?php break;?>
+                                                        <?php endforeach;?>
                                                     </a>
                                                 </td>
-                                                <td class="text-left"> <a class="cart_product_name" href="product.html">Yutculpa ullamco</a>
+                                                <td class="text-left">
+                                                    <a class="cart_product_name" href="<?php echo $this->Url->build(['controller' => 'products', 'action' => 'detail',$cart['slug'] ]);?>">
+                                                        <?php echo $this->Text->truncate(
+                                                        h($cart['name']),
+                                                        25,
+                                                        [
+                                                        'ellipsis' => '...',
+                                                        'exact' => false
+                                                        ]
+                                                        );?>
+                                                    </a>
                                                 </td>
-                                                <td class="text-center">x1</td>
-                                                <td class="text-center">$80.00</td>
+                                                <td class="text-center">x<?= $cart['qty'];?></td>
+                                                <td class="text-center">Rp. <?php echo $this->Number->format($cart['total']);?></td>
                                                 <td class="text-right">
-                                                    <a href="product.html" class="fa fa-edit"></a>
-                                                </td>
-                                                <td class="text-right">
-                                                    <a onclick="cart.remove('2');" class="fa fa-times fa-delete"></a>
+                                                    <a onclick="cart.remove('<?php echo $cart['cartid']?>', 'cart-<?php echo $key ;?>', this);" class="fa fa-times fa-delete"></a>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td class="text-center" style="width:70px">
-                                                    <a href="product.html">
-                                                        <img src="image/catalog/demo/product/80/2.jpg" style="width:70px" alt="Xancetta bresao" title="Xancetta bresao" class="preview">
-                                                    </a>
+                                            <tr class="cart-<?php echo $key ;?>">
+                                                <td class="text-left" style="width:70px" colspan="5">
+                                                    Varian <?= $cart['variant'];?>
                                                 </td>
-                                                <td class="text-left"> <a class="cart_product_name" href="product.html">Xancetta bresao</a>
-                                                </td>
-                                                <td class="text-center">x1</td>
-                                                <td class="text-center">$60.00</td>
-                                                <td class="text-right">
-                                                    <a href="product.html" class="fa fa-edit"></a>
-                                                </td>
-                                                <td class="text-right">
-                                                    <a onclick="cart.remove('1');" class="fa fa-times fa-delete"></a>
+                                            </tr>
+                                            <?php endforeach;?>
+                                            </tbody>
+                                        </table>
+                                    </li>
+                                    <li>
+                                        <table class="table table-striped">
+                                            <tbody>
+                                            </tr>
+                                            <td class="text-left">
+                                                <?php echo ($_carts['pagging']['count']-$_carts['pagging']['current'])?> produk lainnya
+                                            </td>
+                                            <td class="text-right">
+                                                <a class="btn view-cart" href="<?php echo $this->Url->build(['controller' => 'cart', 'action' => 'index' ]);?>"><i class="fa fa-shopping-cart"></i>Keranjang belanja</a>&nbsp;
+                                            </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </li>
+                                    <?php else:?>
+                                    <li>
+                                        <table class="table table-striped">
+                                            <tbody>
+                                            </tr>
+                                                <td class="text-center">
+                                                    Keranjang belanja kosong.
                                                 </td>
                                             </tr>
                                             </tbody>
                                         </table>
                                     </li>
-                                    <li>
-                                        <div>
-                                            <table class="table table-bordered">
-                                                <tbody>
-                                                <tr>
-                                                    <td class="text-left"><strong>Sub-Total</strong>
-                                                    </td>
-                                                    <td class="text-right">$140.00</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-left"><strong>Eco Tax (-2.00)</strong>
-                                                    </td>
-                                                    <td class="text-right">$2.00</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-left"><strong>VAT (20%)</strong>
-                                                    </td>
-                                                    <td class="text-right">$20.00</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-left"><strong>Total</strong>
-                                                    </td>
-                                                    <td class="text-right">$162.00</td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                            <p class="text-center total-carts"> <a class="btn view-cart" href="cart.html"><i class="fa fa-shopping-cart"></i>View Cart</a>&nbsp;&nbsp;&nbsp; <a class="btn btn-mega checkout-cart" href="checkout.html"><i class="fa fa-share"></i>Checkout</a>
-                                            </p>
-                                        </div>
-                                    </li>
+                                    <?php endif;?>
                                 </ul>
                             </div>
 
