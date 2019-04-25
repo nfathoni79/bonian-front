@@ -233,6 +233,7 @@
 
                 <!-- start: list produk -->
                 <div id="product-container-layout">
+                <?php if (isset($products)) : ?>
                 <div class="products-list row nopadding-xs so-filter-gird" style="margin-top: 15px;">
                     <?php foreach($products as $product) : ?>
                         <!-- start: item Produk -->
@@ -355,7 +356,9 @@
                         </div>
                         <!-- end: item produk -->
                     <?php endforeach; ?>
-
+                <?php else : ?>
+                    Product tidak di temukan
+                <?php endif; ?>
                 </div>
                 <!-- end: list produk -->
 
@@ -501,7 +504,14 @@ $this->Html->script([
 
         }
 
-
+        function querystringParse()
+        {
+            parsed = queryString.parse(location.search, {arrayFormat: 'index'});
+            if (parsed.page) {
+                delete parsed.page;
+            }
+            return parsed;
+        }
 
 
         function paginationClick() {
@@ -539,6 +549,7 @@ $this->Html->script([
             enableLinks: true,
             //data: data,
             wrapNodeText: true,
+            showCheckbox: true,
             dataUrl: {
                 url: '<?= $this->Url->build(['action' => 'loadCategory', 'prefix' => false, '?' => $this->request->getQueryParams()], ['escape' => false]); ?>'
             },
@@ -548,20 +559,18 @@ $this->Html->script([
                 node.$el.append($(`<span class="category-counter">(${node.total})</span>`));
             },
             onNodeSelected: function(event, data) {
-                // Your logic goes here
-
-                (function checkedNode(arg) {
+                /*(function checkedNode(arg) {
                     var x = $tree.treeview('getParents', arg);
                     if (x != undefined) {
                         x.forEach(function(o) {
-                            $(o.$el[0]).addClass('node-checked');
+                            //$(o.$el[0]).addClass('node-checked');
                             checkedNode(o);
                         });
 
                     }
-                })(data);
-
-                parsed = queryString.parse(location.search, {arrayFormat: 'index'});
+                })(data);*/
+                $tree.treeview('checkNode', [ data, { silent: false } ]);
+                parsed = querystringParse();
                 parsed.category_id = $(data.$el[0]).attr('id');
                 history.replaceState(null, null, '?' + queryString.stringify(parsed, {strict: true, arrayFormat: 'index'}));
                 refreshPage();
@@ -569,28 +578,39 @@ $this->Html->script([
             },
             onNodeUnselected: function(event, data) {
                 // Your logic goes here
-                if (typeof $tree != 'undefined') {
-                    $(data.$el[0]).removeClass('node-checked')
-                        .removeClass('node-selected');
 
-                    (function uncheckedNode(arg) {
+
+
+                if (typeof $tree != 'undefined') {
+
+                    /*(function uncheckedNodes(arg) {
                         var x = $tree.treeview('getParents', arg);
                         if (x != undefined) {
                             x.forEach(function(o) {
-                                $(o.$el[0]).removeClass('node-checked')
-                                    .removeClass('node-selected');
-                                uncheckedNode(o);
+                                //$tree.treeview('uncheckNode', [ o, { silent: false } ]);
+                                //$tree.treeview('unselectNode', [ o, { silent: false } ]);
+                                //$(o.$el[0])
+                                //    .removeClass('node-selected');
+                                uncheckedNodes(o);
                             });
 
                         }
-                    })(data);
+                    })(data);*/
+                    $(data.$el)
+                        .removeClass('node-selected')
+                        .removeClass('node-checked')
+                        .find('.check-icon')
+                        .removeClass('glyphicon-check')
+                        .addClass('glyphicon-unchecked');
+
+                    
                 }
             }
         });
 
 
         $('input.variant-value').change(function() {
-            parsed = queryString.parse(location.search, {arrayFormat: 'index'});
+            parsed = querystringParse();
             parsed.variants = parsed.variants || [];
             var value = String($(this).data('id'));
             if(this.checked) {
@@ -634,7 +654,10 @@ $this->Html->script([
                 },
                 stop: function(event, ui) {
                     //console.log('released handle');
-                    parsed = queryString.parse(location.search, {arrayFormat: 'bracket'});
+                    parsed =querystringParse();
+                    if (parsed.page) {
+                        delete parsed.page;
+                    }
                     parsed.min_price = $(this).slider("values", 0);
                     parsed.max_price = $(this).slider("values", 1);
                     history.replaceState(null, null, '?' + queryString.stringify(parsed, {strict: true, arrayFormat: 'index'}));
