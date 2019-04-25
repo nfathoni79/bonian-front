@@ -149,7 +149,9 @@ class SearchController  extends AuthController
             //return $this->redirect(['action' => 'index', 'prefix' => false, '?' => $query_string]);
         }
 
-        $this->set(compact('products', 'pagination'));
+        $pricing = $this->_price($query_string);
+
+        $this->set(compact('products', 'pagination', 'pricing'));
 
     }
 
@@ -173,6 +175,34 @@ class SearchController  extends AuthController
 
         return $this->response->withType('application/json')
             ->withStringBody(json_encode($category));
+    }
+
+
+    protected function _price($query_string)
+    {
+        try {
+            $this->Api->addHeader('bid', $this->request->getCookie('bid'));
+            $data = $this->Api->makeRequest()
+                ->get('v1/product-filters/price-range', [
+                    'query' => array_filter($query_string)
+                ]);
+            if ($response = $this->Api->success($data)) {
+                $json = $response->parse();
+                $data = $json['result']['data'];
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            //debug($e->getResponse()->getBody()->getContents());exit;
+        }
+        return $data;
+    }
+
+    public function loadPrice()
+    {
+        $this->disableAutoRender();
+        $query_string = $this->request->getQueryParams();
+        $data = $this->_price($query_string);
+        return $this->response->withType('application/json')
+            ->withStringBody(json_encode($data));
     }
 
 

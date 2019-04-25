@@ -41,7 +41,7 @@
                         <!-- - - - - - - - - - - - - - Price - - - - - - - - - - - - - - - - -->
                         <div class="table_cell" style="padding-top:20px;">
                             <fieldset>
-                                <div id="slider"
+                                <div id="pricing-range"
                                      class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
                                     <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
                                     <span class="ui-slider-handle ui-state-default ui-corner-all"></span>
@@ -52,10 +52,10 @@
                                                 Harga
                                             </span>
                                     <br>
-                                    <span class="min_val">$188.73</span> -
-                                    <span class="max_val">$335.15</span>
-                                    <input type="hidden" name="" class="min_value" value="188.73">
-                                    <input type="hidden" name="" class="max_value" value="335.15">
+                                    <span class="min_val"><?= $pricing['min_price']; ?></span> -
+                                    <span class="max_val"><?= $pricing['max_price']; ?></span>
+                                    <input type="hidden" name="min_price" class="min_value" value="<?= $pricing['min_price']; ?>">
+                                    <input type="hidden" name="max_price" class="max_value" value="<?= $pricing['max_price']; ?>">
                                 </div>
                             </fieldset>
                         </div>
@@ -413,7 +413,7 @@
                                             <div class="order-num">Orders (0)</div>
                                         </div>
                                         <div class="price">
-                                            <span class="price-new">$254.00 </span>
+                                            <span class="price-new">Rp. <?= $this->Number->format($product['price_sale']); ?></span>
                                         </div>
                                         <div class="button-group so-quickview cartinfo--static">
                                             <button type="button" class="addToCart" title="Add to cart"
@@ -645,6 +645,49 @@ $this->Html->script([
                 }
             }
         });
+
+
+        if($('#pricing-range').length) {
+            var min_price = $('input[name="min_price"]').val();
+            var max_price = $('input[name="max_price"]').val();
+            window.startRangeValues = [min_price, max_price];
+            $('#pricing-range').slider({
+
+                range : true,
+                min : min_price > 5000 ? (parseInt(min_price) - 1000) : min_price,
+                max : parseInt(max_price) + 50000,
+                values : window.startRangeValues,
+                step : 10000,
+
+                slide : function(event, ui){
+
+                    var min = numeral(ui.values[0]).format('0,0'),
+                        max = numeral(ui.values[1]).format('0,0'),
+                        range = $(this).siblings('.range');
+
+                    range.children('.min_value').val(min).next().val(max);
+                    range.children('.min_val').text('Rp.' + min).next().text('Rp.' + max);
+
+                },
+
+                create : function(event, ui){
+
+                    var $this = $(this),
+                        min = numeral($this.slider("values", 0)).format('0,0'),
+                        max = numeral($this.slider("values", 1)).format('0,0'),
+                        range = $this.siblings('.range');
+
+                    range.children('.min_value').val(min).next().val(max);
+
+                    range.children('.min_val').text('Rp.' + min).next().text('Rp.' + max);
+
+                }
+
+            });
+
+        }
+
+
     });
 </script>
 <?php $this->end(); ?>
