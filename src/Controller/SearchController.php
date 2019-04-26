@@ -139,10 +139,11 @@ class SearchController  extends AuthController
 
     protected function _index($query_string) {
         try {
+            $query_string['limit'] = 16;
             $this->Api->addHeader('bid', $this->request->getCookie('bid'));
             $search = $this->Api->makeRequest()
                 ->get('v1/product-filters', [
-                    'query' => array_filter($this->request->getQueryParams())
+                    'query' => array_filter($query_string)
                 ]); //print_r($search->getBody()->getContents());exit;
             if ($response = $this->Api->success($search)) {
                 $response = $response->parse();
