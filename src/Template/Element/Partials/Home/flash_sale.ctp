@@ -1,3 +1,36 @@
+<style>
+    .card-wrapper-title {
+          background-image: linear-gradient(to right, #e22b2b, #8f1b1d);
+          width: 360px;
+          padding: 12px;
+          padding-left: 20px;
+          margin-top: -20px;
+          margin-left: -20px;
+          border: 5px;
+          border-radius: 10px 0px 15px 0px;
+          -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+          -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+          box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+          color: white;
+          font-size: 18px;
+    }
+    .products-list.grid .product-item-container .right-block {
+          clear: both;
+          padding: 10px 5px 20px 4px;
+          text-align: center;
+          position: relative;
+    }
+    .badge {
+          min-width: 63px;
+          padding: 7px 0px;
+          margin-top: 0;
+          border-radius: 20px;
+    }
+    div.col-lg-7{
+      padding: 0;
+    }
+</style>
+
 <?php if ($flashSales['end']) : ?>
 <!-- flash sale Products -->
 <div class="card-wrapper">
@@ -30,7 +63,7 @@
                                 <button type="button" style="margin-left:10px;" onclick="wishlist.add('<?= $flash_sale['product']['id']; ?>', this);" class="iframe-link btn-button quickview quickview_handler visible-lg" title="Wishlist" data-fancybox-type="iframe"><i class="fa fa-heart"></i><span></span></button>
                                 <!--end quickview-->
                             </div>
-                            <div class="right-block right-b" style="min-height: 160px;">
+                            <div class="right-block right-b" style="min-height: 140px;">
                                 <?php /*<ul class="colorswatch">
                                     <li class="item-img active" data-src="image/catalog/demo/product/electronic/600x600/9.jpg"><a href="javascript:void(0);" title="gray"><img src="image/demo/colors/gray.jpg"  alt="image"></a></li>
                                     <li class="item-img" data-src="image/catalog/demo/product/electronic/600x600/10.jpg"><a href="javascript:void(0);" title="pink"><img src="image/demo/colors/pink.jpg"  alt="image"></a></li>
@@ -40,7 +73,7 @@
                                 <div class="caption">
                                     <div class="row">
                                         <div class="col-lg-7">
-                                            <div class="progress" style="margin-top: 10px;margin-bottom: 0px; height: 10px !important;">
+                                            <div class="progress" style="margin: 3px 3px 0px 16px; height: 10px !important;">
                                                 <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="<?= $flash_sale['product']['salestock']; ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?= $flash_sale['product']['salestock']; ?>%"></div>
                                             </div>
                                             <small><?= $flash_sale['product']['noted']; ?></small>

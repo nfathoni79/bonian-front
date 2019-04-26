@@ -1,12 +1,14 @@
 <style>
   div.module.custom-listingtab .owl2-controls .owl2-nav {
       position: absolute;
-      top: 0px;
+      top: -12px;
       right: 15px;
   }
-
   .products-list .product-layout .product-item-container{
       box-shadow:none !important;
+      max-height: 270px;
+      min-height: 170px;
+      margin: 10px !important;
   }
 </style>
 <div class="card-wrapper" >
@@ -42,7 +44,7 @@
                                     <?php foreach($topProducts as $vals): ?>
                                     <div class="ltabs-item products">
                                         <div class="item-inner product-thumb transition product-layout">
-                                            <div class="product-item-container" style="min-height: 210px; margin-top:15px !important;">
+                                            <div class="product-item-container" style="min-height: 200px; ">
                                                 <div class="left-block left-b">
                                                     <div class="product-image-container">
                                                         <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug']]); ?>" target="_self" title="<?= h($vals['name']); ?>">
@@ -66,7 +68,7 @@
                                                     <!--end quickview-->
                                                 </div>
 
-                                                <div class="right-block right-b" style="min-height: 140px;">
+                                                <div class="right-block right-b" style="min-height: 120px;">
                                                     <div class="row">
                                                         <div class="col-lg-7"  style="width: 47.333333%!important; display: inline-block;">
                                                             <div class="rating">
@@ -126,7 +128,7 @@
                                   <?php foreach($popularProducts as $vals): ?>
                                   <div class="ltabs-item products">
                                       <div class="item-inner product-thumb transition product-layout">
-                                          <div class="product-item-container" style="min-height: 210px; margin-top:15px !important;">
+                                          <div class="product-item-container" style="min-height: 200px; ">
                                               <div class="left-block left-b">
                                                   <div class="product-image-container">
                                                       <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug']]); ?>" target="_self" title="<?= h($vals['name']); ?>">
@@ -150,7 +152,7 @@
                                                   <!--end quickview-->
                                               </div>
 
-                                              <div class="right-block right-b" style="min-height: 140px;">
+                                              <div class="right-block right-b" style="min-height: 120px;">
                                                   <div class="row">
                                                       <div class="col-lg-7"  style="width: 47.333333%!important; display: inline-block;">
                                                           <div class="rating">
@@ -211,7 +213,7 @@
                                   <?php foreach($newProducts as $vals): ?>
                                   <div class="ltabs-item products">
                                       <div class="item-inner product-thumb transition product-layout">
-                                          <div class="product-item-container" style="min-height: 210px; margin-top:15px !important;">
+                                          <div class="product-item-container" style="min-height: 200px;">
                                               <div class="left-block left-b">
                                                   <div class="product-image-container">
                                                       <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug']]); ?>" target="_self" title="<?= h($vals['name']); ?>">
@@ -235,7 +237,7 @@
                                                   <!--end quickview-->
                                               </div>
 
-                                              <div class="right-block right-b" style="min-height: 140px;">
+                                              <div class="right-block right-b" style="min-height: 120px;">
                                                   <div class="row">
                                                       <div class="col-lg-7"  style="width: 47.333333%!important; display: inline-block;">
                                                           <div class="rating">
