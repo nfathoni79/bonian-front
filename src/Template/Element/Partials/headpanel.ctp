@@ -5,14 +5,14 @@
     <div class="header-top hidden-compact">
         <div class="container">
             <div class="row">
-                <div class="header-top-left  col-lg-5 col-sm-5 col-md-5 hidden-xs">
+                <div class="header-top-left  col-lg-5 col-sm-5 col-md-6 hidden-xs">
                     <ul class="list-inlines">
                         <li class="hidden-xs">
                             Default welcome msg!
                         </li>
                     </ul>
                 </div>
-                <div class="header-top-right collapsed-block col-lg-7 col-md-7 col-sm-7 col-xs-12">
+                <div class="header-top-right collapsed-block col-lg-7 col-md-6 col-sm-7 col-xs-12">
                     <ul class="top-link list-inline">
                         <li><a class="link-lg" href="#">Menjadi Member Zolaku</a></li>
                         <li><a class="link-lg" href="<?= $this->Url->build(['controller' => 'Promotion', 'action' => 'pointRedeem', 'prefix' => false]);?>">Penukaran Point</a></li>
@@ -84,12 +84,15 @@
                                 </a>
 
                                 <ul class="dropdown-menu pull-right shoppingcart-box" role="menu">
-                                    <?php if(!empty($_carts['carts'])):?>
                                     <li>
                                         <table class="table table-striped" id="cart-table">
-                                            <tbody>
+                                            <tr class="cart-empty" style="display:none;">
+                                                <td class="text-center" colspan="5">
+                                                    Keranjang belanja kosong.
+                                                </td>
+                                            </tr>
                                             <?php foreach($_carts['carts'] as $key => $cart):?>
-                                            <tr class="products-cart cart-<?php echo $key ;?>">
+                                            <tr class="products-cart cart-<?php echo $key ;?>" id="<?php echo $cart['sku']; ;?>">
                                                 <td class="text-center" style="width:70px">
                                                     <a href="<?php echo $this->Url->build(['controller' => 'products', 'action' => 'detail',$cart['slug'] ]);?>">
                                                         <?php foreach($cart['images'] as $image):?>
@@ -122,36 +125,13 @@
                                                 </td>
                                             </tr>
                                             <?php endforeach;?>
-                                            </tbody>
-                                        </table>
-                                    </li>
-                                    <li>
-                                        <table class="table table-striped">
-                                            <tbody>
-                                            </tr>
-                                            <td class="text-left">
-                                                <span class="cart-counter"><?php echo ($_carts['pagging']['count']-$_carts['pagging']['current'])?></span> produk lainnya
-                                            </td>
-                                            <td class="text-right">
-                                                <a class="btn view-cart" href="<?php echo $this->Url->build(['controller' => 'cart', 'action' => 'index' ]);?>"><i class="fa fa-shopping-cart"></i>Keranjang belanja</a>&nbsp;
-                                            </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </li>
-                                    <?php else:?>
-                                    <li>
-                                        <table class="table table-striped">
-                                            <tbody>
-                                            </tr>
-                                                <td class="text-center">
-                                                    Keranjang belanja kosong.
+                                            <tr class="cart-button"  style="display:none;">
+                                                <td class="text-center" colspan="5">
+                                                    <a class="btn view-cart" href="<?php echo $this->Url->build(['controller' => 'cart', 'action' => 'index' ]);?>"><i class="fa fa-shopping-cart"></i>Keranjang belanja</a>&nbsp;
                                                 </td>
                                             </tr>
-                                            </tbody>
                                         </table>
                                     </li>
-                                    <?php endif;?>
                                 </ul>
                             </div>
 
@@ -184,28 +164,28 @@
                 <div class="render-alert"></div>
 
                 <?= $this->Form->create(null, [
-                        'url' => [
-                                'controller' => 'Login',
-                                'action' => 'index',
-                                'prefix' => false
-                        ],
-                        'id' => 'login-form',
-                        'class' => 'ajax-helper'
+                'url' => [
+                'controller' => 'Login',
+                'action' => 'index',
+                'prefix' => false
+                ],
+                'id' => 'login-form',
+                'class' => 'ajax-helper'
                 ]); ?>
-                    <div class="form-group">
-                        <label for="input-email">Email atau nomor HP</label>
-                        <input type="text" name="email" value="" placeholder="Masukan nomor telepon di awali +62" class="form-control" />
-                    </div>
+                <div class="form-group">
+                    <label for="input-email">Email atau nomor HP</label>
+                    <input type="text" name="email" value="" placeholder="Masukan nomor telepon di awali +62" class="form-control" />
+                </div>
 
-                    <div class="form-group">
-                        <label for="input-email">Password</label>
-                        <input type="password" name="password" value="" placeholder="Masukkan password" class="form-control" />
-                    </div>
+                <div class="form-group">
+                    <label for="input-email">Password</label>
+                    <input type="password" name="password" value="" placeholder="Masukkan password" class="form-control" />
+                </div>
 
-                    <div class="form-group">
-                        <label></label>
-                        <button type="submit" class="btn btn-primary btn-block">Masuk</button>
-                    </div>
+                <div class="form-group">
+                    <label></label>
+                    <button type="submit" class="btn btn-primary btn-block">Masuk</button>
+                </div>
                 <?= $this->Form->end(); ?>
 
                 <div style="width: 100%; height: 13px; border-bottom: 1px solid #d1d1d1; text-align: center; margin: 25px auto;">
@@ -259,13 +239,13 @@
             </div>
             <div class="modal-body">
                 <?= $this->Form->create(null, [
-                    'url' => [
-                        'controller' => 'Register',
-                        'action' => 'index',
-                        'prefix' => false
-                    ],
-                    'id' => 'form-register',
-                    'class' => 'ajax-helper_'
+                'url' => [
+                'controller' => 'Register',
+                'action' => 'index',
+                'prefix' => false
+                ],
+                'id' => 'form-register',
+                'class' => 'ajax-helper_'
                 ]); ?>
 
                 <div class="row">
@@ -398,19 +378,19 @@
         var formReg = $("#form-register");
 
         formReg.find('.phone-number').keyup(function(){
-           var phone = $(this).val();
-           var btn_otp = formReg.find('.btn-otp');
-           if (btn_otp.attr('wait') === '1') {
-               btn_otp.attr('disabled', true);
-           }
-           else if (phone.match(/^0\d{9,11}$/)) {
-               $(this).val('+62' + phone.substring(1));
-               btn_otp.attr('disabled', false);
-           } else if (phone.match(/^\+\d{11,}$/)) {
-               btn_otp.attr('disabled', false);
-           } else {
-               btn_otp.attr('disabled', true);
-           }
+            var phone = $(this).val();
+            var btn_otp = formReg.find('.btn-otp');
+            if (btn_otp.attr('wait') === '1') {
+                btn_otp.attr('disabled', true);
+            }
+            else if (phone.match(/^0\d{9,11}$/)) {
+                $(this).val('+62' + phone.substring(1));
+                btn_otp.attr('disabled', false);
+            } else if (phone.match(/^\+\d{11,}$/)) {
+                btn_otp.attr('disabled', false);
+            } else {
+                btn_otp.attr('disabled', true);
+            }
         });
 
 

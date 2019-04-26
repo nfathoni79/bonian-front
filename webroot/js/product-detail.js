@@ -9,6 +9,7 @@ $.ajax({
         data = result.data;
         variantAll = result.variant;
         startInit();
+        cartDropdown();
     }
 });
 
@@ -61,12 +62,28 @@ function startInit(){
 
 }
 
+
+function cartDropdown(){
+    var cart = parseInt($('.items_cart').text());
+    var cartcounter = parseInt($('.cart-counter').text());
+    if(cart > 0){
+        $('.cart-button').show();
+        $('.cart-empty').hide();
+    }else{
+        $('.cart-button').hide();
+        $('.cart-empty').show();
+    }
+
+}
+
 function sendFrom(callback){
 
     var basePath = $('meta[name="_basePath"]').attr('content');
     var baseImagePath = $('meta[name="_baseImagePath"]').attr('content');
     var image = $('.product-image-zoom');
+    var imagename =image.data('image-name');
     var tittle = image.attr('title');
+    var price = parseInt(image.data('price'));
     image = baseImagePath + 'images/50x50/' + image.data('image-name');
 
     var dataForm = $("#form-cart").serializeArray();
@@ -84,14 +101,26 @@ function sendFrom(callback){
             if (response && response.status === "OK") {
                 $(".notification").hide();
                 addProductNotice('Berhasil ditambahkan ke keranjang belanja', '<img src="'+image+'" alt="">', tittle, 'success');
-                $('.items_cart').html((cart+1));
-                if(cart > 5){
-                    $('.cart-counter').html((cartcounter+1));
+
+                var sku = $('#sku').val();
+
+                if(($('#'+sku).length) == 0){
+
+                    $('.items_cart').html((cart+1));
+                    if(cart > 5){
+                        $('.cart-counter').html((cartcounter+1));
+                    }
+
+                    var lengtrow = $('.products-cart').length;
+
+                    $('<tr class="products-cart cart-'+(lengtrow+1)+'" id="'+sku+'"><td class="text-center" style="width:70px"><a href="'+$(location).attr('href')+'"><img src="'+image+'" data-image-name="'+imagename+'" title="'+tittle+'" alt="'+tittle+'" class="preview"></a></td><td class="text-left"><a class="cart_product_name" href="'+$(location).attr('href')+'">'+tittle+'</a></td><td class="text-center ">x<span class="cart-qty">'+$('#qty').val()+'</span></td><td class="text-center cart-price">Rp. '+addCommas(parseInt($('#qty').val()) * price)+'</td><td class="text-right"><a onclick="cart.remove('+response.result.data+', \'cart-'+(lengtrow+1)+'\', this);" class="fa fa-times fa-delete"></a></td></tr>').prependTo("#cart-table > tbody");
+
+                }else{
+                    $('#'+sku).find('.cart-qty').html($('#qty').val());
+                    $('#'+sku).find('.cart-price').html('Rp. '+addCommas(parseInt($('#qty').val()) * price));
                 }
-                var lengtrow = $('.products-cart').length;
-                if(lengtrow < 5){
-                    $('<tr class="products-cart cart-'+(lengtrow+1)+'"><td class="text-center" style="width:70px"><a href="'+$(location).attr('href')+'"><img src="'+image+'" data-image-name="'+image+'" title="'+tittle+'" alt="'+tittle+'" class="preview"></a></td><td class="text-left"><a class="cart_product_name" href="'+$(location).attr('href')+'">'+tittle+'</a></td><td class="text-center">x1</td><td class="text-center">Rp. '+$('#price-special').text()+'</td><td class="text-right"><a onclick="cart.remove('+$('#productId').val()+', '+(lengtrow+1)+', this);" class="fa fa-times fa-delete"></a></td></tr>').prependTo("#cart-table > tbody");
-                }
+
+                cartDropdown();
             } else {
                 $('.message').html('<div class="alert alert-danger" style="margin-bottom:0px !important;padding: 5px 10px !important;">'+response.message+'</div>')
                 $(".notification").show();
@@ -115,12 +144,13 @@ function triggerCheckPrice(){
     $.each(data.variant, function(key, value){
         if((value.options.Warna == warna) && (value.options.Ukuran == ukuran) ){
             if(value.price != 0){
-                $('.text-add-price').html('Rp.'+value.price)
+                $('.text-add-price').html('Rp.'+addCommas(value.price))
                 $('.add-price').show();
             }else{
                 $('.add-price').hide();
             }
             $('#priceId').val(value.price_id);
+            $('#sku').val(value.sku);
 
             $.each(value.stocks, function(k,v){
                 if(v.branch_name == stock){
@@ -130,7 +160,6 @@ function triggerCheckPrice(){
             })
         }
     })
-    console.table(data)
 }
 
 function comboEnabeled(variant, selected, item){
@@ -164,4 +193,18 @@ function comboEnabeled(variant, selected, item){
             $('.zl-color').find(':input[value="'+check+'"]').prop('checked',true);
         }
     });
+}
+
+
+function addCommas(nStr)
+{
+    nStr += '';
+    x = nStr.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+    return x1 + x2;
 }

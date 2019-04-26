@@ -28,7 +28,7 @@
                             <div class="content-product-left class-honizol col-md-5 col-sm-12 col-xs-12">
                                 <div class="large-image">
                                     <?php foreach($details['data']['images'] as $image):?>
-                                        <img itemprop="image" class="product-image-zoom" src="<?= $this->Url->build($_basePath . 'images/600x600/' . $image); ?>" data-zoom-image="<?= $this->Url->build($_basePath . 'images/600x600/' . $image); ?>" data-image-name="<?= $image;?>" title="<?php echo $details['data']['name']; ?>" alt="<?php echo $details['data']['name']; ?>">
+                                        <img itemprop="image" class="product-image-zoom" src="<?= $this->Url->build($_basePath . 'images/600x600/' . $image); ?>" data-zoom-image="<?= $this->Url->build($_basePath . 'images/600x600/' . $image); ?>" data-image-name="<?= $image;?>" data-price="<?=  $details['data']['price_sale'];?>" title="<?php echo $details['data']['name']; ?>" alt="<?php echo $details['data']['name']; ?>">
                                         <?php break;?>
                                     <?php endforeach;?>
                                 </div>
@@ -51,6 +51,7 @@
                                 <form id="form-cart">
                                     <input type="hidden" name="stock_id" value="" id="stockId">
                                     <input type="hidden" name="price_id" value="" id="priceId">
+                                    <input type="hidden" name="sku" value="" id="sku">
                                     <input type="hidden" name="type" value="force" >
                                     <div class="row">
                                         <div class="col-sm-9">
@@ -141,7 +142,7 @@
                                                 <div class="option quantity">
                                                     <div class="input-group quantity-control" unselectable="on" style="-webkit-user-select: none;">
                                                         <span class="input-group-addon product_quantity_down">−</span>
-                                                        <input class="form-control" type="text" name="qty" value="1">
+                                                        <input class="form-control" type="text" name="qty" value="1" id="qty">
                                                         <input type="hidden" name="product_id" id="productId" value="<?= $details['data']['id'];?>">
                                                         <span class="input-group-addon product_quantity_up">+</span>
                                                     </div>

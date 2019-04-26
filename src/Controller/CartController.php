@@ -22,7 +22,7 @@ class CartController  extends AuthController
                     'form_params' => $this->request->getData()
                 ]);
             if ($response = $this->Api->success($update)) {
-                $error = $response->parse();
+                $error = $response->parse(); 
             }
         } catch(\GuzzleHttp\Exception\ClientException $e) {
             $this->Api->handle($e);
