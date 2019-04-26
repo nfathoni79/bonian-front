@@ -60,27 +60,7 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
-                                            <?php
-                                            $badge = [
-                                                'silver' => [
-                                            'min' => 1,
-                                            'max' => 30
-                                            ],
-                                            'blue' => [
-                                            'min' => 31,
-                                            'max' => 50
-                                            ],
-                                            'gold' => [
-                                            'min' => 51,
-                                            'max' => 100
-                                            ],
-                                            'diamond' => [
-                                            'min' => 1,
-                                            'max' => 100
-                                            ],
-                                            ];
-                                            ?>
-                                            <span class="badge u-bg--badge__blue">150 Point</span>
+                                            <span class="badge <?= $this->Badge->format($details['data']['point']); ?>"><?php echo $details['data']['point']; ?> Point</span>
 
                                             <div class="rating">
                                                 <div class="rating-box">

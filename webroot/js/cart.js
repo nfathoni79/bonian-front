@@ -160,6 +160,7 @@ $('.delete-cart').on('click',function(){
     var data_id = $(this).data('cart-id');
     var data_key = $(this).data('cart-key');
     var data_sku = $(this).data('cart-sku');
+    var product_id = $(this).data('product-id');
     var basePath = $('meta[name="_basePath"]').attr('content');
     var baseImagePath = $('meta[name="_baseImagePath"]').attr('content');
     var image = $('.img-'+data_id);
@@ -169,17 +170,43 @@ $('.delete-cart').on('click',function(){
 
     $('.image-modal').html('<img src="'+image+'" data-image-name="'+imagename+'" title="'+tittle+'" alt="'+tittle+'" class="img-responsive">');
     $('.title-modal').html(tittle);
+
     $('.zl-hapus').data('cart-key', data_key);
     $('.zl-hapus').data('cart-sku', data_sku);
+    $('.zl-hapus').data('product-id', product_id);
+    $('.zl-whistlist').data('cart-sku', data_sku);
+    $('.zl-whistlist').data('cart-key', data_key);
+    $('.zl-whistlist').data('product-id', product_id);
 });
 
 $('.zl-hapus').on('click',function(){
-    deleteCart($(this).data('cart-key'),$(this).data('cart-sku'));
+    deleteCart($(this).data('cart-key'),true);
     $('#modalProduct').modal('toggle');
 })
 
-function deleteCart(product_id, sku){
+$('.zl-whistlist').on('click',function(){
+    var basePath = $('meta[name="_basePath"]').attr('content');
+    $.ajax({
+        url: basePath + '/wishlist',
+        type : 'POST',
+        data : {
+            product_id : $(this).data('product-id'),
+            _csrfToken: $('meta[name="_csrfToken"]').attr('content')
+        },
+        dataType : 'json',
+        success: function(response){
+            // deleteCart($(this).data('cart-key'),false);
+            // location.reload();
+        },
+        error: function () {
+            $("#login-popup").modal('show');
+        }
+    });
 
+    deleteCart($(this).data('cart-key'),true);
+})
+
+function deleteCart(product_id, rel){
     var basePath = $('meta[name="_basePath"]').attr('content');
     var cart = parseInt($('.items_cart').text());
     $.ajax({
@@ -191,26 +218,20 @@ function deleteCart(product_id, sku){
         },
         dataType : 'json',
         success: function(response){
-
-            if (response && response.status === "OK") {
-                $('#cart-item-'+sku).remove();
-                $('.'+sku).remove();
-                // addProductNotice('Berhasil dihapus', '<img src="'+image+'" alt="">', name, 'success');
-                // $('.'+cart_key).remove();
-                $('.items_cart').html((cart-1));
-
-                cartDropdown();
-                // $('#modalProduct').modal().hide();
-            } else {
-                // addProductNotice('Gagal dihapus dari cart', '<img src="'+image+'" alt="">', '', 'success');
+            if(rel){
+                location.reload();
             }
         },
         error: function () {
             $("#login-popup").modal('show');
         }
     });
-
 }
+
+
+
+
+
 
 $('.hapus-selected').on('click',function(){
     var boxes= new Array();

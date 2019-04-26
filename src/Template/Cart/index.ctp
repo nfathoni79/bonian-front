@@ -123,7 +123,7 @@
                                                         </h5>
                                                     </div>
                                                     <div class="col-lg-2 text-center p-0">
-                                                        <a href="#" data-toggle="modal" class="delete-cart" data-cart-id="<?= $k; ?>" data-cart-key="<?= $cart['cartid']; ?>" data-cart-sku="<?= $cart['sku']; ?>" data-target="#modalProduct">
+                                                        <a href="#" data-toggle="modal" class="delete-cart" data-product-id="<?= $cart['product_id']; ?>" data-cart-id="<?= $k; ?>" data-cart-key="<?= $cart['cartid']; ?>" data-cart-sku="<?= $cart['sku']; ?>" data-target="#modalProduct">
                                                             <i class="fa fa-trash" style="font-size: 1.5em;"></i>
                                                         </a>
                                                     </div>
@@ -148,18 +148,18 @@
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <div class="col-lg-2 p-0">
-                                                        <div class="badge u-bg--badge__blue"><span id="zl-point-<?= $k;?>"><?php echo $cart['point']; ?></span> poin</div>
+                                                        <div class="badge <?= $this->Badge->format($cart['point']); ?>"><span id="zl-point-<?= $k;?>"><?php echo $cart['point']; ?></span> poin</div>
                                                     </div>
                                                     <div class="col-lg-7 text-center p-0">
 
                                                         <div class="button-group so-quickview cartinfo--static share-container" style="margin-left: 10px; width: 90%; padding: 5px;">
-                                                            <button type="button" class="btn-share" style="background-color:#2c558b; padding-left: 12px; padding-right: 12px;" title="Share" onclick=""><i class="fa fa-facebook"></i><span> </span>
+                                                            <button type="button" class="btn-share" style="background-color:#2c558b; padding-left: 12px; padding-right: 12px;" title="Share" onclick=""><i class="fab fa-facebook"></i><span> </span>
                                                             </button>
-                                                            <button type="button" class="btn-share" style="background-color:#1e99d0; padding-left: 9px; padding-right: 9px;" title="Share" onclick=""><i class="fa fa-twitter"></i>
+                                                            <button type="button" class="btn-share" style="background-color:#1e99d0; padding-left: 9px; padding-right: 9px;" title="Share" onclick=""><i class="fab fa-twitter"></i>
                                                             </button>
-                                                            <button type="button" class="btn-share" style="background-color:#6e5f4c; padding-left: 10px; padding-right: 10px;" title="Share" onclick=""><i class="fa fa-instagram"></i>
+                                                            <button type="button" class="btn-share" style="background-color:#6e5f4c; padding-left: 10px; padding-right: 10px;" title="Share" onclick=""><i class="fab fa-instagram"></i>
                                                             </button>
-                                                            <button type="button" class="btn-share" style="background-color:#79bc25; padding-left: 10px; padding-right: 10px;" title="Share" onclick=""><i class="fa fa-whatsapp"></i>
+                                                            <button type="button" class="btn-share" style="background-color:#79bc25; padding-left: 10px; padding-right: 10px;" title="Share" onclick=""><i class="fab fa-whatsapp"></i>
                                                             </button>
                                                         </div>
 
@@ -243,10 +243,10 @@
                                         <div class="modal-footer">
                                             <div class="row">
                                                 <div class="col-lg-8">
-                                                    <button class="btn-danger btn-lg btn-block" href="#" role="button">Hapus & tambah ke wishlist</button>
+                                                    <button class="btn-danger btn-lg btn-block zl-whistlist" href="#"  data-product-id="" data-cart-key="" data-cart-sku="" role="button">Hapus & tambah ke wishlist</button>
                                                 </div>
                                                 <div class="col-lg-4">
-                                                    <button class="btn btn-default btn-lg btn-block zl-hapus" href="#" role="button" data-cart-key="" data-cart-sku="">Hapus</button>
+                                                    <button class="btn btn-default btn-lg btn-block zl-hapus" href="#" role="button"  data-product-id="" data-cart-key="" data-cart-sku="">Hapus</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -313,145 +313,87 @@
                         <h5>wishlist</h5>
                     </div>
                     <!-- end: title -->
+                    <?php if(!empty($wishlists)):?>
+                    <?php foreach($wishlists as $vals):?>
+                    <div class="c-cart-card__item m-4">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <?php foreach($vals['product']['images'] as $image):?>
+                                <img class="img-responsive" src="<?= $this->Url->build($_basePath . 'images/132x132/' . $image); ?>"  >
+                                <?php break;?>
+                                <?php endforeach;?>
+                            </div>
+                            <div class="col-lg-8 p-0">
+                                <div class="col-lg-12">
+                                    <h5><a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['product']['slug']]); ?>" title="<?= h($vals['product']['name']); ?>" target="_self">
+                                        <?php echo $this->Text->truncate(
+                                        h($vals['product']['name']),
+                                        25,
+                                        [
+                                        'ellipsis' => '...',
+                                        'exact' => false
+                                        ]
+                                        );?>
+                                    </a></h5>
+                                </div>
+                                <div class="col-lg-12 text-left">
+                                    <div class="price">
+                                        <span class="price-new">Rp. <?= $this->Number->format($vals['product']['price_sale']);?></span>
+                                        <span class="price-old">Rp. <?= $this->Number->format($vals['product']['price']);?></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 text-left">
+                                    <div class="rate-history">
+                                        <div class="ratings">
+                                            <div class="rating-box">
+                                                <?php
+                                                    $rate = (int) $vals['product']['rating'];
+                                                    for ($x = 0; $x < $rate; $x++) {
+                                                        echo '<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>';
+                                                }
+                                                for ($x = 0; $x < 5-$rate; $x++) {
+                                                echo '<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>';
+                                                }
+                                                ?>
 
-                    <!-- start: card wishlist content -->
-                    <div class="c-cart-card-wishlist__content">
+                                            </div>
+                                            <a class="rating-num" href="#" target="_blank">(<?= $vals['product']['rating_count']; ?>)</a>
+                                        </div>
+                                        <!-- <div class="order-num">Orders (0)</div> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8 mt-3 text-center">
+                                <div class="button-group so-quickview cartinfo--static share-container" style="margin-left: 10px; width: 90%; padding: 5px;">
+                                    <button type="button" class="btn-share" style="background-color:#2c558b; padding-left: 12px; padding-right: 12px;" title="Share" onclick=""><i class="fab fa-facebook"></i><span> </span>
+                                    </button>
+                                    <button type="button" class="btn-share" style="background-color:#1e99d0; padding-left: 9px; padding-right: 9px;" title="Share" onclick=""><i class="fab fa-twitter"></i>
+                                    </button>
+                                    <button type="button" class="btn-share" style="background-color:#6e5f4c; padding-left: 10px; padding-right: 10px;" title="Share" onclick=""><i class="fab fa-instagram"></i>
+                                    </button>
+                                    <button type="button" class="btn-share" style="background-color:#79bc25; padding-left: 10px; padding-right: 10px;" title="Share" onclick=""><i class="fab fa-whatsapp"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 mt-3 text-center">
+                                <div class="badge <?= $this->Badge->format($vals['product']['point']); ?>"><?= $vals['product']['point']; ?> poin</div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <hr>
+                    <?php endforeach;?>
+                    <?php else: ?>
+
+                    <div class="c-cart-card__item m-4">
                         <div class="row">
                             <div class="col-lg-12">
-                                <h4 class="text-left">
-                                    Samsung Galaxy VR version 1 / SM-R...
-                                </h4>
-                            </div>
-                            <div class="col-lg-6 text-left">
-                                <h5 style="margin-top:5px !important;">
-                                    SKU : ZL-0001BRJ-02
-                                </h5>
-                            </div>
-                            <div class="col-lg-6 c-wishlist-badge">
-                                <span class="badge u-bg--badge__blue"><?php echo $cart['point']; ?> poin</span>
-                            </div>
-                            <div class="col-lg-12 c-wishlist-origin">
-                                <h5> Product origin : Gudang Surabaya </h5>
-                            </div>
-                            <div style="margin-top: 2em;">
-                                <div class="col-lg-5">
-
-                                    <!-- start: button increment decrement -->
-                                    <div class="input-group">
-                                        <span class="input-group-btn">
-                                            <input type="button" class="btn btn-default minus" value='-' id='qtyminus'field='quantity'>
-                                        </span>
-
-                                        <input type="text" class="form-control text-center" name="quantity"class="qty" value="0">
-
-                                        <span class="input-group-btn">
-                                            <input type="button" class="btn btn-default plus" value="+" id="qtyplus"field="quantity">+</input>
-                                        </span>
-                                    </div>
-                                    <!-- end: button increment decrement -->
-
-                                </div>
-                                <div class="col-lg-7">
-                                    <a class="btn btn-default c-wishlist-button" href="#"
-                                       role="button">Tambahkan produk</a>
-                                </div>
+                                    Daftar whistlist kosong
                             </div>
                         </div>
                     </div>
-                    <!-- end: card wishlist content -->
-
-                    <!-- start: card wishlist content -->
-                    <div class="c-cart-card-wishlist__content">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <h4 class="text-left">
-                                    Samsung Galaxy VR version 1 / SM-R...
-                                </h4>
-                            </div>
-                            <div class="col-lg-6 text-left">
-                                <h5 style="margin-top:5px !important;">
-                                    SKU : ZL-0001BRJ-02
-                                </h5>
-                            </div>
-                            <div class="col-lg-6 c-wishlist-badge">
-                                <span class="badge u-bg--badge__blue"><?php echo $cart['point']; ?> poin</span>
-                            </div>
-                            <div class="col-lg-12 c-wishlist-origin">
-                                <h5> Product origin : Gudang Surabaya </h5>
-                            </div>
-                            <div style="margin-top: 2em;">
-                                <div class="col-lg-5">
-
-                                    <!-- start: button increment decrement -->
-                                    <div class="input-group">
-                                        <span class="input-group-btn">
-                                            <input type="button" class="btn btn-default minus" value='-' id='qtyminus'field='quantity'>
-                                        </span>
-
-                                        <input type="text" class="form-control text-center" name="quantity"class="qty" value="0">
-
-                                        <span class="input-group-btn">
-                                            <input type="button" class="btn btn-default plus" value="+" id="qtyplus"field="quantity">+</input>
-                                        </span>
-                                    </div>
-                                    <!-- end: button increment decrement -->
-
-                                </div>
-                                <div class="col-lg-7">
-                                    <a class="btn btn-default c-wishlist-button" href="#"
-                                       role="button">Tambahkan produk</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end: card wishlist content -->
-
-                    <!-- start: card wishlist content -->
-                    <div class="c-cart-card-wishlist__content">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <h4 class="text-left">
-                                    Samsung Galaxy VR version 1 / SM-R...
-                                </h4>
-                            </div>
-                            <div class="col-lg-6 text-left">
-                                <h5 style="margin-top:5px !important;">
-                                    SKU : ZL-0001BRJ-02
-                                </h5>
-                            </div>
-                            <div class="col-lg-6 c-wishlist-badge">
-                                <span class="badge u-bg--badge__blue"><?php echo $cart['point']; ?> poin</span>
-                            </div>
-                            <div class="col-lg-12 c-wishlist-origin">
-                                <h5> Product origin : Gudang Surabaya </h5>
-                            </div>
-                            <div style="margin-top: 2em;">
-                                <div class="col-lg-5">
-
-                                    <!-- start: button increment decrement -->
-                                    <div class="input-group">
-                                        <span class="input-group-btn">
-                                            <input type="button" class="btn btn-default minus" value='-' id='qtyminus'field='quantity'>
-                                        </span>
-
-                                        <input type="text" class="form-control text-center" name="quantity" class="qty" value="0">
-
-                                        <span class="input-group-btn">
-                                            <input type="button" class="btn btn-default plus" value="+" id="qtyplus"field="quantity">+</input>
-                                        </span>
-                                    </div>
-                                    <!-- end: button increment decrement -->
-
-                                </div>
-                                <div class="col-lg-7">
-                                    <a class="btn btn-default c-wishlist-button" href="#"
-                                       role="button">Tambahkan produk</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end: card wishlist content -->
-
+                    <?php endif;?>
                 </div>
 
             </div>
