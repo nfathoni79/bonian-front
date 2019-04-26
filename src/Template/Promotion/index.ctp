@@ -3,9 +3,17 @@
         padding: 0;
         border: unset;
     }
+    .producttab .tabsslider.horizontal-tabs .nav-tabs li {
+        margin: -1px 0 0 0px;
+        list-style: none;
+        cursor: pointer;
+        font-size: 16px;
+        text-transform: uppercase;
+        border-right: 0px solid #e1e1e1;
+    }
     .nav-promo li{
         background: #c93535;
-    } 
+    }
     .product-listing .row {
         background: #fff;
         padding: 10px;
@@ -13,6 +21,67 @@
         -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.12);
         box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.12);
         margin: 40px 0;
+        border-radius: 8px;
+    }
+    .box-title h2{
+        background: #dc5054;
+        background: linear-gradient(160deg,#dc5054 0%, #a41d21 100%);
+        background: -webkit-linear-gradient(160deg,#dc5054 0%, #a41d21 100%);
+        background: -moz-linear-gradient(160deg,#dc5054 0%, #a41d21 100%);
+    }
+    .box-title h2 {
+        line-height: 48px;
+        background-color: #ff5e00;
+        font-size: 18px;
+        padding: 0 16px;
+        color: #fff;
+        margin-left: -10px;
+        margin-top: 8px;;
+        margin-bottom: 12px;
+        font-weight: bold;
+        border-radius: 0 7px 0 0;
+        position: relative;
+        text-transform: uppercase;
+        box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.1);
+    }
+    .box-title h2:before {
+        content: '';
+        width: 0;
+        height: 0;
+        border-bottom: 8px solid transparent;
+        bottom: -8px;
+        position: absolute;
+        border-right: 8px solid #cc4b00;
+        left: 1px;
+    }
+    .box-title {
+        position: relative;
+        top: -18px;
+        left: -9px;
+    }
+    .pd-l-20{
+        padding-left: 20px;
+    }
+    .pd-b-10{
+        padding-bottom: 10px;
+    }
+    .l-detail{
+        color: #dc5054;
+        font-size: 13px;
+        top: 50%;
+        bottom: 50%;
+        margin-right: 2%;
+        margin-top: 5px;
+    }
+    .terms-wrapper{
+        background: #fff;
+        padding: 14px;
+        margin-top: 0px;
+        margin-bottom: 50px;
+        border-radius: 0px 0px 10px 10px;
+        -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+        -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
     }
 </style>
 
@@ -37,8 +106,8 @@
 
     <div class="tabsslider horizontal-tabs col-xs-12">
         <ul class="nav nav-tabs nav-promo">
-            <li class="active" data-active-content=".items-category-71"><a data-toggle="tab" href="#tab-product">Tentang Promo</a></li>
-            <li class="item_nonactive" data-active-content=".items-category-72"><a data-toggle="tab" href="#tab-rules">Syarat & Ketentuan</a></li>
+            <li class="active" style="float:left!important; width:50%; text-align: center;" data-active-content=".items-category-71"><a data-toggle="tab" href="#tab-product">Tentang Promo</a></li>
+            <li class="item_nonactive" style="float:right!important; width:50%; text-align: center;" data-active-content=".items-category-72"><a data-toggle="tab" href="#tab-rules">Syarat & Ketentuan</a></li>
         </ul>
 
         <!-- Tab Content -->
@@ -46,16 +115,15 @@
             <div id="tab-product" class="tab-pane fade active in">
 
                 <div class="product-listing">
-                
+
                     <?php foreach($promotion['voucher_details'] as $vals):?>
                     <!-- loop-1 -->
                     <div class="row">
 
-                        <div class="box-title font-ct" style="width: 204px; display:inline-block !important;">
-                            <h2 class="modtitle">Produk Teratas</h2>
+                        <div class="box-title font-ct" style="display:inline-block !important;">
+                            <h2 class="modtitle"><span>Kategori <?php echo $vals['product_category']['name']; ?> Pada Fashion Wanita</span></h2>
                         </div>
-
-                        <h3 class="modtitles" style="display:inline-block!important;"><span>Kategori <?php echo $vals['product_category']['name']; ?> Pada Fashion Wanita</span></h3>
+                        <a class="l-detail" href="" style="display:inline-block !important; float:right;">Lihat Selengkapnya</a>
                         <?php
                             $chunk = array_chunk($vals['product_category']['products'],10);
                         ?>
@@ -129,6 +197,7 @@
 
             </div>
             <div id="tab-rules" class="tab-pane fade">
+              <div class="terms-wrapper">
                 <div class="short_description form-group">
                     <h3 class="pd-l-20">SYARAT & KETENTUAN UMUM :</h3>
                     <div class="pd-l-20 pd-b-10"><?php echo $promotion['tos'];?></div>
@@ -138,7 +207,9 @@
                         Zolaku.com berhak secara sepihak membatalkan pesanan dan/atau menonaktifkan voucher apabila tidak sesuai syarat & ketentuan berlaku dan/atau ditemukan adanya indikasi kecurangan/pelanggaran yang merugikan pihak Zolaku.com.
                     </div>
                 </div>
+              </div>
             </div>
+
         </div>
         <!-- Tab Content -->
     </div>
