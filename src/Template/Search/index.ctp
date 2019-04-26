@@ -464,7 +464,6 @@ $this->Html->css([
 
 
 $this->Html->script([
-    '/js/bundle',
     '/js/bootstrap-treeview.min',
 ], ['block' => true]);
 ?>
@@ -503,6 +502,7 @@ $this->Html->script([
             });
 
             generateTree('<?= $this->Url->build(['action' => 'loadCategory', 'prefix' => false]); ?>' + location.search);
+
         }
 
         function querystringParse()
@@ -513,6 +513,12 @@ $this->Html->script([
             }
             return parsed;
         }
+
+        $(document.body).on('mouseenter', '.product-card__gallery .item-img' ,function(){
+            $(this).addClass('thumb-active').siblings().removeClass('thumb-active');
+            var thumb_src = $(this).attr("data-src");
+            $(this).closest('.product-item-container').find('img.img-responsive').attr("src",thumb_src);
+        });
 
 
         function paginationClick() {

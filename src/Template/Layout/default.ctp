@@ -122,31 +122,32 @@
 
 <!-- Include Libs & Plugins  -->
 <?= $this->Html->script([
-'/js/jquery-2.2.4.min',
-'/js/bootstrap.min',
-'/js/owl-carousel/owl.carousel',
-'/js/themejs/libs',
-'/js/unveil/jquery.unveil',
-'/js/countdown/jquery.countdown.min',
-'/js/dcjqaccordion/jquery.dcjqaccordion.2.8.min',
-'/js/datetimepicker/moment',
-'/js/datetimepicker/bootstrap-datetimepicker.min',
-'/js/jquery-ui/jquery-ui.min',
-'/js/modernizr/modernizr-2.6.2.min',
-'/js/minicolors/jquery.miniColors.min',
+    '/js/jquery-2.2.4.min',
+    '/js/bootstrap.min',
+    '/js/owl-carousel/owl.carousel',
+    '/js/themejs/libs',
+    '/js/unveil/jquery.unveil',
+    '/js/countdown/jquery.countdown.min',
+    '/js/dcjqaccordion/jquery.dcjqaccordion.2.8.min',
+    '/js/datetimepicker/moment',
+    '/js/datetimepicker/bootstrap-datetimepicker.min',
+    '/js/jquery-ui/jquery-ui.min',
+    '/js/modernizr/modernizr-2.6.2.min',
+    '/js/minicolors/jquery.miniColors.min',
+    '/js/bundle',
 ]); ?>
 
 <!-- Theme files -->
 <?= $this->Html->script([
-'/js/themejs/application',
-'/js/themejs/homepage',
-'/js/themejs/so_megamenu',
-'/js/themejs/addtocart',
-'/js/themejs/cpanel',
-'/js/custom-libs/validation-render',
-'/js/sweetalert/sweetalert.js',
-'/js/lib-tools.js',
-'/js/jquery.smartsuggest.js'
+    '/js/themejs/application',
+    '/js/themejs/homepage',
+    '/js/themejs/so_megamenu',
+    '/js/themejs/addtocart',
+    '/js/themejs/cpanel',
+    '/js/custom-libs/validation-render',
+    '/js/sweetalert/sweetalert.js',
+    '/js/lib-tools.js',
+    '/js/jquery.smartsuggest.js'
 ]); ?>
 
 <?= $this->fetch('script') ?>
