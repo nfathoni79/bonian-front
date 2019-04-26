@@ -91,8 +91,9 @@
                                                     Keranjang belanja kosong.
                                                 </td>
                                             </tr>
+                                            <?php if(!empty($_carts['carts'])):?>
                                             <?php foreach($_carts['carts'] as $key => $cart):?>
-                                            <tr class="products-cart cart-<?php echo $key ;?>" id="<?php echo $cart['sku']; ;?>">
+                                            <tr class="products-cart cart-<?php echo $key ;?> <?php echo $cart['sku']; ;?>" id="<?php echo $cart['sku']; ;?>">
                                                 <td class="text-center" style="width:70px">
                                                     <a href="<?php echo $this->Url->build(['controller' => 'products', 'action' => 'detail',$cart['slug'] ]);?>">
                                                         <?php foreach($cart['images'] as $image):?>
@@ -113,18 +114,19 @@
                                                         );?>
                                                     </a>
                                                 </td>
-                                                <td class="text-center">x<?= $cart['qty'];?></td>
-                                                <td class="text-center">Rp. <?php echo $this->Number->format($cart['total']);?></td>
+                                                <td class="text-center">x<span class="cart-qty"><?= $cart['qty'];?></span></td>
+                                                <td class="text-center cart-price">Rp. <?php echo $this->Number->format($cart['total']);?></td>
                                                 <td class="text-right">
                                                     <a onclick="cart.remove('<?php echo $cart['cartid']?>', 'cart-<?php echo $key ;?>', this);" class="fa fa-times fa-delete"></a>
                                                 </td>
                                             </tr>
-                                            <tr class="cart-<?php echo $key ;?>">
+                                            <tr class="cart-<?php echo $key ;?> <?php echo $cart['sku']; ;?>">
                                                 <td class="text-left" style="width:70px" colspan="5">
                                                     Varian <?= $cart['variant'];?>
                                                 </td>
                                             </tr>
                                             <?php endforeach;?>
+                                            <?php endif;?>
                                             <tr class="cart-button"  style="display:none;">
                                                 <td class="text-center" colspan="5">
                                                     <a class="btn view-cart" href="<?php echo $this->Url->build(['controller' => 'cart', 'action' => 'index' ]);?>"><i class="fa fa-shopping-cart"></i>Keranjang belanja</a>&nbsp;
