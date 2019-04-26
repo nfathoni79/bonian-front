@@ -36,6 +36,7 @@ class ProductsController extends AppController
         }else{
             $this->set(compact('details'));
         }
+
     }
 
 }
