@@ -39,7 +39,7 @@
 
 
     <!-- Header center -->
-    <div class="header-center">
+    <div id="header-fixed" class="header-center">
         <div class="container">
             <div class="row">
                 <!-- Logo -->
@@ -359,6 +359,14 @@
                     <span class="error-message">${message}</span>
                 </div>`);
         }
+
+        //sticky header        
+        $(window).scroll(function() {
+            var sticky = $('#header-fixed'),
+                scroll = $(window).scrollTop();
+            if (scroll > 50) sticky.addClass('fixed');
+            else sticky.removeClass('fixed');
+        });
 
         //login-form
         var formEl = $("#login-form");
