@@ -1,3 +1,395 @@
+<style type="text/css">
+    
+/*! ########## Checkout custom styling ########## */
+
+.c-checkout-main .c-checkout-card {
+    min-height: 0!important
+}
+
+.c-checkout-main .c-checkout-card,
+.c-checkout-main .c-cart-card-pembayaran{
+    margin-top: -10em;
+}
+.c-checkout-main .c-checkout-card,
+.c-checkout-main .c-checkout-card-product,
+.c-checkout-main .c-cart-card-pembayaran{
+    margin-bottom: 1em;
+    padding: 25px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 2px 15px hsla(0, 0%, 71%, .5);
+    min-height: 300px
+}
+
+.c-checkout-main .c-checkout-card__item {
+    padding: 20px;
+    min-height: 60px;
+    background-color: #fff6f6;
+    border-radius: 10px;
+    border: 1px solid #e2e2e2
+}
+
+.c-checkout-main .c-card__item-title {
+    font-weight: 400;
+    color: #dc5054;
+    font-size: 15px;
+    max-width: 200px;
+    min-height: 40px;
+    padding: 10px!important;
+    margin: -25px -25px 20px!important;
+    background-color: #f2e7e7;
+    text-align: center;
+    text-transform: capitalize;
+    border-bottom-right-radius: 20px
+}
+
+.c-checkout-main .c-card__item-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+    margin-top: 0!important
+}
+
+.c-checkout-main .c-card__item-phone {
+    font-weight: 500;
+    margin-bottom: 0!important
+}
+
+.c-checkout-main .o-card__item-hapus {
+    font-size: 1em;
+    text-transform: capitalize;
+    min-height: 30px!important;
+    margin: 0 auto;
+    padding: 10px
+}
+
+.c-checkout-card-product {
+    margin-top: 1em;
+    min-height: 0!important
+}
+
+.c-checkout-card-product .c-checkout-card__item {
+    margin-top: 15px
+}
+
+.c-checkout-card-product .c-checkout-card__item .c-card-item__description p {
+    color: #212121
+}
+
+.c-checkout-card-product .c-checkout-card__item .c-card-item__description .o-poin {
+    background: linear-gradient(#174564, #4493e2 53.14%, #278bce);
+    max-width: 80px;
+    text-align: center;
+    color: #fff;
+    border-radius: 20px
+}
+
+.c-checkout-card-product .c-checkout-card__item .c-card-item__catatan {
+    padding-top: 1em
+}
+
+.c-checkout-card-product .c-checkout-card__item .c-card-item__catatan .c-catatan-detail {
+    min-height: 30px;
+    padding: 15px 10px 10px;
+    border: 1px dashed #cfcfcf;
+    background-color: #fff
+}
+
+.c-checkout-card-product .c-checkout-card__pengiriman h5 {
+    font-weight: 300;
+    color: #212121;
+    font-size: 1em;
+    text-transform: capitalize
+}
+
+.c-checkout-card-product .c-checkout-card__pengiriman .c-dropdown-pengiriman {
+    min-width: 300px;
+    text-align: left
+}
+
+.c-checkout-card-product .c-checkout-card__pengiriman .c-dropdown-pengiriman:hover {
+    background-color: transparent
+}
+
+.c-checkout-card-product .c-checkout-card__pengiriman .c-dropdown-pengiriman .c-dropdown-pengiriman__title {
+    font-size: 12px;
+    color: #b7b7b7;
+    padding-right: 80px;
+    padding-left: 20px
+}
+
+.c-checkout-card-product .c-checkout-card__pengiriman .c-dropdown-pengiriman .dropdown-menu {
+    padding: 25px!important
+}
+
+.c-checkout-card-product .c-checkout-card__pengiriman .c-dropdown-pengiriman .caret {
+    text-align: right!important
+}
+
+.c-checkout-card-product .c-checkout-card__pengiriman .c-ongkos {
+    padding: 20px;
+    color: #212121;
+    font-weight: 300
+}
+
+.c-checkout-card-product .c-checkout-card__pengiriman .c-ongkos .o-ongkos-divider {
+    border: 1px dashed #e2e2e2;
+    margin-top: 20px;
+    margin-bottom: 20px
+}
+
+.c-cart-card-pembayaran {
+    padding: 0
+}
+
+.c-cart-card-pembayaran .c-cart-card-pembayaran__title {
+    font-weight: 300!important
+}
+
+.c-cart-card-pembayaran .c-cart-card-pembayaran__content .sub-total {
+    color: #dc5054
+}
+
+.c-cart-card-pembayaran .c-cart-card-pembayaran__content .c-pembayaran-button {
+    min-width: 100%!important
+}
+
+.c-cart-card-pembayaran .c-cart-card-pembayaran__content .c-kupon {
+    border: 1px solid #62a811;
+    margin-top: 1em
+}
+
+.c-cart-card-pembayaran .c-cart-card-pembayaran__content .c-kupon .c-kupon-kiri {
+    background-color: #fff;
+    min-height: 40px;
+    text-transform: capitalize;
+    color: #62a811
+}
+
+.c-cart-card-pembayaran .c-cart-card-pembayaran__content .c-kupon .c-kupon-kanan {
+    background-color: #62a811;
+    min-height: 40px;
+    color: #fff
+}
+
+.c-cart-card-pembayaran .c-cart-card-pembayaran__content .c-question {
+    font-size: 1.5em;
+    margin-top: 20px;
+    opacity: .5
+}
+
+.c-cart-card-pembayaran .c-card-pembayaran__metode {
+    margin-top: 20px;
+    padding: 0;
+    background-color: #fff6f6;
+    box-shadow: none
+}
+
+.c-cart-card-pembayaran .c-card-pembayaran__metode .c-card-pembayaran__metode-title {
+    padding: 5px 20px
+}
+
+.c-cart-card-pembayaran .c-card-pembayaran__metode .c-card-pembayaran__metode-title h5 {
+    text-align: center
+}
+
+.c-cart-card-pembayaran .c-card-pembayaran__metode .c-card-pembayaran__content h5 {
+    font-size: 14px;
+    margin-top: 2px!important;
+    margin-right: 10px!important;
+    text-align: center!important
+}
+
+.c-cart-card-pembayaran .c-card-pembayaran__metode .c-card-pembayaran__content p {
+    margin-top: 1em;
+    font-size: 12px!important
+}
+
+.c-cart-card-pembayaran .c-card-pembayaran__metode .c-card-pembayaran__content .c-card-pembayaran__title {
+    text-align: left!important;
+    padding-left: 20px;
+    margin-top: 1em!important;
+    font-weight: 300
+}
+
+#modalTambahAlamat .modal-header,
+#modalTambahKartuKredit .modal-header {
+    background-color: #ec6e6e;
+    font-weight: 300!important
+}
+
+#modalTambahKartuKredit .modal-content {
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px
+}
+
+#modalTambahKartuKredit .modal-header {
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    color: #fff
+}
+
+#modalTambahKartuKredit .modal-header .close {
+    color: #fff
+}
+
+#modalTambahKartuKredit .modal-body {
+    padding-bottom: 0!important
+}
+
+#modalTambahKartuKredit .c-modal-item {
+    padding: 20px;
+    min-height: 60px;
+    background-color: #fff6f6;
+    border-radius: 10px;
+    border: 1px solid #e2e2e2;
+    margin-bottom: 20px
+}
+
+#modalTambahKartuKredit .c-modal-item .c-modal-item__name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+    margin-top: 0!important;
+    text-transform: capitalize
+}
+
+#modalTambahKartuKredit .c-modal-item .c-modal-item__phone {
+    font-weight: 500;
+    margin-bottom: 0!important
+}
+
+#modalTambahKartuKredit .c-modal-item .c-modal-item__btn-groups {
+    margin-top: 10px;
+    margin-bottom: 10px
+}
+
+#modalTambahKartuKredit .modal-footer {
+    border-top: none!important;
+    padding-top: 0!important
+}
+
+#modalTambahKartuKredit .modal-footer .c-info {
+    background-color: #edf5dc;
+    border: 1px solid #d6e2bd;
+    text-align: center;
+    color: #8cae47;
+    border-radius: 5px
+}
+
+#modalTambahKartuKredit .o-modal-item__btn {
+    background-color: #dc5054;
+    color: #fff;
+    border: none!important;
+    border-radius: 5px!important
+}
+
+#modalTambahKartuKredit .o-modal-item__btn,
+#modalTambahKartuKredit .o-modal-item__btn--secondary {
+    margin-top: 2em!important;
+    text-transform: capitalize;
+    font-size: 1em;
+    font-weight: 600;
+    max-width: 250px;
+    min-height: 40px
+}
+
+#modalTambahKartuKredit .o-modal-item__btn--secondary {
+    background-color: transparent;
+    color: #fff;
+    border-radius: 5px!important;
+    border: 1px solid #dfdfdf!important;
+    color: #dc5054;
+    font-size: .9em
+}
+
+#modalTambahAlamat .modal-content {
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px
+}
+
+#modalTambahAlamat .modal-header {
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    color: #fff
+}
+
+#modalTambahAlamat .modal-header .close {
+    color: #fff
+}
+
+#modalTambahAlamat .modal-body {
+    padding-bottom: 0!important
+}
+
+#modalTambahAlamat .c-modal-item {
+    padding: 20px;
+    min-height: 60px;
+    background-color: #fff6f6;
+    border-radius: 10px;
+    border: 1px solid #e2e2e2;
+    margin-bottom: 20px
+}
+
+#modalTambahAlamat .c-modal-item .c-modal-item__name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+    margin-top: 0!important;
+    text-transform: capitalize
+}
+
+#modalTambahAlamat .c-modal-item .c-modal-item__phone {
+    font-weight: 500;
+    margin-bottom: 0!important
+}
+
+#modalTambahAlamat .c-modal-item .c-modal-item__btn-groups {
+    margin-top: 10px;
+    margin-bottom: 10px
+}
+
+#modalTambahAlamat .modal-footer {
+    border-top: none!important;
+    padding-top: 0!important
+}
+
+#modalTambahAlamat .modal-footer .c-info {
+    background-color: #edf5dc;
+    border: 1px solid #d6e2bd;
+    text-align: center;
+    color: #8cae47;
+    border-radius: 5px
+}
+
+#modalTambahAlamat .o-modal-item__btn {
+    background-color: #dc5054;
+    color: #fff;
+    border: none!important;
+    border-radius: 5px!important
+}
+
+#modalTambahAlamat .o-modal-item__btn,
+#modalTambahAlamat .o-modal-item__btn--secondary {
+    margin-top: 2em!important;
+    text-transform: capitalize;
+    font-size: 1em;
+    font-weight: 600;
+    max-width: 250px;
+    min-height: 40px
+}
+
+#modalTambahAlamat .o-modal-item__btn--secondary {
+    background-color: transparent;
+    color: #fff;
+    border-radius: 5px!important;
+    border: 1px solid #dfdfdf!important;
+    color: #dc5054;
+    font-size: .9em
+}
+    
+</style>
+
 
 <div class="c-header__bg" style="z-index:0;">
     <div class="container">
