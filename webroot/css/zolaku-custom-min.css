@@ -177,17 +177,17 @@ body {
 .c-filter .checkboxes_list input[type=checkbox]:checked+label:before,
 .c-filter .simple_vertical_list input[type=checkbox]:checked+label:before {
     background-color: #dc5054!important;
-    color: #fff
+    color: #fff;
 }
 
 .c-filter .color_btn.red:before {
     background-color: #e2e2e2!important;
-    border-color: none!important
+    border: none;
 }
 
 .c-filter .checkboxes_list input[type=checkbox]:checked+label:before,
 .c-filter .simple_vertical_list input[type=checkbox]:checked+label:before {
-    border-color: transparent!important
+    border-color: transparent!important;
 }
 
 .o-control-label {
@@ -213,7 +213,7 @@ body {
 .products-list .product-layout .product-item-container {
     border-radius: 5px!important;
     border: 0!important;
-    box-shadow: 0 2px 20px rgba(88, 88, 88, .16);8
+    box-shadow: 0 2px 20px rgba(88, 88, 88, .16);
 }
 
 .filters-panel.product-filter-bottom .pagination>.active>span {
