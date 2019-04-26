@@ -19,7 +19,7 @@
 
 
             <!-- start: componen category -->
-            <div class="module">
+            <div class="module filter-by-category">
                 <h3 class="modtitle o-filter-title">Berdasarkan Category </h3>
                 <div class="table_layout filter-shopby">
                     <div class="table_row">
@@ -76,6 +76,7 @@
                     <div class="table_row">
                         <!-- - - - - - - - - - - - - - Brand - - - - - - - - - - - - - - - - -->
                         <div class="table_cell" style="padding-top:20px;">
+                            <div class="row">
                                 <div class="col-md-12">
                                     <?php foreach($brands as $value) : ?>
                                         <div>
@@ -87,8 +88,9 @@
                                             </div>
                                         </div>
                                     <?php endforeach; ?>
-
                                 </div>
+                            </div>
+
                         </div>
                         <!--/ .table_cell -->
                         <!-- - - - - - - - - - - - - - End Brand - - - - - - - - - - - - - - - - -->
@@ -105,20 +107,21 @@
                     <div class="table_row">
                         <!-- - - - - - - - - - - - - - variant - - - - - - - - - - - - - - - - -->
                         <div class="table_cell" style="padding-top:20px;">
-
-                            <?php foreach(array_chunk($variant['values'], ceil(count($variant['values']) / 2)) as $group) : ?>
-                            <div class="col-md-6">
-                                    <?php foreach($group as $value) : ?>
+                            <div class="row">
+                                <?php foreach(array_chunk($variant['values'], ceil(count($variant['values']) / 2)) as $group) : ?>
+                                    <div class="col-md-6">
+                                        <?php foreach($group as $value) : ?>
                                             <div class="pretty p-default p-thick p-pulse">
                                                 <input type="checkbox" data-id="<?= $value['option_value_id']; ?>" class="variant-value" />
                                                 <div class="state p-primary">
                                                     <label><?= $value['name']; ?></label>
                                                 </div>
                                             </div>
-                                    <?php endforeach; ?>
+                                        <?php endforeach; ?>
 
+                                    </div>
+                                <?php endforeach; ?>
                             </div>
-                            <?php endforeach; ?>
                         </div>
                         <!--/ .table_cell -->
                         <!-- - - - - - - - - - - - - - End variant - - - - - - - - - - - - - - - - -->
@@ -482,7 +485,8 @@
 
 $this->Html->css([
     '/css/bootstrap-treeview',
-    '/css/plugin.min.css'
+    '/css/plugin.min.css',
+    '/css/perfect-scrollbar'
 ], ['block' => true]);
 
 
@@ -504,6 +508,13 @@ $this->Html->script([
 
     $(document).ready(function(){
 
+
+        //filter-by-brand
+        if ($('.module.filter-by-brand').find('.table_cell').length) {
+            new PerfectScrollbar($('.module.filter-by-brand').find('.table_cell')[0], {
+                suppressScrollX: true,
+            })
+        }
 
         function refreshPage(target) {
             //var parsed = queryString.parse(location.search, {arrayFormat: 'bracket'});
@@ -582,6 +593,9 @@ $this->Html->script([
             },
             success: function(response){
                 $(".module.filter-by-brand").html(response);
+                new PerfectScrollbar($('.module.filter-by-brand').find('.table_cell')[0], {
+                    suppressScrollX: true,
+                })
             },
             error: function () {
 

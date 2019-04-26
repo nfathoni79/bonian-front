@@ -1073,3 +1073,19 @@ div.module.custom-listingtab .products-list.grid .product-layout .product-item-c
     padding-right: 10px;
     padding-bottom: 10px;
 }
+
+.module.filter-by-brand .table_cell {
+    position: relative;
+    overflow: auto;
+}
+
+
+.module .table_layout {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.module.filter-by-category .table_layout {
+    padding-left: 0;
+    padding-right: 0;
+}
