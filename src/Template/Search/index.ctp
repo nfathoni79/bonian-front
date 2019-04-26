@@ -75,7 +75,7 @@
                 <div class="table_layout filter-shopby">
                     <div class="table_row">
                         <!-- - - - - - - - - - - - - - Brand - - - - - - - - - - - - - - - - -->
-                        <div class="table_cell" style="padding-top:20px;">
+                        <div class="table_cell" style="margin-top:20px;">
                             <div class="row">
                                 <div class="col-md-12">
                                     <?php foreach($brands as $value) : ?>
@@ -514,8 +514,8 @@ $this->Html->script([
             if ($('.module.filter-by-brand').find('.table_cell').length) {
                 var tableCell = $('.module.filter-by-brand').find('.table_cell');
                 var height = tableCell.innerHeight();
-                if (height > 150) {
-                    tableCell.css('height', 150)
+                if (height > 165) {
+                    tableCell.css('height', 165)
                         .css('overflow', 'auto');
                     new PerfectScrollbar(tableCell[0], {
                         suppressScrollX: true,
