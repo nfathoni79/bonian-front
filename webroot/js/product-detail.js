@@ -100,7 +100,7 @@ function sendFrom(callback){
 
                     var lengtrow = $('.products-cart').length;
 
-                    $('<tr class="products-cart cart-'+(lengtrow+1)+' '+sku+'" id="'+sku+'"><td class="text-center" style="width:70px"><a href="'+$(location).attr('href')+'"><img src="'+image+'" data-image-name="'+imagename+'" title="'+tittle+'" alt="'+tittle+'" class="preview"></a></td><td class="text-left"><a class="cart_product_name" href="'+$(location).attr('href')+'">'+tittle+'</a></td><td class="text-center ">x<span class="cart-qty">'+$('#qty').val()+'</span></td><td class="text-center cart-price">Rp. '+addCommas(parseInt($('#qty').val()) * price)+'</td><td class="text-right"><a onclick="cart.remove('+response.result.data+', \'cart-'+(lengtrow+1)+'\', this);" class="fa fa-times fa-delete"></a></td></tr>').prependTo("#cart-table > tbody");
+                    $('<tr class="products-cart cart-'+(lengtrow+1)+' '+sku+'" id="'+sku+'"><td class="text-center" style="width:70px"><a href="'+$(location).attr('href')+'"><img src="'+image+'" data-image-name="'+imagename+'" title="'+tittle+'" alt="'+tittle+'" class="preview"></a></td><td class="text-left"><a class="cart_product_name" href="'+$(location).attr('href')+'">'+truncate(tittle, 25)+'</a></td><td class="text-center ">x<span class="cart-qty">'+$('#qty').val()+'</span></td><td class="text-center cart-price">Rp. '+addCommas(parseInt($('#qty').val()) * price)+'</td><td class="text-right"><a onclick="cart.remove('+response.result.data+', \'cart-'+(lengtrow+1)+'\', this);" class="fa fa-times fa-delete"></a></td></tr>').prependTo("#cart-table > tbody");
 
                 }else{
                     $('#'+sku).find('.cart-qty').html($('#qty').val());
