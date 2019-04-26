@@ -169,8 +169,8 @@ body {
 }
 
 .c-filter label {
-    /*font-size: 14px;
-    padding-bottom: 10px;*/
+    font-size: 14px;
+    padding-bottom: 10px;
     font-weight: 500
 }
 
@@ -553,9 +553,13 @@ body {
     min-height: 0!important
 }
 
-.c-checkout-main .c-checkout-card
-.c-checkout-main .c-checkout-card-product{
+.c-checkout-main .c-checkout-card,
+.c-checkout-main .c-cart-card-pembayaran{
     margin-top: -10em;
+}
+.c-checkout-main .c-checkout-card,
+.c-checkout-main .c-checkout-card-product,
+.c-checkout-main .c-cart-card-pembayaran{
     margin-bottom: 1em;
     padding: 25px;
     border-radius: 10px;
@@ -634,7 +638,7 @@ body {
 .c-checkout-card-product .c-checkout-card__item .c-card-item__catatan .c-catatan-detail {
     min-height: 30px;
     padding: 15px 10px 10px;
-    border: 3px dashed #cfcfcf;
+    border: 1px dashed #cfcfcf;
     background-color: #fff
 }
 
@@ -1459,11 +1463,4 @@ div.module.custom-listingtab .products-list.grid .product-layout .product-item-c
 div.module.custom-listingtab .products-list.grid .product-layout .product-item-container:before,
 div.module.custom-listingtab .products-list.grid .product-layout .product-item-container:after {
     display: none !important;
-}
-
-.module.filter-by-variant, .module.filter-by-brand {
-    padding-top: 0;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
 }
