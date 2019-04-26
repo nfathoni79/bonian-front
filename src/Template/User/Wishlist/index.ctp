@@ -3,7 +3,7 @@
       top: 6px !important; right: 24px !important; box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.12) !important;
     }
     .wishlist .product-item-container {
-      border: 1px solid #efefef;
+      border: none;
       margin-bottom: 30px;
       min-height: 250px;
       border-radius: 8px;
