@@ -2,7 +2,7 @@
 <div class="table_layout filter-shopby">
     <div class="table_row">
         <!-- - - - - - - - - - - - - - Brand - - - - - - - - - - - - - - - - -->
-        <div class="table_cell" style="padding-top:20px;">
+        <div class="table_cell" style="margin-top:20px;">
             <div class="row">
                 <div class="col-md-12">
                     <?php foreach($brands as $value) : ?>

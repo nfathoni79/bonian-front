@@ -154,7 +154,11 @@ body {
 .c-filter .ui-slider {
     background-color: #ececec;
     margin-top: 10px;
-    margin-bottom: 20px
+    margin-bottom: 20px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 .c-filter .ui-slider-horizontal .ui-slider-range,

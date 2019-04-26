@@ -23,13 +23,12 @@
                 <h3 class="modtitle o-filter-title">Berdasarkan Category </h3>
                 <div class="table_layout filter-shopby">
                     <div class="table_row">
-                        <!-- - - - - - - - - - - - - - Price - - - - - - - - - - - - - - - - -->
+                        <!-- - - - - - - - - - - - - - category - - - - - - - - - - - - - - - - -->
                         <div class="table_cell" style="padding-top:20px;">
                             <div id="category_view"></div>
                         </div>
                         <!--/ .table_cell -->
-
-                        <!-- - - - - - - - - - - - - - End price - - - - - - - - - - - - - - - - -->
+                        <!-- - - - - - - - - - - - - - End category - - - - - - - - - - - - - - - - -->
                     </div>
                 </div>
             </div>
@@ -49,16 +48,28 @@
                                     <span class="ui-slider-handle ui-state-default ui-corner-all"></span>
                                     <span class="ui-slider-handle ui-state-default ui-corner-all"></span>
                                 </div>
-                                <div class="range" style="text-align:center">
-                                            <span style="font-size:15px;">
-                                                Harga
-                                            </span>
-                                    <br>
-                                    <span class="min_val"><?= $pricing['min_price']; ?></span> -
-                                    <span class="max_val"><?= $pricing['max_price']; ?></span>
-                                    <input type="hidden" name="min_price" class="min_value" value="<?= $pricing['min_price']; ?>">
-                                    <input type="hidden" name="max_price" class="max_value" value="<?= $pricing['max_price']; ?>">
+                                <div class="form-inline range">
+                                    <div class="form-group" style="margin-bottom: 5px;">
+                                        <label class="sr-only" for="filter-input-price-min">Amount (in dollars)</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">Rp.</div>
+                                            <input type="text"  class="form-control text-right min_value" id="filter-input-price-min" placeholder="Harga minimal" name="min_price" class="min_value" value="<?= $pricing['min_price']; ?>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="sr-only" for="filter-input-price-max">Amount (in dollars)</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">Rp.</div>
+                                            <input type="text" class="form-control text-right max_value" id="filter-input-price-max" placeholder="Harga maksimal" name="max_price" class="max_value" value="<?= $pricing['max_price']; ?>">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" style="margin-top: 10px;">
+                                        <button type="button" class="btn btn-danger hide" id="apply-filter-price">Terapkan filter</button>
+                                    </div>
                                 </div>
+
+
                             </fieldset>
                         </div>
                         <!--/ .table_cell -->
@@ -526,7 +537,7 @@ $this->Html->script([
         }
         initialScrollbarBrand();
 
-        function refreshPage(target) {
+        function refreshPage(target, updateCategory, updateBrand) {
             //var parsed = queryString.parse(location.search, {arrayFormat: 'bracket'});
             target = target || location.search;
             $.ajax({
@@ -545,8 +556,14 @@ $this->Html->script([
                 }
             });
 
-            generateTree('<?= $this->Url->build(['action' => 'loadCategory', 'prefix' => false]); ?>' + location.search);
-            loadBrands('<?= $this->Url->build(['action' => 'loadBrand', 'prefix' => false]); ?>' + location.search);
+
+            if (updateCategory) {
+                generateTree('<?= $this->Url->build(['action' => 'loadCategory', 'prefix' => false]); ?>' + location.search);
+            }
+            if (updateBrand) {
+                loadBrands('<?= $this->Url->build(['action' => 'loadBrand', 'prefix' => false]); ?>' + location.search);
+            }
+
 
         }
 
@@ -569,7 +586,7 @@ $this->Html->script([
             $('.ajax-pagination a').click(function(e) {
                 e.preventDefault();
                 if (e.target.href) {
-                    refreshPage(e.target.href);
+                    refreshPage(e.target.href, false, false);
                 }
             })
         }
@@ -582,8 +599,7 @@ $this->Html->script([
                 container.addEventListener('click', function(e) {
                     if (e.target != e.currentTarget) {
                         e.preventDefault();
-                        console.log('page', e.target.href)
-                        refreshPage(e.target.href);
+                        refreshPage(e.target.href, false, false);
                     }
                     e.stopPropagation();
                 }, false);
@@ -657,7 +673,7 @@ $this->Html->script([
                     strict: true,
                     arrayFormat: 'index'
                 }));
-                refreshPage();
+                refreshPage(null, false, true);
 
             },
             onNodeUnselected: function (event, data) {
@@ -710,7 +726,7 @@ $this->Html->script([
                 }
             }
             history.replaceState(null, null, '?' + queryString.stringify(parsed, {strict: true, arrayFormat: 'index'}));
-            refreshPage();
+            refreshPage(null, true, true);
         });
 
         $(document.body).on('change', 'input.brand-value', function() {
@@ -728,15 +744,16 @@ $this->Html->script([
                 }
             }
             history.replaceState(null, null, '?' + queryString.stringify(parsed, {strict: true, arrayFormat: 'index'}));
-            refreshPage();
+            refreshPage(null, true, false);
         });
 
 
         if($('#pricing-range').length) {
-            var min_price = parseInt($('input[name="min_price"]').val());
-            var max_price = parseInt($('input[name="max_price"]').val());
+            var min_price = parseInt(numeral($('input[name="min_price"]').val()).value());
+            var max_price = parseInt(numeral($('input[name="max_price"]').val()).value());
+
             window.startRangeValues = [min_price, max_price];
-            $('#pricing-range').slider({
+            var slider = $('#pricing-range').slider({
 
                 range : true,
                 //min : min_price >= 1000 ? (min_price - 1000) : min_price ,
@@ -752,8 +769,8 @@ $this->Html->script([
                         max = ui.values[1],
                         range = $(this).siblings('.range');
 
-                    range.children('.min_value').val(min).next().val(max);
-                    range.children('.min_val').text('Rp.' + numeral(min).format('0,0')).next().text('Rp.' + numeral(max).format('0,0'));
+                    range.find('.min_value').val(numeral(min).format('0,0'));
+                    range.find('.max_value').val(numeral(max).format('0,0'));
 
                 },
                 stop: function(event, ui) {
@@ -765,7 +782,7 @@ $this->Html->script([
                     parsed.min_price = $(this).slider("values", 0);
                     parsed.max_price = $(this).slider("values", 1);
                     history.replaceState(null, null, '?' + queryString.stringify(parsed, {strict: true, arrayFormat: 'index'}));
-                    refreshPage();
+                    refreshPage(null, true, true);
 
                 },
                 create : function(event, ui){
@@ -773,14 +790,62 @@ $this->Html->script([
                         min = $this.slider("values", 0),
                         max = $this.slider("values", 1),
                         range = $this.siblings('.range');
-
-                    range.children('.min_value').val(min).next().val(max);
-
-                    range.children('.min_val').text('Rp.' + numeral(min).format('0,0')).next().text('Rp.' + numeral(max).format('0,0'));
+                    range.find('.min_value').val(numeral(min).format('0,0'));
+                    range.find('.max_value').val(numeral(max).format('0,0'));
 
                 }
 
             });
+
+            $("#filter-input-price-min").keyup(function() {
+                var val = $(this);
+                val.val(numeral(val.val()).format('0,0'))
+            }).change(function(){
+                var min = slider.slider('values', 0);
+                var max = slider.slider('values', 1);
+                var current = numeral($(this).val()).value();
+                if (current > max) {
+                    $(this).val(numeral(min).format('0,0'));
+                } else {
+                    slider.slider('option', 'min', current);
+                }
+                $(this).parents('.range').find('button').removeClass('hide');
+            });
+            $("#filter-input-price-max").keyup(function() {
+                var val = $(this);
+                val.val(numeral(val.val()).format('0,0'))
+            }).change(function(){
+                var min = slider.slider('values', 0);
+                var max = slider.slider('values', 1);
+                var current = numeral($(this).val()).value();
+                if (current < min) {
+                    $(this).val(numeral(max).format('0,0'));
+                } else {
+                    slider.slider('option', 'max', current + 10000);
+                    if (current < 1000) {
+                        slider.slider('option', 'step', 50);
+                    } else {
+                        slider.slider('option', 'step', 1000);
+                    }
+                }
+                $(this).parents('.range').find('button').removeClass('hide');
+            });
+
+            $("#apply-filter-price").click(function() {
+                slider.slider('value', 0, numeral($("#filter-input-price-min").val()).value())
+                    .slider('value', 1, numeral($("#filter-input-price-max").val()).value());
+
+                parsed =querystringParse();
+                if (parsed.page) {
+                    delete parsed.page;
+                }
+                parsed.min_price = slider.slider("values", 0);
+                parsed.max_price = slider.slider("values", 1);
+                history.replaceState(null, null, '?' + queryString.stringify(parsed, {strict: true, arrayFormat: 'index'}));
+                refreshPage(null, true, true);
+                $(this).addClass('hide');
+
+            })
 
         }
 
