@@ -69,36 +69,59 @@
             </div>
             <!-- end: componen harga -->
 
+            <!-- start: componen Brand -->
+            <div class="module filter-by-brand">
+                <h3 class="modtitle o-filter-title">Berdasarkan Brand</h3>
+                <div class="table_layout filter-shopby">
+                    <div class="table_row">
+                        <!-- - - - - - - - - - - - - - Brand - - - - - - - - - - - - - - - - -->
+                        <div class="table_cell" style="padding-top:20px;">
+                                <div class="col-md-12">
+                                    <?php foreach($brands as $value) : ?>
+                                        <div>
+                                            <div class="pretty p-default p-thick p-pulse">
+                                                <input type="checkbox" data-id="<?= $value['brand_id']; ?>" class="brand-value" />
+                                                <div class="state p-primary">
+                                                    <label><?= $value['name']; ?> <span class="category-counter">(<?= $value['total']; ?>)</span></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php endforeach; ?>
 
+                                </div>
+                        </div>
+                        <!--/ .table_cell -->
+                        <!-- - - - - - - - - - - - - - End Brand - - - - - - - - - - - - - - - - -->
+                    </div>
+                </div>
+            </div>
+            <!-- end: componen Brand -->
 
             <?php foreach($variants as $variant) : ?>
             <!-- start: componen variant -->
-            <div class="module">
+            <div class="module filter-by-variant">
                 <h3 class="modtitle o-filter-title">Berdasarkan <?= $variant['Options']['name']; ?></h3>
                 <div class="table_layout filter-shopby">
                     <div class="table_row">
-                        <!-- - - - - - - - - - - - - - Price - - - - - - - - - - - - - - - - -->
-
+                        <!-- - - - - - - - - - - - - - variant - - - - - - - - - - - - - - - - -->
                         <div class="table_cell" style="padding-top:20px;">
 
                             <?php foreach(array_chunk($variant['values'], ceil(count($variant['values']) / 2)) as $group) : ?>
                             <div class="col-md-6">
-
-                                <ul class="simple_vertical_list">
                                     <?php foreach($group as $value) : ?>
-                                        <li>
-                                            <input type="checkbox" data-id="<?= $value['option_value_id']; ?>" class="variant-value" id="variant_btn_<?= $value['option_value_id']; ?>">
-                                            <label for="variant_btn_<?= $value['option_value_id']; ?>" class="color_btn"><?= $value['name']; ?></label>
-                                        </li>
+                                            <div class="pretty p-default p-thick p-pulse">
+                                                <input type="checkbox" data-id="<?= $value['option_value_id']; ?>" class="variant-value" />
+                                                <div class="state p-primary">
+                                                    <label><?= $value['name']; ?></label>
+                                                </div>
+                                            </div>
                                     <?php endforeach; ?>
-                                </ul>
+
                             </div>
                             <?php endforeach; ?>
-
                         </div>
                         <!--/ .table_cell -->
-
-                        <!-- - - - - - - - - - - - - - End price - - - - - - - - - - - - - - - - -->
+                        <!-- - - - - - - - - - - - - - End variant - - - - - - - - - - - - - - - - -->
                     </div>
                 </div>
             </div>
@@ -494,7 +517,7 @@ $this->Html->script([
                 success: function(response){
                     $("#product-container-layout").html(response);
                     history.replaceState(null, null, target);
-                    paginationClick();
+                    paginationClicked()
                 },
                 error: function () {
 
@@ -502,6 +525,7 @@ $this->Html->script([
             });
 
             generateTree('<?= $this->Url->build(['action' => 'loadCategory', 'prefix' => false]); ?>' + location.search);
+            loadBrands('<?= $this->Url->build(['action' => 'loadBrand', 'prefix' => false]); ?>' + location.search);
 
         }
 
@@ -520,6 +544,16 @@ $this->Html->script([
             $(this).closest('.product-item-container').find('img.img-responsive').attr("src",thumb_src);
         });
 
+        function paginationClicked() {
+            $('.ajax-pagination a').click(function(e) {
+                e.preventDefault();
+                if (e.target.href) {
+                    refreshPage(e.target.href);
+                }
+            })
+        }
+        paginationClicked();
+
 
         function paginationClick() {
             var container = document.querySelector('.ajax-pagination');
@@ -535,7 +569,25 @@ $this->Html->script([
             }
 
         }
-        paginationClick();
+        //paginationClick();
+
+
+    function loadBrands(target) {
+        //filter-by-brand
+        $.ajax({
+            url: target || location.search,
+            type : 'POST',
+            data : {
+                _csrfToken: $('meta[name="_csrfToken"]').attr('content')
+            },
+            success: function(response){
+                $(".module.filter-by-brand").html(response);
+            },
+            error: function () {
+
+            }
+        });
+    }
 
 
     function generateTree(url) {
@@ -637,7 +689,25 @@ $this->Html->script([
             }
             history.replaceState(null, null, '?' + queryString.stringify(parsed, {strict: true, arrayFormat: 'index'}));
             refreshPage();
-        })
+        });
+
+        $(document.body).on('change', 'input.brand-value', function() {
+            parsed = querystringParse();
+            parsed.brands = parsed.brands || [];
+            var value = String($(this).data('id'));
+            if(this.checked) {
+                if (parsed.brands.indexOf(value) === -1) {
+                    parsed.brands.push(value);
+                }
+            } else {
+                var index = parsed.brands.indexOf(value);
+                if (index > -1) {
+                    parsed.brands.splice(index, 1);
+                }
+            }
+            history.replaceState(null, null, '?' + queryString.stringify(parsed, {strict: true, arrayFormat: 'index'}));
+            refreshPage();
+        });
 
 
         if($('#pricing-range').length) {

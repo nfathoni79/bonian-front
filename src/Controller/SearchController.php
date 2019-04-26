@@ -15,7 +15,7 @@ class SearchController  extends AuthController
     public function initialize()
     {
         parent::initialize();
-        $this->Auth->allow(['get', 'history', 'index', 'removeHistory', 'loadCategory', 'fetch']);
+        $this->Auth->allow(['get', 'history', 'index', 'removeHistory', 'loadCategory', 'loadBrand', 'fetch']);
     }
 
     public function locator(){
@@ -208,8 +208,9 @@ class SearchController  extends AuthController
         }
 
         $variants = $this->_variant($query_string);
+        $brands = $this->_brand($query_string);
 
-        $this->set(compact('products', 'pagination', 'pricing', 'variants'));
+        $this->set(compact('products', 'pagination', 'pricing', 'variants', 'brands'));
 
     }
 
@@ -282,6 +283,25 @@ class SearchController  extends AuthController
         return $data;
     }
 
+    protected function _brand($query_string)
+    {
+        $data = [];
+        try {
+            $this->Api->addHeader('bid', $this->request->getCookie('bid'));
+            $data = $this->Api->makeRequest()
+                ->get('v1/product-filters/brand', [
+                    'query' => array_filter($query_string)
+                ]);
+            if ($response = $this->Api->success($data)) {
+                $json = $response->parse();
+                $data = $json['result']['data'];
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            //debug($e->getResponse()->getBody()->getContents());exit;
+        }
+        return $data;
+    }
+
     public function loadVariant()
     {
         $this->disableAutoRender();
@@ -289,6 +309,14 @@ class SearchController  extends AuthController
         $data = $this->_variant($query_string);
         return $this->response->withType('application/json')
             ->withStringBody(json_encode($data));
+    }
+
+    public function loadBrand()
+    {
+        //$this->disableAutoRender();
+        $query_string = $this->request->getQueryParams();
+        $brands = $this->_brand($query_string);
+        $this->set(compact('brands'));
     }
 
 
