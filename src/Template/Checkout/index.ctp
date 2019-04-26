@@ -1,396 +1,3 @@
-<style type="text/css">
-    
-/*! ########## Checkout custom styling ########## */
-
-.c-checkout-main .c-checkout-card {
-    min-height: 0!important
-}
-
-.c-checkout-main .c-checkout-card,
-.c-checkout-main .c-cart-card-pembayaran{
-    margin-top: -10em;
-}
-.c-checkout-main .c-checkout-card,
-.c-checkout-main .c-checkout-card-product,
-.c-checkout-main .c-cart-card-pembayaran{
-    margin-bottom: 1em;
-    padding: 25px;
-    border-radius: 10px;
-    background: #fff;
-    box-shadow: 0 2px 15px hsla(0, 0%, 71%, .5);
-    min-height: 300px
-}
-
-.c-checkout-main .c-checkout-card__item {
-    padding: 20px;
-    min-height: 60px;
-    background-color: #fff6f6;
-    border-radius: 10px;
-    border: 1px solid #e2e2e2
-}
-
-.c-checkout-main .c-card__item-title {
-    font-weight: 400;
-    color: #dc5054;
-    font-size: 15px;
-    max-width: 200px;
-    min-height: 40px;
-    padding: 10px!important;
-    margin: -25px -25px 20px!important;
-    background-color: #f2e7e7;
-    text-align: center;
-    text-transform: capitalize;
-    border-bottom-right-radius: 20px
-}
-
-.c-checkout-main .c-card__item-name {
-    font-size: 14px;
-    font-weight: 600;
-    color: #000;
-    margin-top: 0!important
-}
-
-.c-checkout-main .c-card__item-phone {
-    font-weight: 500;
-    margin-bottom: 0!important
-}
-
-.c-checkout-main .o-card__item-hapus {
-    font-size: 1em;
-    text-transform: capitalize;
-    min-height: 30px!important;
-    margin: 0 auto;
-    padding: 10px
-}
-
-.c-checkout-card-product {
-    margin-top: 1em;
-    min-height: 0!important
-}
-
-.c-checkout-card-product .c-checkout-card__item {
-    margin-top: 15px
-}
-
-.c-checkout-card-product .c-checkout-card__item .c-card-item__description p {
-    color: #212121
-}
-
-.c-checkout-card-product .c-checkout-card__item .c-card-item__description .o-poin {
-    background: linear-gradient(#174564, #4493e2 53.14%, #278bce);
-    max-width: 80px;
-    text-align: center;
-    color: #fff;
-    border-radius: 20px
-}
-
-.c-checkout-card-product .c-checkout-card__item .c-card-item__catatan {
-    padding-top: 1em
-}
-
-.c-checkout-card-product .c-checkout-card__item .c-card-item__catatan .c-catatan-detail {
-    min-height: 30px;
-    padding: 15px 10px 10px;
-    border: 1px dashed #cfcfcf;
-    background-color: #fff
-}
-
-.c-checkout-card-product .c-checkout-card__pengiriman h5 {
-    font-weight: 300;
-    color: #212121;
-    font-size: 1em;
-    text-transform: capitalize
-}
-
-.c-checkout-card-product .c-checkout-card__pengiriman .c-dropdown-pengiriman {
-    min-width: 300px;
-    text-align: left
-}
-
-.c-checkout-card-product .c-checkout-card__pengiriman .c-dropdown-pengiriman:hover {
-    background-color: transparent
-}
-
-.c-checkout-card-product .c-checkout-card__pengiriman .c-dropdown-pengiriman .c-dropdown-pengiriman__title {
-    font-size: 12px;
-    color: #b7b7b7;
-    padding-right: 80px;
-    padding-left: 20px
-}
-
-.c-checkout-card-product .c-checkout-card__pengiriman .c-dropdown-pengiriman .dropdown-menu {
-    padding: 25px!important
-}
-
-.c-checkout-card-product .c-checkout-card__pengiriman .c-dropdown-pengiriman .caret {
-    text-align: right!important
-}
-
-.c-checkout-card-product .c-checkout-card__pengiriman .c-ongkos {
-    padding: 20px;
-    color: #212121;
-    font-weight: 300
-}
-
-.c-checkout-card-product .c-checkout-card__pengiriman .c-ongkos .o-ongkos-divider {
-    border: 1px dashed #e2e2e2;
-    margin-top: 20px;
-    margin-bottom: 20px
-}
-
-.c-cart-card-pembayaran {
-    padding: 0
-}
-
-.c-cart-card-pembayaran .c-cart-card-pembayaran__title {
-    font-weight: 300!important
-}
-
-.c-cart-card-pembayaran .c-cart-card-pembayaran__content .sub-total {
-    color: #dc5054
-}
-
-.c-cart-card-pembayaran .c-cart-card-pembayaran__content .c-pembayaran-button {
-    min-width: 100%!important
-}
-
-.c-cart-card-pembayaran .c-cart-card-pembayaran__content .c-kupon {
-    border: 1px solid #62a811;
-    margin-top: 1em
-}
-
-.c-cart-card-pembayaran .c-cart-card-pembayaran__content .c-kupon .c-kupon-kiri {
-    background-color: #fff;
-    min-height: 40px;
-    text-transform: capitalize;
-    color: #62a811
-}
-
-.c-cart-card-pembayaran .c-cart-card-pembayaran__content .c-kupon .c-kupon-kanan {
-    background-color: #62a811;
-    min-height: 40px;
-    color: #fff
-}
-
-.c-cart-card-pembayaran .c-cart-card-pembayaran__content .c-question {
-    font-size: 1.5em;
-    margin-top: 20px;
-    opacity: .5
-}
-
-.c-cart-card-pembayaran .c-card-pembayaran__metode {
-    margin-top: 20px;
-    padding: 0;
-    background-color: #fff6f6;
-    box-shadow: none
-}
-
-.c-cart-card-pembayaran .c-card-pembayaran__metode .c-card-pembayaran__metode-title {
-    padding: 5px 20px
-}
-
-.c-cart-card-pembayaran .c-card-pembayaran__metode .c-card-pembayaran__metode-title h5 {
-    text-align: center
-}
-
-.c-cart-card-pembayaran .c-card-pembayaran__metode .c-card-pembayaran__content h5 {
-    font-size: 14px;
-    margin-top: 2px!important;
-    margin-right: 10px!important;
-    text-align: center!important
-}
-
-.c-cart-card-pembayaran .c-card-pembayaran__metode .c-card-pembayaran__content p {
-    margin-top: 1em;
-    font-size: 12px!important
-}
-
-.c-cart-card-pembayaran .c-card-pembayaran__metode .c-card-pembayaran__content .c-card-pembayaran__title {
-    text-align: left!important;
-    padding-left: 20px;
-    margin-top: 1em!important;
-    font-weight: 300
-}
-
-#modalTambahAlamat .modal-header,
-#modalTambahKartuKredit .modal-header {
-    background-color: #ec6e6e;
-    font-weight: 300!important
-}
-
-#modalTambahKartuKredit .modal-content {
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px
-}
-
-#modalTambahKartuKredit .modal-header {
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
-    color: #fff
-}
-
-#modalTambahKartuKredit .modal-header .close {
-    color: #fff
-}
-
-#modalTambahKartuKredit .modal-body {
-    padding-bottom: 0!important
-}
-
-#modalTambahKartuKredit .c-modal-item {
-    padding: 20px;
-    min-height: 60px;
-    background-color: #fff6f6;
-    border-radius: 10px;
-    border: 1px solid #e2e2e2;
-    margin-bottom: 20px
-}
-
-#modalTambahKartuKredit .c-modal-item .c-modal-item__name {
-    font-size: 14px;
-    font-weight: 600;
-    color: #000;
-    margin-top: 0!important;
-    text-transform: capitalize
-}
-
-#modalTambahKartuKredit .c-modal-item .c-modal-item__phone {
-    font-weight: 500;
-    margin-bottom: 0!important
-}
-
-#modalTambahKartuKredit .c-modal-item .c-modal-item__btn-groups {
-    margin-top: 10px;
-    margin-bottom: 10px
-}
-
-#modalTambahKartuKredit .modal-footer {
-    border-top: none!important;
-    padding-top: 0!important
-}
-
-#modalTambahKartuKredit .modal-footer .c-info {
-    background-color: #edf5dc;
-    border: 1px solid #d6e2bd;
-    text-align: center;
-    color: #8cae47;
-    border-radius: 5px
-}
-
-#modalTambahKartuKredit .o-modal-item__btn {
-    background-color: #dc5054;
-    color: #fff;
-    border: none!important;
-    border-radius: 5px!important
-}
-
-#modalTambahKartuKredit .o-modal-item__btn,
-#modalTambahKartuKredit .o-modal-item__btn--secondary {
-    margin-top: 2em!important;
-    text-transform: capitalize;
-    font-size: 1em;
-    font-weight: 600;
-    max-width: 250px;
-    min-height: 40px
-}
-
-#modalTambahKartuKredit .o-modal-item__btn--secondary {
-    background-color: transparent;
-    color: #fff;
-    border-radius: 5px!important;
-    border: 1px solid #dfdfdf!important;
-    color: #dc5054;
-    font-size: .9em
-}
-
-#modalTambahAlamat .modal-content {
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px
-}
-
-#modalTambahAlamat .modal-header {
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
-    color: #fff
-}
-
-#modalTambahAlamat .modal-header .close {
-    color: #fff
-}
-
-#modalTambahAlamat .modal-body {
-    padding-bottom: 0!important
-}
-
-#modalTambahAlamat .c-modal-item {
-    padding: 20px;
-    min-height: 60px;
-    background-color: #fff6f6;
-    border-radius: 10px;
-    border: 1px solid #e2e2e2;
-    margin-bottom: 20px
-}
-
-#modalTambahAlamat .c-modal-item .c-modal-item__name {
-    font-size: 14px;
-    font-weight: 600;
-    color: #000;
-    margin-top: 0!important;
-    text-transform: capitalize
-}
-
-#modalTambahAlamat .c-modal-item .c-modal-item__phone {
-    font-weight: 500;
-    margin-bottom: 0!important
-}
-
-#modalTambahAlamat .c-modal-item .c-modal-item__btn-groups {
-    margin-top: 10px;
-    margin-bottom: 10px
-}
-
-#modalTambahAlamat .modal-footer {
-    border-top: none!important;
-    padding-top: 0!important
-}
-
-#modalTambahAlamat .modal-footer .c-info {
-    background-color: #edf5dc;
-    border: 1px solid #d6e2bd;
-    text-align: center;
-    color: #8cae47;
-    border-radius: 5px
-}
-
-#modalTambahAlamat .o-modal-item__btn {
-    background-color: #dc5054;
-    color: #fff;
-    border: none!important;
-    border-radius: 5px!important
-}
-
-#modalTambahAlamat .o-modal-item__btn,
-#modalTambahAlamat .o-modal-item__btn--secondary {
-    margin-top: 2em!important;
-    text-transform: capitalize;
-    font-size: 1em;
-    font-weight: 600;
-    max-width: 250px;
-    min-height: 40px
-}
-
-#modalTambahAlamat .o-modal-item__btn--secondary {
-    background-color: transparent;
-    color: #fff;
-    border-radius: 5px!important;
-    border: 1px solid #dfdfdf!important;
-    color: #dc5054;
-    font-size: .9em
-}
-    
-</style>
-
-
 <div class="c-header__bg" style="z-index:0;">
     <div class="container">
         <div class="row">
@@ -410,7 +17,7 @@
 
 
 <!-- start: checkout -->
-<div class="c-checkout-main">
+<div class="c-checkout-main tx-medium">
     <div class="container">
         <div class="row">
 
@@ -430,9 +37,9 @@
                     <div class="c-checkout-card__item">
                         <div class="row">
                             <div class="col-lg-9">
-                                <h1 class="c-card__item-name">
+                                <h1 class="c-card__user-name tx-16 tx-bold zl-tx-black tx-mont mt-0">
                                     Indra Feriana
-                                    <span> (Alamat Rumah) </span>
+                                    <span class="tx-14 zl-tx-gray tx-medium"> - (Alamat Rumah) </span>
                                 </h1>
                                 <p class="c-card__item-address">
                                     Kp. Cimekar No 42 RT 04 RW29, Sangkuriang, Cimahi Cimahi Utara, Kota Cimahi,
@@ -443,7 +50,7 @@
                                 </p>
                             </div>
                             <div class="col-lg-3 text-right">
-                                <a href="#" class="btn btn-danger btn-block o-card__item-hapus" data-toggle="modal" data-target="#modalAlamat">
+                                <a href="#" class="btn btn-danger btn-block o-card__address-btn" data-toggle="modal" data-target="#modalAlamat">
                                     Ganti Alamat
                                 </a>
                             </div>
@@ -458,17 +65,13 @@
 
                 <div class="c-checkout-card-product">
 
-                    <div class="row">
+                    <div class="row zl-tx-gray ">
                         <div class="col-lg-12">
-                            <div class="col-lg-6 text-left">
-                                <p>
-                                    Produk belanja 1
-                                </p>
+                            <div class="col-lg-6 tx-16 tx-bold zl-tx-black tx-mont text-left p-0">
+                                <p>Produk belanja 1</p>
                             </div>
                             <div class="col-lg-6 text-right">
-                                <p>
-                                    Shipping origin : Jakarta
-                                </p>
+                                <span><i class="fas fa-warehouse pd-r-10 tx-16"></i> Shipping origin : <span class="tx-bold">Jakarta</span></span>
                             </div>
                         </div>
                     </div>
@@ -478,7 +81,7 @@
                         <div class="row">
 
                             <div class="col-lg-2">
-                                <img src="assets/img/item-img-3.png" alt="product image" class="img-responsive u-flex-center">
+                                <img class="img-responsive img-0" src="http://zolaku.nevsky.tech/images/132x132/382674cca7e149daa393a5cd20685b05.jpg" data-zoom-image="http://zolaku.nevsky.tech/images/600x600/382674cca7e149daa393a5cd20685b05.jpg" data-image-name="382674cca7e149daa393a5cd20685b05.jpg" title="Celana Kerja / Celana Formal Pria WAY OF MAN" alt="Celana Kerja / Celana Formal Pria WAY OF MAN">
                             </div>
 
                             <div class="col-lg-10 c-card-item__description">
@@ -581,7 +184,7 @@
                         <div class="row">
 
                             <div class="col-lg-2">
-                                <img src="assets/img/item-img-3.png" alt="product image" class="img-responsive u-flex-center">
+                                <img class="img-responsive img-0" src="http://zolaku.nevsky.tech/images/132x132/382674cca7e149daa393a5cd20685b05.jpg" data-zoom-image="http://zolaku.nevsky.tech/images/600x600/382674cca7e149daa393a5cd20685b05.jpg" data-image-name="382674cca7e149daa393a5cd20685b05.jpg" title="Celana Kerja / Celana Formal Pria WAY OF MAN" alt="Celana Kerja / Celana Formal Pria WAY OF MAN">
                             </div>
 
                             <div class="col-lg-10 c-card-item__description">
@@ -1249,6 +852,454 @@
     </div>
 </div>
 <!-- end: checkout -->
+
+
+
+<!-- start: modal alamat -->
+<div class="modal fade" id="modalAlamat" tabindex="-1" role="dialog" aria-labelledby="modalAlamat">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        <i class="fas fa-times-circle"></i>
+                    </span>
+                </button>
+                <h4 class="modal-title" id="modalTitle">
+                    Daftar alamat
+                </h4>
+            </div>
+
+            <div class="modal-body">
+
+                <!-- start: modal item #1 -->
+                <div class="c-modal-item">
+
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h1 class="c-modal-item__name">
+                                Indra Feriana
+                                <span> (Alamat Rumah) </span>
+                            </h1>
+                            <p class="c-modal-item__address">
+                                Kp. Cimekar No 42 RT 04 RW29, Sangkuriang, Cimahi Cimahi Utara, Kota Cimahi,
+                                40511
+                            </p>
+                            <p class="c-modal-item__phone">
+                                085723660520
+                            </p>
+                        </div>
+                        <div class="col-lg-4 text-center">
+                            <a href="#" class="btn btn-danger btn-block o-modal-item__btn u-flex-center">
+                                Alamat Utama
+                            </a>
+
+                            <div class="row c-modal-item__btn-groups text-center">
+                                <div class="col-lg-6">
+                                    <button type="button" class="btn btn-block btn-link">
+                                        <i class="fas fa-edit"></i>
+                                        edit
+                                    </button>
+                                </div>
+                                <div class="col-lg-6">
+                                    <button type="button" class="btn btn-block btn-link">
+                                        <i class="fas fa-trash-alt"></i>
+                                        hapus
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- end: modal item #1 -->
+
+                <!-- start: modal item #2 -->
+                <div class="c-modal-item" style="background-color: transparent;">
+
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h1 class="c-modal-item__name">
+                                alamat kantor
+                            </h1>
+                            <p class="c-modal-item__address">
+                                Jl. Jarakosta No.RT. 05/02, Sukadanau, Cikarang Barat,
+                                Bekasi, Jawa Barat 17520
+                            </p>
+                            <p class="c-modal-item__phone">
+                                085723660520
+                            </p>
+                        </div>
+                        <div class="col-lg-4 text-center">
+                            <a href="#"
+                                class="btn btn-danger btn-block o-modal-item__btn--secondary u-flex-center"
+                                data-toggle="modal" data-target="#modalAlamat">
+                                Set Alamat Utama
+                            </a>
+
+                            <div class="row c-modal-item__btn-groups text-center">
+                                <div class="col-lg-6">
+                                    <button type="button" class="btn btn-block btn-link">
+                                        <i class="fas fa-edit"></i>
+                                        edit
+                                    </button>
+                                </div>
+                                <div class="col-lg-6">
+                                    <button type="button" class="btn btn-block btn-link">
+                                        <i class="fas fa-trash-alt"></i>
+                                        hapus
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- start: modal item #2 -->
+
+                <!-- start: modal item #3 -->
+                <div class="c-modal-item" style="background-color: transparent;">
+
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h1 class="c-modal-item__name">
+                                alamat kantor 2
+                            </h1>
+                            <p class="c-modal-item__address">
+                                Jl. Jarakosta No.RT. 05/02, Sukadanau, Cikarang Barat,
+                                Bekasi, Jawa Barat 17520
+                            </p>
+                            <p class="c-modal-item__phone">
+                                085723660520
+                            </p>
+                        </div>
+                        <div class="col-lg-4 text-center">
+                            <a href="#"
+                                class="btn btn-danger btn-block o-modal-item__btn--secondary u-flex-center"
+                                data-toggle="modal" data-target="#modalAlamat">
+                                Set Alamat Utama
+                            </a>
+
+                            <div class="row c-modal-item__btn-groups text-center">
+                                <div class="col-lg-6">
+                                    <button type="button" class="btn btn-block btn-link">
+                                        <i class="fas fa-edit"></i>
+                                        edit
+                                    </button>
+                                </div>
+                                <div class="col-lg-6">
+                                    <button type="button" class="btn btn-block btn-link">
+                                        <i class="fas fa-trash-alt"></i>
+                                        hapus
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- start: modal item #3 -->
+            </div>
+
+
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="c-info text-left">
+                            <h5>
+                                <i class="fas fa-info-circle"></i> &nbsp;
+                                Pilih salah satu alamat diatas sebagai alamat utama
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <button type="button" class="btn btn-danger btn-block o-modal-item__btn"
+                            data-toggle="modal" data-target="#modalTambahAlamat" data-dismiss="modal"
+                            style="margin-top: 0px !important;">
+                            <i class="fas fa-plus-circle"></i> &nbsp;
+                            Tambah Alamat
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end: modal alamat -->
+
+<!-- start: modal tambah alamat -->
+<div class="modal fade" id="modalTambahAlamat" tabindex="-1" role="dialog" aria-labelledby="modalTambahAlamat">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        <i class="fas fa-times-circle"></i>
+                    </span>
+                </button>
+                <h4 class="modal-title" id="modalTitle">
+                    Tambah alamat baru
+                </h4>
+            </div>
+
+            <div class="modal-body">
+
+                <form action="">
+
+                    <!-- start: form item #1 -->
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="inputAlamat">Nama Alamat</label>
+                                <input type="text" class="form-control" id="inputAlamat"
+                                    placeholder="Input nama alamat">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="inputPenerima">Nama Penerima</label>
+                                <input type="text" class="form-control" id="inputPenerima"
+                                    placeholder="Input nama penerima">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="inputTelepon">Nomor Telepon</label>
+                                <input type="number" class="form-control" id="inputTelepon"
+                                    placeholder="Input nomor telepon">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end: form item #1 -->
+
+                    <hr>
+
+                    <!-- start: form item #2 -->
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label for="dropdownProvinsi">Provinsi</label>
+                            <div class="dropdown">
+                                <button class="btn btn-default btn-block dropdown-toggle text-left"
+                                    type="button" id="dropdownProvinsi" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="true">
+                                    Pilih provinsi
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownProvinsi">
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#">Separated link</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <label for="dropdownKota">Kota / Kabupaten</label>
+                            <div class="dropdown">
+                                <button class="btn btn-default btn-block dropdown-toggle text-left"
+                                    type="button" id="dropdownKota" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="true">
+                                    Pilih Kota / Kabupaten
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownKota">
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#">Separated link</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <label for="dropdownKecamatan">Kecamatan</label>
+                            <div class="dropdown">
+                                <button class="btn btn-default btn-block dropdown-toggle text-left"
+                                    type="button" id="dropdownKecamatan" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="true">
+                                    Pilih Kecamatan
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownKecamatan">
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#">Separated link</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="inputKode">Kode Pos</label>
+                                <input type="number" class="form-control" id="inputKode"
+                                    placeholder="Input kode pos">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <label for="inputAlamatLengkap">Alamat lengkap</label>
+                            <textarea class="form-control" id="inputAlamatLengkap" rows="3"
+                                placeholder="input alamat lengkap disini"></textarea>
+                        </div>
+
+                        <div class="col-lg-6 text-left u-mt-10">
+                            <label for="inputKoordinat">Lokasi</label>
+                            &nbsp;
+                            <i class="fas fa-question-circle c-question"></i>
+                        </div>
+
+                        <div class="col-lg-6 text-right u-mt-10">
+                            <a class="btn btn-link " href="#" role="button">
+                                <i class="fas fa-map-marker-alt"></i>
+                                &nbsp;
+                                Pilih Kooordinat
+                            </a>
+                        </div>
+                    </div>
+                    <!-- end: form item #2 -->
+
+                </form>
+
+            </div>
+
+
+            <div class="modal-footer u-mt-10">
+                <div class="row">
+
+                    <div class="col-lg-4">
+                        <button type="button" class="btn btn-danger btn-block o-modal-item__btn"
+                            style="margin-top: 0px !important;">
+                            <i class="fas fa-save"></i> &nbsp;
+                            Simpan Alamat
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end: modal tambah alamat -->
+
+<!-- start:modal tambah kartu kredit -->
+<div class="modal fade" id="modalTambahKartuKredit" tabindex="-1" role="dialog"
+    aria-labelledby="modalTambahKartuKredit">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        <i class="fas fa-times-circle"></i>
+                    </span>
+                </button>
+                <h4 class="modal-title" id="modalTitle">
+                    Tambah Kartu Kredit
+                </h4>
+            </div>
+
+            <div class="modal-body">
+
+                <form action="">
+
+                    <!-- start: form item #1 -->
+                    <div class="row">
+
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label for="inputNamaKartu">Nama pemilik kartu</label>
+                                <input type="text" class="form-control" id="inputNamaKartu"
+                                    placeholder="Input nama pemilik kartu kredit">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="inputNomorKartu">Nomor kartu kredit</label>
+                                <input type="number" class="form-control" id="inputNomorKartu"
+                                    placeholder="Input nomor kartu kredit">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6" style="margin-top: 2em;">
+
+                            <img src="assets/img/logo-bank-group.png" alt="logo kartu kredit"
+                                class="img-responsive">
+                        </div>
+
+                    </div>
+                    <!-- end: form item #1 -->
+
+                    <!-- start: form item #2 -->
+                    <div class="row">
+
+                        <div class="col-lg-4">
+                            <label for="inputMasaKartu">Masa Berlaku</label>
+                            <div class="form-group">
+                                <div class="row text-center">
+                                    <div class="col-lg-6">
+                                        <input type="number" class="form-control" id="inputMasaKartu"
+                                            placeholder="MM">
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <input type="number" class="form-control" id="inputMasaKartu"
+                                            placeholder="YY">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="inputCvv">CVV</label>
+                                <input type="number" class="form-control" id="inputCvv" placeholder="000">
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- end: form item #2 -->
+
+                </form>
+
+            </div>
+
+
+            <div class="modal-footer u-mt-10">
+                <div class="row">
+
+                    <div class="col-lg-4">
+                        <button type="button" class="btn btn-danger btn-block o-modal-item__btn"
+                            style="margin-top: 0px !important;">
+                            <i class="fas fa-save"></i> &nbsp;
+                            Tambahkan Kartu
+                        </button>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <button type="button" class="btn btn-default btn-block" style="min-height: 40px;">
+                            Batal
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end: modal tambah kartu kredit -->
+
 
 <?php $this->append('script'); ?>
 <?php
