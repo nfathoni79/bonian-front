@@ -510,11 +510,21 @@ $this->Html->script([
 
 
         //filter-by-brand
-        if ($('.module.filter-by-brand').find('.table_cell').length) {
-            new PerfectScrollbar($('.module.filter-by-brand').find('.table_cell')[0], {
-                suppressScrollX: true,
-            })
+        function initialScrollbarBrand() {
+            if ($('.module.filter-by-brand').find('.table_cell').length) {
+                var tableCell = $('.module.filter-by-brand').find('.table_cell');
+                var height = tableCell.innerHeight();
+                if (height > 150) {
+                    tableCell.css('height', 150)
+                        .css('overflow', 'auto');
+                    new PerfectScrollbar(tableCell[0], {
+                        suppressScrollX: true,
+                    })
+                }
+
+            }
         }
+        initialScrollbarBrand();
 
         function refreshPage(target) {
             //var parsed = queryString.parse(location.search, {arrayFormat: 'bracket'});
@@ -593,9 +603,7 @@ $this->Html->script([
             },
             success: function(response){
                 $(".module.filter-by-brand").html(response);
-                new PerfectScrollbar($('.module.filter-by-brand').find('.table_cell')[0], {
-                    suppressScrollX: true,
-                })
+                initialScrollbarBrand();
             },
             error: function () {
 
