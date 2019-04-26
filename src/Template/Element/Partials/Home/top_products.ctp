@@ -1,15 +1,56 @@
 <style>
   div.module.custom-listingtab .owl2-controls .owl2-nav {
-      position: absolute;
-      top: -12px;
-      right: 15px;
+        position: absolute;
+        top: -12px;
+        right: 15px;
   }
   .products-list .product-layout .product-item-container{
-      box-shadow:none !important;
-      max-height: 270px;
-      min-height: 170px;
-      margin: 10px !important;
+        box-shadow:none !important;
+        max-height: 270px;
+        min-height: 170px;
+        margin: 10px !important;
   }
+  .share-container{
+        background: #fff;
+        bottom: 0px !important;
+        box-shadow: unset;
+        width: 100%;
+        height: 100%;
+        border: 0px !important;
+        border-radius: 0px !important;
+  }
+  .btn-share-tp {
+        width: 25%;
+        height: 40%;
+        margin: 2px;
+        border: none;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        font-size: 150%;
+        padding-left: 10px;
+        padding-right: 10px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+    .b-ig{
+        background-image: linear-gradient(#ee3381, #b2568d, #f6944a);
+    }
+    .b-fb{
+        background-color: #2861aa;
+    }
+    .b-wc{
+        background-color: #1c8aa6;
+    }
+    .b-wa{
+        background-color: #64bb54;
+    }
+    .b-ln{
+        background-color: #3acd03;
+    }
+    .b-tw{
+        background-color: #37b2db;
+    }
 </style>
 <div class="card-wrapper" >
     <!-- Listing tabs -->
@@ -71,7 +112,7 @@
                                                 <div class="right-block right-b" style="min-height: 120px;">
                                                     <div class="row">
                                                         <div class="col-lg-7"  style="width: 47.333333%!important; display: inline-block;">
-                                                            <div class="rating">
+                                                            <div class="rating" style="margin-left: 15px;">
                                                                 <?php
                                                                     $rate = $vals['rating'];
                                                                     for ($x = 0; $x < $rate; $x++) {
@@ -103,15 +144,13 @@
                                                             <?php endif;?>
                                                         </div>
 
-                                                        <div class="button-group so-quickview cartinfo--static share-container" style="margin-left: 10px; width: 90%;">
-                                                            <button type="button" class="btn-share" style="background-color:#2c558b; padding-left: 12px; padding-right: 12px;" title="Share" onclick=""><i class="fa fa-facebook"></i><span> </span>
-                                                            </button>
-                                                            <button type="button" class="btn-share" style="background-color:#1e99d0; padding-left: 9px; padding-right: 9px;" title="Share" onclick=""><i class="fa fa-twitter"></i>
-                                                            </button>
-                                                            <button type="button" class="btn-share" style="background-color:#6e5f4c; padding-left: 10px; padding-right: 10px;" title="Share" onclick=""><i class="fa fa-instagram"></i>
-                                                            </button>
-                                                            <button type="button" class="btn-share" style="background-color:#79bc25; padding-left: 10px; padding-right: 10px;" title="Share" onclick=""><i class="fa fa-whatsapp"></i>
-                                                            </button>
+                                                        <div class="button-group so-quickview cartinfo--static share-container">
+                                                          <button class="btn-share-tp b-ig"><i class="fab fa-instagram"></i></button>
+                                                          <button class="btn-share-tp b-fb"><i class="fab fa-facebook"></i></button>
+                                                          <button class="btn-share-tp b-wc"><i class="fas fa-comment-dots"></i></button>
+                                                          <button class="btn-share-tp b-wa"><i class="fab fa-whatsapp"></i></button>
+                                                          <button class="btn-share-tp b-ln"><i class="fab fa-line"></i></button>
+                                                          <button class="btn-share-tp b-tw"><i class="fab fa-twitter"></i></button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -155,7 +194,7 @@
                                               <div class="right-block right-b" style="min-height: 120px;">
                                                   <div class="row">
                                                       <div class="col-lg-7"  style="width: 47.333333%!important; display: inline-block;">
-                                                          <div class="rating">
+                                                          <div class="rating" style="margin-left: 15px;">
                                                               <?php
                                                                   $rate = $vals['rating'];
                                                                   for ($x = 0; $x < $rate; $x++) {
@@ -187,15 +226,13 @@
                                                           <?php endif;?>
                                                       </div>
 
-                                                      <div class="button-group so-quickview cartinfo--static share-container" style="margin-left: 10px; width: 90%;">
-                                                          <button type="button" class="btn-share" style="background-color:#2c558b; padding-left: 12px; padding-right: 12px;" title="Share" onclick=""><i class="fa fa-facebook"></i><span> </span>
-                                                          </button>
-                                                          <button type="button" class="btn-share" style="background-color:#1e99d0; padding-left: 9px; padding-right: 9px;" title="Share" onclick=""><i class="fa fa-twitter"></i>
-                                                          </button>
-                                                          <button type="button" class="btn-share" style="background-color:#6e5f4c; padding-left: 10px; padding-right: 10px;" title="Share" onclick=""><i class="fa fa-instagram"></i>
-                                                          </button>
-                                                          <button type="button" class="btn-share" style="background-color:#79bc25; padding-left: 10px; padding-right: 10px;" title="Share" onclick=""><i class="fa fa-whatsapp"></i>
-                                                          </button>
+                                                      <div class="button-group so-quickview cartinfo--static share-container">
+                                                        <button class="btn-share-tp b-ig"><i class="fab fa-instagram"></i></button>
+                                                        <button class="btn-share-tp b-fb"><i class="fab fa-facebook"></i></button>
+                                                        <button class="btn-share-tp b-wc"><i class="fas fa-comment-dots"></i></button>
+                                                        <button class="btn-share-tp b-wa"><i class="fab fa-whatsapp"></i></button>
+                                                        <button class="btn-share-tp b-ln"><i class="fab fa-line"></i></button>
+                                                        <button class="btn-share-tp b-tw"><i class="fab fa-twitter"></i></button>
                                                       </div>
                                                   </div>
                                               </div>
@@ -240,7 +277,7 @@
                                               <div class="right-block right-b" style="min-height: 120px;">
                                                   <div class="row">
                                                       <div class="col-lg-7"  style="width: 47.333333%!important; display: inline-block;">
-                                                          <div class="rating">
+                                                          <div class="rating" style="margin-left: 15px;">
                                                               <?php
                                                                   $rate = $vals['rating'];
                                                                   for ($x = 0; $x < $rate; $x++) {
@@ -272,15 +309,13 @@
                                                           <?php endif;?>
                                                       </div>
 
-                                                      <div class="button-group so-quickview cartinfo--static share-container" style="margin-left: 10px; width: 90%;">
-                                                          <button type="button" class="btn-share" style="background-color:#2c558b; padding-left: 12px; padding-right: 12px;" title="Share" onclick=""><i class="fa fa-facebook"></i><span> </span>
-                                                          </button>
-                                                          <button type="button" class="btn-share" style="background-color:#1e99d0; padding-left: 9px; padding-right: 9px;" title="Share" onclick=""><i class="fa fa-twitter"></i>
-                                                          </button>
-                                                          <button type="button" class="btn-share" style="background-color:#6e5f4c; padding-left: 10px; padding-right: 10px;" title="Share" onclick=""><i class="fa fa-instagram"></i>
-                                                          </button>
-                                                          <button type="button" class="btn-share" style="background-color:#79bc25; padding-left: 10px; padding-right: 10px;" title="Share" onclick=""><i class="fa fa-whatsapp"></i>
-                                                          </button>
+                                                      <div class="button-group so-quickview cartinfo--static share-container">
+                                                        <button class="btn-share-tp b-ig"><i class="fab fa-instagram"></i></button>
+                                                        <button class="btn-share-tp b-fb"><i class="fab fa-facebook"></i></button>
+                                                        <button class="btn-share-tp b-wc"><i class="fas fa-comment-dots"></i></button>
+                                                        <button class="btn-share-tp b-wa"><i class="fab fa-whatsapp"></i></button>
+                                                        <button class="btn-share-tp b-ln"><i class="fab fa-line"></i></button>
+                                                        <button class="btn-share-tp b-tw"><i class="fab fa-twitter"></i></button>
                                                       </div>
                                                   </div>
                                               </div>

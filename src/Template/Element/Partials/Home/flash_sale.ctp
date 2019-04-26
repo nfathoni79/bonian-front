@@ -1,7 +1,7 @@
 <style>
     .progress{
-        height: 10px !important;
-        margin-bottom: 0;
+          height: 10px !important;
+          margin-bottom: 0;
     }
     .card-wrapper-title {
           background-image: linear-gradient(to right, #e22b2b, #8f1b1d);
@@ -35,8 +35,49 @@
           border-radius: 20px;
     }
     div.col-lg-7{
-      padding: 0;
+          padding: 0;
     }
+    .share-container{
+          background: #fff;
+          bottom: 0px !important;
+          box-shadow: unset;
+          width: 100%;
+          height: 100%;
+          border: 0px !important;
+          border-radius: 0px !important;
+    }
+    .btn-share {
+          width: 30%;
+          height: 50%;
+          margin:  2px;
+          border: none;
+          color: white;
+          text-align: center;
+          text-decoration: none;
+          font-size: 200%;
+          padding-left: 10px;
+          padding-right: 10px;
+          cursor: pointer;
+          border-radius: 4px;
+      }
+      .b-ig{
+          background-image: linear-gradient(#ee3381, #b2568d, #f6944a);
+      }
+      .b-fb{
+          background-color: #2861aa;
+      }
+      .b-wc{
+          background-color: #1c8aa6;
+      }
+      .b-wa{
+          background-color: #64bb54;
+      }
+      .b-ln{
+          background-color: #3acd03;
+      }
+      .b-tw{
+          background-color: #37b2db;
+      }
 </style>
 
 <?php if ($flashSales['end']) : ?>
@@ -107,15 +148,13 @@
                                             <span class="price-old">Rp. <?= $this->Number->format($flash_sale['product']['price']); ?></span>
                                         <?php endif;?>
                                     </div>
-                                    <div class="button-group so-quickview cartinfo--static share-container" style="margin-left: 10px; width: 90%;">
-                                        <button type="button" class="btn-share" style="background-color:#2c558b; padding-left: 12px; padding-right: 12px;" title="Share" onclick=""><i class="fa fa-facebook"></i><span> </span>
-                                        </button>
-                                        <button type="button" class="btn-share" style="background-color:#1e99d0; padding-left: 9px; padding-right: 9px;" title="Share" onclick=""><i class="fa fa-twitter"></i>
-                                        </button>
-                                        <button type="button" class="btn-share" style="background-color:#6e5f4c; padding-left: 10px; padding-right: 10px;" title="Share" onclick=""><i class="fa fa-instagram"></i>
-                                        </button>
-                                        <button type="button" class="btn-share" style="background-color:#79bc25; padding-left: 10px; padding-right: 10px;" title="Share" onclick=""><i class="fa fa-whatsapp"></i>
-                                        </button>
+                                    <div class="button-group so-quickview cartinfo--static share-container">
+                                        <button class="btn-share b-ig"><i class="fab fa-instagram"></i></button>
+                                        <button class="btn-share b-fb"><i class="fab fa-facebook"></i></button>
+                                        <button class="btn-share b-wc"><i class="fas fa-comment-dots"></i></button>
+                                        <button class="btn-share b-wa"><i class="fab fa-whatsapp"></i></button>
+                                        <button class="btn-share b-ln"><i class="fab fa-line"></i></button>
+                                        <button class="btn-share b-tw"><i class="fab fa-twitter"></i></button>
                                     </div>
                                 </div>
                             </div>
