@@ -11,7 +11,8 @@
 	// Cart add remove functions
 	var cart = {
 		'remove': function(product_id, cart_key, object) {
-
+			// console.log($(location).attr('pathname'));
+			// return false;
             var basePath = $('meta[name="_basePath"]').attr('content');
             var baseImagePath = $('meta[name="_baseImagePath"]').attr('content');
             var image = $(object).parents('.products-cart').find('img');
@@ -105,3 +106,17 @@
 		});
 	}
 
+
+function cartDropdown(){
+    var cart = parseInt($('.items_cart').text());
+    var cartcounter = parseInt($('.cart-counter').text());
+    if(cart > 0){
+        $('.cart-button').show();
+        $('.cart-empty').hide();
+    }else{
+        $('.cart-button').hide();
+        $('.cart-empty').show();
+    }
+
+}
+cartDropdown();

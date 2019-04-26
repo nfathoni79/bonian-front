@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AuthController;
+use Pagination\Pagination;
 
 class CartController  extends AuthController
 {
@@ -54,6 +55,26 @@ class CartController  extends AuthController
             ->withStringBody(json_encode($error));
     }
 
+    public function deleteAll(){
+        $this->disableAutoRender();
+        $this->request->allowMethod('post');
+        $cartList = $this->request->getData('cartid');
+        $success = true;
+        foreach($cartList as $vals){
+            try {
+                $delete = $this->Api->makeRequest($this->Auth->user('token'))
+                    ->post('v1/web/cart/delete', [
+                        'form_params' => [
+                            'cartid' => $vals
+                        ]
+                    ]);
+            } catch(\GuzzleHttp\Exception\ClientException $e) {
+                $success = false;
+            }
+        }
+        return $this->response->withType('application/json')
+            ->withStringBody(json_encode($success));
+    }
 
     public function index(){
 
@@ -67,7 +88,33 @@ class CartController  extends AuthController
         } catch(\GuzzleHttp\Exception\ClientException $e) {
             //TODO set log
         }
-//        debug($carts);exit;
         $this->set(compact('carts'));
+
+        $response = [];
+        try {
+            $wishlists = $this->Api->makeRequest($this->Auth->user('token'))
+                ->get('v1/web/wishlists', [
+                    'query' => [
+                        'limit' => 8,
+                        'page' => $this->request->getQuery('page', 1)
+                    ]
+                ]);
+            if ($response = $this->Api->success($wishlists)) {
+                $response = $response->parse();
+                $wishlists = $response['result']['data'];
+                $paging = $response['paging'];
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $this->Api->handle($e);
+            $response = json_decode($e->getResponse()->getBody()->getContents(), true);
+        }
+
+        if ($paging && $paging['count'] > 0) {
+            $pagination = new Pagination($paging['count'], $paging['perPage'], $paging['page']);
+        }
+
+//        debug($wishlists);exit;
+
+        $this->set(compact('wishlists', 'pagination'));
     }
 }

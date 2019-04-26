@@ -26,3 +26,210 @@ check_all_button.addEventListener('click', function () {
         checkbox.checked = checked_all;
     });
 });
+
+$.initQuantity = function ($control) {
+    $control.each(function () {
+        var $this = $(this),
+            data = $this.data("inited-control"),
+            $plus = $(".input-group-addon:last", $this),
+            $minus = $(".input-group-addon:first", $this),
+            $value = $(".form-control", $this);
+        var cart_id = $value.data('id');
+        if (!data) {
+            $control.attr("unselectable", "on").css({
+                "-moz-user-select": "none",
+                "-o-user-select": "none",
+                "-khtml-user-select": "none",
+                "-webkit-user-select": "none",
+                "-ms-user-select": "none",
+                "user-select": "none"
+            }).on("selectstart", function () {
+                return false
+            });
+            $plus.on("click", function () {
+                var val = parseInt($value.val(), 10) + 1;
+                if( parseInt($value.val()) <  parseInt($value.attr('max'))){
+                    $value.val(val);
+                    qtyChange(cart_id);
+                }
+                return false
+            });
+            $minus.on("click", function () {
+                var val = parseInt($value.val(), 10) - 1;
+                $value.val(val > 0 ? val : 1);
+                if($value.val() >= 1){
+                    qtyChange(cart_id);
+                }
+                return false
+            });
+            $value.blur(function () {
+                var val = parseInt($value.val(), 10);
+                $value.val(val > 0 ? val : 1)
+                qtyChange(cart_id);
+            })
+        }
+    })
+};
+$.initQuantity($(".quantity-controls"));
+
+function qtyChange(data_id, values){
+    var data_qty = parseInt($('#zl-qty-'+data_id).val());
+    var harga_satuan = $('#zl-satuan-'+data_id).data('value');
+    var harga_tambahan = $('#zl-addprice-'+data_id).data('value');
+    var point = parseInt($('#zl-point-'+data_id).text());
+    harga_tambahan =  (harga_tambahan > 0) ? harga_tambahan : 0;
+
+    <!--warna: Merah-->
+    <!--ukuran: L-->
+
+    var dataForm = $("#cart-"+data_id).serializeArray();
+    dataForm.push({name: '_csrfToken', value: $('meta[name="_csrfToken"]').attr('content')},{name: 'qty', value: data_qty});
+
+    var basePath = $('meta[name="_basePath"]').attr('content');
+    var baseImagePath = $('meta[name="_baseImagePath"]').attr('content');
+    var image = $('.img-'+data_id);
+    var imagename =image.data('image-name');
+    var tittle = image.attr('title');
+    var price = parseInt(image.data('price'));
+    image = baseImagePath + 'images/50x50/' + image.data('image-name');
+
+    var total, totalpoint;
+    total = (harga_satuan * data_qty) + (harga_tambahan * data_qty);
+    totalpoint = point * data_qty;
+    $.ajax({
+        url: basePath + '/cart/add',
+        type : 'POST',
+        data : dataForm,
+        dataType : 'json',
+        success: function(response){
+
+            var cart = parseInt($('.items_cart').text());
+            var cartcounter = parseInt($('.cart-counter').text());
+            if (response && response.status === "OK") {
+                $(".notification").hide();
+                // addProductNotice('Berhasil ditambahkan ke keranjang belanja', '<img src="'+image+'" alt="">', tittle, 'success');
+
+                var sku = $('#sku-'+data_id).val();
+
+                if(($('#'+sku).length) == 0){
+
+                    $('.items_cart').html((cart+1));
+                    if(cart > 5){
+                        $('.cart-counter').html((cartcounter+1));
+                    }
+
+                    var lengtrow = $('.products-cart').length;
+
+                    $('<tr class="products-cart cart-'+(lengtrow+1)+'" id="'+sku+'"><td class="text-center" style="width:70px"><a href="#"><img src="'+image+'" data-image-name="'+imagename+'" title="'+tittle+'" alt="'+tittle+'" class="preview"></a></td><td class="text-left"><a class="cart_product_name" href="#">'+tittle+'</a></td><td class="text-center ">x<span class="cart-qty">'+data_qty+'</span></td><td class="text-center cart-price">Rp. '+numeral(total).format('0,0')+'</td><td class="text-right"><a onclick="cart.remove('+response.result.data+', \'cart-'+(lengtrow+1)+'\', this);" class="fa fa-times fa-delete"></a></td></tr>').prependTo("#cart-table > tbody");
+
+                }else{
+                    $('#'+sku).find('.cart-qty').html(data_qty);
+                    $('#'+sku).find('.cart-price').html('Rp. '+numeral(total).format('0,0'));
+                }
+
+                cartDropdown();
+            } else {
+                $('.message').html('<div class="alert alert-danger" style="margin-bottom:0px !important;padding: 5px 10px !important;">'+response.message+'</div>')
+                $(".notification").show();
+            }
+
+        },
+        error: function () {
+            $("#login-popup").modal('show');
+        }
+    });
+
+    $('#zl-total-'+data_id).html(numeral(total).format('0,0'));
+    $('#zl-total-point-'+data_id).html(numeral(totalpoint).format('0,0'));
+
+
+    var sum_point = 0;
+    $('.total-point').each(function() {
+        sum_point += numeral($(this).text()).value();
+    });
+    $('#subtotal-point').html(numeral(sum_point).format('0,0'));
+
+    var sum_subtotal = 0;
+    $('.zl-total').each(function() {
+        sum_subtotal += numeral($(this).text()).value();
+    });
+    $('#subtotal').html(numeral(sum_subtotal).format('0,0'));
+}
+
+$('.delete-cart').on('click',function(){
+    var data_id = $(this).data('cart-id');
+    var data_key = $(this).data('cart-key');
+    var data_sku = $(this).data('cart-sku');
+    var basePath = $('meta[name="_basePath"]').attr('content');
+    var baseImagePath = $('meta[name="_baseImagePath"]').attr('content');
+    var image = $('.img-'+data_id);
+    var imagename =image.data('image-name');
+    var tittle = image.attr('title');
+    image = baseImagePath + 'images/150x150/' + image.data('image-name');
+
+    $('.image-modal').html('<img src="'+image+'" data-image-name="'+imagename+'" title="'+tittle+'" alt="'+tittle+'" class="img-responsive">');
+    $('.title-modal').html(tittle);
+    $('.zl-hapus').data('cart-key', data_key);
+    $('.zl-hapus').data('cart-sku', data_sku);
+});
+
+$('.zl-hapus').on('click',function(){
+    deleteCart($(this).data('cart-key'),$(this).data('cart-sku'));
+    $('#modalProduct').modal('toggle');
+})
+
+function deleteCart(product_id, sku){
+
+    var basePath = $('meta[name="_basePath"]').attr('content');
+    var cart = parseInt($('.items_cart').text());
+    $.ajax({
+        url: basePath + '/cart/delete',
+        type : 'POST',
+        data : {
+            cartid : product_id,
+            _csrfToken: $('meta[name="_csrfToken"]').attr('content')
+        },
+        dataType : 'json',
+        success: function(response){
+
+            if (response && response.status === "OK") {
+                $('#cart-item-'+sku).remove();
+                $('.'+sku).remove();
+                // addProductNotice('Berhasil dihapus', '<img src="'+image+'" alt="">', name, 'success');
+                // $('.'+cart_key).remove();
+                $('.items_cart').html((cart-1));
+
+                cartDropdown();
+                // $('#modalProduct').modal().hide();
+            } else {
+                // addProductNotice('Gagal dihapus dari cart', '<img src="'+image+'" alt="">', '', 'success');
+            }
+        },
+        error: function () {
+            $("#login-popup").modal('show');
+        }
+    });
+
+}
+
+$('.hapus-selected').on('click',function(){
+    var boxes= new Array();
+
+    boxes.push({name: '_csrfToken', value: $('meta[name="_csrfToken"]').attr('content')});
+    $(".checkboxes").each(function() {
+        if( $(this).prop("checked") ){
+            boxes.push( {name: $(this).prop("name"), value: $(this).val()});
+        }
+    });
+
+    var basePath = $('meta[name="_basePath"]').attr('content');
+    $.ajax({
+        url: basePath + '/cart/delete-all',
+        type : 'POST',
+        data : boxes,
+        dataType : 'json',
+        success: function(response){
+            location.reload();
+        }
+    });
+})
