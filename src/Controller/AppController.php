@@ -138,19 +138,22 @@ class AppController extends Controller
 
     protected function getCart()
     {
-        try {
-            $carts = $this->Api->makeRequest($this->request->getSession()->read('Auth.Customers.token'))
-                ->get('v1/web/cart/view?limit=5');
+        if ($this->request->getSession()->check('Auth.Customers.token')) {
+            try {
+                $carts = $this->Api->makeRequest($this->request->getSession()->read('Auth.Customers.token'))
+                    ->get('v1/web/cart/view?limit=5');
 
-            if ($response = $this->Api->success($carts)) {
-                $json = $response->parse();
-                $carts = ['carts' => $json['result']['data'], 'pagging' => $json['paging']];
-                return $carts;
+                if ($response = $this->Api->success($carts)) {
+                    $json = $response->parse();
+                    $carts = ['carts' => $json['result']['data'], 'pagging' => $json['paging']];
+                    return $carts;
 
+                }
+            } catch(\Exception $e) {
+                //TODO set log
             }
-        } catch(\Exception $e) {
-            //TODO set log
         }
+
     }
 
     protected function getTopHomeBanner()
