@@ -351,7 +351,7 @@ class SearchController  extends AuthController
         $re = '~\\b(' . implode('|', $m[0]) . ')\\b~i';
         return preg_replace($re, '<span class="search-highlight">$0</span>', $text);
     }
-    
+
     public function get()
     {
         if($this->request->is('ajax')) {
@@ -373,7 +373,7 @@ class SearchController  extends AuthController
             }
         }
 
-        $this->viewBuilder()->className('Json');
+        $this->viewBuilder()->setClassName('Json');
         $this->set(compact('search', 'keyword'));
     }
 
