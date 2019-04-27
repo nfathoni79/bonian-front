@@ -37,5 +37,6 @@ class AppView extends View
     public function initialize()
     {
         $this->loadHelper('Badge');
+        $this->loadHelper('Tools');
     }
 }
