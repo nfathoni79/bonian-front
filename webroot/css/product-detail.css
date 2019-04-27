@@ -207,3 +207,21 @@ label.color-name{
     font-size: 24px;
     margin-right: 8px;
 }
+
+.star-box{
+    font-size: 5px !important;
+    padding-right: 20px !important;
+}
+.star-rating{
+    padding-right: 15px !important;
+    font-size: 15px !important;
+}
+.progress{
+    height: 10px;
+}
+.progress-bar-warning {
+    background-color: #fec42d;
+}
+.card-wrapper{
+    padding: 0px;
+}
