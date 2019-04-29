@@ -234,7 +234,7 @@ $('.zl-checkout').on('click',function(){
     var voucher = $("input[name='voucher']:checked").val();
     var point = $("#point").val();
     $.ajax({
-        url: basePath + '/checkout',
+        url: basePath + '/checkout/validation',
         type : 'POST',
         data : {
             voucher : voucher,

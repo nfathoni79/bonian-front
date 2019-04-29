@@ -20,3 +20,79 @@
   .so-onepagecheckout .checkout-shipping-methods,
   .so-onepagecheckout .checkout-payment-methods {
     padding: 10px; }
+.c-kupon-desc{
+  border: 1px!important;
+  border-style: solid!important;
+  border-color: #61a811!important;
+  display: flex;
+}
+.c-kupon-kiri-desc{
+  padding-left: 5px;
+  padding-right: 5px;
+  display: inline-flex;
+  color: #61a811
+}
+.c-kupon-kanan-desc{
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: #61a811;
+  display: inline-flex;
+}
+.title-pembayaran{
+  background: #f2e7e7;
+  height: 45px;
+  padding-top: 15px;
+  font-weight: 900;
+  font-size: 14px;
+  border-radius: 0px 0px 8px 8px;
+  width: 65%;
+  display: inline-block;
+  color: #dd575a;
+}
+.poin-subtitle{
+  margin-top: 0px;
+  font-size:0.8em;
+  padding-right: 0px;
+  text-align: left;
+  color: #000000;
+}
+.tx-bank{
+  color: #000000;
+  font-size: 12px;
+  text-align: left!important;
+  font-weight: 600;
+}
+.tx-bold-force{
+  font-weight: 700 !important;
+}
+.tx-semibold-force{
+  font-weight: 600 !important;
+}
+.mg-t-m35{
+  margin-top: -35px;
+}
+.tx-gray-force{
+  color:#717171 !important;
+}
+/* custom media query */
+@media screen and (max-width: 1000px) {
+  .mq-desc{
+    display: inline-flex!important;
+    margin-top: 50px!important;
+  }
+  .mq-desc-row{
+    display: inline-flex!important;
+    margin: auto!important;
+  }
+  .mq-diskon{
+    display: inline-flex!important;
+    float: right!important;
+  }
+  .mq-badge{
+    display: inline-flex!important;
+    float: left!important;
+  }
+  .mg-t-mq10{
+    margin-top: 10px !important;
+  }
+}

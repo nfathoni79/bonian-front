@@ -13,28 +13,19 @@ class CheckoutController  extends AuthController
         parent::initialize();
     }
 
-    public function index()
-    {
-        /*validation*/
-        /* LAYOUT SECURE NO CART */
 
+    public function validation()
+    {
+        $this->disableAutoRender();
         $errors = [];
         if ($this->request->is('ajax')) {
             try {
                 $claim = $this->Api->makeRequest($this->Auth->user('token'))
-                    ->post('v1/web/checkout', [
+                    ->post('v1/web/checkout/cart', [
                         'form_params' => $this->request->getData()
                     ]);
                 if ($response = $this->Api->success($claim)) {
                     $json = $response->parse();
-
-                    //debug($json);
-                    //exit;
-                    if(isset($json['error'])){
-                        $errors = ['is_error' => true, 'status' => 'OK', 'message' => 'Maaf, kode ini tidak sah. Mohon coba kembali.'];
-                    }else{
-                        $errors = ['is_error' => false, 'status' => 'OK'];
-                    }
                 }
             } catch(\GuzzleHttp\Exception\ClientException $e) {
                 $this->Api->handle($e);
@@ -46,18 +37,58 @@ class CheckoutController  extends AuthController
                         break;
                     }
                 }
-                //debug($error);
-                //exit;
-                //$errors = ['is_error' => true, 'status' => 'OK', 'message' => 'Maaf, kode ini tidak sah. Mohon coba kembali.'];
-
-
             }
 
             return $this->response->withType('application/json')
                 ->withStringBody(json_encode($json));
 
         }
-        
+    }
+
+    public function index()
+    {
+        /*validation*/
+        /* LAYOUT SECURE NO CART */
+        $errors = [];
+        try {
+            $claim = $this->Api->makeRequest($this->Auth->user('token'))
+                ->get('v1/web/checkout', [
+                    'form_params' => []
+                ]);
+            if ($response = $this->Api->success($claim)) {
+                $json = $response->parse();
+                $data = $json['result']['data'];
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $this->Api->handle($e);
+            $json = json_decode($e->getResponse()->getBody()->getContents(), true);
+            $this->response = $this->response->withStatus(406);
+            if (!empty($json['error'])) {
+                foreach($json['error'] as $key => $val) {
+                    $json['message'] = array_values($val)[0];
+                    break;
+                }
+            }
+        }
+
+        /* LIST ALAMAT */
+        try {
+            $address = $this->Api->makeRequest($this->Auth->user('token'))
+                ->get('v1/web/addresses');
+            if ($response = $this->Api->success($address)) {
+                $json = $response->parse();
+                $address = $json['result']['data'];
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $this->Api->handle($e);
+            $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+            if (isset($error['error'])) {
+                $address->setErrors($error['error']);
+            }
+        }
+
+        $this->set(compact('data','address'));
+
     }
 
     function confirmation(){
