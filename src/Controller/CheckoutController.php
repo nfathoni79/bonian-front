@@ -49,7 +49,8 @@ class CheckoutController  extends AuthController
     {
         /*validation*/
         /* LAYOUT SECURE NO CART */
-        $this->layout = 'secure';
+        //$this->layout = 'secure';
+        $this->viewBuilder()->setLayout('secure');
         $errors = [];
         try {
             $claim = $this->Api->makeRequest($this->Auth->user('token'))
