@@ -91,6 +91,34 @@ class CheckoutController  extends AuthController
 
     }
 
+    function changeAddress(){
+
+        $this->disableAutoRender();
+
+        $errors = [];
+        if ($this->request->is('ajax')) {
+            try {
+                $changeAddress = $this->Api->makeRequest($this->Auth->user('token'))
+                    ->post('v1/web/checkout/change-address', [
+                        'form_params' => $this->request->getData()
+                    ]);
+                if ($response = $this->Api->success($changeAddress)) {
+                    $json = $response->parse();
+                }
+            } catch(\GuzzleHttp\Exception\ClientException $e) {
+
+            }
+
+            return $this->response->withType('application/json')
+                ->withStringBody(json_encode($json));
+
+        }
+
+
+
+
+    }
+
     function confirmation(){
 
 

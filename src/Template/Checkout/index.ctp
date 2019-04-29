@@ -36,7 +36,7 @@
                     <!-- start: card item #1 -->
                     <div class="c-checkout-card__item">
 
-                        <input type="hidden" name="address_id" id="addressId" value="$data['customer_address']['id']">
+                        <input type="hidden" name="address_id" id="addressId" value="<?php echo $data['customer_address']['id'];?>">
                         <div class="row">
                             <div class="col-lg-9">
 
@@ -64,6 +64,9 @@
                 </div>
                 <!-- end: card alamat -->
                 <?php $i = 1;?>
+                <?php $total = 0;?>
+                <?php $totalOngkir = 0;?>
+                <?php $totalPoint = 0;?>
                 <?php foreach($data['carts'] as $vals):?>
                 <div class="c-checkout-card-product">
 
@@ -99,7 +102,8 @@
                                     </div>
 
                                     <div class="col-lg-2 ">
-                                        <div class="badge u-bg--badge__blue mg-t-10 mg-b-10"><span id="zl-point-0"><?php echo $val['totalpoint']; ?></span> poin</div>
+                                        <?php $totalPoint += $val['totalpoint'];?>
+                                        <div class="badge <?= $this->Badge->format($val['totalpoint']); ?> mg-t-10 mg-b-10"><span id="zl-point-0"><?php echo $val['totalpoint']; ?></span> poin</div>
                                     </div>
 
                                     <div class="col-lg-6 d-lg-flex mg-b-10 mg-t-10 mg-l-10">
@@ -126,7 +130,7 @@
                                                         SKU : <?php echo $val['sku']; ?>
                                                     </div>
                                                     <div class="col-lg-12">
-                                                        Product origin : <?php echo $val['origin']; ?>
+                                                        Harga tambahan : Rp.<?php echo $this->Number->format($val['add_price']); ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -171,6 +175,7 @@
                                                         Total
                                                     </div>
                                                     <div class="col-lg-12 text-center tx-black">
+                                                        <?php $total += $val['total'];?>
                                                         Rp. <?php echo $this->Number->format($val['total']); ?>
                                                     </div>
                                                 </div>
@@ -196,6 +201,7 @@
                         </div>
                     </div>
 
+                    <?php endforeach;?>
 
                     <div class="c-checkout-card__pengiriman u-mt-10">
                         <div class="row">
@@ -203,39 +209,19 @@
                                 <h5 class="tx-bold-force">
                                     opsi pengiriman
                                 </h5>
-
-                                <div class="dropdown">
-                                    <button class="btn btn-default dropdown-toggle c-dropdown-pengiriman" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-
-                                        <img src="assets/img/logo--pengiriman.png" alt="pengiriman icon">
-                                        <span class="c-dropdown-pengiriman__title">
-                                            Regular Service
-                                        </span>
-
-                                        <span class="caret" style="text-align:right;"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="padding: 25px; min-width: 300px;">
-                                        <li>
-                                            <a href="#">
-                                                <img src="assets/img/logo--pengiriman.png" alt="pengiriman icon">
-                                                <span class="c-dropdown-pengiriman__title">
-                                                    Regular Service
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="assets/img/logo--pengiriman.png" alt="pengiriman icon">
-                                                <span class="c-dropdown-pengiriman__title">
-                                                    Regular Service
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
+                                <div class="form-group">
+                                    <select class="form-control shipping-option"  data-id="<?= $i;?>" >
+                                        <?php foreach($vals['shipping_options'] as $shipping):?>
+                                        <option value="<?= $shipping['code'];?>" data-cost="<?= $shipping['cost'];?>" data-etd="<?= $shipping['etd'];?>"><?= $shipping['name'];?></option>
+                                        <?php endforeach;?>
+                                    </select>
                                 </div>
-
                                 <h5 class="u-mt-10 tx-semibold-force tx-gray-force">
-                                    Estimasi waktu 2-3 hari kerja
+                                    <?php foreach($vals['shipping_options'] as $shipping):?>
+                                    <span class="shipping-etd-<?= $i;?>"> Estimasi waktu <?php echo $shipping['etd'];?> hari kerja</span>
+                                    <?php break;?>
+                                    <?php endforeach;?>
+
                                 </h5>
                             </div>
 
@@ -245,7 +231,7 @@
                                         Berat Total
                                     </div>
                                     <div class="col-lg-6 text-right tx-bold-force">
-                                        2 Kg
+                                        <?php echo $this->Number->format(($vals['total_weight'] / 1000));?> Kg
                                     </div>
                                     <div class="col-lg-12 o-ongkos-divider">
                                     </div>
@@ -253,13 +239,16 @@
                                         Ongkos kirim
                                     </div>
                                     <div class="col-lg-6 text-right tx-bold-force">
-                                        Rp.22.000
+                                        <?php foreach($vals['shipping_options'] as $shipping):?>
+                                        <?php $totalOngkir += $shipping['cost'];?>
+                                        Rp.<span class="shipping-cost shipping-cost-<?= $i;?>"><?php echo $this->Number->format($shipping['cost']);?></span>
+                                        <?php break;?>
+                                        <?php endforeach;?>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <?php endforeach;?>
                 </div>
                 <?php $i++;?>
                 <?php endforeach;?>
@@ -282,7 +271,7 @@
                                 <h3 class="tx-15">Total harga</h3>
                             </div>
                             <div class="col-lg-5 mg-t-15">
-                                <h5 class="tx-black tx-15"> RP.750.000 </h5>
+                                <h5 class="tx-black tx-15"> RP.<span class="zl-total"><?php echo $this->Number->format($total);?></span> </h5>
                             </div>
 
                             <div class="col-lg-12">
@@ -293,7 +282,29 @@
                                 <h3 class="tx-15">Ongkos kirim</h3>
                             </div>
                             <div class="col-lg-5 mg-t-15">
-                                <h5 class="tx-black tx-15"> Rp.30.000 </h5>
+                                <h5 class="tx-black tx-15"> Rp.<span class="zl-total-ongkir"><?php echo $this->Number->format($totalOngkir);?></span> </h5>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div style="border:1px dashed #E2E2E2; margin-top:15px;"></div>
+                            </div>
+
+                            <div class="col-lg-7">
+                                <h3 class="tx-15">Voucher</h3>
+                            </div>
+                            <div class="col-lg-5 mg-t-15">
+                                <label class="label label-danger"><?php echo $data['code_voucher']; ?></label>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div style="border:1px dashed #E2E2E2; margin-top:15px;"></div>
+                            </div>
+
+                            <div class="col-lg-7">
+                                <h3 class="tx-15">Use Point</h3>
+                            </div>
+                            <div class="col-lg-5 mg-t-15">
+                                <h5 class="tx-black tx-15"> <?php echo (empty($data['point']))  ? '0' : $data['point']; ?> Point </h5>
                             </div>
 
                             <div class="col-lg-12">
@@ -305,7 +316,7 @@
                             </div>
                             <div class="col-lg-5 mg-t-15">
                                 <h5 class="sub-total tx-black tx-18">
-                                    Rp.780.000
+                                    Rp.<span class="zl-subtotal"><?php echo $this->Number->format($total + $totalOngkir);?></span>
                                 </h5>
                             </div>
 
@@ -336,44 +347,11 @@
                                 <div style="border:1px dashed #E2E2E2; margin-top:15px;"></div>
                             </div>
 
-                            <div class="col-lg-4 u-flex-center">
-                                <h3 class="tx-15">
-                                    Voucher
-                                </h3>
+                            <div class="col-lg-7">
+                                <h3 class="tx-15">Bonus Point</h3>
                             </div>
-                            <div class="col-lg-6 u-flex-center u-mt-10">
-                                <div class="dropdown" style="min-width: 100%;">
-                                    <button class="btn btn-default btn-block dropdown-toggle tx-semibold" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="color: #D14A4E">
-                                        Pilih Voucher
-                                        <span class="caret" style="margin-left: 1em;"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                        <li><a href="#">Action</a></li>
-                                        <li><a href="#">Another action</a></li>
-                                        <li><a href="#">Something else here</a></li>
-                                        <li role="separator" class="divider"></li>
-                                        <li><a href="#">Separated link</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-lg-2 text-center">
-                                <i class="fas fa-question-circle c-question"></i>
-                            </div>
-
-                            <div class="col-lg-12">
-                                <div style="border:1px dashed #E2E2E2; margin-top:15px;"></div>
-                            </div>
-
-                            <div class="col-lg-6 text-left">
-                                <h3 class="tx-black">
-                                    Gunakan Poin
-                                </h3>
-                                <h5 class="poin-subtitle">
-                                    Anda memiliki 20.500 poin
-                                </h5>
-                            </div>
-                            <div class="col-lg-6 text-center">
-                                <input type="text" class="form-control text-center" style="margin-top: 20px;" placeholder="Input poin">
+                            <div class="col-lg-5 mg-t-15">
+                                <h5 class="tx-black tx-15"> <?php echo (empty($totalPoint))  ? '0' : $totalPoint; ?> Point </h5>
                             </div>
 
                             <!-- start: metode Pembayaran -->
@@ -409,7 +387,7 @@
                                             <div class="col-lg-10">
                                                 <div class="row">
                                                     <div class="col-lg-4">
-                                                        <img src="assets/img/logo-bank-1.png" alt="logo bank" class="img-responsive">
+                                                        <img src="<?php  assets/img/logo-bank-1.png" alt="logo bank" class="img-responsive">
                                                     </div>
                                                     <div class="col-lg-8">
                                                         <h5 class="tx-bank">
