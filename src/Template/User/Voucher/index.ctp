@@ -56,12 +56,12 @@
                                         <div class="row">
                                             <div class="col-md-5 pull-left">
                                                 <div class="<?php echo $colored[$this->request->getQuery('type')];?>">
-                                                    <div class="v-text-discount">10%</div>
+                                                    <div class="v-text-discount"><?= $vals['voucher']['percent'];?>%</div>
                                                 </div>
                                             </div>
                                             <div class="col-md-7 v-text-box pull-right">
                                                 <div class="v-title"><?= $vals['voucher']['code_voucher'];?></div>
-                                                Ekstra Diskon sebesar <?= $vals['voucher']['percent'];?>% dengan Max Rp <?php  echo $this->Number->precision($vals['voucher']['value'], 0);?>, tanpa Min Trx
+                                                Ekstra Diskon sebesar <?= $vals['voucher']['percent'];?>% dengan Max Rp <?php  echo $this->Number->precision($vals['voucher']['value'], 0);?>.
                                                 <div class="v-code"><span class="label <?php echo $texted[$this->request->getQuery('type')];?>">Kode: <?= $vals['voucher']['code_voucher'];?></span></div>
                                                 <hr class="style3">
                                                 <span class="<?php echo $end[$this->request->getQuery('type')];?>">Berakhir Dlm:

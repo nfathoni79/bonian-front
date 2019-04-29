@@ -113,8 +113,36 @@ class CartController  extends AuthController
             $pagination = new Pagination($paging['count'], $paging['perPage'], $paging['page']);
         }
 
-//        debug($wishlists);exit;
 
-        $this->set(compact('wishlists', 'pagination'));
+        try {
+            $voucher = $this->Api->makeRequest($this->Auth->user('token'))
+                ->get('v1/web/vouchers', [
+                    'query' => [
+                        'limit' => 100,
+                        'page' => $this->request->getQuery('page', 1),
+                        'type' => $this->request->getQuery('type', 1),
+                    ]
+                ]);
+            if ($response = $this->Api->success($voucher)) {
+                $response = $response->parse();
+                $voucher = $response['result']['data'];
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $this->Api->handle($e);
+            $response = json_decode($e->getResponse()->getBody()->getContents(), true);
+        }
+
+        try {
+            $customer = $this->Api->makeRequest($this->Auth->user('token'))
+                ->get('v1/web/profile');
+            if ($response = $this->Api->success($customer)) {
+                $response = $response->parse();
+                $point = $response['result']['data']['point_balance'];
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+        }
+
+
+        $this->set(compact('wishlists', 'pagination', 'voucher','point'));
     }
 }
