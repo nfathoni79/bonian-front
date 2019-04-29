@@ -71,7 +71,6 @@ class CheckoutController  extends AuthController
             }
         }
 
-
         /* LIST ALAMAT */
         try {
             $address = $this->Api->makeRequest($this->Auth->user('token'))

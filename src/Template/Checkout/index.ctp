@@ -36,20 +36,20 @@
                     <!-- start: card item #1 -->
                     <div class="c-checkout-card__item">
 
-                        <input type="hidden" name="address_id" id="addressId" value="$data['data']['customer_address']['id']">
+                        <input type="hidden" name="address_id" id="addressId" value="$data['customer_address']['id']">
                         <div class="row">
                             <div class="col-lg-9">
 
                                 <h1 class="c-card__user-name tx-16 tx-bold zl-tx-black tx-mont mt-0">
-                                    <span class="zl-address-name"><?php echo $data['data']['customer_address']['recipient_name'];?></span>
-                                    <span class="tx-14 zl-tx-gray tx-medium zl-address-title"> - (<?php echo $data['data']['customer_address']['title'];?>) </span>
+                                    <span class="zl-address-name"><?php echo $data['customer_address']['recipient_name'];?></span>
+                                    <span class="tx-14 zl-tx-gray tx-medium zl-address-title"> - (<?php echo $data['customer_address']['title'];?>) </span>
                                 </h1>
                                 <p class="c-card__item-address">
-                                    <span class="zl-address-address"><?php echo $data['data']['customer_address']['address'];?></span>,
-                                    <span class="zl-address-postalcode"><?php echo $data['data']['customer_address']['postal_code'];?></span>
+                                    <span class="zl-address-address"><?php echo $data['customer_address']['address'];?></span>,
+                                    <span class="zl-address-postalcode"><?php echo $data['customer_address']['postal_code'];?></span>
                                 </p>
                                 <p class="c-card__item-phone">
-                                    <span class="zl-address-phone"><?php echo $data['data']['customer_address']['recipient_phone'];?></span>
+                                    <span class="zl-address-phone"><?php echo $data['customer_address']['recipient_phone'];?></span>
                                 </p>
                             </div>
                             <div class="col-lg-3 text-right">
@@ -64,7 +64,7 @@
                 </div>
                 <!-- end: card alamat -->
                 <?php $i = 1;?>
-                <?php foreach($data['data']['carts'] as $vals):?>
+                <?php foreach($data['carts'] as $vals):?>
                 <div class="c-checkout-card-product">
 
                     <div class="row zl-tx-gray ">
