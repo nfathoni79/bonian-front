@@ -473,6 +473,13 @@
                     </div>
                     <hr>
                     <?php endforeach;?>
+
+                    <div class="row">
+                        <div class="col-lg-12  mb-4 text-center">
+                            <?php echo $this->Html->link('Daftar whislist', ['controller' => 'Wishlist', 'action' => 'index', 'prefix' => 'user'],['class' => 'btn btn-danger btn-sm btn-radius']);?>
+                        </div>
+                    </div>
+
                     <?php else: ?>
 
                     <div class="c-cart-card__item m-4">

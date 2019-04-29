@@ -35,7 +35,16 @@
                     </div>
                     <!-- start: card item #1 -->
                     <div class="c-checkout-card__item">
-
+                        <?php if(empty($data['customer_address']['recipient_name'])):?>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                Daftar alamat tidak di temukan
+                            </div>
+                            <div class="col-lg-4 text-right">
+                                <?php echo $this->Html->link('Tambah alamat baru', ['controller' => 'Profile', 'action' => 'address', 'prefix' => 'user'], ['class' => 'btn btn-danger btn-sm btn-block o-card__address-btn']);?>
+                            </div>
+                        </div>
+                        <?php else:?>
                         <input type="hidden" name="address_id" id="addressId" value="<?php echo $data['customer_address']['id'];?>">
                         <div class="row">
                             <div class="col-lg-9">
@@ -58,6 +67,7 @@
                                 </a>
                             </div>
                         </div>
+                        <?php endif;?>
                     </div>
                     <!-- end: card item #1 -->
 
@@ -205,48 +215,55 @@
 
                     <div class="c-checkout-card__pengiriman u-mt-10">
                         <div class="row">
-                            <div class="col-lg-6">
-                                <h5 class="tx-bold-force">
-                                    opsi pengiriman
-                                </h5>
-                                <div class="form-group">
-                                    <select class="form-control shipping-option"  data-id="<?= $i;?>" >
-                                        <?php foreach($vals['shipping_options'] as $shipping):?>
-                                        <option value="<?= $shipping['code'];?>" data-cost="<?= $shipping['cost'];?>" data-etd="<?= $shipping['etd'];?>"><?= $shipping['name'];?></option>
-                                        <?php endforeach;?>
-                                    </select>
+                            <?php if(empty($data['customer_address']['recipient_name'])):?>
+                                <div class="col-lg-6">
+                                    <h5 class="tx-bold-force">
+                                        Alamat pengiriman tidak ditemukan
+                                    </h5>
                                 </div>
-                                <h5 class="u-mt-10 tx-semibold-force tx-gray-force">
-                                    <?php foreach($vals['shipping_options'] as $shipping):?>
-                                    <span class="shipping-etd-<?= $i;?>"> Estimasi waktu <?php echo $shipping['etd'];?> hari kerja</span>
-                                    <?php break;?>
-                                    <?php endforeach;?>
-
-                                </h5>
-                            </div>
-
-                            <div class="col-lg-6 c-ongkos">
-                                <div class="row">
-                                    <div class="col-lg-6 text-left tx-bold-force">
-                                        Berat Total
+                            <?php else:?>
+                                <div class="col-lg-6">
+                                    <h5 class="tx-bold-force">
+                                        opsi pengiriman
+                                    </h5>
+                                    <div class="form-group">
+                                        <select class="form-control shipping-option"  data-id="<?= $i;?>" >
+                                            <?php foreach($vals['shipping_options'] as $shipping):?>
+                                            <option value="<?= $shipping['code'];?>" data-cost="<?= $shipping['cost'];?>" data-etd="<?= $shipping['etd'];?>"><?= $shipping['name'];?></option>
+                                            <?php endforeach;?>
+                                        </select>
                                     </div>
-                                    <div class="col-lg-6 text-right tx-bold-force">
-                                        <?php echo $this->Number->format(($vals['total_weight'] / 1000));?> Kg
-                                    </div>
-                                    <div class="col-lg-12 o-ongkos-divider">
-                                    </div>
-                                    <div class="col-lg-6 text-lef tx-bold-force">
-                                        Ongkos kirim
-                                    </div>
-                                    <div class="col-lg-6 text-right tx-bold-force">
+                                    <h5 class="u-mt-10 tx-semibold-force tx-gray-force">
                                         <?php foreach($vals['shipping_options'] as $shipping):?>
-                                        <?php $totalOngkir += $shipping['cost'];?>
-                                        Rp.<span class="shipping-cost shipping-cost-<?= $i;?>"><?php echo $this->Number->format($shipping['cost']);?></span>
+                                        <span class="shipping-etd-<?= $i;?>"> Estimasi waktu <?php echo $shipping['etd'];?> hari kerja</span>
                                         <?php break;?>
                                         <?php endforeach;?>
+                                    </h5>
+                                </div>
+
+                                <div class="col-lg-6 c-ongkos">
+                                    <div class="row">
+                                        <div class="col-lg-6 text-left tx-bold-force">
+                                            Berat Total
+                                        </div>
+                                        <div class="col-lg-6 text-right tx-bold-force">
+                                            <?php echo $this->Number->format(($vals['total_weight'] / 1000));?> Kg
+                                        </div>
+                                        <div class="col-lg-12 o-ongkos-divider">
+                                        </div>
+                                        <div class="col-lg-6 text-lef tx-bold-force">
+                                            Ongkos kirim
+                                        </div>
+                                        <div class="col-lg-6 text-right tx-bold-force">
+                                            <?php foreach($vals['shipping_options'] as $shipping):?>
+                                            <?php $totalOngkir += $shipping['cost'];?>
+                                            Rp.<span class="shipping-cost shipping-cost-<?= $i;?>"><?php echo $this->Number->format($shipping['cost']);?></span>
+                                            <?php break;?>
+                                            <?php endforeach;?>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            <?php endif;?>
                         </div>
                     </div>
                 </div>
@@ -319,29 +336,6 @@
                                     Rp.<span class="zl-subtotal"><?php echo $this->Number->format($total + $totalOngkir);?></span>
                                 </h5>
                             </div>
-
-                            <!--<div class="col-lg-4">
-                                <h3>Kupon</h3>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="row c-kupon">
-                                    <div class="col-lg-6 u-flex-center c-kupon-kiri">
-                                        diskon
-                                    </div>
-                                    <div class="col-lg-6 u-flex-center c-kupon-kanan">
-                                        Rp.15.000
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-2 text-center">
-                                <i class="fas fa-question-circle c-question"></i>
-                            </div>
-
-                            <div class="col-lg-12 text-right" style="opacity: 0.5; padding: 1em;">
-                                <span>
-                                    *Min. pembelajaan Rp.200.000
-                                </span>
-                            </div> -->
 
                             <div class="col-lg-12">
                                 <div style="border:1px dashed #E2E2E2; margin-top:15px;"></div>
@@ -447,7 +441,7 @@
                                             <div class="col-lg-10">
                                                 <div class="row">
                                                     <div class="col-lg-4">
-                                                        <img src="<?php echo $this->Url->build('/images/logo_bank/bni.png'); ?>" alt="logo bank" class="img-responsive">
+                                                        <img src="<?php echo $this->Url->build('/images/logo_bank/bni.png'); ?>" alt="Bank BNI" class="img-responsive">
                                                     </div>
                                                     <div class="col-lg-8">
                                                         <h5 class="tx-bank">
@@ -475,7 +469,7 @@
                                             <div class="col-lg-10">
                                                 <div class="row">
                                                     <div class="col-lg-4">
-                                                        <img src="<?php echo $this->Url->build('/images/logo_bank/bri.png'); ?>" alt="logo bank" class="img-responsive">
+                                                        <img src="<?php echo $this->Url->build('/images/logo_bank/bri.png'); ?>" alt="Bank BRI" class="img-responsive">
                                                     </div>
                                                     <div class="col-lg-8">
                                                         <h5 class="tx-bank">
@@ -503,7 +497,7 @@
                                             <div class="col-lg-10">
                                                 <div class="row">
                                                     <div class="col-lg-4">
-                                                        <img src="<?php echo $this->Url->build('/images/logo_bank/permata.png'); ?>" alt="logo bank" class="img-responsive">
+                                                        <img src="<?php echo $this->Url->build('/images/logo_bank/permata.png'); ?>" alt="Bank Permata" class="img-responsive">
                                                     </div>
                                                     <div class="col-lg-8">
                                                         <h5 class="tx-bank">
@@ -553,18 +547,18 @@
                                             <div class="col-lg-2 text-center">
                                                 <div class="radio">
                                                     <label>
-                                                        <input type="radio" name="optionGopay" id="optionGopay" value="gopay">
+                                                        <input type="radio" name="bank"  value="gopay">
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="col-lg-10">
                                                 <div class="row">
                                                     <div class="col-lg-4">
-                                                        <img src="<?php echo $this->Url->build('/images/logo_bank/gopay.png'); ?>" alt="logo bank" class="img-responsive">
+                                                        <img src="<?php echo $this->Url->build('/images/logo_bank/gopay.png'); ?>" alt="Go Pay" class="img-responsive">
                                                     </div>
                                                     <div class="col-lg-8">
                                                         <h5 class="tx-bank">
-                                                            Saldo Go-Pay
+                                                            Go-Pay
                                                         </h5>
                                                     </div>
                                                     <div class="col-lg-12">
@@ -586,8 +580,9 @@
                             <!-- end: metode pembayaran -->
 
                             <div class="col-lg-12 text-center">
-                                <button type="button" class="btn btn-danger btn-lg btn-block c-pembayaran-button rounded-5">
-                                    Bayar sekarang ( 3 item )
+
+                                <button type="button" class="btn btn-danger btn-lg btn-block c-pembayaran-button rounded-5" <?php echo (empty($data['customer_address']['recipient_name'])) ? 'disabled' : '';?>>
+                                    Bayar sekarang
                                 </button>
                             </div>
 
