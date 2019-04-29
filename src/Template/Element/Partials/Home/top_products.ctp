@@ -227,12 +227,13 @@
                                                       </div>
 
                                                       <div class="button-group so-quickview cartinfo--static share-container">
-                                                        <button class="btn-share-tp b-ig"><i class="fab fa-instagram"></i></button>
-                                                        <button class="btn-share-tp b-fb"><i class="fab fa-facebook"></i></button>
-                                                        <button class="btn-share-tp b-wc"><i class="fas fa-comment-dots"></i></button>
-                                                        <button class="btn-share-tp b-wa"><i class="fab fa-whatsapp"></i></button>
-                                                        <button class="btn-share-tp b-ln"><i class="fab fa-line"></i></button>
-                                                        <button class="btn-share-tp b-tw"><i class="fab fa-twitter"></i></button>
+                                                          <span class="zl-tx-red tx-medium">Bagikan produk ini</span>
+                                                          <button class="btn-share b-ig"><i class="fab fa-instagram"></i></button>
+                                                          <button class="btn-share b-fb"><i class="fab fa-facebook"></i></button>
+                                                          <button class="btn-share b-wc"><i class="fas fa-comment-dots"></i></button>
+                                                          <button class="btn-share b-wa"><i class="fab fa-whatsapp"></i></button>
+                                                          <button class="btn-share b-ln"><i class="fab fa-line"></i></button>
+                                                          <button class="btn-share b-tw"><i class="fab fa-twitter"></i></button>
                                                       </div>
                                                   </div>
                                               </div>

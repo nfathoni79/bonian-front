@@ -33,6 +33,8 @@
     <?= $this->Html->css([
     '/css/bootstrap/css/bootstrap.min',
     '/css/font-awesome/css/font-awesome.min',
+    '/css/font-awesome-5/css/fontawesome.min',
+    '/css/font-awesome-5/css/all.min',
     '/js/datetimepicker/bootstrap-datetimepicker.min',
     '/js/owl-carousel/owl.carousel',
     '/css/themecss/lib',

@@ -84,7 +84,10 @@
         box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
     }
     .products-list.grid .product-item-container .right-block{
-        text-align: left;
+          clear: both;
+          padding: 10px 5px 20px 4px;
+          text-align: left;
+          position: relative;
     }
     .producttab .tabsslider.horizontal-tabs .nav-tabs li.active a{
         background: #c93535;
@@ -92,6 +95,49 @@
     .producttab .tabsslider.horizontal-tabs .nav-tabs li.item_nonactive a{
         background: #fff;   
     }
+    .share-txt{
+        display: block;
+    }
+    .share-container{
+          background: #fefefe;
+          box-shadow: unset;
+          width: 100%;
+          height: 100%;
+          border: 0px !important;
+          border-radius: 0px !important;
+    }
+    .btn-share {
+          width: 21%;
+          height: 40%;
+          margin: 3px;
+          border: none;
+          color: white;
+          text-align: center;
+          text-decoration: none;
+          font-size: 14px;
+          padding-left: 10px;
+          padding-right: 10px;
+          cursor: pointer;
+          border-radius: 4px;
+      }
+      .b-ig{
+          background-image: linear-gradient(#ee3381, #b2568d, #f6944a);
+      }
+      .b-fb{
+          background-color: #2861aa;
+      }
+      .b-wc{
+          background-color: #1c8aa6;
+      }
+      .b-wa{
+          background-color: #64bb54;
+      }
+      .b-ln{
+          background-color: #3acd03;
+      }
+      .b-tw{
+          background-color: #37b2db;
+      }
 </style>
 
 
@@ -132,7 +178,7 @@
                         <div class="box-title font-ct" style="display:inline-block !important;">
                             <h2 class="modtitle"><span>Kategori <?php echo $vals['product_category']['name']; ?> Pada Fashion Wanita</span></h2>
                         </div>
-                        <a class="l-detail" href="" style="display:inline-block !important; float:right;">Lihat Selengkapnya</a>
+                        <a class="l-detail tx-medium" href="" style="display:inline-block !important; float:right;">Lihat Selengkapnya</a>
                         <?php
                             $chunk = array_chunk($vals['product_category']['products'],10);
                         ?>
@@ -183,14 +229,14 @@
                                                 <span class="price-old">Rp. <?= $this->Number->format($v['product']['price']); ?></span>
                                                 <?php endif;?>
                                             </div>
-                                            <div class="button-group so-quickview cartinfo--static">
-                                                <button type="button" class="addToCart" title="Add to cart" onclick="cart.add('<?= ($v['product']['id']); ?>', this);">  <i class="fa fa-shopping-basket"></i>
-                                                    <span>Add to cart </span>
-                                                </button>
-                                                <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('<?= ($v['product']['id']); ?>', this);"><i class="fa fa-heart"></i><span></span>
-                                                </button>
-                                                <button type="button" class="compare btn-button" title="Share this Product "><i class="fa fa-share-alt"></i><span></span>
-                                                </button>
+                                            <div class="button-group so-quickview cartinfo--static share-container">
+                                                <span class="zl-tx-red tx-medium share-txt">Bagikan produk ini</span>
+                                                <button class="btn-share b-ig"><i class="fab fa-instagram"></i></button>
+                                                <button class="btn-share b-fb"><i class="fab fa-facebook"></i></button>
+                                                <button class="btn-share b-wc"><i class="fas fa-comment-dots"></i></button>
+                                                <button class="btn-share b-wa"><i class="fab fa-whatsapp"></i></button>
+                                                <button class="btn-share b-ln"><i class="fab fa-line"></i></button>
+                                                <button class="btn-share b-tw"><i class="fab fa-twitter"></i></button>
                                             </div>
                                         </div>
                                     </div>
