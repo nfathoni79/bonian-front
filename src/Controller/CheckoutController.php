@@ -49,6 +49,7 @@ class CheckoutController  extends AuthController
     {
         /*validation*/
         /* LAYOUT SECURE NO CART */
+        $this->layout = 'secure';
         $errors = [];
         try {
             $claim = $this->Api->makeRequest($this->Auth->user('token'))
@@ -119,8 +120,8 @@ class CheckoutController  extends AuthController
 
     }
 
-    function confirmation(){
-
+    function confirmation(){ 
+        $this->layout = 'secure';
 
     }
 }
