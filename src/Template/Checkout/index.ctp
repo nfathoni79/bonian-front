@@ -1,3 +1,81 @@
+<style>
+      .c-kupon-desc{
+          border: 1px!important;
+          border-style: solid!important;
+          border-color: #61a811!important;
+          display: flex;
+      }
+      .c-kupon-kiri-desc{
+          padding-left: 5px;
+          padding-right: 5px;
+          display: inline-flex;
+          color: #61a811
+      }
+      .c-kupon-kanan-desc{
+          padding-left: 5px;
+          padding-right: 5px;
+          background-color: #61a811;
+          display: inline-flex;
+      }
+      .title-pembayaran{
+          background: #f2e7e7;
+          height: 45px;
+          padding-top: 15px;
+          font-weight: 900;
+          font-size: 14px;
+          border-radius: 0px 0px 8px 8px;
+          width: 65%;
+          display: inline-block;
+          color: #dd575a;
+      }
+      .poin-subtitle{
+          margin-top: 0px;
+          font-size:0.8em;
+          padding-right: 0px;
+          text-align: left;
+          color: #000000;
+      }
+      .tx-bank{
+          color: #000000;
+          font-size: 12px;
+          text-align: left!important;
+          font-weight: 600;
+      }
+      .tx-bold-force{
+          font-weight: 700 !important;
+      }
+      .tx-semibold-force{
+          font-weight: 600 !important;
+      }
+      .mg-t-m35{
+          margin-top: -35px;
+      }
+      .tx-gray-force{
+          color:#717171 !important;
+      }
+      /* custom media query */
+      @media screen and (max-width: 1000px) {
+        .mq-desc{
+            display: inline-flex!important;
+            margin-top: 50px!important;
+        }
+        .mq-desc-row{
+            display: inline-flex!important;
+            margin: auto!important;
+        }
+        .mq-diskon{
+            display: inline-flex!important;
+            float: right!important;
+        }
+        .mq-badge{
+            display: inline-flex!important;
+            float: left!important;
+        }
+        .mg-t-mq10{
+            margin-top: 10px !important;
+        }
+      }
+</style>
 <div class="c-header__bg" style="z-index:0;">
     <div class="container">
         <div class="row">
@@ -26,7 +104,7 @@
                 <div class="c-checkout-card">
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="c-card__item-title">
+                            <div class="c-card__item-title tx-bold-force">
                                 alamat pengiriman
                             </div>
                         </div>
@@ -81,18 +159,337 @@
                         <div class="row">
 
                             <div class="col-lg-2">
-                                <img class="img-responsive img-0" src="http://zolaku.nevsky.tech/images/132x132/382674cca7e149daa393a5cd20685b05.jpg" data-zoom-image="http://zolaku.nevsky.tech/images/600x600/382674cca7e149daa393a5cd20685b05.jpg" data-image-name="382674cca7e149daa393a5cd20685b05.jpg" title="Celana Kerja / Celana Formal Pria WAY OF MAN" alt="Celana Kerja / Celana Formal Pria WAY OF MAN">
+                                <img class="img-responsive img-0 mx-ht-lg-55p" src="http://zolaku.nevsky.tech/images/132x132/382674cca7e149daa393a5cd20685b05.jpg" data-zoom-image="http://zolaku.nevsky.tech/images/600x600/382674cca7e149daa393a5cd20685b05.jpg" data-image-name="382674cca7e149daa393a5cd20685b05.jpg" title="Celana Kerja / Celana Formal Pria WAY OF MAN" alt="Celana Kerja / Celana Formal Pria WAY OF MAN">
                             </div>
 
                             <div class="col-lg-10 c-card-item__description">
                                 <div class="row">
 
-                                    <div class="col-lg-8 text-left">
+                                    <div class="col-lg-12 text-left">
+                                        <h2 class="tx-bold tx-16 mg-0 zl-tx-black mg-t-10"> Samsung Galaxy Gear VR version 1 / SM-R322-Intl </h2>
+                                    </div>
+
+                                    <div class="col-lg-2 mq-badge">
+                                        <div class="badge u-bg--badge__blue mg-t-10 mg-b-10"><span id="zl-point-0">400</span> poin</div>
+                                    </div>
+
+                                    <div class="col-lg-6 d-lg-flex mg-b-10 mg-t-10 mg-l-10 mq-diskon">
+                                        <div class="row c-kupon-desc tx-11">
+                                            <div class=" c-kupon-kiri-desc">
+                                                diskon
+                                            </div>
+                                            <div class="c-kupon-kanan-desc wd-60p tx-center tx-white">
+                                                Rp.15.000
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 text-center">
+                                            <i class="fas fa-question-circle c-question mg-l-10 mg-t-5 tx-18"></i>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- start : deskripsi produk -->
+                                    <div class="col-lg-12 tx-12 mq-desc" >
+                                        <div class="row mq-desc-row">
+                                            <div class="col-lg-4">
+                                                <div class="row text-left" >
+                                                    <div class="col-lg-12">
+                                                        SKU : ZL-0001BRJ-02
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        Product origin : Surabaya
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-1">
+                                                <div class="row text-center">
+                                                    <div class="col-lg-12 text-center" style="color : #212121">
+                                                        Berat
+                                                    </div>
+                                                    <div class="col-lg-12 text-center tx-black">
+                                                        1Kg
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3">
+                                                <div class="row text-center">
+                                                    <div class="col-lg-12 text-center" style="color : #212121">
+                                                        Harga
+                                                    </div>
+                                                    <div class="col-lg-12 text-center tx-black">
+                                                        Rp. 800.000
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-lg-1">
+                                                <div class="row text-center">
+                                                    <div class="col-lg-12 text-center" style="color : #212121">
+                                                        Qty
+                                                    </div>
+                                                    <div class="col-lg-12 text-center tx-black">
+                                                        1
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3">
+                                                <div class="row text-center">
+                                                    <div class="col-lg-12 text-center" style="color : #212121">
+                                                        Total
+                                                    </div>
+                                                    <div class="col-lg-12 text-center tx-black">
+                                                        Rp. 800.000
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end : deskripsi produk -->
+
+                                </div>
+                            </div>
+
+                            <!-- start: kolom catatan barang -->
+                            <div class="col-lg-12 c-card-item__catatan mg-l-115 wd-85p">
+                                <h5 class="tx-black">Catatan Barang</h5>
+
+                                <div class="col-lg-12 c-catatan-detail">
+                                    <p>
+                                        Tidak ada catatan
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- end: kolom catatan barang -->
+                        </div>
+                    </div>
+                    <!-- end: card content #1 -->
+                    <div class="row zl-tx-gray ">
+                        <div class="col-lg-12 mg-t-">
+                            <div class="col-lg-12 text-right">
+                                <span><i class="fas fa-warehouse pd-r-10 tx-16 mg-t-10"></i> Shipping origin : <span class="tx-bold">Jakarta</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- start: card content #2 -->
+                    <div class="c-checkout-card__item">
+
+                        <div class="row">
+
+                            <div class="col-lg-2">
+                                <img class="img-responsive img-0 mx-ht-lg-55p" src="http://zolaku.nevsky.tech/images/132x132/382674cca7e149daa393a5cd20685b05.jpg" data-zoom-image="http://zolaku.nevsky.tech/images/600x600/382674cca7e149daa393a5cd20685b05.jpg" data-image-name="382674cca7e149daa393a5cd20685b05.jpg" title="Celana Kerja / Celana Formal Pria WAY OF MAN" alt="Celana Kerja / Celana Formal Pria WAY OF MAN">
+                            </div>
+
+                            <div class="col-lg-10 c-card-item__description">
+                                <div class="row">
+
+                                    <div class="col-lg-12 text-left">
                                         <h2 class="tx-bold tx-16 mg-0 zl-tx-black"> Samsung Galaxy Gear VR version 1 / SM-R322-Intl </h2>
                                     </div>
 
-                                    <div class="col-lg-4 text-left">
-                                        <div class="badge u-bg--badge__blue mg-t-0"><span id="zl-point-0">400</span> poin</div>
+                                    <div class="col-lg-2 ">
+                                        <div class="badge u-bg--badge__blue mg-t-10 mg-b-10"><span id="zl-point-0">400</span> poin</div>
+                                    </div>
+
+                                    <div class="col-lg-6 d-lg-flex mg-b-10 mg-t-10 mg-l-10">
+                                        <div class="row c-kupon-desc tx-11">
+                                            <div class=" c-kupon-kiri-desc">
+                                                diskon
+                                            </div>
+                                            <div class="c-kupon-kanan-desc wd-60p tx-center tx-white">
+                                                Rp.15.000
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 text-center">
+                                            <i class="fas fa-question-circle c-question mg-l-10 mg-t-5 tx-18"></i>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- start : deskripsi produk -->
+                                    <div class="col-lg-12 tx-12" >
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="row text-left" >
+                                                    <div class="col-lg-12">
+                                                        SKU : ZL-0001BRJ-02
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        Product origin : Surabaya
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-1">
+                                                <div class="row text-center">
+                                                    <div class="col-lg-12 text-center" style="color : #212121">
+                                                        Berat
+                                                    </div>
+                                                    <div class="col-lg-12 text-center tx-black">
+                                                        1Kg
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3">
+                                                <div class="row text-center">
+                                                    <div class="col-lg-12 text-center" style="color : #212121">
+                                                        Harga
+                                                    </div>
+                                                    <div class="col-lg-12 text-center tx-black">
+                                                        Rp. 800.000
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-lg-1">
+                                                <div class="row text-center">
+                                                    <div class="col-lg-12 text-center" style="color : #212121">
+                                                        Qty
+                                                    </div>
+                                                    <div class="col-lg-12 text-center tx-black">
+                                                        1
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3">
+                                                <div class="row text-center">
+                                                    <div class="col-lg-12 text-center" style="color : #212121">
+                                                        Total
+                                                    </div>
+                                                    <div class="col-lg-12 text-center tx-black">
+                                                        Rp. 800.000
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end : deskripsi produk -->
+
+                                </div>
+                            </div>
+
+                            <!-- start: kolom catatan barang -->
+                            <div class="col-lg-12 c-card-item__catatan mg-l-115 wd-85p">
+                                <h5 class="tx-black">Catatan Barang</h5>
+
+                                <div class="col-lg-12 c-catatan-detail">
+                                    <p>
+                                        Tidak ada catatan
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- end: kolom catatan barang -->
+                        </div>
+                    </div>
+                    <!-- end: card content #2 -->
+
+                    <!-- start: card pengiriman -->
+                    <div class="c-checkout-card__pengiriman u-mt-10">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h5 class="tx-bold-force">
+                                    opsi pengiriman
+                                </h5>
+
+                                <div class="dropdown">
+                                    <button class="btn btn-default dropdown-toggle c-dropdown-pengiriman" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+
+                                        <img src="assets/img/logo--pengiriman.png" alt="pengiriman icon">
+                                        <span class="c-dropdown-pengiriman__title">
+                                            Regular Service
+                                        </span>
+
+                                        <span class="caret" style="text-align:right;"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="padding: 25px; min-width: 300px;">
+                                        <li>
+                                            <a href="#">
+                                                <img src="assets/img/logo--pengiriman.png" alt="pengiriman icon">
+                                                <span class="c-dropdown-pengiriman__title">
+                                                    Regular Service
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <img src="assets/img/logo--pengiriman.png" alt="pengiriman icon">
+                                                <span class="c-dropdown-pengiriman__title">
+                                                    Regular Service
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <h5 class="u-mt-10 tx-semibold-force tx-gray-force">
+                                    Estimasi waktu 2-3 hari kerja
+                                </h5>
+                            </div>
+
+                            <div class="col-lg-6 c-ongkos">
+                                <div class="row">
+                                    <div class="col-lg-6 text-left tx-bold-force">
+                                        Berat Total
+                                    </div>
+                                    <div class="col-lg-6 text-right tx-bold-force">
+                                        2 Kg
+                                    </div>
+                                    <div class="col-lg-12 o-ongkos-divider">
+                                    </div>
+                                    <div class="col-lg-6 text-lef tx-bold-force">
+                                        Ongkos kirim
+                                    </div>
+                                    <div class="col-lg-6 text-right tx-bold-force">
+                                        Rp.22.000
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end: card pengiriman -->
+
+                </div>
+                <!-- end: card item #1 -->
+
+                <!-- start: card item #1 -->
+
+                <div class="c-checkout-card-product">
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                          <div class="col-lg-6 tx-16 tx-bold zl-tx-black tx-mont text-left p-0">
+                              <p>Produk belanja 2</p>
+                          </div>
+                            <div class="col-lg-6 text-right">
+                                <span><i class="fas fa-warehouse pd-r-10 tx-16 mg-t-10"></i> Shipping origin : <span class="tx-bold">Bandung</span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- start: card content #1 -->
+                    <div class="c-checkout-card__item">
+
+                        <div class="row">
+
+                            <div class="col-lg-2">
+                                <img class="img-responsive img-0 mx-ht-lg-55p" src="http://zolaku.nevsky.tech/images/132x132/382674cca7e149daa393a5cd20685b05.jpg" data-zoom-image="http://zolaku.nevsky.tech/images/600x600/382674cca7e149daa393a5cd20685b05.jpg" data-image-name="382674cca7e149daa393a5cd20685b05.jpg" title="Celana Kerja / Celana Formal Pria WAY OF MAN" alt="Celana Kerja / Celana Formal Pria WAY OF MAN">
+                            </div>
+
+                            <div class="col-lg-10 c-card-item__description">
+                                <div class="row">
+
+                                    <div class="col-lg-12 text-left">
+                                        <h2 class="tx-bold tx-16 mg-0 zl-tx-black"> Samsung Galaxy Gear VR version 1 / SM-R322-Intl </h2>
+                                    </div>
+
+                                    <div class="col-lg-2 ">
+                                        <div class="badge u-bg--badge__blue mg-t-10 mg-b-10"><span id="zl-point-0">400</span> poin</div>
                                     </div>
 
                                     <!-- start : deskripsi produk -->
@@ -114,7 +511,7 @@
                                                     <div class="col-lg-12 text-center" style="color : #212121">
                                                         Berat
                                                     </div>
-                                                    <div class="col-lg-12 text-center">
+                                                    <div class="col-lg-12 text-center tx-black">
                                                         1Kg
                                                     </div>
                                                 </div>
@@ -125,7 +522,7 @@
                                                     <div class="col-lg-12 text-center" style="color : #212121">
                                                         Harga
                                                     </div>
-                                                    <div class="col-lg-12 text-center">
+                                                    <div class="col-lg-12 text-center tx-black">
                                                         Rp. 800.000
                                                     </div>
                                                 </div>
@@ -137,7 +534,7 @@
                                                     <div class="col-lg-12 text-center" style="color : #212121">
                                                         Qty
                                                     </div>
-                                                    <div class="col-lg-12 text-center">
+                                                    <div class="col-lg-12 text-center tx-black">
                                                         1
                                                     </div>
                                                 </div>
@@ -148,7 +545,7 @@
                                                     <div class="col-lg-12 text-center" style="color : #212121">
                                                         Total
                                                     </div>
-                                                    <div class="col-lg-12 text-center">
+                                                    <div class="col-lg-12 text-center tx-black">
                                                         Rp. 800.000
                                                     </div>
                                                 </div>
@@ -161,8 +558,8 @@
                             </div>
 
                             <!-- start: kolom catatan barang -->
-                            <div class="col-lg-12 c-card-item__catatan">
-                                <h5>Catatan Barang</h5>
+                            <div class="col-lg-12 c-card-item__catatan mg-l-115 wd-85p">
+                                <h5 class="tx-black">Catatan Barang</h5>
 
                                 <div class="col-lg-12 c-catatan-detail">
                                     <p>
@@ -175,116 +572,11 @@
                     </div>
                     <!-- end: card content #1 -->
 
-                    <!-- start: card content #2 -->
-                    <div class="c-checkout-card__item">
-                        <div class="row">
-
-                            <div class="col-lg-2">
-                                <img class="img-responsive img-0" src="http://zolaku.nevsky.tech/images/132x132/382674cca7e149daa393a5cd20685b05.jpg" data-zoom-image="http://zolaku.nevsky.tech/images/600x600/382674cca7e149daa393a5cd20685b05.jpg" data-image-name="382674cca7e149daa393a5cd20685b05.jpg" title="Celana Kerja / Celana Formal Pria WAY OF MAN" alt="Celana Kerja / Celana Formal Pria WAY OF MAN">
-                            </div>
-
-                            <div class="col-lg-10 c-card-item__description">
-                                <div class="row">
-
-                                    <div class="col-lg-8 text-left">
-                                        <p>
-                                            Samsung Galaxy Gear VR version 1 / SM-R322-Intl
-                                        </p>
-                                    </div>
-
-                                    <div class="col-lg-4 text-left">
-                                        <div class="o-poin">
-                                            90 poin
-                                        </div>
-                                    </div>
-
-                                    <!-- start : deskripsi produk -->
-                                    <div class="col-lg-12" >
-                                        <div class="row">
-                                            <div class="col-lg-4">
-                                                <div class="row text-left" >
-                                                    <div class="col-lg-12">
-                                                        SKU : ZL-0001BRJ-02
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        Product origin : Gudang Surabaya
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-1">
-                                                <div class="row text-center">
-                                                    <div class="col-lg-12 text-center" style="color : #212121">
-                                                        Berat
-                                                    </div>
-                                                    <div class="col-lg-12 text-center">
-                                                        1Kg
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-3">
-                                                <div class="row text-center">
-                                                    <div class="col-lg-12 text-center" style="color : #212121">
-                                                        Harga
-                                                    </div>
-                                                    <div class="col-lg-12 text-center">
-                                                        Rp. 800.000
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="col-lg-1">
-                                                <div class="row text-center">
-                                                    <div class="col-lg-12 text-center" style="color : #212121">
-                                                        Qty
-                                                    </div>
-                                                    <div class="col-lg-12 text-center">
-                                                        1
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-3">
-                                                <div class="row text-center">
-                                                    <div class="col-lg-12 text-center" style="color : #212121">
-                                                        Total
-                                                    </div>
-                                                    <div class="col-lg-12 text-center">
-                                                        Rp. 800.000
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- end : deskripsi produk -->
-
-                                </div>
-                            </div>
-
-                            <!-- start: kolom catatan barang -->
-                            <div class="col-lg-12 c-card-item__catatan">
-                                <h5>Catatan Barang</h5>
-
-                                <div class="col-lg-12 c-catatan-detail">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
-                                        ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis
-                                        dis parturient montes, nascetur ridiculus mus.
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- end: kolom catatan barang -->
-                        </div>
-                    </div>
-                    <!-- end: card content #2 -->
-
                     <!-- start: card pengiriman -->
                     <div class="c-checkout-card__pengiriman u-mt-10">
                         <div class="row">
                             <div class="col-lg-6">
-                                <h5>
+                                <h5 class="tx-bold-force">
                                     opsi pengiriman
                                 </h5>
 
@@ -318,222 +610,31 @@
                                     </ul>
                                 </div>
 
-                                <h5 class="u-mt-10" style="color:#717171">
+                                <h5 class="u-mt-10 tx-semibold-force tx-gray-force">
                                     Estimasi waktu 2-3 hari kerja
                                 </h5>
                             </div>
 
                             <div class="col-lg-6 c-ongkos">
                                 <div class="row">
-                                    <div class="col-lg-6 text-left">
+                                    <div class="col-lg-6 text-left tx-bold-force">
                                         Berat Total
                                     </div>
-                                    <div class="col-lg-6 text-right">
+                                    <div class="col-lg-6 text-right tx-bold-force">
                                         2 Kg
                                     </div>
                                     <div class="col-lg-12 o-ongkos-divider">
                                     </div>
-                                    <div class="col-lg-6 text-left">
+                                    <div class="col-lg-6 text-lef tx-bold-force">
                                         Ongkos kirim
                                     </div>
-                                    <div class="col-lg-6 text-right">
+                                    <div class="col-lg-6 text-right tx-bold-force">
                                         Rp.22.000
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- end: card pengiriman -->
-
-                </div>
-                <!-- end: card item #1 -->
-
-                <!-- start: card item #1 -->
-
-                <div class="c-checkout-card-product">
-
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="col-lg-6 text-left">
-                                <p>
-                                    Produk belanja 2
-                                </p>
-                            </div>
-                            <div class="col-lg-6 text-right">
-                                <p>
-                                    Shipping origin : Bandung
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- start: card content #1 -->
-                    <div class="c-checkout-card__item">
-                        <div class="row">
-
-                            <div class="col-lg-2">
-                                <img src="assets/img/item-img-3.png" alt="product image" class="img-responsive u-flex-center">
-                            </div>
-
-                            <div class="col-lg-10 c-card-item__description">
-                                <div class="row">
-
-                                    <div class="col-lg-8 text-left">
-                                        <p>
-                                            Samsung Galaxy Gear VR version 1 / SM-R322-Intl
-                                        </p>
-                                    </div>
-
-                                    <div class="col-lg-4 text-left">
-                                        <div class="o-poin">
-                                            152 poin
-                                        </div>
-                                    </div>
-
-                                    <!-- start : deskripsi produk -->
-                                    <div class="col-lg-12" >
-                                        <div class="row">
-                                            <div class="col-lg-4">
-                                                <div class="row text-left" >
-                                                    <div class="col-lg-12">
-                                                        SKU : ZL-0001BRJ-02
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        Product origin : Gudang Surabaya
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-1">
-                                                <div class="row text-center">
-                                                    <div class="col-lg-12 text-center" style="color : #212121">
-                                                        Berat
-                                                    </div>
-                                                    <div class="col-lg-12 text-center">
-                                                        1Kg
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-3">
-                                                <div class="row text-center">
-                                                    <div class="col-lg-12 text-center" style="color : #212121">
-                                                        Harga
-                                                    </div>
-                                                    <div class="col-lg-12 text-center">
-                                                        Rp. 800.000
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="col-lg-1">
-                                                <div class="row text-center">
-                                                    <div class="col-lg-12 text-center" style="color : #212121">
-                                                        Qty
-                                                    </div>
-                                                    <div class="col-lg-12 text-center">
-                                                        1
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-3">
-                                                <div class="row text-center">
-                                                    <div class="col-lg-12 text-center" style="color : #212121">
-                                                        Total
-                                                    </div>
-                                                    <div class="col-lg-12 text-center">
-                                                        Rp. 800.000
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- end : deskripsi produk -->
-
-                                </div>
-                            </div>
-
-                            <!-- start: kolom catatan barang -->
-                            <div class="col-lg-12 c-card-item__catatan">
-                                <h5>Catatan Barang</h5>
-
-                                <div class="col-lg-12 c-catatan-detail">
-                                    <p>
-                                        Tidak ada catatan
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- end: kolom catatan barang -->
-                        </div>
-                    </div>
-                    <!-- end: card content #1 -->
-
-                    <!-- start: card pengiriman -->
-                    <div class="c-checkout-card__pengiriman u-mt-10">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <h5>
-                                    opsi pengiriman
-                                </h5>
-
-                                <div class="dropdown">
-                                    <button class="btn btn-default dropdown-toggle c-dropdown-pengiriman" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-
-                                        <img src="assets/img/logo--pengiriman.png" alt="pengiriman icon">
-                                        <span class="c-dropdown-pengiriman__title">
-                                            Regular Service
-                                        </span>
-
-                                        <span class="caret" style="text-align:right;"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="padding: 25px; min-width: 300px;">
-                                        <li>
-                                            <a href="#">
-                                                <img src="assets/img/logo--pengiriman.png" alt="pengiriman icon">
-                                                <span class="c-dropdown-pengiriman__title">
-                                                    Regular Service
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="assets/img/logo--pengiriman.png" alt="pengiriman icon">
-                                                <span class="c-dropdown-pengiriman__title">
-                                                    Regular Service
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <h5 class="u-mt-10" style="color:#717171">
-                                    Estimasi waktu 2-3 hari kerja
-                                </h5>
-                            </div>
-
-                            <div class="col-lg-6 c-ongkos">
-                                <div class="row">
-                                    <div class="col-lg-6 text-left">
-                                        Berat Total
-                                    </div>
-                                    <div class="col-lg-6 text-right">
-                                        2 Kg
-                                    </div>
-                                    <div class="col-lg-12 o-ongkos-divider">
-                                    </div>
-                                    <div class="col-lg-6 text-left">
-                                        Ongkos kirim
-                                    </div>
-                                    <div class="col-lg-6 text-right">
-                                        Rp.22.000
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end: card pengiriman -->
+                    </div>                    <!-- end: card pengiriman -->
 
                 </div>
                 <!-- end: card item #1 -->
@@ -542,10 +643,10 @@
 
             <div class="col-lg-4">
                 <!-- start: card Pembayaran -->
-                <div class="c-cart-card-pembayaran">
+                <div class="c-cart-card-pembayaran mg-t-mq10">
                     <!-- start: title -->
-                    <div class="c-cart-card-pembayaran__title text-center">
-                        <h5 style="margin-top: 0px;">Detail pembayaran</h5>
+                    <div class="c-cart-card-pembayaran__title text-center mg-t-m35">
+                        <h5 class="title-pembayaran">Detail pembayaran</h5>
                     </div>
                     <!-- end: title -->
 
@@ -553,21 +654,10 @@
                     <div class="c-cart-card-pembayaran__content">
                         <div class="row">
                             <div class="col-lg-7">
-                                <h3>total harga</h3>
+                                <h3 class="tx-15">Total harga</h3>
                             </div>
-                            <div class="col-lg-5">
-                                <h5> RP.750.000 </h5>
-                            </div>
-
-                            <div class="col-lg-12">
-                                <div style="border:1px dashed #E2E2E2; margin-top:15px;"></div>
-                            </div>
-
-                            <div class="col-lg-7">
-                                <h3>ongkos kirim</h3>
-                            </div>
-                            <div class="col-lg-5">
-                                <h5> Rp.30.000 </h5>
+                            <div class="col-lg-5 mg-t-15">
+                                <h5 class="tx-black tx-15"> RP.750.000 </h5>
                             </div>
 
                             <div class="col-lg-12">
@@ -575,19 +665,26 @@
                             </div>
 
                             <div class="col-lg-7">
-                                <h3>total tagihan</h3>
+                                <h3 class="tx-15">Ongkos kirim</h3>
                             </div>
-                            <div class="col-lg-5">
-                                <h5 class="sub-total">
+                            <div class="col-lg-5 mg-t-15">
+                                <h5 class="tx-black tx-15"> Rp.30.000 </h5>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div style="border:1px dashed #E2E2E2; margin-top:15px;"></div>
+                            </div>
+
+                            <div class="col-lg-7">
+                                <h3>Total tagihan</h3>
+                            </div>
+                            <div class="col-lg-5 mg-t-15">
+                                <h5 class="sub-total tx-black tx-18">
                                     Rp.780.000
                                 </h5>
                             </div>
 
-                            <div class="col-lg-12">
-                                <div style="border:1px dashed #E2E2E2; margin-top:15px;"></div>
-                            </div>
-
-                            <div class="col-lg-4">
+                            <!--<div class="col-lg-4">
                                 <h3>Kupon</h3>
                             </div>
                             <div class="col-lg-6">
@@ -608,20 +705,20 @@
                                 <span>
                                     *Min. pembelajaan Rp.200.000
                                 </span>
-                            </div>
+                            </div> -->
 
                             <div class="col-lg-12">
                                 <div style="border:1px dashed #E2E2E2; margin-top:15px;"></div>
                             </div>
 
                             <div class="col-lg-4 u-flex-center">
-                                <h3>
+                                <h3 class="tx-15">
                                     Voucher
                                 </h3>
                             </div>
                             <div class="col-lg-6 u-flex-center u-mt-10">
                                 <div class="dropdown" style="min-width: 100%;">
-                                    <button class="btn btn-default btn-block dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="color: #D14A4E">
+                                    <button class="btn btn-default btn-block dropdown-toggle tx-semibold" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="color: #D14A4E">
                                         Pilih Voucher
                                         <span class="caret" style="margin-left: 1em;"></span>
                                     </button>
@@ -643,10 +740,10 @@
                             </div>
 
                             <div class="col-lg-6 text-left">
-                                <h3 style="margin-bottom: 0px;">
+                                <h3 class="tx-black">
                                     Gunakan Poin
                                 </h3>
-                                <h5 style="margin-top: 0px; font-size:0.8em; padding-right: 0px; text-align: left;">
+                                <h5 class="poin-subtitle">
                                     Anda memiliki 20.500 poin
                                 </h5>
                             </div>
@@ -659,8 +756,8 @@
                                 <div class="c-card-pembayaran__metode">
 
                                     <!-- start: title -->
-                                    <div class="c-card-pembayaran__metode-title text-center">
-                                        <h5>Detail pembayaran</h5>
+                                    <div class="c-cart-card-pembayaran__title text-center">
+                                        <h5 class="title-pembayaran mg-t-0">Metode pembayaran</h5>
                                     </div>
                                     <!-- end: title -->
 
@@ -669,7 +766,7 @@
 
                                         <!-- start: title -->
                                         <div>
-                                            <h5 class="c-card-pembayaran__title">
+                                            <h5 class="c-card-pembayaran__title tx-bold-force tx-black">
                                                 Bank Transfer
                                             </h5>
                                         </div>
@@ -690,7 +787,7 @@
                                                         <img src="assets/img/logo-bank-1.png" alt="logo bank" class="img-responsive">
                                                     </div>
                                                     <div class="col-lg-8">
-                                                        <h5>
+                                                        <h5 class="tx-bank">
                                                             Bank BCA
                                                         </h5>
                                                     </div>
@@ -720,7 +817,7 @@
                                                         <img src="assets/img/logo-bank-3.png" alt="logo bank" class="img-responsive">
                                                     </div>
                                                     <div class="col-lg-8">
-                                                        <h5>
+                                                        <h5 class="tx-bank">
                                                             Bank Mandiri
                                                         </h5>
                                                     </div>
@@ -750,7 +847,7 @@
                                                         <img src="assets/img/logo-bank-4.png" alt="logo bank" class="img-responsive">
                                                     </div>
                                                     <div class="col-lg-8">
-                                                        <h5>
+                                                        <h5 class="tx-bank">
                                                             Bank BRI
                                                         </h5>
                                                     </div>
@@ -767,7 +864,7 @@
 
                                         <!-- start: title -->
                                         <div>
-                                            <h5 class="c-card-pembayaran__title">
+                                            <h5 class="c-card-pembayaran__title tx-black tx-bold-force">
                                                 Kartu kredit
                                             </h5>
                                         </div>
@@ -786,7 +883,7 @@
 
                                         <!-- start: title -->
                                         <div>
-                                            <h5 class="c-card-pembayaran__title">
+                                            <h5 class="c-card-pembayaran__title tx-black tx-bold-force">
                                                 Go-Pay
                                             </h5>
                                         </div>
@@ -807,7 +904,7 @@
                                                         <img src="assets/img/logo-gopay.png" alt="logo bank" class="img-responsive">
                                                     </div>
                                                     <div class="col-lg-8">
-                                                        <h5>
+                                                        <h5 class="tx-bank">
                                                             Saldo Go-Pay
                                                         </h5>
                                                     </div>
@@ -830,7 +927,7 @@
                             <!-- end: metode pembayaran -->
 
                             <div class="col-lg-12 text-center">
-                                <button type="button" class="btn btn-danger btn-lg btn-block c-pembayaran-button">
+                                <button type="button" class="btn btn-danger btn-lg btn-block c-pembayaran-button rounded-5">
                                     Bayar sekarang ( 3 item )
                                 </button>
                             </div>
