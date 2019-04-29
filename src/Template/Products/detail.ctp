@@ -23,9 +23,7 @@
                         <?php if($details['is_error']):?>
                             Produk tidak ditemukan
 
-                        <?php else:?>
-                        <a href="sms:444?body=hello">Sms Android </a>
-                        <a href="sms:444&body=hello">Sms IOS </a>
+                        <?php else:?> 
 
                         <a href="sms:;?&body=hello" title="Click here to TEXT US gallery token needs updating!">Send me SMS </a>
 
