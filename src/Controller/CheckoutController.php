@@ -53,10 +53,10 @@ class CheckoutController  extends AuthController
 
             }
 
+            return $this->response->withType('application/json')
+                ->withStringBody(json_encode($json));
+
         }
-
-        return $this->response->withType('application/json')
-            ->withStringBody(json_encode($json));
-
+        
     }
 }
