@@ -145,8 +145,10 @@ class AppController extends Controller
 
                 if ($response = $this->Api->success($carts)) {
                     $json = $response->parse();
-                    $carts = ['carts' => $json['result']['data'], 'pagging' => $json['paging']];
-                    return $carts;
+                    if ($json['result']) {
+                        $carts = ['carts' => $json['result']['data'], 'pagging' => $json['paging']];
+                        return $carts;
+                    }
 
                 }
             } catch(\Exception $e) {

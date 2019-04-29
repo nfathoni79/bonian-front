@@ -28,8 +28,8 @@ class CheckoutController  extends AuthController
                 if ($response = $this->Api->success($claim)) {
                     $json = $response->parse();
 
-                    debug($json);
-                    exit;
+                    //debug($json);
+                    //exit;
                     if(isset($json['error'])){
                         $errors = ['is_error' => true, 'status' => 'OK', 'message' => 'Maaf, kode ini tidak sah. Mohon coba kembali.'];
                     }else{
@@ -38,16 +38,25 @@ class CheckoutController  extends AuthController
                 }
             } catch(\GuzzleHttp\Exception\ClientException $e) {
                 $this->Api->handle($e);
-                $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+                $json = json_decode($e->getResponse()->getBody()->getContents(), true);
+                $this->response = $this->response->withStatus(406);
+                if (!empty($json['error'])) {
+                    foreach($json['error'] as $key => $val) {
+                        $json['message'] = array_values($val)[0];
+                        break;
+                    }
+                }
+                //debug($error);
+                //exit;
+                //$errors = ['is_error' => true, 'status' => 'OK', 'message' => 'Maaf, kode ini tidak sah. Mohon coba kembali.'];
 
-                debug($error);
-                exit;
-                $errors = ['is_error' => true, 'status' => 'OK', 'message' => 'Maaf, kode ini tidak sah. Mohon coba kembali.'];
 
             }
 
         }
-        debug($errors);
-        exit;
+
+        return $this->response->withType('application/json')
+            ->withStringBody(json_encode($json));
+
     }
 }

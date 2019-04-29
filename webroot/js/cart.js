@@ -243,10 +243,23 @@ $('.zl-checkout').on('click',function(){
         },
         dataType : 'json',
         success: function(response){
-
+            location.href = basePath + '/checkout';
         },
-        error: function () {
-            $("#login-popup").modal('show');
+        error: function (text) {
+
+            switch (text.status) {
+                case 200:
+
+                    break;
+                case 406:
+                    swal(text.responseJSON.message);
+                    break;
+                case 302:
+                case 401:
+                    $("#login-popup").modal('show');
+                    break;
+            }
+
         }
     });
 
