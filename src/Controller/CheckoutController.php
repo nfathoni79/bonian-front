@@ -26,14 +26,6 @@ class CheckoutController  extends AuthController
                     ]);
                 if ($response = $this->Api->success($claim)) {
                     $json = $response->parse();
-
-                    //debug($json);
-                    //exit;
-                    if(isset($json['error'])){
-                        $errors = ['is_error' => true, 'status' => 'OK', 'message' => 'Maaf, kode ini tidak sah. Mohon coba kembali.'];
-                    }else{
-                        $errors = ['is_error' => false, 'status' => 'OK'];
-                    }
                 }
             } catch(\GuzzleHttp\Exception\ClientException $e) {
                 $this->Api->handle($e);
@@ -45,11 +37,6 @@ class CheckoutController  extends AuthController
                         break;
                     }
                 }
-                //debug($error);
-                //exit;
-                //$errors = ['is_error' => true, 'status' => 'OK', 'message' => 'Maaf, kode ini tidak sah. Mohon coba kembali.'];
-
-
             }
 
             return $this->response->withType('application/json')
@@ -62,7 +49,6 @@ class CheckoutController  extends AuthController
     {
         /*validation*/
         /* LAYOUT SECURE NO CART */
-
         $errors = [];
         try {
             $claim = $this->Api->makeRequest($this->Auth->user('token'))
@@ -71,14 +57,7 @@ class CheckoutController  extends AuthController
                 ]);
             if ($response = $this->Api->success($claim)) {
                 $json = $response->parse();
-
-                //debug($json);
-                //exit;
-                if(isset($json['error'])){
-                    $errors = ['is_error' => true, 'status' => 'OK', 'message' => 'Maaf, kode ini tidak sah. Mohon coba kembali.'];
-                }else{
-                    $errors = ['is_error' => false, 'status' => 'OK'];
-                }
+                $data = $json['result']['data'];
             }
         } catch(\GuzzleHttp\Exception\ClientException $e) {
             $this->Api->handle($e);
@@ -90,12 +69,11 @@ class CheckoutController  extends AuthController
                     break;
                 }
             }
-            //debug($error);
-            //exit;
-            //$errors = ['is_error' => true, 'status' => 'OK', 'message' => 'Maaf, kode ini tidak sah. Mohon coba kembali.'];
-
-
         }
+
+        debug($data);exit;
+
+        $this->set(compact('data'));
 
     }
 
