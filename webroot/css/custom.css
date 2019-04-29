@@ -44233,7 +44233,30 @@ a.hover-white-8:hover, a.hover-white-8:focus {
     }
 }
 
+.zl-btn-default{
+    color: #fff;
+    background: #c93535;
+}
 
+.zl-btn-default:focus{
+    color: #fff;
+}
+
+.zl-btn-reverse{
+    color: #c93535;
+    background: #fff;
+}
+
+
+.zl-btn-hover-red:hover{
+    color: #c93535;
+    background: #fff;
+    border:1px solid #c93535;
+}
+
+.zl-bg-none{
+    background: none !important;
+}
 
 /* ------------------------------------------------- */
 /* ############### 3.2 Checkout page ############### */

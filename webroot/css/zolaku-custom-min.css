@@ -21,6 +21,13 @@ body {
     margin-bottom: 40px;
 }
 
+.card{
+    padding: 25px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 2px 15px hsla(0, 0%, 71%, .5);
+}
+
 .btn-default.active, .btn-default.focus, .btn-default:active, .btn-default:focus, .btn-default:hover, .open > .dropdown-toggle.btn-default{
     color: #fff !important;
     background: #DC5054;
@@ -39,6 +46,9 @@ body {
     bottom: 0;
     box-shadow: unset;
 }
+
+
+
 
 /*! ########## Product list custom styling ########## */
 
