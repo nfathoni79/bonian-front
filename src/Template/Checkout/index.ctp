@@ -380,14 +380,14 @@
                                             <div class="col-lg-2 text-center">
                                                 <div class="radio">
                                                     <label>
-                                                        <input type="radio" name="optionBCA" id="optionBCA" value="BCA">
+                                                        <input type="radio" name="bank"  value="bca_va">
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="col-lg-10">
                                                 <div class="row">
                                                     <div class="col-lg-4">
-                                                        <img src="<?php  assets/img/logo-bank-1.png" alt="logo bank" class="img-responsive">
+                                                        <img src="<?php echo $this->Url->build('/images/logo_bank/bca.png'); ?>" alt="Bank BCA" class="img-responsive">
                                                     </div>
                                                     <div class="col-lg-8">
                                                         <h5 class="tx-bank">
@@ -410,14 +410,14 @@
                                             <div class="col-lg-2 text-center">
                                                 <div class="radio">
                                                     <label>
-                                                        <input type="radio" name="optionMandiri" id="optionMandiri" value="Mandiri" checked="">
+                                                        <input type="radio" name="bank"  value="permata_va">
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="col-lg-10">
                                                 <div class="row">
                                                     <div class="col-lg-4">
-                                                        <img src="assets/img/logo-bank-3.png" alt="logo bank" class="img-responsive">
+                                                        <img src="<?php echo $this->Url->build('/images/logo_bank/mandiri.png'); ?>" alt="Bank Mandiri" class="img-responsive">
                                                     </div>
                                                     <div class="col-lg-8">
                                                         <h5 class="tx-bank">
@@ -426,7 +426,7 @@
                                                     </div>
                                                     <div class="col-lg-12">
                                                         <p>
-                                                            Hanya menerima pembayaran melalui Bank BCA dan
+                                                            Hanya menerima pembayaran melalui Bank Mandiri dan
                                                             dikonfirmasi otomatis
                                                         </p>
                                                     </div>
@@ -440,14 +440,14 @@
                                             <div class="col-lg-2 text-center">
                                                 <div class="radio">
                                                     <label>
-                                                        <input type="radio" name="optionBRI" id="optionBRI" value="BRI">
+                                                        <input type="radio" name="bank"  value="bni_va">
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="col-lg-10">
                                                 <div class="row">
                                                     <div class="col-lg-4">
-                                                        <img src="assets/img/logo-bank-4.png" alt="logo bank" class="img-responsive">
+                                                        <img src="<?php echo $this->Url->build('/images/logo_bank/bni.png'); ?>" alt="logo bank" class="img-responsive">
                                                     </div>
                                                     <div class="col-lg-8">
                                                         <h5 class="tx-bank">
@@ -456,7 +456,63 @@
                                                     </div>
                                                     <div class="col-lg-12">
                                                         <p>
-                                                            Hanya menerima pembayaran melalui Bank BCA dan
+                                                            Hanya menerima pembayaran melalui Bank BNI dan
+                                                            dikonfirmasi otomatis
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row" style="padding: 20px">
+                                            <div class="col-lg-2 text-center">
+                                                <div class="radio">
+                                                    <label>
+                                                        <input type="radio" name="bank"  value="permata_va">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-10">
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <img src="<?php echo $this->Url->build('/images/logo_bank/bri.png'); ?>" alt="logo bank" class="img-responsive">
+                                                    </div>
+                                                    <div class="col-lg-8">
+                                                        <h5 class="tx-bank">
+                                                            Bank BRI
+                                                        </h5>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <p>
+                                                            Hanya menerima pembayaran melalui Bank BRI dan
+                                                            dikonfirmasi otomatis
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row" style="padding: 20px">
+                                            <div class="col-lg-2 text-center">
+                                                <div class="radio">
+                                                    <label>
+                                                        <input type="radio" name="bank"  value="permata_va">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-10">
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <img src="<?php echo $this->Url->build('/images/logo_bank/permata.png'); ?>" alt="logo bank" class="img-responsive">
+                                                    </div>
+                                                    <div class="col-lg-8">
+                                                        <h5 class="tx-bank">
+                                                            Bank BRI
+                                                        </h5>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <p>
+                                                            Hanya menerima pembayaran melalui Bank Permata dan
                                                             dikonfirmasi otomatis
                                                         </p>
                                                     </div>
@@ -504,7 +560,7 @@
                                             <div class="col-lg-10">
                                                 <div class="row">
                                                     <div class="col-lg-4">
-                                                        <img src="assets/img/logo-gopay.png" alt="logo bank" class="img-responsive">
+                                                        <img src="<?php echo $this->Url->build('/images/logo_bank/gopay.png'); ?>" alt="logo bank" class="img-responsive">
                                                     </div>
                                                     <div class="col-lg-8">
                                                         <h5 class="tx-bank">
