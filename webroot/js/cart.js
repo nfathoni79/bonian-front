@@ -228,8 +228,27 @@ function deleteCart(product_id, rel){
     });
 }
 
+$( ".number-box" ).change(function() {
+    var max = parseInt($(this).attr('max'));
+    var min = parseInt($(this).attr('min'));
+    if ($(this).val() > max)
+    {
+        $(this).val(max);
+    }
+    else if ($(this).val() < min)
+    {
+        $(this).val(min);
+    }
+});
 
-
+$('.btn-v-ok').on('click',function(){
+    var radioValue = $("input[name='voucher']:checked").val();
+    if(radioValue){
+        $("#modalVoucher").modal('hide');
+    }else{
+        swal("Tidak ada voucer yang di pilih");
+    }
+})
 
 
 
