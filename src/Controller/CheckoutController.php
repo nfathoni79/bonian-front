@@ -98,4 +98,9 @@ class CheckoutController  extends AuthController
         }
 
     }
+
+    function confirmation(){
+
+
+    }
 }
