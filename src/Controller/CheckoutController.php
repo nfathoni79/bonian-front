@@ -71,9 +71,24 @@ class CheckoutController  extends AuthController
             }
         }
 
-        debug($data);exit;
 
-        $this->set(compact('data'));
+        /* LIST ALAMAT */
+        try {
+            $address = $this->Api->makeRequest($this->Auth->user('token'))
+                ->get('v1/web/addresses');
+            if ($response = $this->Api->success($address)) {
+                $json = $response->parse();
+                $address = $json['result']['data'];
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $this->Api->handle($e);
+            $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+            if (isset($error['error'])) {
+                $address->setErrors($error['error']);
+            }
+        }
+
+        $this->set(compact('data','address'));
 
     }
 
