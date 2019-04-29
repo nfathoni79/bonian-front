@@ -223,42 +223,43 @@
                             </div>
                             <!-- end: konten tengah -->
 
-
-                            <!-- start: product modal item -->
-                            <div class="modal fade" id="modalProduct" tabindex="-1" role="dialog" aria-labelledby="login-popupLabel">
-                                <div class="modal-dialog modal-md address-edit" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header" style="background-color: #d9534f;color: #ffffff;border-top-left-radius:6px;border-top-right-radius:6px;">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="color: #ffffff;">&times;</span></button>
-                                            <h4 class="modal-title" id="login-popupLabel" style="text-align: left;">Konfirmasi hapus</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="row">
-                                                <div class="col-lg-12 u-flex-center image-modal"></div>
-                                                <div class="col-lg-12">
-                                                    <p class="o-modal-product-wording text-center mt-2">Anda akan menghapus <strong><span class="title-modal"></span></strong> dari keranjang belanja ?</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <div class="row">
-                                                <div class="col-lg-8">
-                                                    <button class="btn-danger btn-lg btn-block zl-whistlist" href="#"  data-product-id="" data-cart-key="" data-cart-sku="" role="button">Hapus & tambah ke wishlist</button>
-                                                </div>
-                                                <div class="col-lg-4">
-                                                    <button class="btn btn-default btn-lg btn-block zl-hapus" href="#" role="button"  data-product-id="" data-cart-key="" data-cart-sku="">Hapus</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- end: product modal item -->
                         </div>
                     </div>
 
                     <?php endforeach; ?>
                     <!-- end: card item #2-->
+
+
+                    <!-- start: product modal item -->
+                    <div class="modal fade" id="modalProduct" tabindex="-1" role="dialog" aria-labelledby="login-popupLabel">
+                        <div class="modal-dialog modal-md address-edit" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color: #d9534f;color: #ffffff;border-top-left-radius:6px;border-top-right-radius:6px;">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="color: #ffffff;">&times;</span></button>
+                                    <h4 class="modal-title" id="login-popupLabel" style="text-align: left;">Konfirmasi hapus</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-lg-12 u-flex-center image-modal"></div>
+                                        <div class="col-lg-12">
+                                            <p class="o-modal-product-wording text-center mt-2">Anda akan menghapus <strong><span class="title-modal"></span></strong> dari keranjang belanja ?</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                            <button class="btn-danger btn-lg btn-block zl-whistlist" href="#"  data-product-id="" data-cart-key="" data-cart-sku="" role="button">Hapus & tambah ke wishlist</button>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <button class="btn btn-default btn-lg btn-block zl-hapus" href="#" role="button"  data-product-id="" data-cart-key="" data-cart-sku="">Hapus</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end: product modal item -->
 
 
                 </div>
@@ -275,14 +276,86 @@
                     </div>
                     <!-- end: title -->
 
+
+                    <!-- start: product modal item -->
+                    <div class="modal fade" id="modalVoucher" tabindex="-1" role="dialog" aria-labelledby="login-popupLabel">
+                        <div class="modal-dialog modal-md address-edit" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color: #d9534f;color: #ffffff;border-top-left-radius:6px;border-top-right-radius:6px;">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="color: #ffffff;">&times;</span></button>
+                                    <h4 class="modal-title" id="login-popupLabel" style="text-align: left;">Pilih Voucher</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-lg-12" style="overflow: auto;height: 300px;">
+                                            <?php
+                                            $colored = ['1' => 'v-colored-box', '2' => 'v-colored-box-off', '3' => 'v-colored-box-off'];
+                                            $texted = ['1' => 'label-danger', '2' => 'label-default', '3' => 'label-default'];
+                                            $end = ['1' => 'v-end', '2' => 'v-end-off', '3' => 'v-end-off'];
+                                            ?>
+                                            <?php foreach($voucher as $vals):?>
+                                            <div class="panel panel-default">
+                                                <div class="panel-body" style="padding:0px;">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="v-colored-box" style="height: 10.25rem !important;">
+                                                                <div class="v-text-discount"><?= $vals['voucher']['percent'];?>%</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-7 v-text-box">
+                                                            Ekstra Diskon sebesar <?= $vals['voucher']['percent'];?>% dengan Max Rp <?php  echo $this->Number->precision($vals['voucher']['value'], 0);?>.
+                                                            <div class="v-code"><span class="label <?php echo $texted[$vals['status']];?>">Kode: <?= $vals['voucher']['code_voucher'];?></span></div>
+                                                            <span class="<?php echo $end[$vals['status']];?>">Berakhir Dlm:
+                                                                <?= $this->Time->timeAgoInWords($vals['expired'], [
+                                                                'accuracy' => ['month' => 'month'],
+                                                                'end' => '1 year'
+                                                                ]); ?>
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <input type="radio" name="voucher" value="<?php echo $vals['id'];?>" data-code="<?php echo $vals['voucher']['code_voucher'];?>">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <?php endforeach;?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                            <button class="btn btn-default btn-lg btn-block btn-radius" href="#" data-dismiss="modal">Nanti saja</button>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <button class="btn btn-danger btn-lg btn-block btn-radius btn-v-ok" href="#">Ok</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end: product modal item -->
+
                     <!-- start: card ringkasan content -->
                     <div class="c-cart-card-ringkasan__content">
                         <div class="row">
                             <div class="col-lg-7">
-                                <h3>total poin reward</h3>
+                                <h3>Voucher</h3>
+                            </div>
+                            <div class="col-lg-5 p-3">
+                                <a href="javascript:void(0)" class="btn btn-default btn-sm btn-voucher" data-target="#modalVoucher" data-toggle="modal">Pilih voucher</a>
+                            </div>
+                            <div class="col-lg-7">
+                                <h3>Gunakan Poin</h3>
+                                <h5 style="margin-top: 0px; font-size:0.8em; padding-right: 0px; text-align: left;">
+                                    Anda memiliki <?php echo $this->Number->format($point);?> poin
+                                </h5>
                             </div>
                             <div class="col-lg-5">
-                                <h5 id="subtotal-point"><?php echo $this->Number->format($totalPoint);?></h5>
+                                <?php if($point > 0):?>
+                                    <input type="number" id="point" class="form-control text-center number-box" style="margin-top: 20px;" placeholder="Input poin" min="1" max="<?php echo $point;?>">
+                                <?php endif;?>
                             </div>
                             <div class="col-lg-12">
                                 <div style="border:1px dashed #E2E2E2; margin-top:15px;"></div>
@@ -295,9 +368,15 @@
                                     Rp.<span id="subtotal"><?php echo $this->Number->format($subtotal);?></span>
                                 </h5>
                             </div>
+                            <div class="col-lg-7">
+                                <h3>total poin bonus</h3>
+                            </div>
+                            <div class="col-lg-5">
+                                <h5 id="subtotal-point"><?php echo $this->Number->format($totalPoint);?></h5>
+                            </div>
                             <div class="col-lg-12 text-center">
-                                <button type="button"class="btn btn-danger btn-lg btn-block c-ringkasan-button">
-                                    Bayar Sekarang (2 Item)
+                                <button type="button"class="btn btn-danger btn-lg btn-block c-ringkasan-button zl-checkout">
+                                    Bayar Sekarang
                                 </button>
                             </div>
                         </div>

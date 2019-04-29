@@ -1007,7 +1007,7 @@ div.module.custom-listingtab .products-list.grid .product-layout .product-item-c
 
 /*! ########## Badge Background Gradient ########## */
 
-.products-list .product-layout:hover {
+.products-list .product-item-container:hover {
     box-shadow: 0 2px 10px rgba(88, 88, 88, .16) !important;
 }
 

@@ -83,6 +83,61 @@
         -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
         box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
     }
+    .products-list.grid .product-item-container .right-block{
+          clear: both;
+          padding: 10px 5px 20px 4px;
+          text-align: left;
+          position: relative;
+    }
+    .producttab .tabsslider.horizontal-tabs .nav-tabs li.active a{
+        background: #c93535;
+    }
+    .producttab .tabsslider.horizontal-tabs .nav-tabs li.item_nonactive a{
+        background: #fff;   
+    }
+    .share-txt{
+        display: block;
+    }
+    .share-container{
+          background: #fefefe;
+          box-shadow: unset;
+          width: 100%;
+          height: 100%;
+          border: 0px !important;
+          border-radius: 0px !important;
+    }
+    .btn-share {
+          width: 21%;
+          height: 40%;
+          margin: 3px;
+          border: none;
+          color: white;
+          text-align: center;
+          text-decoration: none;
+          font-size: 14px;
+          padding-left: 10px;
+          padding-right: 10px;
+          cursor: pointer;
+          border-radius: 4px;
+      }
+      .b-ig{
+          background-image: linear-gradient(#ee3381, #b2568d, #f6944a);
+      }
+      .b-fb{
+          background-color: #2861aa;
+      }
+      .b-wc{
+          background-color: #1c8aa6;
+      }
+      .b-wa{
+          background-color: #64bb54;
+      }
+      .b-ln{
+          background-color: #3acd03;
+      }
+      .b-tw{
+          background-color: #37b2db;
+      }
 </style>
 
 
@@ -115,7 +170,7 @@
             <div id="tab-product" class="tab-pane fade active in">
 
                 <div class="product-listing">
-
+                    <?php if($promotion['voucher_details']):?>
                     <?php foreach($promotion['voucher_details'] as $vals):?>
                     <!-- loop-1 -->
                     <div class="row">
@@ -123,7 +178,7 @@
                         <div class="box-title font-ct" style="display:inline-block !important;">
                             <h2 class="modtitle"><span>Kategori <?php echo $vals['product_category']['name']; ?> Pada Fashion Wanita</span></h2>
                         </div>
-                        <a class="l-detail" href="" style="display:inline-block !important; float:right;">Lihat Selengkapnya</a>
+                        <a class="l-detail tx-medium" href="" style="display:inline-block !important; float:right;">Lihat Selengkapnya</a>
                         <?php
                             $chunk = array_chunk($vals['product_category']['products'],10);
                         ?>
@@ -132,7 +187,7 @@
 
                             <!--Begin Items-->
                             <?php foreach($val as $v):?>
-                            <div class="product-layout col-lg-3 col-md-4 col-sm-4 col-xxs-6 col-xs-12">
+                            <div class="product-layout five-items">
                                 <div class="product-item-container">
                                     <div class="left-block left-b">
                                         <div class="product-image-container">
@@ -161,7 +216,7 @@
                                         <div class="caption">
                                             <h4><a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $v['product']['slug']]); ?>" title="<?= h($v['product']['name']); ?>" target="_self">  <?php echo $this->Text->truncate(
                                                 h($v['product']['name']),
-                                                30,
+                                                25,
                                                 [
                                                 'ellipsis' => '...',
                                                 'exact' => false
@@ -174,14 +229,14 @@
                                                 <span class="price-old">Rp. <?= $this->Number->format($v['product']['price']); ?></span>
                                                 <?php endif;?>
                                             </div>
-                                            <div class="button-group so-quickview cartinfo--static">
-                                                <button type="button" class="addToCart" title="Add to cart" onclick="cart.add('<?= ($v['product']['id']); ?>', this);">  <i class="fa fa-shopping-basket"></i>
-                                                    <span>Add to cart </span>
-                                                </button>
-                                                <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('<?= ($v['product']['id']); ?>', this);"><i class="fa fa-heart"></i><span></span>
-                                                </button>
-                                                <button type="button" class="compare btn-button" title="Share this Product "><i class="fa fa-share-alt"></i><span></span>
-                                                </button>
+                                            <div class="button-group so-quickview cartinfo--static share-container">
+                                                <span class="zl-tx-red tx-medium share-txt">Bagikan produk ini</span>
+                                                <button class="btn-share b-ig"><i class="fab fa-instagram"></i></button>
+                                                <button class="btn-share b-fb"><i class="fab fa-facebook"></i></button>
+                                                <button class="btn-share b-wc"><i class="fas fa-comment-dots"></i></button>
+                                                <button class="btn-share b-wa"><i class="fab fa-whatsapp"></i></button>
+                                                <button class="btn-share b-ln"><i class="fab fa-line"></i></button>
+                                                <button class="btn-share b-tw"><i class="fab fa-twitter"></i></button>
                                             </div>
                                         </div>
                                     </div>
@@ -193,6 +248,7 @@
                         <?php endforeach;?>
                     </div>
                     <?php endforeach;?>
+                    <?php endif;?>
                 </div>
 
             </div>

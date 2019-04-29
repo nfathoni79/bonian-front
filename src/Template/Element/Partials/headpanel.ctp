@@ -129,7 +129,7 @@
                                             <?php endif;?>
                                             <tr class="cart-button"  style="display:none;">
                                                 <td class="text-center" colspan="5">
-                                                    <a class="btn view-cart" href="<?php echo $this->Url->build(['controller' => 'cart', 'action' => 'index' ]);?>"><i class="fa fa-shopping-cart"></i>Keranjang belanja</a>&nbsp;
+                                                    <a class="btn view-cart" href="<?php echo $this->Url->build(['controller' => 'cart', 'action' => 'index', 'prefix' => false ]);?>"><i class="fa fa-shopping-cart"></i>Keranjang belanja</a>&nbsp;
                                                 </td>
                                             </tr>
                                         </table>

@@ -38,8 +38,7 @@
           padding: 0;
     }
     .share-container{
-          background: #fff;
-          bottom: 0px !important;
+          background: #fefefe;
           box-shadow: unset;
           width: 100%;
           height: 100%;
@@ -47,14 +46,14 @@
           border-radius: 0px !important;
     }
     .btn-share {
-          width: 30%;
-          height: 50%;
-          margin:  2px;
+          width: 25%;
+          height: 30%;
+          margin: 3px;
           border: none;
           color: white;
           text-align: center;
           text-decoration: none;
-          font-size: 200%;
+          font-size: 14px;
           padding-left: 10px;
           padding-right: 10px;
           cursor: pointer;
@@ -86,7 +85,7 @@
     <div class="card-wrapper-title"><i class="fa fa-tags"></i> Flash sale <small class="contertime" style="font-size: 12px; padding-left: 10px;">Berakhir dalam </small><span id="flashsale-timer" data-timer="<?= $flashSales['end']; ?>"></div>
     <div class="related flash-sale titleLine products-list grid module " style="margin-top: 20px;">
         <div id="so_extra_slider_1" class="so-extraslider" >
-            <div class="releate-products yt-content-slider products-list" data-rtl="no" data-loop="yes" data-autoplay="no" data-autoheight="yes" data-autowidth="no" data-delay="4" data-speed="0.6" data-margin="20" data-items_column0="4" data-items_column1="3" data-items_column2="3" data-items_column3="2" data-items_column4="1" data-arrows="yes" data-pagination="no" data-lazyload="yes" data-hoverpause="yes">
+            <div class="releate-products yt-content-slider products-list" data-rtl="no" data-loop="yes" data-autoplay="no" data-autoheight="yes" data-autowidth="no" data-delay="4" data-speed="0.6" data-margin="20" data-items_column0="5" data-items_column1="3" data-items_column2="3" data-items_column3="2" data-items_column4="1" data-arrows="yes" data-pagination="no" data-lazyload="yes" data-hoverpause="yes">
                 <?php foreach($flashSales['product_deal_details'] as $flash_sale) : ?>
                 <div class="item products">
                     <div class="product-layout">
@@ -121,34 +120,34 @@
 
                                 <div class="caption">
                                     <div class="row">
-                                        <div class="col-lg-7">
+                                        <div class="col-lg-12">
                                             <div class="progress">
                                                 <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="<?= $flash_sale['product']['salestock']; ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?= $flash_sale['product']['salestock']; ?>%"></div>
                                             </div>
                                             <small><?= $flash_sale['product']['noted']; ?></small>
                                         </div>
-                                        <div class="col-lg-5 badge-wrapper p-0">
-                                            <span class="badge u-bg--badge__blue"><?= $flash_sale['product']['point']; ?> Poin</span>
-                                        </div>
                                     </div>
-                                    <h4 class="text-justify"><a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $flash_sale['product']['slug']]); ?>" title="<?= h($flash_sale['product']['name']); ?>" target="_self">
-                                            <?php echo $this->Text->truncate(
-                                                h($flash_sale['product']['name']),
-                                                30,
-                                                [
-                                                    'ellipsis' => '...',
-                                                    'exact' => false
-                                                ]
-                                            );?>
-                                        </a></h4>
+                                    <div class="row mg-l-0">
+                                      <h4 class="tx-bold"><a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $flash_sale['product']['slug']]); ?>" title="<?= h($flash_sale['product']['name']); ?>" target="_self">
+                                              <?php echo $this->Text->truncate(
+                                                  h($flash_sale['product']['name']),
+                                                  25,
+                                                  [
+                                                      'ellipsis' => '...',
+                                                      'exact' => false
+                                                  ]
+                                              );?>
+                                          </a></h4>
 
-                                    <div class="col-lg-12 price text-left p-0">
-                                        <span class="price-new">Rp. <?= $this->Number->format($flash_sale['product']['price_sale']); ?></span>
-                                        <?php if($flash_sale['product']['price_sale'] != $flash_sale['product']['price']):?>
-                                            <span class="price-old">Rp. <?= $this->Number->format($flash_sale['product']['price']); ?></span>
-                                        <?php endif;?>
+                                      <div class="col-lg-12 price text-left p-0">
+                                          <span class="price-new">Rp. <?= $this->Number->format($flash_sale['product']['price_sale']); ?></span>
+                                          <?php if($flash_sale['product']['price_sale'] != $flash_sale['product']['price']):?>
+                                              <span class="price-old">Rp. <?= $this->Number->format($flash_sale['product']['price']); ?></span>
+                                          <?php endif;?>
+                                      </div>
                                     </div>
                                     <div class="button-group so-quickview cartinfo--static share-container">
+                                        <span class="zl-tx-red tx-medium">Bagikan produk ini</span>
                                         <button class="btn-share b-ig"><i class="fab fa-instagram"></i></button>
                                         <button class="btn-share b-fb"><i class="fab fa-facebook"></i></button>
                                         <button class="btn-share b-wc"><i class="fas fa-comment-dots"></i></button>

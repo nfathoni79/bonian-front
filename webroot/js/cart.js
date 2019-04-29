@@ -228,8 +228,51 @@ function deleteCart(product_id, rel){
     });
 }
 
+$('.zl-checkout').on('click',function(){
 
+    var basePath = $('meta[name="_basePath"]').attr('content');
+    var voucher = $("input[name='voucher']:checked").val();
+    var point = $("#point").val();
+    $.ajax({
+        url: basePath + '/checkout',
+        type : 'POST',
+        data : {
+            voucher : voucher,
+            point : point,
+            _csrfToken: $('meta[name="_csrfToken"]').attr('content')
+        },
+        dataType : 'json',
+        success: function(response){
 
+        },
+        error: function () {
+            $("#login-popup").modal('show');
+        }
+    });
+
+})
+
+$( ".number-box" ).change(function() {
+    var max = parseInt($(this).attr('max'));
+    var min = parseInt($(this).attr('min'));
+    if ($(this).val() > max)
+    {
+        $(this).val(max);
+    }
+    else if ($(this).val() < min)
+    {
+        $(this).val(min);
+    }
+});
+
+$('.btn-v-ok').on('click',function(){
+    var radioValue = $("input[name='voucher']:checked").val();
+    if(radioValue){
+        $("#modalVoucher").modal('hide');
+    }else{
+        swal("Tidak ada voucer yang di pilih");
+    }
+})
 
 
 
