@@ -63,6 +63,7 @@
 
                     <?php $totalPoint = 0;?>
                     <?php $subtotal = 0;?>
+                    <?php if(!empty($carts['carts'])):?>
                     <?php foreach($carts['carts'] as $k => $cart):?>
                     <?php $totalPoint += $cart['totalpoint'];?>
                     <?php $subtotal += $cart['total'];?>
@@ -227,6 +228,7 @@
                     </div>
 
                     <?php endforeach; ?>
+                    <?php endif;?>
                     <!-- end: card item #2-->
 
 
@@ -339,6 +341,8 @@
 
                     <!-- start: card ringkasan content -->
                     <div class="c-cart-card-ringkasan__content">
+
+                        <?php if(!empty($carts['carts'])):?>
                         <div class="row">
                             <div class="col-lg-7">
                                 <h3>Voucher</h3>
@@ -380,6 +384,12 @@
                                 </button>
                             </div>
                         </div>
+                        <?php else:?>
+
+                            <div class="col-lg-12 text-center">
+                                <h3>Tidak ada ringkasan belanja</h3>
+                            </div>
+                        <?php endif;?>
                     </div>
                     <!-- end: card ringkasan content -->
                 </div>
