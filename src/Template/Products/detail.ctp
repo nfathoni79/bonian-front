@@ -254,6 +254,349 @@ foreach($branch as $k => $vals){
 </div>
 
 
+<div class="container">
+    <div class="card-wrapper">
+        <div class="producttab clearfix">
+            <div class="tabsslider horizontal-tabs col-xs-12">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#tab-deskripsi"><i class="fab fa-file-text-o"></i> Deskripsi Produk</a></li>
+                    <li class="item_nonactive"><a data-toggle="tab" href="#tab-highlight"><i class="fab fa-dropbox"></i> Highlight Produk</a></li>
+                    <li class="item_nonactive"><a data-toggle="tab" href="#tab-diskusi"><i class="fa fa-comments"></i> Diskusi Produk</a></li>
+                    <li class="item_nonactive"><a data-toggle="tab" href="#tab-ulasan"><i class="fa fa"></i> Ulasan Produk</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="tab-deskripsi" class="tab-pane fade active in">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h3><strong>Tentang Produk</strong></h3>
+                                <p>
+                                   <?php echo $details['data']['profile']; ?>
+                                </p>
+                            </div>
+                            <div class="col-sm-6">
+                                <h3><strong>Spesifikasi</strong></h3>
+                                <table class="table table-hover">
+                                    <?php foreach($details['data']['attributes'] as $key => $vals): ?>
+                                    <tr>
+                                        <td><?php echo $key; ?></td>
+                                        <td><?php echo $vals; ?></td>
+                                    </tr>
+                                    <?php endforeach; ?>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab-highlight" class="tab-pane fade">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h2><strong>Highlight Produk</strong></h2>
+                                <p>
+                                    <?php echo $details['data']['highlight']; ?>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab-diskusi" class="tab-pane fade">
+                        <h4><i class="fa fa-comments"></i><strong> Punya pertanyaan mengenai produk ini?</strong></h4>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="bg-red margin-b-10">
+                                    <div class="row">
+                                        <div class="col-sm-1">
+                                            <div><img src="http://localhost/zolaku-front/images/jpeg/users-profile/user-1.jpg" class="img-rounded"></div>
+                                        </div>
+                                        <div class="col-sm-11">
+                                            <?php echo $this->Form->control('comment', ['type' => 'textarea', 'class' => 'form-control', 'label' => false, 'div' => false,'placeholder' => 'Tulis komentar anda disini'])?>
+                                            <br />
+                                            <button class="btn btn-danger btn-radius btn-md pull-right" style="margin-left: 10px;"><i class="fa fa-send"></i><strong> KIRIM KOMENTAR </strong></button>
+                                            <button class="btn btn-radius btn-md pull-right"><strong> HAPUS </strong></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="bg-red margin-b-10">
+                                    <div class="row">
+                                        <div class="col-sm-1">
+                                            <div><img src="http://localhost/zolaku-front/images/jpeg/users-profile/user-1.jpg" class="img-rounded"></div>
+                                        </div>
+                                        <div class="col-sm-11">
+                                            <div class="row">
+                                                <span><strong>Axl Calvin Pearl</strong> 21 April 2019   Pukul 11:30</span>
+                                                <br />
+                                                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="row">
+                                                    <div class="col-sm-1">
+                                                        <div><img src="http://localhost/zolaku-front/images/jpeg/users-profile/user-1.jpg" class="img-rounded"></div>
+                                                    </div>
+                                                    <div class="col-sm-11">
+                                                        <div>
+                                                            <span><strong>Testing </strong> 24 April 2019   Pukul 11:40</span>
+                                                            <br />
+                                                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="row">
+                                                    <div class="col-sm-1">
+                                                        <div><img src="http://localhost/zolaku-front/images/jpeg/users-profile/user-1.jpg" class="img-rounded"></div>
+                                                    </div>
+                                                    <div class="col-sm-11">
+                                                        <div>
+                                                            <?php echo $this->Form->control('comment', ['type' => 'textarea', 'class' => 'form-control', 'label' => false, 'div' => false,'placeholder' => 'Tulis komentar anda disini'])?>
+                                                            <br />
+                                                            <button class="btn btn-danger btn-radius btn-md pull-right" style="margin-left: 10px;"><i class="fa fa-send"></i><strong> KIRIM KOMENTAR </strong></button>
+                                                            <button class="btn btn-secondary btn-radius btn-md pull-right"><strong> HAPUS </strong></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="bg-red margin-b-10">
+                                    <div class="row">
+                                        <div class="col-sm-1">
+                                            <div><img src="http://localhost/zolaku-front/images/jpeg/users-profile/user-1.jpg" class="img-rounded"></div>
+                                        </div>
+                                        <div class="col-sm-11">
+                                            <div class="row">
+                                                <span><strong>Axl Calvin Pearl</strong> 24 April 2019   Pukul 11:30</span>
+                                                <br />
+                                                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="row">
+                                                    <div class="col-sm-1">
+                                                        <div><img src="http://localhost/zolaku-front/images/jpeg/users-profile/user-1.jpg" class="img-rounded"></div>
+                                                    </div>
+                                                    <div class="col-sm-11">
+                                                        <div>
+                                                            <?php echo $this->Form->control('comment', ['type' => 'textarea', 'class' => 'form-control', 'label' => false, 'div' => false,'placeholder' => 'Tulis komentar anda disini'])?>
+                                                            <br />
+                                                            <button class="btn btn-danger btn-radius btn-md pull-right" style="margin-left: 10px;"><i class="fa fa-send"></i><strong> KIRIM KOMENTAR </strong></button>
+                                                            <button class="btn btn-secondary btn-radius btn-md pull-right"><strong> HAPUS </strong></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab-ulasan" class="tab-pane fade">
+                        <h4><i class="fa fa-pencil"></i><strong> Rating & Ulasan Produk</strong></h4>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <br />
+                                <div class="bg-red margin-b-10">
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="col-sm-3">
+                                                        <span><h1><b> 4 / 5 </b></h1></span>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <span class="pull-left"> 4 dari 5 </span>
+                                                        <br />
+                                                        <div class="rating">
+                                                            <div class="rating-box">
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <span> 5 </span>
+                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="30" style="width:80%"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <div> 25 </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <span> 4 </span>
+                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="30" style="width:80%"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <div> 17 </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <span> 3 </span>
+                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="30" style="width:80%"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <div> 11 </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <span> 2 </span>
+                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="30" style="width:80%"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <div> 8 </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <span> 1 </span>
+                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="30" style="width:80%"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <div> 6 </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-1">
+                                                    <div><img src="http://localhost/zolaku-front/images/jpeg/users-profile/user-1.jpg" class="img-rounded"></div>
+                                                </div>
+                                                <div class="col-sm-11">
+                                                    <?php echo $this->Form->control('comment', ['type' => 'textarea', 'class' => 'form-control', 'label' => false, 'div' => false,'placeholder' => 'Tulis komentar anda disini'])?>
+                                                    <br />
+                                                    <button class="btn btn-default btn-radius btn-sm pull-left btn-unggah" style="margin-right: 5px;"><i class="fa fa-upload"></i><strong> Unggah dokumen pendukung </strong></button>
+                                                    <div class="rating">
+                                                        <span> Tambahkan rating </span>
+                                                        <div class="rating-box" style="padding-left: 55px;">
+                                                            <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                            <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                            <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                            <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                            <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                        </div>
+                                                    </div>
+                                                    <br />
+                                                    <button class="btn btn-danger btn-radius btn-sm pull-left" style="margin-right: 10px; margin-bottom: 10px;"><i class="fa fa-send"></i><strong> KIRIM KOMENTAR </strong></button>
+                                                    <button class="btn btn-secondary btn-radius btn-sm pull-left" style="margin-bottom: 10px;"><strong> HAPUS </strong></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                            </div>
+                        </div>
+                        <h4> 2 ulasan untuk <strong> <?php echo $details['data']['name']; ?> </strong></h4>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="bg-red margin-b-10">
+                                    <div class="row">
+                                        <div class="col-sm-1">
+                                            <div><img src="http://localhost/zolaku-front/images/jpeg/users-profile/user-1.jpg" class="img-rounded"></div>
+                                        </div>
+                                        <div class="col-sm-11">
+                                            <div class="row">
+                                                <span><strong>Axl Calvin Pearl</strong> 21 April 2019   Pukul 11:30</span>
+                                                <div class="rating pull-right">
+                                                    <div class="rating-box star-box">
+                                                        <span class="fa fa-stack star-rating"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                        <span class="fa fa-stack star-rating"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                        <span class="fa fa-stack star-rating"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                        <span class="fa fa-stack star-rating"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                        <span class="fa fa-stack star-rating"><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                    </div>
+                                                </div>
+                                                <br />
+                                                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="bg-red margin-b-10">
+                                    <div class="row">
+                                        <div class="col-sm-1">
+                                            <div><img src="http://localhost/zolaku-front/images/jpeg/users-profile/user-1.jpg" class="img-rounded"></div>
+                                        </div>
+                                        <div class="col-sm-11">
+                                            <div class="row">
+                                                <span><strong>Axl Calvin Pearl</strong> 21 April 2019   Pukul 11:30</span>
+                                                <div class="rating pull-right">
+                                                    <div class="rating-box star-box">
+                                                        <span class="fa fa-stack star-rating"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                        <span class="fa fa-stack star-rating"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                        <span class="fa fa-stack star-rating"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                        <span class="fa fa-stack star-rating"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                        <span class="fa fa-stack star-rating"><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                    </div>
+                                                </div>
+                                                <br />
+                                                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                                                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //Product Tabs -->
+    </div>
+    <?= $this->element('Partials/Home/top_products', ['topProducts' => $topProducts]); ?>
+</div>
+
 
 <div id="template-popover-question" style="display:none">
     <div class="leaderboard-popover">

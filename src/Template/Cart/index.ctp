@@ -184,21 +184,21 @@
                                             <div class="row">
                                                 <div class="col-lg-3">
                                                     <p class="mb-1">Harga satuan</p>
-                                                    <h4 class="mt-0">Rp.<span id="zl-satuan-<?= $k;?>" data-value="<?= $cart['price'];?>"><?php echo $this->Number->format($cart['price']); ?></span></h4>
+                                                    <h4 class="mt-0 zl-tx-red--light">Rp.<span id="zl-satuan-<?= $k;?>" data-value="<?= $cart['price'];?>"><?php echo $this->Number->format($cart['price']); ?></span></h4>
                                                 </div>
                                                 <div class="col-lg-3">
                                                     <?php if($cart['add_price'] > 0):?>
                                                         <p class="mb-1">Harga tambahan</p>
-                                                        <h4 class="mt-0"> Rp. <span id="zl-addprice-<?= $k;?>" data-value="<?= $cart['add_price'];?>"><?php echo $this->Number->format($cart['add_price']); ?></span></h4>
+                                                        <h4 class="mt-0 zl-tx-red--light"> Rp. <span id="zl-addprice-<?= $k;?>" data-value="<?= $cart['add_price'];?>"><?php echo $this->Number->format($cart['add_price']); ?></span></h4>
                                                     <?php endif;?>
                                                 </div>
                                                 <div class="col-lg-3">
                                                     <p class="mb-1">Total harga</p>
-                                                    <h4 class="mt-0">Rp.<span id="zl-total-<?= $k;?>" class="zl-total"><?php echo $this->Number->format($cart['total']); ?></span></h4>
+                                                    <h4 class="mt-0 zl-tx-red--light">Rp.<span id="zl-total-<?= $k;?>" class="zl-total"><?php echo $this->Number->format($cart['total']); ?></span></h4>
                                                 </div>
                                                 <div class="col-lg-3">
                                                     <p class="mb-1">Total point</p>
-                                                    <h4 class="mt-0 total-point" id="zl-total-point-<?= $k;?>"><?php echo $this->Number->format($cart['totalpoint']); ?></h4>
+                                                    <h4 class="mt-0 zl-tx-red--light total-point" id="zl-total-point-<?= $k;?>"><?php echo $this->Number->format($cart['totalpoint']); ?></h4>
                                                 </div>
                                             </div>
                                         </div>
