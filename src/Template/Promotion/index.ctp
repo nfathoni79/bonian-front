@@ -83,6 +83,15 @@
         -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
         box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
     }
+    .products-list.grid .product-item-container .right-block{
+        text-align: left;
+    }
+    .producttab .tabsslider.horizontal-tabs .nav-tabs li.active a{
+        background: #c93535;
+    }
+    .producttab .tabsslider.horizontal-tabs .nav-tabs li.item_nonactive a{
+        background: #fff;   
+    }
 </style>
 
 
@@ -132,7 +141,7 @@
 
                             <!--Begin Items-->
                             <?php foreach($val as $v):?>
-                            <div class="product-layout col-lg-3 col-md-4 col-sm-4 col-xxs-6 col-xs-12">
+                            <div class="product-layout five-items">
                                 <div class="product-item-container">
                                     <div class="left-block left-b">
                                         <div class="product-image-container">
@@ -161,7 +170,7 @@
                                         <div class="caption">
                                             <h4><a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $v['product']['slug']]); ?>" title="<?= h($v['product']['name']); ?>" target="_self">  <?php echo $this->Text->truncate(
                                                 h($v['product']['name']),
-                                                30,
+                                                25,
                                                 [
                                                 'ellipsis' => '...',
                                                 'exact' => false

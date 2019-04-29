@@ -65,6 +65,7 @@
     <!-- css custom other -->
     <?= $this->Html->css([
     '/css/zolaku',
+    '/css/custom',
     '/css/zolaku-custom-min',
     '/css/jquery.smartsuggest.css'
     ]); ?>

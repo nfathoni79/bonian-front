@@ -11,23 +11,22 @@
         margin: 10px !important;
   }
   .share-container{
-        background: #fff;
-        bottom: 0px !important;
+        background: #fefefe;
         box-shadow: unset;
         width: 100%;
         height: 100%;
         border: 0px !important;
         border-radius: 0px !important;
   }
-  .btn-share-tp {
+  .btn-share {
         width: 25%;
-        height: 40%;
-        margin: 2px;
+        height: 30%;
+        margin: 3px;
         border: none;
         color: white;
         text-align: center;
         text-decoration: none;
-        font-size: 150%;
+        font-size: 14px;
         padding-left: 10px;
         padding-right: 10px;
         cursor: pointer;
@@ -145,12 +144,13 @@
                                                         </div>
 
                                                         <div class="button-group so-quickview cartinfo--static share-container">
-                                                          <button class="btn-share-tp b-ig"><i class="fab fa-instagram"></i></button>
-                                                          <button class="btn-share-tp b-fb"><i class="fab fa-facebook"></i></button>
-                                                          <button class="btn-share-tp b-wc"><i class="fas fa-comment-dots"></i></button>
-                                                          <button class="btn-share-tp b-wa"><i class="fab fa-whatsapp"></i></button>
-                                                          <button class="btn-share-tp b-ln"><i class="fab fa-line"></i></button>
-                                                          <button class="btn-share-tp b-tw"><i class="fab fa-twitter"></i></button>
+                                                            <span class="zl-tx-red tx-medium">Bagikan produk ini</span>
+                                                            <button class="btn-share b-ig"><i class="fab fa-instagram"></i></button>
+                                                            <button class="btn-share b-fb"><i class="fab fa-facebook"></i></button>
+                                                            <button class="btn-share b-wc"><i class="fas fa-comment-dots"></i></button>
+                                                            <button class="btn-share b-wa"><i class="fab fa-whatsapp"></i></button>
+                                                            <button class="btn-share b-ln"><i class="fab fa-line"></i></button>
+                                                            <button class="btn-share b-tw"><i class="fab fa-twitter"></i></button>
                                                         </div>
                                                     </div>
                                                 </div>
