@@ -24,7 +24,7 @@
                             Produk tidak ditemukan
 
                         <?php else:?>
-
+                        <a href="sms:444?body=hello">Tap to say hello!</a>
                             <div class="content-product-left class-honizol col-md-5 col-sm-12 col-xs-12">
                                 <div class="large-image">
                                     <?php foreach($details['data']['images'] as $image):?>
