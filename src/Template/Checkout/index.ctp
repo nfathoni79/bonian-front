@@ -88,27 +88,23 @@
                                 <div class="row">
 
                                     <div class="col-lg-8 text-left">
-                                        <p>
-                                            Samsung Galaxy Gear VR version 1 / SM-R322-Intl
-                                        </p>
+                                        <h2 class="tx-bold tx-16 mg-0 zl-tx-black"> Samsung Galaxy Gear VR version 1 / SM-R322-Intl </h2>
                                     </div>
 
                                     <div class="col-lg-4 text-left">
-                                        <div class="o-poin">
-                                            152 poin
-                                        </div>
+                                        <div class="badge u-bg--badge__blue mg-t-0"><span id="zl-point-0">400</span> poin</div>
                                     </div>
 
                                     <!-- start : deskripsi produk -->
-                                    <div class="col-lg-12" style="font-size:0.9em;">
+                                    <div class="col-lg-12 tx-12" >
                                         <div class="row">
                                             <div class="col-lg-4">
-                                                <div class="row text-left" style="font-size:0.8em;">
+                                                <div class="row text-left" >
                                                     <div class="col-lg-12">
                                                         SKU : ZL-0001BRJ-02
                                                     </div>
                                                     <div class="col-lg-12">
-                                                        Product origin : Gudang Surabaya
+                                                        Product origin : Surabaya
                                                     </div>
                                                 </div>
                                             </div>
@@ -203,10 +199,10 @@
                                     </div>
 
                                     <!-- start : deskripsi produk -->
-                                    <div class="col-lg-12" style="font-size:0.9em;">
+                                    <div class="col-lg-12" >
                                         <div class="row">
                                             <div class="col-lg-4">
-                                                <div class="row text-left" style="font-size:0.8em;">
+                                                <div class="row text-left" >
                                                     <div class="col-lg-12">
                                                         SKU : ZL-0001BRJ-02
                                                     </div>
@@ -395,10 +391,10 @@
                                     </div>
 
                                     <!-- start : deskripsi produk -->
-                                    <div class="col-lg-12" style="font-size:0.9em;">
+                                    <div class="col-lg-12" >
                                         <div class="row">
                                             <div class="col-lg-4">
-                                                <div class="row text-left" style="font-size:0.8em;">
+                                                <div class="row text-left" >
                                                     <div class="col-lg-12">
                                                         SKU : ZL-0001BRJ-02
                                                     </div>
