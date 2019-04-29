@@ -137,13 +137,16 @@ function triggerCheckPrice(){
                 $('.add-price').hide();
             }
             $('#priceId').val(value.price_id);
-            $('#sku').val(value.sku);
-
+            $('#sku').val(value.sku); 
             $.each(value.stocks, function(k,v){
                 if(v.branch_name == stock){
                     $('#stockId').val(v.stock_id);
                     return false;
                 }
+            })
+
+            $.each(value.stocks, function(k,v){
+                $('.wh-'+v.branch_name).html(v.stock+' Stock');
             })
         }
     })

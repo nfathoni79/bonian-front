@@ -99,22 +99,22 @@
                                             <p>Bagikan produk ini</p>
                                             <div class="btn-group btn-group-justified" role="group" aria-label="Justified button group">
                                                 <div class="btn-group" role="group">
-                                                    <button type="button" class="btn btn-default btn-lg btn-whatsapp"><i class="fa fa-whatsapp"></i> Whatsapp</button>
+                                                    <button type="button" class="btn btn-default btn-lg btn-whatsapp"><i class="fab fa-whatsapp"></i> Whatsapp</button>
                                                 </div>
                                                 <div class="btn-group" role="group">
-                                                    <button type="button" class="btn btn-default btn-lg btn-instagram"><i class="fa fa-instagram"></i> Instagram</button>
+                                                    <button type="button" class="btn btn-default btn-lg btn-instagram"><i class="fab fa-instagram"></i> Instagram</button>
                                                 </div>
                                                 <div class="btn-group" role="group">
-                                                    <button type="button" class="btn btn-default btn-lg btn-facebook"><i class="fa fa-facebook"></i> Facebook</button>
+                                                    <button type="button" class="btn btn-default btn-lg btn-facebook"><i class="fab fa-facebook"></i> Facebook</button>
                                                 </div>
                                                 <div class="btn-group" role="group">
                                                     <button type="button" class="btn btn-default btn-lg btn-sms"><i class="fa fa-commenting"></i> Sms</button>
                                                 </div>
                                                 <div class="btn-group" role="group">
-                                                    <button type="button" class="btn btn-default btn-lg btn-line"><i class="fa fa-facebook"></i>  Line</button>
+                                                    <button type="button" class="btn btn-default btn-lg btn-line"><i class="fab fa-line"></i>  Line</button>
                                                 </div>
                                                 <div class="btn-group" role="group">
-                                                    <button type="button" class="btn btn-default btn-lg btn-twitter"><i class="fa fa-twitter"></i> Twitter</button>
+                                                    <button type="button" class="btn btn-default btn-lg btn-twitter"><i class="fab fa-twitter"></i> Twitter</button>
                                                 </div>
                                             </div>
 
@@ -229,7 +229,7 @@ foreach($branch as $k => $vals){
                                                             <label><?= $vals['name'];?></label>
                                                             <input type="radio" name="stock" value="<?= $vals['name'];?>">
                                                         </span>
-                                                        <span class="wh-stock"><?= $vals['total'];?> Stok</span>
+                                                        <span class="wh-stock wh-<?= $vals['name'];?>"><?= $vals['total'];?> Stok</span>
                                                     </div>
                                                 </div>
                                             <?php endforeach;?>
