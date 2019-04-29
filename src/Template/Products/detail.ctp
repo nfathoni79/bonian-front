@@ -24,9 +24,12 @@
                             Produk tidak ditemukan
 
                         <?php else:?>
-                        <a href="sms:444?body=hello">Sms Android</a>
-                        <a href="sms:444&body=hello">Sms IOS</a>
-                            <div class="content-product-left class-honizol col-md-5 col-sm-12 col-xs-12">
+                        <a href="sms:444?body=hello">Sms Android </a>
+                        <a href="sms:444&body=hello">Sms IOS </a>
+
+                        <a href="sms:;?&body=hello" title="Click here to TEXT US gallery token needs updating!">Send me SMS </a>
+
+                        <div class="content-product-left class-honizol col-md-5 col-sm-12 col-xs-12">
                                 <div class="large-image">
                                     <?php foreach($details['data']['images'] as $image):?>
                                         <img itemprop="image" class="product-image-zoom" src="<?= $this->Url->build($_basePath . 'images/600x600/' . $image); ?>" data-zoom-image="<?= $this->Url->build($_basePath . 'images/600x600/' . $image); ?>" data-image-name="<?= $image;?>" data-price="<?=  $details['data']['price_sale'];?>" title="<?php echo $details['data']['name']; ?>" alt="<?php echo $details['data']['name']; ?>">
