@@ -115,7 +115,7 @@
             <div id="tab-product" class="tab-pane fade active in">
 
                 <div class="product-listing">
-
+                    <?php if($promotion['voucher_details']):?>
                     <?php foreach($promotion['voucher_details'] as $vals):?>
                     <!-- loop-1 -->
                     <div class="row">
@@ -193,6 +193,7 @@
                         <?php endforeach;?>
                     </div>
                     <?php endforeach;?>
+                    <?php endif;?>
                 </div>
 
             </div>
