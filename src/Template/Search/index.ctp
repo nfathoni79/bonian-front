@@ -234,7 +234,7 @@
 
                 <!-- start:filter produk -->
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-7">
                         <?php if ($query = $this->request->getQuery('q')) : ?>
                         <h3 class="title-category">Hasil pencarian untuk <span class="search-keyword"><?= h($query); ?></span></h3>
                         <?php endif; ?>
@@ -244,13 +244,16 @@
                         <div class="form-group short-by">
                             <label class="control-label o-control-label" for="input-sort">Urutkan
                                 berdasarkan</label>
-                            <select id="input-sort" class="form-control" onchange="location = this.value;">
-                                <option value="" selected="selected">Rating tertinggi</option>
-                                <option value="">Rating terendah</option>
-                                <option value="">Rating biasa</option>
+                            <select id="input-sort" class="form-control">
+                                <option value="">--</option>
+                                <option value="rating:desc">Rating tertinggi</option>
+                                <option value="rating:asc">Rating terendah</option>
+                                <option value="price:desc">Harga tertinggi</option>
+                                <option value="price:asc">Harga terendah</option>
                             </select>
                         </div>
                     </div>
+                    <?php /*
                     <div class="col-md-2 col-sm-3 col-xs-12 view-mode">
 
                         <div class="list-view">
@@ -264,7 +267,7 @@
                             </button>
                         </div>
 
-                    </div>
+                    </div> */ ?>
                 </div>
                 <!-- end: filter produk -->
 
@@ -745,6 +748,18 @@ $this->Html->script([
             }
             history.replaceState(null, null, '?' + queryString.stringify(parsed, {strict: true, arrayFormat: 'index'}));
             refreshPage(null, true, false);
+        });
+
+
+        $(document.body).on('change', '#input-sort', function() {
+           var sorting = $(this).val().split(':');
+           if (sorting.length === 2) {
+               parsed = querystringParse();
+               parsed.sortBy = sorting[0];
+               parsed.order = sorting[1];
+               history.replaceState(null, null, '?' + queryString.stringify(parsed, {strict: true, arrayFormat: 'index'}));
+               refreshPage(null, false, false);
+           }
         });
 
 
