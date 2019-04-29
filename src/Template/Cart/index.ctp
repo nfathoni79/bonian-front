@@ -354,7 +354,7 @@
                             </div>
                             <div class="col-lg-5">
                                 <?php if($point > 0):?>
-                                    <input type="number" class="form-control text-center number-box" style="margin-top: 20px;" placeholder="Input poin" min="1" max="<?php echo $point;?>">
+                                    <input type="number" id="point" class="form-control text-center number-box" style="margin-top: 20px;" placeholder="Input poin" min="1" max="<?php echo $point;?>">
                                 <?php endif;?>
                             </div>
                             <div class="col-lg-12">
@@ -375,7 +375,7 @@
                                 <h5 id="subtotal-point"><?php echo $this->Number->format($totalPoint);?></h5>
                             </div>
                             <div class="col-lg-12 text-center">
-                                <button type="button"class="btn btn-danger btn-lg btn-block c-ringkasan-button">
+                                <button type="button"class="btn btn-danger btn-lg btn-block c-ringkasan-button zl-checkout">
                                     Bayar Sekarang
                                 </button>
                             </div>
