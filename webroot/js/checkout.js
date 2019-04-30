@@ -57,13 +57,12 @@ new Cleave('#input-card-number', {
     creditCard: true,
     onCreditCardTypeChanged: function (type) {
         // update UI ...
-        if (type == 'unknown') {
-            $('.credit-card-logo-wrapper img').each(function(i) {
-               if (!$(this).hasClass('disabled')) {
-                   $(this).addClass('disabled');
-               }
-            });
-        } else {
+        $('.credit-card-logo-wrapper img').each(function(i) {
+            if (!$(this).hasClass('disabled')) {
+                $(this).addClass('disabled');
+            }
+        });
+        if (type != 'unknown') {
             $('.credit-card-logo-wrapper').find('.' + type).removeClass('disabled');
         }
 
