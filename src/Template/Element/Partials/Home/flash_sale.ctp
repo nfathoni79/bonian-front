@@ -148,12 +148,14 @@
                                     </div>
                                     <div class="button-group so-quickview cartinfo--static share-container">
                                         <span class="zl-tx-red tx-medium">Bagikan produk ini</span>
-                                        <button class="btn-share b-ig"><i class="fab fa-instagram"></i></button>
-                                        <button class="btn-share b-fb"><i class="fab fa-facebook"></i></button>
-                                        <button class="btn-share b-wc"><i class="fas fa-comment-dots"></i></button>
-                                        <button class="btn-share b-wa"><i class="fab fa-whatsapp"></i></button>
-                                        <button class="btn-share b-ln"><i class="fab fa-line"></i></button>
-                                        <button class="btn-share b-tw"><i class="fab fa-twitter"></i></button>
+
+                                        <a type="button" class="btn-share b-ig igShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $flash_sale['product']['slug'],'prefix' => false],true);?>" data-title="<?= $flash_sale['product']['name'];?>" data-price="<?= $flash_sale['product']['price_sale'];?>"><i class="fab fa-instagram"></i></a>
+                                        <a type="button" class="btn-share b-ig fbShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $flash_sale['product']['slug'],'prefix' => false],true);?>" data-title="<?= $flash_sale['product']['name'];?>" data-price="<?= $flash_sale['product']['price_sale'];?>"><i class="fab fa-facebook"></i></a>
+                                        <a type="button" class="btn-share b-ig smsShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $flash_sale['product']['slug'],'prefix' => false],true);?>" data-title="<?= $flash_sale['product']['name'];?>" data-price="<?= $flash_sale['product']['price_sale'];?>"><i class="fab fa-comment-dots"></i></a>
+                                        <a type="button" class="btn-share b-ig waShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $flash_sale['product']['slug'],'prefix' => false],true);?>" data-title="<?= $flash_sale['product']['name'];?>" data-price="<?= $flash_sale['product']['price_sale'];?>"><i class="fab fa-whatsapp"></i></a>
+                                        <a type="button" class="btn-share b-ig lineShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $flash_sale['product']['slug'],'prefix' => false],true);?>" data-title="<?= $flash_sale['product']['name'];?>" data-price="<?= $flash_sale['product']['price_sale'];?>"><i class="fab fa-line"></i></a>
+                                        <a type="button" class="btn-share b-ig twitterShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $flash_sale['product']['slug'],'prefix' => false],true);?>" data-title="<?= $flash_sale['product']['name'];?>" data-price="<?= $flash_sale['product']['price_sale'];?>"><i class="fab fa-twitter"></i></a>
+                                         
                                     </div>
                                 </div>
                             </div>
