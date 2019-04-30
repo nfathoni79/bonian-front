@@ -121,8 +121,8 @@ class CheckoutController  extends AuthController
 
     }
 
-    function confirmation(){ 
-        $this->layout = 'secure';
+    function confirmation(){
+        $this->viewBuilder()->setLayout('secure');
 
     }
 }

@@ -23,7 +23,7 @@
                         <?php if($details['is_error']):?>
                             Produk tidak ditemukan
 
-                        <?php else:?> 
+                        <?php else:?>
 
                         <a href="sms:;?&body=hello" title="Click here to TEXT US gallery token needs updating!">Send me SMS </a>
 
