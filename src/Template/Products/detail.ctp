@@ -1,3 +1,29 @@
+<?php $this->assign('title', trim($details['data']['name'])); ?>
+
+<?php
+    foreach($details['data']['images'] as $image){
+        $img = $image;
+        break;
+    }
+?>
+
+<?php
+$description = $this->Text->truncate($details['data']['highlight_text'],200,['ellipsis' => '...','exact' => false]);
+$this->Html->meta('description',$description, ['block' => true]);
+$this->Html->meta('image', $this->Url->build($_basePath . 'images/600x600/' . $img) , ['block' => true]);
+$this->Html->meta('name', $details['data']['name'] , ['block' => true]);
+$this->Html->meta('twitter:card', 'summary' , ['block' => true]);
+$this->Html->meta('twitter:title', trim($details['data']['name']) , ['block' => true]);
+$this->Html->meta('twitter:description', $description , ['block' => true]);
+$this->Html->meta('og:title', trim($details['data']['name']), ['block' => true]);
+$this->Html->meta('og:description', $description, ['block' => true]);
+$this->Html->meta('og:image', $this->Url->build($_basePath . 'images/png/logo/logo-wide.png'), ['block' => true]);
+$this->Html->meta('og:url', $this->Url->build(), ['block' => true]);
+$this->Html->meta('og:site_name', 'Zolaku', ['block' => true]);
+$this->Html->meta('og:type', 'product', ['block' => true]);
+$this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['data']['price_sale']), ['block' => true]);
+?>
+
 <!-- start: header part -->
 <div class="c-header__bg" style="z-index:0;">
     <div class="container">
@@ -22,12 +48,12 @@
                     <div class="left-content-product">
                         <?php if($details['is_error']):?>
                             Produk tidak ditemukan
-
                         <?php else:?>
 
                         <a href="sms:;?&body=hello" title="Click here to TEXT US gallery token needs updating!">Send me SMS </a>
 
 
+                        <input type="button" onclick="window.open('http://www.example.com','_blank','resizable=yes')" />
 
                         <ul class="share-buttons">
                             <li><a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fzolaku-front.nevsky.tech%2Fproducts%2Fdetail%2Fset-gamis-syari-baju-muslim-mapple-wolfis-wolvis-monalisa-khimar-ceruty-pet-pari-jumbo-busui-murah&quote=" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&quote=' + encodeURIComponent(document.URL)); return false;"><img alt="Share on Facebook" src="images/flat_web_icon_set/color/Facebook.png" /></a></li>

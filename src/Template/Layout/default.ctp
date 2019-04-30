@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+    <title><?= $this->fetch('title') ?></title>
     <meta charset="utf-8">
     <meta name="description" content="Pengalaman berbelanja terbaik di Indonesia">
     <meta name="author" content="PT. Zolaku | Zolaku Indonesia">
