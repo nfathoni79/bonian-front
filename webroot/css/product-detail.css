@@ -123,7 +123,8 @@ span.fa-stack{
     vertical-align: middle;
 }
 .color-form-wrapper .form-group{
-    display: flex;
+    display: inline-block;
+    /*display: flex;*/
     margin-bottom: 0;
 }
 .color-form-wrapper .form-group .color-item{
@@ -131,6 +132,7 @@ span.fa-stack{
     margin: auto 0px;
     border:1px solid #F0F0F0;
     text-align: center;
+    display: inline-block;
 }
 .color-form-wrapper .form-group .color-item.active, .color-form-wrapper .form-group .color-item:hover{
     background: #c93535;
