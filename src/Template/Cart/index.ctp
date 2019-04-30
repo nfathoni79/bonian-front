@@ -154,6 +154,16 @@
                                                     <div class="col-lg-7 text-center p-0">
 
                                                         <div class="button-group so-quickview cartinfo--static share-container" style="margin-left: 10px; width: 90%; padding: 5px;">
+
+                                                            <button type="button" class="btn-share fbShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $cart['slug'],'prefix' => false],true);?>" data-title="<?= $cart['name'];?>" data-price="<?= $cart['price'];?>" style="background-color:#2c558b; padding-left: 12px; padding-right: 12px;" title="Share" onclick=""><i class="fab fa-facebook"></i><span> </span>
+                                                            </button>
+                                                            <button type="button" class="btn-share twitterShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $cart['slug'],'prefix' => false],true);?>" data-title="<?= $cart['name'];?>" data-price="<?= $cart['price'];?>" style="background-color:#1e99d0; padding-left: 9px; padding-right: 9px;" title="Share" onclick=""><i class="fab fa-twitter"></i>
+                                                            </button>
+                                                            <button type="button" class="btn-share igShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $cart['slug'],'prefix' => false],true);?>" data-title="<?= $cart['name'];?>" data-price="<?= $cart['price'];?>" style="background-color:#6e5f4c; padding-left: 10px; padding-right: 10px;" title="Share" onclick=""><i class="fab fa-instagram"></i>
+                                                            </button>
+                                                            <button type="button" class="btn-share waShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $cart['slug'],'prefix' => false],true);?>" data-title="<?= $cart['name'];?>" data-price="<?= $cart['price'];?>" style="background-color:#79bc25; padding-left: 10px; padding-right: 10px;" title="Share" onclick=""><i class="fab fa-whatsapp"></i>
+                                                            </button>
+
                                                             <button type="button" class="btn-share" style="background-color:#2c558b; padding-left: 12px; padding-right: 12px;" title="Share" onclick=""><i class="fab fa-facebook"></i><span> </span>
                                                             </button>
                                                             <button type="button" class="btn-share" style="background-color:#1e99d0; padding-left: 9px; padding-right: 9px;" title="Share" onclick=""><i class="fab fa-twitter"></i>
@@ -454,13 +464,13 @@
                             </div>
                             <div class="col-lg-8 mt-3 text-center">
                                 <div class="button-group so-quickview cartinfo--static share-container" style="margin-left: 10px; width: 90%; padding: 5px;">
-                                    <button type="button" class="btn-share" style="background-color:#2c558b; padding-left: 12px; padding-right: 12px;" title="Share" onclick=""><i class="fab fa-facebook"></i><span> </span>
+                                    <button type="button" class="btn-share fbShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['product']['slug'],'prefix' => false],true);?>" data-title="<?= $vals['product']['name'];?>" data-price="<?= $vals['product']['price_sale'];?>" style="background-color:#2c558b; padding-left: 12px; padding-right: 12px;" title="Share" onclick=""><i class="fab fa-facebook"></i><span> </span>
                                     </button>
-                                    <button type="button" class="btn-share" style="background-color:#1e99d0; padding-left: 9px; padding-right: 9px;" title="Share" onclick=""><i class="fab fa-twitter"></i>
+                                    <button type="button" class="btn-share twitterShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['product']['slug'],'prefix' => false],true);?>" data-title="<?= $vals['product']['name'];?>" data-price="<?= $vals['product']['price_sale'];?>" style="background-color:#1e99d0; padding-left: 9px; padding-right: 9px;" title="Share" onclick=""><i class="fab fa-twitter"></i>
                                     </button>
-                                    <button type="button" class="btn-share" style="background-color:#6e5f4c; padding-left: 10px; padding-right: 10px;" title="Share" onclick=""><i class="fab fa-instagram"></i>
+                                    <button type="button" class="btn-share igShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['product']['slug'],'prefix' => false],true);?>" data-title="<?= $vals['product']['name'];?>" data-price="<?= $vals['product']['price_sale'];?>" style="background-color:#6e5f4c; padding-left: 10px; padding-right: 10px;" title="Share" onclick=""><i class="fab fa-instagram"></i>
                                     </button>
-                                    <button type="button" class="btn-share" style="background-color:#79bc25; padding-left: 10px; padding-right: 10px;" title="Share" onclick=""><i class="fab fa-whatsapp"></i>
+                                    <button type="button" class="btn-share waShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['product']['slug'],'prefix' => false],true);?>" data-title="<?= $vals['product']['name'];?>" data-price="<?= $vals['product']['price_sale'];?>" style="background-color:#79bc25; padding-left: 10px; padding-right: 10px;" title="Share" onclick=""><i class="fab fa-whatsapp"></i>
                                     </button>
                                 </div>
                             </div>
