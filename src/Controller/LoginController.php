@@ -20,6 +20,10 @@ class LoginController extends AuthController
         $this->Auth->allow('index');
     }
 
+    /**
+     * @return \Cake\Http\Response
+     * @throws \Exception
+     */
     public function index()
    {
        $this->disableAutoRender();
@@ -43,6 +47,17 @@ class LoginController extends AuthController
                $json = $response->parse();
                /* set user to Auth */
                $this->Auth->setUser($json['result']['data']);
+
+               if (!empty($json['result']['data']['reffcode'])) {
+                   $cookie = new Cookie(
+                       'reffcode',
+                       $json['result']['data']['reffcode'],
+                       (new \DateTime())->add(new \DateInterval('P1M')),
+                       $this->request->getAttribute('base')
+                   );
+                   $this->response = $this->response->withCookie($cookie);
+               }
+
 
                try {
                    $this->Api->makeRequest($json['result']['data']['token'])
