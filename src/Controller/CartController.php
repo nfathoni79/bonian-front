@@ -83,7 +83,11 @@ class CartController  extends AuthController
                 ->get('v1/web/cart/view');
             if ($response = $this->Api->success($carts)) {
                 $json = $response->parse();
-                $carts = ['carts' => $json['result']['data'], 'pagging' => $json['paging']];
+                if(!empty($json['result']['data'])){
+                    $carts = ['carts' => $json['result']['data'], 'pagging' => $json['paging']];
+                }else{
+                    $carts = [];
+                }
             }
         } catch(\GuzzleHttp\Exception\ClientException $e) {
             //TODO set log

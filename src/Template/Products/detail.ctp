@@ -25,7 +25,17 @@
 
                         <?php else:?>
 
-                            <div class="content-product-left class-honizol col-md-5 col-sm-12 col-xs-12">
+                        <a href="sms:;?&body=hello" title="Click here to TEXT US gallery token needs updating!">Send me SMS </a>
+
+
+
+                        <ul class="share-buttons">
+                            <li><a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fzolaku-front.nevsky.tech%2Fproducts%2Fdetail%2Fset-gamis-syari-baju-muslim-mapple-wolfis-wolvis-monalisa-khimar-ceruty-pet-pari-jumbo-busui-murah&quote=" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&quote=' + encodeURIComponent(document.URL)); return false;"><img alt="Share on Facebook" src="images/flat_web_icon_set/color/Facebook.png" /></a></li>
+                            <li><a href="https://twitter.com/intent/tweet?source=http%3A%2F%2Fzolaku-front.nevsky.tech%2Fproducts%2Fdetail%2Fset-gamis-syari-baju-muslim-mapple-wolfis-wolvis-monalisa-khimar-ceruty-pet-pari-jumbo-busui-murah&text=:%20http%3A%2F%2Fzolaku-front.nevsky.tech%2Fproducts%2Fdetail%2Fset-gamis-syari-baju-muslim-mapple-wolfis-wolvis-monalisa-khimar-ceruty-pet-pari-jumbo-busui-murah" target="_blank" title="Tweet" onclick="window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(document.title) + ':%20'  + encodeURIComponent(document.URL)); return false;"><img alt="Tweet" src="images/flat_web_icon_set/color/Twitter.png" /></a></li>
+                            <li><a href="https://plus.google.com/share?url=http%3A%2F%2Fzolaku-front.nevsky.tech%2Fproducts%2Fdetail%2Fset-gamis-syari-baju-muslim-mapple-wolfis-wolvis-monalisa-khimar-ceruty-pet-pari-jumbo-busui-murah" target="_blank" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=' + encodeURIComponent(document.URL)); return false;"><img alt="Share on Google+" src="images/flat_web_icon_set/color/Google+.png" /></a></li>
+                        </ul>
+
+                        <div class="content-product-left class-honizol col-md-5 col-sm-12 col-xs-12">
                                 <div class="large-image">
                                     <?php foreach($details['data']['images'] as $image):?>
                                         <img itemprop="image" class="product-image-zoom" src="<?= $this->Url->build($_basePath . 'images/600x600/' . $image); ?>" data-zoom-image="<?= $this->Url->build($_basePath . 'images/600x600/' . $image); ?>" data-image-name="<?= $image;?>" data-price="<?=  $details['data']['price_sale'];?>" title="<?php echo $details['data']['name']; ?>" alt="<?php echo $details['data']['name']; ?>">
@@ -99,22 +109,22 @@
                                             <p>Bagikan produk ini</p>
                                             <div class="btn-group btn-group-justified" role="group" aria-label="Justified button group">
                                                 <div class="btn-group" role="group">
-                                                    <button type="button" class="btn btn-default btn-lg btn-whatsapp"><i class="fa fa-whatsapp"></i> Whatsapp</button>
+                                                    <button type="button" class="btn btn-default btn-lg btn-whatsapp"><i class="fab fa-whatsapp"></i> Whatsapp</button>
                                                 </div>
                                                 <div class="btn-group" role="group">
-                                                    <button type="button" class="btn btn-default btn-lg btn-instagram"><i class="fa fa-instagram"></i> Instagram</button>
+                                                    <button type="button" class="btn btn-default btn-lg btn-instagram"><i class="fab fa-instagram"></i> Instagram</button>
                                                 </div>
                                                 <div class="btn-group" role="group">
-                                                    <button type="button" class="btn btn-default btn-lg btn-facebook"><i class="fa fa-facebook"></i> Facebook</button>
+                                                    <button type="button" class="btn btn-default btn-lg btn-facebook"><i class="fab fa-facebook"></i> Facebook</button>
                                                 </div>
                                                 <div class="btn-group" role="group">
                                                     <button type="button" class="btn btn-default btn-lg btn-sms"><i class="fa fa-commenting"></i> Sms</button>
                                                 </div>
                                                 <div class="btn-group" role="group">
-                                                    <button type="button" class="btn btn-default btn-lg btn-line"><i class="fa fa-facebook"></i>  Line</button>
+                                                    <button type="button" class="btn btn-default btn-lg btn-line"><i class="fab fa-line"></i>  Line</button>
                                                 </div>
                                                 <div class="btn-group" role="group">
-                                                    <button type="button" class="btn btn-default btn-lg btn-twitter"><i class="fa fa-twitter"></i> Twitter</button>
+                                                    <button type="button" class="btn btn-default btn-lg btn-twitter"><i class="fab fa-twitter"></i> Twitter</button>
                                                 </div>
                                             </div>
 
@@ -229,7 +239,7 @@ foreach($branch as $k => $vals){
                                                             <label><?= $vals['name'];?></label>
                                                             <input type="radio" name="stock" value="<?= $vals['name'];?>">
                                                         </span>
-                                                        <span class="wh-stock"><?= $vals['total'];?> Stok</span>
+                                                        <span class="wh-stock wh-<?= $vals['name'];?>"><?= $vals['total'];?> Stok</span>
                                                     </div>
                                                 </div>
                                             <?php endforeach;?>

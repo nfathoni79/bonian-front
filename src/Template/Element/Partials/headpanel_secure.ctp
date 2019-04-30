@@ -16,7 +16,6 @@
                     <ul class="top-link list-inline">
                         <li><a class="link-lg" href="#">Menjadi Member Zolaku</a></li>
                         <li><a class="link-lg" href="<?= $this->Url->build(['controller' => 'Promotion', 'action' => 'pointRedeem', 'prefix' => false]);?>">Penukaran Point</a></li>
-                        <li><a class="link-lg" href="#">Lacak Pengiriman</a></li>
                         <?php if (!$this->request->getSession()->check('Auth.Customers')) : ?>
                         <li><a class="link-lg" data-toggle="modal" data-target="#login-popup">Login</a></li>
                         <li><a class="link-lg" data-toggle="modal" data-target="#modal-register">Daftar</a></li>
