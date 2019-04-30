@@ -157,6 +157,8 @@ label.color-name{
     margin-right: 5px;
     margin-bottom: 5px;
     float: left;
+    display: block;
+    width: 250px;
 }
 .wh-wrapper .wh-item .wh-label{
     float: left;
