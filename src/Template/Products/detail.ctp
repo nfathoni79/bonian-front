@@ -618,8 +618,7 @@ foreach($branch as $k => $vals){
             </div>
         </div>
         <!-- //Product Tabs -->
-    </div>
-    <?= $this->element('Partials/Home/top_products', ['topProducts' => $topProducts]); ?>
+    </div> 
 </div>
 
 
