@@ -10,14 +10,14 @@
 <?php
 $description = $this->Text->truncate($details['data']['highlight_text'],200,['ellipsis' => '...','exact' => false]);
 $this->Html->meta('description',$description, ['block' => true]);
-$this->Html->meta('image', $this->Url->build($_basePath . 'images/600x600/' . $img) , ['block' => true]);
+$this->Html->meta('image', $this->Url->build($_basePath . 'images/150x150/' . $img) , ['block' => true]);
 $this->Html->meta('name', $details['data']['name'] , ['block' => true]);
 $this->Html->meta('twitter:card', 'summary' , ['block' => true]);
 $this->Html->meta('twitter:title', trim($details['data']['name']) , ['block' => true]);
 $this->Html->meta('twitter:description', $description , ['block' => true]);
 $this->Html->meta('og:title', trim($details['data']['name']), ['block' => true]);
 $this->Html->meta('og:description', $description, ['block' => true]);
-$this->Html->meta('og:image', $this->Url->build($_basePath . 'images/600x600/' . $img), ['block' => true]);
+$this->Html->meta('og:image', $this->Url->build($_basePath . 'images/150x150/' . $img), ['block' => true]);
 $this->Html->meta('og:url', $this->Url->build(), ['block' => true]);
 $this->Html->meta('og:site_name', 'Zolaku', ['block' => true]);
 $this->Html->meta('og:type', 'product', ['block' => true]);
@@ -49,17 +49,6 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                         <?php if($details['is_error']):?>
                             Produk tidak ditemukan
                         <?php else:?>
-
-                        <a href="sms:;?&body=hello" title="Click here to TEXT US gallery token needs updating!">Send me SMS </a>
-
-
-                        <input type="button" onclick="window.open('http://www.example.com','_blank','resizable=yes')" />
-
-                        <ul class="share-buttons">
-                            <li><a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fzolaku-front.nevsky.tech%2Fproducts%2Fdetail%2Fset-gamis-syari-baju-muslim-mapple-wolfis-wolvis-monalisa-khimar-ceruty-pet-pari-jumbo-busui-murah&quote=" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&quote=' + encodeURIComponent(document.URL)); return false;"><img alt="Share on Facebook" src="images/flat_web_icon_set/color/Facebook.png" /></a></li>
-                            <li><a href="https://twitter.com/intent/tweet?source=http%3A%2F%2Fzolaku-front.nevsky.tech%2Fproducts%2Fdetail%2Fset-gamis-syari-baju-muslim-mapple-wolfis-wolvis-monalisa-khimar-ceruty-pet-pari-jumbo-busui-murah&text=:%20http%3A%2F%2Fzolaku-front.nevsky.tech%2Fproducts%2Fdetail%2Fset-gamis-syari-baju-muslim-mapple-wolfis-wolvis-monalisa-khimar-ceruty-pet-pari-jumbo-busui-murah" target="_blank" title="Tweet" onclick="window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(document.title) + ':%20'  + encodeURIComponent(document.URL)); return false;"><img alt="Tweet" src="images/flat_web_icon_set/color/Twitter.png" /></a></li>
-                            <li><a href="https://plus.google.com/share?url=http%3A%2F%2Fzolaku-front.nevsky.tech%2Fproducts%2Fdetail%2Fset-gamis-syari-baju-muslim-mapple-wolfis-wolvis-monalisa-khimar-ceruty-pet-pari-jumbo-busui-murah" target="_blank" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=' + encodeURIComponent(document.URL)); return false;"><img alt="Share on Google+" src="images/flat_web_icon_set/color/Google+.png" /></a></li>
-                        </ul>
 
                         <div class="content-product-left class-honizol col-md-5 col-sm-12 col-xs-12">
                                 <div class="large-image">
@@ -135,22 +124,22 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                             <p>Bagikan produk ini</p>
                                             <div class="btn-group btn-group-justified" role="group" aria-label="Justified button group">
                                                 <div class="btn-group" role="group">
-                                                    <button type="button" class="btn btn-default btn-lg btn-whatsapp"><i class="fab fa-whatsapp"></i> Whatsapp</button>
+                                                    <a type="button" class="btn btn-default btn-lg btn-whatsapp waShare" data-url="<?php echo $this->Url->build();?>" data-title="<?= $details['data']['name'];?>" data-price="<?= $details['data']['price_sale'];?>"><i class="fab fa-whatsapp"></i> Whatsapp</a>
                                                 </div>
                                                 <div class="btn-group" role="group">
-                                                    <button type="button" class="btn btn-default btn-lg btn-instagram"><i class="fab fa-instagram"></i> Instagram</button>
+                                                    <a type="button" class="btn btn-default btn-lg btn-instagram igShare" data-url="<?php echo $this->Url->build();?>" data-title="<?= $details['data']['name'];?>" data-price="<?= $details['data']['price_sale'];?>"><i class="fab fa-instagram"></i> Instagram</a>
                                                 </div>
                                                 <div class="btn-group" role="group">
-                                                    <button type="button" class="btn btn-default btn-lg btn-facebook"><i class="fab fa-facebook"></i> Facebook</button>
+                                                    <a type="button" class="btn btn-default btn-lg btn-facebook fbShare" data-url="<?php echo $this->Url->build();?>" data-title="<?= $details['data']['name'];?>" data-price="<?= $details['data']['price_sale'];?>"><i class="fab fa-facebook"></i> Facebook</a>
                                                 </div>
                                                 <div class="btn-group" role="group">
-                                                    <button type="button" class="btn btn-default btn-lg btn-sms"><i class="fa fa-commenting"></i> Sms</button>
+                                                    <a type="button" class="btn btn-default btn-lg btn-sms smsShare" data-url="<?php echo $this->Url->build();?>" data-title="<?= $details['data']['name'];?>" data-price="<?= $details['data']['price_sale'];?>"><i class="fa fa-commenting"></i> Sms</a>
                                                 </div>
                                                 <div class="btn-group" role="group">
-                                                    <button type="button" class="btn btn-default btn-lg btn-line"><i class="fab fa-line"></i>  Line</button>
+                                                    <a type="button" class="btn btn-default btn-lg btn-line lineShare" data-url="<?php echo $this->Url->build();?>" data-title="<?= $details['data']['name'];?>" data-price="<?= $details['data']['price_sale'];?>"><i class="fab fa-line"></i>  Line</a>
                                                 </div>
                                                 <div class="btn-group" role="group">
-                                                    <button type="button" class="btn btn-default btn-lg btn-twitter"><i class="fab fa-twitter"></i> Twitter</button>
+                                                    <a type="button" class="btn btn-default btn-lg btn-twitter twitterShare" data-url="<?php echo $this->Url->build();?>" data-title="<?= $details['data']['name'];?>" data-price="<?= $details['data']['price_sale'];?>"><i class="fab fa-twitter"></i> Twitter</a>
                                                 </div>
                                             </div>
 
@@ -651,4 +640,5 @@ $this->Html->script([
 '/js/product-detail.js',
 ], ['block' => true]);
 ?>
+
 <?php $this->end(); ?>

@@ -331,6 +331,11 @@ if($('#slider').length){
 			range.children('.min_val').text('$' + min).next().text('$' + max);
 
 		});
+
+
+
+
+
 });
 
 
@@ -653,5 +658,39 @@ $(document).ready(function() {
 		var tabTop = $(".producttab").offset().top;
 		$("html, body").animate({ scrollTop:tabTop }, 1000);
 	});
+
+    var reffcode = $.cookie('reffcode');
+    var reff;
+    if(reffcode != undefined){
+        reff = "reff="+reffcode;
+    }
+
+    $('.waShare').on('click',function(){
+        window.open('https://web.whatsapp.com//send?text=Temukan '+$(this).data('title')+'Rp. '+numeral($(this).data('price')).format('0,0')+' Dapatkan segera di zolaku '+$(this).data('url')+'?'+reff,'_blank','width=600, height=368');
+        return false;
+    });
+    $('.igShare').on('click',function(){
+        // window.open("https://web.whatsapp.com//send?text=Temukan "+$(this).data('title')+" Dapatkan segera di zolaku "+$(this).data('url'),"height=368,width=600,left=100,top=100,menubar=0");
+        // return false;
+    });
+    $('.smsShare').on('click',function(){
+        window.open('sms:;?&body=Temukan '+$(this).data('title')+'Rp. '+numeral($(this).data('price')).format('0,0')+' Dapatkan segera di zolaku '+$(this).data('url')+'?'+reff,'_self','width=600, height=368')
+        return false;
+    });
+
+    $('.fbShare').on('click',function(){
+        window.open('https://www.facebook.com/sharer.php?u='+$(this).data('url')+'?'+reff,'_blank','width=600, height=368');
+        return false;
+    });
+
+    $('.lineShare').on('click',function(){
+        window.open('https://lineit.line.me/share/ui?url='+$(this).data('url')+'?'+reff+'&text=Temukan '+$(this).data('title')+'Rp. '+numeral($(this).data('price')).format('0,0')+' Dapatkan segera di zolaku ','_blank','width=600, height=368');
+        return false;
+    });
+
+    $('.twitterShare').on('click',function(){
+        window.open('https://twitter.com/share?url='+$(this).data('url')+'?'+reff+'&text=Temukan '+$(this).data('title')+'Rp. '+numeral($(this).data('price')).format('0,0')+' Dapatkan segera di zolaku ','_blank','width=600, height=368');
+        return false;
+    });
 });
 	
