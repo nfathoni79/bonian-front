@@ -151,8 +151,16 @@ function processPayment(request) {
         success: function(response){
             location.href = basePath + '/checkout';
         },
-        error: function () {
-            $("#login-popup").modal('show');
+        error: function (text) {
+            switch (text.status) {
+                case 406:
+                    swal(text.responseJSON.message);
+                    break;
+                case 302:
+                case 401:
+                    $("#login-popup").modal('show');
+                    break;
+            }
         }
     });
 }
@@ -174,6 +182,7 @@ formCCconfirm.submit(function(e) {
     }
 
     request.cvv = cvv.val();
+    modal.data('request', request);
 
     var ajaxRequest = new ajaxValidation(formCCconfirm);
     ajaxRequest.post(formCCconfirm.attr('action'), request, function(response, data) {
@@ -186,29 +195,12 @@ formCCconfirm.submit(function(e) {
                     type : 'iframe',
                     opts : {
                         afterShow : function( instance, current ) {
-                            console.info( 'done!' );
-                            console.log(instance, current)
+
                         }
                     }
                 });
 
-                window.addEventListener("message", function (event) {
-                    console.log('receive', event.data);
-                    /*
-                    eci: "05"
-                    status_code: "200"
-                    status_message: "Success, 3D Secure token generated"
-                    token_id: "352820-4357-90a15911-f8d1-45dc-980f-71daf5e4ec29"
-                     */
 
-                    if (event.data && event.data.status_code && event.data.status_code === '200') {
-                        request.token = event.data.token_id;
-                        processPayment(request);
-                    }
-
-
-                    win.close();
-                }, false);
             }
 
             formCCconfirm.parents('.modal').modal('hide');
@@ -221,12 +213,25 @@ formCCconfirm.submit(function(e) {
 
 });
 
+window.addEventListener("message", function (event) {
+    
+    var request = formCCconfirm.parents('.modal').data('request');
+    /*
+    eci: "05"
+    status_code: "200"
+    status_message: "Success, 3D Secure token generated"
+    token_id: "352820-4357-90a15911-f8d1-45dc-980f-71daf5e4ec29"
+     */
+    if (event.data && event.data.status_code && event.data.status_code === '200') {
+        request.token = event.data.token_id;
+        processPayment(request);
+    }
+
+    $.fancybox.close();
+}, false);
+
 
 $('#create-token-cc').on('click', function(e) {
-
-
-
-
 
 });
 
@@ -254,10 +259,7 @@ $("#pay-now").on('click', function(e) {
     switch(payment_method.val()) {
         case 'credit_card':
             request.card_id = payment_method.data('id');
-
-
             $("#input-card-number-confirm").val(getSelectedNumberCC(payment_method));
-
             $('.modal-confirm-cc-payment').modal('show')
                 .data('request', request)
                 .find('.credit-card-logo-wrapper')
@@ -268,7 +270,7 @@ $("#pay-now").on('click', function(e) {
         case 'bca_va':
         case 'bni_va':
         case 'permata_va':
-
+            processPayment(request);
         break;
 
         default:

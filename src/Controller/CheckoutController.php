@@ -140,7 +140,7 @@ class CheckoutController  extends AuthController
             $card = $this->Api->makeRequest($this->Auth->user('token'))
                 ->post('v1/web/checkout/process', [
                     'form_params' => $this->request->getData()
-                ]); //print_r($card->getBody()->getContents());exit;
+                ]);
             if ($response = $this->Api->success($card)) {
                 $error = $response->parse();
             }

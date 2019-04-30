@@ -305,7 +305,7 @@
                             <div class="col-lg-12">
                                 <div style="border:1px dashed #E2E2E2; margin-top:1px;"></div>
                             </div>
-
+                            <?php if (isset($data['code_voucher'])) : ?>
                             <div class="col-lg-7">
                                 <h3 class="tx-15">Voucher</h3>
                             </div>
@@ -316,6 +316,7 @@
                             <div class="col-lg-12">
                                 <div style="border:1px dashed #E2E2E2; margin-top:1px;"></div>
                             </div>
+                            <?php endif; ?>
 
                             <div class="col-lg-7">
                                 <h3 class="tx-15">Use Point</h3>
