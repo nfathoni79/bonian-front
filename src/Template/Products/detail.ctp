@@ -27,6 +27,14 @@
 
                         <a href="sms:;?&body=hello" title="Click here to TEXT US gallery token needs updating!">Send me SMS </a>
 
+
+
+                        <ul class="share-buttons">
+                            <li><a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fzolaku-front.nevsky.tech%2Fproducts%2Fdetail%2Fset-gamis-syari-baju-muslim-mapple-wolfis-wolvis-monalisa-khimar-ceruty-pet-pari-jumbo-busui-murah&quote=" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&quote=' + encodeURIComponent(document.URL)); return false;"><img alt="Share on Facebook" src="images/flat_web_icon_set/color/Facebook.png" /></a></li>
+                            <li><a href="https://twitter.com/intent/tweet?source=http%3A%2F%2Fzolaku-front.nevsky.tech%2Fproducts%2Fdetail%2Fset-gamis-syari-baju-muslim-mapple-wolfis-wolvis-monalisa-khimar-ceruty-pet-pari-jumbo-busui-murah&text=:%20http%3A%2F%2Fzolaku-front.nevsky.tech%2Fproducts%2Fdetail%2Fset-gamis-syari-baju-muslim-mapple-wolfis-wolvis-monalisa-khimar-ceruty-pet-pari-jumbo-busui-murah" target="_blank" title="Tweet" onclick="window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(document.title) + ':%20'  + encodeURIComponent(document.URL)); return false;"><img alt="Tweet" src="images/flat_web_icon_set/color/Twitter.png" /></a></li>
+                            <li><a href="https://plus.google.com/share?url=http%3A%2F%2Fzolaku-front.nevsky.tech%2Fproducts%2Fdetail%2Fset-gamis-syari-baju-muslim-mapple-wolfis-wolvis-monalisa-khimar-ceruty-pet-pari-jumbo-busui-murah" target="_blank" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=' + encodeURIComponent(document.URL)); return false;"><img alt="Share on Google+" src="images/flat_web_icon_set/color/Google+.png" /></a></li>
+                        </ul>
+
                         <div class="content-product-left class-honizol col-md-5 col-sm-12 col-xs-12">
                                 <div class="large-image">
                                     <?php foreach($details['data']['images'] as $image):?>
