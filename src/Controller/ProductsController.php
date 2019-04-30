@@ -17,7 +17,7 @@ class ProductsController extends AppController
      */
     public function detail($slug = null)
     {
-
+        $this->viewBuilder()->setLayout('detail');
         try {
             $login = $this->Api->makeRequest()
                 ->get('v1/products/'.$slug);
