@@ -229,7 +229,7 @@
                                     <div class="form-group">
                                         <select class="form-control shipping-option"  data-id="<?= $i;?>" >
                                             <?php foreach($vals['shipping_options'] as $shipping):?>
-                                            <option value="<?= $shipping['code'];?>" data-cost="<?= $shipping['cost'];?>" data-etd="<?= $shipping['etd'];?>"><?= $shipping['name'];?></option>
+                                            <option value="<?= $shipping['code'];?>" data-cost="<?= $shipping['cost'];?>" data-etd="<?= $shipping['etd'];?>" data-service="<?= $shipping['service'];?>"><?= $shipping['name'];?></option>
                                             <?php endforeach;?>
                                         </select>
                                     </div>
@@ -292,7 +292,7 @@
                             </div>
 
                             <div class="col-lg-12">
-                                <div style="border:1px dashed #E2E2E2; margin-top:15px;"></div>
+                                <div style="border:1px dashed #E2E2E2; margin-top:1px;"></div>
                             </div>
 
                             <div class="col-lg-7">
@@ -303,7 +303,7 @@
                             </div>
 
                             <div class="col-lg-12">
-                                <div style="border:1px dashed #E2E2E2; margin-top:15px;"></div>
+                                <div style="border:1px dashed #E2E2E2; margin-top:1px;"></div>
                             </div>
 
                             <div class="col-lg-7">
@@ -314,7 +314,7 @@
                             </div>
 
                             <div class="col-lg-12">
-                                <div style="border:1px dashed #E2E2E2; margin-top:15px;"></div>
+                                <div style="border:1px dashed #E2E2E2; margin-top:1px;"></div>
                             </div>
 
                             <div class="col-lg-7">
@@ -325,7 +325,7 @@
                             </div>
 
                             <div class="col-lg-12">
-                                <div style="border:1px dashed #E2E2E2; margin-top:15px;"></div>
+                                <div style="border:1px dashed #E2E2E2; margin-top:1px;"></div>
                             </div>
 
                             <div class="col-lg-7">
@@ -338,7 +338,7 @@
                             </div>
 
                             <div class="col-lg-12">
-                                <div style="border:1px dashed #E2E2E2; margin-top:15px;"></div>
+                                <div style="border:1px dashed #E2E2E2; margin-top:1px;"></div>
                             </div>
 
                             <div class="col-lg-7">
@@ -370,11 +370,11 @@
                                         <!-- end: title -->
 
                                         <!-- start:item #1-->
-                                        <div class="row" style="padding: 20px">
+                                        <div class="row" style="padding: 5px 20px">
                                             <div class="col-lg-2 text-center">
                                                 <div class="radio">
                                                     <label>
-                                                        <input type="radio" name="bank"  value="bca_va">
+                                                        <input type="radio" name="payment_method"  value="bca_va">
                                                     </label>
                                                 </div>
                                             </div>
@@ -388,23 +388,22 @@
                                                             Bank BCA
                                                         </h5>
                                                     </div>
-                                                    <div class="col-lg-12">
-                                                        <p>
-                                                            Hanya menerima pembayaran melalui Bank BCA dan
-                                                            dikonfirmasi otomatis
-                                                        </p>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- end:item #1-->
+                                        <div class="row" style="padding: 0 20px;">
+                                            <div class="col-lg-12">
+                                                <hr />
+                                            </div>
+                                        </div>
 
                                         <!-- start:item #2-->
-                                        <div class="row" style="padding: 20px">
+                                        <div class="row" style="padding: 5px 20px">
                                             <div class="col-lg-2 text-center">
                                                 <div class="radio">
                                                     <label>
-                                                        <input type="radio" name="bank"  value="permata_va">
+                                                        <input type="radio" name="payment_method"  value="permata_va">
                                                     </label>
                                                 </div>
                                             </div>
@@ -418,23 +417,22 @@
                                                             Bank Mandiri
                                                         </h5>
                                                     </div>
-                                                    <div class="col-lg-12">
-                                                        <p>
-                                                            Hanya menerima pembayaran melalui Bank Mandiri dan
-                                                            dikonfirmasi otomatis
-                                                        </p>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- end:item #2-->
+                                        <div class="row" style="padding: 0 20px;">
+                                            <div class="col-lg-12">
+                                                <hr />
+                                            </div>
+                                        </div>
 
                                         <!-- start:item #3-->
-                                        <div class="row" style="padding: 20px">
+                                        <div class="row" style="padding: 5px 20px">
                                             <div class="col-lg-2 text-center">
                                                 <div class="radio">
                                                     <label>
-                                                        <input type="radio" name="bank"  value="bni_va">
+                                                        <input type="radio" name="payment_method"  value="bni_va">
                                                     </label>
                                                 </div>
                                             </div>
@@ -448,83 +446,57 @@
                                                             Bank BRI
                                                         </h5>
                                                     </div>
-                                                    <div class="col-lg-12">
-                                                        <p>
-                                                            Hanya menerima pembayaran melalui Bank BNI dan
-                                                            dikonfirmasi otomatis
-                                                        </p>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="row" style="padding: 20px">
-                                            <div class="col-lg-2 text-center">
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="bank"  value="permata_va">
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-10">
-                                                <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <img src="<?php echo $this->Url->build('/images/logo_bank/bri.png'); ?>" alt="Bank BRI" class="img-responsive">
-                                                    </div>
-                                                    <div class="col-lg-8">
-                                                        <h5 class="tx-bank">
-                                                            Bank BRI
-                                                        </h5>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <p>
-                                                            Hanya menerima pembayaran melalui Bank BRI dan
-                                                            dikonfirmasi otomatis
-                                                        </p>
-                                                    </div>
-                                                </div>
+                                        <div class="row" style="padding: 0 20px;">
+                                            <div class="col-lg-12">
+                                                <hr />
                                             </div>
                                         </div>
-
-                                        <div class="row" style="padding: 20px">
-                                            <div class="col-lg-2 text-center">
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="bank"  value="permata_va">
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-10">
-                                                <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <img src="<?php echo $this->Url->build('/images/logo_bank/permata.png'); ?>" alt="Bank Permata" class="img-responsive">
-                                                    </div>
-                                                    <div class="col-lg-8">
-                                                        <h5 class="tx-bank">
-                                                            Bank BRI
-                                                        </h5>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <p>
-                                                            Hanya menerima pembayaran melalui Bank Permata dan
-                                                            dikonfirmasi otomatis
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- end:item #3-->
 
                                         <!-- start: title -->
                                         <div>
-                                            <h5 class="c-card-pembayaran__title tx-black tx-bold-force">
+                                            <h5 class="c-card-pembayaran__title credit-card-input-wrapper tx-black tx-bold-force">
                                                 Kartu kredit
                                             </h5>
                                         </div>
                                         <!-- end: title -->
 
+                                        <?php foreach($creditcards as $creditcard) : ?>
+                                        <!-- start:item-->
+                                        <div class="row" style="padding: 5px 20px">
+                                            <div class="col-lg-2 text-center">
+                                                <div class="radio">
+                                                    <label>
+                                                        <input type="radio" name="payment_method"  value="cc" data-id="<?= $creditcard['id']; ?>">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-10">
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <img src="<?php echo $this->Url->build('/images/logo_cc/52x32/'. $creditcard['type'] .'.png'); ?>" alt="cc" class="img-responsive">
+                                                    </div>
+                                                    <div class="col-lg-8">
+                                                        <h5 class="tx-bank">
+                                                            <?= $creditcard['masked_card']; ?>
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row" style="padding: 0 20px;">
+                                            <div class="col-lg-12">
+                                                <hr />
+                                            </div>
+                                        </div>
+                                        <?php endforeach; ?>
+
                                         <!-- start:item #1-->
-                                        <div class="row" style="padding: 20px">
+                                        <div class="row" style="padding: 5px 20px">
                                             <div class="col-lg-12">
                                                 <button type="button" class="btn btn-default btn-block" style="min-height: 45px;" data-toggle="modal" data-target="#modalTambahKartuKredit">
                                                     <i class="fas fa-plus-circle"></i> &nbsp;
@@ -543,18 +515,18 @@
                                         <!-- end: title -->
 
                                         <!-- start:item #1-->
-                                        <div class="row" style="padding: 20px">
+                                        <div class="row" style="padding: 5px 20px">
                                             <div class="col-lg-2 text-center">
                                                 <div class="radio">
                                                     <label>
-                                                        <input type="radio" name="bank"  value="gopay">
+                                                        <input type="radio" name="payment_method"  value="gopay">
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="col-lg-10">
                                                 <div class="row">
                                                     <div class="col-lg-4">
-                                                        <img src="<?php echo $this->Url->build('/images/logo_bank/gopay.png'); ?>" alt="Go Pay" class="img-responsive">
+                                                        <img src="<?php echo $this->Url->build('/images/logo_other_payment/gopay.png'); ?>" alt="Go Pay" class="img-responsive">
                                                     </div>
                                                     <div class="col-lg-8">
                                                         <h5 class="tx-bank">
@@ -580,8 +552,7 @@
                             <!-- end: metode pembayaran -->
 
                             <div class="col-lg-12 text-center">
-
-                                <button type="button" class="btn btn-danger btn-lg btn-block c-pembayaran-button rounded-5" <?php echo (empty($data['customer_address']['recipient_name'])) ? 'disabled' : '';?>>
+                                <button type="button" id="pay-now" style="margin-top: 10px;" class="btn btn-danger btn-lg btn-block c-pembayaran-button rounded-5" <?php echo (empty($data['customer_address']['recipient_name'])) ? 'disabled' : '';?>>
                                     Bayar sekarang
                                 </button>
                             </div>
@@ -676,7 +647,7 @@
 <!-- start:modal tambah kartu kredit -->
 <div class="modal fade" id="modalTambahKartuKredit" tabindex="-1" role="dialog"
     aria-labelledby="modalTambahKartuKredit">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog" role="document" style="width: 485px;">
         <div class="modal-content">
 
             <div class="modal-header">
@@ -690,9 +661,8 @@
                 </h4>
             </div>
 
+            <?= $this->Form->create(null, ['url' => ['controller' => 'Checkout', 'action' => 'addCard', 'prefix' => false], 'id' => 'add-credit-card-form', 'class' => 'ajax-helper']); ?>
             <div class="modal-body">
-
-                <form action="">
 
                     <!-- start: form item #1 -->
                     <div class="row">
@@ -700,7 +670,7 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="inputNamaKartu">Nama pemilik kartu</label>
-                                <input type="text" class="form-control" id="inputNamaKartu"
+                                <input type="text" class="form-control" id="input-card-hold-name"
                                     placeholder="Input nama pemilik kartu kredit">
                             </div>
                         </div>
@@ -708,15 +678,23 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="inputNomorKartu">Nomor kartu kredit</label>
-                                <input type="number" class="form-control" id="inputNomorKartu"
+                                <input type="text" name="number" class="form-control" id="input-card-number" autocomplete="false"
                                     placeholder="Input nomor kartu kredit">
                             </div>
                         </div>
 
-                        <div class="col-lg-6" style="margin-top: 2em;">
+                        <div class="col-lg-6 credit-card-logo-wrapper" style="margin-top: 30px;">
+                            <img style="width:50px;" src="<?= $this->Url->build('/images/logo_cc/52x32/visa.png'); ?>" alt="logo kartu kredit visa"
+                                 class="credit-card visa disabled">
 
-                            <img src="assets/img/logo-bank-group.png" alt="logo kartu kredit"
-                                class="img-responsive">
+                            <img style="width:50px;" src="<?= $this->Url->build('/images/logo_cc/52x32/mastercard.png'); ?>" alt="logo kartu kredit mastercard"
+                                 class="credit-card mastercard disabled">
+
+                            <img style="width:50px;" src="<?= $this->Url->build('/images/logo_cc/52x32/jcb.png'); ?>" alt="logo kartu kredit jcb"
+                                 class="credit-card jcb disabled">
+
+                            <img style="width:50px;" src="<?= $this->Url->build('/images/logo_cc/52x32/amex.png'); ?>" alt="logo kartu kredit amex"
+                                 class="credit-card amex disabled">
                         </div>
 
                     </div>
@@ -725,34 +703,35 @@
                     <!-- start: form item #2 -->
                     <div class="row">
 
-                        <div class="col-lg-4">
-                            <label for="inputMasaKartu">Masa Berlaku</label>
+                        <div class="col-lg-8">
                             <div class="form-group">
-                                <div class="row text-center">
+                                <label>Masa Berlaku</label>
+                                <div class="row">
                                     <div class="col-lg-6">
-                                        <input type="number" class="form-control" id="inputMasaKartu"
-                                            placeholder="MM">
+                                        <input type="text" name="exp_month" class="form-control" id="input-card-expired-month"
+                                               placeholder="MM">
                                     </div>
 
                                     <div class="col-lg-6">
-                                        <input type="number" class="form-control" id="inputMasaKartu"
-                                            placeholder="YY">
+                                        <input type="text" name="exp_year" class="form-control" id="input-card-expired-year"
+                                               placeholder="YYYY">
                                     </div>
                                 </div>
                             </div>
+
                         </div>
 
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="inputCvv">CVV</label>
-                                <input type="number" class="form-control" id="inputCvv" placeholder="000">
+                                <input type="text" name="cvv" class="form-control" id="input-card-cvv" placeholder="000">
                             </div>
                         </div>
 
                     </div>
                     <!-- end: form item #2 -->
 
-                </form>
+
 
             </div>
 
@@ -760,8 +739,8 @@
             <div class="modal-footer u-mt-10">
                 <div class="row">
 
-                    <div class="col-lg-4">
-                        <button type="button" class="btn btn-danger btn-block o-modal-item__btn"
+                    <div class="col-lg-6">
+                        <button type="submit" class="btn btn-danger btn-block o-modal-item__btn"
                             style="margin-top: 0px !important;">
                             <i class="fas fa-save"></i> &nbsp;
                             Tambahkan Kartu
@@ -776,7 +755,7 @@
 
                 </div>
             </div>
-
+            <?= $this->Form->end(); ?>
         </div>
     </div>
 </div>
@@ -795,4 +774,5 @@ $this->Html->script([
 '/js/checkout.js',
 ], ['block' => true]);
 ?>
+
 <?php $this->end(); ?>

@@ -63,14 +63,15 @@ class CheckoutController  extends AuthController
             }
         } catch(\GuzzleHttp\Exception\ClientException $e) {
             $this->Api->handle($e);
-            $json = json_decode($e->getResponse()->getBody()->getContents(), true);
+            /*$json = json_decode($e->getResponse()->getBody()->getContents(), true);
             $this->response = $this->response->withStatus(406);
             if (!empty($json['error'])) {
                 foreach($json['error'] as $key => $val) {
                     $json['message'] = array_values($val)[0];
                     break;
                 }
-            }
+            }*/
+            return $this->redirect(['controller' => 'Cart', 'prefix' => false]);
         }
 
         /* LIST ALAMAT */
@@ -89,8 +90,45 @@ class CheckoutController  extends AuthController
             }
         }
 
-        $this->set(compact('data','address'));
+        //list credit card
+        try {
+            $creditcard = $this->Api->makeRequest($this->Auth->user('token'))
+                ->get('v1/web/cards');
+            if ($response = $this->Api->success($creditcard)) {
+                $json = $response->parse();
+                $creditcards = $json['result']['data'];
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $this->Api->handle($e);
+        }
 
+
+
+        $this->set(compact('data','address', 'creditcards'));
+
+    }
+
+    public function addCard()
+    {
+        $this->disableAutoRender();
+        $this->request->allowMethod('post');
+        $error = ['error' => []];
+        try {
+            $card = $this->Api->makeRequest($this->Auth->user('token'))
+                ->post('v1/web/cards/add', [
+                    'form_params' => $this->request->getData()
+                ]); //print_r($card->getBody()->getContents());exit;
+            if ($response = $this->Api->success($card)) {
+                $error = $response->parse();
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $this->Api->handle($e);
+            $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+
+        }
+
+        return $this->response->withType('application/json')
+            ->withStringBody(json_encode($error));
     }
 
     function changeAddress(){
