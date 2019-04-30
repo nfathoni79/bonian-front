@@ -128,20 +128,27 @@ ajaxValidation.prototype.ObjectLength = function( object ) {
 ajaxValidation.prototype.post = function(url, input, callback) {
     var that = this;
     if (typeof input === 'object') {
+        var processData = false;
+        var contentType = false;
+        if (input instanceof jQuery) {
+            var p = input.serializeArray();
+            p.push({name: "_csrfToken", value: $("input[name=_csrfToken]").val()});
+            var f = new FormData();
 
-        var p = input.serializeArray();
-        p.push({name: "_csrfToken", value: $("input[name=_csrfToken]").val()});
-        var f = new FormData();
-
-        $.each(that.form.find('input[type="file"]'), function(i, tag) {
-            $.each($(tag)[0].files, function(i, file) {
-                f.append(tag.name, file);
+            $.each(that.form.find('input[type="file"]'), function(i, tag) {
+                $.each($(tag)[0].files, function(i, file) {
+                    f.append(tag.name, file);
+                });
             });
-        });
 
-        $.each(p, function(i, val) {
-            f.append(val.name, val.value);
-        });
+            $.each(p, function(i, val) {
+                f.append(val.name, val.value);
+            });
+        } else {
+            processData = true;
+            contentType = 'application/x-www-form-urlencoded';
+            var f = input;
+        }
 
 
         that.removeError();
@@ -149,9 +156,9 @@ ajaxValidation.prototype.post = function(url, input, callback) {
             type: "POST",
             url: url,
             data: f,
-            processData: false,
-            contentType: false,
-            //dataType: "json",
+            processData: processData,
+            contentType: contentType,
+            //dataType: dataType,
             success: function(data) {
                 //var obj = jQuery.parseJSON(data); if the dataType is not specified as json uncomment this
                 // do what ever you want with the server response

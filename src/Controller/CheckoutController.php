@@ -102,10 +102,56 @@ class CheckoutController  extends AuthController
             $this->Api->handle($e);
         }
 
-
+        //debug($data);exit;
 
         $this->set(compact('data','address', 'creditcards'));
 
+    }
+
+    public function createToken()
+    {
+        $this->disableAutoRender();
+        $this->request->allowMethod('post');
+        $error = ['error' => []];
+        try {
+            $card = $this->Api->makeRequest($this->Auth->user('token'))
+                ->post('v1/web/checkout/create-token', [
+                    'form_params' => $this->request->getData()
+                ]); //print_r($card->getBody()->getContents());exit;
+            if ($response = $this->Api->success($card)) {
+                $error = $response->parse();
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $this->Api->handle($e);
+            $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+
+        }
+
+        return $this->response->withType('application/json')
+            ->withStringBody(json_encode($error));
+    }
+
+    public function process()
+    {
+        $this->disableAutoRender();
+        $this->request->allowMethod('post');
+        $error = ['error' => []];
+        try {
+            $card = $this->Api->makeRequest($this->Auth->user('token'))
+                ->post('v1/web/checkout/process', [
+                    'form_params' => $this->request->getData()
+                ]); //print_r($card->getBody()->getContents());exit;
+            if ($response = $this->Api->success($card)) {
+                $error = $response->parse();
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $this->Api->handle($e);
+            $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+            $this->response = $this->response->withStatus($e->getResponse()->getStatusCode());
+        }
+
+        return $this->response->withType('application/json')
+            ->withStringBody(json_encode($error));
     }
 
     public function addCard()

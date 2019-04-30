@@ -77,7 +77,7 @@
                 <?php $total = 0;?>
                 <?php $totalOngkir = 0;?>
                 <?php $totalPoint = 0;?>
-                <?php foreach($data['carts'] as $vals):?>
+                <?php foreach($data['carts'] as $origin_id => $vals):?>
                 <div class="c-checkout-card-product">
 
                     <div class="row zl-tx-gray ">
@@ -185,7 +185,7 @@
                                                         Total
                                                     </div>
                                                     <div class="col-lg-12 text-center tx-black">
-                                                        <?php $total += $val['total'];?>
+
                                                         Rp. <?php echo $this->Number->format($val['total']); ?>
                                                     </div>
                                                 </div>
@@ -227,7 +227,7 @@
                                         opsi pengiriman
                                     </h5>
                                     <div class="form-group">
-                                        <select class="form-control shipping-option"  data-id="<?= $i;?>" >
+                                        <select class="form-control shipping-option"  data-id="<?= $i;?>" data-origin-id="<?= $origin_id; ?>" >
                                             <?php foreach($vals['shipping_options'] as $shipping):?>
                                             <option value="<?= $shipping['code'];?>" data-cost="<?= $shipping['cost'];?>" data-etd="<?= $shipping['etd'];?>" data-service="<?= $shipping['service'];?>"><?= $shipping['name'];?></option>
                                             <?php endforeach;?>
@@ -288,7 +288,7 @@
                                 <h3 class="tx-15">Total harga</h3>
                             </div>
                             <div class="col-lg-5 mg-t-15">
-                                <h5 class="tx-black tx-15"> RP.<span class="zl-total"><?php echo $this->Number->format($total);?></span> </h5>
+                                <h5 class="tx-black tx-15"> RP.<span class="zl-total" data-net-total="<?= $data['total']; ?>"><?php echo $this->Number->format($data['gross_total']);?></span> </h5>
                             </div>
 
                             <div class="col-lg-12">
@@ -333,7 +333,7 @@
                             </div>
                             <div class="col-lg-5 mg-t-15">
                                 <h5 class="sub-total tx-black tx-18">
-                                    Rp.<span class="zl-subtotal"><?php echo $this->Number->format($total + $totalOngkir);?></span>
+                                    Rp.<span class="zl-subtotal"><?php echo $this->Number->format($data['total'] + $totalOngkir);?></span>
                                 </h5>
                             </div>
 
@@ -470,14 +470,14 @@
                                             <div class="col-lg-2 text-center">
                                                 <div class="radio">
                                                     <label>
-                                                        <input type="radio" name="payment_method"  value="cc" data-id="<?= $creditcard['id']; ?>">
+                                                        <input type="radio" name="payment_method"  value="credit_card" data-id="<?= $creditcard['id']; ?>">
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="col-lg-10">
                                                 <div class="row">
                                                     <div class="col-lg-4">
-                                                        <img src="<?php echo $this->Url->build('/images/logo_cc/52x32/'. $creditcard['type'] .'.png'); ?>" alt="cc" class="img-responsive">
+                                                        <img src="<?php echo $this->Url->build('/images/logo_cc/128x80/'. $creditcard['type'] .'.png'); ?>" alt="cc" class="img-responsive">
                                                     </div>
                                                     <div class="col-lg-8">
                                                         <h5 class="tx-bank">
@@ -684,16 +684,16 @@
                         </div>
 
                         <div class="col-lg-6 credit-card-logo-wrapper" style="margin-top: 30px;">
-                            <img style="width:50px;" src="<?= $this->Url->build('/images/logo_cc/52x32/visa.png'); ?>" alt="logo kartu kredit visa"
+                            <img style="width:50px;" src="<?= $this->Url->build('/images/logo_cc/128x80/visa.png'); ?>" alt="logo kartu kredit visa"
                                  class="credit-card visa disabled">
 
-                            <img style="width:50px;" src="<?= $this->Url->build('/images/logo_cc/52x32/mastercard.png'); ?>" alt="logo kartu kredit mastercard"
+                            <img style="width:50px;" src="<?= $this->Url->build('/images/logo_cc/128x80/mastercard.png'); ?>" alt="logo kartu kredit mastercard"
                                  class="credit-card mastercard disabled">
 
-                            <img style="width:50px;" src="<?= $this->Url->build('/images/logo_cc/52x32/jcb.png'); ?>" alt="logo kartu kredit jcb"
+                            <img style="width:50px;" src="<?= $this->Url->build('/images/logo_cc/128x80/jcb.png'); ?>" alt="logo kartu kredit jcb"
                                  class="credit-card jcb disabled">
 
-                            <img style="width:50px;" src="<?= $this->Url->build('/images/logo_cc/52x32/amex.png'); ?>" alt="logo kartu kredit amex"
+                            <img style="width:50px;" src="<?= $this->Url->build('/images/logo_cc/128x80/amex.png'); ?>" alt="logo kartu kredit amex"
                                  class="credit-card amex disabled">
                         </div>
 
@@ -762,15 +762,79 @@
 <!-- end: modal tambah kartu kredit -->
 
 
+<div class="modal fade modal-confirm-cc-payment" id="modalTambahKartuKredit" tabindex="-1" role="dialog"
+     aria-labelledby="modalTambahKartuKredit">
+    <div class="modal-dialog" role="document" style="width: 485px;">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        <i class="fas fa-times-circle"></i>
+                    </span>
+                </button>
+                <h4 class="modal-title" id="modalTitle">
+                    Konfirmasi Kartu kredit
+                </h4>
+            </div>
+
+            <?= $this->Form->create(null, ['url' => ['controller' => 'Checkout', 'action' => 'createToken', 'prefix' => false], 'id' => 'token-credit-card-payment', 'class' => 'ajax-helper']); ?>
+            <div class="modal-body">
+                <!-- start: form item #1 -->
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Nomor kartu kredit</label>
+                            <input type="text" name="number" class="form-control" id="input-card-number-confirm" autocomplete="false"
+                                   placeholder="Input nomor kartu kredit" disabled>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 credit-card-logo-wrapper" style="margin-top: 30px; text-align: left;">
+                    </div>
+                </div>
+                <!-- end: form item #1 -->
+
+                <!-- start: form item #2 -->
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="form-group">
+                            <label for="inputCvv">CVV</label>
+                            <input type="text" name="cvv" class="form-control" id="input-card-cvv-confirm" placeholder="000">
+                        </div>
+                    </div>
+
+                </div>
+                <!-- end: form item #2 -->
+            </div>
+            <div class="modal-footer u-mt-10">
+                <div class="row">
+
+                    <div class="col-lg-6">
+                        <button type="submit" class="btn btn-danger btn-block o-modal-item__btn"
+                                style="margin-top: 0px !important;">
+                            <i class="fas fa-save"></i> &nbsp;
+                            Proses Pembayaran
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <?= $this->Form->end(); ?>
+        </div>
+    </div>
+</div>
+
+
 <?php $this->append('script'); ?>
 <?php
 $this->Html->css([
 '/css/plugin.min.css',
 '/css/checkout.css',
+'/css/jquery.fancybox.min.css',
 ], ['block' => true]);
 ?>
 <?php
 $this->Html->script([
+'/js/jquery.fancybox.min.js',
 '/js/checkout.js',
 ], ['block' => true]);
 ?>

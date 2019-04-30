@@ -1,3 +1,5 @@
+"use strict"
+
 $('.selected-address').on('click',function(){
     $('.zl-address-name').html($(this).data('recipent'));
     $('.zl-address-title').html('- ('+$(this).data('title')+')');
@@ -44,7 +46,7 @@ $('.shipping-option').on('change',function(){
     });
     $('.zl-total-ongkir').html(numeral(totalCost).format('0,0')) ;
 
-    var total = numeral($('.zl-total').text()).value();
+    var total = numeral($('.zl-total').data('net-total')).value();
     $('.zl-subtotal').html(numeral(total+totalCost).format('0,0')) ;
 
 
@@ -93,14 +95,14 @@ function wrapperHtmlCC(id, masked_card, type) {
                 <div class="col-lg-2 text-center">
                     <div class="radio">
                         <label>
-                            <input type="radio" name="payment_method" value="cc" data-id="${id}">
+                            <input type="radio" name="payment_method" value="credit_card" data-id="${id}">
                         </label>
                     </div>
                 </div>
                 <div class="col-lg-10">
                     <div class="row">
                         <div class="col-lg-4">
-                            <img src="${basePath}/images/logo_cc/52x32/${type}.png" alt="cc" class="img-responsive">
+                            <img src="${basePath}/images/logo_cc/128x80/${type}.png" alt="cc" class="img-responsive">
                         </div>
                         <div class="col-lg-8">
                             <h5 class="tx-bank">
@@ -123,13 +125,120 @@ function wrapperHtmlCC(id, masked_card, type) {
 
 }
 
+function getSelectedNumberCC(object)
+{
+    return $(object.parents('.row')
+        .get(0))
+        .find('.tx-bank').text().trim();
+}
+
+function getSelectedImageCC(object)
+{
+    return $(object.parents('.row')
+        .get(0))
+        .clone()
+        .find('img')
+        .css('width', '52px');
+}
+
+function processPayment(request) {
+    var basePath = $('meta[name="_basePath"]').attr('content');
+    $.ajax({
+        url: basePath + '/checkout/process',
+        type : 'POST',
+        data : request,
+        dataType : 'json',
+        success: function(response){
+            location.href = basePath + '/checkout';
+        },
+        error: function () {
+            $("#login-popup").modal('show');
+        }
+    });
+}
+
+
+var formCCconfirm = $("#token-credit-card-payment");
+formCCconfirm.submit(function(e) {
+    e.preventDefault(); // avoid to execute the actual submit of the form.
+
+
+    var basePath = $('meta[name="_basePath"]').attr('content');
+    var modal = $(this).parents('.modal');
+    var request = modal.data('request');
+    var cvv = modal.find('#input-card-cvv-confirm')
+    if (cvv.val() == "") {
+        swal('Silahkan input cvv');
+        cvv.focus();
+        return;
+    }
+
+    request.cvv = cvv.val();
+
+    var ajaxRequest = new ajaxValidation(formCCconfirm);
+    ajaxRequest.post(formCCconfirm.attr('action'), request, function(response, data) {
+        if (response.success) {
+            console.log(response, data.result.token);
+
+            if (data.result.token && data.result.token.redirect_url) {
+                var win = $.fancybox.open({
+                    src  : data.result.token.redirect_url,
+                    type : 'iframe',
+                    opts : {
+                        afterShow : function( instance, current ) {
+                            console.info( 'done!' );
+                            console.log(instance, current)
+                        }
+                    }
+                });
+
+                window.addEventListener("message", function (event) {
+                    console.log('receive', event.data);
+                    /*
+                    eci: "05"
+                    status_code: "200"
+                    status_message: "Success, 3D Secure token generated"
+                    token_id: "352820-4357-90a15911-f8d1-45dc-980f-71daf5e4ec29"
+                     */
+
+                    if (event.data && event.data.status_code && event.data.status_code === '200') {
+                        request.token = event.data.token_id;
+                        processPayment(request);
+                    }
+
+
+                    win.close();
+                }, false);
+            }
+
+            formCCconfirm.parents('.modal').modal('hide');
+        } else {
+            //render_error_message(data.error.message);
+            //var alert = $("#login-popup .alert");
+            //alert.removeClass('hide');
+        }
+    });
+
+});
+
+
+$('#create-token-cc').on('click', function(e) {
+
+
+
+
+
+});
+
 
 $("#pay-now").on('click', function(e) {
-    var address_id = $("#addressId").val();
-    var payment_method = $('input[name="payment_method"]').val();
+    var request = {
+        address_id: $("#addressId").val()
+    };
+    var payment_method = $('input[name="payment_method"]:checked');
     var shipping = {};
     $('.shipping-option').each(function(i) {
-        var id = $(this).data('id');
+        var id = $(this).data('origin-id');
         shipping[id] = shipping[id] || {};
         var selected = $(this).find('option:selected');
         shipping[id].code = selected.val();
@@ -137,6 +246,36 @@ $("#pay-now").on('click', function(e) {
 
     });
 
-    console.log(address_id, payment_method, shipping);
+    request.payment_method = payment_method.val();
+    request.shipping = shipping;
+
+    request._csrfToken = $('meta[name="_csrfToken"]').attr('content');
+
+    switch(payment_method.val()) {
+        case 'credit_card':
+            request.card_id = payment_method.data('id');
+
+
+            $("#input-card-number-confirm").val(getSelectedNumberCC(payment_method));
+
+            $('.modal-confirm-cc-payment').modal('show')
+                .data('request', request)
+                .find('.credit-card-logo-wrapper')
+                .html(getSelectedImageCC(payment_method));
+
+        break;
+
+        case 'bca_va':
+        case 'bni_va':
+        case 'permata_va':
+
+        break;
+
+        default:
+            swal('Silahkan pilih metode pembayaran anda');
+        break;
+    }
+
+
 
 });
