@@ -663,7 +663,9 @@ $(document).ready(function() {
     var reff;
     if(reffcode != undefined){
         reff = "reff="+reffcode;
-    }
+    }else{
+        reff = '';
+	}
 
     $('.waShare').on('click',function(){
         window.open('https://web.whatsapp.com//send?text=Temukan '+$(this).data('title')+'Rp. '+numeral($(this).data('price')).format('0,0')+' Dapatkan segera di zolaku '+$(this).data('url')+'?'+reff,'_blank','width=600, height=368');

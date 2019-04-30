@@ -618,7 +618,7 @@ foreach($branch as $k => $vals){
             </div>
         </div>
         <!-- //Product Tabs -->
-    </div> 
+    </div>
 </div>
 
 
