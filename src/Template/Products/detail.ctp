@@ -275,338 +275,353 @@ foreach($branch as $k => $vals){
                 <!-- Product Tabs -->
             </div>
         </div>
-    </div>
-</div>
 
 
-<div class="container">
-    <div class="card-wrapper">
-        <div class="producttab clearfix">
-            <div class="tabsslider horizontal-tabs col-xs-12">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#tab-deskripsi"><i class="fab fa-file-text-o"></i> Deskripsi Produk</a></li>
-                    <li class="item_nonactive"><a data-toggle="tab" href="#tab-highlight"><i class="fab fa-dropbox"></i> Highlight Produk</a></li>
-                    <li class="item_nonactive"><a data-toggle="tab" href="#tab-diskusi"><i class="fa fa-comments"></i> Diskusi Produk</a></li>
-                    <li class="item_nonactive"><a data-toggle="tab" href="#tab-ulasan"><i class="fa fa"></i> Ulasan Produk</a></li>
-                </ul>
-                <div class="tab-content">
-                    <div id="tab-deskripsi" class="tab-pane fade active in">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <h3><strong>Tentang Produk</strong></h3>
-                                <p>
-                                   <?php echo $details['data']['profile']; ?>
-                                </p>
-                            </div>
-                            <div class="col-sm-6">
-                                <h3><strong>Spesifikasi</strong></h3>
-                                <table class="table table-hover">
-                                    <?php foreach($details['data']['attributes'] as $key => $vals): ?>
-                                    <tr>
-                                        <td><?php echo $key; ?></td>
-                                        <td><?php echo $vals; ?></td>
-                                    </tr>
-                                    <?php endforeach; ?>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="tab-highlight" class="tab-pane fade">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <h2><strong>Highlight Produk</strong></h2>
-                                <p>
-                                    <?php echo $details['data']['highlight']; ?>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="tab-diskusi" class="tab-pane fade">
-                        <h4><i class="fa fa-comments"></i><strong> Punya pertanyaan mengenai produk ini?</strong></h4>
-                        <br />
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="bg-red margin-b-10">
-                                    <div class="row">
-                                        <div class="col-sm-1">
-                                            <div><img src="http://localhost/zolaku-front/images/jpeg/users-profile/user-1.jpg" class="img-rounded"></div>
-                                        </div>
-                                        <div class="col-sm-11">
-                                            <?php echo $this->Form->control('comment', ['type' => 'textarea', 'class' => 'form-control', 'label' => false, 'div' => false,'placeholder' => 'Tulis komentar anda disini'])?>
-                                            <br />
-                                            <button class="btn btn-danger btn-radius btn-md pull-right" style="margin-left: 10px;"><i class="fa fa-send"></i><strong> KIRIM KOMENTAR </strong></button>
-                                            <button class="btn btn-radius btn-md pull-right"><strong> HAPUS </strong></button>
-                                        </div>
-                                    </div>
+
+        <div class="panel mb-0" style="border: none !important;">
+            <div class="producttab clearfix">
+                <div class="tabsslider horizontal-tabs col-xs-12">
+                    <ul class="nav nav-tabs" id="myTab">
+                        <li class="active"><a data-toggle="tab" href="#tab-deskripsi"><i class="fa fa-file-text"></i> Deskripsi Produk</a></li>
+                        <li class="item_nonactive"><a data-toggle="tab" href="#tab-highlight"><i class="fab fa-dropbox"></i> Highlight Produk</a></li>
+                        <li class="item_nonactive"><a data-toggle="tab" href="#tab-diskusi"><i class="fa fa-comments"></i> Diskusi Produk</a></li>
+                        <li class="item_nonactive"><a data-toggle="tab" href="#tab-ulasan"><i class="fa fa-edit"></i> Ulasan Produk</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="tab-deskripsi" class="tab-pane fade active in">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h4><strong>Tentang Produk</strong></h4>
+                                    <p>
+                                        <?php echo $details['data']['profile']; ?>
+                                    </p>
                                 </div>
-                                <br />
+                                <div class="col-sm-6">
+                                    <h4><strong>Spesifikasi</strong></h4>
+                                    <table class="table table-hover">
+                                        <?php foreach($details['data']['attributes'] as $key => $vals): ?>
+                                        <tr>
+                                            <td><?php echo $key; ?></td>
+                                            <td><?php echo $vals; ?></td>
+                                        </tr>
+                                        <?php endforeach; ?>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="bg-red margin-b-10">
-                                    <div class="row">
-                                        <div class="col-sm-1">
-                                            <div><img src="http://localhost/zolaku-front/images/jpeg/users-profile/user-1.jpg" class="img-rounded"></div>
-                                        </div>
-                                        <div class="col-sm-11">
+                        <div id="tab-highlight" class="tab-pane fade">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h4><strong>Highlight Produk</strong></h4>
+                                    <p>
+                                        <?php echo $details['data']['highlight']; ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab-diskusi" class="tab-pane fade">
+                            <h4><i class="fa fa-comments"></i><strong> Punya pertanyaan mengenai produk ini?</strong></h4>
+                            <br />
+
+                            <!-- FORM -->
+                            <?php if($this->request->getSession()->check('Auth')):?>
+                            <form id="comment">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="bg-red margin-b-10">
                                             <div class="row">
-                                                <span><strong>Axl Calvin Pearl</strong> 21 April 2019   Pukul 11:30</span>
-                                                <br />
-                                                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <div class="row">
-                                                    <div class="col-sm-1">
-                                                        <div><img src="http://localhost/zolaku-front/images/jpeg/users-profile/user-1.jpg" class="img-rounded"></div>
-                                                    </div>
-                                                    <div class="col-sm-11">
-                                                        <div>
-                                                            <span><strong>Testing </strong> 24 April 2019   Pukul 11:40</span>
-                                                            <br />
-                                                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                                                        </div>
-                                                    </div>
+                                                <div class="col-sm-1">
+                                                    <div><img src="<?= $this->Url->build($_basePath . 'files/Customers/avatar/'.$this->request->getSession()->read('Auth.Customers.avatar') ); ?>" class="img-rounded"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <div class="row">
-                                                    <div class="col-sm-1">
-                                                        <div><img src="http://localhost/zolaku-front/images/jpeg/users-profile/user-1.jpg" class="img-rounded"></div>
-                                                    </div>
-                                                    <div class="col-sm-11">
-                                                        <div>
-                                                            <?php echo $this->Form->control('comment', ['type' => 'textarea', 'class' => 'form-control', 'label' => false, 'div' => false,'placeholder' => 'Tulis komentar anda disini'])?>
-                                                            <br />
-                                                            <button class="btn btn-danger btn-radius btn-md pull-right" style="margin-left: 10px;"><i class="fa fa-send"></i><strong> KIRIM KOMENTAR </strong></button>
-                                                            <button class="btn btn-secondary btn-radius btn-md pull-right"><strong> HAPUS </strong></button>
-                                                        </div>
-                                                    </div>
+                                                <div class="col-sm-11">
+                                                    <span class="msg-for" style="display:none;"></span>
+                                                    <input type="hidden" id="forId" name="parent_id" value="">
+                                                    <input type="hidden"  name="product_id" value="<?php echo $details['data']['id']; ?>">
+                                                    <?php echo $this->Form->control('comment', ['type' => 'textarea', 'class' => 'form-control', 'label' => false, 'div' => false,'placeholder' => 'Tulis diskusi anda disini', 'id' => 'komentar'])?>
+                                                    <br />
+                                                    <button class="btn btn-danger btn-radius btn-md pull-right btn-kirim-komen" style="margin-left: 10px;"><i class="fa fa-send"></i><strong> Kirim </strong></button>
+                                                    <button type="button" class="btn btn-radius btn-md pull-right btn-hapus-comment"><strong> Hapus </strong></button>
+                                                    <div class="clearfix"></div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <br />
                                     </div>
                                 </div>
-                                <br />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="bg-red margin-b-10">
-                                    <div class="row">
-                                        <div class="col-sm-1">
-                                            <div><img src="http://localhost/zolaku-front/images/jpeg/users-profile/user-1.jpg" class="img-rounded"></div>
-                                        </div>
-                                        <div class="col-sm-11">
+                            </form>
+                            <?php endif;?>
+                            <!-- END FORM-->
+
+                            <?php if(!empty($comment['data'])):?>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <?php foreach($comment['data'] as $key => $vals):?>
+                                        <div class="bg-red mb-5">
                                             <div class="row">
-                                                <span><strong>Axl Calvin Pearl</strong> 24 April 2019   Pukul 11:30</span>
-                                                <br />
-                                                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <div class="row">
-                                                    <div class="col-sm-1">
-                                                        <div><img src="http://localhost/zolaku-front/images/jpeg/users-profile/user-1.jpg" class="img-rounded"></div>
-                                                    </div>
-                                                    <div class="col-sm-11">
-                                                        <div>
-                                                            <?php echo $this->Form->control('comment', ['type' => 'textarea', 'class' => 'form-control', 'label' => false, 'div' => false,'placeholder' => 'Tulis komentar anda disini'])?>
-                                                            <br />
-                                                            <button class="btn btn-danger btn-radius btn-md pull-right" style="margin-left: 10px;"><i class="fa fa-send"></i><strong> KIRIM KOMENTAR </strong></button>
-                                                            <button class="btn btn-secondary btn-radius btn-md pull-right"><strong> HAPUS </strong></button>
-                                                        </div>
-                                                    </div>
+                                                <div class="col-sm-1">
+                                                    <div><img src="<?= $this->Url->build($_basePath . 'files/Customers/avatar/' . $vals['customer']['avatar']); ?>" class="img-rounded"></div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br />
-                            </div>
-                        </div>
-                    </div>
-                    <div id="tab-ulasan" class="tab-pane fade">
-                        <h4><i class="fa fa-pencil"></i><strong> Rating & Ulasan Produk</strong></h4>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <br />
-                                <div class="bg-red margin-b-10">
-                                    <div class="row">
-                                        <div class="col-sm-5">
-                                            <div class="row">
-                                                <div class="col-sm-12">
-                                                    <div class="col-sm-3">
-                                                        <span><h1><b> 4 / 5 </b></h1></span>
-                                                    </div>
-                                                    <div class="col-sm-9">
-                                                        <span class="pull-left"> 4 dari 5 </span>
+                                                <div class="col-sm-11">
+                                                    <div class="row">
+                                                        <span>
+                                                            <strong><?= $vals['customer']['full_name']?></strong> |
+                                                            <i class="fa fa-clock"></i> <?php
+                                                                echo $this->Time->timeAgoInWords(
+                                                                       $vals['created'], array(
+                                                                        'end' => '+10 year',
+                                                                        'format' => 'F jS, Y',
+                                                                        'accuracy' => array('second' => 'second')
+                                                                    )
+                                                                );
+                                                            ?>
+                                                            <?php if($this->request->getSession()->check('Auth')):?>
+                                                            | <a href="javascript:void(0);" class="label label-danger reply-msg" data-for-name="<?= $vals['customer']['full_name']?>" data-for-id="<?= $vals['id']?>"> Reply </a>
+                                                            <?php endif;?>
+                                                            <?php if($this->request->getSession()->read('Auth.Customers.email') == $vals['customer']['email']):?>
+                                                             <a href="javascript:void(0);" class="label label-danger delete-msg ml-2" data-for-name="<?= $vals['customer']['full_name']?>" data-for-id="<?= $vals['id']?>"> Delete </a>
+                                                            <?php endif;?>
+                                                        </span>
                                                         <br />
-                                                        <div class="rating">
-                                                            <div class="rating-box">
-                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                                <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                        <p><?= $vals['comment']?></p>
+                                                    </div>
+                                                    <?php if(!empty($vals['children'])):?>
+                                                        <?php foreach($vals['children'] as $val):?>
+                                                            <div class="col-sm-12">
+                                                                <div class="row">
+                                                                    <div class="col-sm-1">
+                                                                        <div><img src="<?= $this->Url->build($_basePath . 'files/Customers/avatar/' . $val['customer']['avatar']); ?>" class="img-rounded"></div>
+                                                                    </div>
+                                                                    <div class="col-sm-11">
+                                                                        <div>
+                                                                            <span>
+                                                                                <strong><?= $val['customer']['full_name']?> </strong>  |
+                                                                                <i class="fa fa-clock"></i> <?php
+                                                                                    echo $this->Time->timeAgoInWords(
+                                                                                           $val['created'], array(
+                                                                                            'end' => '+10 year',
+                                                                                            'format' => 'F jS, Y',
+                                                                                            'accuracy' => array('second' => 'second')
+                                                                                        )
+                                                                                    );
+                                                                                ?>
+                                                                                <?php if($this->request->getSession()->check('Auth')):?>
+                                                                                | <a href="javascript:void(0);" class="label label-danger reply-msg" data-for-name="<?= $vals['customer']['full_name']?>" data-for-id="<?= $vals['id']?>"> Reply </a>
+                                                                                <?php endif;?>
+                                                                                <?php if($this->request->getSession()->read('Auth.Customers.email') == $val['customer']['email']):?>
+                                                                                 <a href="javascript:void(0);" class="label label-danger delete-msg ml-2" data-for-name="<?= $val['customer']['full_name']?>" data-for-id="<?= $val['id']?>"> Delete </a>
+                                                                                <?php endif;?>
+                                                                            </span>
+                                                                            <br />
+                                                                            <p><?= $val['comment']?></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        <?php endforeach;?>
+                                                    <?php endif;?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <?php endforeach;?>
+
+                                    </div>
+                                </div>
+                            <?php else :?>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="bg-red margin-b-10">
+                                            <p>Belum ada diskusi untuk produk ini.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif;?>
+
+
+                        </div>
+                        <div id="tab-ulasan" class="tab-pane fade">
+                            <h4><i class="fa fa-pencil"></i><strong> Rating & Ulasan Produk</strong></h4>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <br />
+                                    <div class="bg-red margin-b-10">
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="col-sm-3">
+                                                            <span><h1><b> 4 / 5 </b></h1></span>
+                                                        </div>
+                                                        <div class="col-sm-9">
+                                                            <span class="pull-left"> 4 dari 5 </span>
+                                                            <br />
+                                                            <div class="rating">
+                                                                <div class="rating-box">
+                                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                                    <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <br />
-                                            <div class="row">
-                                                <div class="col-sm-2">
-                                                    <span> 5 </span>
-                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                </div>
-                                                <div class="col-sm-9">
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="30" style="width:80%"></div>
+                                                <br />
+                                                <div class="row">
+                                                    <div class="col-sm-2">
+                                                        <span> 5 </span>
+                                                        <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <div class="progress">
+                                                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="30" style="width:80%"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                        <div> 25 </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-1">
-                                                    <div> 25 </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-2">
-                                                    <span> 4 </span>
-                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                </div>
-                                                <div class="col-sm-9">
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="30" style="width:80%"></div>
+                                                <div class="row">
+                                                    <div class="col-sm-2">
+                                                        <span> 4 </span>
+                                                        <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <div class="progress">
+                                                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="30" style="width:80%"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                        <div> 17 </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-1">
-                                                    <div> 17 </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-2">
-                                                    <span> 3 </span>
-                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                </div>
-                                                <div class="col-sm-9">
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="30" style="width:80%"></div>
+                                                <div class="row">
+                                                    <div class="col-sm-2">
+                                                        <span> 3 </span>
+                                                        <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <div class="progress">
+                                                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="30" style="width:80%"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                        <div> 11 </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-1">
-                                                    <div> 11 </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-2">
-                                                    <span> 2 </span>
-                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                </div>
-                                                <div class="col-sm-9">
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="30" style="width:80%"></div>
+                                                <div class="row">
+                                                    <div class="col-sm-2">
+                                                        <span> 2 </span>
+                                                        <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <div class="progress">
+                                                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="30" style="width:80%"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                        <div> 8 </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-1">
-                                                    <div> 8 </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-2">
-                                                    <span> 1 </span>
-                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                </div>
-                                                <div class="col-sm-9">
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="30" style="width:80%"></div>
+                                                <div class="row">
+                                                    <div class="col-sm-2">
+                                                        <span> 1 </span>
+                                                        <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <div class="progress">
+                                                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="30" style="width:80%"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                        <div> 6 </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-1">
-                                                    <div> 6 </div>
+                                            </div>
+                                            <div class="col-sm-7">
+                                                <div class="col-sm-12">
+                                                    <div class="col-sm-1">
+                                                        <div><img src="http://localhost/zolaku-front/images/jpeg/users-profile/user-1.jpg" class="img-rounded"></div>
+                                                    </div>
+                                                    <div class="col-sm-11">
+                                                        <?php echo $this->Form->control('comment', ['type' => 'textarea', 'class' => 'form-control', 'label' => false, 'div' => false,'placeholder' => 'Tulis komentar anda disini'])?>
+                                                        <br />
+                                                        <button class="btn btn-default btn-radius btn-sm pull-left btn-unggah" style="margin-right: 5px;"><i class="fa fa-upload"></i><strong> Unggah dokumen pendukung </strong></button>
+                                                        <div class="rating">
+                                                            <span> Tambahkan rating </span>
+                                                            <div class="rating-box" style="padding-left: 55px;">
+                                                                <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                                <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                            </div>
+                                                        </div>
+                                                        <br />
+                                                        <button class="btn btn-danger btn-radius btn-sm pull-left" style="margin-right: 10px; margin-bottom: 10px;"><i class="fa fa-send"></i><strong> KIRIM KOMENTAR </strong></button>
+                                                        <button class="btn btn-secondary btn-radius btn-sm pull-left" style="margin-bottom: 10px;"><strong> HAPUS </strong></button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-7">
-                                            <div class="col-sm-12">
-                                                <div class="col-sm-1">
-                                                    <div><img src="http://localhost/zolaku-front/images/jpeg/users-profile/user-1.jpg" class="img-rounded"></div>
-                                                </div>
-                                                <div class="col-sm-11">
-                                                    <?php echo $this->Form->control('comment', ['type' => 'textarea', 'class' => 'form-control', 'label' => false, 'div' => false,'placeholder' => 'Tulis komentar anda disini'])?>
-                                                    <br />
-                                                    <button class="btn btn-default btn-radius btn-sm pull-left btn-unggah" style="margin-right: 5px;"><i class="fa fa-upload"></i><strong> Unggah dokumen pendukung </strong></button>
-                                                    <div class="rating">
-                                                        <span> Tambahkan rating </span>
-                                                        <div class="rating-box" style="padding-left: 55px;">
-                                                            <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                            <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                            <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                            <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                            <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                    </div>
+                                    <br />
+                                </div>
+                            </div>
+                            <h4> 2 ulasan untuk <strong> <?php echo $details['data']['name']; ?> </strong></h4>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="bg-red margin-b-10">
+                                        <div class="row">
+                                            <div class="col-sm-1">
+                                                <div><img src="http://localhost/zolaku-front/images/jpeg/users-profile/user-1.jpg" class="img-rounded"></div>
+                                            </div>
+                                            <div class="col-sm-11">
+                                                <div class="row">
+                                                    <span><strong>Axl Calvin Pearl</strong> 21 April 2019   Pukul 11:30</span>
+                                                    <div class="rating pull-right">
+                                                        <div class="rating-box star-box">
+                                                            <span class="fa fa-stack star-rating"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                            <span class="fa fa-stack star-rating"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                            <span class="fa fa-stack star-rating"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                            <span class="fa fa-stack star-rating"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                            <span class="fa fa-stack star-rating"><i class="fa fa-star-o fa-stack-1x"></i></span>
                                                         </div>
                                                     </div>
                                                     <br />
-                                                    <button class="btn btn-danger btn-radius btn-sm pull-left" style="margin-right: 10px; margin-bottom: 10px;"><i class="fa fa-send"></i><strong> KIRIM KOMENTAR </strong></button>
-                                                    <button class="btn btn-secondary btn-radius btn-sm pull-left" style="margin-bottom: 10px;"><strong> HAPUS </strong></button>
+                                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <br />
                                 </div>
-                                <br />
                             </div>
-                        </div>
-                        <h4> 2 ulasan untuk <strong> <?php echo $details['data']['name']; ?> </strong></h4>
-                        <br />
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="bg-red margin-b-10">
-                                    <div class="row">
-                                        <div class="col-sm-1">
-                                            <div><img src="http://localhost/zolaku-front/images/jpeg/users-profile/user-1.jpg" class="img-rounded"></div>
-                                        </div>
-                                        <div class="col-sm-11">
-                                            <div class="row">
-                                                <span><strong>Axl Calvin Pearl</strong> 21 April 2019   Pukul 11:30</span>
-                                                <div class="rating pull-right">
-                                                    <div class="rating-box star-box">
-                                                        <span class="fa fa-stack star-rating"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                        <span class="fa fa-stack star-rating"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                        <span class="fa fa-stack star-rating"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                        <span class="fa fa-stack star-rating"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                        <span class="fa fa-stack star-rating"><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                    </div>
-                                                </div>
-                                                <br />
-                                                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="bg-red margin-b-10">
+                                        <div class="row">
+                                            <div class="col-sm-1">
+                                                <div><img src="http://localhost/zolaku-front/images/jpeg/users-profile/user-1.jpg" class="img-rounded"></div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="bg-red margin-b-10">
-                                    <div class="row">
-                                        <div class="col-sm-1">
-                                            <div><img src="http://localhost/zolaku-front/images/jpeg/users-profile/user-1.jpg" class="img-rounded"></div>
-                                        </div>
-                                        <div class="col-sm-11">
-                                            <div class="row">
-                                                <span><strong>Axl Calvin Pearl</strong> 21 April 2019   Pukul 11:30</span>
-                                                <div class="rating pull-right">
-                                                    <div class="rating-box star-box">
-                                                        <span class="fa fa-stack star-rating"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                        <span class="fa fa-stack star-rating"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                        <span class="fa fa-stack star-rating"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                        <span class="fa fa-stack star-rating"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                        <span class="fa fa-stack star-rating"><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                            <div class="col-sm-11">
+                                                <div class="row">
+                                                    <span><strong>Axl Calvin Pearl</strong> 21 April 2019   Pukul 11:30</span>
+                                                    <div class="rating pull-right">
+                                                        <div class="rating-box star-box">
+                                                            <span class="fa fa-stack star-rating"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                            <span class="fa fa-stack star-rating"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                            <span class="fa fa-stack star-rating"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                            <span class="fa fa-stack star-rating"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                            <span class="fa fa-stack star-rating"><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                        </div>
                                                     </div>
+                                                    <br />
+                                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
                                                 </div>
-                                                <br />
-                                                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                                                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -616,10 +631,14 @@ foreach($branch as $k => $vals){
                     </div>
                 </div>
             </div>
+            <!-- //Product Tabs -->
         </div>
-        <!-- //Product Tabs -->
+
+
     </div>
 </div>
+
+
 
 
 <div id="template-popover-question" style="display:none">

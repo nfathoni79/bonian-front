@@ -163,7 +163,7 @@
                                                             </button>
                                                             <button type="button" class="btn-share waShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $cart['slug'],'prefix' => false],true);?>" data-title="<?= $cart['name'];?>" data-price="<?= $cart['price'];?>" style="background-color:#79bc25; padding-left: 10px; padding-right: 10px;" title="Share" onclick=""><i class="fab fa-whatsapp"></i>
                                                             </button>
- 
+
                                                         </div>
 
                                                     </div>

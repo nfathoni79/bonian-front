@@ -59,6 +59,7 @@ class LoginController extends AuthController
                }
 
 
+
                try {
                    $this->Api->makeRequest($json['result']['data']['token'])
                        ->post('v1/web/customers/save-browser', [

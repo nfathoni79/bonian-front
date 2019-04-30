@@ -8,8 +8,15 @@ use Cake\I18n\Number;
  *
  *
  */
-class ProductsController extends AppController
+class ProductsController extends AuthController
 {
+
+
+    public function initialize()
+    {
+        parent::initialize();
+        $this->Auth->allow(['detail']);
+    }
     /**
      * Index method
      *
@@ -37,6 +44,63 @@ class ProductsController extends AppController
             $this->set(compact('details'));
         }
 
+        if(!empty($details['data'])){
+            try {
+                $discuss = $this->Api->makeRequest()
+                    ->post('v1/discussion?limit=100', [
+                        'form_params' => [
+                            'product_id' => $details['data']['id'],
+                        ]
+                    ]);
+                if ($response = $this->Api->success($discuss)) {
+                    $json = $response->parse();
+                    $comment = ['is_error' => false, 'data' => $json['result']['data'], 'paginate' => $json['paging']];
+                }
+            } catch(\GuzzleHttp\Exception\ClientException $e) {
+
+            }
+            $this->set(compact('comment'));
+        }
+
+    }
+
+
+    public function comment(){
+
+        $this->disableAutoRender();
+        $this->request->allowMethod('post');
+        try {
+            $comment = $this->Api->makeRequest($this->Auth->user('token'))
+                ->post('v1/web/discussion/add', [
+                    'form_params' => $this->request->getData()
+                ]);
+            if ($response = $this->Api->success($comment)) {
+                $error = $response->parse();
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+        }
+        return $this->response->withType('application/json')
+            ->withStringBody(json_encode($error));
+    }
+
+    public function deleteComment(){
+
+        $this->disableAutoRender();
+        $this->request->allowMethod('post');
+        try {
+            $comment = $this->Api->makeRequest($this->Auth->user('token'))
+                ->post('v1/web/discussion/delete', [
+                    'form_params' => $this->request->getData()
+                ]);
+            if ($response = $this->Api->success($comment)) {
+                $error = $response->parse();
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+        }
+        return $this->response->withType('application/json')
+            ->withStringBody(json_encode($error));
     }
 
 }

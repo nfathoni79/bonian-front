@@ -198,3 +198,66 @@ function addCommas(nStr)
     }
     return x1 + x2;
 }
+
+$('.btn-hapus-comment').on('click',function(){
+    $('#komentar').val('');
+})
+
+$('.reply-msg').on('click',function(){
+    var name = $(this).data('for-name');
+    var id = $(this).data('for-id');
+    $('.msg-for').html('Silahkan tulis diskusi untuk '+name).show();
+    $('#forId').val(id);
+
+    var x = $('#comment').offset().top - 300;
+    jQuery('html,body').animate({scrollTop: x}, 500);
+    $("#komentar").focus();
+
+});
+
+$('.btn-kirim-komen').on('click',function(e){
+
+    e.preventDefault();
+    var basePath = $('meta[name="_basePath"]').attr('content');
+    var dataForm = $("#comment").serializeArray();
+    dataForm.push({name: '_csrfToken', value: $('meta[name="_csrfToken"]').attr('content')});
+    $.ajax({
+        url: basePath + '/products/comment',
+        type : 'POST',
+        data : dataForm,
+        dataType : 'json',
+        success: function(response){
+            window.location.href = "#tab-diskusi";
+            location.reload();
+        },
+        error: function () {
+            $("#login-popup").modal('show');
+        }
+    });
+})
+
+$('.delete-msg').on('click',function(e){
+
+    e.preventDefault();
+
+    var id = $(this).data('for-id');
+    var basePath = $('meta[name="_basePath"]').attr('content');
+
+    $.ajax({
+        url: basePath + '/products/delete-comment',
+        type : 'POST',
+        data : {id: id, _csrfToken:$('meta[name="_csrfToken"]').attr('content')},
+        dataType : 'json',
+        success: function(response){
+            window.location.href = "#tab-diskusi";
+            location.reload();
+        },
+        error: function () {
+            $("#login-popup").modal('show');
+        }
+    });
+})
+
+
+var hash = window.location.hash;
+$('#myTab a[href="' + hash + '"]').tab('show');
