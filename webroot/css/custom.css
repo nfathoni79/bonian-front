@@ -263,6 +263,14 @@
   border-color: transparent;
 }
 
+.bd-none{
+    border: none;
+}
+
+.bd-none-force{
+    border: none !important;
+}
+
 .bd {
   border: 1px solid rgba(0, 0, 0, 0.15);
 }
@@ -44180,6 +44188,10 @@ a.hover-white-8:hover, a.hover-white-8:focus {
     background-color: #62a811 !important;
 }
 
+.zl-bg-white{
+    background: #fff !important;
+}
+
 .col-2dot4,
 .col-sm-2dot4,
 .col-md-2dot4,
@@ -44652,3 +44664,24 @@ a.hover-white-8:hover, a.hover-white-8:focus {
     line-height: 18px;
     margin: 0 0 5px;
 }
+
+
+
+
+
+
+/* ------------------------------------------------------- */
+/* ############### 3.3 Product Detail page ############### */
+/* ------------------------------------------------------- */
+
+.product-detail .producttab .tabsslider.horizontal-tabs .nav-tabs li.active a, .producttab .tabsslider.horizontal-tabs .nav-tabs li:hover a{
+    background: #dc5054;
+    color: #fff;
+}
+
+.product-detail .producttab .tabsslider.horizontal-tabs .nav-tabs{
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid #e1e1e1;
+} 
