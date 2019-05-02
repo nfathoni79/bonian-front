@@ -1,3 +1,12 @@
+<style>
+.dash-line{
+    border:1px dashed #E2E2E2;
+    margin-bottom:10px;
+}
+.mg-t-m25{
+    margin-top: -25px;
+}
+</style>
 <?php $this->assign('title', trim($details['data']['name'])); ?>
 
 <?php
@@ -616,7 +625,42 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 pd-r-0">
         <div class="card product-detail">
             <div class="panel mb-0">
-                <div class="producttab clearfix">asdw</div>
+                <div class="producttab clearfix">
+                  <!-- start metode pembayaran -->
+                  <h5 class="tx-black mg-t-m25">Metode Pembayaran</h5>
+                  <div class="dash-line"></div>
+                  <div class="col-sm-12 mg-t-20">
+                      <?php echo $this->Html->image('/images/logo_bank/bca.png', ['alt' => 'logo bca', 'width' => '77']); ?>
+                      <p class="mg-t-5 ">Bank BCA</p>
+                  </div>
+                  <div class="col-sm-12 mg-t-20 ">
+                      <?php echo $this->Html->image('/images/logo_bank/mandiri.png', ['alt' => 'logo mandiri', 'width' => '83']); ?>
+                      <p class="mg-t-5 ">Bank Mandiri</p>
+                  </div>
+                  <div class="col-sm-12 mg-t-20 mg-b-45">
+                      <?php echo $this->Html->image('/images/logo_bank/bni.png', ['alt' => 'logo bni', 'width' => '77']); ?>
+                      <p class="mg-t-5 ">Bank BNI</p>
+                  </div>
+                  <!-- end metode pembayaran -->
+                  <!-- start metode pengiriman -->
+                  <h5 class="tx-black">Metode Pengiriman</h5>
+                  <div class="col-sm-12 pd-0-force">
+                      <div class="dash-line"></div>
+                  </div>
+                  <div class="col-sm-6 mg-t-20 ">
+                      <?php echo $this->Html->image('/images/logo_courier/jne.png', ['alt' => 'logo jne']); ?>
+                  </div>
+                  <div class="col-sm-6 mg-t-20">
+                      <?php echo $this->Html->image('/images/logo_courier/tiki.png', ['alt' => 'logo tiki']); ?>
+                  </div>
+                  <div class="col-sm-6 mg-t-20">
+                      <?php echo $this->Html->image('/images/logo_courier/jnt.png', ['alt' => 'logo jnt']); ?>
+                  </div>
+                  <div class="col-sm-6 mg-t-20">
+                      <?php echo $this->Html->image('/images/logo_courier/gosend.png', ['alt' => 'logo gosend']); ?>
+                  </div>
+                  <!-- end metode pengiriman -->
+                </div>
             </div>
         </div>
     </div>
@@ -644,4 +688,3 @@ $this->Html->script([
 ?>
 
 <?php $this->end(); ?>
-
