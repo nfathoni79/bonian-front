@@ -1,3 +1,14 @@
+<style>
+    #upload_button {
+        display: inline-block;
+    }
+    #upload_button input[type=file] {
+        display:none;
+    }
+    #upload_button .error-message {
+        display:none;
+    }
+</style>
 <div class="container">
     <div class="block block_0">
         <div class="row">
@@ -56,7 +67,7 @@
                                             <?php if ($profile['is_verified']) : ?>
                                                 <span class="label label-success"><i class="fa fa-check-circle" aria-hidden="true"></i> Terverifikasi</span>
                                             <?php else : ?>
-                                                <span class="label label-default"><i class="fa fa-close" aria-hidden="true"></i> Belum terverifikasi</span>
+                                                <span class="label label-danger"><i class="fa fa-close" aria-hidden="true"></i> Belum terverifikasi</span>
                                             <?php endif;?>
                                         </td>
                                     </tr>
@@ -69,12 +80,32 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="bg-red margin-b-15">
+                                    <div class="alert alert-danger alert-msg" style="display:none;"></div>
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <div id="profile-pic"><img src="http://localhost/zolaku-front/images/jpeg/users-profile/user-1.jpg" class="img-responsive img-rounded"></div>
+                                            <div id="profile-pic">
+                                                <img src="<?= $this->Url->build($_basePath . 'files/Customers/avatar/'.$this->request->getSession()->read('Auth.Customers.avatar')); ?>" alt="" class="img-fluid k-img-rounded avatar">
+                                            </div>
                                         </div>
                                         <div class="col-md-8">
-                                            <button class="btn btn-default btn-block"><i class="fa fa-camera"></i> Ganti Foto</button>
+
+                                            <?= $this->Form->create(null, [
+                                                'url' => [
+                                                    'controller' => 'Profile',
+                                                    'action' => 'uploadImage',
+                                                    'prefix' => 'user'
+                                                ],
+                                                'id' => 'imageUploadForm',
+                                                'type' => 'file'
+                                            ]); ?>
+
+                                            <div id="upload_button">
+                                                <label>
+                                                    <?php echo $this->Form->control('avatar',['type' => 'file', 'label' => false, 'div' => false, 'id'=>'ImageBrowse']);  ?>
+                                                    <span class="btn btn-default btn-block"><i class="fa fa-camera"></i> Ganti Foto</span>
+                                                </label>
+                                            </div>
+                                            <?php  echo $this->Form->end(); ?>
                                             Ukuran gambar maksimum 1MB, Format gambar JPEG, PNG
                                         </div>
                                     </div>
@@ -122,6 +153,11 @@ $this->Html->script([
 ?>
 <script>
     $(document).ready(function() {
+
+        $("#ImageBrowse").on("change", function() {
+            $("#imageUploadForm").submit();
+        });
+
         $('.link-referral').popover({
             html: true,
             content: function() {
@@ -132,6 +168,35 @@ $this->Html->script([
         });
 
         $('#qrcode').qrcode({width: 100,height: 100,text: "<?php echo $this->Url->build(['prefix' => false, 'controller' => 'Home', 'action' => 'index','reff' => $profile['reffcode']], ['fullBase' => true]);?>"});
+
+
+        $('#imageUploadForm').on('submit',(function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+
+            $.ajax({
+                type:'POST',
+                url: $(this).attr('action'),
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                success:function(data){
+                    if (data.error.length == '0') {
+                        $('.alert-msg').hide();
+                        location.reload();
+                    } else {
+                        $('.alert-msg').html(data.error.data).show();
+                        return false;
+                    }
+                },
+                error: function(data){
+                    $("#login-popup").modal('show');
+                }
+            });
+        }));
+
+
     })
 
 </script>
