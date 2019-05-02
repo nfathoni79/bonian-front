@@ -619,7 +619,7 @@
 
 
 <!-- start:modal tambah kartu kredit -->
-<div class="modal fade" id="modalTambahKartuKredit" tabindex="-1" role="dialog" aria-labelledby="modalTambahKartuKredit">
+<div class="modal fade" id="modalTambahKartuKredit" tabindex="-1" role="dialog" aria-labelledby="login-popupLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #d9534f;color: #ffffff;border-top-left-radius:6px;border-top-right-radius:6px;">
@@ -634,99 +634,71 @@
             </div>
 
             <?= $this->Form->create(null, ['url' => ['controller' => 'Checkout', 'action' => 'addCard', 'prefix' => false], 'id' => 'add-credit-card-form', 'class' => 'ajax-helper']); ?>
-            <div class="modal-body">
+            <div class="modal-body mg-b-20">
 
-                    <!-- start: form item #1 -->
-                    <div class="row">
-
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <label for="inputNamaKartu">Nama pemilik kartu</label>
-                                <input type="text" class="form-control" id="input-card-hold-name"
-                                    placeholder="Input nama pemilik kartu kredit">
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="inputNomorKartu">Nomor kartu kredit</label>
-                                <input type="text" name="number" class="form-control" id="input-card-number" autocomplete="false"
-                                    placeholder="Input nomor kartu kredit">
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 credit-card-logo-wrapper" style="margin-top: 30px;">
-                            <img style="width:50px;" src="<?= $this->Url->build('/images/logo_cc/128x80/visa.png'); ?>" alt="logo kartu kredit visa"
-                                 class="credit-card visa disabled">
-
-                            <img style="width:50px;" src="<?= $this->Url->build('/images/logo_cc/128x80/mastercard.png'); ?>" alt="logo kartu kredit mastercard"
-                                 class="credit-card mastercard disabled">
-
-                            <img style="width:50px;" src="<?= $this->Url->build('/images/logo_cc/128x80/jcb.png'); ?>" alt="logo kartu kredit jcb"
-                                 class="credit-card jcb disabled">
-
-                            <img style="width:50px;" src="<?= $this->Url->build('/images/logo_cc/128x80/amex.png'); ?>" alt="logo kartu kredit amex"
-                                 class="credit-card amex disabled">
-                        </div>
-
-                    </div>
-                    <!-- end: form item #1 -->
-
-                    <!-- start: form item #2 -->
-                    <div class="row">
-
-                        <div class="col-lg-8">
-                            <div class="form-group">
-                                <label>Masa Berlaku</label>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <input type="text" name="exp_month" class="form-control" id="input-card-expired-month"
-                                               placeholder="MM">
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <input type="text" name="exp_year" class="form-control" id="input-card-expired-year"
-                                               placeholder="YYYY">
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-4">
-                            <div class="form-group">
-                                <label for="inputCvv">CVV</label>
-                                <input type="text" name="cvv" class="form-control" id="input-card-cvv" placeholder="000">
-                            </div>
-                        </div>
-
-                    </div>
-                    <!-- end: form item #2 -->
-
-
-
-            </div>
-
-
-            <div class="modal-footer u-mt-10">
                 <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="inputNamaKartu">Nama pemilik kartu</label>
+                            <input type="text" class="form-control" id="input-card-hold-name" placeholder="Input nama pemilik kartu kredit">
+                        </div>
+                    </div>
 
                     <div class="col-lg-6">
-                        <button type="submit" class="btn btn-danger btn-block o-modal-item__btn"
-                            style="margin-top: 0px !important;">
-                            <i class="fas fa-save"></i> &nbsp;
-                            Tambahkan Kartu
-                        </button>
+                        <div class="form-group">
+                            <label for="inputNomorKartu">Nomor kartu kredit</label>
+                            <input type="text" name="number" class="form-control" id="input-card-number" autocomplete="false"  placeholder="Input nomor kartu kredit">
+                        </div>
                     </div>
 
-                    <div class="col-lg-4">
-                        <button type="button" class="btn btn-default btn-block" style="min-height: 40px;">
-                            Batal
-                        </button>
+                    <div class="col-lg-6 credit-card-logo-wrapper" style="margin-top: 30px;">
+                        <img style="width:50px;" src="<?= $this->Url->build('/images/logo_cc/128x80/visa.png'); ?>" alt="logo kartu kredit visa" class="credit-card visa disabled">
+                        <img style="width:50px;" src="<?= $this->Url->build('/images/logo_cc/128x80/mastercard.png'); ?>" alt="logo kartu kredit mastercard" class="credit-card mastercard disabled">
+                        <img style="width:50px;" src="<?= $this->Url->build('/images/logo_cc/128x80/jcb.png'); ?>" alt="logo kartu kredit jcb"   class="credit-card jcb disabled">
+                        <img style="width:50px;" src="<?= $this->Url->build('/images/logo_cc/128x80/amex.png'); ?>" alt="logo kartu kredit amex" class="credit-card amex disabled">
                     </div>
 
                 </div>
+
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="form-group">
+                            <label>Masa Berlaku</label>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <input type="text" name="exp_month" class="form-control" id="input-card-expired-month" placeholder="MM">
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <input type="text" name="exp_year" class="form-control" id="input-card-expired-year" placeholder="YYYY">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label for="inputCvv">CVV</label>
+                            <input type="text" name="cvv" class="form-control" id="input-card-cvv" placeholder="000">
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
+
+
+            <div class="modal-footer" style="border-top:1px solid #e5e5e5 !important;padding: 15px !important;;">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <button class="btn btn-danger btn-lg btn-block btn-radius" type="submit" ><i class="fas fa-save"></i> Tambahkan Kartu</button>
+                    </div>
+                    <div class="col-lg-4">
+                        <button type="button" class="btn btn-default btn-lg btn-block btn-radius " data-dismiss="modal">Batal</button>
+                    </div>
+                </div>
+            </div>
+
             <?= $this->Form->end(); ?>
         </div>
     </div>

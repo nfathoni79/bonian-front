@@ -379,10 +379,10 @@
                                 <div class="modal-footer">
                                     <div class="row">
                                         <div class="col-lg-8">
-                                            <button class="btn btn-default btn-lg btn-block btn-radius" href="JavaScript:void(0);" data-dismiss="modal">Nanti saja</button>
+                                            <button class="btn btn-default btn-lg btn-block btn-radius"  data-dismiss="modal">Nanti saja</button>
                                         </div>
                                         <div class="col-lg-4">
-                                            <button class="btn btn-danger btn-lg btn-block btn-radius btn-v-ok" href="JavaScript:void(0);">Ok</button>
+                                            <button class="btn btn-danger btn-lg btn-block btn-radius btn-v-ok" >Ok</button>
                                         </div>
                                     </div>
                                 </div>
@@ -441,10 +441,10 @@
                                 <div class="modal-footer">
                                     <div class="row">
                                         <div class="col-lg-8">
-                                            <button class="btn btn-default btn-lg btn-block btn-radius" href="JavaScript:void(0);" data-dismiss="modal">Nanti saja</button>
+                                            <button class="btn btn-default btn-lg btn-block btn-radius" data-dismiss="modal">Nanti saja</button>
                                         </div>
                                         <div class="col-lg-4">
-                                            <button class="btn btn-danger btn-lg btn-block btn-radius btn-c-ok" href="JavaScript:void(0);">Ok</button>
+                                            <button class="btn btn-danger btn-lg btn-block btn-radius btn-c-ok" >Ok</button>
                                         </div>
                                     </div>
                                 </div>
