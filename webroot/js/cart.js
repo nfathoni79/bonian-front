@@ -64,7 +64,12 @@ $.initQuantity = function ($control) {
             });
             $value.blur(function () {
                 var val = parseInt($value.val(), 10);
-                $value.val(val > 0 ? val : 1)
+                var maxQty = parseInt($value.attr('max'));
+                if(val > maxQty){
+                    $value.val(maxQty)
+                }else{
+                    $value.val(val > 0 ? val : 1)
+                }
                 qtyChange(cart_id);
             })
         }
@@ -72,15 +77,12 @@ $.initQuantity = function ($control) {
 };
 $.initQuantity($(".quantity-controls"));
 
-function qtyChange(data_id, values){
+function qtyChange(data_id){
     var data_qty = parseInt($('#zl-qty-'+data_id).val());
     var harga_satuan = $('#zl-satuan-'+data_id).data('value');
     var harga_tambahan = $('#zl-addprice-'+data_id).data('value');
     var point = parseInt($('#zl-point-'+data_id).text());
     harga_tambahan =  (harga_tambahan > 0) ? harga_tambahan : 0;
-
-    <!--warna: Merah-->
-    <!--ukuran: L-->
 
     var dataForm = $("#cart-"+data_id).serializeArray();
     dataForm.push({name: '_csrfToken', value: $('meta[name="_csrfToken"]').attr('content')},{name: 'qty', value: data_qty});
@@ -94,7 +96,7 @@ function qtyChange(data_id, values){
     image = baseImagePath + 'images/50x50/' + image.data('image-name');
 
     var total, totalpoint;
-    total = (harga_satuan * data_qty) + (harga_tambahan * data_qty);
+    total = ((harga_satuan * data_qty) + (harga_tambahan * data_qty));
     totalpoint = point * data_qty;
     $.ajax({
         url: basePath + '/cart/add',
@@ -128,6 +130,7 @@ function qtyChange(data_id, values){
                 }
 
                 cartDropdown();
+                grandTotal();
             } else {
                 $('.message').html('<div class="alert alert-danger" style="margin-bottom:0px !important;padding: 5px 10px !important;">'+response.message+'</div>')
                 $(".notification").show();
@@ -236,6 +239,7 @@ $('.zl-checkout').on('click',function(){
 
     var basePath = $('meta[name="_basePath"]').attr('content');
     var voucher = $("input[name='voucher']:checked").val();
+    var kupon = $("input[name='kupon']:checked").val();
     var point = $("#point").val();
 
     var forData =  new Array();
@@ -243,6 +247,7 @@ $('.zl-checkout').on('click',function(){
         {name: '_csrfToken', value: $('meta[name="_csrfToken"]').attr('content')},
         {name: 'voucher', value: voucher},
         {name: 'point', value: point},
+        {name: 'kupon', value: kupon},
     );
     $('.note').each(function(i, obj) {
         forData.push({name: $(this).attr("name"), value: $(this).val()});
@@ -294,11 +299,32 @@ $('.btn-v-ok').on('click',function(){
     var radioValue = $("input[name='voucher']:checked").val();
     if(radioValue){
         $("#modalVoucher").modal('hide');
+
+
+
     }else{
         swal("Tidak ada voucer yang di pilih");
     }
 })
 
+$('.btn-c-ok').on('click',function(){
+    var radioValue = $("input[name='kupon']:checked").val();
+    var priceValue = $("input[name='kupon']:checked").data('price');
+    if(radioValue){
+        $("#modalCoupon").modal('hide');
+        $('#coupon-price').html(numeral(priceValue).format('0,0'));
+        grandTotal();
+    }else{
+        swal("Tidak ada kupon yang di pilih");
+    }
+})
+
+function grandTotal(){
+    var subtotal = numeral($('#subtotal').text()).value();
+    var coupon = numeral($('#coupon-price').text()).value();
+
+    $('#grandtotal').html(numeral((subtotal-coupon)).format('0,0'));
+}
 
 
 $('.hapus-selected').on('click',function(){

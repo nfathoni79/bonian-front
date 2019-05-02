@@ -92,9 +92,24 @@ class CartController  extends AuthController
         } catch(\GuzzleHttp\Exception\ClientException $e) {
             //TODO set log
         }
-//        debug($carts);
+
+        try {
+            $coupon = $this->Api->makeRequest($this->Auth->user('token'))
+                ->get('v1/web/cart/coupon');
+            if ($response = $this->Api->success($coupon)) {
+                $json = $response->parse();
+                if(!empty($json['result']['data'])){
+                    $coupon = $json['result']['data'];
+                }else{
+                    $coupon = [];
+                }
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            //TODO set log
+        }
+//        debug($coupon);
 //        exit;
-        $this->set(compact('carts'));
+        $this->set(compact('carts', 'coupon'));
 
         $response = [];
         try {
@@ -137,7 +152,7 @@ class CartController  extends AuthController
             $this->Api->handle($e);
             $response = json_decode($e->getResponse()->getBody()->getContents(), true);
         }
-
+        
         try {
             $customer = $this->Api->makeRequest($this->Auth->user('token'))
                 ->get('v1/web/profile');
