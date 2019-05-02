@@ -211,7 +211,7 @@
                                 <!-- end: card item content -->
 
                                 <div class="col-lg-12 c-card__item-catatan">
-                                    <a href="javascript:void(0);" class="zl-tx-red--light zl-note" data-id="<?= $cart['cartid'];?>"><i class="fa fa-pencil-alt"></i> catatan barang</a>
+                                    <a href="JavaScript:void(0);" class="zl-tx-red--light zl-note" data-id="<?= $cart['cartid'];?>"><i class="fa fa-pencil-alt"></i> catatan barang</a>
                                     <div class="col-lg-12 zl-note-<?= $cart['cartid'];?>" style="display: none;">
                                         <div class="form-group">
                                             <textarea class="form-control note" name="note[<?= $cart['cartid'];?>]" placeholder="Tulis Catatan Barang" value="<?= $cart['comment'];?>"><?= $cart['comment'];?></textarea>
@@ -278,7 +278,7 @@
                     <!-- end: title -->
 
 
-                    <!-- start: product modal item -->
+                    <!-- start: product voucher modal item -->
                     <div class="modal fade" id="modalVoucher" tabindex="-1" role="dialog" aria-labelledby="login-popupLabel">
                         <div class="modal-dialog modal-md address-edit" role="document">
                             <div class="modal-content">
@@ -326,10 +326,63 @@
                                 <div class="modal-footer">
                                     <div class="row">
                                         <div class="col-lg-8">
-                                            <button class="btn btn-default btn-lg btn-block btn-radius" href="#" data-dismiss="modal">Nanti saja</button>
+                                            <button class="btn btn-default btn-lg btn-block btn-radius" href="JavaScript:void(0);" data-dismiss="modal">Nanti saja</button>
                                         </div>
                                         <div class="col-lg-4">
-                                            <button class="btn btn-danger btn-lg btn-block btn-radius btn-v-ok" href="#">Ok</button>
+                                            <button class="btn btn-danger btn-lg btn-block btn-radius btn-v-ok" href="JavaScript:void(0);">Ok</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end: product voucher modal item -->
+
+                    <!-- start: product coupon modal item -->
+                    <div class="modal fade" id="modalCoupon" tabindex="-1" role="dialog" aria-labelledby="login-popupLabel">
+                        <div class="modal-dialog modal-md address-edit" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color: #d9534f;color: #ffffff;border-top-left-radius:6px;border-top-right-radius:6px;">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="color: #ffffff;">&times;</span></button>
+                                    <h4 class="modal-title" id="login-popupLabel" style="text-align: left;">Pilih Kupon</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-lg-12" style="overflow: auto;height: 300px;">
+                                            <?php
+                                            $colored = ['1' => 'v-colored-box', '2' => 'v-colored-box-off', '3' => 'v-colored-box-off'];
+                                            $texted = ['1' => 'label-danger', '2' => 'label-default', '3' => 'label-default'];
+                                            $end = ['1' => 'v-end', '2' => 'v-end-off', '3' => 'v-end-off'];
+                                            ?>
+                                            <?php foreach($coupon as $vals):?>
+                                            <div class="panel panel-default">
+                                                <div class="panel-body" style="padding:0px;">
+                                                    <div class="row">
+                                                        <div class="col-md-5">
+                                                            <div class="v-colored-box" style="height: 10.25rem !important;">
+                                                                <div class="v-text-discount">Kupon</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5 v-text-box">
+                                                            Kupon produk <br><strong><?= $vals['product_coupon']['product']['name'];?></strong><br> potongan harga Rp. <?php  echo $this->Number->precision($vals['product_coupon']['price'], 0);?>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <input type="radio" name="kupon" value="<?php echo $vals['id'];?>" data-price="<?= $vals['product_coupon']['price']; ?>">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <?php endforeach;?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                            <button class="btn btn-default btn-lg btn-block btn-radius" href="JavaScript:void(0);" data-dismiss="modal">Nanti saja</button>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <button class="btn btn-danger btn-lg btn-block btn-radius btn-c-ok" href="JavaScript:void(0);">Ok</button>
                                         </div>
                                     </div>
                                 </div>
@@ -347,8 +400,16 @@
                                 <h3>Voucher</h3>
                             </div>
                             <div class="col-lg-5 p-3">
-                                <a href="javascript:void(0)" class="btn btn-default btn-sm btn-voucher" data-target="#modalVoucher" data-toggle="modal">Pilih voucher</a>
+                                <a href="JavaScript:void(0);" class="btn btn-default btn-sm btn-voucher" data-target="#modalVoucher" data-toggle="modal">Pilih voucher</a>
                             </div>
+                            <?php if(!empty($coupon)):?>
+                            <div class="col-lg-7">
+                                <h3>Kupon</h3>
+                            </div>
+                            <div class="col-lg-5 p-3">
+                                <a href="JavaScript:void(0);" class="btn btn-default btn-sm btn-voucher" data-target="#modalCoupon" data-toggle="modal">Pilih kupon</a>
+                            </div>
+                            <?php endif;?>
                             <div class="col-lg-7">
                                 <h3>Gunakan Poin</h3>
                                 <h5 style="margin-top: 0px; font-size:0.8em; padding-right: 0px; text-align: left;">
@@ -371,9 +432,34 @@
                                     Rp.<span id="subtotal"><?php echo $this->Number->format($subtotal);?></span>
                                 </h5>
                             </div>
+                            <?php if(!empty($coupon)):?>
+                                <div class="col-lg-7">
+                                    <h3>Potongan Kupon</h3>
+                                </div>
+                                <div class="col-lg-5">
+                                    <h5 class="sub-total">
+                                        Rp.<span id="coupon-price">0</span>
+                                    </h5>
+                                </div>
+                            <?php endif;?>
+
+                            <div class="col-lg-12">
+                                <div style="border:1px dashed #E2E2E2; margin-top:15px;"></div>
+                            </div>
+
+                            <div class="col-lg-7">
+                                <h3>grand total</h3>
+                            </div>
+                            <div class="col-lg-5">
+                                <h5 class="sub-total">
+                                    Rp.<span id="grandtotal"><?php echo $this->Number->format($subtotal);?></span>
+                                </h5>
+                            </div>
+
                             <div class="col-lg-7">
                                 <h3>total poin bonus</h3>
                             </div>
+
                             <div class="col-lg-5">
                                 <h5 id="subtotal-point"><?php echo $this->Number->format($totalPoint);?></h5>
                             </div>

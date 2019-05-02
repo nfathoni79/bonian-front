@@ -1,0 +1,18 @@
+.c-kupon-desc{
+    border: 1px!important;
+    border-style: solid!important;
+    border-color: #61a811!important;
+    display: flex;
+}
+.c-kupon-kiri-desc{
+    padding-left: 5px;
+    padding-right: 5px;
+    display: inline-flex;
+    color: #61a811
+}
+.c-kupon-kanan-desc{
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: #61a811;
+    display: inline-flex;
+}
