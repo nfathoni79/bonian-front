@@ -215,25 +215,40 @@ $('.reply-msg').on('click',function(){
 
 });
 
-$('.btn-kirim-komen').on('click',function(e){
+$('.btn-kirim-komen').on('click',function(){
 
-    e.preventDefault();
     var basePath = $('meta[name="_basePath"]').attr('content');
     var dataForm = $("#comment").serializeArray();
     dataForm.push({name: '_csrfToken', value: $('meta[name="_csrfToken"]').attr('content')});
-    $.ajax({
-        url: basePath + '/products/comment',
-        type : 'POST',
-        data : dataForm,
-        dataType : 'json',
-        success: function(response){
-            window.location.href = "#tab-diskusi";
-            location.reload();
-        },
-        error: function () {
-            $("#login-popup").modal('show');
-        }
+
+
+
+    var formComment = $("#comment");
+    formComment.submit(function(e) {
+        var ajaxRequest = new ajaxValidation(formComment);
+        ajaxRequest.post( basePath + '/products/comment', dataForm, function(response, data) {
+            if (response.success) {
+                location.href = '<?= $this->Url->build(); ?>';
+            } else {
+
+            }
+        });
+        e.preventDefault(); // avoid to execute the actual submit of the form.
     });
+
+    // $.ajax({
+    //     url: basePath + '/products/comment',
+    //     type : 'POST',
+    //     data : dataForm,
+    //     dataType : 'json',
+    //     success: function(response){
+    //         window.location.href = "#tab-diskusi";
+    //         location.reload();
+    //     },
+    //     error: function () {
+    //         $("#login-popup").modal('show');
+    //     }
+    // });
 })
 
 $('.delete-msg').on('click',function(e){

@@ -300,8 +300,6 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                         <p>
                                             <?php echo $details['data']['profile']; ?>
                                         </p>
-                                    </div>
-                                    <div class="col-sm-12">
                                         <h4><strong>Spesifikasi</strong></h4>
                                         <table class="table table-hover">
                                             <?php foreach($details['data']['attributes'] as $key => $vals): ?>
@@ -330,7 +328,7 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
 
                                 <!-- FORM -->
                                 <?php if($this->request->getSession()->check('Auth')):?>
-                                <form id="comment">
+                                <form id="comment" class="ajax-helper">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="bg-red margin-b-10">
@@ -342,7 +340,9 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                                         <span class="msg-for" style="display:none;"></span>
                                                         <input type="hidden" id="forId" name="parent_id" value="">
                                                         <input type="hidden"  name="product_id" value="<?php echo $details['data']['id']; ?>">
-                                                        <?php echo $this->Form->control('comment', ['type' => 'textarea', 'class' => 'form-control', 'label' => false, 'div' => false,'placeholder' => 'Tulis diskusi anda disini', 'id' => 'komentar'])?>
+                                                        <div class="form-group">
+                                                            <?php echo $this->Form->control('comment', ['type' => 'textarea', 'class' => 'form-control ', 'label' => false, 'div' => false,'placeholder' => 'Tulis diskusi anda disini', 'id' => 'komentar'])?>
+                                                        </div>
                                                         <br />
                                                         <button class="btn btn-danger btn-radius btn-md pull-right btn-kirim-komen" style="margin-left: 10px;"><i class="fa fa-send"></i><strong> Kirim </strong></button>
                                                         <button type="button" class="btn btn-radius btn-md pull-right btn-hapus-comment"><strong> Hapus </strong></button>
@@ -441,8 +441,6 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                         </div>
                                     </div>
                                 <?php endif;?>
-
-
                             </div>
                             <div id="tab-ulasan" class="tab-pane fade">
                                 <h4><i class="fa fa-pencil"></i><strong> Rating & Ulasan Produk</strong></h4>
