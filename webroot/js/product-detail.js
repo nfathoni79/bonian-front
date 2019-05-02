@@ -231,25 +231,12 @@ $('.btn-kirim-komen').on('click',function(){
                 window.location.href = "#tab-diskusi";
                 location.reload();
             } else {
-                $("#login-popup").modal('show');
+                // $("#login-popup").modal('show');
             }
         });
-        e.preventDefault(); // avoid to execute the actual submit of the form.
+        e.preventDefault(); 
     });
 
-    // $.ajax({
-    //     url: basePath + '/products/comment',
-    //     type : 'POST',
-    //     data : dataForm,
-    //     dataType : 'json',
-    //     success: function(response){
-    //         window.location.href = "#tab-diskusi";
-    //         location.reload();
-    //     },
-    //     error: function () {
-    //         $("#login-popup").modal('show');
-    //     }
-    // });
 })
 
 $('.delete-msg').on('click',function(e){

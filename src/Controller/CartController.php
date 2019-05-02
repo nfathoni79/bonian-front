@@ -92,6 +92,8 @@ class CartController  extends AuthController
         } catch(\GuzzleHttp\Exception\ClientException $e) {
             //TODO set log
         }
+//        debug($carts);
+//        exit;
         $this->set(compact('carts'));
 
         $response = [];

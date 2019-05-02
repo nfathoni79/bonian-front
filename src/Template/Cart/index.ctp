@@ -211,14 +211,11 @@
                                 <!-- end: card item content -->
 
                                 <div class="col-lg-12 c-card__item-catatan">
-                                    catatan barang
-                                    <div class="col-lg-12 o-item-catatan">
-                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-                                        commodo
-                                        ligula eget dolor. Aenean massa. Cum sociis
-                                        natoque penatibus et magnis dis parturient montes, nascetur
-                                        ridiculus
-                                        mus.
+                                    <a href="javascript:void(0);" class="zl-tx-red--light zl-note" data-id="<?= $cart['cartid'];?>"><i class="fa fa-pencil-alt"></i> catatan barang</a>
+                                    <div class="col-lg-12 zl-note-<?= $cart['cartid'];?>" style="display: none;">
+                                        <div class="form-group">
+                                            <textarea class="form-control note" name="note[<?= $cart['cartid'];?>]" placeholder="Tulis Catatan Barang" value="<?= $cart['comment'];?>"><?= $cart['comment'];?></textarea>
+                                        </div>
                                     </div>
                                 </div>
 

@@ -199,12 +199,13 @@
 
                             <div class="col-lg-12 c-card-item__catatan mg-l-115 wd-85p">
                                 <h5 class="tx-black">Catatan Barang</h5>
-
-                                <div class="col-lg-12 c-catatan-detail">
-                                    <p>
+                                <p>
+                                    <?php if(!empty($val['comment'])):?>
+                                        <?php echo $val['comment'];?>
+                                    <?php else:?>
                                         Tidak ada catatan
-                                    </p>
-                                </div>
+                                    <?php endif;?>
+                                </p>
                             </div>
 
 

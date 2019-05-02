@@ -228,19 +228,31 @@ function deleteCart(product_id, rel){
     });
 }
 
+$('.zl-note').on('click',function(){
+    $('.zl-note-'+$(this).data('id')).show();
+})
+
 $('.zl-checkout').on('click',function(){
 
     var basePath = $('meta[name="_basePath"]').attr('content');
     var voucher = $("input[name='voucher']:checked").val();
     var point = $("#point").val();
+
+    var forData =  new Array();
+    forData.push(
+        {name: '_csrfToken', value: $('meta[name="_csrfToken"]').attr('content')},
+        {name: 'voucher', value: voucher},
+        {name: 'point', value: point},
+    );
+    $('.note').each(function(i, obj) {
+        forData.push({name: $(this).attr("name"), value: $(this).val()});
+    });
+
+
     $.ajax({
         url: basePath + '/checkout/validation',
         type : 'POST',
-        data : {
-            voucher : voucher,
-            point : point,
-            _csrfToken: $('meta[name="_csrfToken"]').attr('content')
-        },
+        data : forData,
         dataType : 'json',
         success: function(response){
             location.href = basePath + '/checkout';
