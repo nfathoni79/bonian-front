@@ -235,6 +235,35 @@ $('.zl-note').on('click',function(){
     $('.zl-note-'+$(this).data('id')).show();
 })
 
+
+$("#claim-form input[type='text']").on("keyup", function(){
+    if($(this).val() != "" == true){
+        $("input[type='submit']").removeAttr("disabled");
+    } else {
+        $("input[type='submit']").attr("disabled", "disabled");
+    }
+});
+
+var formEl = $("#claim-form");
+formEl.submit(function(e) {
+    var ajaxRequest = new ajaxValidation(formEl);
+    ajaxRequest.post(formEl.attr('action'), formEl.find(':input'), function(response, data) {
+        if(data.is_error){
+            swal(data.message);
+        }else {
+            window.location.href = "#modalvoucher";
+            location.reload();
+        }
+    });
+    e.preventDefault(); // avoid to execute the actual submit of the form.
+});
+
+
+var hash = window.location.hash;
+if(hash){
+    $(hash).modal('show');
+}
+
 $('.zl-checkout').on('click',function(){
 
     var basePath = $('meta[name="_basePath"]').attr('content');
@@ -300,7 +329,7 @@ $('.btn-v-ok').on('click',function(){
     var radioValue = $("input[name='voucher']:checked").val();
 
     if(radioValue){
-        $("#modalVoucher").modal('hide');
+        $("#modalvoucher").modal('hide');
     }else{
         swal("Tidak ada voucer yang di pilih");
     }

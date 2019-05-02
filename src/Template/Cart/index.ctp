@@ -279,7 +279,7 @@
 
 
                     <!-- start: product voucher modal item -->
-                    <div class="modal fade" id="modalVoucher" tabindex="-1" role="dialog" aria-labelledby="login-popupLabel">
+                    <div class="modal fade" id="modalvoucher" tabindex="-1" role="dialog" aria-labelledby="login-popupLabel">
                         <div class="modal-dialog modal-md address-edit" role="document">
                             <div class="modal-content">
                                 <div class="modal-header" style="background-color: #d9534f;color: #ffffff;border-top-left-radius:6px;border-top-right-radius:6px;">
@@ -290,16 +290,26 @@
                                     <div class="row">
                                         <div class="col-md-12 mg-b-15">
                                             <div class="well" style="margin: 0px !important;">
-                                                <form method="post" accept-charset="utf-8" id="claim-form" class="ajax-helpers" action="/zolaku-front/user/voucher/iclaim"><div style="display:none;"><input type="hidden" name="_method" value="POST"><input type="hidden" name="_csrfToken" autocomplete="off" value="639920335f4e8fdb13bc8f053a0d8fa4497d06d2684f7811765a5443ca077f9244ce0d2cc5d6b168fc29abc1bb05b69fd8ea9ffa9b664ca007e8100f8d1232d6"></div>                                        <div class="form-group row" style="margin: 2px !important;">
-                                                    <label class="col-lg-4 col-form-label text-right">Kode voucher</label>
-                                                    <div class="col-lg-6">
-                                                        <input class="form-control" name="voucher" id="voucher" type="text" placeholder="Input kode voucher" required="">
+
+                                                <?= $this->Form->create(null, [
+                                                'url' => [
+                                                'controller' => 'Voucher',
+                                                'action' => 'iclaim',
+                                                'prefix' => 'user'
+                                                ],
+                                                'id' => 'claim-form',
+                                                'class' => 'ajax-helpers'
+                                                ]); ?>
+                                                    <div class="form-group row" style="margin: 2px !important;">
+                                                        <label class="col-lg-4 col-form-label text-right">Kode voucher</label>
+                                                        <div class="col-lg-6">
+                                                            <input class="form-control" name="voucher" id="voucher" type="text" placeholder="Input kode voucher" required="">
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                            <input type="submit" value="Simpan" class="btn btn-danger btn-md btn-radius" disabled="disabled">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-lg-2">
-                                                        <input type="submit" value="Simpan" class="btn btn-danger btn-md btn-radius">
-                                                    </div>
-                                                </div>
-                                                </form>
+                                                <?= $this->Form->end(); ?>
                                             </div>
                                         </div>
                                         <div class="col-lg-12" style="overflow: auto;height: 300px;">
@@ -446,7 +456,7 @@
                                 <h3>Voucher</h3>
                             </div>
                             <div class="col-lg-5 p-3">
-                                <a href="JavaScript:void(0);" class="btn btn-default btn-sm btn-voucher" data-target="#modalVoucher" data-toggle="modal">Pilih voucher</a>
+                                <a href="JavaScript:void(0);" class="btn btn-default btn-sm btn-voucher" data-target="#modalvoucher" data-toggle="modal">Pilih voucher</a>
                             </div>
                             <?php if(!empty($coupon)):?>
                             <div class="col-lg-7">
