@@ -49,7 +49,7 @@
                             <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $product['slug']]); ?>" title="<?= h($product['name']); ?>">
                                 <?php echo $this->Text->truncate(
                                     h($product['name']),
-                                    25,
+                                    30,
                                     [
                                         'ellipsis' => '...',
                                         'exact' => false

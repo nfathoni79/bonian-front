@@ -166,9 +166,25 @@
                                     <div class="right-block right-b">
 
                                         <div class="caption">
+                                            <div class="row">
+                                                <div class="col-lg-7">
+                                                    <div class="rating">
+                                                        <?php
+                                                            $rate = $v['product']['rating'];
+                                                            for ($x = 0; $x < $rate; $x++) {
+                                                                echo '<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>';
+                                                            }
+                                                            for ($x = 0; $x < 5-$rate; $x++) {
+                                                            echo '<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>';
+                                                            }
+                                                        ?>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-5 pd-0 tx-center"><span class="badge" style="margin-top: 0px !important;"><?= $v['product']['point']; ?> Poin</span></div>
+                                            </div>  
                                             <h4><a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $v['product']['slug']]); ?>" title="<?= h($v['product']['name']); ?>" target="_self">  <?php echo $this->Text->truncate(
                                                 h($v['product']['name']),
-                                                25,
+                                                30,
                                                 [
                                                 'ellipsis' => '...',
                                                 'exact' => false

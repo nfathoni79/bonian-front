@@ -176,7 +176,7 @@
                                                   <div class="caption">
                                                       <h4><a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug']]); ?>" title="<?= h($vals['name']); ?>" target="_self">  <?php echo $this->Text->truncate(
                                                           h($vals['name']),
-                                                          25,
+                                                          30,
                                                           [
                                                           'ellipsis' => '...',
                                                           'exact' => false
@@ -265,7 +265,7 @@
                                                   <div class="caption">
                                                       <h4><a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug']]); ?>" title="<?= h($vals['name']); ?>" target="_self">  <?php echo $this->Text->truncate(
                                                           h($vals['name']),
-                                                          25,
+                                                          30,
                                                           [
                                                           'ellipsis' => '...',
                                                           'exact' => false

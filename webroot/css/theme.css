@@ -4507,7 +4507,7 @@ select {
   -webkit-box-shadow: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  background: url("../images/icons/bg-selectbox.png") no-repeat right center #fff; }
+  background: url("../images/icon/bg-selectbox.png") no-repeat right center #fff; }
 
 textarea {
   height: auto;

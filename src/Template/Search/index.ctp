@@ -14,7 +14,7 @@
 
         <!-- start: bagian kiri -->
         <div class=" col-lg-3 content-aside left_column sidebar-offcanvas c-filter">
-            <h3 class="modtitle">Filter Produk </h3>
+            <h3 class="modtitle mg-t-0">Filter Produk </h3>
             <span id="close-sidebar" class="fa fa-times"></span>
 
 
@@ -320,12 +320,12 @@
                                                         src="image/demo/colors/black.jpg" alt="image"></a>
                                         </li>
                                     </ul> */ ?>
-                                    <div class="caption">
+                                    <div class="caption tx-left">
                                         <h4>
                                             <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $product['slug']]); ?>" title="<?= h($product['name']); ?>">
                                                 <?php echo $this->Text->truncate(
                                                     h($product['name']),
-                                                    25,
+                                                    30,
                                                     [
                                                         'ellipsis' => '...',
                                                         'exact' => false

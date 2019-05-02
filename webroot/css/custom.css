@@ -44769,3 +44769,16 @@ a.hover-white-8:hover, a.hover-white-8:focus {
   .b-tw{
       background-color: #37b2db;
   }
+
+  .caption h4 a{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+select.form-control{
+    background-image: url("../images/icon/bg-selectbox.png");
+}
+
+
+

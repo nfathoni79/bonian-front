@@ -91,7 +91,7 @@
                                       <h4 class="tx-bold"><a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $flash_sale['product']['slug']]); ?>" title="<?= h($flash_sale['product']['name']); ?>" target="_self">
                                               <?php echo $this->Text->truncate(
                                                   h($flash_sale['product']['name']),
-                                                  25,
+                                                  30,
                                                   [
                                                       'ellipsis' => '...',
                                                       'exact' => false
