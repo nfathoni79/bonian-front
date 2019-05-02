@@ -4,7 +4,7 @@
     <div class="module user-menu">
         <div class="modcontent profile-container">
             <div class="profile-image">
-                <img src="<?= $this->Url->build('/images/jpeg/users-profile/user-1.jpg'); ?>" width="40px" />
+                <img src="<?= $this->Url->build($_basePath . 'files/Customers/avatar/thumbnail-'.$this->request->getSession()->read('Auth.Customers.avatar')); ?>" width="40px" />
             </div>
             <div class="profile-name">
                 <span class="full-name">

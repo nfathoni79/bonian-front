@@ -231,7 +231,7 @@ $('.btn-kirim-komen').on('click',function(){
                 window.location.href = "#tab-diskusi";
                 location.reload();
             } else {
-
+                $("#login-popup").modal('show');
             }
         });
         e.preventDefault(); // avoid to execute the actual submit of the form.

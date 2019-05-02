@@ -22,6 +22,41 @@ class ProfileController extends AuthController
         }
     }
 
+    public function uploadImage(){
+
+        $this->disableAutoRender();
+        $this->request->allowMethod('post');
+        $error = ['error' => []];
+
+        try {
+
+            $avatar = $this->Api->makeRequest($this->Auth->user('token'))
+                ->post('v1/web/profile/upload-image', [
+                    'form_params' => $this->request->getData()
+                ]);
+            if ($response = $this->Api->success($avatar)) {
+                $json = $response->parse();
+
+                if(!empty($json['error'])){
+                    foreach($json['error'] as $val){
+                        $error['error']['data'] = $val['validExtension'];
+                        break;
+                    }
+                }else{
+                    $fileAvatar = $json['result']['data'];
+                    $session = $this->request->getSession()->write('Auth.Customers.avatar', $fileAvatar);
+                }
+
+            }
+
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+        }
+
+        return $this->response->withType('application/json')
+            ->withStringBody(json_encode($error));
+    }
+
     public function index()
     {
         $profile = $this->getProfile();
