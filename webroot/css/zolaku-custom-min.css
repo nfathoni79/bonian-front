@@ -4,6 +4,9 @@ body {
     font-family: 'Montserrat', 'sans-serif' !important;
 }
 
+.typeheader-6 .header-center{
+    padding: 20px 0;
+}
 
 .fixed#header-fixed{
     width:100%;
