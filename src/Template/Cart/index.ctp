@@ -280,10 +280,14 @@
 
                     <!-- start: product voucher modal item -->
                     <div class="modal fade" id="modalvoucher" tabindex="-1" role="dialog" aria-labelledby="login-popupLabel">
-                        <div class="modal-dialog modal-md address-edit" role="document">
+                        <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header" style="background-color: #d9534f;color: #ffffff;border-top-left-radius:6px;border-top-right-radius:6px;">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="color: #ffffff;">&times;</span></button>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">
+                                            <i class="fas fa-times-circle"></i>
+                                        </span>
+                                    </button>
                                     <h4 class="modal-title" id="login-popupLabel" style="text-align: left;">Pilih Voucher</h4>
                                 </div>
                                 <div class="modal-body">
@@ -389,10 +393,14 @@
 
                     <!-- start: product coupon modal item -->
                     <div class="modal fade" id="modalCoupon" tabindex="-1" role="dialog" aria-labelledby="login-popupLabel">
-                        <div class="modal-dialog modal-md address-edit" role="document">
+                        <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header" style="background-color: #d9534f;color: #ffffff;border-top-left-radius:6px;border-top-right-radius:6px;">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="color: #ffffff;">&times;</span></button>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">
+                                            <i class="fas fa-times-circle"></i>
+                                        </span>
+                                    </button>
                                     <h4 class="modal-title" id="login-popupLabel" style="text-align: left;">Pilih Kupon</h4>
                                 </div>
                                 <div class="modal-body">

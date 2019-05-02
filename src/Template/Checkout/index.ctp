@@ -550,8 +550,7 @@
 <div class="modal fade" id="modalAlamat" tabindex="-1" role="dialog" aria-labelledby="modalAlamat">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-
-            <div class="modal-header">
+            <div class="modal-header" style="background-color: #d9534f;color: #ffffff;border-top-left-radius:6px;border-top-right-radius:6px;">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">
                         <i class="fas fa-times-circle"></i>
@@ -567,27 +566,29 @@
                 <!-- start: modal item #1 -->
                 <div class="c-modal-item">
                     <?php foreach($address as $vals):?>
-                    <hr>
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <h5 class="c-modal-item__name ">
-                                <strong>
-                                    <span><?php echo $vals['recipient_name'];?></span>
-                                    <span>(<?php echo $vals['title'];?>)</span>
-                                </strong>
-                            </h5>
-                            <p class="c-modal-item__address">
-                                <span><?php echo $vals['address'];?></span>,
-                                <span><?php echo $vals['postal_code'];?></span>
-                            </p>
-                            <p class="c-modal-item__phone">
-                                <span><?php echo $vals['recipient_phone'];?></span>
-                            </p>
-                        </div>
-                        <div class="col-lg-4 text-center valign-middle-force">
-                            <a href="#" class="btn btn-danger btn-block btn-radius o-modal-item__btn u-flex-center selected-address" data-id="<?php echo $vals['id'];?>" data-title="<?php echo $vals['title'];?>" data-recipent="<?php echo $vals['recipient_name'];?>" data-phone="<?php echo $vals['recipient_phone'];?>" data-address="<?php echo $vals['address'];?>" data-postalcode="<?php echo $vals['postal_code'];?>">
-                                Pilih alamat ini
-                            </a>
+                    <div class="panel panel-danger">
+                        <div class="panel-body">
+
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <h5 class="c-modal-item__name ">
+                                        <strong>
+                                            <span><?php echo $vals['recipient_name'];?></span>
+                                            <span>(<?php echo $vals['title'];?>)</span>
+                                            <span><?php echo $vals['recipient_phone'];?></span>
+                                        </strong>
+                                    </h5>
+                                    <p class="c-modal-item__address">
+                                        <span><?php echo $vals['address'];?></span>,
+                                        <span><?php echo $vals['postal_code'];?></span>
+                                    </p>
+                                </div>
+                                <div class="col-lg-4 text-center mg-t-20">
+                                    <a href="#" class="btn btn-danger btn-block btn-radius o-modal-item__btn u-flex-center selected-address" data-id="<?php echo $vals['id'];?>" data-title="<?php echo $vals['title'];?>" data-recipent="<?php echo $vals['recipient_name'];?>" data-phone="<?php echo $vals['recipient_phone'];?>" data-address="<?php echo $vals['address'];?>" data-postalcode="<?php echo $vals['postal_code'];?>">
+                                        Pilih alamat ini
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <?php endforeach;?>
@@ -618,12 +619,10 @@
 
 
 <!-- start:modal tambah kartu kredit -->
-<div class="modal fade" id="modalTambahKartuKredit" tabindex="-1" role="dialog"
-    aria-labelledby="modalTambahKartuKredit">
-    <div class="modal-dialog" role="document" style="width: 485px;">
+<div class="modal fade" id="modalTambahKartuKredit" tabindex="-1" role="dialog" aria-labelledby="modalTambahKartuKredit">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
-
-            <div class="modal-header">
+            <div class="modal-header" style="background-color: #d9534f;color: #ffffff;border-top-left-radius:6px;border-top-right-radius:6px;">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">
                         <i class="fas fa-times-circle"></i>
