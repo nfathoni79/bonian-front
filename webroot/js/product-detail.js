@@ -227,16 +227,34 @@ $('.btn-kirim-komen').on('click',function(){
     formComment.submit(function(e) {
         var ajaxRequest = new ajaxValidation(formComment);
         ajaxRequest.post( basePath + '/products/comment', dataForm, function(response, data) {
-            if (response.success) {
-                window.location.href = "#tab-diskusi";
-                location.reload();
-            } else {
-                // $("#login-popup").modal('show');
-            }
+            console.log(response)
+            // if(response != null){
+            //     if (response.success) {
+            //         window.location.href = "#tab-diskusi";
+            //         location.reload();
+            //     } else {
+            //
+            //     }
+            // }else{
+            //     $("#login-popup").modal('show');
+            // }
         });
-        e.preventDefault(); 
+        e.preventDefault(); // avoid to execute the actual submit of the form.
     });
 
+    // $.ajax({
+    //     url: basePath + '/products/comment',
+    //     type : 'POST',
+    //     data : dataForm,
+    //     dataType : 'json',
+    //     success: function(response){
+    //         window.location.href = "#tab-diskusi";
+    //         location.reload();
+    //     },
+    //     error: function () {
+    //         $("#login-popup").modal('show');
+    //     }
+    // });
 })
 
 $('.delete-msg').on('click',function(e){

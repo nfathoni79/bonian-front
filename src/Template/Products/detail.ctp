@@ -325,8 +325,8 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                 <h4><i class="fa fa-comments zl-tx-black"></i><span class="tx-medium tx-mont zl-tx-black"> Punya pertanyaan mengenai produk ini?</span></h4>
                                 <br />
 
-                                <!-- FORM -->
-                                <?php if($this->request->getSession()->check('Auth')):?>
+                                <!-- FORM --> 
+                                <?php if($this->request->getSession()->check('Auth.Customers.email')):?>
                                 <form id="comment" class="ajax-helper">
                                     <div class="row">
                                         <div class="col-md-12">
