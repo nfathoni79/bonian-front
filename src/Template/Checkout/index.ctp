@@ -93,6 +93,7 @@
 
                     <?php foreach($vals['data'] as $val):?>
 
+                    <?php $totalPoint += $val['totalpoint'];?>
                     <div class="c-checkout-card__item">
 
                         <div class="row">
@@ -107,29 +108,13 @@
                             <div class="col-lg-10 c-card-item__description">
                                 <div class="row">
 
-                                    <div class="col-lg-12 text-left">
-                                        <h2 class="tx-bold tx-16 mg-0 zl-tx-black"> <?php echo $val['name']; ?> </h2>
+                                    <div class="col-lg-12 mg-b-15 text-left">
+                                        <h2 class="tx-bold tx-16 mg-0 zl-tx-black">
+                                            <a class="cart_product_name" href="<?php echo $this->Url->build(['controller' => 'products', 'action' => 'detail',$val['slug'] ]);?>">
+                                                <?php echo h($val['name']);?>
+                                            </a>
+                                        </h2>
                                     </div>
-
-                                    <div class="col-lg-2 ">
-                                        <?php $totalPoint += $val['totalpoint'];?>
-                                        <div class="badge <?= $this->Badge->format($val['totalpoint']); ?> mg-t-10 mg-b-10"><span id="zl-point-0"><?php echo $val['totalpoint']; ?></span> poin</div>
-                                    </div>
-
-                                    <div class="col-lg-6 d-lg-flex mg-b-10 mg-t-10 mg-l-10">
-                                        <div class="row c-kupon-desc tx-11">
-                                            <div class=" c-kupon-kiri-desc">
-                                                diskon
-                                            </div>
-                                            <div class="c-kupon-kanan-desc wd-60p tx-center tx-white">
-                                                Rp.15.000
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 text-center">
-                                            <i class="fas fa-question-circle c-question mg-l-10 mg-t-5 tx-18"></i>
-                                        </div>
-                                    </div>
-
 
                                     <!-- start : deskripsi produk -->
                                     <div class="col-lg-12 tx-12" >
@@ -150,7 +135,7 @@
                                                     <div class="col-lg-12 text-center" style="color : #212121">
                                                         Berat
                                                     </div>
-                                                    <div class="col-lg-12 text-center tx-black">
+                                                    <div class="col-lg-12 text-center zl-tx-red--light">
                                                         <?php echo $val['weight']; ?>g
                                                     </div>
                                                 </div>
@@ -161,7 +146,7 @@
                                                     <div class="col-lg-12 text-center" style="color : #212121">
                                                         Harga
                                                     </div>
-                                                    <div class="col-lg-12 text-center tx-black">
+                                                    <div class="col-lg-12 text-center zl-tx-red--light">
                                                         Rp. <?php echo $this->Number->format($val['price']); ?>
                                                     </div>
                                                 </div>
@@ -173,7 +158,7 @@
                                                     <div class="col-lg-12 text-center" style="color : #212121">
                                                         Qty
                                                     </div>
-                                                    <div class="col-lg-12 text-center tx-black">
+                                                    <div class="col-lg-12 text-center zl-tx-red--light">
                                                         <?php echo $this->Number->format($val['qty']); ?>
                                                     </div>
                                                 </div>
@@ -184,7 +169,7 @@
                                                     <div class="col-lg-12 text-center" style="color : #212121">
                                                         Total
                                                     </div>
-                                                    <div class="col-lg-12 text-center tx-black">
+                                                    <div class="col-lg-12 text-center zl-tx-red--light">
 
                                                         Rp. <?php echo $this->Number->format($val['total']); ?>
                                                     </div>
@@ -198,7 +183,7 @@
                             </div>
 
                             <div class="col-lg-12 c-card-item__catatan mg-l-115 wd-85p">
-                                <h5 class="tx-black">Catatan Barang</h5>
+                                <h5 class="zl-tx-red--light">Catatan Barang</h5>
                                 <p>
                                     <?php if(!empty($val['comment'])):?>
                                         <?php echo $val['comment'];?>
@@ -372,16 +357,17 @@
                                         <!-- end: title -->
 
                                         <!-- start:item #1-->
-                                        <div class="row" style="padding: 5px 20px">
-                                            <div class="col-lg-2 text-center">
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="payment_method"  value="bca_va">
-                                                    </label>
+                                        <div class="row pd-t-5 pd-l-20 pd-r-20 pd-b-5" >
+                                            <div class="col-lg-2 pd-t-10 text-center">
+                                                <div class="pretty p-round p-pulse">
+                                                    <input type="radio" name="payment_method"  value="bca_va">
+                                                    <div class="state p-danger">
+                                                        <label> </label>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-10">
-                                                <div class="row">
+                                            <div class="col-lg-10 text-center">
+                                                <div class="row pd-t-10">
                                                     <div class="col-lg-4">
                                                         <img src="<?php echo $this->Url->build('/images/logo_bank/bca.png'); ?>" alt="Bank BCA" class="img-responsive">
                                                     </div>
@@ -393,24 +379,20 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- end:item #1-->
-                                        <div class="row" style="padding: 0 20px;">
-                                            <div class="col-lg-12">
-                                                <hr />
-                                            </div>
-                                        </div>
 
-                                        <!-- start:item #2-->
-                                        <div class="row" style="padding: 5px 20px">
-                                            <div class="col-lg-2 text-center">
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="payment_method"  value="permata_va">
-                                                    </label>
+                                        <hr class="p-0 m-0">
+
+                                        <div class="row pd-t-5 pd-l-20 pd-r-20 pd-b-5">
+                                            <div class="col-lg-2 pd-t-10 text-center">
+                                                <div class="pretty p-round p-pulse">
+                                                    <input type="radio" name="payment_method"  value="permata_va">
+                                                    <div class="state p-danger">
+                                                        <label> </label>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-10">
-                                                <div class="row">
+                                            <div class="col-lg-10 text-center">
+                                                <div class="row pd-t-10">
                                                     <div class="col-lg-4">
                                                         <img src="<?php echo $this->Url->build('/images/logo_bank/mandiri.png'); ?>" alt="Bank Mandiri" class="img-responsive">
                                                     </div>
@@ -422,24 +404,20 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- end:item #2-->
-                                        <div class="row" style="padding: 0 20px;">
-                                            <div class="col-lg-12">
-                                                <hr />
-                                            </div>
-                                        </div>
 
-                                        <!-- start:item #3-->
-                                        <div class="row" style="padding: 5px 20px">
-                                            <div class="col-lg-2 text-center">
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="payment_method"  value="bni_va">
-                                                    </label>
+                                        <hr class="p-0 mg-0">
+
+                                        <div class="row pd-t-5 pd-l-20 pd-r-20 pd-b-5">
+                                            <div class="col-lg-2 pd-t-10 text-center">
+                                                <div class="pretty p-round p-pulse">
+                                                    <input type="radio" name="payment_method"  value="bni_va">
+                                                    <div class="state p-danger">
+                                                        <label> </label>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-10">
-                                                <div class="row">
+                                            <div class="col-lg-10 text-center">
+                                                <div class="row pd-t-10">
                                                     <div class="col-lg-4">
                                                         <img src="<?php echo $this->Url->build('/images/logo_bank/bni.png'); ?>" alt="Bank BNI" class="img-responsive">
                                                     </div>
@@ -452,13 +430,8 @@
                                             </div>
                                         </div>
 
-                                        <div class="row" style="padding: 0 20px;">
-                                            <div class="col-lg-12">
-                                                <hr />
-                                            </div>
-                                        </div>
+                                        <hr class="p-0 mg-0">
 
-                                        <!-- start: title -->
                                         <div>
                                             <h5 class="c-card-pembayaran__title credit-card-input-wrapper tx-black tx-bold-force">
                                                 Kartu kredit
@@ -469,14 +442,15 @@
                                         <?php foreach($creditcards as $creditcard) : ?>
                                         <!-- start:item-->
                                         <div class="row" style="padding: 5px 20px">
-                                            <div class="col-lg-2 text-center">
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="payment_method"  value="credit_card" data-id="<?= $creditcard['id']; ?>">
-                                                    </label>
+                                            <div class="col-lg-2 pd-t-10 text-center">
+                                                <div class="pretty p-round p-pulse">
+                                                    <input type="radio" name="payment_method"  value="credit_card" data-id="<?= $creditcard['id']; ?>">
+                                                    <div class="state p-danger">
+                                                        <label> </label>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-10">
+                                            <div class="col-lg-10 pd-t-10">
                                                 <div class="row">
                                                     <div class="col-lg-4">
                                                         <img src="<?php echo $this->Url->build('/images/logo_cc/128x80/'. $creditcard['type'] .'.png'); ?>" alt="cc" class="img-responsive">
@@ -490,11 +464,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="row" style="padding: 0 20px;">
-                                            <div class="col-lg-12">
-                                                <hr />
-                                            </div>
-                                        </div>
+                                        <hr class="p-0 mg-0">
                                         <?php endforeach; ?>
 
                                         <!-- start:item #1-->
@@ -518,14 +488,15 @@
 
                                         <!-- start:item #1-->
                                         <div class="row" style="padding: 5px 20px">
-                                            <div class="col-lg-2 text-center">
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="payment_method"  value="gopay">
-                                                    </label>
+                                            <div class="col-lg-2 pd-t-10 text-center">
+                                                <div class="pretty p-round p-pulse">
+                                                    <input type="radio" name="payment_method"  value="gopay">
+                                                    <div class="state p-danger">
+                                                        <label> </label>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-10">
+                                            <div class="col-lg-10 pd-t-10">
                                                 <div class="row">
                                                     <div class="col-lg-4">
                                                         <img src="<?php echo $this->Url->build('/images/logo_other_payment/gopay.png'); ?>" alt="Go Pay" class="img-responsive">

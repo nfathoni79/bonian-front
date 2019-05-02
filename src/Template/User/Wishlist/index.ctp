@@ -34,7 +34,7 @@
                                 <div class="product-item-container">
                                     <div class="left-block left-b">
                                         <div class="product-image-container">
-                                            <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $wishlist['product']['slug']]); ?>" title="<?= h($wishlist['product']['name']); ?>" target="_self">
+                                            <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $wishlist['product']['slug'], 'prefix' => false]); ?>" title="<?= h($wishlist['product']['name']); ?>" target="_self">
                                                 <?php foreach($wishlist['product']['images'] as $image) : ?>
                                                     <img src="<?= $this->Url->build($_basePath . 'images/213x150/' . $image); ?>"  class="img-responsive" alt="image">
                                                     <?php break; endforeach; ?>
@@ -48,7 +48,7 @@
 
                                         <div class="caption">
                                             <h4>
-                                                <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $wishlist['product']['slug']]); ?>" title="<?= h($wishlist['product']['name']); ?>" target="_self">
+                                                <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $wishlist['product']['slug'], 'prefix' => false]); ?>" title="<?= h($wishlist['product']['name']); ?>" target="_self">
                                                     <?php echo $this->Text->truncate(
                                                         h($wishlist['product']['name']),
                                                         25,

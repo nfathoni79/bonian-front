@@ -346,10 +346,9 @@
                                                             <div class="col-md-2 mg-t-45">
                                                                 <?php if($vals['active']):?>
                                                                     <?php $group = implode(',', $vals['category']);?>
-                                                                    <div class="pretty p-icon p-round">
+                                                                    <div class="pretty p-round p-pulse">
                                                                         <input type="radio" name="voucher" value="<?php echo $vals['id'];?>" data-code="<?php echo $vals['voucher']['code_voucher'];?>" data-price="<?php echo $vals['voucher']['value'];?>" data-diskon="<?php echo $vals['voucher']['percent'];?>" data-group="<?php echo $group;?>">
                                                                         <div class="state p-danger">
-                                                                            <i class="icon mdi mdi-check"></i>
                                                                             <label>Pilih</label>
                                                                         </div>
                                                                     </div>
@@ -417,10 +416,9 @@
                                                             Kupon produk <br><strong><?= $vals['product_coupon']['product']['name'];?></strong><br> potongan harga Rp. <?php  echo $this->Number->precision($vals['product_coupon']['price'], 0);?>
                                                         </div>
                                                         <div class="col-md-2 mg-t-45">
-                                                            <div class="pretty p-icon p-round">
+                                                            <div class="pretty p-round p-pulse">
                                                                 <input type="radio" name="kupon" value="<?php echo $vals['id'];?>" data-price="<?= $vals['product_coupon']['price']; ?>">
                                                                 <div class="state p-danger">
-                                                                    <i class="icon mdi mdi-check"></i>
                                                                     <label>Pilih</label>
                                                                 </div>
                                                             </div>
