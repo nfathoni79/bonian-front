@@ -326,7 +326,7 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                 <br />
 
                                 <!-- FORM -->
-                                <?php if($this->request->getSession()->check('Auth')):?>
+                                <?php if($this->request->getSession()->check('Auth.Customers.email')):?>
                                 <form id="comment" class="ajax-helper">
                                     <div class="row">
                                         <div class="col-md-12">
@@ -378,7 +378,7 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                                                         )
                                                                     );
                                                                 ?>
-                                                                <?php if($this->request->getSession()->check('Auth')):?>
+                                                                <?php if($this->request->getSession()->check('Auth.Customers.email')):?>
                                                                 | <a href="javascript:void(0);" class="label label-danger reply-msg" data-for-name="<?= $vals['customer']['full_name']?>" data-for-id="<?= $vals['id']?>"> Reply </a>
                                                                 <?php endif;?>
                                                                 <?php if($this->request->getSession()->read('Auth.Customers.email') == $vals['customer']['email']):?>
@@ -408,7 +408,7 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                                                                             )
                                                                                         );
                                                                                     ?>
-                                                                                    <?php if($this->request->getSession()->check('Auth')):?>
+                                                                                    <?php if($this->request->getSession()->check('Auth.Customers.email')):?>
                                                                                     | <a href="javascript:void(0);" class="label label-danger reply-msg" data-for-name="<?= $vals['customer']['full_name']?>" data-for-id="<?= $vals['id']?>"> Reply </a>
                                                                                     <?php endif;?>
                                                                                     <?php if($this->request->getSession()->read('Auth.Customers.email') == $val['customer']['email']):?>

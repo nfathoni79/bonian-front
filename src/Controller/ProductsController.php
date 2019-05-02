@@ -15,7 +15,7 @@ class ProductsController extends AuthController
     public function initialize()
     {
         parent::initialize();
-        $this->Auth->allow(['detail']);
+        $this->Auth->allow(['detail','comment']);
     }
     /**
      * Index method
@@ -69,6 +69,7 @@ class ProductsController extends AuthController
 
         $this->disableAutoRender();
         $this->request->allowMethod('post');
+        $error = [];
         try {
             $comment = $this->Api->makeRequest($this->Auth->user('token'))
                 ->post('v1/web/discussion/add', [

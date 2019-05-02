@@ -227,12 +227,17 @@ $('.btn-kirim-komen').on('click',function(){
     formComment.submit(function(e) {
         var ajaxRequest = new ajaxValidation(formComment);
         ajaxRequest.post( basePath + '/products/comment', dataForm, function(response, data) {
-            if (response.success) {
-                window.location.href = "#tab-diskusi";
-                location.reload();
-            } else {
-                $("#login-popup").modal('show');
-            }
+            console.log(response)
+            // if(response != null){
+            //     if (response.success) {
+            //         window.location.href = "#tab-diskusi";
+            //         location.reload();
+            //     } else {
+            //
+            //     }
+            // }else{
+            //     $("#login-popup").modal('show');
+            // }
         });
         e.preventDefault(); // avoid to execute the actual submit of the form.
     });
