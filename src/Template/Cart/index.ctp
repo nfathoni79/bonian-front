@@ -197,7 +197,7 @@
                                                 </div>
                                                 <div class="col-lg-3">
                                                     <p class="mb-1">Total harga</p>
-                                                    <h4 class="mt-0 zl-tx-red--light">Rp.<span id="zl-total-<?= $k;?>" class="zl-total"><?php echo $this->Number->format($cart['total']); ?></span></h4>
+                                                    <h4 class="mt-0 zl-tx-red--light">Rp.<span id="zl-total-<?= $k;?>" class="zl-total" data-cat="<?= $cart['product_category_id'];?>"><?php echo $this->Number->format($cart['total']); ?></span></h4>
                                                 </div>
                                                 <div class="col-lg-3">
                                                     <p class="mb-1">Total point</p>
@@ -288,38 +288,78 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="row">
+                                        <div class="col-md-12 mg-b-15">
+                                            <div class="well" style="margin: 0px !important;">
+                                                <form method="post" accept-charset="utf-8" id="claim-form" class="ajax-helpers" action="/zolaku-front/user/voucher/iclaim"><div style="display:none;"><input type="hidden" name="_method" value="POST"><input type="hidden" name="_csrfToken" autocomplete="off" value="639920335f4e8fdb13bc8f053a0d8fa4497d06d2684f7811765a5443ca077f9244ce0d2cc5d6b168fc29abc1bb05b69fd8ea9ffa9b664ca007e8100f8d1232d6"></div>                                        <div class="form-group row" style="margin: 2px !important;">
+                                                    <label class="col-lg-4 col-form-label text-right">Kode voucher</label>
+                                                    <div class="col-lg-6">
+                                                        <input class="form-control" name="voucher" id="voucher" type="text" placeholder="Input kode voucher" required="">
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <input type="submit" value="Simpan" class="btn btn-danger btn-md btn-radius">
+                                                    </div>
+                                                </div>
+                                                </form>
+                                            </div>
+                                        </div>
                                         <div class="col-lg-12" style="overflow: auto;height: 300px;">
+
                                             <?php
                                             $colored = ['1' => 'v-colored-box', '2' => 'v-colored-box-off', '3' => 'v-colored-box-off'];
                                             $texted = ['1' => 'label-danger', '2' => 'label-default', '3' => 'label-default'];
                                             $end = ['1' => 'v-end', '2' => 'v-end-off', '3' => 'v-end-off'];
                                             ?>
-                                            <?php foreach($voucher as $vals):?>
-                                            <div class="panel panel-default">
-                                                <div class="panel-body" style="padding:0px;">
-                                                    <div class="row">
-                                                        <div class="col-md-3">
-                                                            <div class="v-colored-box" style="height: 10.25rem !important;">
-                                                                <div class="v-text-discount"><?= $vals['voucher']['percent'];?>%</div>
+                                            <?php if(!empty($voucher)):?>
+                                                <?php foreach($voucher as $vals):?>
+
+                                                <div class="panel panel-default <?php echo ($vals['active']) ? 'active-voucher' : 'inactive-voucher';?>">
+                                                    <div class="panel-body" style="padding:0px;">
+                                                        <div class="row">
+                                                            <div class="col-md-3">
+                                                                <div class="v-colored-box" style="height: 10.25rem !important;">
+                                                                    <div class="v-text-discount"><?= $vals['voucher']['percent'];?>%</div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-md-7 v-text-box">
-                                                            Ekstra Diskon sebesar <?= $vals['voucher']['percent'];?>% dengan Max Rp <?php  echo $this->Number->precision($vals['voucher']['value'], 0);?>.
-                                                            <div class="v-code"><span class="label <?php echo $texted[$vals['status']];?>">Kode: <?= $vals['voucher']['code_voucher'];?></span></div>
-                                                            <span class="<?php echo $end[$vals['status']];?>">Berakhir Dlm:
-                                                                <?= $this->Time->timeAgoInWords($vals['expired'], [
-                                                                'accuracy' => ['month' => 'month'],
-                                                                'end' => '1 year'
-                                                                ]); ?>
-                                                            </span>
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                            <input type="radio" name="voucher" value="<?php echo $vals['id'];?>" data-code="<?php echo $vals['voucher']['code_voucher'];?>">
+                                                            <div class="col-md-7 v-text-box">
+                                                                Ekstra Diskon sebesar <?= $vals['voucher']['percent'];?>% dengan Max Rp <?php  echo $this->Number->precision($vals['voucher']['value'], 0);?>.
+                                                                <?php if(!empty($vals['category_name'])):?>
+                                                                Berlaku untuk produk kategori <?php echo implode(', ', $vals['category_name']);?>.
+                                                                <?php endif;?>
+                                                                <div class="v-code"><span class="label <?php echo $texted[$vals['status']];?>">Kode: <?= $vals['voucher']['code_voucher'];?></span></div>
+                                                                <span class="<?php echo $end[$vals['status']];?>">Berakhir Dlm:
+                                                                    <?= $this->Time->timeAgoInWords($vals['expired'], [
+                                                                    'accuracy' => ['month' => 'month'],
+                                                                    'end' => '1 year'
+                                                                    ]); ?>
+                                                                </span>
+                                                            </div>
+                                                            <div class="col-md-2 mg-t-45">
+                                                                <?php if($vals['active']):?>
+                                                                    <?php $group = implode(',', $vals['category']);?>
+                                                                    <div class="pretty p-icon p-round">
+                                                                        <input type="radio" name="voucher" value="<?php echo $vals['id'];?>" data-code="<?php echo $vals['voucher']['code_voucher'];?>" data-price="<?php echo $vals['voucher']['value'];?>" data-diskon="<?php echo $vals['voucher']['percent'];?>" data-group="<?php echo $group;?>">
+                                                                        <div class="state p-danger">
+                                                                            <i class="icon mdi mdi-check"></i>
+                                                                            <label>Pilih</label>
+                                                                        </div>
+                                                                    </div>
+                                                                <?php endif;?>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <?php endforeach;?>
+                                                <?php endforeach;?>
+                                            <?php else:?>
+                                                <div class="panel panel-default">
+                                                    <div class="panel-body" style="padding:0px;">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                Anda tidak memiliki voucher
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <?php endif;?>
                                         </div>
                                     </div>
                                 </div>
@@ -366,8 +406,14 @@
                                                         <div class="col-md-5 v-text-box">
                                                             Kupon produk <br><strong><?= $vals['product_coupon']['product']['name'];?></strong><br> potongan harga Rp. <?php  echo $this->Number->precision($vals['product_coupon']['price'], 0);?>
                                                         </div>
-                                                        <div class="col-md-2">
-                                                            <input type="radio" name="kupon" value="<?php echo $vals['id'];?>" data-price="<?= $vals['product_coupon']['price']; ?>">
+                                                        <div class="col-md-2 mg-t-45">
+                                                            <div class="pretty p-icon p-round">
+                                                                <input type="radio" name="kupon" value="<?php echo $vals['id'];?>" data-price="<?= $vals['product_coupon']['price']; ?>">
+                                                                <div class="state p-danger">
+                                                                    <i class="icon mdi mdi-check"></i>
+                                                                    <label>Pilih</label>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -432,6 +478,16 @@
                                     Rp.<span id="subtotal"><?php echo $this->Number->format($subtotal);?></span>
                                 </h5>
                             </div>
+                            <?php if(!empty($voucher)):?>
+                                <div class="col-lg-7">
+                                    <h3>Potongan Voucher</h3>
+                                </div>
+                                <div class="col-lg-5">
+                                    <h5 class="sub-total">
+                                        Rp.<span id="voucher-price">0</span>
+                                    </h5>
+                                </div>
+                            <?php endif;?>
                             <?php if(!empty($coupon)):?>
                                 <div class="col-lg-7">
                                     <h3>Potongan Kupon</h3>
@@ -587,6 +643,7 @@
 <?php
 $this->Html->css([
 '/css/plugin.min.css',
+'/css/cart.css',
 ], ['block' => true]);
 ?>
 <?php

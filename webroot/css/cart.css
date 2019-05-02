@@ -16,3 +16,15 @@
     background-color: #61a811;
     display: inline-flex;
 }
+
+.inactive-voucher span.label.label-danger{
+    background: #cacaca !important;
+    background-color: #cacaca !important;
+}
+
+.inactive-voucher, .inactive-voucher span.v-end {
+    color: #cacaca !important;
+}
+.inactive-voucher .v-colored-box {
+    background-color: #cacaca !important;
+}
