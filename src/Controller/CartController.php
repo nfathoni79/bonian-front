@@ -107,8 +107,7 @@ class CartController  extends AuthController
         } catch(\GuzzleHttp\Exception\ClientException $e) {
             //TODO set log
         }
-//        debug($coupon);
-//        exit;
+
         $this->set(compact('carts', 'coupon'));
 
         $response = [];
@@ -152,7 +151,7 @@ class CartController  extends AuthController
             $this->Api->handle($e);
             $response = json_decode($e->getResponse()->getBody()->getContents(), true);
         }
-        
+
         try {
             $customer = $this->Api->makeRequest($this->Auth->user('token'))
                 ->get('v1/web/profile');

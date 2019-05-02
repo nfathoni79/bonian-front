@@ -296,12 +296,11 @@ $( ".number-box" ).change(function() {
 });
 
 $('.btn-v-ok').on('click',function(){
+    grandTotal();
     var radioValue = $("input[name='voucher']:checked").val();
+
     if(radioValue){
         $("#modalVoucher").modal('hide');
-
-
-
     }else{
         swal("Tidak ada voucer yang di pilih");
     }
@@ -323,7 +322,56 @@ function grandTotal(){
     var subtotal = numeral($('#subtotal').text()).value();
     var coupon = numeral($('#coupon-price').text()).value();
 
-    $('#grandtotal').html(numeral((subtotal-coupon)).format('0,0'));
+    var vPrice = $("input[name='voucher']:checked").data('price');
+    var vDiskon = $("input[name='voucher']:checked").data('diskon');
+    var vGroup = $("input[name='voucher']:checked").data('group');
+
+    var total = subtotal - coupon;
+    if(vGroup != undefined){
+        if(vGroup){
+
+            var values = vGroup.split(",");
+
+            var incat = 0;
+            var outcat = 0;
+            $('.zl-total').each(function(k, v){
+                if($.inArray($(this).data('cat').toString(), values) !== -1){
+                    incat += numeral($(this).text()).value();
+                }else{
+                    outcat += numeral($(this).text()).value();
+                }
+            });
+
+            var cut = incat * (vDiskon / 100);
+
+            if(cut > vPrice){
+                var gTotal = (incat - vPrice) + outcat;
+                $('#voucher-price').html(numeral((vPrice)).format('0,0'));
+                $('#grandtotal').html(numeral((total-vPrice)).format('0,0'));
+            }else{
+                var gTotal = (incat - cut) + outcat;
+                $('#voucher-price').html(numeral((cut)).format('0,0'));
+                $('#grandtotal').html(numeral((total-cut)).format('0,0'));
+            }
+
+        }else{
+            var gTotal = 0;
+            $('.zl-total').each(function(k, v){
+                gTotal += numeral($(this).text()).value();
+            });
+            var cut = gTotal * (vDiskon / 100);
+            if(cut > vPrice){
+                var hit = gTotal - vPrice;
+                $('#voucher-price').html(numeral((vPrice)).format('0,0'));
+                $('#grandtotal').html(numeral((total-vPrice)).format('0,0'));
+            }else{
+                var hit = gTotal - cut;
+                $('#voucher-price').html(numeral((cut)).format('0,0'));
+                $('#grandtotal').html(numeral((total-cut)).format('0,0'));
+            }
+        }
+    }
+
 }
 
 
