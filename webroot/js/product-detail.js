@@ -228,7 +228,8 @@ $('.btn-kirim-komen').on('click',function(){
         var ajaxRequest = new ajaxValidation(formComment);
         ajaxRequest.post( basePath + '/products/comment', dataForm, function(response, data) {
             if (response.success) {
-                location.href = '<?= $this->Url->build(); ?>';
+                window.location.href = "#tab-diskusi";
+                location.reload();
             } else {
 
             }
