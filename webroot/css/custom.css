@@ -44259,16 +44259,29 @@ a.hover-white-8:hover, a.hover-white-8:focus {
     color: #fff;
 }
 
-.zl-btn-reverse{
+.zl-btn-reversed{
     color: #c93535;
     background: #fff;
+    border-color: 1px solid #c93535;
+}
+
+.zl-btn-reversed-force{
+    color: #c93535 !important;
+    background: #fff !important;
+    border: 1px solid #c93535 !important;
 }
 
 
 .zl-btn-hover-red:hover{
-    color: #c93535;
-    background: #fff;
+    color: #fff;
+    background: #c93535;
     border:1px solid #c93535;
+}
+
+.zl-btn-hover-red-force:hover{
+    color: #fff !important;
+    background: #c93535 !important;
+    border:1px solid #c93535 !important;
 }
 
 .zl-bg-none{

@@ -214,14 +214,14 @@
         <div id="content" class="col-md-9 col-sm-12">
             <div class="products-category c-main-content">
 
-                <?php /*
+                
                 <!-- start: banner atas -->
-                <div class="category-derc">
+                <div class="mg-b-30 card pd-0">
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="banners">
                                 <div>
-                                    <a href="#"><img src="assets/img/banner-2.png" alt="img cate"
+                                    <a href="#"><img src="https://via.placeholder.com/870x290.png/ffffff/c93535" alt="img cate"
                                                      style="border-radius:15px;"><br></a>
                                 </div>
                             </div>
@@ -229,9 +229,10 @@
                         </div>
                     </div>
                 </div>
+            </div>
                 <!-- end: banner atas -->
- */ ?>
 
+            <div class="products-category c-main-content card">
                 <!-- start:filter produk -->
                 <div class="row">
                     <div class="col-md-7">

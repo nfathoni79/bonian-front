@@ -56,7 +56,7 @@
                                 <div id="search0" class="search input-group form-group">
                                     <input class="autosearch-input form-control" type="text" value="" id="zolaku-search-panel" size="50"  placeholder="Pencarian" name="q"><ul class="dropdown-menu" style="display: none;"></ul>
                                     <span class="input-group-btn">
-                                        <button type="submit" class="button-search btn btn-lg" name="submit_search"><i class="fa fa-search"></i></button>
+                                        <button type="submit" class="button-search btn btn-lg zl-bg-red" name="submit_search"><i class="fa fa-search"></i></button>
                                     </span>
                                 </div>
                                 <input type="hidden" name="_csrfToken" value="<?= $this->request->getParam('_csrfToken'); ?>" />
@@ -66,7 +66,7 @@
                     </div>
 
                     <div class="block_link hidden-sm hidden-xs">
-                        <a href="<?= $this->Url->build(['controller' => 'Wishlist', 'prefix' => 'user']); ?>" id="wishlist-total" class="top-link-wishlist" title="Wish List (0) "><i class="fa fa-heart"></i></a>
+                        <a href="<?= $this->Url->build(['controller' => 'Wishlist', 'prefix' => 'user']); ?>" id="wishlist-total" class="top-link-wishlist zl-btn-reversed-force zl-btn-hover-red-force" title="Wish List (0) "><i class="fa fa-heart"></i></a>
                     </div>
                     <!--cart-->
                     <div class="block-cart">
@@ -74,7 +74,7 @@
                             <div id="cart" class="btn-shopping-cart">
                                 <a data-loading-text="Loading... " class="btn-group top_cart dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                     <div class="shopcart">
-                                        <span class="handle pull-left"></span>
+                                        <span class="handle pull-left zl-bg-red"></span>
                                         <p class="title-cart-h6">Keranjang Belanja</p>
                                         <span class="total-shopping-cart cart-total-full">
                                             <span class="items_cart"><?php echo ($_carts['pagging']['count'] > 0) ? $_carts['pagging']['count'] : '0'; ?></span> <span class="items_cart1">item(s)</span>
