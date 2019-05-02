@@ -22,6 +22,7 @@
  *  3.  ZOLAKU CUSTOM STYLE
  *        3.1   Core Style
  *        3.2   Checkout page
+ *        3.3   Product detail page
 **/
 /* ------------------------------------------------------ */
 /* ############### 1. GOOGLE FONTS IMPORT ############### */
@@ -44150,11 +44151,11 @@ a.hover-white-8:hover, a.hover-white-8:focus {
 }
 
 .zl-tx-gray{
-    color: #717171;
+    color: #7d7d7d;
 }
 
 .zl-tx-gray-force{
-    color: #717171 !important;
+    color: #7d7d7d !important;
 }
 
 .zl-tx-white{
@@ -44186,6 +44187,10 @@ a.hover-white-8:hover, a.hover-white-8:focus {
 
 .zl-bg-green{
     background-color: #62a811 !important;
+}
+
+.zl-bg-gray{
+    background-color: #f3f3f3 !important;
 }
 
 .zl-bg-white{
@@ -44674,7 +44679,8 @@ a.hover-white-8:hover, a.hover-white-8:focus {
 /* ############### 3.3 Product Detail page ############### */
 /* ------------------------------------------------------- */
 
-.product-detail .producttab .tabsslider.horizontal-tabs .nav-tabs li.active a, .producttab .tabsslider.horizontal-tabs .nav-tabs li:hover a{
+.product-detail .producttab .tabsslider.horizontal-tabs .nav-tabs li.active a, 
+.producttab .tabsslider.horizontal-tabs .nav-tabs li:hover a{
     background: #dc5054;
     color: #fff;
 }
@@ -44683,5 +44689,22 @@ a.hover-white-8:hover, a.hover-white-8:focus {
     border-top: none;
     border-right: none;
     border-left: none;
-    border-bottom: 1px solid #e1e1e1;
+    border-bottom: none;
+} 
+
+.product-detail .panel{
+    border-radius: 10px;
+}
+
+.product-detail .producttab .tabsslider.horizontal-tabs .nav-tabs li:first-child a{
+    border-radius: 10px 0 0 0;
+} 
+
+.product-detail .producttab .tabsslider.horizontal-tabs .nav-tabs{
+    border-radius: 10px 10px 0 0;
+}
+
+.product-detail .producttab .tabsslider.horizontal-tabs .nav-tabs li:last-child,
+.product-detail .producttab .tabsslider.horizontal-tabs .nav-tabs li:last-child a{
+    border-radius: 0 0 10px 0;
 } 

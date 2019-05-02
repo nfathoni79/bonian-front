@@ -11,7 +11,7 @@ body {
     top:0;
     left:0;
     border-top:4px solid #df0024;
-    box-shadow:0px 1px 5px #999;
+    box-shadow:0px 1px 5px rgba(0, 0, 0, 0.1);
     transition:all 0.5s ease 0s;
     -webkit-transition:all 0.5s ease 0s;
     z-index:100;
@@ -25,7 +25,9 @@ body {
     padding: 25px;
     border-radius: 10px;
     background: #fff;
-    box-shadow: 0 2px 15px hsla(0, 0%, 71%, .5);
+    /*box-shadow: 0 2px 15px hsla(0, 0%, 71%, .5);*/
+    -webkit-box-shadow: 0 0px 5px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0px 5px 0px rgba(0, 0, 0, 0.1);
 }
 
 .btn-default.active, .btn-default.focus, .btn-default:active, .btn-default:focus, .btn-default:hover, .open > .dropdown-toggle.btn-default{
@@ -149,7 +151,8 @@ body {
     background-color: #fff;
     padding: 0 25px;
     border: 0!important;
-    box-shadow: 0 2px 20px hsla(0, 0%, 64.3%, .16);
+    -webkit-box-shadow: 0 0px 5px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0px 5px 0px rgba(0, 0, 0, 0.1);
     border-radius: 10px
 }
 
@@ -240,7 +243,8 @@ body {
 .products-list .product-layout .product-item-container {
     border-radius: 5px!important;
     border: 0!important;
-    box-shadow: 0 2px 20px rgba(88, 88, 88, .16);
+    -webkit-box-shadow: 0 0px 5px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0px 5px 0px rgba(0, 0, 0, 0.1);
 }
 
 .filters-panel.product-filter-bottom .pagination>.active>span {
@@ -255,7 +259,8 @@ body {
 .c-footer {
     background: #fff!important;
     padding: 40px 0;
-    box-shadow: 0 1px 30px rgba(0, 0, 0, .06)
+    -webkit-box-shadow: 0 0px 5px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0px 5px 0px rgba(0, 0, 0, 0.1);
 }
 
 .c-footer-logo h5,
@@ -323,7 +328,8 @@ body {
     padding: 25px;
     border-radius: 10px;
     background: #fff;
-    box-shadow: 0 2px 15px hsla(0, 0%, 71%, .5);
+    -webkit-box-shadow: 0 0px 5px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0px 5px 0px rgba(0, 0, 0, 0.1);
     min-height: 300px
 }
 
@@ -583,7 +589,8 @@ body {
     padding: 25px;
     border-radius: 10px;
     background: #fff;
-    box-shadow: 0 2px 15px hsla(0, 0%, 71%, .5);
+    -webkit-box-shadow: 0 0px 5px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0px 5px 0px rgba(0, 0, 0, 0.1);
     min-height: 300px;
 }
 
@@ -619,7 +626,8 @@ ul.breadcrumb li:after {
     padding: 0;
     border-radius: 10px;
     background: #fff;
-    box-shadow: 0 2px 15px hsla(0, 0%, 71%, .5);
+    -webkit-box-shadow: 0 0px 5px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0px 5px 0px rgba(0, 0, 0, 0.1);
     min-height: 300px;
 }
 
@@ -840,9 +848,8 @@ ul.breadcrumb li:after {
     margin-top: 50px;
     margin-bottom: 50px;
     border-radius: 10px;
-    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
-    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+    -webkit-box-shadow: 0 0px 5px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0px 5px 0px rgba(0, 0, 0, 0.1);
 }
 
 .card-wrapper-title {
@@ -854,9 +861,8 @@ ul.breadcrumb li:after {
     margin-left: -20px;
     border: 5px;
     border-radius: 10px 0px 15px 0px;
-    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
-    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+    -webkit-box-shadow: 0 0px 5px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0px 5px 0px rgba(0, 0, 0, 0.1);
     color: white;
     font-size: 18px;
 }
@@ -870,9 +876,8 @@ ul.breadcrumb li:after {
     margin-left: -20px;
     border: 5px;
     border-radius: 10px 0px 15px 0px;
-    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
-    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+    -webkit-box-shadow: 0 0px 5px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0px 5px 0px rgba(0, 0, 0, 0.1);
     color: white;
     font-size: 18px;
 }
@@ -1071,7 +1076,8 @@ div.module.custom-listingtab .products-list.grid .product-layout .product-item-c
     background: -moz-linear-gradient(230deg, #e8e8e8 0%, #ffffff 50%, #e1e1e1 100%);
     color: #858585;
     border: 1px solid #afafaf;
-    box-shadow: 0 2px 5px hsla(0, 0%, 50%, .5);
+    -webkit-box-shadow: 0 0px 5px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0px 5px 0px rgba(0, 0, 0, 0.1);
 }
 
 .u-bd--badge__diamond {

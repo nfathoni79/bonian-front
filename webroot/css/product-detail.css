@@ -3,7 +3,7 @@
     margin-right: 30px;
 }
 span.fa-stack{
-    font-size: 20px;
+    font-size: 14px;
 }
 .rating .rating-box{
     font-size: 35px;
@@ -165,7 +165,7 @@ label.color-name{
 }
 .wh-wrapper .wh-item .wh-label label{
     margin: 0;
-    font-weight: 700;
+    font-weight: 500;
 }
 .wh-wrapper .wh-item .wh-stock{
     float: right;
@@ -224,6 +224,7 @@ label.color-name{
 }
 .progress{
     height: 10px;
+    margin: 8px 0 10px 0;
 }
 .progress-bar-warning {
     background-color: #fec42d;

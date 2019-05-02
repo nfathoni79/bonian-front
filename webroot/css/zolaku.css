@@ -286,7 +286,7 @@ footer .module .footer-block-title h3, footer .module h3.footertitle{
 }
 
 form .form-group label {
-    font-weight: bold;
+    font-weight: 500;
 }
 
 form .form-group.error .help-block {

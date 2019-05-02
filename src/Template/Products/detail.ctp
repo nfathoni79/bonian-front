@@ -71,7 +71,7 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
 
                             </div>
 
-                            <div class="content-product-right col-md-7 col-sm-12 col-xs-12">
+                            <div class="content-product-right col-md-7 col-sm-12 col-xs-12 tx-mont">
 
                                 <form id="form-cart">
                                     <input type="hidden" name="stock_id" value="" id="stockId">
@@ -83,10 +83,6 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                             <div class="title-product">
                                                 <h1><?php echo $details['data']['name']; ?></h1>
                                             </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <span class="badge <?= $this->Badge->format($details['data']['point']); ?>"><?php echo $details['data']['point']; ?> Point</span>
-
                                             <div class="rating">
                                                 <div class="rating-box">
 
@@ -102,6 +98,9 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="col-sm-3">
+                                            <span class="badge mg-t-0 ft-right <?= $this->Badge->format($details['data']['point']); ?>"><?php echo $details['data']['point']; ?> Point</span>
+                                        </div>
                                     </div>
 
                                     <!-- Review ---->
@@ -111,7 +110,7 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                     </div>
                                     <div class="product_page_price price" itemprop="offerDetails" itemscope="">
                                         <span class="price-new"><span itemprop="price" id="price-special">Rp.<?php echo $this->Number->format($details['data']['price_sale']); ?></span></span>
-                                        <span class="price-old" id="price-old">Rp.<?php echo $this->Number->format($details['data']['price']); ?></span>
+                                        <span class="price-old mg-t-3" id="price-old">Rp.<?php echo $this->Number->format($details['data']['price']); ?></span>
                                         <span class="label-product label-sale"><?= $details['data']['percent']; ?>%</span>
 
                                         <?php if($details['data']['is_flash_sale']):?>
@@ -121,7 +120,7 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                     </div>
                                     <div class="panel panel-danger">
                                         <div class="panel-body">
-                                            <p>Bagikan produk ini</p>
+                                            <p class="tx-medium tx-mont zl-tx-black tx-14">Bagikan produk ini</p>
                                             <div class="btn-group btn-group-justified" role="group" aria-label="Justified button group">
                                                 <div class="btn-group" role="group">
                                                     <a type="button" class="btn btn-default btn-lg btn-whatsapp waShare" data-url="<?php echo $this->Url->build('',true);?>" data-title="<?= $details['data']['name'];?>" data-price="<?= $details['data']['price_sale'];?>"><i class="fab fa-whatsapp"></i> Whatsapp</a>
@@ -183,7 +182,7 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                     <div class="row vcenter">
                                         <div class="col-sm-3"><span class="zl-text">Model</span></div>
                                         <div class="col-sm-9">
-                                            <span class="zl-text"><?= $details['data']['model'];?></span>
+                                            <span class="zl-tx-gray tx-13 tx-medium"><?= $details['data']['model'];?></span>
                                         </div>
                                     </div>
 
@@ -260,7 +259,7 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                             <?php endforeach;?>
                                         </div>
                                     </div>
-                                    <div>
+                                    <div class="mg-t-40">
                                         <a class="btn btn-lg btn-radius btn-danger btn-pay">Bayar sekarang</a>
                                         <a class="btn btn-lg btn-radius btn-add"><i class="fa fa-shopping-cart"></i> Tambah ke keranjang</a>
                                     </div>
@@ -287,15 +286,15 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                 <div class="producttab clearfix mg-0">
                     <div class="tabsslider horizontal-tabs col-xs-12">
                         <ul class="nav nav-tabs zl-bg-white bd-none" id="myTab">
-                            <li class="active"><a data-toggle="tab" href="#tab-deskripsi" class="pd-15-force"><i class="fa fa-file-text"></i> Deskripsi Produk</a></li>
-                            <li class="item_nonactive"><a data-toggle="tab" href="#tab-highlight" class="pd-15-force"><i class="fab fa-dropbox"></i> Highlight Produk</a></li>
-                            <li class="item_nonactive"><a data-toggle="tab" href="#tab-diskusi" class="pd-15-force"><i class="fa fa-comments"></i> Diskusi Produk</a></li>
-                            <li class="item_nonactive"><a data-toggle="tab" href="#tab-ulasan" class="pd-15-force"><i class="fa fa-edit"></i> Ulasan Produk</a></li>
+                            <li class="active zl-bg-gray"><a data-toggle="tab" href="#tab-deskripsi" class="pd-15-force"><i class="fa fa-file-text tx-18 mg-r-10"></i> Deskripsi Produk</a></li>
+                            <li class="item_nonactive zl-bg-gray"><a data-toggle="tab" href="#tab-highlight" class="pd-15-force"><i class="fab fa-dropbox tx-18 mg-r-10"></i> Highlight Produk</a></li>
+                            <li class="item_nonactive zl-bg-gray"><a data-toggle="tab" href="#tab-diskusi" class="pd-15-force"><i class="fa fa-comments tx-18 mg-r-10"></i> Diskusi Produk</a></li>
+                            <li class="item_nonactive zl-bg-gray"><a data-toggle="tab" href="#tab-ulasan" class="pd-15-force"><i class="fa fa-edit tx-18 mg-r-10"></i> Ulasan Produk</a></li>
                         </ul>
                         <div class="tab-content bd-none-force">
                             <div id="tab-deskripsi" class="tab-pane fade active in">
                                 <div class="row">
-                                    <div class="col-sm-12 ht-300">
+                                    <div class="col-sm-12">
                                         <h4><strong>Tentang Produk</strong></h4>
                                         <p>
                                             <?php echo $details['data']['profile']; ?>
@@ -449,13 +448,13 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                         <br />
                                         <div class="bg-red margin-b-10">
                                             <div class="row">
-                                                <div class="col-sm-5">
+                                                <div class="col-sm-12">
                                                     <div class="row">
                                                         <div class="col-sm-12">
-                                                            <div class="col-sm-3 pd-0">
+                                                            <div class="col-sm-2 tx-center">
                                                                 <span><h1><b> 4 / 5 </b></h1></span>
                                                             </div>
-                                                            <div class="col-sm-9">
+                                                            <div class="col-sm-10">
                                                                 <span class="pull-left"> 4 dari 5 </span>
                                                                 <br />
                                                                 <div class="rating">
@@ -472,11 +471,11 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                                     </div>
                                                     <br />
                                                     <div class="row">
-                                                        <div class="col-sm-3">
+                                                        <div class="col-sm-2 tx-center">
                                                             <span> 5 </span>
                                                             <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
                                                         </div>
-                                                        <div class="col-sm-8">
+                                                        <div class="col-sm-9">
                                                             <div class="progress">
                                                                 <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="30" style="width:80%"></div>
                                                             </div>
@@ -486,11 +485,11 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-sm-3">
+                                                        <div class="col-sm-2 tx-center">
                                                             <span> 4 </span>
                                                             <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
                                                         </div>
-                                                        <div class="col-sm-8">
+                                                        <div class="col-sm-9">
                                                             <div class="progress">
                                                                 <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="30" style="width:80%"></div>
                                                             </div>
@@ -500,11 +499,11 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-sm-3">
+                                                        <div class="col-sm-2 tx-center">
                                                             <span> 3 </span>
                                                             <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
                                                         </div>
-                                                        <div class="col-sm-8">
+                                                        <div class="col-sm-9">
                                                             <div class="progress">
                                                                 <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="30" style="width:80%"></div>
                                                             </div>
@@ -514,11 +513,11 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-sm-3">
+                                                        <div class="col-sm-2 tx-center">
                                                             <span> 2 </span>
                                                             <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
                                                         </div>
-                                                        <div class="col-sm-8">
+                                                        <div class="col-sm-9">
                                                             <div class="progress">
                                                                 <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="30" style="width:80%"></div>
                                                             </div>
@@ -528,42 +527,17 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-sm-3">
+                                                        <div class="col-sm-2 tx-center">
                                                             <span> 1 </span>
                                                             <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
                                                         </div>
-                                                        <div class="col-sm-8">
+                                                        <div class="col-sm-9">
                                                             <div class="progress">
                                                                 <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="30" style="width:80%"></div>
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-1">
                                                             <div> 6 </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-7">
-                                                    <div class="col-sm-12">
-                                                        <div class="col-sm-1">
-                                                            <div><img src="http://localhost/zolaku-front/images/jpeg/users-profile/user-1.jpg" class="img-rounded"></div>
-                                                        </div>
-                                                        <div class="col-sm-11">
-                                                            <?php echo $this->Form->control('comment', ['type' => 'textarea', 'class' => 'form-control', 'label' => false, 'div' => false,'placeholder' => 'Tulis komentar anda disini'])?>
-                                                            <br />
-                                                            <button class="btn btn-default btn-radius btn-sm pull-left btn-unggah" style="margin-right: 5px;"><i class="fa fa-upload"></i><strong> Unggah dokumen pendukung </strong></button>
-                                                            <div class="rating">
-                                                                <span> Tambahkan rating </span>
-                                                                <div class="rating-box" style="padding-left: 55px;">
-                                                                    <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                                    <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                                    <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                                    <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                                    <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                                </div>
-                                                            </div>
-                                                            <br />
-                                                            <button class="btn btn-danger btn-radius btn-sm pull-left" style="margin-right: 10px; margin-bottom: 10px;"><i class="fa fa-send"></i><strong> KIRIM KOMENTAR </strong></button>
-                                                            <button class="btn btn-secondary btn-radius btn-sm pull-left" style="margin-bottom: 10px;"><strong> HAPUS </strong></button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -670,3 +644,4 @@ $this->Html->script([
 ?>
 
 <?php $this->end(); ?>
+
