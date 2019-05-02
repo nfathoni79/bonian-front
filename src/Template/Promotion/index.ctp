@@ -14,15 +14,7 @@
     .nav-promo li{
         background: #c93535;
     }
-    .product-listing .row {
-        background: #fff;
-        padding: 10px;
-        -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.12);
-        -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.12);
-        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.12);
-        margin: 40px 0;
-        border-radius: 8px;
-    }
+
     .box-title h2{
         background: #dc5054;
         background: linear-gradient(160deg,#dc5054 0%, #a41d21 100%);
@@ -35,7 +27,7 @@
         font-size: 18px;
         padding: 0 16px;
         color: #fff;
-        margin-left: -10px;
+        margin-left: -25px;
         margin-top: 8px;;
         margin-bottom: 12px;
         font-weight: bold;
@@ -98,46 +90,6 @@
     .share-txt{
         display: block;
     }
-    .share-container{
-          background: #fefefe;
-          box-shadow: unset;
-          width: 100%;
-          height: 100%;
-          border: 0px !important;
-          border-radius: 0px !important;
-    }
-    .btn-share {
-          width: 21%;
-          height: 40%;
-          margin: 3px;
-          border: none;
-          color: white;
-          text-align: center;
-          text-decoration: none;
-          font-size: 14px;
-          padding-left: 10px;
-          padding-right: 10px;
-          cursor: pointer;
-          border-radius: 4px;
-      }
-      .b-ig{
-          background-image: linear-gradient(#ee3381, #b2568d, #f6944a);
-      }
-      .b-fb{
-          background-color: #2861aa;
-      }
-      .b-wc{
-          background-color: #1c8aa6;
-      }
-      .b-wa{
-          background-color: #64bb54;
-      }
-      .b-ln{
-          background-color: #3acd03;
-      }
-      .b-tw{
-          background-color: #37b2db;
-      }
 </style>
 
 
@@ -173,7 +125,7 @@
                     <?php if($promotion['voucher_details']):?>
                     <?php foreach($promotion['voucher_details'] as $vals):?>
                     <!-- loop-1 -->
-                    <div class="row">
+                    <div class="row card mg-t-30 mg-l-0 mg-r-0">
 
                         <div class="box-title font-ct" style="display:inline-block !important;">
                             <h2 class="modtitle"><span>Kategori <?php echo $vals['product_category']['name']; ?> Pada Fashion Wanita</span></h2>
@@ -231,12 +183,16 @@
                                             </div>
                                             <div class="button-group so-quickview cartinfo--static share-container">
                                                 <span class="zl-tx-red tx-medium share-txt">Bagikan produk ini</span>
-                                                <button type="button" class="btn-share b-ig igShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $v['product']['slug'],'prefix' => false],true);?>" data-title="<?= $v['product']['name'];?>" data-price="<?= $v['product']['price_sale'];?>"><i class="fab fa-instagram"></i></button>
-                                                <button type="button" class="btn-share b-fb fbShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $v['product']['slug'],'prefix' => false],true);?>" data-title="<?= $v['product']['name'];?>" data-price="<?= $v['product']['price_sale'];?>"><i class="fab fa-facebook"></i></button>
-                                                <button type="button" class="btn-share b-wc smsShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $v['product']['slug'],'prefix' => false],true);?>" data-title="<?= $v['product']['name'];?>" data-price="<?= $v['product']['price_sale'];?>"><i class="fas fa-comment-dots"></i></button>
-                                                <button type="button" class="btn-share b-wa waShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $v['product']['slug'],'prefix' => false],true);?>" data-title="<?= $v['product']['name'];?>" data-price="<?= $v['product']['price_sale'];?>"><i class="fab fa-whatsapp"></i></button>
-                                                <button type="button" class="btn-share b-ln lineShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $v['product']['slug'],'prefix' => false],true);?>" data-title="<?= $v['product']['name'];?>" data-price="<?= $v['product']['price_sale'];?>"><i class="fab fa-line"></i></button>
-                                                <button type="button" class="btn-share b-tw twitterShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $v['product']['slug'],'prefix' => false],true);?>" data-title="<?= $v['product']['name'];?>" data-price="<?= $v['product']['price_sale'];?>"><i class="fab fa-twitter"></i></button>
+                                                <div class="row pd-0">
+                                                    <button type="button" class="btn-share b-ig igShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $v['product']['slug'],'prefix' => false],true);?>" data-title="<?= $v['product']['name'];?>" data-price="<?= $v['product']['price_sale'];?>"><i class="fab fa-instagram"></i></button>
+                                                    <button type="button" class="btn-share b-fb fbShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $v['product']['slug'],'prefix' => false],true);?>" data-title="<?= $v['product']['name'];?>" data-price="<?= $v['product']['price_sale'];?>"><i class="fab fa-facebook"></i></button>
+                                                    <button type="button" class="btn-share b-wc smsShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $v['product']['slug'],'prefix' => false],true);?>" data-title="<?= $v['product']['name'];?>" data-price="<?= $v['product']['price_sale'];?>"><i class="fas fa-comment-dots"></i></button>
+                                                </div>
+                                                <div class="row pd-0">
+                                                    <button type="button" class="btn-share b-wa waShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $v['product']['slug'],'prefix' => false],true);?>" data-title="<?= $v['product']['name'];?>" data-price="<?= $v['product']['price_sale'];?>"><i class="fab fa-whatsapp"></i></button>
+                                                    <button type="button" class="btn-share b-ln lineShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $v['product']['slug'],'prefix' => false],true);?>" data-title="<?= $v['product']['name'];?>" data-price="<?= $v['product']['price_sale'];?>"><i class="fab fa-line"></i></button>
+                                                    <button type="button" class="btn-share b-tw twitterShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $v['product']['slug'],'prefix' => false],true);?>" data-title="<?= $v['product']['name'];?>" data-price="<?= $v['product']['price_sale'];?>"><i class="fab fa-twitter"></i></button>
+                                                </div>
 
                                             </div>
                                         </div>

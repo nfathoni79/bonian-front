@@ -353,23 +353,26 @@
                                         <div class="price">
                                             <span class="price-new">Rp. <?= $this->Number->format($product['price_sale']); ?></span>
                                         </div>
-                                        <div class="button-group so-quickview cartinfo--static">
-                                            <button type="button" class="addToCart" title="Add to cart"
-                                                    onclick="cart.add('<?= $product['id']; ?>');"> <i class="fa fa-shopping-basket"></i>
-                                                <span>Add to cart </span>
-                                            </button>
-                                            <button type="button" class="wishlist btn-button"
-                                                    title="Add to Wish List" onclick="wishlist.add('<?= $product['id']; ?>', this);"><i
-                                                        class="fa fa-heart"></i><span></span>
-                                            </button>
-                                            <button type="button" class="compare btn-button"
-                                                    title="Compare this Product " onclick="compare.add('<?= $product['id']; ?>');"><i
-                                                        class="fa fa-refresh"></i><span></span>
-                                            </button>
+                                        <div class="button-group so-quickview cartinfo--static share-container">
+                                            <span class="col-md-12 zl-tx-red tx-medium">Bagikan produk ini</span>
+                                            <div class="row pd-0">
+                                                <button type="button" class="btn-share b-ig igShare" data-url="" data-title="" data-price=""><i class="fab fa-instagram"></i></button>
+                                                <button type="button" class="btn-share b-fb fbShare" data-url="" data-title="" data-price=""><i class="fab fa-facebook"></i></button>
+                                                <button type="button" class="btn-share b-wc smsShare" data-url="" data-title="" data-price=""><i class="fas fa-comment-dots"></i></button>
+                                            </div>
+                                            <div class="row pd-0">
+                                                <button type="button" class="btn-share b-wa waShare" data-url="" data-title="" data-price=""><i class="fab fa-whatsapp"></i></button>
+                                                <button type="button" class="btn-share b-ln lineShare" data-url="" data-title="" data-price=""><i class="fab fa-line"></i></button>
+                                                <button type="button" class="btn-share b-tw twitterShare" data-url="" data-title="" data-price=""><i class="fab fa-twitter"></i></button>
+                                            </div>
+
                                         </div>
+
                                         <div class="description item-desc">
                                             <p>&nbsp;</p>
                                         </div>
+
+
                                         <?php /*
                                         <div class="list-block">
                                             <button class="addToCart btn-button" type="button" title="Add to Cart"
