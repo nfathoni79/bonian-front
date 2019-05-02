@@ -3,6 +3,7 @@ namespace App\Controller\User;
 
 use App\Controller\AuthController;
 use App\Form\CustomerForm;
+use Cake\Validation\Validator;
 
 class ProfileController extends AuthController
 {
@@ -28,29 +29,49 @@ class ProfileController extends AuthController
         $this->request->allowMethod('post');
         $error = ['error' => []];
 
-        try {
 
-            $avatar = $this->Api->makeRequest($this->Auth->user('token'))
-                ->post('v1/web/profile/upload-image', [
-                    'form_params' => $this->request->getData()
-                ]);
-            if ($response = $this->Api->success($avatar)) {
-                $json = $response->parse();
+        $validator = new Validator();
+        $validator
+            ->requirePresence('avatar')
+            ->add('avatar', 'file', [
+                'rule' => ['uploadedFile', ['types' => ['image/png', 'image/jpeg']]], // It's what I expect to check
+                'message' => __("Format yang di ijinkan : .jpg, .png")
+            ])
+            ->add('avatar', 'file', [
+                'rule' => ['uploadedFile', ['maxSize' => ['1024']]], // It's what I expect to check
+                'message' => __("Ukuran file terlalu besar")
+            ]);
 
-                if(!empty($json['error'])){
-                    foreach($json['error'] as $val){
-                        $error['error']['data'] = $val['validExtension'];
-                        break;
+
+        $error['error'] = $validator->errors($this->request->getData());
+        if (empty($error['error'])) {
+
+            try {
+
+                $avatar = $this->Api->makeRequest($this->Auth->user('token'))
+                    ->post('v1/web/profile/upload-image', [
+                        'form_params' => $this->request->getData()
+                    ]);
+                if ($response = $this->Api->success($avatar)) {
+                    $json = $response->parse();
+
+                    if(!empty($json['error'])){
+                        foreach($json['error'] as $val){
+                            $error['error']['data'] = $val['validExtension'];
+                            break;
+                        }
+                    }else{
+                        $fileAvatar = $json['result']['data'];
+                        $session = $this->request->getSession()->write('Auth.Customers.avatar', $fileAvatar);
                     }
-                }else{
-                    $fileAvatar = $json['result']['data'];
-                    $session = $this->request->getSession()->write('Auth.Customers.avatar', $fileAvatar);
+
                 }
 
+            } catch(\GuzzleHttp\Exception\ClientException $e) {
+                $error = json_decode($e->getResponse()->getBody()->getContents(), true);
             }
-
-        } catch(\GuzzleHttp\Exception\ClientException $e) {
-            $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+        }else{
+            $error['error']['data'] = $error['error']['avatar']['file'];
         }
 
         return $this->response->withType('application/json')
