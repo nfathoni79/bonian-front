@@ -11,6 +11,9 @@
         text-transform: uppercase;
         border-right: 0px solid #e1e1e1;
     }
+    .producttab .tabsslider.horizontal-tabs .nav-tabs li a{
+      color: #fff;
+    }
     .nav-promo li{
         background: #c93535;
     }
@@ -83,12 +86,20 @@
     }
     .producttab .tabsslider.horizontal-tabs .nav-tabs li.active a{
         background: #c93535;
+        color: white!important;
     }
     .producttab .tabsslider.horizontal-tabs .nav-tabs li.item_nonactive a{
-        background: #fff;   
+        background: #fff;
+    }
+    li.item a{
+        background: #fff;
+        color: black!important;
     }
     .share-txt{
         display: block;
+    }
+    .mg-b-m13{
+      margin-bottom: -13px;
     }
 </style>
 
@@ -113,8 +124,8 @@
 
     <div class="tabsslider horizontal-tabs col-xs-12">
         <ul class="nav nav-tabs nav-promo">
-            <li class="active" style="float:left!important; width:50%; text-align: center;" data-active-content=".items-category-71"><a data-toggle="tab" href="#tab-product">Tentang Promo</a></li>
-            <li class="item_nonactive" style="float:right!important; width:50%; text-align: center;" data-active-content=".items-category-72"><a data-toggle="tab" href="#tab-rules">Syarat & Ketentuan</a></li>
+            <li class="ft-left wd-50p tx-center item active" data-active-content=".items-category-71"><a data-toggle="tab" href="#tab-product">Tentang Promo</a></li>
+            <li class="ft-left wd-50p tx-center item" data-active-content=".items-category-72"><a data-toggle="tab" href="#tab-rules">Syarat & Ketentuan</a></li>
         </ul>
 
         <!-- Tab Content -->
@@ -127,10 +138,10 @@
                     <!-- loop-1 -->
                     <div class="row card mg-t-30 mg-l-0 mg-r-0">
 
-                        <div class="box-title font-ct" style="display:inline-block !important;">
+                        <div class="box-title font-ct d-lg-inline-block" >
                             <h2 class="modtitle"><span>Kategori <?php echo $vals['product_category']['name']; ?> Pada Fashion Wanita</span></h2>
                         </div>
-                        <a class="l-detail tx-medium" href="" style="display:inline-block !important; float:right;">Lihat Selengkapnya</a>
+                        <a class="l-detail tx-medium ft-right d-lg-inline-block" href="" >Lihat Selengkapnya</a>
                         <?php
                             $chunk = array_chunk($vals['product_category']['products'],10);
                         ?>
@@ -180,8 +191,8 @@
                                                         ?>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-5 pd-0 tx-center"><span class="badge" style="margin-top: 0px !important;"><?= $v['product']['point']; ?> Poin</span></div>
-                                            </div>  
+                                                <div class="col-lg-5 pd-0 mg-t-0-force tx-center"><span class="badge" ><?= $v['product']['point']; ?> Poin</span></div>
+                                            </div>
                                             <h4><a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $v['product']['slug']]); ?>" title="<?= h($v['product']['name']); ?>" target="_self">  <?php echo $this->Text->truncate(
                                                 h($v['product']['name']),
                                                 30,
@@ -197,7 +208,7 @@
                                                 <span class="price-old">Rp. <?= $this->Number->format($v['product']['price']); ?></span>
                                                 <?php endif;?>
                                             </div>
-                                            <div class="button-group so-quickview cartinfo--static share-container">
+                                            <div class="button-group so-quickview cartinfo--static share-container pd-t-0-force mg-b-m13">
                                                 <span class="zl-tx-red tx-medium share-txt">Bagikan produk ini</span>
                                                 <div class="row pd-0">
                                                     <button type="button" class="btn-share b-ig igShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $v['product']['slug'],'prefix' => false],true);?>" data-title="<?= $v['product']['name'];?>" data-price="<?= $v['product']['price_sale'];?>"><i class="fab fa-instagram"></i></button>

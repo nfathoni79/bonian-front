@@ -101,31 +101,31 @@
                             <ul class="links-footer" style="margin-top: 20px;">
                                 <li class="li-social facebook-social">
                                     <a title="Facebook" href="http://www.facebook.com/#" target="_blank">
-                                        <span class="fa fa-facebook icon-social"></span> <span class="name-social">Facebook</span>
+                                        <span class="fab fa-facebook-f icon-social"></span> <span class="name-social">Facebook</span>
                                     </a>
                                 </li>
 
                                 <li class="li-social twitter-social">
                                     <a title="Twitter" href="https://twitter.com/#" target="_blank">
-                                        <span class="fa fa-twitter icon-social"></span> <span class="name-social">Twitter</span>
+                                        <span class="fab fa-twitter icon-social"></span> <span class="name-social">Twitter</span>
                                     </a>
                                 </li>
 
                                 <li class="li-social google-social">
                                     <a title="Google+" href="https://plus.google.com/#" target="_blank">
-                                        <span class="fa fa-google-plus icon-social"></span> <span class="name-social">Google+</span>
+                                        <span class="fab fa-google-plus-g icon-social"></span> <span class="name-social">Google+</span>
                                     </a>
                                 </li>
 
                                 <li class="li-social linkedin-social">
                                     <a title="Linkedin" href="#" target="_blank">
-                                        <span class="fa fa-linkedin icon-social"></span> <span class="name-social">Linkedin</span>
+                                        <span class="fab fa-linkedin icon-social"></span> <span class="name-social">Linkedin</span>
                                     </a>
                                 </li>
 
                                 <li class="li-social pinterest-social">
                                     <a title="Pinterest" href="#" target="_blank">
-                                        <span class="fa fa-pinterest icon-social"></span> <span class="name-social">Pinterest</span>
+                                        <span class="fab fa-pinterest icon-social"></span> <span class="name-social">Pinterest</span>
                                     </a>
                                 </li>
                             </ul>
