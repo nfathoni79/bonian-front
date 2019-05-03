@@ -305,6 +305,7 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <h4 class="tx-mont tx-semibold zl-tx-black tx-16 mg-b-20"><strong>Tentang Produk</strong></h4>
+                                        <hr>
                                         <p>
                                             <?php echo $details['data']['profile']; ?>
                                         </p>
