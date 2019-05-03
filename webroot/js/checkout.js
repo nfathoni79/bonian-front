@@ -1,5 +1,7 @@
 "use strict"
 
+var is_finish_statuses = false;
+
 $('.selected-address').on('click',function(){
     $('.zl-address-name').html($(this).data('recipent'));
     $('.zl-address-title').html('- ('+$(this).data('title')+')');
@@ -149,7 +151,15 @@ function processPayment(request) {
         data : request,
         dataType : 'json',
         success: function(response){
-            location.href = basePath + '/checkout';
+            //location.href = basePath + '/checkout';
+            if (response.result && response.result.data && response.result.data.payment) {
+                //location.href = basePath + '/checkout/success/' + response.result.data.payment.order_id;
+                if (response.result.data.payment_method && response.result.data.payment_method === 'gopay') {
+                    showBarcodeGopay(response.result.data);
+                } else {
+                    location.href = basePath + '/checkout/finish/' + response.result.data.payment.order_id;
+                }
+            }
         },
         error: function (text) {
             switch (text.status) {
@@ -163,6 +173,92 @@ function processPayment(request) {
             }
         }
     });
+}
+
+function showBarcodeGopay(object) {
+    var basePath = $('meta[name="_basePath"]').attr('content');
+    var amount = 'Rp. ' + numeral(object.payment_amount).format('0,0');
+    var modal = $('.modal-box-template');
+    modal.find('.modal-title').html('Pembayaran melalui gopay');
+    is_finish_statuses = false;
+    var qrcode = null;
+    if (object.payment && object.payment.actions && object.payment.actions instanceof Array) {
+        for(var i in object.payment.actions) {
+            if (object.payment.actions[i].name === 'generate-qr-code') {
+                qrcode = object.payment.actions[i].url;
+            }
+        }
+    }
+
+var body = `<div class="row">`;
+body += `
+<div class="col-md-4 text-center">
+    <div>Selesaikan transaksi anda dalam</div>
+    <div class="order-timer">05:00</div>
+    <img src="${qrcode}" alt="qrcode" />
+    <div>Jumlah Pembayaran <span class="order-price">${amount}</span></div>
+</div>`;
+body += `
+<div class="col-md-8">
+    <h2>Cara membayar dengan Go-Pay</h2>
+    <div class="row">
+        <div class="col-md-7">
+            <ol style="list-style-type: decimal;">
+                <li> Buka aplikasi GO-JEK pada smartphone anda</li>
+                <li> Pilih Scan QR (QR Code anda tidak akan ditampilkan jika saldo GO-PAY anda kurang dari Rp. 10.000)</li>
+                <li> Arahkan kamera anda pada QR Code</li>
+                <li> Periksa transaksi detail anda di dalam aplikasi GO-JEK anda kemudian klik tombol bayar.</li>
+                <li> Transaksi anda telah selesai</li>
+            </ol>
+        </div>
+        <div class="col-md-5">
+            <img src="${basePath}/images/help/gopay/menu.png" class="img-responsive" />
+            <img src="${basePath}/images/help/gopay/scan.png" class="img-responsive" />
+        </div>
+    </div>
+</div>`;
+body += `</div>`;
+    modal.find('.modal-body').html(body);
+    modal.find('div.order-timer').countdown(new Date((new Date()).getTime() + 1000 * 300), function(event) {
+        $(this).text(
+            event.strftime('%M:%S')
+        );
+    }).on('finish.countdown', function() {
+        is_finish_statuses = true;
+    });
+    modal.modal({
+        backdrop: 'static',
+        keyboard: false
+    });
+    if (object.payment && object.payment.transaction_id) {
+        (function poll(transaction_id) {
+            if (is_finish_statuses) {
+                return;
+            }
+            $.ajax({
+                url: basePath + '/checkout/gopay-status',
+                type: "POST",
+                data: {
+                    transaction_id: transaction_id,
+                    _csrfToken: $('meta[name="_csrfToken"]').attr('content')
+                },
+                success: function(data) {
+                    if (data.status_code && data.status_code === '200') {
+                        is_finish_statuses = true;
+                        location.href = basePath + '/checkout/finish/' + data.order_id;
+                    }
+                },
+                error: function() {
+                    //is_finish_statuses = true;
+                },
+                dataType: "json",
+                complete: setTimeout(function() {poll(transaction_id)}, 5000),
+                timeout: 4000
+            });
+        })(object.payment.transaction_id);
+    }
+
+
 }
 
 
@@ -214,7 +310,7 @@ formCCconfirm.submit(function(e) {
 });
 
 window.addEventListener("message", function (event) {
-    
+
     var request = formCCconfirm.parents('.modal').data('request');
     /*
     eci: "05"
@@ -270,6 +366,9 @@ $("#pay-now").on('click', function(e) {
         case 'bca_va':
         case 'bni_va':
         case 'permata_va':
+            processPayment(request);
+        break;
+        case 'gopay':
             processPayment(request);
         break;
 

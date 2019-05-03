@@ -131,11 +131,19 @@ class CheckoutController  extends AuthController
             ->withStringBody(json_encode($error));
     }
 
+    public function finish($invoice)
+    {
+
+    }
+
     public function process()
     {
         $this->disableAutoRender();
         $this->request->allowMethod('post');
         $error = ['error' => []];
+        //$error = '{"status":"OK","code":200,"result":{"data":{"payment_method":"gopay","payment_amount":158000,"payment_status":"pending","payment":{"status_code":"201","status_message":"GO-PAY transaction is created","transaction_id":"cdad60b5-efd2-42e5-88fc-40ceb0368568","order_id":"1905030901661C","gross_amount":"158000.00","currency":"IDR","payment_type":"gopay","transaction_time":"2019-05-03 16:27:03","transaction_status":"pending","fraud_status":"accept","actions":[{"name":"generate-qr-code","method":"GET","url":"https:\/\/api.sandbox.veritrans.co.id\/v2\/gopay\/cdad60b5-efd2-42e5-88fc-40ceb0368568\/qr-code"},{"name":"deeplink-redirect","method":"GET","url":"https:\/\/simulator.sandbox.midtrans.com\/gopay\/ui\/checkout?referenceid=Q6ttJG1N5K"},{"name":"get-status","method":"GET","url":"https:\/\/api.sandbox.veritrans.co.id\/v2\/cdad60b5-efd2-42e5-88fc-40ceb0368568\/status"},{"name":"cancel","method":"POST","url":"https:\/\/api.sandbox.veritrans.co.id\/v2\/cdad60b5-efd2-42e5-88fc-40ceb0368568\/cancel"}]}}}}';
+        //return $this->response->withType('application/json')
+        //    ->withStringBody($error);
         try {
             $card = $this->Api->makeRequest($this->Auth->user('token'))
                 ->post('v1/web/checkout/process', [
@@ -152,6 +160,35 @@ class CheckoutController  extends AuthController
 
         return $this->response->withType('application/json')
             ->withStringBody(json_encode($error));
+    }
+
+    public function gopayStatus()
+    {
+        $this->disableAutoRender();
+        $this->request->allowMethod('post');
+        $content = [];
+        if ($transaction_id = $this->request->getData('transaction_id')) {
+            try {
+                $status = $this->Api->makeRequest($this->Auth->user('token'))
+                    ->post('v1/web/checkout/gopay-status', [
+                        'form_params' => $this->request->getData()
+                    ]);
+                if ($response = $this->Api->success($status)) {
+                    $parse = $response->parse();
+                    if (isset($parse['result']['data']) && isset($parse['result']['data']['status_code'])) {
+                        $content['status_code'] = $parse['result']['data']['status_code'];
+                        $content['order_id'] = $parse['result']['data']['order_id'];
+                    }
+                }
+            } catch(\GuzzleHttp\Exception\ClientException $e) {
+                $this->Api->handle($e);
+                $this->response = $this->response->withStatus($e->getResponse()->getStatusCode());
+            }
+        }
+
+        return $this->response->withType('application/json')
+            ->withStringBody(json_encode($content));
+
     }
 
     public function addCard()
