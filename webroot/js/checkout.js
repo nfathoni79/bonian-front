@@ -156,8 +156,10 @@ function processPayment(request) {
                 //location.href = basePath + '/checkout/success/' + response.result.data.payment.order_id;
                 if (response.result.data.payment_method && response.result.data.payment_method === 'gopay') {
                     showBarcodeGopay(response.result.data);
-                } else {
+                } else if (response.result.data.payment_method && response.result.data.payment_method === 'credit_card') {
                     location.href = basePath + '/checkout/finish/' + response.result.data.payment.order_id;
+                } else {
+                    location.href = basePath + '/checkout/confirmation/' + response.result.data.payment.order_id;
                 }
             }
         },

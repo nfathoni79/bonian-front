@@ -133,7 +133,7 @@ class CheckoutController  extends AuthController
 
     public function finish($invoice)
     {
-
+        $this->viewBuilder()->setLayout('secure');
     }
 
     public function process()
@@ -242,8 +242,26 @@ class CheckoutController  extends AuthController
 
     }
 
-    function confirmation(){
+    function confirmation($invoice)
+    {
         $this->viewBuilder()->setLayout('secure');
+
+        try {
+            $card = $this->Api->makeRequest($this->Auth->user('token'))
+                ->get('v1/web/orders/get-pending-invoice/' . $invoice); //print_r($card->getBody()->getContents());exit;
+            if ($response = $this->Api->success($card)) {
+                $error = $response->parse();
+                $data = $error['result']['data'];
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $this->Api->handle($e);
+            //$error = json_decode($e->getResponse()->getBody()->getContents(), true);
+            return $this->redirect(['controller' => 'History', 'prefix' => 'user']);
+
+        }
+
+        //debug($data);exit;
+        $this->set(compact('data'));
 
     }
 }
