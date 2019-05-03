@@ -12,7 +12,7 @@ if (isset($search[0]) && isset($search[0]['data'])) {
                 'source' => 'click'
             ]
         ]);
-        $val['primary'] = $this->Tools->highlight($this->Text->truncate($val['primary'], 70, [
+        $val['primary'] = $this->Tools->highlight($this->Text->truncate($val['primary'], 85, [
             'ellipsis' => '...',
             'exact' => false
         ]),
@@ -34,7 +34,7 @@ if (isset($search[1]) && isset($search[1]['data'])) {
             ]
         ]);
 
-        $val['primary'] = $this->Tools->highlight($this->Text->truncate($val['primary'], 70, [
+        $val['primary'] = $this->Tools->highlight($this->Text->truncate($val['primary'], 80, [
                 'ellipsis' => '...',
                 'exact' => false
             ]),
