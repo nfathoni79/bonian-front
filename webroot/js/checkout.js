@@ -94,14 +94,15 @@ formCC.submit(function(e) {
 function wrapperHtmlCC(id, masked_card, type) {
     var basePath = $('meta[name="_basePath"]').attr('content');
     var html = `<div class="row" style="padding: 5px 20px">
-                <div class="col-lg-2 text-center">
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="payment_method" value="credit_card" data-id="${id}">
-                        </label>
+                <div class="col-lg-2 pd-t-10 text-center">
+                    <div class="pretty p-default p-round p-pulse">
+                        <input type="radio" name="payment_method"  value="credit_card" data-id="${id}">
+                        <div class="state p-danger">
+                            <label> </label>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-10">
+                <div class="col-lg-10 pd-t-10">
                     <div class="row">
                         <div class="col-lg-4">
                             <img src="${basePath}/images/logo_cc/128x80/${type}.png" alt="cc" class="img-responsive">
