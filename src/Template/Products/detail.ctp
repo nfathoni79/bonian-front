@@ -304,11 +304,12 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                             <div id="tab-deskripsi" class="tab-pane fade active in">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <h4><strong>Tentang Produk</strong></h4>
+                                        <h4 class="tx-mont tx-semibold zl-tx-black tx-16 mg-b-20"><strong>Tentang Produk</strong></h4>
                                         <p>
                                             <?php echo $details['data']['profile']; ?>
                                         </p>
-                                        <h4><strong>Spesifikasi</strong></h4>
+                                        <br>
+                                        <h4 class="tx-mont tx-semibold zl-tx-black tx-16 mg-b-20"><strong>Spesifikasi</strong></h4>
                                         <table class="table table-hover">
                                             <?php foreach($details['data']['attributes'] as $key => $vals): ?>
                                             <tr>
@@ -323,7 +324,7 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                             <div id="tab-highlight" class="tab-pane fade">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <h4><strong>Highlight Produk</strong></h4>
+                                        <h4 class="tx-mont tx-semibold zl-tx-black tx-16 mg-b-20"><strong>Highlight Produk</strong></h4>
                                         <p>
                                             <?php echo $details['data']['highlight']; ?>
                                         </p>
@@ -451,7 +452,7 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                 <?php endif;?>
                             </div>
                             <div id="tab-ulasan" class="tab-pane fade">
-                                <h4><i class="fa fa-pencil"></i><strong> Rating & Ulasan Produk</strong></h4>
+                                <h4 class="tx-mont tx-semibold zl-tx-black tx-16 mg-b-20"><i class="fas fa-pencil-alt mg-r-10"></i><strong> Rating & Ulasan Produk</strong></h4>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <br />
@@ -555,7 +556,7 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                         <br />
                                     </div>
                                 </div>
-                                <h4> 2 ulasan untuk <strong> <?php echo $details['data']['name']; ?> </strong></h4>
+                                <h4 class="tx-mont tx-semibold zl-tx-black tx-16 mg-b-20"> 2 ulasan untuk <strong> <?php echo $details['data']['name']; ?> </strong></h4>
                                 <br />
                                 <div class="row">
                                     <div class="col-md-12">
