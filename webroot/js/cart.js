@@ -341,6 +341,7 @@ $('.btn-c-ok').on('click',function(){
     if(radioValue){
         $("#modalCoupon").modal('hide');
         $('#coupon-price').html(numeral(priceValue).format('0,0'));
+
         grandTotal();
     }else{
         swal("Tidak ada kupon yang di pilih");
@@ -359,7 +360,7 @@ function grandTotal(){
     if(vGroup != undefined){
         if(vGroup){
 
-            var values = vGroup.split(",");
+            var values = vGroup.toString().split(",");
 
             var incat = 0;
             var outcat = 0;
@@ -399,6 +400,9 @@ function grandTotal(){
                 $('#grandtotal').html(numeral((total-cut)).format('0,0'));
             }
         }
+    }else{
+
+        $('#grandtotal').html(numeral((total)).format('0,0'));
     }
 
 }
