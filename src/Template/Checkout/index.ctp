@@ -767,6 +767,33 @@
     </div>
 </div>
 
+<div class="modal fade modal-box-template" id="modalTambahKartuKredit" tabindex="-1" role="dialog"
+     aria-labelledby="modalTambahKartuKredit">
+    <div class="modal-dialog" role="document" style="width: 485px;">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        <i class="fas fa-times-circle"></i>
+                    </span>
+                </button>
+                <h4 class="modal-title" id="modalTitle">
+
+                </h4>
+            </div>
+
+
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer u-mt-10">
+
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <?php $this->append('script'); ?>
 <?php
