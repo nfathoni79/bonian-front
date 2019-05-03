@@ -153,7 +153,7 @@
                                                     </div>
                                                     <div class="col-lg-7 text-center p-0">
 
-                                                        <div class="button-group so-quickview cartinfo--static share-container" style="margin-left: 10px; width: 90%; padding: 5px;">
+                                                        <div class="button-group so-quickview cartinfo--static share-container zl-bg-none" style="margin-left: 10px; width: 90%; padding: 5px;">
 
                                                             <button type="button" class="btn-share fbShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $cart['slug'],'prefix' => false],true);?>" data-title="<?= $cart['name'];?>" data-price="<?= $cart['price'];?>" style="background-color:#2c558b; padding-left: 12px; padding-right: 12px;" title="Share" onclick=""><i class="fab fa-facebook"></i><span> </span>
                                                             </button>
@@ -350,7 +350,7 @@
                                                             <div class="col-md-2 mg-t-45">
                                                                 <?php if($vals['active']):?>
                                                                     <?php $group = implode(',', $vals['category']);?>
-                                                                    <div class="pretty p-round p-pulse">
+                                                                    <div class="pretty p-default p-round p-pulse">
                                                                         <input type="radio" name="voucher" value="<?php echo $vals['id'];?>" data-code="<?php echo $vals['voucher']['code_voucher'];?>" data-price="<?php echo $vals['voucher']['value'];?>" data-diskon="<?php echo $vals['voucher']['percent'];?>" data-group="<?php echo $group;?>">
                                                                         <div class="state p-danger">
                                                                             <label>Pilih</label>
@@ -424,7 +424,7 @@
                                                             Kupon produk <br><strong><?= $vals['product_coupon']['product']['name'];?></strong><br> potongan harga Rp. <?php  echo $this->Number->precision($vals['product_coupon']['price'], 0);?>
                                                         </div>
                                                         <div class="col-md-2 mg-t-45">
-                                                            <div class="pretty p-round p-pulse">
+                                                            <div class="pretty p-default p-round p-pulse">
                                                                 <input type="radio" name="kupon" value="<?php echo $vals['id'];?>" data-price="<?= $vals['product_coupon']['price']; ?>">
                                                                 <div class="state p-danger">
                                                                     <label>Pilih</label>
@@ -438,7 +438,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="modal-footer">
+                                <div class="modal-footer ">
                                     <div class="row">
                                         <div class="col-lg-8">
                                             <button class="btn btn-default btn-lg btn-block btn-radius" data-dismiss="modal">Nanti saja</button>
@@ -570,26 +570,8 @@
                                 <?php endforeach;?>
                             </div>
                             <div class="col-lg-8 p-0">
-                                <div class="col-lg-12">
-                                    <h5><a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['product']['slug']]); ?>" title="<?= h($vals['product']['name']); ?>" target="_self">
-                                        <?php echo $this->Text->truncate(
-                                        h($vals['product']['name']),
-                                        25,
-                                        [
-                                        'ellipsis' => '...',
-                                        'exact' => false
-                                        ]
-                                        );?>
-                                    </a></h5>
-                                </div>
                                 <div class="col-lg-12 text-left">
-                                    <div class="price">
-                                        <span class="price-new">Rp. <?= $this->Number->format($vals['product']['price_sale']);?></span>
-                                        <span class="price-old">Rp. <?= $this->Number->format($vals['product']['price']);?></span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 text-left">
-                                    <div class="rate-history">
+                                    <div class="col-lg-8 rate-history pd-0">
                                         <div class="ratings">
                                             <div class="rating-box">
                                                 <?php
@@ -607,10 +589,31 @@
                                         </div>
                                         <!-- <div class="order-num">Orders (0)</div> -->
                                     </div>
+                                    <div class="col-lg-4 pd-0 mg-0 text-center">
+                                        <div class="mg-0 badge <?= $this->Badge->format($vals['product']['point']); ?>"><?= $vals['product']['point']; ?> poin</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <h4><a class="zl-tx-black tx-medium" href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['product']['slug']]); ?>" title="<?= h($vals['product']['name']); ?>" target="_self">
+                                        <?php echo $this->Text->truncate(
+                                        h($vals['product']['name']),
+                                        25,
+                                        [
+                                        'ellipsis' => '...',
+                                        'exact' => false
+                                        ]
+                                        );?>
+                                    </a></h4>
+                                </div>
+                                <div class="col-lg-12 text-left">
+                                    <div class="price">
+                                        <span class="price-new">Rp. <?= $this->Number->format($vals['product']['price_sale']);?></span>
+                                        <span class="price-old">Rp. <?= $this->Number->format($vals['product']['price']);?></span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-8 mt-3 text-center">
-                                <div class="button-group so-quickview cartinfo--static share-container" style="margin-left: 10px; width: 90%; padding: 5px;">
+                            <div class="col-lg-12 mt-3 text-center">
+                                <div class="button-group so-quickview cartinfo--static share-container zl-bg-none" style="margin-left: 10px; width: 90%; padding: 5px;">
                                     <button type="button" class="btn-share fbShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['product']['slug'],'prefix' => false],true);?>" data-title="<?= $vals['product']['name'];?>" data-price="<?= $vals['product']['price_sale'];?>" style="background-color:#2c558b; padding-left: 12px; padding-right: 12px;" title="Share" onclick=""><i class="fab fa-facebook"></i><span> </span>
                                     </button>
                                     <button type="button" class="btn-share twitterShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['product']['slug'],'prefix' => false],true);?>" data-title="<?= $vals['product']['name'];?>" data-price="<?= $vals['product']['price_sale'];?>" style="background-color:#1e99d0; padding-left: 9px; padding-right: 9px;" title="Share" onclick=""><i class="fab fa-twitter"></i>
@@ -622,9 +625,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-4 mt-3 text-center">
-                                <div class="badge <?= $this->Badge->format($vals['product']['point']); ?>"><?= $vals['product']['point']; ?> poin</div>
-                            </div>
+                            
 
                         </div>
                     </div>

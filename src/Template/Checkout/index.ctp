@@ -359,7 +359,7 @@
                                         <!-- start:item #1-->
                                         <div class="row pd-t-5 pd-l-20 pd-r-20 pd-b-5" >
                                             <div class="col-lg-2 pd-t-10 text-center">
-                                                <div class="pretty p-round p-pulse">
+                                                <div class="pretty p-default p-round p-pulse">
                                                     <input type="radio" name="payment_method"  value="bca_va">
                                                     <div class="state p-danger">
                                                         <label> </label>
@@ -384,7 +384,7 @@
 
                                         <div class="row pd-t-5 pd-l-20 pd-r-20 pd-b-5">
                                             <div class="col-lg-2 pd-t-10 text-center">
-                                                <div class="pretty p-round p-pulse">
+                                                <div class="pretty p-default p-round p-pulse">
                                                     <input type="radio" name="payment_method"  value="permata_va">
                                                     <div class="state p-danger">
                                                         <label> </label>
@@ -409,7 +409,7 @@
 
                                         <div class="row pd-t-5 pd-l-20 pd-r-20 pd-b-5">
                                             <div class="col-lg-2 pd-t-10 text-center">
-                                                <div class="pretty p-round p-pulse">
+                                                <div class="pretty p-default p-round p-pulse">
                                                     <input type="radio" name="payment_method"  value="bni_va">
                                                     <div class="state p-danger">
                                                         <label> </label>
@@ -443,7 +443,7 @@
                                         <!-- start:item-->
                                         <div class="row" style="padding: 5px 20px">
                                             <div class="col-lg-2 pd-t-10 text-center">
-                                                <div class="pretty p-round p-pulse">
+                                                <div class="pretty p-default p-round p-pulse">
                                                     <input type="radio" name="payment_method"  value="credit_card" data-id="<?= $creditcard['id']; ?>">
                                                     <div class="state p-danger">
                                                         <label> </label>
@@ -489,7 +489,7 @@
                                         <!-- start:item #1-->
                                         <div class="row" style="padding: 5px 20px">
                                             <div class="col-lg-2 pd-t-10 text-center">
-                                                <div class="pretty p-round p-pulse">
+                                                <div class="pretty p-default p-round p-pulse">
                                                     <input type="radio" name="payment_method"  value="gopay">
                                                     <div class="state p-danger">
                                                         <label> </label>
