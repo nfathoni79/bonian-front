@@ -22,7 +22,7 @@ class ProductsController extends AuthController
      *
      * @return \Cake\Http\Response|void
      */
-    public function detail($slug = null)
+    public function detail($slug , $reff = null)
     {
         $this->viewBuilder()->setLayout('detail');
         try {

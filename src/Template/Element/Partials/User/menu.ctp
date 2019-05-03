@@ -8,10 +8,10 @@
             </div>
             <div class="profile-name">
                 <span class="full-name">
-                    <?= $this->request->getSession()->read('Auth.Customers.full_name'); ?>
+                    <?= $this->request->getSession()->read('Auth.Customers.first_name'); ?>
                     <?= $this->request->getSession()->read('Auth.Customers.last_name'); ?>
                 </span>
-                <span class="label label-primary label-point">150 Point</span>
+                <span class="label label-default"> <?= $this->request->getSession()->read('Auth.Customers.email'); ?></span>
             </div>
             <div class="divider"></div>
         </div>

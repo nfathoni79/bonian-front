@@ -662,13 +662,13 @@ $(document).ready(function() {
     var reffcode = $.cookie('reffcode');
     var reff;
     if(reffcode != undefined){
-        reff = "reff="+reffcode;
+        reff = reffcode;
     }else{
         reff = '';
 	}
 
     $('.waShare').on('click',function(){
-        window.open('https://web.whatsapp.com//send?text=Temukan '+$(this).data('title')+' Rp. '+numeral($(this).data('price')).format('0,0')+' Dapatkan segera di zolaku '+$(this).data('url')+'?'+reff,'_blank','width=600, height=368');
+        window.open('https://web.whatsapp.com//send?text=Temukan '+$(this).data('title')+' Rp. '+numeral($(this).data('price')).format('0,0')+' Dapatkan segera di zolaku '+$(this).data('url')+'/'+reff,'_blank','width=600, height=368');
         return false;
     });
     $('.igShare').on('click',function(){
@@ -676,22 +676,22 @@ $(document).ready(function() {
         // return false;
     });
     $('.smsShare').on('click',function(){
-        window.open('sms:;?&body=Temukan '+$(this).data('title')+' Rp. '+numeral($(this).data('price')).format('0,0')+' Dapatkan segera di zolaku '+$(this).data('url')+'?'+reff,'_self','width=600, height=368')
+        window.open('sms:;?&body=Temukan '+$(this).data('title')+' Rp. '+numeral($(this).data('price')).format('0,0')+' Dapatkan segera di zolaku '+$(this).data('url')+'/'+reff,'_self','width=600, height=368')
         return false;
     });
 
     $('.fbShare').on('click',function(){
-        window.open('https://www.facebook.com/sharer.php?u='+$(this).data('url')+'?'+reff,'_blank','width=600, height=368');
+        window.open('https://www.facebook.com/sharer.php?u='+$(this).data('url')+'/'+reff,'_blank','width=600, height=368');
         return false;
     });
 
     $('.lineShare').on('click',function(){
-        window.open('https://lineit.line.me/share/ui?url='+$(this).data('url')+'?'+reff+'&text=Temukan '+$(this).data('title')+' Rp. '+numeral($(this).data('price')).format('0,0')+' Dapatkan segera di zolaku ','_blank','width=600, height=368');
+        window.open('https://lineit.line.me/share/ui?url='+$(this).data('url')+'/'+reff+'&text=Temukan '+$(this).data('title')+' Rp. '+numeral($(this).data('price')).format('0,0')+' Dapatkan segera di zolaku ','_blank','width=600, height=368');
         return false;
     });
 
     $('.twitterShare').on('click',function(){
-        window.open('https://twitter.com/share?url='+$(this).data('url')+'?'+reff+'&text=Temukan '+$(this).data('title')+' Rp. '+numeral($(this).data('price')).format('0,0')+' Dapatkan segera di zolaku ','_blank','width=600, height=368');
+        window.open('https://twitter.com/share?url='+$(this).data('url')+'/'+reff+'&text=Temukan '+$(this).data('title')+' Rp. '+numeral($(this).data('price')).format('0,0')+' Dapatkan segera di zolaku ','_blank','width=600, height=368');
         return false;
     });
 });
