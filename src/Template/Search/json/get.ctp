@@ -12,7 +12,10 @@ if (isset($search[0]) && isset($search[0]['data'])) {
                 'source' => 'click'
             ]
         ]);
-        $val['primary'] = $this->Tools->highlight($val['primary'],
+        $val['primary'] = $this->Tools->highlight($this->Text->truncate($val['primary'], 70, [
+            'ellipsis' => '...',
+            'exact' => false
+        ]),
             $val['fill_text']
         );
     }
@@ -31,7 +34,10 @@ if (isset($search[1]) && isset($search[1]['data'])) {
             ]
         ]);
 
-        $val['primary'] = $this->Tools->highlight($val['primary'],
+        $val['primary'] = $this->Tools->highlight($this->Text->truncate($val['primary'], 70, [
+                'ellipsis' => '...',
+                'exact' => false
+            ]),
             $keyword
         ) . ' di <span class="search-category">' . $val['product_category']['name'] . '</span>';
 
