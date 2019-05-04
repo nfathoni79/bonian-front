@@ -34,7 +34,10 @@ class OauthController extends AuthController
        $query = $this->request->getQueryParams();
 
        $callback = parse_url(Router::url(null, true));
-       $callback_url = $callback['scheme'] . '://' . $callback['host'] . $callback['path'] . '?' . http_build_query(['provider' => $this->request->getQuery('provider')]);
+       $callback_url = $callback['scheme'] . '://' . $callback['host'] . $callback['path'] . '?' .
+           http_build_query([
+               'provider' => $this->request->getQuery('provider')
+           ]);
 
 
        try {
@@ -107,8 +110,8 @@ class OauthController extends AuthController
 
            }
        } catch(\GuzzleHttp\Exception\ClientException $e) {
-		   print_r($e->getResponse()->getBody()->getContents());
-           //return $this->redirect($this->request->getQuery('redirect_url', '/'));
+		   //print_r($e->getResponse()->getBody()->getContents());
+           return $this->redirect($this->request->getQuery('redirect_url', '/'));
        }
 
 

@@ -196,7 +196,7 @@
 
                 <div class="row social-media-button">
                     <div class="col-md-6">
-                        <a class="btn btn-primary btn-block google">
+                        <a class="btn btn-primary btn-block google" href="<?= $this->Url->build(['controller' => 'Oauth', 'prefix' => false, '?' => ['provider' => 'Google', 'redirect_url' => $this->Url->build()]]); ?>">
                             <img src="<?= $this->Url->build('/images/png/logo-media-social/google.png'); ?>" /> Google
                         </a>
                     </div>
