@@ -201,7 +201,7 @@
                         </a>
                     </div>
                     <div class="col-md-6">
-                        <a class="btn btn-primary btn-block facebook">
+                        <a class="btn btn-primary btn-block facebook login-with-facebook" href="<?= $this->Url->build(['controller' => 'Oauth', 'prefix' => false, '?' => ['provider' => 'Facebook', 'redirect_url' => $this->Url->build()]]); ?>">
                             Facebook
                         </a>
                     </div>
