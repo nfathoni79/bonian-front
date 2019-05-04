@@ -196,12 +196,12 @@
 
                 <div class="row social-media-button">
                     <div class="col-md-6">
-                        <a class="btn btn-primary btn-block google" href="<?= $this->Url->build(['controller' => 'Oauth', 'prefix' => false, '?' => ['provider' => 'Google', 'redirect_url' => $this->Url->build()]]); ?>">
+                        <a class="btn btn-primary btn-block google" href="<?= $this->Url->build(['controller' => 'Oauth', 'prefix' => false, '?' => ['provider' => 'google', 'redirect_url' => $this->Url->build()]]); ?>">
                             <img src="<?= $this->Url->build('/images/png/logo-media-social/google.png'); ?>" /> Google
                         </a>
                     </div>
                     <div class="col-md-6">
-                        <a class="btn btn-primary btn-block facebook login-with-facebook" href="<?= $this->Url->build(['controller' => 'Oauth', 'prefix' => false, '?' => ['provider' => 'Facebook', 'redirect_url' => $this->Url->build()]]); ?>">
+                        <a class="btn btn-primary btn-block facebook login-with-facebook" href="<?= $this->Url->build(['controller' => 'Oauth', 'prefix' => false, '?' => ['provider' => 'facebook', 'redirect_url' => $this->Url->build()]]); ?>">
                             Facebook
                         </a>
                     </div>

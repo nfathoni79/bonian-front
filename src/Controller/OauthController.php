@@ -19,103 +19,116 @@ class OauthController extends AuthController
     public function initialize()
     {
         parent::initialize();
-        $this->Auth->allow('index');
+        $this->Auth->allow(['index', 'cb']);
+    }
+
+
+    /**
+     * @return \Cake\Http\Response|null
+     */
+    public function index()
+    {
+        $this->disableAutoRender();
+
+        $query = $this->request->getQueryParams();
+        $provider = $this->request->getQuery('provider');
+        $callback = parse_url(Router::url(null, true));
+        $callback_url = $callback['scheme'] . '://' . $callback['host'] . $callback['path'] . '/cb/' . $provider;
+
+        try {
+            $this->Api->addHeader('bid', $this->request->getCookie('bid'));
+            $this->Api->addHeader('User-Agent', env('HTTP_USER_AGENT'));
+            $this->Api->addHeader('callback', $callback_url);
+            $login = $this->Api->makeRequest()
+                ->get('v1/web/oauth', [
+                    'query' => $query,
+                    'on_stats' => function (TransferStats $stats) use (&$url) {
+                        if (in_array($stats->getResponse()->getStatusCode(), [301, 302])) {
+                            $url = (string)$stats->getEffectiveUri();
+                        }
+
+                    }
+                ]);
+
+            if ($response = $this->Api->success($login)) {
+                $json = $response->parse();
+                $redirect = $json['result']['redirect'];
+                if ($redirect) {
+                    return $this->redirect($redirect);
+                }
+            }
+
+
+
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            //print_r($e->getResponse()->getBody()->getContents());exit;
+            return $this->redirect($this->request->getQuery('redirect_url', '/'));
+        }
     }
 
     /**
-     * @return \Cake\Http\Response
+     * @param $provider
+     * @return \Cake\Http\Response|null
      * @throws \Exception
      */
-    public function index()
-   {
-       $this->disableAutoRender();
+    public function cb($provider)
+    {
+        $this->disableAutoRender();
+        $query = $this->request->getQueryParams();
 
-
-       $query = $this->request->getQueryParams();
-
-       $callback = parse_url(Router::url(null, true));
-       $callback_url = $callback['scheme'] . '://' . $callback['host'] . $callback['path'] . '?' .
-           http_build_query([
-               'provider' => $this->request->getQuery('provider')
-           ]);
-
-
-       try {
-           $this->Api->addHeader('bid', $this->request->getCookie('bid'));
-           $this->Api->addHeader('User-Agent', env('HTTP_USER_AGENT'));
-           $this->Api->addHeader('callback', $callback_url);
-           $login = $this->Api->makeRequest()
-               ->get('v1/web/oauth', [
-                   'query' => $query,
-                   'on_stats' => function (TransferStats $stats) use (&$url) {
+        try {
+            $this->Api->addHeader('bid', $this->request->getCookie('bid'));
+            $this->Api->addHeader('User-Agent', env('HTTP_USER_AGENT'));
+            $login = $this->Api->makeRequest()
+                ->get('v1/web/oauth/cb/' . $provider, [
+                    'query' => $query,
+                    'on_stats' => function (TransferStats $stats) use (&$url) {
                         if (in_array($stats->getResponse()->getStatusCode(), [301, 302])) {
-                            $url = (string) $stats->getEffectiveUri();
+                            $url = (string)$stats->getEffectiveUri();
                         }
 
-                   }
-               ]);
+                    }
+                ]);
 
-           if (!isset($query['code'])) {
-               $headers = $login->getHeaders();
+            if ($response = $this->Api->success($login)) {
+                $json = $response->parse();
+                $oauth = $json['result']['oauth'];
 
-               foreach($headers as $key => $values) {
-                   foreach($values as $value) {
-                       $this->response = $this->response->withHeader($key, $value);
-                   }
-               }
+                /* set user to Auth */
 
+                $this->Auth->setUser($json['result']['data']);
 
-
-               if ($url) {
-                   return $this->redirect($url);
-               }
-           }
-
-
-           if ($response = $this->Api->success($login)) {
-               $json = $response->parse();
-               $data = $json['result']['data'];
-               $tokens = $json['result']['tokens'];
+                if (!empty($json['result']['data']['reffcode'])) {
+                    $cookie = new Cookie(
+                        'reffcode',
+                        $json['result']['data']['reffcode'],
+                        (new \DateTime())->add(new \DateInterval('P1M')),
+                        $this->request->getAttribute('base')
+                    );
+                    $this->response = $this->response->withCookie($cookie);
+                }
 
 
-               /* set user to Auth */
+                try {
+                    $this->Api->makeRequest($json['result']['data']['token'])
+                        ->post('v1/web/customers/save-browser', [
+                            'form_params' => [
+                                'ip' => env('REMOTE_ADDR'),
+                                //'browser' => env('HTTP_USER_AGENT'),
+                            ]
+                        ]);
+                } catch(\GuzzleHttp\Exception\ClientException $e) {
 
-               $this->Auth->setUser($json['result']['data']);
+                }
 
-               if (!empty($json['result']['data']['reffcode'])) {
-                   $cookie = new Cookie(
-                       'reffcode',
-                       $json['result']['data']['reffcode'],
-                       (new \DateTime())->add(new \DateInterval('P1M')),
-                       $this->request->getAttribute('base')
-                   );
-                   $this->response = $this->response->withCookie($cookie);
-               }
+                return $this->redirect($this->request->getQuery('redirect_url', '/'));
 
+            }
 
-               try {
-                   $this->Api->makeRequest($json['result']['data']['token'])
-                       ->post('v1/web/customers/save-browser', [
-                           'form_params' => [
-                               'ip' => env('REMOTE_ADDR'),
-                               //'browser' => env('HTTP_USER_AGENT'),
-                           ]
-                       ]);
-               } catch(\GuzzleHttp\Exception\ClientException $e) {
-
-               }
-
-               return $this->redirect($this->request->getQuery('redirect_url', '/'));
-
-
-           }
-       } catch(\GuzzleHttp\Exception\ClientException $e) {
-		   //print_r($e->getResponse()->getBody()->getContents());
-           return $this->redirect($this->request->getQuery('redirect_url', '/'));
-       }
-
-
-
-   }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            //print_r($e->getResponse()->getBody()->getContents());exit;
+            return $this->redirect($this->request->getQuery('redirect_url', '/'));
+        }
+    }
 
 }
