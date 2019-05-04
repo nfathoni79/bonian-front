@@ -42,4 +42,8 @@ class HistoryController extends AuthController
 
         $this->set(compact('orders', 'transaction_statuses', 'pagination'));
     }
+
+    public function detail(){
+        
+    }
 }
