@@ -75,10 +75,13 @@ class OauthController extends AuthController
     {
         $this->disableAutoRender();
         $query = $this->request->getQueryParams();
+		$callback = parse_url(Router::url(null, true));
+        $callback_url = $callback['scheme'] . '://' . $callback['host'] . $callback['path'];
 
         try {
             $this->Api->addHeader('bid', $this->request->getCookie('bid'));
             $this->Api->addHeader('User-Agent', env('HTTP_USER_AGENT'));
+			$this->Api->addHeader('callback', $callback_url);
             $login = $this->Api->makeRequest()
                 ->get('v1/web/oauth/cb/' . $provider, [
                     'query' => $query,
