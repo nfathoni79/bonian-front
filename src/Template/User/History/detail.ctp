@@ -259,9 +259,9 @@
 
 											  <ul class="col-sm-12 list-unstyled multi-steps">
 											    <li>Menunggu Pembayaran</li>
-											    <li class="is-active">Diproses</li>
+											    <li>Diproses</li>
 											    <li>Dikirim</li>
-											    <li>Selesai</li>
+											    <li class="is-active">Selesai</li>
 											  </ul>
 								</div>
 							</div>

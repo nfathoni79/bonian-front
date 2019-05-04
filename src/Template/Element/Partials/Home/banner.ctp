@@ -19,8 +19,10 @@
                         <div class="module">
                             <div class="block-image-1">
                                 <ul class="static-image">
-                                    <li><a href="#"><?php echo $this->Html->image('/images/catalog/banners/leaderboard.jpg', ['alt' => 'Leaderboard Zolaku']); ?></a></li>
-                                    <li><a href="#"><?php echo $this->Html->image('/images/catalog/banners/member.jpg', ['alt' => 'Panduan Mencari Member']); ?></a></li>
+                                    <!-- <li><a href="#"><?php echo $this->Html->image('/images/catalog/banners/leaderboard.jpg', ['alt' => 'Leaderboard Zolaku']); ?></a></li>
+                                    <li><a href="#"><?php echo $this->Html->image('/images/catalog/banners/member.jpg', ['alt' => 'Panduan Mencari Member']); ?></a></li> -->
+                                    <li class="mg-b-10"><a href="#"><img src="https://via.placeholder.com/370x150.png/ffffff/c93535"></a></li>
+                                    <li><a href="#"><img src="https://via.placeholder.com/370x150.png/ffffff/c93535"></a></li>
                                 </ul>
                             </div>
                         </div>
