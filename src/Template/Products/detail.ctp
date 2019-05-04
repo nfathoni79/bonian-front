@@ -564,7 +564,7 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                         <div class="bg-red margin-b-10">
                                             <div class="row">
                                                 <div class="col-sm-1">
-                                                    <div><img src="http://localhost/zolaku-front/images/jpeg/users-profile/user-1.jpg" class="img-rounded"></div>
+                                                    <div><img src="<?= $this->Url->build('/images/jpeg/users-profile/user-1.jpg'); ?>" class="img-rounded"></div>
                                                 </div>
                                                 <div class="col-sm-11">
                                                     <div class="row">
@@ -592,7 +592,7 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                         <div class="bg-red margin-b-10">
                                             <div class="row">
                                                 <div class="col-sm-1">
-                                                    <div><img src="http://localhost/zolaku-front/images/jpeg/users-profile/user-1.jpg" class="img-rounded"></div>
+                                                    <div><img src="<?= $this->Url->build('/images/jpeg/users-profile/user-1.jpg'); ?>" class="img-rounded"></div>
                                                 </div>
                                                 <div class="col-sm-11">
                                                     <div class="row">
