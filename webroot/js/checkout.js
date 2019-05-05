@@ -114,7 +114,8 @@ function wrapperHtmlCC(id, masked_card, type) {
                         </div>
                     </div>
                 </div>
-            </div>`;
+            </div>
+            <hr class="p-0 mg-0" />`;
     $('.credit-card-input-wrapper').parent().after(html);
    $('.c-card-pembayaran__metode')
        .find('input[name="payment_method"]').each(function(i) {
