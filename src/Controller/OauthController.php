@@ -32,38 +32,41 @@ class OauthController extends AuthController
 
         $query = $this->request->getQueryParams();
         $provider = $this->request->getQuery('provider');
-        $callback = parse_url(Router::url(null, true));
-        $callback_url = $callback['scheme'] . '://' . $callback['host'] . $callback['path'] . '/cb/' . $provider;
+        if ($provider) {
+            $callback = parse_url(Router::url(null, true));
+            $callback_url = $callback['scheme'] . '://' . $callback['host'] . $callback['path'] . '/cb/' . $provider;
 
-        try {
-            $this->Api->addHeader('bid', $this->request->getCookie('bid'));
-            $this->Api->addHeader('User-Agent', env('HTTP_USER_AGENT'));
-            $this->Api->addHeader('callback', $callback_url);
-            $login = $this->Api->makeRequest()
-                ->get('v1/web/oauth', [
-                    'query' => $query,
-                    'on_stats' => function (TransferStats $stats) use (&$url) {
-                        if (in_array($stats->getResponse()->getStatusCode(), [301, 302])) {
-                            $url = (string)$stats->getEffectiveUri();
+            try {
+                $this->Api->addHeader('bid', $this->request->getCookie('bid'));
+                $this->Api->addHeader('User-Agent', env('HTTP_USER_AGENT'));
+                $this->Api->addHeader('callback', $callback_url);
+                $login = $this->Api->makeRequest()
+                    ->get('v1/web/oauth', [
+                        'query' => $query,
+                        'on_stats' => function (TransferStats $stats) use (&$url) {
+                            if (in_array($stats->getResponse()->getStatusCode(), [301, 302])) {
+                                $url = (string)$stats->getEffectiveUri();
+                            }
+
                         }
+                    ]);
 
+                if ($response = $this->Api->success($login)) {
+                    $json = $response->parse();
+                    $redirect = $json['result']['redirect'];
+                    if ($redirect) {
+                        return $this->redirect($redirect);
                     }
-                ]);
-
-            if ($response = $this->Api->success($login)) {
-                $json = $response->parse();
-                $redirect = $json['result']['redirect'];
-                if ($redirect) {
-                    return $this->redirect($redirect);
                 }
+
+
+
+            } catch(\GuzzleHttp\Exception\ClientException $e) {
+                //print_r($e->getResponse()->getBody()->getContents());exit;
+                return $this->redirect($this->request->getQuery('redirect_url', '/'));
             }
-
-
-
-        } catch(\GuzzleHttp\Exception\ClientException $e) {
-            //print_r($e->getResponse()->getBody()->getContents());exit;
-            return $this->redirect($this->request->getQuery('redirect_url', '/'));
         }
+
     }
 
     /**
