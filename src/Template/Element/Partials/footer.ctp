@@ -105,12 +105,12 @@
                                     </a>
                                 </li>
 
-                                <li class="li-social twitter-social">
+                                <li class="li-social instagram-social">
                                     <a title="Twitter" href="https://twitter.com/#" target="_blank">
-                                        <span class="fab fa-twitter icon-social"></span> <span class="name-social">Twitter</span>
+                                        <span class="fab fa-instagram icon-social"></span> <span class="name-social">Instagram</span>
                                     </a>
                                 </li>
-
+                                <!--
                                 <li class="li-social google-social">
                                     <a title="Google+" href="https://plus.google.com/#" target="_blank">
                                         <span class="fab fa-google-plus-g icon-social"></span> <span class="name-social">Google+</span>
@@ -128,6 +128,7 @@
                                         <span class="fab fa-pinterest icon-social"></span> <span class="name-social">Pinterest</span>
                                     </a>
                                 </li>
+                                -->
                             </ul>
                         </div>
                     </div>
