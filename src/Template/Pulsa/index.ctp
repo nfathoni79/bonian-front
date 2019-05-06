@@ -318,7 +318,7 @@
                     }
                 },
                 error: function(text) {
-                    if (text.status === 401) {
+                    if (text.status === 401 || text.status === 403) {
                         $("#login-popup").modal('show');
                     }
                 }
