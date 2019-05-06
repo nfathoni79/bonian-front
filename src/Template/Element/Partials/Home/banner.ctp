@@ -1,6 +1,6 @@
 <section class="slider-full">
     <div class="container">
-        <div class= block-slide">
+        <div class="block-slide">
                 <div class="row">
                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 block-left">
                         <div class="module sohomepage-slider ">

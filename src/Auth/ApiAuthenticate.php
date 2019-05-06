@@ -73,7 +73,15 @@ class ApiAuthenticate extends BaseAuthenticate
      */
     public function unauthenticated(ServerRequest $request, Response $response)
     {
-        if ($redirect = $this->_registry->Auth->_config['unauthorizedRedirect']) {
+        if ($request->is('ajax')) {
+            return $response->withStatus(401, 'unauthorize')
+                ->withStringBody(json_encode([
+                    'status' => 'ERROR',
+                    'code' => 401,
+                    'message' => 'Unauthorize'
+                ]));
+        }
+        else if ($redirect = $this->_registry->Auth->_config['unauthorizedRedirect']) {
             return $this->_registry->getController()->redirect($redirect);
         }
         return $response->withLocation('/');

@@ -27,13 +27,47 @@ use Cake\Validation\Validator;
  *
  * @link https://book.cakephp.org/3.0/en/controllers/pages-controller.html
  */
-class PulsaController extends AppController
+class PulsaController extends AuthController
 {
+
+    public function initialize()
+    {
+        parent::initialize();
+        $this->Auth->allow(['index', 'getprovider']);
+    }
+
+    public function payment()
+    {
+        $this->disableAutoRender();
+        $response = [];
+        if ($this->request->is('post')) {
+            try {
+                $this->Api->addHeader('bid', $this->request->getCookie('bid'));
+                $inquiry = $this->Api->makeRequest($this->Auth->user('token'))
+                    ->post('v1/web/pulsa/create-inquiry', [
+                        'form_params' => $this->request->getData(),
+                    ]);
+
+                if ($response = $this->Api->success($inquiry)) {
+                    $json = $response->parse();
+                    $response = $json;
+                }
+
+
+
+            } catch(\GuzzleHttp\Exception\ClientException $e) {
+                $this->response = $this->response->withStatus($e->getCode(), $e->getMessage());
+                $response = json_decode($e->getResponse()->getBody()->getContents());
+            }
+        }
+
+        return $this->response->withType('application/json')
+            ->withStringBody(json_encode($response));
+    }
 
     public function index()
     {
-//        $chk = Configure::read('pulsa');
-//        debug($chk);exit;
+
     }
 
     public function getprovider(){
