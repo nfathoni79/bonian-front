@@ -90,6 +90,8 @@ class LoginController extends AuthController
 //       $this->disableAutoRender();
 //       debug($this->Auth->user());
 
+        $this->viewBuilder()->setLayout('auth');
+
 
 
    }
