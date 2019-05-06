@@ -69,12 +69,13 @@ class LoginController extends AuthController
                            ]
                        ]);
                } catch(\GuzzleHttp\Exception\ClientException $e) {
-
+                   $this->Flash->error(__('Kombinasi username dan password salah'));
                }
 
            }
        } catch(\GuzzleHttp\Exception\ClientException $e) {
            $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+           $this->Flash->error(__('Kombinasi username dan password salah'));
        }
 
 

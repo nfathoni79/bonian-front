@@ -1,7 +1,7 @@
 
 <div class="c-help-main mb-5 bg-login">
     <div class="auth-container tx-center mg-l-auto mg-r-auto mg-t-100">
-        <img src="/zolaku-front/images/png/logo/logo-wide.png" alt="Zolaku" width="155" class="mg-b-50">
+        <a href="<?= $this->Url->build('/');?>"><img src="<?= $this->Url->build('/images/png/logo/logo-wide.png');?>" alt="Zolaku" width="155" class="mg-b-50"></a>
     </div>
 
     <div class="auth-container container mg-t-0-force pd-b-0-force">
@@ -16,7 +16,7 @@
                         </div>
                         <hr class="title-line">
                         <div class="col-sm-12 customer-login login-popup w-500">
-                            <?= $this->Flash->error();?>
+                            <?= $this->Flash->render();?>
                             <?= $this->Form->create(null, [
                             'url' => [
                             'controller' => 'Login',
@@ -86,9 +86,7 @@
                 if (response.success) {
                     location.href = "<?= $this->Url->build(['controller' => 'home', 'action' => 'index']); ?>";
                 } else {
-                    //render_error_message(data.error.message);
-                    //var alert = $("#login-popup .alert");
-                    //alert.removeClass('hide');
+                    location.reload();
                 }
             });
             e.preventDefault(); // avoid to execute the actual submit of the form.
