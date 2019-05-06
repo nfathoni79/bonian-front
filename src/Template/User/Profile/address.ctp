@@ -34,9 +34,9 @@
                         <div class="table-responsive">
                             <table class="table table-striped table-hover table-red">
                                 <tr>
-                                    <td><strong>Penerima</strong></td>
-                                    <td><strong>Alamat Pengiriman</strong></td>
-                                    <td><strong>Daerah Pengiriman</strong></td>
+                                    <td><strong class="tx-danger">Penerima</strong></td>
+                                    <td><strong class="tx-danger">Alamat Pengiriman</strong></td>
+                                    <td><strong class="tx-danger">Daerah Pengiriman</strong></td>
                                     <td></td>
                                 </tr>
                                 <?php foreach($address as $val):?>
@@ -54,10 +54,10 @@
                                     </td>
                                     <td>
                                         <?php if($val['is_primary']):?>
-                                        <button class="btn btn-danger btn-radius btn-md btn-block" style="margin-bottom: 10px;"><i class="fa fa-check-square-o"></i> Alamat utama</button>
+                                        <button class="btn btn-danger btn-radius btn-md btn-block" style="margin-bottom: 10px;"><i class="far fa-check-square mg-r-4"></i> Alamat utama</button>
                                         <a href="#" class="pull-left edit-address-button"  data-toggle="modal" data-target="#address-edit" data-id="<?= $val['id']; ?>" data-alias="<?= ucfirst($val['title']);?>" ><strong class=""><i class="fa fa-edit"></i> Edit</strong></a>
                                         <?php else:?>
-                                        <button data-id="<?= $val['id']; ?>" class="btn btn-default btn-radius btn-md btn-block set-primary-address-button" data-alias="<?= ucfirst($val['title']);?>" style="margin-bottom: 10px;"><i class="fa fa-square-o"></i> Set alamat utama</button>
+                                        <button data-id="<?= $val['id']; ?>" class="btn btn-default btn-radius btn-md btn-block set-primary-address-button" data-alias="<?= ucfirst($val['title']);?>" style="margin-bottom: 10px;"><i class="far fa-square mg-r-4"></i> Set alamat utama</button>
                                         <a href="#" class="pull-left edit-address-button"  data-toggle="modal" data-target="#address-edit" data-id="<?= $val['id']; ?>" data-alias="<?= ucfirst($val['title']);?>" ><strong class=""><i class="fa fa-edit"></i> Edit</strong></a>
                                         <a href="#" data-id="<?= $val['id']; ?>" class="pull-right delete-address-button" data-alias="<?= ucfirst($val['title']);?>"><strong class=""><i class="fa fa-trash"></i> Hapus</strong></a>
                                         <?php endif;?>
@@ -102,10 +102,10 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="input-title">Nama alamat</label>
-                                <input type="text" name="title" value="" placeholder="Input nama alamat" class="form-control" />
+                                <input type="text" name="title" value="" placeholder="Alamat Rumah, Kantor, dll" class="form-control" />
                             </div>
                             <div class="form-group">
-                                <label for="input-recipient-phone">Nomot Telepon</label>
+                                <label for="input-recipient-phone">Nomor Telepon</label>
                                 <input type="text" name="recipient_phone" value="" placeholder="Telepon penerima barang" class="form-control" />
                             </div>
                         </div>
@@ -198,7 +198,7 @@
                                 <input type="text" name="title" value="" placeholder="Input nama alamat" class="form-control" />
                             </div>
                             <div class="form-group">
-                                <label for="input-recipient-phone">Nomot Telepon</label>
+                                <label for="input-recipient-phone">Nomor Telepon</label>
                                 <input type="text" name="recipient_phone" value="" placeholder="Telepon penerima barang" class="form-control" />
                             </div>
                         </div>
