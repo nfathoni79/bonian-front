@@ -115,7 +115,7 @@ class CartController  extends AuthController
             $wishlists = $this->Api->makeRequest($this->Auth->user('token'))
                 ->get('v1/web/wishlists', [
                     'query' => [
-                        'limit' => 5,
+                        'limit' => 3,
                         'page' => $this->request->getQuery('page', 1)
                     ]
                 ]);

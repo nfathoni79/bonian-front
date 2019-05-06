@@ -3,7 +3,11 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-9 text-left">
-                <h1 class="o-header-title">keranjang belanja</h1>
+                <div class="col-lg-6 pd-0 text-left">
+                    <button onclick="location.href='<?php echo $this->Url->build(['controller' => 'Cart', 'action' => 'index']);?>'" type="button" class="btn btn-danger btn-lg btn-block c-header-button">
+                        <i class="fas fa-arrow-left"></i> Kembali ke keranjang belanja
+                    </button>
+                </div>
             </div>
             <div class="col-lg-3 text-center">
                 <button type="button" class="btn btn-danger btn-lg btn-block c-header-button">
@@ -359,7 +363,7 @@
                                         <!-- start:item #1-->
                                         <div class="row pd-t-5 pd-l-20 pd-r-20 pd-b-5" >
                                             <div class="col-lg-2 pd-t-10 text-center">
-                                                <div class="pretty p-default p-round p-pulse">
+                                                <div class="pretty p-default p-round p-pulse p-bigger">
                                                     <input type="radio" name="payment_method"  value="bca_va">
                                                     <div class="state p-danger">
                                                         <label> </label>
@@ -384,7 +388,7 @@
 
                                         <div class="row pd-t-5 pd-l-20 pd-r-20 pd-b-5">
                                             <div class="col-lg-2 pd-t-10 text-center">
-                                                <div class="pretty p-default p-round p-pulse">
+                                                <div class="pretty p-default p-round p-pulse p-bigger">
                                                     <input type="radio" name="payment_method"  value="permata_va">
                                                     <div class="state p-danger">
                                                         <label> </label>
@@ -409,7 +413,7 @@
 
                                         <div class="row pd-t-5 pd-l-20 pd-r-20 pd-b-5">
                                             <div class="col-lg-2 pd-t-10 text-center">
-                                                <div class="pretty p-default p-round p-pulse">
+                                                <div class="pretty p-default p-round p-pulse p-bigger">
                                                     <input type="radio" name="payment_method"  value="bni_va">
                                                     <div class="state p-danger">
                                                         <label> </label>
@@ -443,7 +447,7 @@
                                         <!-- start:item-->
                                         <div class="row" style="padding: 5px 20px">
                                             <div class="col-lg-2 pd-t-10 text-center">
-                                                <div class="pretty p-default p-round p-pulse">
+                                                <div class="pretty p-default p-round p-pulse p-bigger">
                                                     <input type="radio" name="payment_method"  value="credit_card" data-id="<?= $creditcard['id']; ?>">
                                                     <div class="state p-danger">
                                                         <label> </label>
@@ -489,7 +493,7 @@
                                         <!-- start:item #1-->
                                         <div class="row" style="padding: 5px 20px">
                                             <div class="col-lg-2 pd-t-10 text-center">
-                                                <div class="pretty p-default p-round p-pulse">
+                                                <div class="pretty p-default p-round p-pulse p-bigger">
                                                     <input type="radio" name="payment_method"  value="gopay">
                                                     <div class="state p-danger">
                                                         <label> </label>

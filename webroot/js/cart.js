@@ -327,7 +327,8 @@ $( ".number-box" ).change(function() {
 $('.btn-v-ok').on('click',function(){
     grandTotal();
     var radioValue = $("input[name='voucher']:checked").val();
-
+    var codeVoucher = $("input[name='voucher']:checked").data('code');
+    $('.btn-voucher').text(codeVoucher);
     if(radioValue){
         $("#modalvoucher").modal('hide');
     }else{
@@ -338,6 +339,7 @@ $('.btn-v-ok').on('click',function(){
 $('.btn-c-ok').on('click',function(){
     var radioValue = $("input[name='kupon']:checked").val();
     var priceValue = $("input[name='kupon']:checked").data('price');
+    $('.btn-kupon').text('Kupon '+numeral(priceValue).format('0,0'));
     if(radioValue){
         $("#modalCoupon").modal('hide');
         $('#coupon-price').html(numeral(priceValue).format('0,0'));

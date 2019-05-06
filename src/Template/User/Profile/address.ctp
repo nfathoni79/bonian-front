@@ -7,7 +7,7 @@
 #map-canvas .centerMarker, #map-canvas-edit .centerMarker {
     position: absolute;
     /*url of the marker*/
-    background: url(/zolaku-front/images/marker.png) no-repeat;
+    background: url(../../images/marker.png) no-repeat;
     /*center the marker*/
     top: 50%;
     left: 50%;
@@ -142,6 +142,7 @@
                         </div>
                     </div>
 
+                    <!--
                     <div class="pull-left">
                         <strong><a href="javascript:void(0);" class="lokasi" data-container="body" data-toggle="popover" data-placement="right" tabindex="0">Lokasi <i class="fa fa-question-circle"></i></a></strong>
                     </div>
@@ -149,6 +150,7 @@
                         <strong><a href="javascript:void(0);" class="show-map btn-map" style="color:#a94442;" ><i class="fa fa-map-marker"></i> Pilih Lokasi</a></strong>
                     </div>
                     <div class="clearfix"></div>
+                    -->
                 </div>
                 <div class="map-form" style="display: none;">
                     <div class="msg-alamat"></div>
@@ -234,6 +236,7 @@
                             </div>
                         </div>
                     </div>
+                    <!--
                     <div class="pull-left">
                         <strong><a href="javascript:void(0);" class="lokasi" data-container="body" data-toggle="popover" data-placement="right" tabindex="0">Lokasi <i class="fa fa-question-circle"></i></a></strong>
                     </div>
@@ -241,6 +244,7 @@
                         <strong><a href="javascript:void(0);" class="show-map-edit btn-map-edit" style="color:#a94442;" ><i class="fa fa-map-marker"></i> Pilih Lokasi</a></strong>
                     </div>
                     <div class="clearfix"></div>
+                    -->
                 </div>
                 <div class="map-form-edit" style="display: none;">
                     <div class="msg-alamat"></div>

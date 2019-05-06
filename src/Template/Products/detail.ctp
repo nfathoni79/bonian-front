@@ -132,22 +132,22 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                             <p class="tx-medium tx-mont zl-tx-black tx-14">Bagikan produk ini</p>
                                             <div class="btn-group btn-group-justified" role="group" aria-label="Justified button group">
                                                 <div class="btn-group" role="group">
-                                                    <a type="button" class="btn btn-default btn-lg btn-whatsapp waShare" data-url="<?php echo $this->Url->build('',true);?>" data-title="<?= $details['data']['name'];?>" data-price="<?= $details['data']['price_sale'];?>"><i class="fab fa-whatsapp"></i> Whatsapp</a>
+                                                    <a type="button" class="btn btn-default btn-lg btn-whatsapp waShare" data-url="<?php echo $this->Url->build('',true);?>" data-title="<?= $details['data']['name'];?>" data-price="<?= $details['data']['price_sale'];?>" data-diskon="<?= $details['data']['percent']; ?>" data-point="<?= $details['data']['point']; ?>"><i class="fab fa-whatsapp"></i> Whatsapp</a>
                                                 </div>
                                                 <div class="btn-group" role="group">
-                                                    <a type="button" class="btn btn-default btn-lg btn-instagram igShare" data-url="<?php echo $this->Url->build('',true);?>" data-title="<?= $details['data']['name'];?>" data-price="<?= $details['data']['price_sale'];?>"><i class="fab fa-instagram"></i> Instagram</a>
+                                                    <a type="button" class="btn btn-default btn-lg btn-instagram igShare" data-url="<?php echo $this->Url->build('',true);?>" data-title="<?= $details['data']['name'];?>" data-price="<?= $details['data']['price_sale'];?>" data-diskon="<?= $details['data']['percent']; ?>" data-point="<?= $details['data']['point']; ?>"><i class="fab fa-instagram"></i> Instagram</a>
                                                 </div>
                                                 <div class="btn-group" role="group">
-                                                    <a type="button" class="btn btn-default btn-lg btn-facebook fbShare" data-url="<?php echo $this->Url->build('',true);?>" data-title="<?= $details['data']['name'];?>" data-price="<?= $details['data']['price_sale'];?>"><i class="fab fa-facebook"></i> Facebook</a>
+                                                    <a type="button" class="btn btn-default btn-lg btn-facebook fbShare" data-url="<?php echo $this->Url->build('',true);?>" data-title="<?= $details['data']['name'];?>" data-price="<?= $details['data']['price_sale'];?>" data-diskon="<?= $details['data']['percent']; ?>" data-point="<?= $details['data']['point']; ?>"><i class="fab fa-facebook"></i> Facebook</a>
                                                 </div>
                                                 <div class="btn-group" role="group">
-                                                    <a type="button" class="btn btn-default btn-lg btn-sms smsShare" data-url="<?php echo $this->Url->build('',true);?>" data-title="<?= $details['data']['name'];?>" data-price="<?= $details['data']['price_sale'];?>"><i class="fa fa-commenting"></i> Sms</a>
+                                                    <a type="button" class="btn btn-default btn-lg btn-sms smsShare" data-url="<?php echo $this->Url->build('',true);?>" data-title="<?= $details['data']['name'];?>" data-price="<?= $details['data']['price_sale'];?>" data-diskon="<?= $details['data']['percent']; ?>" data-point="<?= $details['data']['point']; ?>"><i class="fa fa-commenting"></i> Sms</a>
                                                 </div>
                                                 <div class="btn-group" role="group">
-                                                    <a type="button" class="btn btn-default btn-lg btn-line lineShare" data-url="<?php echo $this->Url->build('',true);?>" data-title="<?= $details['data']['name'];?>" data-price="<?= $details['data']['price_sale'];?>"><i class="fab fa-line"></i>  Line</a>
+                                                    <a type="button" class="btn btn-default btn-lg btn-line lineShare" data-url="<?php echo $this->Url->build('',true);?>" data-title="<?= $details['data']['name'];?>" data-price="<?= $details['data']['price_sale'];?>" data-diskon="<?= $details['data']['percent']; ?>" data-point="<?= $details['data']['point']; ?>"><i class="fab fa-line"></i>  Line</a>
                                                 </div>
                                                 <div class="btn-group" role="group">
-                                                    <a type="button" class="btn btn-default btn-lg btn-twitter twitterShare" data-url="<?php echo $this->Url->build('',true);?>" data-title="<?= $details['data']['name'];?>" data-price="<?= $details['data']['price_sale'];?>"><i class="fab fa-twitter"></i> Twitter</a>
+                                                    <a type="button" class="btn btn-default btn-lg btn-twitter twitterShare" data-url="<?php echo $this->Url->build('',true);?>" data-title="<?= $details['data']['name'];?>" data-price="<?= $details['data']['price_sale'];?>" data-diskon="<?= $details['data']['percent']; ?>" data-point="<?= $details['data']['point']; ?>"><i class="fab fa-twitter"></i> Twitter</a>
                                                 </div>
                                             </div>
 
