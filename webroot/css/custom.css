@@ -44797,12 +44797,18 @@ select.form-control{
 
 
 /*flash sale style*/
-.flashsale-content .container{
+/*.flashsale-content .container{
     margin-top: -10.5em;
+}*/
+
+.tabsslider .nav-tabs .item a{
+    height: 100%;
 }
 
-
-
+.progress {
+    height: 10px !important;
+    margin-bottom: 0;
+}
 
 
 
