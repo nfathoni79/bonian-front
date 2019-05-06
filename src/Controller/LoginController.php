@@ -17,7 +17,7 @@ class LoginController extends AuthController
     public function initialize()
     {
         parent::initialize();
-        $this->Auth->allow('index');
+        $this->Auth->allow(['index','auth']);
     }
 
     /**
@@ -85,9 +85,12 @@ class LoginController extends AuthController
    }
 
 
-   public function test()
+   public function auth()
    {
-       $this->disableAutoRender();
-       debug($this->Auth->user());
+//       $this->disableAutoRender();
+//       debug($this->Auth->user());
+
+
+
    }
 }
