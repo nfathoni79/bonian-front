@@ -89,9 +89,11 @@ class LoginController extends AuthController
    {
 //       $this->disableAutoRender();
 //       debug($this->Auth->user());
-
+//        exit;
         $this->viewBuilder()->setLayout('auth');
-
+        if($this->Auth->user()){
+            $this->redirect(['controller' => 'Home', 'action' => 'index']);
+        }
 
 
    }

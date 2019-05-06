@@ -34,8 +34,8 @@ class AuthController extends AppController
                 ]
             ],
             'unauthorizedRedirect' => [
-                'controller' => 'Home',
-                'action' => 'index',
+                'controller' => 'Login',
+                'action' => 'auth',
                 'prefix' => false
             ],
             'storage' => [

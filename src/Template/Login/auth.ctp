@@ -1,17 +1,3 @@
-<!-- start: header part -->
-<!-- <div class="c-header__bg" style="z-index:0;">
-    <div class="container">
-        <div class="row">
-            <ul class="breadcrumb">
-                <li><a href="<?php echo $this->Url->build('/'); ?>"><i class="fa fa-home"></i></a></li>
-                <li><a >Akun</a></li>
-                <li><a href="<?php echo $this->Url->build(['controller' => 'Login','action' => 'auth']); ?>">Otentikasi Login</a></li>
-            </ul>
-        </div>
-    </div>
-</div> -->
-
-<!-- end: header part -->
 
 <div class="c-help-main mb-5 bg-login">
     <div class="auth-container tx-center mg-l-auto mg-r-auto mg-t-100">
@@ -30,6 +16,16 @@
                         </div>
                         <hr class="title-line">
                         <div class="col-sm-12 customer-login login-popup w-500">
+                            <?= $this->Flash->error();?>
+                            <?= $this->Form->create(null, [
+                            'url' => [
+                            'controller' => 'Login',
+                            'action' => 'index',
+                            'prefix' => false
+                            ],
+                            'id' => 'login-forms',
+                            'class' => 'ajax-helper'
+                            ]); ?>
                             <div class="pd-10 row">
                                 <div class="form-group">
                                     <label class="control-label " for="input-email">Nomor Ponsel atau Email</label>
@@ -46,6 +42,7 @@
                                     <button type="submit" class="btn btn-default zl-btn-default wd-100p">Masuk</button>
                                 </div>
                             </div>
+                            <?= $this->Form->end(); ?>
                             <div style="width: 100%; height: 13px; border-bottom: 1px solid #d1d1d1; text-align: center; margin: 25px auto;">
                                   <span style="font-size: 13px; background-color: #ffffff; padding: 0 10px;">
                                     Atau masuk dengan
@@ -53,12 +50,12 @@
                             </div>
                             <div class="row social-media-button">
                                 <div class="col-md-6">
-                                    <a class="btn btn-primary btn-block google" href="/zolaku-front/oauth?provider=google&amp;redirect_url=%2Fzolaku-front%2F">
-                                        <img src="/zolaku-front/images/png/logo-media-social/google.png"> Google
+                                    <a class="btn btn-primary btn-block google" href="<?= $this->Url->build(['controller' => 'Oauth', 'prefix' => false, '?' => ['provider' => 'google', 'redirect_url' => $this->Url->build()]]); ?>">
+                                        <img src="<?= $this->Url->build('/images/png/logo-media-social/google.png'); ?>" /> Google
                                     </a>
                                 </div>
                                 <div class="col-md-6">
-                                    <a class="btn btn-primary btn-block facebook login-with-facebook" href="/zolaku-front/oauth?provider=facebook&amp;redirect_url=%2Fzolaku-front%2F">
+                                    <a class="btn btn-primary btn-block facebook login-with-facebook" href="<?= $this->Url->build(['controller' => 'Oauth', 'prefix' => false, '?' => ['provider' => 'facebook', 'redirect_url' => $this->Url->build()]]); ?>">
                                         Facebook
                                     </a>
                                 </div>
@@ -76,3 +73,26 @@
         </div>
     </div>
 </div>
+
+<?php $this->append('script'); ?>
+<script>
+    $(document).ready(function() {
+
+        //login-form
+        var formEl = $("#login-forms");
+        formEl.submit(function(e) {
+            var ajaxRequest = new ajaxValidation(formEl);
+            ajaxRequest.post(formEl.attr('action'), formEl.find(':input'), function(response, data) {
+                if (response.success) {
+                    location.href = "<?= $this->Url->build(['controller' => 'home', 'action' => 'index']); ?>";
+                } else {
+                    //render_error_message(data.error.message);
+                    //var alert = $("#login-popup .alert");
+                    //alert.removeClass('hide');
+                }
+            });
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+        });
+    });
+</script>
+<?php $this->end();
