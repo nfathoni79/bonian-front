@@ -133,7 +133,13 @@ class OauthController extends AuthController
 
         } catch(\GuzzleHttp\Exception\ClientException $e) {
             //print_r($e->getResponse()->getBody()->getContents());exit;
-            return $this->redirect($this->request->getQuery('redirect_url', '/'));
+            //return $this->redirect($this->request->getQuery('redirect_url', '/'));
+            $this->Flash->error('Login gagal, email tidak sama.');
+            return $this->redirect([
+                'controller' => 'Login',
+                'action' => 'auth',
+                'prefix' => false
+            ]);
         }
     }
 
