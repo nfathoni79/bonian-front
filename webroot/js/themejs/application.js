@@ -666,7 +666,7 @@ $(document).ready(function() {
     }else{
         reff = '';
 	}
- 
+
 
     $('.waShare').on('click',function(){
         window.open('https://api.whatsapp.com/send?text=Beli '+$(this).data('title')+' '+$(this).data('url')+'/'+reff+' Harga Promo Rp. '+numeral($(this).data('price')).format('0,0')+' hanya di Bonian! Dapatkan Bonus Point '+numeral($(this).data('point')).format('0,0')+' serta dapatkan Potongan Kupon dan Voucher Diskon, Beli Sekarang ! ','_blank','width=600, height=368');

@@ -302,7 +302,27 @@
                             <div class="col-lg-5 mg-t-15">
                                 <label class="label label-danger"><?php echo $data['code_voucher']; ?></label>
                             </div>
+                            <div class="col-lg-12">
+                                <div style="border:1px dashed #E2E2E2; margin-top:1px;"></div>
+                            </div>
+                            <div class="col-lg-7">
+                                <h3 class="tx-15">Potongan Voucher</h3>
+                            </div>
+                            <div class="col-lg-5 mg-t-15">
+                                <h5 class="tx-black tx-15"> Rp.<span class="zl-total-voucher"><?php echo $this->Number->format($data['potongan_voucher']);?></span> </h5>
+                            </div>
 
+                            <div class="col-lg-12">
+                                <div style="border:1px dashed #E2E2E2; margin-top:1px;"></div>
+                            </div>
+                            <?php endif; ?>
+                            <?php if (isset($data['potongan_kupon'])) : ?>
+                            <div class="col-lg-7">
+                                <h3 class="tx-15">Potongan Kupon</h3>
+                            </div>
+                            <div class="col-lg-5 mg-t-15">
+                                <h5 class="tx-black tx-15"> Rp.<span class="zl-total-kupon"><?php echo $this->Number->format($data['potongan_kupon']);?></span> </h5>
+                            </div>
                             <div class="col-lg-12">
                                 <div style="border:1px dashed #E2E2E2; margin-top:1px;"></div>
                             </div>

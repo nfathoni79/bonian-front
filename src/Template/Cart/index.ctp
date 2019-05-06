@@ -487,7 +487,7 @@
                             </div>
                             <div class="col-lg-5">
                                 <?php if($point > 0):?>
-                                    <input type="number" id="point" class="form-control text-center number-box" style="margin-top: 20px;" placeholder="Input poin" min="1" max="<?php echo $point;?>">
+                                    <input type="number" id="point" class="form-control text-center number-box" style="margin-top: 20px;" placeholder="Input poin" min="0" max="<?php echo $point;?>">
                                 <?php endif;?>
                             </div>
                             <div class="col-lg-12">
