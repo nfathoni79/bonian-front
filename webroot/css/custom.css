@@ -44890,3 +44890,35 @@ select.form-control{
   background-color: #ededed;
   border-color: #ededed;
 }
+
+
+
+
+
+
+
+/*auth style*/
+.auth-container{
+    max-width:500px !important;
+    /*margin-top:10em !important;*/
+    overflow: hidden;
+}
+
+.customer-login{
+    width: 100% !important;
+}
+.bg-login{
+    background: url(../images/login-bg.png) no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+hr.title-line{
+    background: url(../images/icon/bg-title-about.png) repeat-x left 12px;
+}
+
+.bottom-fix{
+    margin-left: -40px;
+    margin-right: -40px;
+    border-radius: unset;
+}
