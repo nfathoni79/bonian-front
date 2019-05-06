@@ -8,7 +8,7 @@
                         <i class="fa fa-lock"></i>
                         <div class="info-cont">
                             <span class="font-ct">Jaminan 100% Aman</span>
-                            <p>A contemporary grooming collection infused with the invigorating and sensual scent of Revoshop</p>
+                            <p>Keamanan  terpercaya untuk kemudahan transaksi anda.</p>
                         </div>
                     </div>
                 </div>
@@ -16,8 +16,8 @@
                     <div class="inner">
                         <i class="fa fa-money"></i>
                         <div class="info-cont">
-                            <span class="font-ct">Kemudahan pembayaran</span>
-                            <p>A contemporary grooming collection infused with the invigorating and sensual scent of Revoshop</p>
+                            <span class="font-ct">Keuntungan Berlimpah</span>
+                            <p>Belanja hemat dan mudah dengan menggunakan Point, Kupon Produk dan Voucher keranjang.</p>
                         </div>
                     </div>
                 </div>
@@ -25,8 +25,8 @@
                     <div class="inner">
                         <i class="fa fa-life-ring"></i>
                         <div class="info-cont">
-                            <span class="font-ct">Customer support yang responsif</span>
-                            <p>A contemporary grooming collection infused with the invigorating and sensual scent of Revoshop</p>
+                            <span class="font-ct">Customer Support</span>
+                            <p>Layanan Customer Support kami siap membantu anda sebelum dan sesudah transaksi.</p>
                         </div>
                     </div>
                 </div>
