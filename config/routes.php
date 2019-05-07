@@ -98,6 +98,10 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->fallbacks(DashedRoute::class);
 });
 
+Router::scope('/sepulsa', function (RouteBuilder $routes) {
+    $routes->connect('/', ['controller' => 'Sepulsa', 'action' => 'index']);
+});
+
 /**
  * If you need a different set of middleware or none at all,
  * open new scope and define routes there.
