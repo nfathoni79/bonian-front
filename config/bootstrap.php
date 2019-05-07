@@ -154,6 +154,15 @@ Email::setConfig(Configure::consume('Email'));
 Log::setConfig(Configure::consume('Log'));
 Security::setSalt(Configure::consume('Security.salt'));
 
+
+Log::setConfig('sepulsa', [
+    'className' => 'File',
+    'path' => LOGS,
+    'levels' => [],
+    'scopes' => ['sepulsa'],
+    'file' => 'sepulsa.log',
+]);
+
 /*
  * The default crypto extension in 3.0 is OpenSSL.
  * If you are migrating from 2.x uncomment this code to
