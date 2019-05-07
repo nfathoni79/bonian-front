@@ -11,7 +11,7 @@
                     <div class="col-md-12">
                         <div class="title-pages zl-bg-none mg-t-10-force mg-b-10-force">
                             <div class="row">
-                                <h2 class="zl-tx-black-force tx-bold">Login</h2>
+                                <h2 class="zl-tx-black-force tx-bold">Masuk</h2>
                             </div>
                         </div>
                         <hr class="title-line">
@@ -59,7 +59,7 @@
                                         Facebook
                                     </a>
                                 </div>
-                            </div>  
+                            </div>
                             <div class="text-center forgot-password-text">
                                 <a>Lupa Password?</a>
                             </div>
@@ -79,18 +79,18 @@
     $(document).ready(function() {
 
         //login-form
-        var formEl = $("#login-forms");
-        formEl.submit(function(e) {
-            var ajaxRequest = new ajaxValidation(formEl);
-            ajaxRequest.post(formEl.attr('action'), formEl.find(':input'), function(response, data) {
-                if (response.success) {
-                    location.href = "<?= $this->Url->build(['controller' => 'home', 'action' => 'index']); ?>";
-                } else {
-                    location.reload();
-                }
-            });
-            e.preventDefault(); // avoid to execute the actual submit of the form.
-        });
+        // var formEl = $("#login-forms");
+        // formEl.submit(function(e) {
+        //     var ajaxRequest = new ajaxValidation(formEl);
+        //     ajaxRequest.post(formEl.attr('action'), formEl.find(':input'), function(response, data) {
+        //         if (response.success) {
+        //             location.href = "<?= $this->Url->build(['controller' => 'home', 'action' => 'index']); ?>";
+        //         } else {
+        //             location.reload();
+        //         }
+        //     });
+        //     e.preventDefault(); // avoid to execute the actual submit of the form.
+        // });
     });
 </script>
 <?php $this->end();
