@@ -454,6 +454,8 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                             </div>
                             <div id="tab-ulasan" class="tab-pane fade">
                                 <h4 class="tx-mont tx-semibold zl-tx-black tx-16 mg-b-20"><i class="fas fa-pencil-alt mg-r-10"></i><strong> Rating & Ulasan Produk</strong></h4>
+
+                                <?php if(!empty($review)):?>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <br />
@@ -463,93 +465,133 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                                     <div class="row">
                                                         <div class="col-sm-12">
                                                             <div class="col-sm-2 tx-center">
-                                                                <span><h1><b> 4 / 5 </b></h1></span>
-                                                            </div>
-                                                            <div class="col-sm-10">
-                                                                <span class="pull-left"> 4 dari 5 </span>
-                                                                <br />
+                                                                <h1 class="zl-tx-red--light"><?php echo $details['data']['rating'];?> <small>dari 5</small></h1>
                                                                 <div class="rating">
                                                                     <div class="rating-box">
-                                                                        <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                                        <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                                        <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                                        <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                                        <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                                        <?php
+                                                                            $max = 5;
+                                                                            $sisa = $max - $details['data']['rating'];
+                                                                            for($i=0;$i<=($details['data']['rating'] -1 );$i++){
+                                                                                echo '<span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>';
+                                                                        }
+                                                                        for($i=0;$i<= ($sisa -1);$i++){
+                                                                        echo '<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>';
+                                                                        }
+                                                                        ?>
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                            <div class="col-sm-10 mg-t-20">
+
+                                                                <a href="<?= $this->Url->build([
+                                                                    'controller' => 'Products',
+                                                                    'action' => 'detail',
+                                                                    $details['data']['slug'],
+                                                                    'prefix' => false,
+                                                                    '#' => 'tab-ulasan',
+                                                                    '?' => ['rating' => 'ulasan']
+                                                                ]); ?>" class="btn btn-default btn-lg mg-t-15">
+                                                                    Semua
+                                                                </a>
+                                                                <a href="<?= $this->Url->build([
+                                                                    'controller' => 'Products',
+                                                                    'action' => 'detail',
+                                                                    $details['data']['slug'],
+                                                                    'prefix' => false,
+                                                                    '#' => 'tab-ulasan',
+                                                                    '?' => ['rating' => '5']
+                                                                ]); ?>" class="btn btn-default btn-lg mg-t-15">
+                                                                    5 Bintang
+                                                                </a>
+                                                                <a href="<?= $this->Url->build([
+                                                                    'controller' => 'Products',
+                                                                    'action' => 'detail',
+                                                                    $details['data']['slug'],
+                                                                    'prefix' => false,
+                                                                    '#' => 'tab-ulasan',
+                                                                    '?' => ['rating' => '4']
+                                                                ]); ?>" class="btn btn-default btn-lg mg-t-15">
+                                                                    4 Bintang
+                                                                </a>
+                                                                <a href="<?= $this->Url->build([
+                                                                    'controller' => 'Products',
+                                                                    'action' => 'detail',
+                                                                    $details['data']['slug'],
+                                                                    'prefix' => false,
+                                                                    '#' => 'tab-ulasan',
+                                                                    '?' => ['rating' => '3']
+                                                                ]); ?>" class="btn btn-default btn-lg mg-t-15">
+                                                                    3 Bintang
+                                                                </a>
+                                                                <a href="<?= $this->Url->build([
+                                                                    'controller' => 'Products',
+                                                                    'action' => 'detail',
+                                                                    $details['data']['slug'],
+                                                                    'prefix' => false,
+                                                                    '#' => 'tab-ulasan',
+                                                                    '?' => ['rating' => '2']
+                                                                ]); ?>" class="btn btn-default btn-lg mg-t-15">
+                                                                    2 Bintang
+                                                                </a>
+                                                                <a href="<?= $this->Url->build([
+                                                                    'controller' => 'Products',
+                                                                    'action' => 'detail',
+                                                                    $details['data']['slug'],
+                                                                    'prefix' => false,
+                                                                    '#' => 'tab-ulasan',
+                                                                    '?' => ['rating' => '1']
+                                                                ]); ?>" class="btn btn-default btn-lg mg-t-15">
+                                                                    1 Bintang
+                                                                </a>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <br />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                    </div>
+                                </div>
+                                <?php foreach($review as $vals):?>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="bg-red margin-b-10">
+                                            <div class="row">
+                                                <div class="col-sm-1">
+                                                    <div><img src="<?= $this->Url->build($_basePath . 'files/Customers/avatar/' . $vals['customer']['avatar']); ?>" class="img-rounded"></div>
+                                                </div>
+                                                <div class="col-sm-11">
                                                     <div class="row">
-                                                        <div class="col-sm-2 tx-center">
-                                                            <span> 5 </span>
-                                                            <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                        </div>
-                                                        <div class="col-sm-9">
-                                                            <div class="progress">
-                                                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="30" style="width:80%"></div>
+                                                        <span><strong><?= $vals['customer']['full_name'];?></strong> |
+                                                        <i class="fa fa-clock"></i> <?php
+                                                            echo $this->Time->timeAgoInWords(
+                                                                   $vals['created'], array(
+                                                                    'end' => '+10 year',
+                                                                    'format' => 'F jS, Y',
+                                                                    'accuracy' => array('second' => 'second')
+                                                                )
+                                                            );
+                                                        ?></span>
+
+                                                        <div class="rating pull-right">
+                                                            <div class="rating-box star-box">
+
+                                                                <?php
+                                                                $max = 5;
+                                                                $sisa = $max - $vals['rating'];
+                                                                for($i=0;$i<=($vals['rating'] -1 );$i++){
+                                                                    echo '<span class="fa fa-stack star-rating"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>';
+                                                                }
+                                                                for($i=0;$i<= ($sisa -1);$i++){
+                                                                echo '<span class="fa fa-stack star-rating"><i class="fa fa-star-o fa-stack-1x"></i></span>';
+                                                                }
+                                                                ?>
+
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-1">
-                                                            <div> 25 </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-2 tx-center">
-                                                            <span> 4 </span>
-                                                            <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                        </div>
-                                                        <div class="col-sm-9">
-                                                            <div class="progress">
-                                                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="30" style="width:80%"></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-1">
-                                                            <div> 17 </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-2 tx-center">
-                                                            <span> 3 </span>
-                                                            <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                        </div>
-                                                        <div class="col-sm-9">
-                                                            <div class="progress">
-                                                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="30" style="width:80%"></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-1">
-                                                            <div> 11 </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-2 tx-center">
-                                                            <span> 2 </span>
-                                                            <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                        </div>
-                                                        <div class="col-sm-9">
-                                                            <div class="progress">
-                                                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="30" style="width:80%"></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-1">
-                                                            <div> 8 </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-2 tx-center">
-                                                            <span> 1 </span>
-                                                            <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                        </div>
-                                                        <div class="col-sm-9">
-                                                            <div class="progress">
-                                                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="30" style="width:80%"></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-1">
-                                                            <div> 6 </div>
-                                                        </div>
+                                                        <br />
+                                                        <p><?= $vals['comment']?></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -557,64 +599,101 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                         <br />
                                     </div>
                                 </div>
-                                <h4 class="tx-mont tx-semibold zl-tx-black tx-16 mg-b-20"> 2 ulasan untuk <strong> <?php echo $details['data']['name']; ?> </strong></h4>
-                                <br />
+                                <?php endforeach;?>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <?php
+                                if (isset($paginationReview) && $paginationReview instanceof \Pagination\Pagination) :
+                                    //get indexes in page
+                                    $indexes = $paginationReview->getIndexes(new \Pagination\StrategySimple(5));
+                                        $iterator = $indexes->getIterator();
+                                        if ($iterator->count() > 1) :
+                                        ?>
+                                        <nav aria-label="Page navigation" style="margin: 0 auto; text-align: center;">
+                                            <ul class="pagination">
+                                                <li>
+                                                    <a href="<?= $this->Url->build([
+                                                'controller' => 'Products',
+                                                'action' => 'detail',
+                                                $details['data']['slug'],
+                                                'prefix' => false,
+                                                '#' => 'tab-ulasan',
+                                                '?' => array_merge($this->request->getQuery(), ['page' => $paginationReview->getFirstPage(), 'content' => 'ulasan'])
+                                            ]); ?>" aria-label="First">
+                                                        <span aria-hidden="true">First</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="<?= $this->Url->build([
+                                                'controller' => 'Products',
+                                                'action' => 'detail',
+                                                $details['data']['slug'],
+                                                'prefix' => false,
+                                                '#' => 'tab-ulasan',
+                                                '?' => array_merge($this->request->getQuery(), ['page' => $paginationReview->getPreviousPage(), 'content' => 'ulasan'])
+                                            ]); ?>" aria-label="Previous">
+                                                        <span aria-hidden="true">&laquo;</span>
+                                                    </a>
+                                                </li>
+                                                <?php while ($iterator->valid()): ?>
+                                                <?php
+                                                $isActive = $this->request->getQuery('page') == $iterator->current();
+                                                ?>
+                                                <li class="<?= $isActive ? 'active': ''; ?>">
+                                                    <a href="<?= $this->Url->build([
+                                                    'controller' => 'Products',
+                                                    'action' => 'detail',
+                                                    $details['data']['slug'],
+                                                    'prefix' => false,
+                                                '#' => 'tab-ulasan',
+                                                    '?' => array_merge($this->request->getQuery(), ['page' => $iterator->current(), 'content' => 'ulasan'])
+                                                ]); ?>">
+                                                        <?php echo $iterator->current() ?>
+                                                    </a>
+                                                </li>
+                                                <?php $iterator->next(); endwhile; ?>
+                                                <li>
+                                                    <a href="<?= $this->Url->build([
+                                                'controller' => 'Products',
+                                                'action' => 'detail',
+                                                $details['data']['slug'],
+                                                'prefix' => false,
+                                                '#' => 'tab-ulasan',
+                                                '?' => array_merge($this->request->getQuery(), ['page' => $paginationReview->getNextPage(), 'content' => 'ulasan'])
+                                            ]); ?>" aria-label="Next">
+                                                        <span aria-hidden="true">&raquo;</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="<?= $this->Url->build([
+                                                'controller' => 'Products',
+                                                'action' => 'detail',
+                                                $details['data']['slug'],
+                                                'prefix' => false,
+                                                '#' => 'tab-ulasan',
+                                                '?' => array_merge($this->request->getQuery(), ['page' => $paginationReview->getLastPage(), 'content' => 'ulasan'])
+                                            ]); ?>" aria-label="Last">
+                                                        <span aria-hidden="true">Last</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                        <?php endif; ?>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                                <?php else :?>
+
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="bg-red margin-b-10">
-                                            <div class="row">
-                                                <div class="col-sm-1">
-                                                    <div><img src="<?= $this->Url->build('/images/jpeg/users-profile/user-1.jpg'); ?>" class="img-rounded"></div>
-                                                </div>
-                                                <div class="col-sm-11">
-                                                    <div class="row">
-                                                        <span><strong>Axl Calvin Pearl</strong> 21 April 2019   Pukul 11:30</span>
-                                                        <div class="rating pull-right">
-                                                            <div class="rating-box star-box">
-                                                                <span class="fa fa-stack star-rating"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                                <span class="fa fa-stack star-rating"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                                <span class="fa fa-stack star-rating"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                                <span class="fa fa-stack star-rating"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                                <span class="fa fa-stack star-rating"><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                            </div>
-                                                        </div>
-                                                        <br />
-                                                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <br />
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="bg-red margin-b-10">
-                                            <div class="row">
-                                                <div class="col-sm-1">
-                                                    <div><img src="<?= $this->Url->build('/images/jpeg/users-profile/user-1.jpg'); ?>" class="img-rounded"></div>
-                                                </div>
-                                                <div class="col-sm-11">
-                                                    <div class="row">
-                                                        <span><strong>Axl Calvin Pearl</strong> 21 April 2019   Pukul 11:30</span>
-                                                        <div class="rating pull-right">
-                                                            <div class="rating-box star-box">
-                                                                <span class="fa fa-stack star-rating"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                                <span class="fa fa-stack star-rating"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                                <span class="fa fa-stack star-rating"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                                <span class="fa fa-stack star-rating"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                                <span class="fa fa-stack star-rating"><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                            </div>
-                                                        </div>
-                                                        <br />
-                                                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                                                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <p>Belum ada ulasan untuk produk ini.</p>
                                         </div>
                                     </div>
                                 </div>
+                                <?php endif;?>
+
+
                             </div>
                         </div>
                     </div>
@@ -625,25 +704,50 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
     </div>
 
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 pd-r-0">
+        <div class="card product-detail ">
+            <div class="panel mb-0">
+                <div class="producttab clearfix">
+                    <h5 class="tx-black mg-t-m25">Metode Pembayaran</h5>
+                    <div class="dash-line"></div>
+                    <div class="row pd-t-25">
+                        <div class="col-lg-6">
+                            <?php echo $this->Html->image('/images/logo_bank/bca.png', ['alt' => 'logo bca', 'width' => '77']); ?>
+                        </div>
+                        <div class="col-lg-6">
+                            <span class="mg-t-5 tx-black">Bank BCA</span>
+                        </div>
+                    </div>
+                    <div class="row pd-t-25">
+                        <div class="col-lg-6">
+                            <?php echo $this->Html->image('/images/logo_bank/mandiri.png', ['alt' => 'logo mandiri', 'width' => '83']); ?>
+                        </div>
+                        <div class="col-lg-6">
+                            <span class="mg-t-5 tx-black">Bank Mandiri</span>
+                        </div>
+                    </div>
+                    <div class="row pd-t-25">
+                        <div class="col-lg-6">
+                            <?php echo $this->Html->image('/images/logo_bank/bni.png', ['alt' => 'logo bni', 'width' => '77']); ?>
+                        </div>
+                        <div class="col-lg-6">
+                            <span class="mg-t-5 tx-black">Bank BNI</span>
+                        </div>
+                    </div>
+                    <div class="row pd-t-25">
+                        <div class="col-lg-6">
+                            <?php echo $this->Html->image('/images/logo_other_payment/gopay.png', ['alt' => 'logo gopay', 'width' => '77']); ?>
+                        </div>
+                        <div class="col-lg-6">
+                            <span class="mg-t-5 tx-black">GO PAY</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/>
         <div class="card product-detail">
             <div class="panel mb-0">
                 <div class="producttab clearfix">
-                  <!-- start metode pembayaran -->
-                  <h5 class="tx-black mg-t-m25">Metode Pembayaran</h5>
-                  <div class="dash-line"></div>
-                  <div class="col-sm-12 mg-t-20">
-                      <?php echo $this->Html->image('/images/logo_bank/bca.png', ['alt' => 'logo bca', 'width' => '77']); ?>
-                      <p class="mg-t-5 ">Bank BCA</p>
-                  </div>
-                  <div class="col-sm-12 mg-t-20 ">
-                      <?php echo $this->Html->image('/images/logo_bank/mandiri.png', ['alt' => 'logo mandiri', 'width' => '83']); ?>
-                      <p class="mg-t-5 ">Bank Mandiri</p>
-                  </div>
-                  <div class="col-sm-12 mg-t-20 mg-b-45">
-                      <?php echo $this->Html->image('/images/logo_bank/bni.png', ['alt' => 'logo bni', 'width' => '77']); ?>
-                      <p class="mg-t-5 ">Bank BNI</p>
-                  </div>
-                  <!-- end metode pembayaran -->
                   <!-- start metode pengiriman -->
                   <h5 class="tx-black">Metode Pengiriman</h5>
                   <div class="col-sm-12 pd-0-force">

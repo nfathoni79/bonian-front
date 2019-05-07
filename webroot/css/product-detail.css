@@ -21,7 +21,7 @@ span.fa-stack{
     border:0px !important;
 }
 .btn-default:hover{
-    background-color: unset;
+    /*background-color: unset;*/
     color: unset;
 }
 .btn-whatsapp,.btn-whatsapp:hover{

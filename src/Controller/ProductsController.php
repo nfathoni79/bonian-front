@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\I18n\Number;
+use Pagination\Pagination;
 /**
  * Home Controller
  *
@@ -36,6 +37,8 @@ class ProductsController extends AuthController
             $error = json_decode($e->getResponse()->getBody()->getContents(), true);
             $details = ['is_error' => true, 'message' => 'Produk tidak ditemukan'];
         }
+//        debug($details);
+//        exit;
         if($this->request->is('Ajax')){
             $this->disableAutoRender();
             return $this->response->withType('application/json')
@@ -45,9 +48,11 @@ class ProductsController extends AuthController
         }
 
         if(!empty($details['data'])){
+
+//            $content = $this->request->getQuery('content') ;
             try {
                 $discuss = $this->Api->makeRequest()
-                    ->post('v1/discussion?limit=100', [
+                    ->post('v1/discussion?limit=2', [
                         'form_params' => [
                             'product_id' => $details['data']['id'],
                         ]
@@ -60,6 +65,29 @@ class ProductsController extends AuthController
 
             }
             $this->set(compact('comment'));
+
+            try {
+                $review = $this->Api->makeRequest()
+                    ->get('v1/product-ratings/'.$details['data']['id'], [
+                        'query' => [
+                            'limit' => 10,
+                            'page' => $this->request->getQuery('page', 1),
+                            'rating' => $this->request->getQuery('rating')
+                        ]
+                    ]);
+                if ($response = $this->Api->success($review)) {
+                    $json = $response->parse();
+                    $review = $json['result']['data'];
+                    $paging = $json['paging'];
+                }
+            } catch(\GuzzleHttp\Exception\ClientException $e) {
+
+            }
+
+            if ($paging && $paging['count'] > 0) {
+                $paginationReview = new Pagination($paging['count'], $paging['perPage'], $paging['page']);
+            }
+            $this->set(compact('review','paginationReview'));
         }
 
     }
@@ -102,6 +130,11 @@ class ProductsController extends AuthController
         }
         return $this->response->withType('application/json')
             ->withStringBody(json_encode($error));
+    }
+
+
+    public function rating(){
+        /* data json */
     }
 
 }
