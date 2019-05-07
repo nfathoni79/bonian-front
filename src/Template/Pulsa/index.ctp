@@ -65,11 +65,12 @@
                         </ul>
                         <div class="tab-content p-0">
                             <div id="tab-1" class="tab-pane fade active in">
+                                <?= $this->Form->create(null, ['url' => ['action' => 'payment', 'prefix' => false], 'id' => 'form-pulsa']); ?>
                                 <section class="pane-top">
                                     <div class="row">
                                         <div class="col-sm-6 p-0 form-group">
                                             <label class="control-label " for="input-email">No. Handphone</label>
-                                            <input type="text" name="phone" value="" id="input-phone" class="form-control" placeholder="Contoh 081234567890">
+                                            <input type="text" name="customer_number" value="" id="input-phone" class="form-control" placeholder="Contoh 081234567890">
                                             <span class="zl-provider"></span>
                                             <div class="help-block"></div>
                                         </div>
@@ -78,9 +79,7 @@
                                         </div>
                                     </div>
                                     <div class="row result">
-                                        <form id="package-price" class="form-package">
-
-                                        </form>
+                                        <div class="form-package"></div>
                                     </div>
                                 </section>
 
@@ -158,7 +157,7 @@
                                         </div>
                                     </div>
                                 </section> -->
-
+                                <?= $this->Form->end(); ?>
                             </div>
                             <div id="tab-2" class="tab-pane fade">
                                 <form>
@@ -230,23 +229,20 @@
                     </div>
                     <div class="col-sm-4">
                         <div class="img-item">
-                            <img src="images/digital_product/img-pulsa/img-3.png"  class="img-responsive">
+                            <img src="images/digital_product/img-pulsa/img-4.png"  class="img-responsive">
                         </div>
                         <div class="dp-pulsa-text">
-                            <h2>Pilihan Operator Lengkap</h2>
-                            <p>Temukan pilihan nominal dan paket dari seluruh operator, harga yang bersaing dan berbagai promo menarik.</p>
+                            <h2>3 Keuntungan</h2>
+                            <p>Dapatkan 3 keuntungan berbelanja : Promo termurah, bonus point dan bonus referral*.</p>
                         </div>
                     </div>
                 </div>
                 <hr>
                 <div class="row">
-                    <div>
-                        <h2>Keuntungan Isi Pulsa Langsung di Zolaku</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar mattis nunc sed blandit libero volutpat sed cras. Platea dictumst quisque sagittis purus sit amet volutpat consequat. Accumsan tortor posuere ac ut consequat. In ante metus dictum at. Pulvinar etiam non quam lacus suspendisse. Purus sit amet volutpat consequat. Gravida arcu ac tortor dignissim convallis aenean et tortor at. Magna sit amet purus gravida quis blandit. Pharetra sit amet aliquam id diam. Ante metus dictum at tempor commodo. Maecenas sed enim ut sem viverra aliquet. Id nibh tortor id aliquet lectus proin nibh. Massa enim nec dui nunc mattis enim.</p>
-
-                        <p>Id velit ut tortor pretium viverra. Quis blandit turpis cursus in. Nec sagittis aliquam malesuada bibendum arcu vitae elementum. Egestas integer eget aliquet nibh. Laoreet id donec ultrices tincidunt arcu. Sed elementum tempus egestas sed sed risus pretium quam vulputate. Molestie ac feugiat sed lectus. Morbi quis commodo odio aenean sed. Nam libero justo laoreet sit amet cursus sit. Semper eget duis at tellus at urna condimentum mattis pellentesque. Aliquet nec ullamcorper sit amet. Sem integer vitae justo eget magna fermentum iaculis eu. Quam viverra orci sagittis eu volutpat odio facilisis mauris sit.</p>
-
-                        <p>Praesent elementum facilisis leo vel fringilla est ullamcorper eget nulla. Eget nunc lobortis mattis aliquam faucibus purus. In nisl nisi scelerisque eu ultrices vitae auctor eu augue. At ultrices mi tempus imperdiet. Urna porttitor rhoncus dolor purus non enim. Tempor nec feugiat nisl pretium fusce id velit. Mauris vitae ultricies leo integer malesuada nunc vel risus. Eu nisl nunc mi ipsum. Sit amet nisl purus in mollis nunc sed. Cras adipiscing enim eu turpis egestas pretium aenean. Nibh ipsum consequat nisl vel pretium. Urna duis convallis convallis tellus id interdum.</p>
+                    <div class="tx-mont">
+                        <h2 class="zl-tx-black tx-20 tx-bold mg-b-20">TENTANG BONIAN</h2>
+                        <p class="tx-14 tx-medium">Diluncurkan pada tahun 2019, Bonian adalah situs dan destinasi belanja online pertama di Indonesia yang mengadopsi sistem point dan referal. Bonian memeberikan tiga keuntungan berlipat kepada pelanggan : Promo dengan harga termurah, point belanja, dan bonus referal. Semua nya untuk memberikan kepuasan dan pengalaman baru berbelanja dengan harga termurah.</p>
+                        <p class="tx-14 tx-medium">Kami sudah terintegrasi dengan berbagai ekosistem terpadu seperti Delivery, Payment dengan berbagai layanan dan Stok akurat. Sistem keamanan teruji kami hadirkan untuk mendukung kenyamanan berbelanja.</p>
                     </div>
                 </div>
 
@@ -286,7 +282,7 @@
                         $('#submitForm').prop("disabled", false);
                         var opt = '<span class="result-title">Pilih nominal pulsa</span>';
                         $.each(response.data.options, function(k,v){
-                            opt += '<div class="package col-sm-4"> <div class="col-sm-12 radio"> <div class="left-content"> <label> <input type="radio" class="price" name="price" data-provider="'+v.operator+'"  data-point="'+v.point+'" data-denom="'+v.denom+'" value="'+v.price+'"> Pulsa '+parseInt(v.denom).format(0, 3, '.', ',')+'</label> <span class="badge">'+v.point+' Poin</span> </div> <div class="right-content"> <label>Harga<br><span class="result-price">Rp '+parseInt(v.price).format(0, 3, '.', ',')+'</span></label> </div> </div> </div>';
+                            opt += '<div class="package col-sm-4"> <div class="col-sm-12 radio"> <div class="left-content"> <label> <input type="radio" class="price" name="code" data-provider="'+v.operator+'"  data-point="'+v.point+'" data-denom="'+v.denom+'" data-value="'+v.price+'" value="'+v.code+'"> Pulsa '+parseInt(v.denom).format(0, 3, '.', ',')+'</label> <span class="badge">'+v.point+' Poin</span> </div> <div class="right-content"> <label>Harga<br><span class="result-price">Rp '+parseInt(v.price).format(0, 3, '.', ',')+'</span></label> </div> </div> </div>';
                         });
 
                         $('.form-package').html(opt);
@@ -296,7 +292,7 @@
                             $('.img-provider').html('<img src="<?= $this->Url->build($_basePath); ?>/img/provider/'+response.data.logo+'"  class="img-responsive" alt="provider"  style="width:83px !important;">');
                             $('.title-provider').html($(this).data('provider')+' '+parseInt($(this).data('denom')).format(0, 3, '.', ',') );
                             $('.point-provider').html('Point didapatkan sebesar '+$(this).data('point')+' Point.');
-                            $('.price-provider').html('Rp. '+parseInt($(this).val()).format(0, 3, '.', ',')+',-');
+                            $('.price-provider').html('Rp. '+parseInt($(this).data('value')).format(0, 3, '.', ',')+',-');
                             $('.bottom-pulsa').show();
                         });
                         $("input:radio:first").prop("checked", true).trigger("click");
@@ -304,6 +300,30 @@
                 }
             })
         });
+
+        $('#form-pulsa').submit(function(e) {
+            var basePath = $('meta[name="_basePath"]').attr('content');
+            e.preventDefault();
+            $.ajax({
+                url : $(this).attr('action'),
+                data: $(this).serialize(),
+                dataType:'json',
+                type:'post',
+                success: function(response, statusText) {
+                    if (response.status === 'OK') {
+                        var parsed = queryString.parse(location.search, {arrayFormat: 'index'});
+                        parsed.inquiry_id = response.result.data.id;
+                        parsed.type = 'pulsa';
+                        location.href = basePath + '/payment?' + queryString.stringify(parsed, {strict: true, arrayFormat: 'index'});
+                    }
+                },
+                error: function(text) {
+                    if (text.status === 401 || text.status === 403) {
+                        $("#login-popup").modal('show');
+                    }
+                }
+            });
+        })
     });
 
 </script>

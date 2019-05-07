@@ -8,7 +8,7 @@
                         <i class="fa fa-lock"></i>
                         <div class="info-cont">
                             <span class="font-ct">Jaminan 100% Aman</span>
-                            <p>A contemporary grooming collection infused with the invigorating and sensual scent of Revoshop</p>
+                            <p>Keamanan  terpercaya untuk kemudahan transaksi anda.</p>
                         </div>
                     </div>
                 </div>
@@ -16,8 +16,8 @@
                     <div class="inner">
                         <i class="fa fa-money"></i>
                         <div class="info-cont">
-                            <span class="font-ct">Kemudahan pembayaran</span>
-                            <p>A contemporary grooming collection infused with the invigorating and sensual scent of Revoshop</p>
+                            <span class="font-ct">Keuntungan Berlimpah</span>
+                            <p>Belanja hemat dan mudah dengan menggunakan Point, Kupon Produk dan Voucher keranjang.</p>
                         </div>
                     </div>
                 </div>
@@ -25,8 +25,8 @@
                     <div class="inner">
                         <i class="fa fa-life-ring"></i>
                         <div class="info-cont">
-                            <span class="font-ct">Customer support yang responsif</span>
-                            <p>A contemporary grooming collection infused with the invigorating and sensual scent of Revoshop</p>
+                            <span class="font-ct">Customer Support</span>
+                            <p>Layanan Customer Support kami siap membantu anda sebelum dan sesudah transaksi.</p>
                         </div>
                     </div>
                 </div>
@@ -105,12 +105,12 @@
                                     </a>
                                 </li>
 
-                                <li class="li-social twitter-social">
+                                <li class="li-social instagram-social">
                                     <a title="Twitter" href="https://twitter.com/#" target="_blank">
-                                        <span class="fab fa-twitter icon-social"></span> <span class="name-social">Twitter</span>
+                                        <span class="fab fa-instagram icon-social"></span> <span class="name-social">Instagram</span>
                                     </a>
                                 </li>
-
+                                <!--
                                 <li class="li-social google-social">
                                     <a title="Google+" href="https://plus.google.com/#" target="_blank">
                                         <span class="fab fa-google-plus-g icon-social"></span> <span class="name-social">Google+</span>
@@ -128,6 +128,7 @@
                                         <span class="fab fa-pinterest icon-social"></span> <span class="name-social">Pinterest</span>
                                     </a>
                                 </li>
+                                -->
                             </ul>
                         </div>
                     </div>

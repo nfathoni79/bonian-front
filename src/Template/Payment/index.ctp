@@ -3,11 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-9 text-left">
-                <div class="col-lg-6 pd-0 text-left">
-                    <button onclick="location.href='<?php echo $this->Url->build(['controller' => 'Cart', 'action' => 'index']);?>'" type="button" class="btn btn-danger btn-lg btn-block c-header-button">
-                        <i class="fas fa-arrow-left"></i> Kembali ke keranjang belanja
-                    </button>
-                </div>
+                <h1 class="o-header-title">Konfirmasi pembayaran</h1>
             </div>
             <div class="col-lg-3 text-center">
                 <button type="button" class="btn btn-danger btn-lg btn-block c-header-button">
@@ -32,233 +28,32 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="c-card__item-title tx-bold-force">
-                                alamat pengiriman
+                                Informasi detail
                             </div>
                         </div>
 
                     </div>
                     <!-- start: card item #1 -->
-                    <div class="c-checkout-card__item">
-                        <?php if(empty($data['customer_address']['recipient_name'])):?>
+                    <div class="c-checkout-card__pengiriman">
                         <div class="row">
-                            <div class="col-lg-8">
-                                Daftar alamat tidak di temukan
-                            </div>
-                            <div class="col-lg-4 text-right">
-                                <?php echo $this->Html->link('Tambah alamat baru', ['controller' => 'Profile', 'action' => 'address', 'prefix' => 'user'], ['class' => 'btn btn-danger btn-sm btn-block o-card__address-btn']);?>
-                            </div>
-                        </div>
-                        <?php else:?>
-                        <input type="hidden" name="address_id" id="addressId" value="<?php echo $data['customer_address']['id'];?>">
-                        <div class="row">
-                            <div class="col-lg-9">
+                            <div class="col-lg-12">
+                                <?php
+                                    switch($this->request->getQuery('type')) {
+                                        case 'pulsa':
+                                            echo $this->element('Partials/Payment/type/pulsa');
+                                        break;
+                                    }
 
-                                <h1 class="c-card__user-name tx-16 tx-bold zl-tx-black tx-mont mt-0">
-                                    <span class="zl-address-name"><?php echo $data['customer_address']['recipient_name'];?></span>
-                                    <span class="tx-14 zl-tx-gray tx-medium zl-address-title"> - (<?php echo $data['customer_address']['title'];?>) </span>
-                                </h1>
-                                <p class="c-card__item-address">
-                                    <span class="zl-address-address"><?php echo $data['customer_address']['address'];?></span>,
-                                    <span class="zl-address-postalcode"><?php echo $data['customer_address']['postal_code'];?></span>
-                                </p>
-                                <p class="c-card__item-phone">
-                                    <span class="zl-address-phone"><?php echo $data['customer_address']['recipient_phone'];?></span>
-                                </p>
+                                ?>
                             </div>
-                            <div class="col-lg-3 text-right">
-                                <a href="#" class="btn btn-danger btn-block o-card__address-btn" data-toggle="modal" data-target="#modalAlamat">
-                                    Ganti Alamat
-                                </a>
-                            </div>
+
                         </div>
-                        <?php endif;?>
                     </div>
                     <!-- end: card item #1 -->
 
                 </div>
                 <!-- end: card alamat -->
-                <?php $i = 1;?>
-                <?php $total = 0;?>
-                <?php $totalOngkir = 0;?>
-                <?php $totalPoint = 0;?>
-                <?php foreach($data['carts'] as $origin_id => $vals):?>
-                <div class="c-checkout-card-product">
 
-                    <div class="row zl-tx-gray ">
-                        <div class="col-lg-12">
-                            <div class="col-lg-6 tx-16 tx-bold zl-tx-black tx-mont text-left p-0">
-                                <p>Produk belanja <?php echo $i;?></p>
-                            </div>
-                            <div class="col-lg-6 text-right">
-                                <span><i class="fas fa-warehouse pd-r-10 tx-16"></i> Shipping origin : <span class="tx-bold"><?php echo $vals['origin'];?></span></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <?php foreach($vals['data'] as $val):?>
-
-                    <?php $totalPoint += $val['totalpoint'];?>
-                    <div class="c-checkout-card__item">
-
-                        <div class="row">
-
-                            <div class="col-lg-2">
-                                <?php foreach($val['images'] as $image):?>
-                                <img class="img-responsive img-0 mx-ht-lg-55p" src="<?= $this->Url->build($_basePath . 'images/132x132/' . $image); ?>" data-zoom-image="<?= $this->Url->build($_basePath . 'images/600x600/' . $image); ?>" data-image-name="<?= $image;?>" title="<?php echo $val['name']; ?>" alt="<?php echo $val['name']; ?>">
-                                <?php break;?>
-                                <?php endforeach;?>
-                            </div>
-
-                            <div class="col-lg-10 c-card-item__description">
-                                <div class="row">
-
-                                    <div class="col-lg-12 mg-b-15 text-left">
-                                        <h2 class="tx-bold tx-16 mg-0 zl-tx-black">
-                                            <a class="cart_product_name" href="<?php echo $this->Url->build(['controller' => 'products', 'action' => 'detail',$val['slug'] ]);?>">
-                                                <?php echo h($val['name']);?>
-                                            </a>
-                                        </h2>
-                                    </div>
-
-                                    <!-- start : deskripsi produk -->
-                                    <div class="col-lg-12 tx-12" >
-                                        <div class="row">
-                                            <div class="col-lg-4">
-                                                <div class="row text-left" >
-                                                    <div class="col-lg-12">
-                                                        SKU : <?php echo $val['sku']; ?>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        Harga tambahan : Rp.<?php echo $this->Number->format($val['add_price']); ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-1">
-                                                <div class="row text-center">
-                                                    <div class="col-lg-12 text-center" style="color : #212121">
-                                                        Berat
-                                                    </div>
-                                                    <div class="col-lg-12 text-center zl-tx-red--light">
-                                                        <?php echo $val['weight']; ?>g
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-3">
-                                                <div class="row text-center">
-                                                    <div class="col-lg-12 text-center" style="color : #212121">
-                                                        Harga
-                                                    </div>
-                                                    <div class="col-lg-12 text-center zl-tx-red--light">
-                                                        Rp. <?php echo $this->Number->format($val['price']); ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="col-lg-1">
-                                                <div class="row text-center">
-                                                    <div class="col-lg-12 text-center" style="color : #212121">
-                                                        Qty
-                                                    </div>
-                                                    <div class="col-lg-12 text-center zl-tx-red--light">
-                                                        <?php echo $this->Number->format($val['qty']); ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-3">
-                                                <div class="row text-center">
-                                                    <div class="col-lg-12 text-center" style="color : #212121">
-                                                        Total
-                                                    </div>
-                                                    <div class="col-lg-12 text-center zl-tx-red--light">
-
-                                                        Rp. <?php echo $this->Number->format($val['total']); ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- end : deskripsi produk -->
-
-                                </div>
-                            </div>
-
-                            <div class="col-lg-12 c-card-item__catatan mg-l-115 wd-85p">
-                                <h5 class="zl-tx-red--light">Catatan Barang</h5>
-                                <p>
-                                    <?php if(!empty($val['comment'])):?>
-                                        <?php echo $val['comment'];?>
-                                    <?php else:?>
-                                        Tidak ada catatan
-                                    <?php endif;?>
-                                </p>
-                            </div>
-
-
-                        </div>
-                    </div>
-
-                    <?php endforeach;?>
-
-                    <div class="c-checkout-card__pengiriman u-mt-10">
-                        <div class="row">
-                            <?php if(empty($data['customer_address']['recipient_name'])):?>
-                                <div class="col-lg-6">
-                                    <h5 class="tx-bold-force">
-                                        Alamat pengiriman tidak ditemukan
-                                    </h5>
-                                </div>
-                            <?php else:?>
-                                <div class="col-lg-6">
-                                    <h5 class="tx-bold-force">
-                                        opsi pengiriman
-                                    </h5>
-                                    <div class="form-group">
-                                        <select class="form-control shipping-option"  data-id="<?= $i;?>" data-origin-id="<?= $origin_id; ?>" >
-                                            <?php foreach($vals['shipping_options'] as $shipping):?>
-                                            <option value="<?= $shipping['code'];?>" data-cost="<?= $shipping['cost'];?>" data-etd="<?= $shipping['etd'];?>" data-service="<?= $shipping['service'];?>"><?= $shipping['name'];?></option>
-                                            <?php endforeach;?>
-                                        </select>
-                                    </div>
-                                    <h5 class="u-mt-10 tx-semibold-force tx-gray-force">
-                                        <?php foreach($vals['shipping_options'] as $shipping):?>
-                                        <span class="shipping-etd-<?= $i;?>"> Estimasi waktu <?php echo $shipping['etd'];?> hari kerja</span>
-                                        <?php break;?>
-                                        <?php endforeach;?>
-                                    </h5>
-                                </div>
-
-                                <div class="col-lg-6 c-ongkos">
-                                    <div class="row">
-                                        <div class="col-lg-6 text-left tx-bold-force">
-                                            Berat Total
-                                        </div>
-                                        <div class="col-lg-6 text-right tx-bold-force">
-                                            <?php echo $this->Number->format(($vals['total_weight'] / 1000));?> Kg
-                                        </div>
-                                        <div class="col-lg-12 o-ongkos-divider">
-                                        </div>
-                                        <div class="col-lg-6 text-lef tx-bold-force">
-                                            Ongkos kirim
-                                        </div>
-                                        <div class="col-lg-6 text-right tx-bold-force">
-                                            <?php foreach($vals['shipping_options'] as $shipping):?>
-                                            <?php $totalOngkir += $shipping['cost'];?>
-                                            Rp.<span class="shipping-cost shipping-cost-<?= $i;?>"><?php echo $this->Number->format($shipping['cost']);?></span>
-                                            <?php break;?>
-                                            <?php endforeach;?>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php endif;?>
-                        </div>
-                    </div>
-                </div>
-                <?php $i++;?>
-                <?php endforeach;?>
 
             </div>
 
@@ -285,16 +80,7 @@
                                 <div style="border:1px dashed #E2E2E2; margin-top:1px;"></div>
                             </div>
 
-                            <div class="col-lg-7">
-                                <h3 class="tx-15">Ongkos kirim</h3>
-                            </div>
-                            <div class="col-lg-5 mg-t-15">
-                                <h5 class="tx-black tx-15"> Rp.<span class="zl-total-ongkir"><?php echo $this->Number->format($totalOngkir);?></span> </h5>
-                            </div>
 
-                            <div class="col-lg-12">
-                                <div style="border:1px dashed #E2E2E2; margin-top:1px;"></div>
-                            </div>
                             <?php if (isset($data['code_voucher'])) : ?>
                             <div class="col-lg-7">
                                 <h3 class="tx-15">Voucher</h3>
@@ -302,27 +88,7 @@
                             <div class="col-lg-5 mg-t-15">
                                 <label class="label label-danger"><?php echo $data['code_voucher']; ?></label>
                             </div>
-                            <div class="col-lg-12">
-                                <div style="border:1px dashed #E2E2E2; margin-top:1px;"></div>
-                            </div>
-                            <div class="col-lg-7">
-                                <h3 class="tx-15">Potongan Voucher</h3>
-                            </div>
-                            <div class="col-lg-5 mg-t-15">
-                                <h5 class="tx-black tx-15"> Rp.<span class="zl-total-voucher"><?php echo $this->Number->format($data['potongan_voucher']);?></span> </h5>
-                            </div>
 
-                            <div class="col-lg-12">
-                                <div style="border:1px dashed #E2E2E2; margin-top:1px;"></div>
-                            </div>
-                            <?php endif; ?>
-                            <?php if (isset($data['potongan_kupon'])) : ?>
-                            <div class="col-lg-7">
-                                <h3 class="tx-15">Potongan Kupon</h3>
-                            </div>
-                            <div class="col-lg-5 mg-t-15">
-                                <h5 class="tx-black tx-15"> Rp.<span class="zl-total-kupon"><?php echo $this->Number->format($data['potongan_kupon']);?></span> </h5>
-                            </div>
                             <div class="col-lg-12">
                                 <div style="border:1px dashed #E2E2E2; margin-top:1px;"></div>
                             </div>
@@ -344,7 +110,7 @@
                             </div>
                             <div class="col-lg-5 mg-t-15">
                                 <h5 class="sub-total tx-black tx-18">
-                                    Rp.<span class="zl-subtotal"><?php echo $this->Number->format($data['total'] + $totalOngkir);?></span>
+                                    Rp.<span class="zl-subtotal"><?php echo $this->Number->format($data['total']);?></span>
                                 </h5>
                             </div>
 
@@ -356,7 +122,7 @@
                                 <h3 class="tx-15">Bonus Point</h3>
                             </div>
                             <div class="col-lg-5 mg-t-15">
-                                <h5 class="tx-black tx-15"> <?php echo (empty($totalPoint))  ? '0' : $totalPoint; ?> Point </h5>
+                                <h5 class="tx-black tx-15"> <?php echo (empty($data['bonus_point']))  ? '0' : $data['bonus_point']; ?> Point </h5>
                             </div>
 
                             <!-- start: metode Pembayaran -->
@@ -383,7 +149,7 @@
                                         <!-- start:item #1-->
                                         <div class="row pd-t-5 pd-l-20 pd-r-20 pd-b-5" >
                                             <div class="col-lg-2 pd-t-10 text-center">
-                                                <div class="pretty p-default p-round p-pulse p-bigger">
+                                                <div class="pretty p-default p-round p-pulse">
                                                     <input type="radio" name="payment_method"  value="bca_va">
                                                     <div class="state p-danger">
                                                         <label> </label>
@@ -408,7 +174,7 @@
 
                                         <div class="row pd-t-5 pd-l-20 pd-r-20 pd-b-5">
                                             <div class="col-lg-2 pd-t-10 text-center">
-                                                <div class="pretty p-default p-round p-pulse p-bigger">
+                                                <div class="pretty p-default p-round p-pulse">
                                                     <input type="radio" name="payment_method"  value="permata_va">
                                                     <div class="state p-danger">
                                                         <label> </label>
@@ -433,7 +199,7 @@
 
                                         <div class="row pd-t-5 pd-l-20 pd-r-20 pd-b-5">
                                             <div class="col-lg-2 pd-t-10 text-center">
-                                                <div class="pretty p-default p-round p-pulse p-bigger">
+                                                <div class="pretty p-default p-round p-pulse">
                                                     <input type="radio" name="payment_method"  value="bni_va">
                                                     <div class="state p-danger">
                                                         <label> </label>
@@ -467,7 +233,7 @@
                                         <!-- start:item-->
                                         <div class="row" style="padding: 5px 20px">
                                             <div class="col-lg-2 pd-t-10 text-center">
-                                                <div class="pretty p-default p-round p-pulse p-bigger">
+                                                <div class="pretty p-default p-round p-pulse">
                                                     <input type="radio" name="payment_method"  value="credit_card" data-id="<?= $creditcard['id']; ?>">
                                                     <div class="state p-danger">
                                                         <label> </label>
@@ -513,7 +279,7 @@
                                         <!-- start:item #1-->
                                         <div class="row" style="padding: 5px 20px">
                                             <div class="col-lg-2 pd-t-10 text-center">
-                                                <div class="pretty p-default p-round p-pulse p-bigger">
+                                                <div class="pretty p-default p-round p-pulse">
                                                     <input type="radio" name="payment_method"  value="gopay">
                                                     <div class="state p-danger">
                                                         <label> </label>
@@ -549,7 +315,7 @@
                             <!-- end: metode pembayaran -->
 
                             <div class="col-lg-12 text-center">
-                                <button type="button" id="pay-now" style="margin-top: 10px;" class="btn btn-danger btn-lg btn-block c-pembayaran-button rounded-5" <?php echo (empty($data['customer_address']['recipient_name'])) ? 'disabled' : '';?>>
+                                <button type="button" id="pay-now" style="margin-top: 10px;" class="btn btn-danger btn-lg btn-block c-pembayaran-button rounded-5">
                                     Bayar sekarang
                                 </button>
                             </div>
@@ -570,78 +336,6 @@
 
 
 
-<!-- start: modal alamat -->
-<div class="modal fade" id="modalAlamat" tabindex="-1" role="dialog" aria-labelledby="modalAlamat">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color: #d9534f;color: #ffffff;border-top-left-radius:6px;border-top-right-radius:6px;">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">
-                        <i class="fas fa-times-circle"></i>
-                    </span>
-                </button>
-                <h4 class="modal-title" id="modalTitle">
-                    Daftar alamat
-                </h4>
-            </div>
-
-            <div class="modal-body">
-
-                <!-- start: modal item #1 -->
-                <div class="c-modal-item">
-                    <?php foreach($address as $vals):?>
-                    <div class="panel panel-danger">
-                        <div class="panel-body">
-
-                            <div class="row">
-                                <div class="col-lg-8">
-                                    <h5 class="c-modal-item__name ">
-                                        <strong>
-                                            <span><?php echo $vals['recipient_name'];?></span>
-                                            <span>(<?php echo $vals['title'];?>)</span>
-                                            <span><?php echo $vals['recipient_phone'];?></span>
-                                        </strong>
-                                    </h5>
-                                    <p class="c-modal-item__address">
-                                        <span><?php echo $vals['address'];?></span>,
-                                        <span><?php echo $vals['postal_code'];?></span>
-                                    </p>
-                                </div>
-                                <div class="col-lg-4 text-center mg-t-20">
-                                    <a href="#" class="btn btn-danger btn-block btn-radius o-modal-item__btn u-flex-center selected-address" data-id="<?php echo $vals['id'];?>" data-title="<?php echo $vals['title'];?>" data-recipent="<?php echo $vals['recipient_name'];?>" data-phone="<?php echo $vals['recipient_phone'];?>" data-address="<?php echo $vals['address'];?>" data-postalcode="<?php echo $vals['postal_code'];?>">
-                                        Pilih alamat ini
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <?php endforeach;?>
-                </div>
-                <!-- end: modal item #1 -->
-
-            </div>
-
-
-            <div class="modal-footer">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="c-info text-left">
-                            <h5>
-                                <i class="fas fa-info-circle"></i> &nbsp;
-                                Pilih salah satu alamat diatas sebagai alamat tujuan pengiriman
-                            </h5>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-</div>
-<!-- end: modal alamat -->
-
-
 <!-- start:modal tambah kartu kredit -->
 <div class="modal fade" id="modalTambahKartuKredit" tabindex="-1" role="dialog" aria-labelledby="login-popupLabel">
     <div class="modal-dialog" role="document">
@@ -657,7 +351,7 @@
                 </h4>
             </div>
 
-            <?= $this->Form->create(null, ['url' => ['controller' => 'Checkout', 'action' => 'addCard', 'prefix' => false], 'id' => 'add-credit-card-form', 'class' => 'ajax-helper']); ?>
+            <?= $this->Form->create(null, ['url' => ['controller' => 'Payment', 'action' => 'addCard', 'prefix' => false], 'id' => 'add-credit-card-form', 'class' => 'ajax-helper']); ?>
             <div class="modal-body mg-b-20">
 
                 <div class="row">
@@ -746,7 +440,7 @@
                 </h4>
             </div>
 
-            <?= $this->Form->create(null, ['url' => ['controller' => 'Checkout', 'action' => 'createToken', 'prefix' => false], 'id' => 'token-credit-card-payment', 'class' => 'ajax-helper']); ?>
+            <?= $this->Form->create(null, ['url' => ['controller' => 'Payment', 'action' => 'createToken', 'prefix' => false], 'id' => 'token-credit-card-payment', 'class' => 'ajax-helper']); ?>
             <div class="modal-body">
                 <!-- start: form item #1 -->
                 <div class="row">
@@ -828,7 +522,7 @@ $this->Html->css([
 <?php
 $this->Html->script([
 '/js/jquery.fancybox.min.js',
-'/js/checkout.js',
+'/js/payment.js',
 ], ['block' => true]);
 ?>
 

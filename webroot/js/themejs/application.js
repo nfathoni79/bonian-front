@@ -667,8 +667,9 @@ $(document).ready(function() {
         reff = '';
 	}
 
+
     $('.waShare').on('click',function(){
-        window.open('https://web.whatsapp.com//send?text=Temukan '+$(this).data('title')+' Rp. '+numeral($(this).data('price')).format('0,0')+' Dapatkan segera di zolaku '+$(this).data('url')+'/'+reff,'_blank','width=600, height=368');
+        window.open('https://api.whatsapp.com/send?text=Beli '+$(this).data('title')+' '+$(this).data('url')+'/'+reff+' Harga Promo Rp. '+numeral($(this).data('price')).format('0,0')+' hanya di Bonian! Dapatkan Bonus Point '+numeral($(this).data('point')).format('0,0')+' serta dapatkan Potongan Kupon dan Voucher Diskon, Beli Sekarang ! ','_blank','width=600, height=368');
         return false;
     });
     $('.igShare').on('click',function(){
@@ -676,7 +677,7 @@ $(document).ready(function() {
         // return false;
     });
     $('.smsShare').on('click',function(){
-        window.open('sms:;?&body=Temukan '+$(this).data('title')+' Rp. '+numeral($(this).data('price')).format('0,0')+' Dapatkan segera di zolaku '+$(this).data('url')+'/'+reff,'_self','width=600, height=368')
+        window.open('sms:;?&body=Beli '+$(this).data('title')+' '+$(this).data('url')+'/'+reff+' Harga Promo Rp. '+numeral($(this).data('price')).format('0,0')+' hanya di Bonian! Dapatkan Bonus Point '+numeral($(this).data('point')).format('0,0')+' serta dapatkan Potongan Kupon dan Voucher Diskon, Beli Sekarang ! ','_self','width=600, height=368')
         return false;
     });
 
@@ -686,12 +687,11 @@ $(document).ready(function() {
     });
 
     $('.lineShare').on('click',function(){
-        window.open('https://lineit.line.me/share/ui?url='+$(this).data('url')+'/'+reff+'&text=Temukan '+$(this).data('title')+' Rp. '+numeral($(this).data('price')).format('0,0')+' Dapatkan segera di zolaku ','_blank','width=600, height=368');
+        window.open('https://lineit.line.me/share/ui?url='+$(this).data('url')+'/'+reff+'&text=Beli '+$(this).data('title')+' Harga Promo Rp. '+numeral($(this).data('price')).format('0,0')+' hanya di Bonian! Dapatkan Bonus Point '+numeral($(this).data('point')).format('0,0')+' serta dapatkan Potongan Kupon dan Voucher Diskon, Beli Sekarang ! ','_blank','width=600, height=368');
         return false;
     });
-
     $('.twitterShare').on('click',function(){
-        window.open('https://twitter.com/share?url='+$(this).data('url')+'/'+reff+'&text=Temukan '+$(this).data('title')+' Rp. '+numeral($(this).data('price')).format('0,0')+' Dapatkan segera di zolaku ','_blank','width=600, height=368');
+        window.open('https://twitter.com/share?url='+$(this).data('url')+'/'+reff+'&text=Beli '+$(this).data('title')+' Harga Promo Rp. '+numeral($(this).data('price')).format('0,0')+' hanya di Bonian! Dapatkan Bonus Point '+numeral($(this).data('point')).format('0,0')+' serta dapatkan Potongan Kupon dan Voucher Diskon, Beli Sekarang ! ','_blank','width=600, height=368');
         return false;
     });
 });

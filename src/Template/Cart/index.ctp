@@ -350,7 +350,7 @@
                                                             <div class="col-md-2 mg-t-45">
                                                                 <?php if($vals['active']):?>
                                                                     <?php $group = implode(',', $vals['category']);?>
-                                                                    <div class="pretty p-default p-round p-pulse">
+                                                                    <div class="pretty p-default p-round p-pulse p-bigger">
                                                                         <input type="radio" name="voucher" value="<?php echo $vals['id'];?>" data-code="<?php echo $vals['voucher']['code_voucher'];?>" data-price="<?php echo $vals['voucher']['value'];?>" data-diskon="<?php echo $vals['voucher']['percent'];?>" data-group="<?php echo $group;?>">
                                                                         <div class="state p-danger">
                                                                             <label>Pilih</label>
@@ -421,10 +421,17 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-5 v-text-box">
-                                                            Kupon produk <br><strong><?= $vals['product_coupon']['product']['name'];?></strong><br> potongan harga Rp. <?php  echo $this->Number->precision($vals['product_coupon']['price'], 0);?>
+                                                            Kupon produk <br><strong><?php echo $this->Text->truncate(
+                                                            h($vals['product_coupon']['product']['name']),
+                                                            25,
+                                                            [
+                                                            'ellipsis' => '...',
+                                                            'exact' => false
+                                                            ]
+                                                            );?></strong><br> potongan harga Rp. <?php  echo $this->Number->precision($vals['product_coupon']['price'], 0);?>
                                                         </div>
                                                         <div class="col-md-2 mg-t-45">
-                                                            <div class="pretty p-default p-round p-pulse">
+                                                            <div class="pretty p-default p-round p-pulse p-bigger">
                                                                 <input type="radio" name="kupon" value="<?php echo $vals['id'];?>" data-price="<?= $vals['product_coupon']['price']; ?>">
                                                                 <div class="state p-danger">
                                                                     <label>Pilih</label>
@@ -469,7 +476,7 @@
                                 <h3>Kupon</h3>
                             </div>
                             <div class="col-lg-5 p-3">
-                                <a href="JavaScript:void(0);" class="btn btn-default btn-sm btn-voucher" data-target="#modalCoupon" data-toggle="modal">Pilih kupon</a>
+                                <a href="JavaScript:void(0);" class="btn btn-default btn-sm btn-kupon" data-target="#modalCoupon" data-toggle="modal">Pilih kupon</a>
                             </div>
                             <?php endif;?>
                             <div class="col-lg-7">
@@ -480,7 +487,7 @@
                             </div>
                             <div class="col-lg-5">
                                 <?php if($point > 0):?>
-                                    <input type="number" id="point" class="form-control text-center number-box" style="margin-top: 20px;" placeholder="Input poin" min="1" max="<?php echo $point;?>">
+                                    <input type="number" id="point" class="form-control text-center number-box" style="margin-top: 20px;" placeholder="Input poin" min="0" max="<?php echo $point;?>">
                                 <?php endif;?>
                             </div>
                             <div class="col-lg-12">
@@ -558,6 +565,12 @@
                     <div class="c-cart-card-wishlist__title text-center">
                         <h5>wishlist</h5>
                     </div>
+
+                    <div class="row">
+                        <div class="col-lg-12  mb-4 text-center">
+                            <?php echo $this->Html->link('Daftar whislist', ['controller' => 'Wishlist', 'action' => 'index', 'prefix' => 'user'],['class' => 'btn btn-danger btn-sm btn-radius']);?>
+                        </div>
+                    </div>
                     <!-- end: title -->
                     <?php if(!empty($wishlists)):?>
                     <?php foreach($wishlists as $vals):?>
@@ -632,11 +645,6 @@
                     <hr>
                     <?php endforeach;?>
 
-                    <div class="row">
-                        <div class="col-lg-12  mb-4 text-center">
-                            <?php echo $this->Html->link('Daftar whislist', ['controller' => 'Wishlist', 'action' => 'index', 'prefix' => 'user'],['class' => 'btn btn-danger btn-sm btn-radius']);?>
-                        </div>
-                    </div>
 
                     <?php else: ?>
 

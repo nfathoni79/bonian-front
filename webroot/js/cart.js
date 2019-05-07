@@ -323,11 +323,14 @@ $( ".number-box" ).change(function() {
         $(this).val(min);
     }
 });
-
+$('#point').on('change',function(){
+    grandTotal();
+})
 $('.btn-v-ok').on('click',function(){
     grandTotal();
     var radioValue = $("input[name='voucher']:checked").val();
-
+    var codeVoucher = $("input[name='voucher']:checked").data('code');
+    $('.btn-voucher').text(codeVoucher);
     if(radioValue){
         $("#modalvoucher").modal('hide');
     }else{
@@ -338,6 +341,7 @@ $('.btn-v-ok').on('click',function(){
 $('.btn-c-ok').on('click',function(){
     var radioValue = $("input[name='kupon']:checked").val();
     var priceValue = $("input[name='kupon']:checked").data('price');
+    $('.btn-kupon').text('Kupon '+numeral(priceValue).format('0,0'));
     if(radioValue){
         $("#modalCoupon").modal('hide');
         $('#coupon-price').html(numeral(priceValue).format('0,0'));
@@ -351,7 +355,8 @@ $('.btn-c-ok').on('click',function(){
 function grandTotal(){
     var subtotal = numeral($('#subtotal').text()).value();
     var coupon = numeral($('#coupon-price').text()).value();
-
+    var point = numeral($('#point').val()).value();
+    console.log(point);
     var vPrice = $("input[name='voucher']:checked").data('price');
     var vDiskon = $("input[name='voucher']:checked").data('diskon');
     var vGroup = $("input[name='voucher']:checked").data('group');
@@ -377,11 +382,11 @@ function grandTotal(){
             if(cut > vPrice){
                 var gTotal = (incat - vPrice) + outcat;
                 $('#voucher-price').html(numeral((vPrice)).format('0,0'));
-                $('#grandtotal').html(numeral((total-vPrice)).format('0,0'));
+                $('#grandtotal').html(numeral((total-vPrice-point)).format('0,0'));
             }else{
                 var gTotal = (incat - cut) + outcat;
                 $('#voucher-price').html(numeral((cut)).format('0,0'));
-                $('#grandtotal').html(numeral((total-cut)).format('0,0'));
+                $('#grandtotal').html(numeral((total-cut-point)).format('0,0'));
             }
 
         }else{
@@ -393,16 +398,16 @@ function grandTotal(){
             if(cut > vPrice){
                 var hit = gTotal - vPrice;
                 $('#voucher-price').html(numeral((vPrice)).format('0,0'));
-                $('#grandtotal').html(numeral((total-vPrice)).format('0,0'));
+                $('#grandtotal').html(numeral((total-vPrice-point)).format('0,0'));
             }else{
                 var hit = gTotal - cut;
                 $('#voucher-price').html(numeral((cut)).format('0,0'));
-                $('#grandtotal').html(numeral((total-cut)).format('0,0'));
+                $('#grandtotal').html(numeral((total-cut-point)).format('0,0'));
             }
         }
     }else{
 
-        $('#grandtotal').html(numeral((total)).format('0,0'));
+        $('#grandtotal').html(numeral((total-point)).format('0,0'));
     }
 
 }

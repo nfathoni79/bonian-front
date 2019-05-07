@@ -17,7 +17,7 @@ class LoginController extends AuthController
     public function initialize()
     {
         parent::initialize();
-        $this->Auth->allow('index');
+        $this->Auth->allow(['index','auth']);
     }
 
     /**
@@ -32,7 +32,7 @@ class LoginController extends AuthController
        $email = $this->request->getData('email');
        $password = $this->request->getData('password');
        $error = ['error' => []];
-
+       $success = true;
        try {
            $this->Api->addHeader('bid', $this->request->getCookie('bid'));
            $this->Api->addHeader('User-Agent', env('HTTP_USER_AGENT'));
@@ -69,25 +69,42 @@ class LoginController extends AuthController
                            ]
                        ]);
                } catch(\GuzzleHttp\Exception\ClientException $e) {
-
+                   $success = false;
                }
 
            }
        } catch(\GuzzleHttp\Exception\ClientException $e) {
            $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+           $success = false;
        }
 
 
+        if($this->request->is('Ajax')){
+            return $this->response->withType('application/json')
+                ->withStringBody(json_encode($error));
+        }else{
+            if($success){
+                $this->redirect(['controller' => 'Home', 'action' => 'index']);
+            }else{
+                $this->Flash->error(__('Kombinasi username dan password salah'));
+                $this->redirect(['action' => 'auth']);
+            }
+        }
 
-
-       return $this->response->withType('application/json')
-           ->withStringBody(json_encode($error));
    }
 
 
-   public function test()
+   public function auth()
    {
-       $this->disableAutoRender();
-       debug($this->Auth->user());
+//       $this->disableAutoRender();
+//       debug($this->Auth->user());
+//        exit;
+        $this->viewBuilder()->setLayout('auth');
+        if($this->Auth->user()){
+            $this->redirect(['controller' => 'Home', 'action' => 'index']);
+        }
+
+
+
    }
 }

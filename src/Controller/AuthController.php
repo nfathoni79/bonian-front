@@ -23,19 +23,27 @@ class AuthController extends AppController
         parent::initialize();
 
         $this->loadComponent('Auth', [
-            'loginAction' => false,
-            'loginRedirect' => false,
-            'authorize' => 'Api',
-            'authenticate' => [
+            'loginAction' => [
+                'controller' => 'Login',
+                'action' => 'auth',
+                'prefix' => false
+            ],
+            'loginRedirect_' => false,
+            'authorize_' => 'Api',
+            'authenticate_' => [
                 'Api' => [
                     //'finder' => 'auth',
                     'userModel' => 'Customers',
                     'fields' => ['username' => 'email', 'password' => 'password']
                 ]
             ],
-            'unauthorizedRedirect' => [
-                'controller' => 'Home',
-                'action' => 'index',
+            'flash' => [
+                'element' => 'error'
+            ],
+            'authError' => 'Your session expired, please login again',
+            'unauthorizedRedirectx' => [
+                'controller' => 'Login',
+                'action' => 'auth',
                 'prefix' => false
             ],
             'storage' => [
