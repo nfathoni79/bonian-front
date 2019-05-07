@@ -11,7 +11,7 @@
         <div class="c-card c-content--category__home u-pad-v--25 u-pad-h--80 u-mrg-t--20">
             <div class="o-flex o-justify-content--between o-align-items--center">
                 <!-- #pulsa -->
-                <a href="" id="pulsa" class="c-category--item">
+                <a href="<?= $this->Url->build(['controller' => 'Pulsa', 'prefix' => false]); ?>" id="pulsa" class="c-category--item">
                     <img class="u-img--fluid o-block" src="<?= $this->Url->build('/images/png/icon-produk-digital/pulsa.png'); ?>" width="32" alt="icon pulsa">
                     <p class="c-content--cat__title u-fg--softest-blue" style="display:inline; padding-left:10px; font-size:15px; color:#63a1c3;">Pulsa</p>
                 </a>
