@@ -14,7 +14,7 @@
 
         <!-- start: bagian kiri -->
         <div class=" col-lg-3 content-aside left_column sidebar-offcanvas c-filter">
-            <h3 class="modtitle mg-t-0">Filter Produk </h3>
+            <!-- <h3 class="modtitle mg-t-0">Filter Produk </h3> -->
             <span id="close-sidebar" class="fa fa-times"></span>
 
 
@@ -296,6 +296,10 @@
                                             <?php break; endforeach; ?>
                                         </a>
                                     </div>
+                                    <div class="box">
+                                      <div class="ribbon ribbon-top-left"><span>NEW</span></div>
+                                    </div>
+                                    <span class="product-ribbon"> 20% </span>
                                 </div>
                                 <div class="right-block right-b">
                                     <?php /*

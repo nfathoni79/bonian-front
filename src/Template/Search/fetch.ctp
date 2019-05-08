@@ -13,19 +13,17 @@
 
                             <?php if ($key > 1) {break;} endforeach; ?>
                     </div>
-                    <div class="product-image-container">
+                    <div class="product-image-container overflow-hidden">
                         <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $product['slug']]); ?>" title="<?= h($product['name']); ?>">
                             <?php foreach($product['images'] as $image) : ?>
                                 <img src="<?= $this->Url->build($_basePath . 'images/195x195/' . $image); ?>" data-image-name="<?= $image; ?>"  class="img-responsive" alt="image">
                                 <?php break; endforeach; ?>
                         </a>
+                        <span class="product-ribbon"> 20% </span>
                     </div>
-
-                    <!--quickview-->
-                    <a class="iframe-link btn-button quickview quickview_handler visible-lg"
-                       href="quickview.html" title="Quick view" data-fancybox-type="iframe"><i
-                            class="fa fa-eye"></i><span></span></a>
-                    <!--end quickview-->
+                    <div class="box">
+                      <div class="ribbon ribbon-top-left"><span>NEW</span></div>
+                    </div>
                 </div>
                 <div class="right-block right-b">
                     <?php /*
@@ -80,41 +78,35 @@
                         <div class="button-group so-quickview cartinfo--static share-container">
                             <span class="col-md-12 zl-tx-red tx-medium">Bagikan produk ini</span>
                             <div class="row pd-0">
-                                <button type="button" class="btn-share b-ig igShare" data-url="" data-title="" data-price=""><i class="fab fa-instagram"></i></button>
                                 <button type="button" class="btn-share b-fb fbShare" data-url="" data-title="" data-price=""><i class="fab fa-facebook"></i></button>
-                                <button type="button" class="btn-share b-wc smsShare" data-url="" data-title="" data-price=""><i class="fas fa-comment-dots"></i></button>
-                            </div>
-                            <div class="row pd-0">
                                 <button type="button" class="btn-share b-wa waShare" data-url="" data-title="" data-price=""><i class="fab fa-whatsapp"></i></button>
                                 <button type="button" class="btn-share b-ln lineShare" data-url="" data-title="" data-price=""><i class="fab fa-line"></i></button>
                                 <button type="button" class="btn-share b-tw twitterShare" data-url="" data-title="" data-price=""><i class="fab fa-twitter"></i></button>
                             </div>
 
                         </div>
-                        <div class="description item-desc">
-                            <p>&nbsp;</p>
-                        </div>
+
                         <?php /*
-                                    <div class="list-block">
-                                        <button class="addToCart btn-button" type="button" title="Add to Cart"
-                                                onclick="cart.add('101', '1');"><i
-                                                    class="fa fa-shopping-basket"></i>
-                                        </button>
-                                        <button class="wishlist btn-button" type="button"
-                                                title="Add to Wish List" onclick="wishlist.add('101');"><i
-                                                    class="fa fa-heart"></i>
-                                        </button>
-                                        <button class="compare btn-button" type="button"
-                                                title="Compare this Product" onclick="compare.add('101');"><i
-                                                    class="fa fa-refresh"></i>
-                                        </button>
-                                        <!--quickview-->
-                                        <a class="iframe-link btn-button quickview quickview_handler visible-lg"
-                                           href="quickview.html" title="Quick view"
-                                           data-fancybox-type="iframe"><i class="fa fa-eye"></i></a>
-                                        <!--end quickview-->
-                                    </div>
-                                     */ ?>
+                        <div class="list-block">
+                            <button class="addToCart btn-button" type="button" title="Add to Cart"
+                                    onclick="cart.add('101', '1');"><i
+                                        class="fa fa-shopping-basket"></i>
+                            </button>
+                            <button class="wishlist btn-button" type="button"
+                                    title="Add to Wish List" onclick="wishlist.add('101');"><i
+                                        class="fa fa-heart"></i>
+                            </button>
+                            <button class="compare btn-button" type="button"
+                                    title="Compare this Product" onclick="compare.add('101');"><i
+                                        class="fa fa-refresh"></i>
+                            </button>
+                            <!--quickview-->
+                            <a class="iframe-link btn-button quickview quickview_handler visible-lg"
+                               href="quickview.html" title="Quick view"
+                               data-fancybox-type="iframe"><i class="fa fa-eye"></i></a>
+                            <!--end quickview-->
+                        </div>
+                         */ ?>
                     </div>
                 </div>
             </div>

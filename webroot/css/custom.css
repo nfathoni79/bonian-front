@@ -44325,8 +44325,9 @@ a.hover-white-8:hover, a.hover-white-8:focus {
     background-color: #a72024;
     position: absolute;
     right: 10px;
-    top: -350px;
+    top: 0;
     animation: drop forwards 0.8s 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+    animation: none;
     color: #fff;
     font-weight: 600;
     text-align: center;
