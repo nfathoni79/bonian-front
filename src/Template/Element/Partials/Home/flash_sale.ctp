@@ -1,43 +1,11 @@
-<style>
-    .progress{
-          height: 10px !important;
-          margin-bottom: 0;
-    }
-    .card-wrapper-title {
-          background-image: linear-gradient(to right, #e22b2b, #8f1b1d);
-          width: 360px;
-          padding: 12px;
-          padding-left: 20px;
-          margin-top: -20px;
-          margin-left: -20px;
-          border: 5px;
-          border-radius: 10px 0px 15px 0px;
-          -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
-          -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
-          box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
-          color: white;
-          font-size: 18px;
-    }
-    .products-list.grid .product-item-container .right-block {
-          clear: both;
-          padding: 10px 5px 20px 4px;
-          text-align: left;
-          position: relative;
-    }
-    .badge-wrapper {
-          text-align: right;
-          right: 10px;
-    }
-    .badge {
-          min-width: 63px;
-          padding: 5px 10px;
-          margin-top: 0;
-          border-radius: 20px;
-    }
-    div.col-lg-7{
-          padding: 0;
-    }
-</style>
+<?php $this->append('style'); ?>
+<?php
+$this->Html->css([
+'/css/custom/flash-sale.css',
+], ['block' => true]);
+?>
+<?php $this->end(); ?>
+
 
 <?php if ($flashSales['end']) : ?>
 <!-- flash sale Products -->
@@ -64,11 +32,12 @@
                                             <?php break; endforeach; ?>
                                     </a>
                                 </div>
-                                <div class="box-label"> <span class="label-product label-sale"> <?= $flash_sale['product']['percent']; ?>% </span></div>
+                                <!-- <div class="wishlist-label">
+                                  <button type="button" onclick="wishlist.add('<?= $flash_sale['product']['id']; ?>', this);" class="iframe-link btn-button zl-bg-red-light bd-0 tx-white" title="Wishlist" data-fancybox-type="iframe"><i class="fa fa-heart"></i><span></span></button>
+                                </div> -->
+                                <div class="box-label"> <span class="product-ribbon"> <?= $flash_sale['product']['percent']; ?>% </span></div>
 
                                 <!--quickview-->
-                                <a class="iframe-link btn-button quickview quickview_handler visible-lg" style="margin-left:-40px;" href="quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span></span></a>
-                                <button type="button" style="margin-left:10px;" onclick="wishlist.add('<?= $flash_sale['product']['id']; ?>', this);" class="iframe-link btn-button quickview quickview_handler visible-lg" title="Wishlist" data-fancybox-type="iframe"><i class="fa fa-heart"></i><span></span></button>
                                 <!--end quickview-->
                             </div>
                             <div class="right-block right-b">
@@ -100,26 +69,22 @@
                                           </a></h4>
 
                                       <div class="col-lg-12 price text-left p-0">
-                                          <span class="price-new">Rp. <?= $this->Number->format($flash_sale['product']['price_sale']); ?></span>
+                                          <span class="price-new tx-14-force">Rp. <?= $this->Number->format($flash_sale['product']['price_sale']); ?></span>
                                           <?php if($flash_sale['product']['price_sale'] != $flash_sale['product']['price']):?>
-                                              <span class="price-old">Rp. <?= $this->Number->format($flash_sale['product']['price']); ?></span>
+                                              <span class="price-old tx-12-force">Rp. <?= $this->Number->format($flash_sale['product']['price']); ?></span>
                                           <?php endif;?>
                                       </div>
                                     </div>
+
                                     <div class="button-group so-quickview cartinfo--static share-container">
-                                        <span class="zl-tx-red tx-medium">Bagikan produk ini</span>
                                         <div class="row pd-0">
-                                          <button type="button" class="btn-share b-ig igShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $flash_sale['product']['slug'],'prefix' => false],true);?>" data-title="<?= $flash_sale['product']['name'];?>" data-price="<?= $flash_sale['product']['price_sale'];?>"><i class="fab fa-instagram"></i></button>
                                           <button type="button" class="btn-share b-fb fbShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $flash_sale['product']['slug'],'prefix' => false],true);?>" data-title="<?= $flash_sale['product']['name'];?>" data-price="<?= $flash_sale['product']['price_sale'];?>"><i class="fab fa-facebook"></i></button>
-                                          <button type="button" class="btn-share b-wc smsShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $flash_sale['product']['slug'],'prefix' => false],true);?>" data-title="<?= $flash_sale['product']['name'];?>" data-price="<?= $flash_sale['product']['price_sale'];?>"><i class="fas fa-comment-dots"></i></button>
-                                        </div>
-                                        <div class="row pd-0">
                                           <button type="button" class="btn-share b-wa waShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $flash_sale['product']['slug'],'prefix' => false],true);?>" data-title="<?= $flash_sale['product']['name'];?>" data-price="<?= $flash_sale['product']['price_sale'];?>"><i class="fab fa-whatsapp"></i></button>
                                           <button type="button" class="btn-share b-ln lineShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $flash_sale['product']['slug'],'prefix' => false],true);?>" data-title="<?= $flash_sale['product']['name'];?>" data-price="<?= $flash_sale['product']['price_sale'];?>"><i class="fab fa-line"></i></button>
                                           <button type="button" class="btn-share b-tw twitterShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $flash_sale['product']['slug'],'prefix' => false],true);?>" data-title="<?= $flash_sale['product']['name'];?>" data-price="<?= $flash_sale['product']['price_sale'];?>"><i class="fab fa-twitter"></i></button>
                                         </div>
-
                                     </div>
+
                                 </div>
                             </div>
                         </div>

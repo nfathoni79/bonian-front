@@ -44296,6 +44296,66 @@ a.hover-white-8:hover, a.hover-white-8:focus {
     text-decoration: line-through;
 }
 
+
+
+
+
+/*Product Grid Style*/
+
+
+.products-list.grid .product-item-container .right-block .cartinfo--static{
+    position: relative !important;
+}
+
+.products-list.grid .product-item-container:hover .right-block.right-b .cartinfo--static, .products-list.grid .product-item-container:hover .right-block.right-b .button-group{
+    bottom:30px;
+}
+
+/* The ribbon */
+
+.product-ribbon {
+    width: 44px;
+    height: 35px;
+    background-color: #a72024;
+    position: absolute;
+    right: 10px;
+    top: -350px;
+    animation: drop forwards 0.8s 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+    line-height: 35px;
+}
+.product-ribbon:before {    
+    content: "";
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    bottom: -22px;
+    border-left: 22px solid #a72024;
+    border-right: 22px solid #a72024;
+    border-bottom: 22px solid transparent;
+}
+
+@keyframes drop {
+  0% {
+    top: -350px;
+  }
+  100% {
+    top: 0;
+  }
+}
+
+.wishlist-label button{
+    border-radius: 50%;
+}
+
+
+
+
+
+
+
 /* ------------------------------------------------- */
 /* ############### 3.2 Checkout page ############### */
 /* ------------------------------------------------- */
@@ -44796,19 +44856,7 @@ select.form-control{
 
 
 
-/*flash sale style*/
-/*.flashsale-content .container{
-    margin-top: -10.5em;
-}*/
 
-.tabsslider .nav-tabs .item a{
-    height: 100%;
-}
-
-.progress {
-    height: 10px !important;
-    margin-bottom: 0;
-}
 
 
 

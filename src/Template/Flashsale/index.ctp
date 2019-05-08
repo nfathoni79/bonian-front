@@ -1,3 +1,11 @@
+<?php $this->append('style'); ?>
+<?php
+$this->Html->css([
+'/css/custom/flash-sale.css',
+], ['block' => true]);
+?>
+<?php $this->end(); ?>
+
 <div class="jumbotron jumbotron-fluid pd-0">
 	<img src="images/flashsale-banner/banner.jpg" width="100%">
 </div>

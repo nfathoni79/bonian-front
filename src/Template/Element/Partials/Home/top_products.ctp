@@ -56,7 +56,7 @@
                                                     <div class="box-label">
                                                         <?php $dics = 100 - (($vals['price_sale'] / $vals['price']) * 100);?>
                                                         <?php if($vals['price_sale'] != $vals['price']):?>
-                                                        <span class="label-product label-sale"> <?php echo  $this->Number->precision($dics, 0);?>% </span>
+                                                        <span class="product-ribbon"> <?php echo  $this->Number->precision($dics, 0);?>% </span>
                                                         <?php endif;?>
                                                         <?php if($vals['is_new']): ?>
                                                         <span class="label-product label-new"> New </span>
@@ -83,7 +83,7 @@
                                                                 ?>
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-5" style="width: 50.333333%!important display: inline-block;"><span class="badge" style="margin-top: 0px !important;"><?= $vals['point']; ?> Poin</span></div>
+                                                        <div class="col-lg-5" style="width: 50.333333%!important display: inline-block;"><span class="badge <?= $this->Badge->format($vals['point']); ?> "><?= $vals['point']; ?> Poin</span></div>
                                                     </div>
                                                     <div class="caption">
                                                         <h4><a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug']]); ?>" title="<?= h($vals['name']); ?>" target="_self">  <?php echo $this->Text->truncate(
@@ -97,20 +97,15 @@
                                                         </a></h4>
 
                                                         <div class="price">
-                                                            <span class="price-new">Rp. <?= $this->Number->format($vals['price_sale']); ?></span>
+                                                            <span class="price-new tx-14-force">Rp. <?= $this->Number->format($vals['price_sale']); ?></span>
                                                             <?php if($vals['price_sale'] != $vals['price']):?>
-                                                            <span class="price-old">Rp. <?= $this->Number->format($vals['price']); ?></span>
+                                                            <span class="price-old tx-12-force">Rp. <?= $this->Number->format($vals['price']); ?></span>
                                                             <?php endif;?>
                                                         </div>
 
                                                         <div class="button-group so-quickview cartinfo--static share-container">
-                                                            <span class="zl-tx-red tx-medium">Bagikan produk ini</span>
                                                             <div class="row pd-0">
-                                                              <button type="button" class="btn-share b-ig igShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug'],'prefix' => false],true);?>" data-title="<?= $vals['name'];?>" data-price="<?= $vals['price_sale'];?>"><i class="fab fa-instagram"></i></button>
                                                               <button type="button" class="btn-share b-fb fbShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug'],'prefix' => false],true);?>" data-title="<?= $vals['name'];?>" data-price="<?= $vals['price_sale'];?>"><i class="fab fa-facebook"></i></button>
-                                                              <button type="button" class="btn-share b-wc smsShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug'],'prefix' => false],true);?>" data-title="<?= $vals['name'];?>" data-price="<?= $vals['price_sale'];?>"><i class="fas fa-comment-dots"></i></button>
-                                                            </div>
-                                                            <div class="row pd-0">
                                                               <button type="button" class="btn-share b-wa waShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug'],'prefix' => false],true);?>" data-title="<?= $vals['name'];?>" data-price="<?= $vals['price_sale'];?>"><i class="fab fa-whatsapp"></i></button>
                                                               <button type="button" class="btn-share b-ln lineShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug'],'prefix' => false],true);?>" data-title="<?= $vals['name'];?>" data-price="<?= $vals['price_sale'];?>"><i class="fab fa-line"></i></button>
                                                               <button type="button" class="btn-share b-tw twitterShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug'],'prefix' => false],true);?>" data-title="<?= $vals['name'];?>" data-price="<?= $vals['price_sale'];?>"><i class="fab fa-twitter"></i></button>
@@ -144,7 +139,7 @@
                                                   <div class="box-label">
                                                       <?php $dics = 100 - (($vals['price_sale'] / $vals['price']) * 100);?>
                                                       <?php if($vals['price_sale'] != $vals['price']):?>
-                                                      <span class="label-product label-sale"> <?php echo  $this->Number->precision($dics, 0);?>% </span>
+                                                      <span class="product-ribbon"> <?php echo  $this->Number->precision($dics, 0);?>% </span>
                                                       <?php endif;?>
                                                       <?php if($vals['is_new']): ?>
                                                       <span class="label-product label-new"> New </span>
@@ -171,7 +166,7 @@
                                                               ?>
                                                           </div>
                                                       </div>
-                                                      <div class="col-lg-5" style="width: 50.333333%!important display: inline-block;"><span class="badge" style="margin-top: 0px !important;"><?= $vals['point']; ?> Poin</span></div>
+                                                        <div class="col-lg-5" style="width: 50.333333%!important display: inline-block;"><span class="badge <?= $this->Badge->format($vals['point']); ?> "><?= $vals['point']; ?> Poin</span></div>
                                                   </div>
                                                   <div class="caption">
                                                       <h4><a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug']]); ?>" title="<?= h($vals['name']); ?>" target="_self">  <?php echo $this->Text->truncate(
@@ -185,20 +180,15 @@
                                                       </a></h4>
 
                                                       <div class="price">
-                                                          <span class="price-new">Rp. <?= $this->Number->format($vals['price_sale']); ?></span>
+                                                          <span class="price-new tx-14-force">Rp. <?= $this->Number->format($vals['price_sale']); ?></span>
                                                           <?php if($vals['price_sale'] != $vals['price']):?>
-                                                          <span class="price-old">Rp. <?= $this->Number->format($vals['price']); ?></span>
+                                                          <span class="price-old tx-12-force">Rp. <?= $this->Number->format($vals['price']); ?></span>
                                                           <?php endif;?>
                                                       </div>
 
                                                       <div class="button-group so-quickview cartinfo--static share-container">
-                                                          <span class="zl-tx-red tx-medium">Bagikan produk ini</span>
                                                           <div class="row pd-0">
-                                                            <button type="button" class="btn-share b-ig igShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug'],'prefix' => false],true);?>" data-title="<?= $vals['name'];?>" data-price="<?= $vals['price_sale'];?>"><i class="fab fa-instagram"></i></button>
                                                             <button type="button" class="btn-share b-fb fbShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug'],'prefix' => false],true);?>" data-title="<?= $vals['name'];?>" data-price="<?= $vals['price_sale'];?>"><i class="fab fa-facebook"></i></button>
-                                                            <button type="button" class="btn-share b-wc smsShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug'],'prefix' => false],true);?>" data-title="<?= $vals['name'];?>" data-price="<?= $vals['price_sale'];?>"><i class="fas fa-comment-dots"></i></button>
-                                                          </div>
-                                                          <div class="row pd-0">
                                                             <button type="button" class="btn-share b-wa waShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug'],'prefix' => false],true);?>" data-title="<?= $vals['name'];?>" data-price="<?= $vals['price_sale'];?>"><i class="fab fa-whatsapp"></i></button>
                                                             <button type="button" class="btn-share b-ln lineShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug'],'prefix' => false],true);?>" data-title="<?= $vals['name'];?>" data-price="<?= $vals['price_sale'];?>"><i class="fab fa-line"></i></button>
                                                             <button type="button" class="btn-share b-tw twitterShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug'],'prefix' => false],true);?>" data-title="<?= $vals['name'];?>" data-price="<?= $vals['price_sale'];?>"><i class="fab fa-twitter"></i></button>
@@ -233,7 +223,7 @@
                                                   <div class="box-label">
                                                       <?php $dics = 100 - (($vals['price_sale'] / $vals['price']) * 100);?>
                                                       <?php if($vals['price_sale'] != $vals['price']):?>
-                                                      <span class="label-product label-sale"> <?php echo  $this->Number->precision($dics, 0);?>% </span>
+                                                      <span class="product-ribbon"> <?php echo  $this->Number->precision($dics, 0);?>% </span>
                                                       <?php endif;?>
                                                       <?php if($vals['is_new']): ?>
                                                       <span class="label-product label-new"> New </span>
@@ -260,7 +250,7 @@
                                                               ?>
                                                           </div>
                                                       </div>
-                                                      <div class="col-lg-5" style="width: 50.333333%!important display: inline-block;"><span class="badge" style="margin-top: 0px !important;"><?= $vals['point']; ?> Poin</span></div>
+                                                      <div class="col-lg-5" style="width: 50.333333%!important display: inline-block;"><span class="badge <?= $this->Badge->format($vals['point']); ?> "><?= $vals['point']; ?> Poin</span></div>
                                                   </div>
                                                   <div class="caption">
                                                       <h4><a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug']]); ?>" title="<?= h($vals['name']); ?>" target="_self">  <?php echo $this->Text->truncate(
@@ -274,16 +264,14 @@
                                                       </a></h4>
 
                                                       <div class="price">
-                                                          <span class="price-new">Rp. <?= $this->Number->format($vals['price_sale']); ?></span>
+                                                          <span class="price-new tx-14-force">Rp. <?= $this->Number->format($vals['price_sale']); ?></span>
                                                           <?php if($vals['price_sale'] != $vals['price']):?>
-                                                          <span class="price-old">Rp. <?= $this->Number->format($vals['price']); ?></span>
+                                                          <span class="price-old tx-12-force">Rp. <?= $this->Number->format($vals['price']); ?></span>
                                                           <?php endif;?>
                                                       </div>
 
                                                       <div class="button-group so-quickview cartinfo--static share-container">
-                                                          <button type="button" class="btn-share b-ig igShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug'],'prefix' => false],true);?>" data-title="<?= $vals['name'];?>" data-price="<?= $vals['price_sale'];?>"><i class="fab fa-instagram"></i></button>
                                                           <button type="button" class="btn-share b-fb fbShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug'],'prefix' => false],true);?>" data-title="<?= $vals['name'];?>" data-price="<?= $vals['price_sale'];?>"><i class="fab fa-facebook"></i></button>
-                                                          <button type="button" class="btn-share b-wc smsShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug'],'prefix' => false],true);?>" data-title="<?= $vals['name'];?>" data-price="<?= $vals['price_sale'];?>"><i class="fas fa-comment-dots"></i></button>
                                                           <button type="button" class="btn-share b-wa waShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug'],'prefix' => false],true);?>" data-title="<?= $vals['name'];?>" data-price="<?= $vals['price_sale'];?>"><i class="fab fa-whatsapp"></i></button>
                                                           <button type="button" class="btn-share b-ln lineShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug'],'prefix' => false],true);?>" data-title="<?= $vals['name'];?>" data-price="<?= $vals['price_sale'];?>"><i class="fab fa-line"></i></button>
                                                           <button type="button" class="btn-share b-tw twitterShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug'],'prefix' => false],true);?>" data-title="<?= $vals['name'];?>" data-price="<?= $vals['price_sale'];?>"><i class="fab fa-twitter"></i></button>

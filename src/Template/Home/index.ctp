@@ -1,3 +1,11 @@
+<?php $this->append('style'); ?>
+<?php
+$this->Html->css([
+'/css/custom/flash-sale.css',
+], ['block' => true]);
+?>
+<?php $this->end(); ?>
+
 <?= $this->element('Partials/Home/banner', ['banners' => $_banners]); ?>
 <div class="container ">
     <?= $this->element('Partials/Home/product_digital'); ?>

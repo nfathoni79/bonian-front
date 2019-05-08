@@ -5832,8 +5832,8 @@ span.fa-stack {
     display: none; }
   .products-list.grid .product-item-container .left-block {
     position: relative; }
-  .products-list.grid .product-item-container .left-block .product-image-container img {
-    width: 100%; }
+  /*.products-list.grid .product-item-container .left-block .product-image-container img {
+    width: 100%; }*/
   .products-list.grid .product-item-container .left-block .button-group {
     padding: 0;
     position: absolute;
