@@ -101,7 +101,7 @@
 
     <!-- Main Container  -->
     <div class="main-container">
-        <div id="content" style="background: #FFF6F6;">
+        <div id="content">
             <?= $this->fetch('content') ?>
         </div>
     </div>
