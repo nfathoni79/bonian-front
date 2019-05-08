@@ -96,9 +96,9 @@
                                                         </a></h4>
 
                                                         <div class="price">
-                                                            <span class="price-new tx-14-force">Rp. <?= $this->Number->format($vals['price_sale']); ?></span>
+                                                            <span class="price-new tx-13-force">Rp. <?= $this->Number->format($vals['price_sale']); ?></span>
                                                             <?php if($vals['price_sale'] != $vals['price']):?>
-                                                            <span class="price-old tx-12-force">Rp. <?= $this->Number->format($vals['price']); ?></span>
+                                                            <span class="price-old tx-11-force">Rp. <?= $this->Number->format($vals['price']); ?></span>
                                                             <?php endif;?>
                                                         </div>
 
@@ -177,9 +177,9 @@
                                                       </a></h4>
 
                                                       <div class="price">
-                                                          <span class="price-new tx-14-force">Rp. <?= $this->Number->format($vals['price_sale']); ?></span>
+                                                          <span class="price-new tx-13-force">Rp. <?= $this->Number->format($vals['price_sale']); ?></span>
                                                           <?php if($vals['price_sale'] != $vals['price']):?>
-                                                          <span class="price-old tx-12-force">Rp. <?= $this->Number->format($vals['price']); ?></span>
+                                                          <span class="price-old tx-11-force">Rp. <?= $this->Number->format($vals['price']); ?></span>
                                                           <?php endif;?>
                                                       </div>
 
@@ -259,9 +259,9 @@
                                                       </a></h4>
 
                                                       <div class="price">
-                                                          <span class="price-new tx-14-force">Rp. <?= $this->Number->format($vals['price_sale']); ?></span>
+                                                          <span class="price-new tx-13-force">Rp. <?= $this->Number->format($vals['price_sale']); ?></span>
                                                           <?php if($vals['price_sale'] != $vals['price']):?>
-                                                          <span class="price-old tx-12-force">Rp. <?= $this->Number->format($vals['price']); ?></span>
+                                                          <span class="price-old tx-11-force">Rp. <?= $this->Number->format($vals['price']); ?></span>
                                                           <?php endif;?>
                                                       </div>
 

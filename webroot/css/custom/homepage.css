@@ -24,9 +24,10 @@
 }
 .products-list.grid .product-item-container .right-block {
       clear: both;
-      padding: 10px 5px 20px 4px;
+      padding: 10px 5px 20px 4px !important;
       text-align: left;
       position: relative;
+      overflow: hidden;
 }
 .badge-wrapper {
       text-align: right;

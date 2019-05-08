@@ -69,9 +69,9 @@ $this->Html->css([
                                           </a></h4>
 
                                       <div class="col-lg-12 price text-left p-0">
-                                          <span class="price-new tx-14-force">Rp. <?= $this->Number->format($flash_sale['product']['price_sale']); ?></span>
+                                          <span class="price-new tx-13-force">Rp. <?= $this->Number->format($flash_sale['product']['price_sale']); ?></span>
                                           <?php if($flash_sale['product']['price_sale'] != $flash_sale['product']['price']):?>
-                                              <span class="price-old tx-12-force">Rp. <?= $this->Number->format($flash_sale['product']['price']); ?></span>
+                                              <span class="price-old tx-11-force">Rp. <?= $this->Number->format($flash_sale['product']['price']); ?></span>
                                           <?php endif;?>
                                       </div>
                                     </div>
