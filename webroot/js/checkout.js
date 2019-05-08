@@ -93,6 +93,7 @@ formCC.submit(function(e) {
 
 function wrapperHtmlCC(id, masked_card, type) {
     var basePath = $('meta[name="_basePath"]').attr('content');
+    masked_card = formatCreditCard(masked_card);
     var html = `<div class="row" style="padding: 5px 20px">
                 <div class="col-lg-2 pd-t-10 text-center">
                     <div class="pretty p-default p-round p-pulse">
@@ -127,6 +128,13 @@ function wrapperHtmlCC(id, masked_card, type) {
            }
        });
 
+}
+
+function formatCreditCard(str) {
+    if (str.match(/\d{6}-\d{4}/g)) {
+        return str.replace('-', '******').match(/.{2,4}/g).join(' ');
+    }
+    return str;
 }
 
 function getSelectedNumberCC(object)

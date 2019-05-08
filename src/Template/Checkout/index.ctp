@@ -481,7 +481,7 @@
                                                     </div>
                                                     <div class="col-lg-8">
                                                         <h5 class="tx-bank">
-                                                            <?= $creditcard['masked_card']; ?>
+                                                            <?= $this->Tools->formatCC($creditcard['masked_card']); ?>
                                                         </h5>
                                                     </div>
                                                 </div>

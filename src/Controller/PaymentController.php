@@ -122,9 +122,6 @@ class PaymentController  extends AuthController
         $this->disableAutoRender();
         $this->request->allowMethod('post');
         $error = ['error' => []];
-        //$error = '{"status":"OK","code":200,"result":{"data":{"payment_method":"gopay","payment_amount":158000,"payment_status":"pending","payment":{"status_code":"201","status_message":"GO-PAY transaction is created","transaction_id":"cdad60b5-efd2-42e5-88fc-40ceb0368568","order_id":"1905030901661C","gross_amount":"158000.00","currency":"IDR","payment_type":"gopay","transaction_time":"2019-05-03 16:27:03","transaction_status":"pending","fraud_status":"accept","actions":[{"name":"generate-qr-code","method":"GET","url":"https:\/\/api.sandbox.veritrans.co.id\/v2\/gopay\/cdad60b5-efd2-42e5-88fc-40ceb0368568\/qr-code"},{"name":"deeplink-redirect","method":"GET","url":"https:\/\/simulator.sandbox.midtrans.com\/gopay\/ui\/checkout?referenceid=Q6ttJG1N5K"},{"name":"get-status","method":"GET","url":"https:\/\/api.sandbox.veritrans.co.id\/v2\/cdad60b5-efd2-42e5-88fc-40ceb0368568\/status"},{"name":"cancel","method":"POST","url":"https:\/\/api.sandbox.veritrans.co.id\/v2\/cdad60b5-efd2-42e5-88fc-40ceb0368568\/cancel"}]}}}}';
-        //return $this->response->withType('application/json')
-        //    ->withStringBody($error);
         try {
             $card = $this->Api->makeRequest($this->Auth->user('token'))
                 ->post('v1/web/payment/process', [

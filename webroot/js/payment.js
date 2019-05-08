@@ -259,6 +259,13 @@ formCCconfirm.submit(function(e) {
 
 });
 
+function formatCreditCard(str) {
+    if (str.match(/\d{6}-\d{4}/g)) {
+        return str.replace('-', '******').match(/.{2,4}/g).join(' ');
+    }
+    return str;
+}
+
 window.addEventListener("message", function (event) {
 
     var request = formCCconfirm.parents('.modal').data('request');
