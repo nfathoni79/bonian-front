@@ -100,44 +100,48 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-12 bd br-10 pd-10">
-                                        <div class="col-lg-2">
-                                            <div class="pretty p-default p-round p-pulse p-bigger">
-                                                <input type="radio" name="payment_method"  value="permata_va">
-                                                <div class="state p-danger">
-                                                    <label> </label>
+                                    <div>
+                                        <div class="col-sm-12 bd br-10 pd-10">
+                                            <div class="col-lg-2">
+                                                <div class="pretty p-default p-round p-pulse p-bigger">
+                                                    <input type="radio" name="payment_method"  value="permata_va">
+                                                    <div class="state p-danger">
+                                                        <label> </label>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-10 pd-l-30 pd-t-15">
-                                            <div class="row">
-                                                <img src="<?php echo $this->Url->build('/images/logo_bank/mandiri.png'); ?>" alt="Bank Mandiri" class="img-responsive mg-l-0">
-                                            </div>
-                                            <div class="row">
-                                                <h5 class="tx-bank">
-                                                    Bank Mandiri
-                                                </h5>
+                                            <div class="col-lg-10 pd-l-30 pd-t-15">
+                                                <div class="row">
+                                                    <img src="<?php echo $this->Url->build('/images/logo_bank/mandiri.png'); ?>" alt="Bank Mandiri" class="img-responsive mg-l-0">
+                                                </div>
+                                                <div class="row">
+                                                    <h5 class="tx-bank">
+                                                        Bank Mandiri
+                                                    </h5>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-12 bd br-10 pd-10">
-                                        <div class="col-lg-2">
-                                            <div class="pretty p-default p-round p-pulse p-bigger">
-                                                <input type="radio" name="payment_method"  value="bni_va">
-                                                <div class="state p-danger">
-                                                    <label> </label>
+                                    <div>
+                                        <div class="col-sm-12 bd br-10 pd-10">
+                                            <div class="col-lg-2">
+                                                <div class="pretty p-default p-round p-pulse p-bigger">
+                                                    <input type="radio" name="payment_method"  value="bni_va">
+                                                    <div class="state p-danger">
+                                                        <label> </label>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-10 pd-l-30 pd-t-15">
-                                            <div class="row">
-                                                <img src="<?php echo $this->Url->build('/images/logo_bank/bni.png'); ?>" alt="Bank BNI" class="img-responsive mg-l-0">
-                                            </div>
-                                            <div class="row">
-                                                <h5 class="tx-bank">
-                                                    Bank BNI
-                                                </h5>
+                                            <div class="col-lg-10 pd-l-30 pd-t-15">
+                                                <div class="row">
+                                                    <img src="<?php echo $this->Url->build('/images/logo_bank/bni.png'); ?>" alt="Bank BNI" class="img-responsive mg-l-0">
+                                                </div>
+                                                <div class="row">
+                                                    <h5 class="tx-bank">
+                                                        Bank BNI
+                                                    </h5>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -150,34 +154,42 @@
 
                         <div class="row mg-0 mg-b-40">
 
-                            <div class="mg-b-20">
-                                <div class="col-sm-12 block block_0">
-                                    <div class="block-categories module mg-b-20-force">
-                                        <h3 class="modtitle tx-mont"><span>Kartu Kredit</span></h3>
-                                    </div>
+                            <div class="col-sm-12 block block_0">
+                                <div class="block-categories module mg-b-20-force">
+                                    <h3 class="modtitle tx-mont"><span>Kartu Kredit</span></h3>
                                 </div>
+                            </div>
 
-                                <?php foreach($creditcards as $creditcard) : ?>
-                                <div class="row col-sm-6 mg-0">
+                            <?php foreach($creditcards as $creditcard) : ?>
+                                <div class="col-sm-6">
+                                    <div class="col-lg-2">
+                                        <div class="col-lg-2 pd-t-10 text-center">
+                                            <div class="pretty p-default p-round p-pulse p-bigger">
+                                                <input type="radio" name="payment_method"  value="credit_card" data-id="<?= $creditcard['id']; ?>">
+                                                <div class="state p-danger">
+                                                    <label> </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-lg-4">
                                         <img src="<?php echo $this->Url->build('/images/logo_cc/128x80/'. $creditcard['type'] .'.png'); ?>" alt="cc" class="img-responsive">
                                     </div>
-                                    <div class="col-lg-8">
-                                        <h5 class="tx-bank lh-15">
+                                    <div class="col-lg-6">
+                                        <h5 class="tx-bank">
                                             <?= $creditcard['masked_card']; ?>
                                         </h5>
                                     </div>
                                 </div>
-                                <?php endforeach; ?>
+                            <?php endforeach; ?>
 
-                                <div class="col-lg-6">
-                                    <button type="button" class="btn btn-default btn-block" style="min-height: 45px;" data-toggle="modal" data-target="#modalTambahKartuKredit">
-                                        <i class="fas fa-plus-circle"></i> &nbsp;
-                                        TAMBAH KARTU
-                                    </button>
-                                </div>
-
+                            <div class="col-lg-6 mg-t-15">
+                                <button type="button" class="btn btn-default btn-block" style="min-height: 45px;" data-toggle="modal" data-target="#modalTambahKartuKredit">
+                                    <i class="fas fa-plus-circle"></i> &nbsp;
+                                    TAMBAH KARTU
+                                </button>
                             </div>
+
 
                         </div>
 
