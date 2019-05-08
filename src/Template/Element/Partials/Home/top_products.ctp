@@ -59,13 +59,12 @@
                                                         <span class="product-ribbon"> <?php echo  $this->Number->precision($dics, 0);?>% </span>
                                                         <?php endif;?>
                                                         <?php if($vals['is_new']): ?>
-                                                        <span class="label-product label-new"> New </span>
+                                                        <div class="box">
+                                                          <div class="ribbon ribbon-top-left"><span>NEW</span></div>
+                                                        </div>
                                                         <?php endif;?>
+
                                                     </div>
-                                                    <!--quickview-->
-                                                        <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="quickview.html" style="margin-left:-40px;" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span></span></a>
-                                                        <button type="button" onclick="wishlist.add('<?= ($vals['id']); ?>', this);" class="iframe-link btn-button quickview quickview_handler visible-lg" style="margin-left:10px;" title="Wishlist" data-fancybox-type="iframe"><i class="fa fa-heart"></i><span></span></button>
-                                                    <!--end quickview-->
                                                 </div>
 
                                                 <div class="right-block right-b" style="min-height: 120px;">
@@ -142,13 +141,11 @@
                                                       <span class="product-ribbon"> <?php echo  $this->Number->precision($dics, 0);?>% </span>
                                                       <?php endif;?>
                                                       <?php if($vals['is_new']): ?>
-                                                      <span class="label-product label-new"> New </span>
+                                                      <div class="box">
+                                                        <div class="ribbon ribbon-top-left"><span>NEW</span></div>
+                                                      </div>
                                                       <?php endif;?>
                                                   </div>
-                                                  <!--quickview-->
-                                                      <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="quickview.html" style="margin-left:-40px;" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span></span></a>
-                                                      <button type="button" onclick="wishlist.add('<?= ($vals['id']); ?>', this);" class="iframe-link btn-button quickview quickview_handler visible-lg" style="margin-left:10px;" title="Wishlist" data-fancybox-type="iframe"><i class="fa fa-heart"></i><span></span></button>
-                                                  <!--end quickview-->
                                               </div>
 
                                               <div class="right-block right-b" style="min-height: 120px;">
@@ -226,13 +223,11 @@
                                                       <span class="product-ribbon"> <?php echo  $this->Number->precision($dics, 0);?>% </span>
                                                       <?php endif;?>
                                                       <?php if($vals['is_new']): ?>
-                                                      <span class="label-product label-new"> New </span>
+                                                      <div class="box">
+                                                        <div class="ribbon ribbon-top-left"><span>NEW</span></div>
+                                                      </div>
                                                       <?php endif;?>
                                                   </div>
-                                                  <!--quickview-->
-                                                      <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="quickview.html" style="margin-left:-40px;" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span></span></a>
-                                                      <button type="button" onclick="wishlist.add('<?= ($vals['id']); ?>', this);" class="iframe-link btn-button quickview quickview_handler visible-lg" style="margin-left:10px;" title="Wishlist" data-fancybox-type="iframe"><i class="fa fa-heart"></i><span></span></button>
-                                                  <!--end quickview-->
                                               </div>
 
                                               <div class="right-block right-b" style="min-height: 120px;">
