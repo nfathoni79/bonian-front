@@ -706,7 +706,7 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 pd-r-0">
         <div class="card product-detail ">
             <div class="panel mb-0">
-                <div class="producttab clearfix">
+                <div class="producttab">
                     <h5 class="tx-black mg-t-m25">Metode Pembayaran</h5>
                     <div class="dash-line"></div>
                     <div class="row pd-t-25">
@@ -745,27 +745,27 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
             </div>
         </div>
         <br/>
-        <div class="card product-detail">
+        <div class="card product-detail ">
             <div class="panel mb-0">
-                <div class="producttab clearfix">
-                  <!-- start metode pengiriman -->
-                  <h5 class="tx-black">Metode Pengiriman</h5>
-                  <div class="col-sm-12 pd-0-force">
-                      <div class="dash-line"></div>
-                  </div>
-                  <div class="col-sm-6 mg-t-20 ">
-                      <?php echo $this->Html->image('/images/logo_courier/jne.png', ['alt' => 'logo jne']); ?>
-                  </div>
-                  <div class="col-sm-6 mg-t-20">
-                      <?php echo $this->Html->image('/images/logo_courier/tiki.png', ['alt' => 'logo tiki']); ?>
-                  </div>
-                  <div class="col-sm-6 mg-t-20">
-                      <?php echo $this->Html->image('/images/logo_courier/jnt.png', ['alt' => 'logo jnt']); ?>
-                  </div>
-                  <div class="col-sm-6 mg-t-20">
-                      <?php echo $this->Html->image('/images/logo_courier/gosend.png', ['alt' => 'logo gosend']); ?>
-                  </div>
-                  <!-- end metode pengiriman -->
+                <div class="producttab">
+                    <h5 class="tx-black mg-t-m25">Metode Pengiriman</h5>
+                    <div class="dash-line"></div>
+                    <div class="row pd-t-25">
+                        <div class="col-lg-6">
+                            <?php echo $this->Html->image('/images/logo_courier/jne.png', ['alt' => 'logo jne']); ?>
+                        </div>
+                        <div class="col-lg-6">
+                            <?php echo $this->Html->image('/images/logo_courier/tiki.png', ['alt' => 'logo tiki']); ?>
+                        </div>
+                    </div>
+                    <div class="row pd-t-25">
+                        <div class="col-lg-6">
+                            <?php echo $this->Html->image('/images/logo_courier/jnt.png', ['alt' => 'logo jnt']); ?>
+                        </div>
+                        <div class="col-lg-6">
+                            <?php echo $this->Html->image('/images/logo_courier/gosend.png', ['alt' => 'logo gosend']); ?>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
