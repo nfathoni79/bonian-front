@@ -296,12 +296,6 @@
                                             <?php break; endforeach; ?>
                                         </a>
                                     </div>
-
-                                    <!--quickview-->
-                                    <a class="iframe-link btn-button quickview quickview_handler visible-lg"
-                                       href="quickview.html" title="Quick view" data-fancybox-type="iframe"><i
-                                                class="fa fa-eye"></i><span></span></a>
-                                    <!--end quickview-->
                                 </div>
                                 <div class="right-block right-b">
                                     <?php /*
@@ -351,27 +345,18 @@
                                             <div class="order-num">Orders (0)</div>
                                         </div>
                                         <div class="price">
-                                            <span class="price-new">Rp. <?= $this->Number->format($product['price_sale']); ?></span>
+                                            <span class="price-new tx-13-force">Rp. <?= $this->Number->format($product['price_sale']); ?></span>
                                         </div>
                                         <div class="button-group so-quickview cartinfo--static share-container">
                                             <span class="col-md-12 zl-tx-red tx-medium">Bagikan produk ini</span>
                                             <div class="row pd-0">
-                                                <button type="button" class="btn-share b-ig igShare" data-url="" data-title="" data-price=""><i class="fab fa-instagram"></i></button>
                                                 <button type="button" class="btn-share b-fb fbShare" data-url="" data-title="" data-price=""><i class="fab fa-facebook"></i></button>
-                                                <button type="button" class="btn-share b-wc smsShare" data-url="" data-title="" data-price=""><i class="fas fa-comment-dots"></i></button>
-                                            </div>
-                                            <div class="row pd-0">
                                                 <button type="button" class="btn-share b-wa waShare" data-url="" data-title="" data-price=""><i class="fab fa-whatsapp"></i></button>
                                                 <button type="button" class="btn-share b-ln lineShare" data-url="" data-title="" data-price=""><i class="fab fa-line"></i></button>
                                                 <button type="button" class="btn-share b-tw twitterShare" data-url="" data-title="" data-price=""><i class="fab fa-twitter"></i></button>
                                             </div>
 
                                         </div>
-
-                                        <div class="description item-desc">
-                                            <p>&nbsp;</p>
-                                        </div>
-
 
                                         <?php /*
                                         <div class="list-block">
