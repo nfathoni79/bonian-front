@@ -211,7 +211,7 @@
                                         <div class="col-sm-12 bd br-10 pd-10">
                                             <div class="col-sm-1" style="line-height: 68px;">
                                                 <div class="pretty p-default p-round p-pulse p-bigger">
-                                                    <input type="radio" name="payment_method"  value="bca_va">
+                                                    <input type="radio" name="payment_method"  value="gopay">
                                                     <div class="state p-danger">
                                                         <label> </label>
                                                     </div>
