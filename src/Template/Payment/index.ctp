@@ -162,28 +162,30 @@
 
                             <?php foreach($creditcards as $creditcard) : ?>
                                 <div class="col-sm-6">
-                                    <div class="col-lg-2">
-                                        <div class="col-lg-2 pd-t-10 text-center">
-                                            <div class="pretty p-default p-round p-pulse p-bigger">
-                                                <input type="radio" name="payment_method"  value="credit_card" data-id="<?= $creditcard['id']; ?>">
-                                                <div class="state p-danger">
-                                                    <label> </label>
+                                    <div class="bd br-10 ft-left pd-10">
+                                        <div class="col-lg-2">
+                                            <div class="col-lg-2 pd-t-10 text-center">
+                                                <div class="pretty p-default p-round p-pulse p-bigger">
+                                                    <input type="radio" name="payment_method"  value="credit_card" data-id="<?= $creditcard['id']; ?>">
+                                                    <div class="state p-danger">
+                                                        <label> </label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <img src="<?php echo $this->Url->build('/images/logo_cc/128x80/'. $creditcard['type'] .'.png'); ?>" alt="cc" class="img-responsive">
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <h5 class="tx-bank">
-                                            <?= $creditcard['masked_card']; ?>
-                                        </h5>
+                                        <div class="col-lg-4">
+                                            <img src="<?php echo $this->Url->build('/images/logo_cc/128x80/'. $creditcard['type'] .'.png'); ?>" alt="cc" class="img-responsive">
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <h5 class="tx-bank">
+                                                <?= $creditcard['masked_card']; ?>
+                                            </h5>
+                                        </div>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
 
-                            <div class="col-lg-6 mg-t-15">
+                            <div class="col-lg-12 mg-t-15">
                                 <button type="button" class="btn btn-default btn-block" style="min-height: 45px;" data-toggle="modal" data-target="#modalTambahKartuKredit">
                                     <i class="fas fa-plus-circle"></i> &nbsp;
                                     TAMBAH KARTU
