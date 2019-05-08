@@ -44,3 +44,12 @@ div.col-lg-7{
 .tabsslider .nav-tabs .item a{
     height: 100%;
 }
+div.module.custom-listingtab .products-list.grid .product-layout .product-item-container:hover .right-block.right-b .button-group{
+      bottom: 30px;
+}
+.related .releate-products .owl2-nav{
+      top: -70px;
+}
+div.module.custom-listingtab .owl2-controls .owl2-nav{
+      top: -45px;
+}

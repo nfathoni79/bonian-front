@@ -270,7 +270,7 @@
                                                           <?php endif;?>
                                                       </div>
 
-                                                      <div class="button-group so-quickview cartinfo--static share-container">
+                                                      <div class="button-group so-quickview cartinfo--static share-container pd-l-0 pd-r-0">
                                                           <button type="button" class="btn-share b-fb fbShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug'],'prefix' => false],true);?>" data-title="<?= $vals['name'];?>" data-price="<?= $vals['price_sale'];?>"><i class="fab fa-facebook"></i></button>
                                                           <button type="button" class="btn-share b-wa waShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug'],'prefix' => false],true);?>" data-title="<?= $vals['name'];?>" data-price="<?= $vals['price_sale'];?>"><i class="fab fa-whatsapp"></i></button>
                                                           <button type="button" class="btn-share b-ln lineShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug'],'prefix' => false],true);?>" data-title="<?= $vals['name'];?>" data-price="<?= $vals['price_sale'];?>"><i class="fab fa-line"></i></button>

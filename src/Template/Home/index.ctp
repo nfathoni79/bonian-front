@@ -1,7 +1,7 @@
 <?php $this->append('style'); ?>
 <?php
 $this->Html->css([
-'/css/custom/flash-sale.css',
+'/css/custom/homepage.css',
 ], ['block' => true]);
 ?>
 <?php $this->end(); ?>
