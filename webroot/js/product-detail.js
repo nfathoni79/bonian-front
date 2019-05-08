@@ -60,8 +60,39 @@ function startInit(){
         sendFrom();
     });
 
-}
+    if ($('.discuss-list .bg-red').length > 10) {
+        $('.discuss-list .bg-red:gt(10)').hide();
+        $('.show-more').show();
+    }
 
+    $('.show-more').on('click', function() {
+        //toggle elements with class .ty-compact-list that their index is bigger than 2
+        $('.discuss-list .bg-red:gt(10)').toggle();
+        //change text of show more element just for demonstration purposes to this demo
+        $(this).text() === 'Show more' ? $(this).text('Show less') : $(this).text('Show more');
+    });
+    //
+    // size_li = $(".discuss-list .bg-red").size();
+    // x=2;
+    // $('.discuss-list .bg-red:lt('+x+')').show();
+    // $('#loadMore').click(function () {
+    //     x= (x+5 <= size_li) ? x+5 : size_li;
+    //     $('.discuss-list .bg-red:gt('+x+')').show();
+    //     $('#showLess').show();
+    //     if(x == size_li){
+    //         $('#loadMore').hide();
+    //     }
+    // });
+    // $('#showLess').click(function () {
+    //     x=(x-5<0) ? 3 : x-5;
+    //     $('.discuss-list .bg-red').not(':gt('+x+')').hide();
+    //     $('#loadMore').show();
+    //     $('#showLess').show();
+    //     if(x == 3){
+    //         $('#showLess').hide();
+    //     }
+    // });
+}
 
 function sendFrom(callback){
 

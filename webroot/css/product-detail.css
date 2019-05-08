@@ -232,3 +232,8 @@ label.color-name{
 .card-wrapper{
     padding: 0px;
 }
+
+.show-more {
+    display: none;
+    cursor: pointer;
+}

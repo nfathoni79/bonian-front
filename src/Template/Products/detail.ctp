@@ -369,7 +369,7 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
 
                                 <?php if(!empty($comment['data'])):?>
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-12 discuss-list">
                                             <?php foreach($comment['data'] as $key => $vals):?>
                                             <div class="bg-red mb-5">
                                                 <div class="row">
@@ -438,7 +438,7 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                                 </div>
                                             </div>
                                             <?php endforeach;?>
-
+                                            <div class="show-more text-center">Show more</div>
                                         </div>
                                     </div>
                                 <?php else :?>

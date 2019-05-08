@@ -37,8 +37,7 @@ class ProductsController extends AuthController
             $error = json_decode($e->getResponse()->getBody()->getContents(), true);
             $details = ['is_error' => true, 'message' => 'Produk tidak ditemukan'];
         }
-//        debug($details);
-//        exit;
+
         if($this->request->is('Ajax')){
             $this->disableAutoRender();
             return $this->response->withType('application/json')
@@ -49,10 +48,9 @@ class ProductsController extends AuthController
 
         if(!empty($details['data'])){
 
-//            $content = $this->request->getQuery('content') ;
             try {
                 $discuss = $this->Api->makeRequest()
-                    ->post('v1/discussion?limit=2', [
+                    ->post('v1/discussion?limit=50', [
                         'form_params' => [
                             'product_id' => $details['data']['id'],
                         ]
