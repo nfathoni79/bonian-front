@@ -70,9 +70,10 @@ div.module.custom-listingtab .list-sub-cat.ltabs-tabs li.tab-sel.ltabs-tab > spa
 }
 footer .footer-center{
     background-color: #ffffff !important;
+    padding: 44px 0;
 }
 footer .footer-bottom{
-    background-color: #ffffff !important;
+    background-color: #f1f1f1 !important;
     text-align: left;
 }
 #content{

@@ -185,7 +185,7 @@
         </div>
     </div>
 </div>
-<div class="footer-bottom ">
+<div class="footer-bottom bd-t">
     <div class="container">
         <div class="row">
             <div class="col-sm-12 copyright">
