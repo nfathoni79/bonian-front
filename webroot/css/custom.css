@@ -44384,8 +44384,8 @@ a.hover-white-8:hover, a.hover-white-8:focus {
   -webkit-transform: rotate(-45deg);
   width: 100px;
   display: block;
-  background: #a72024;
-  background: linear-gradient(#f54449 0%, #8F0808 100%);
+  background: #9dba5f;
+  background: linear-gradient(#9dba5f 0%, #6a8830 100%);
   box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
   position: absolute;
   top: 19px; left: -21px;
@@ -44394,19 +44394,19 @@ a.hover-white-8:hover, a.hover-white-8:focus {
   content: "";
   position: absolute; left: 0px; top: 100%;
   z-index: -1;
-  border-left: 3px solid #8F0808;
+  border-left: 3px solid #6a8830;
   border-right: 3px solid transparent;
   border-bottom: 3px solid transparent;
-  border-top: 3px solid #8F0808;
+  border-top: 3px solid #6a8830;
 }
 .ribbon span::after {
   content: "";
   position: absolute; right: 0px; top: 100%;
   z-index: -1;
   border-left: 3px solid transparent;
-  border-right: 3px solid #8F0808;
+  border-right: 3px solid #6a8830;
   border-bottom: 3px solid transparent;
-  border-top: 3px solid #8F0808;
+  border-top: 3px solid #6a8830;
 }
 .products-list .product-layout .product-item-container, .products-list .product-layout .product-item-container .left-block{
       overflow: visible !important;
