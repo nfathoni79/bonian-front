@@ -297,7 +297,9 @@
                                         </a>
                                     </div>
                                     <div class="box">
+                                        <?php if ($product['is_new']) : ?>
                                       <div class="ribbon ribbon-top-left"><span>NEW</span></div>
+                                        <?php endif; ?>
                                     </div>
                                     <span class="product-ribbon"> 20% </span>
                                 </div>
