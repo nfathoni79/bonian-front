@@ -32,8 +32,6 @@ class HistoryController extends AuthController
         }
 
 
-
-
         $transaction_statuses = [
             'pending' => 'Pending',
             'settlement' => 'Success',
@@ -43,7 +41,29 @@ class HistoryController extends AuthController
         $this->set(compact('orders', 'transaction_statuses', 'pagination'));
     }
 
-    public function detail(){
-        
+    public function detail($invoice = null){
+
+        $response = [];
+        try {
+            $orders = $this->Api->makeRequest($this->Auth->user('token'))
+                ->get('v1/web/orders/view/'.$invoice);
+            if ($response = $this->Api->success($orders)) {
+                $response = $response->parse();
+                $orders = $response['result']['data'];
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $this->Api->handle($e);
+            $response = json_decode($e->getResponse()->getBody()->getContents(), true);
+        }
+
+
+        $transaction_statuses = [
+            'pending' => 'Pending',
+            'settlement' => 'Success',
+            'capture' => 'Success'
+        ];
+//        debug($orders);
+//        exit;
+        $this->set(compact('orders', 'transaction_statuses'));
     }
 }

@@ -104,7 +104,7 @@
                                     </div>
                                     <div class="panel-footer">
                                         <div class="pull-left">
-                                            <button class="btn btn-md btn-danger btn-radius">Rincian Pesanan</button>
+                                            <a href="<?= $this->Url->build(['action' => 'detail', $order['invoice'] ]);?>" class="btn btn-md btn-danger btn-radius">Rincian Pesanan</a>
                                         </div>
                                         <div class="pull-right">
                                             <strong>Total Tagihan Rp. <?= $this->Number->format($order['total']); ?></strong>
