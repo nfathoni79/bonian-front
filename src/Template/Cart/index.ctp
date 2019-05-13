@@ -104,7 +104,6 @@
                                 <div class="row">
 
                                     <div class="col-lg-3 p-0">
-
                                         <?php foreach($cart['images'] as $image):?>
                                               <img class="img-responsive img-<?= $k;?>" src="<?= $this->Url->build($_basePath . 'images/132x132/' . $image); ?>" data-zoom-image="<?= $this->Url->build($_basePath . 'images/600x600/' . $image); ?>" data-image-name="<?= $image;?>" title="<?php echo $cart['name']; ?>" alt="<?php echo $cart['name']; ?>">
                                         <?php break;?>

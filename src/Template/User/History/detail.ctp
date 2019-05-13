@@ -19,7 +19,7 @@
 					<?php $shipping_price = 0;?>
 					<?php foreach($orders['details'] as $vals):?>
 					<?php $shipping_price += $vals['shipping_cost'];?>
-					<!-- Start content -->
+
 					<div class="overflow-hidden mg-20">
 
 						<div class="oh-title zl-bg-pink pd-10 zl-tx-black bd">
@@ -79,8 +79,6 @@
 							</div>
 							<?php endforeach;?>
 
-
-
 							<div class="row mg-0 ft-left wd-100p bd-b">
 								<div class="col-sm-12 mg-0 tx-medium zl-tx-black tx-13 pd-10 lh-3 tx-center">
 									<div class="col-sm-4 tx-left">
@@ -99,13 +97,7 @@
 							</div>
 
 							<div class="row mg-0 ft-left wd-100p bd-b pd-t-10 pd-b-10">
-								<!-- <div class="col-sm-12 mg-0 tx-bold zl-tx-black tx-13 pd-10 tx-left">
-										<span class="col-sm-12">Status barang</span>
-								</div> -->
 								<div class="col-sm-12 mg-0 tx-medium zl-tx-black tx-13 pd-10 tx-left">
-										<!-- <span class="btn btn-default zl-bg-red-light tx-white tx-12">Menunggu pembayaran</span>
-										<span class="btn btn-default zl-tx-black tx-12">Diproses</span> -->
-
 									  <ul class="col-sm-12 list-unstyled multi-steps">
 										<li>Menunggu Pembayaran</li>
 										<li class="is-active">Diproses</li>
@@ -141,8 +133,7 @@
 										<span class="col-sm-12 pd-0 tx-16 zl-tx-red--light"><?= !empty($vals['awb']) ? $vals['awb'] : '-';?></span>
 									</div>
 									<div class="col-sm-4 tx-right">
-										<span class="col-sm-12 pd-0">Detil Pengiriman</span>
-										<span class="col-sm-12 pd-0 tx-16 zl-tx-red--light">Detil Pengiriman</span>
+										<a class="col-sm-12 mg-t-10 btn btn-danger btn-radius btn-sm"  data-toggle="modal" data-target="#modalTracking">Detil Pengiriman</a>
 									</div>
 								</div>
 							</div>
@@ -265,6 +256,31 @@
 					</div>
 				</div>
 			</div>				
+		</div>
+	</div>
+</div>
+
+
+
+<div class="modal fade" id="modalTracking" tabindex="-1" role="dialog" aria-labelledby="tracking-popupLabel">
+	<div class="modal-dialog modal-md" role="document">
+		<div class="modal-content">
+			<div class="modal-header" style="background-color: #d9534f;color: #ffffff;border-top-left-radius:6px;border-top-right-radius:6px;">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="color: #ffffff;">&times;</span></button>
+				<h4 class="modal-title" id="login-popupLabel" style="text-align: left;">Detil Pengiriman</h4>
+			</div>
+			<div class="modal-body">
+
+			</div>
+			<div class="modal-footer">
+				<div class="row">
+					<div class="col-lg-8">
+					</div>
+					<div class="col-lg-4">
+						<button class="btn btn-danger btn-block btn-radius" data-dismiss="modal">Tutup</button>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
