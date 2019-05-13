@@ -33103,6 +33103,10 @@ a.hover-white-8:hover, a.hover-white-8:focus {
   line-height: 2.5;
 }
 
+.lh-5x{
+  line-height: 5;
+}
+
 .valign-top {
   vertical-align: top;
 }
@@ -44284,8 +44288,31 @@ a.hover-white-8:hover, a.hover-white-8:focus {
     border:1px solid #c93535 !important;
 }
 
+.zl-btn-hover-white:hover{
+    color: #c93535;
+    background: #fff;
+    border:1px solid #c93535;
+}
+
+.zl-btn-hover-white-force:hover{
+    color: #c93535 !important;
+    background: #fff !important;
+    border:1px solid #c93535 !important;
+}
+
+.zl-hover{
+    transition: background-color 800ms;
+}
+.zl-hover:hover{
+    background: #f9f9f9 !important;
+}
+
 .zl-bg-none{
     background: none !important;
+}
+
+.br-5{
+    border-radius: 5px;
 }
 
 .br-10{
@@ -44425,7 +44452,9 @@ footer .footer-top .block-infos .info .inner i{
   color: #333;
 }
 
-
+.notif-list .notif-item:last-child{
+  border-bottom: none;
+}
 
 
 
