@@ -2,10 +2,12 @@
 <div class="footer-top">
     <div class="container ftop">
         <div class="module footer-services ">
-            <div class="block-infos">
+            <!-- <div class="block-infos">
                 <div class="info info1">
                     <div class="inner">
-                        <i class="fa fa-lock"></i>
+                        <div class="col-sm-12 mg-t-10 mg-b-10">
+                            <i class="fa fa-lock"></i>
+                        </div>
                         <div class="info-cont">
                             <span class="font-ct">Jaminan 100% Aman</span>
                             <p>Keamanan  terpercaya untuk kemudahan transaksi anda.</p>
@@ -27,6 +29,41 @@
                         <div class="info-cont">
                             <span class="font-ct">Customer Support</span>
                             <p>Layanan Customer Support kami siap membantu anda sebelum dan sesudah transaksi.</p>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <div class="block-infos">
+                <div class="info tx-center">
+                    <div class="inner pd-20 bd-l-0-force">
+                        <div class="col-sm-12 mg-t-10 mg-b-20 pd-0">
+                            <i class="fa fa-lock ft-none-force"></i>
+                        </div>
+                        <div class="tx-white tx-mont">
+                            <span class="tx-bold tx-18 tx-uppercase">Jaminan 100% Aman</span>
+                            <p class="lh-normal">Keamanan  terpercaya untuk kemudahan transaksi anda.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="info tx-center">
+                    <div class="inner pd-20">
+                        <div class="col-sm-12 mg-t-10 mg-b-20 pd-0">
+                            <i class="fa fa-money ft-none-force"></i>
+                        </div>
+                        <div class="tx-white tx-mont">
+                            <span class="tx-bold tx-18 tx-uppercase">Keuntungan Berlimpah</span>
+                            <p class="lh-normal">Belanja hemat dan mudah dengan menggunakan Point, Kupon Produk dan Voucher keranjang.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="info tx-center">
+                    <div class="inner pd-20">
+                        <div class="col-sm-12 mg-t-10 mg-b-20 pd-0">
+                            <i class="fa fa-life-ring ft-none-force"></i>
+                        </div>
+                        <div class="tx-white tx-mont">
+                            <span class="tx-bold tx-18 tx-uppercase">Customer Support</span>
+                            <p class="lh-normal">Layanan Customer Support kami siap membantu anda sebelum dan sesudah transaksi.</p>
                         </div>
                     </div>
                 </div>
