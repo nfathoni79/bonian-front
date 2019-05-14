@@ -476,12 +476,18 @@ function grandTotal(){
 
                 var incat = 0;
                 var outcat = 0;
+
+
+
                 $('.zl-total').each(function(k, v){
-                    if($.inArray($(this).data('cat').toString(), values) !== -1){
-                        incat += numeral($(this).text()).value();
-                    }else{
-                        outcat += numeral($(this).text()).value();
+                    if ($(this).parents('.wrapper-cart').find('input.checkboxes').is(':checked')) {
+                        if($.inArray($(this).data('cat').toString(), values) !== -1){
+                            incat += numeral($(this).text()).value();
+                        }else{
+                            outcat += numeral($(this).text()).value();
+                        }
                     }
+
                 });
 
                 var cut = incat * (vDiskon / 100);
@@ -499,7 +505,9 @@ function grandTotal(){
             }else{
                 var gTotal = 0;
                 $('.zl-total').each(function(k, v){
-                    gTotal += numeral($(this).text()).value();
+                    if ($(this).parents('.wrapper-cart').find('input.checkboxes').is(':checked')) {
+                        gTotal += numeral($(this).text()).value();
+                    }
                 });
                 var cut = gTotal * (vDiskon / 100);
                 if(cut > vPrice){

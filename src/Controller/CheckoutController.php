@@ -58,6 +58,8 @@ class CheckoutController  extends AuthController
                 ->get('v1/web/checkout', [
                     'form_params' => []
                 ]);
+//            print_r($claim->getBody()->getContents());
+//            exit;
             if ($response = $this->Api->success($claim)) {
                 $json = $response->parse();
                 $data = $json['result']['data'];
