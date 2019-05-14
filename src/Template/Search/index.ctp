@@ -13,68 +13,106 @@
         <!-- end: breadcumb -->
 
         <!-- start: bagian kiri -->
-        <div class=" col-lg-3 content-aside left_column sidebar-offcanvas c-filter">
+        <div class="card col-lg-3 content-aside left_column sidebar-offcanvas c-filter pd-15-force">
+
+            <div class="accordion" id="accordionExample275">
+
+              <div class="z-depth-0 bordered">
+                <div id="headingOne">
+                  <div class="block-categories module mg-b-20-force pd-0-force br-none bs-none">
+                      <h3 class="modtitle tx-mont">
+                        <button class="btn btn-link tx-bold zl-tx-black pd-0" type="button" data-toggle="collapse" data-target="#collapseOne"
+                      aria-expanded="true" aria-controls="collapseOne">
+                        Berdasarkan Category
+                      </button>
+                    </h3>
+                  </div>
+                </div>
+                <div id="collapseOne" class="collapse in" aria-labelledby="headingOne"
+                  data-parent="#accordionExample275">
+                    <!-- start: componen category -->
+                    <div class="table_layout filter-shopby">
+                        <div class="table_row">
+                            <!-- - - - - - - - - - - - - - category - - - - - - - - - - - - - - - - -->
+                            <div class="table_cell">
+                                <div id="category_view"></div>
+                            </div>
+                            <!--/ .table_cell -->
+                            <!-- - - - - - - - - - - - - - End category - - - - - - - - - - - - - - - - -->
+                        </div>
+                    </div>
+                    <!-- end: componen category -->
+                </div>
+              </div>
+
+              <div class="z-depth-0 bordered">
+                <div id="headingTwo">
+                  <div class="block-categories module mg-b-20-force pd-0-force br-none bs-none">
+                      <h3 class="modtitle tx-mont">
+                        <button class="btn btn-link tx-bold zl-tx-black pd-0" type="button" data-toggle="collapse" data-target="#collapseTwo"
+                      aria-expanded="true" aria-controls="collapseTwo">
+                        Berdasarkan harga
+                      </button>
+                    </h3>
+                  </div>
+                </div>
+                <div id="collapseTwo" class="collapse in" aria-labelledby="headingTwo"
+                  data-parent="#accordionExample275">
+                    <!-- - - - - - - - - - - - - - Price - - - - - - - - - - - - - - - - -->
+                    <div class="table_cell">
+                        <fieldset>
+                            <div id="pricing-range"
+                                 class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+                                <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
+                                <span class="ui-slider-handle ui-state-default ui-corner-all"></span>
+                                <span class="ui-slider-handle ui-state-default ui-corner-all"></span>
+                            </div>
+                            <div class="form-inline range">
+                                <div class="form-group" style="margin-bottom: 5px;">
+                                    <label class="sr-only" for="filter-input-price-min">Amount (in dollars)</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">Rp.</div>
+                                        <input type="text"  class="form-control text-right min_value" id="filter-input-price-min" placeholder="Harga minimal" name="min_price" class="min_value" value="<?= $pricing['min_price']; ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="filter-input-price-max">Amount (in dollars)</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">Rp.</div>
+                                        <input type="text" class="form-control text-right max_value" id="filter-input-price-max" placeholder="Harga maksimal" name="max_price" class="max_value" value="<?= $pricing['max_price']; ?>">
+                                    </div>
+                                </div>
+
+                                <div class="form-group" style="margin-top: 10px;">
+                                    <button type="button" class="btn btn-danger hide" id="apply-filter-price">Terapkan filter</button>
+                                </div>
+                            </div>
+
+
+                        </fieldset>
+                    </div>
+                    <!--/ .table_cell -->
+
+                    <!-- - - - - - - - - - - - - - End price - - - - - - - - - - - - - - - - -->
+                </div>
+              </div>
+
+            </div>
+
+
+
             <!-- <h3 class="modtitle mg-t-0">Filter Produk </h3> -->
             <span id="close-sidebar" class="fa fa-times"></span>
 
 
-            <!-- start: componen category -->
-            <div class="module filter-by-category">
-                <h3 class="modtitle o-filter-title">Berdasarkan Category </h3>
-                <div class="table_layout filter-shopby">
-                    <div class="table_row">
-                        <!-- - - - - - - - - - - - - - category - - - - - - - - - - - - - - - - -->
-                        <div class="table_cell" style="padding-top:20px;">
-                            <div id="category_view"></div>
-                        </div>
-                        <!--/ .table_cell -->
-                        <!-- - - - - - - - - - - - - - End category - - - - - - - - - - - - - - - - -->
-                    </div>
-                </div>
-            </div>
-            <!-- end: componen category -->
+            
 
             <!-- start: componen harga -->
             <div class="module">
                 <h3 class="modtitle o-filter-title">Berdasarkan harga </h3>
                 <div class="table_layout filter-shopby">
                     <div class="table_row">
-                        <!-- - - - - - - - - - - - - - Price - - - - - - - - - - - - - - - - -->
-                        <div class="table_cell" style="padding-top:20px;">
-                            <fieldset>
-                                <div id="pricing-range"
-                                     class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
-                                    <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
-                                    <span class="ui-slider-handle ui-state-default ui-corner-all"></span>
-                                    <span class="ui-slider-handle ui-state-default ui-corner-all"></span>
-                                </div>
-                                <div class="form-inline range">
-                                    <div class="form-group" style="margin-bottom: 5px;">
-                                        <label class="sr-only" for="filter-input-price-min">Amount (in dollars)</label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">Rp.</div>
-                                            <input type="text"  class="form-control text-right min_value" id="filter-input-price-min" placeholder="Harga minimal" name="min_price" class="min_value" value="<?= $pricing['min_price']; ?>">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="sr-only" for="filter-input-price-max">Amount (in dollars)</label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">Rp.</div>
-                                            <input type="text" class="form-control text-right max_value" id="filter-input-price-max" placeholder="Harga maksimal" name="max_price" class="max_value" value="<?= $pricing['max_price']; ?>">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group" style="margin-top: 10px;">
-                                        <button type="button" class="btn btn-danger hide" id="apply-filter-price">Terapkan filter</button>
-                                    </div>
-                                </div>
-
-
-                            </fieldset>
-                        </div>
-                        <!--/ .table_cell -->
-
-                        <!-- - - - - - - - - - - - - - End price - - - - - - - - - - - - - - - - -->
+                        
                     </div>
                 </div>
             </div>

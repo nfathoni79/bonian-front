@@ -26,8 +26,8 @@
 
                                     <div class="line ease"></div>
 
-                                    <!-- tab-content -->
-                                    <div class="tab-content bd-0">
+                                    <!-- notif-tab-content -->
+                                    <div class="notif-tab-content bd-0">
                                         <section id="tab-item-1">
 
                                             <ul class="row notif-list">
