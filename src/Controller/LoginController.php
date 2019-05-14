@@ -107,4 +107,30 @@ class LoginController extends AuthController
 
 
    }
+
+   public function endPoint()
+   {
+       $this->disableAutoRender();
+       $this->request->allowMethod('post');
+       $endpoint = [];
+
+       try {
+           $pusher = $this->Api->makeRequest($this->Auth->user('token'))
+               ->post('v1/web/login/end-point', [
+                   'form_params' => $this->request->getData()
+               ]);
+           if ($response = $this->Api->success($pusher)) {
+               $endpoint = $response->parse();
+               $endpoint = $endpoint['result'];
+           }
+       } catch(\GuzzleHttp\Exception\ClientException $e) {
+           $this->Api->handle($e);
+           $this->response = $this->response->withStatus($e->getResponse()->getStatusCode(), $e->getResponse()->getReasonPhrase());
+           $endpoint = json_decode($e->getResponse()->getBody()->getContents(), true);
+       }
+
+
+       return $this->response->withType('application/json')
+           ->withStringBody(json_encode($endpoint));
+   }
 }

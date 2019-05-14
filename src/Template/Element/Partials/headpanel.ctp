@@ -25,9 +25,9 @@
                             <div id="bs-example-navbar-collapse-1">
                                 <ul>
                                     <li class="dropdown">
-                                        <span class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-bell mg-r-10"></i>Notifikasi (<b><?= $_notifications['count']; ?></b>)</span>
+                                        <span class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-bell mg-r-10"></i>Notifikasi (<span class="notification-count"><?= $_notifications; ?></span>)</span>
                                         <ul class="dropdown-menu notify-drop">
-                                            <div class="notify-drop-title">
+                                            <?php /*<div class="notify-drop-title">
                                                 <div class="row">
                                                     <div class="col-md-6 col-sm-6 col-xs-6">Notifikasi (<b><?= $_notifications['count']; ?></b>)</div>
                                                     <div class="col-md-6 col-sm-6 col-xs-6 text-right"><a href="" class="rIcon allRead" data-tooltip="tooltip" data-placement="bottom" title="Baca semua"><i class="fa fa-dot-circle-o"></i></a></div>
@@ -56,7 +56,15 @@
                                             </div>
                                             <div class="notify-drop-footer text-center">
                                                 <a href="<?= $this->Url->build(['controller' => 'Notification', 'prefix' => 'user']); ?>"><i class="fa fa-eye"></i> Lihat semua notifikasi</a>
+                                            </div> */ ?>
+                                            <div class="notify-drop-loading">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        Loading ...
+                                                    </div>
+                                                </div>
                                             </div>
+
                                         </ul>
                                     </li>
                                 </ul>
@@ -559,6 +567,8 @@
         });
 
         $('[data-tooltip="tooltip"]').tooltip();
+
+
 
 
     });

@@ -142,6 +142,8 @@
 
 <!-- Theme files -->
 <?= $this->Html->script([
+    '//js.pusher.com/4.4/pusher.min.js',
+    '/js/pusher-client.js',
     '/js/themejs/application',
     '/js/themejs/homepage',
     '/js/themejs/so_megamenu',
@@ -150,7 +152,8 @@
     '/js/custom-libs/validation-render',
     '/js/sweetalert/sweetalert.js',
     '/js/lib-tools.js',
-    '/js/jquery.smartsuggest.js'
+    '/js/jquery.smartsuggest.js',
+    '/js/notification.js',
 ]); ?>
 
 <?= $this->fetch('script') ?>

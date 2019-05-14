@@ -138,13 +138,16 @@
 
 <!-- Theme files -->
 <?= $this->Html->script([
+    '//js.pusher.com/4.4/pusher.min.js',
+    '/js/pusher-client.js',
     '/js/themejs/application',
     '/js/themejs/homepage',
     '/js/themejs/so_megamenu',
     '/js/themejs/addtocart',
     '/js/themejs/cpanel',
     '/js/custom-libs/validation-render',
-    '/js/jquery.smartsuggest.js'
+    '/js/jquery.smartsuggest.js',
+    '/js/notification.js',
 ]); ?>
 
 <?= $this->fetch('script') ?>

@@ -111,7 +111,7 @@ class AppController extends Controller
             $_categories = $this->getCategories();
             $_banners = $this->getTopHomeBanner();
             $_carts = $this->getCart();
-            $_notifications = $this->getNotification();
+            $_notifications = $this->getNotificationCount();
         }
 
 
@@ -175,16 +175,16 @@ class AppController extends Controller
         }
     }
 
-    protected function getNotification()
+    protected function getNotificationCount()
     {
         if ($this->request->getSession()->check('Auth.Customers.token')) {
             try {
                 $carts = $this->Api->makeRequest($this->request->getSession()->read('Auth.Customers.token'))
-                    ->get('v1/web/notifications');
+                    ->get('v1/web/notifications/count');
                 if ($response = $this->Api->success($carts)) {
                     $json = $response->parse();
                     if ($json['result']) {
-                        $notifications = $json['result'];
+                        $notifications = $json['result']['count'];
                         return $notifications;
                     }
 
