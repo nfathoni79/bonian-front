@@ -61,6 +61,7 @@
                     <?php endif;?>
 
 
+                    <?php $allowCart = [1,5];?>
                     <?php $totalPoint = 0;?>
                     <?php $subtotal = 0;?>
                     <?php if(!empty($carts['carts'])):?>
@@ -76,12 +77,12 @@
                             <input type="hidden" name="stock" value="<?= $cart['origin'];?>" >
                             <input type="hidden" name="type" value="force" >
                         </form>
-                        <div class="row">
-
+                        <div class="row wrapper-cart">
                             <!-- start: konten kiri -->
                             <div class="col-lg-1">
+                                <?php if(in_array($cart['status'], $allowCart)):?>
                                 <div class="pretty p-svg p-curve p-smooth p-bigger">
-                                    <input type="checkbox" class="checkboxes" name="cartid[<?= $k;?>]" value="<?= $cart['cartid'];?>" />
+                                    <input type="checkbox" class="checkboxes" name="cart[<?= $k;?>][id]" value="<?= $cart['cartid'];?>"  data-stock-id="<?= $cart['product_option_stock_id'];?>" data-product-id="<?= $cart['product_id'];?>" data-key="<?= $k;?>" />
                                     <div class="state p-success">
                                         <!-- svg path -->
                                         <svg class="svg svg-icon" viewBox="0 0 20 20">
@@ -93,6 +94,7 @@
                                         </label>
                                     </div>
                                 </div>
+                                <?php endif;?>
 
                             </div>
                             <!-- end: konten kiri -->
@@ -103,6 +105,15 @@
                                 <!-- start: card item content -->
                                 <div class="row">
 
+                                    <?php if(!in_array($cart['status'], $allowCart)):?>
+                                    <div class="col-lg-12">
+                                        <?php if($cart['status'] == 2):?>
+                                        <div class="alert alert-danger pd-5">Masa belaku promo untuk produk telah habis.</div>
+                                        <?php elseif($cart['status'] == 3):?>
+                                        <div class="alert alert-danger pd-5">Stok produk habis.</div>
+                                        <?php endif;?>
+                                    </div>
+                                    <?php endif;?>
                                     <div class="col-lg-3 p-0">
                                         <?php foreach($cart['images'] as $image):?>
                                               <img class="img-responsive img-<?= $k;?>" src="<?= $this->Url->build($_basePath . 'images/132x132/' . $image); ?>" data-zoom-image="<?= $this->Url->build($_basePath . 'images/600x600/' . $image); ?>" data-image-name="<?= $image;?>" title="<?php echo $cart['name']; ?>" alt="<?php echo $cart['name']; ?>">
@@ -167,17 +178,19 @@
 
                                                     </div>
                                                     <div class="col-lg-3 p-0">
+                                                        <?php if(in_array($cart['status'], $allowCart)):?>
                                                         <div class="text-center" style="padding: 0px; padding-right: 15px;">
                                                             <div class="form-group box-info-product">
                                                                 <div class="option quantity">
                                                                     <div class="input-group quantity-controls" unselectable="on" style="-webkit-user-select: none;">
                                                                         <span class="input-group-addon product_quantity_down sub" data-id="<?= $k;?>">−</span>
-                                                                        <input class="form-control zl-qty" type="text" name="qty" value="<?php echo $cart['qty']; ?>"  id="zl-qty-<?= $k;?>" data-id="<?= $k;?>" min="1" max="<?php echo $cart['product_option_stock']['stock']; ?>">
+                                                                        <input class="form-control zl-qty" type="text" name="cart[<?= $k;?>][qty]" value="<?php echo $cart['qty']; ?>"  id="zl-qty-<?= $k;?>" data-id="<?= $k;?>" min="1" max="<?php echo $cart['product_option_stock']['stock']; ?>">
                                                                         <span class="input-group-addon product_quantity_up add" data-id="<?= $k;?>">+</span>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <?php endif;?>
 
                                                     </div>
                                                 </div>
@@ -400,47 +413,12 @@
                                             <i class="fas fa-times-circle"></i>
                                         </span>
                                     </button>
-                                    <h4 class="modal-title" id="login-popupLabel" style="text-align: left;">Pilih Kupon</h4>
+                                    <h4 class="modal-title" id="kupon-popupLabel" style="text-align: left;">Pilih Kupon</h4>
                                 </div>
                                 <div class="modal-body">
                                     <div class="row">
-                                        <div class="col-lg-12" style="overflow: auto;height: 300px;">
-                                            <?php
-                                            $colored = ['1' => 'v-colored-box', '2' => 'v-colored-box-off', '3' => 'v-colored-box-off'];
-                                            $texted = ['1' => 'label-danger', '2' => 'label-default', '3' => 'label-default'];
-                                            $end = ['1' => 'v-end', '2' => 'v-end-off', '3' => 'v-end-off'];
-                                            ?>
-                                            <?php foreach($coupon as $vals):?>
-                                            <div class="panel panel-default">
-                                                <div class="panel-body" style="padding:0px;">
-                                                    <div class="row">
-                                                        <div class="col-md-5">
-                                                            <div class="v-colored-box" style="height: 10.25rem !important;">
-                                                                <div class="v-text-discount">Kupon</div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-5 v-text-box">
-                                                            Kupon produk <br><strong><?php echo $this->Text->truncate(
-                                                            h($vals['product_coupon']['product']['name']),
-                                                            25,
-                                                            [
-                                                            'ellipsis' => '...',
-                                                            'exact' => false
-                                                            ]
-                                                            );?></strong><br> potongan harga Rp. <?php  echo $this->Number->precision($vals['product_coupon']['price'], 0);?>
-                                                        </div>
-                                                        <div class="col-md-2 mg-t-45">
-                                                            <div class="pretty p-default p-round p-pulse p-bigger">
-                                                                <input type="radio" name="kupon" value="<?php echo $vals['id'];?>" data-price="<?= $vals['product_coupon']['price']; ?>">
-                                                                <div class="state p-danger">
-                                                                    <label>Pilih</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <?php endforeach;?>
+                                        <div class="col-lg-12 wrapper-coupon" style="overflow: auto;height: 300px;">
+                                            <!-- Wrapper Coupon-->
                                         </div>
                                     </div>
                                 </div>
@@ -470,14 +448,12 @@
                             <div class="col-lg-5 p-3">
                                 <a href="JavaScript:void(0);" class="btn btn-default btn-sm btn-voucher" data-target="#modalvoucher" data-toggle="modal">Pilih voucher</a>
                             </div>
-                            <?php if(!empty($coupon)):?>
                             <div class="col-lg-7">
                                 <h3>Kupon</h3>
                             </div>
                             <div class="col-lg-5 p-3">
                                 <a href="JavaScript:void(0);" class="btn btn-default btn-sm btn-kupon" data-target="#modalCoupon" data-toggle="modal">Pilih kupon</a>
                             </div>
-                            <?php endif;?>
                             <div class="col-lg-7">
                                 <h3>Gunakan Poin</h3>
                                 <h5 style="margin-top: 0px; font-size:0.8em; padding-right: 0px; text-align: left;">
@@ -497,7 +473,7 @@
                             </div>
                             <div class="col-lg-5">
                                 <h5 class="sub-total">
-                                    Rp.<span id="subtotal"><?php echo $this->Number->format($subtotal);?></span>
+                                    Rp.<span id="subtotal">0</span>
                                 </h5>
                             </div>
                             <?php if(!empty($voucher)):?>
@@ -510,16 +486,14 @@
                                     </h5>
                                 </div>
                             <?php endif;?>
-                            <?php if(!empty($coupon)):?>
-                                <div class="col-lg-7">
-                                    <h3>Potongan Kupon</h3>
-                                </div>
-                                <div class="col-lg-5">
-                                    <h5 class="sub-total">
-                                        Rp.<span id="coupon-price">0</span>
-                                    </h5>
-                                </div>
-                            <?php endif;?>
+                            <div class="col-lg-7">
+                                <h3>Potongan Kupon</h3>
+                            </div>
+                            <div class="col-lg-5">
+                                <h5 class="sub-total">
+                                    Rp.<span id="coupon-price">0</span>
+                                </h5>
+                            </div>
 
                             <div class="col-lg-12">
                                 <div style="border:1px dashed #E2E2E2; margin-top:15px;"></div>
@@ -530,7 +504,7 @@
                             </div>
                             <div class="col-lg-5">
                                 <h5 class="sub-total">
-                                    Rp.<span id="grandtotal"><?php echo $this->Number->format($subtotal);?></span>
+                                    Rp.<span id="grandtotal">0</span>
                                 </h5>
                             </div>
 

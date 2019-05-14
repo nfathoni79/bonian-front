@@ -58,14 +58,14 @@ class CartController  extends AuthController
     public function deleteAll(){
         $this->disableAutoRender();
         $this->request->allowMethod('post');
-        $cartList = $this->request->getData('cartid');
+        $cartList = $this->request->getData('cart');
         $success = true;
         foreach($cartList as $vals){
             try {
                 $delete = $this->Api->makeRequest($this->Auth->user('token'))
                     ->post('v1/web/cart/delete', [
                         'form_params' => [
-                            'cartid' => $vals
+                            'cartid' => $vals['id']
                         ]
                     ]);
             } catch(\GuzzleHttp\Exception\ClientException $e) {
@@ -93,22 +93,21 @@ class CartController  extends AuthController
             //TODO set log
         }
 
-        try {
-            $coupon = $this->Api->makeRequest($this->Auth->user('token'))
-                ->get('v1/web/cart/coupon');
-            if ($response = $this->Api->success($coupon)) {
-                $json = $response->parse();
-                if(!empty($json['result']['data'])){
-                    $coupon = $json['result']['data'];
-                }else{
-                    $coupon = [];
-                }
-            }
-        } catch(\GuzzleHttp\Exception\ClientException $e) {
-            //TODO set log
-        }
-
-        $this->set(compact('carts', 'coupon'));
+//        try {
+//            $coupon = $this->Api->makeRequest($this->Auth->user('token'))
+//                ->get('v1/web/cart/coupon');
+//            if ($response = $this->Api->success($coupon)) {
+//                $json = $response->parse();
+//                if(!empty($json['result']['data'])){
+//                    $coupon = $json['result']['data'];
+//                }else{
+//                    $coupon = [];
+//                }
+//            }
+//        } catch(\GuzzleHttp\Exception\ClientException $e) {
+//            //TODO set log
+//        }
+        $this->set(compact('carts'));
 
         $response = [];
         try {
@@ -165,4 +164,35 @@ class CartController  extends AuthController
 
         $this->set(compact('wishlists', 'pagination', 'voucher','point'));
     }
+
+    public function getCoupon(){
+        $this->disableAutoRender();
+        $this->request->allowMethod('post');
+        $cartList = $this->request->getData('cart');
+
+        foreach($cartList as $vals){
+            try {
+                $coupon = $this->Api->makeRequest($this->Auth->user('token'))
+                    ->post('v1/web/cart/coupon', [
+                        'form_params' => [
+                            'cartid' => $vals['id']
+                        ]
+                    ]);
+                if ($response = $this->Api->success($coupon)) {
+                    $json = $response->parse();
+                    if(!empty($json['result']['data'])){
+                        $coupon = $json['result']['data'][0];
+                    }else{
+                        $coupon = [];
+                    }
+                }
+            } catch(\GuzzleHttp\Exception\ClientException $e) {
+
+            }
+        }
+        return $this->response->withType('application/json')
+            ->withStringBody(json_encode($coupon));
+
+    }
+
 }

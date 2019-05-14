@@ -18,6 +18,7 @@ class CheckoutController  extends AuthController
     {
         $this->disableAutoRender();
         $errors = [];
+
         if ($this->request->is('ajax')) {
             try {
                 $claim = $this->Api->makeRequest($this->Auth->user('token'))
