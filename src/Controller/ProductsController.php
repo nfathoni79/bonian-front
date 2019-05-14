@@ -16,7 +16,7 @@ class ProductsController extends AuthController
     public function initialize()
     {
         parent::initialize();
-        $this->Auth->allow(['detail','comment']);
+        $this->Auth->allow(['detail','comment','getDetail']);
     }
     /**
      * Index method
