@@ -44319,6 +44319,14 @@ a.hover-white-8:hover, a.hover-white-8:focus {
     border-radius: 10px;
 }
 
+.br-none{
+    border-radius: 0 !important;
+}
+
+.bs-none{
+    box-shadow: none !important;
+}
+
 .tx-line{
     text-decoration: line-through;
 }
@@ -44543,41 +44551,41 @@ footer .footer-top .block-infos .info .inner i{
     left: 80%
 }
 
-.tab-content {
+.notif-tab-content {
     padding: 80px 20px 20px;
     width: 100%;
     min-height: 340px
 }
 
-.tab-content section {
+.notif-tab-content section {
     width: 100%;
     display: none
 }
 
-.tab-content section h1 {
+.notif-tab-content section h1 {
     margin-top: 15px;
     font-size: 100px;
     font-weight: 100;
     text-align: center
 }
 
-#tab-1:checked~.tab-content #tab-item-1 {
+#tab-1:checked~.notif-tab-content #tab-item-1 {
     display: block
 }
 
-#tab-2:checked~.tab-content #tab-item-2 {
+#tab-2:checked~.notif-tab-content #tab-item-2 {
     display: block
 }
 
-#tab-3:checked~.tab-content #tab-item-3 {
+#tab-3:checked~.notif-tab-content #tab-item-3 {
     display: block
 }
 
-#tab-4:checked~.tab-content #tab-item-4 {
+#tab-4:checked~.notif-tab-content #tab-item-4 {
     display: block
 }
 
-#tab-5:checked~.tab-content #tab-item-5 {
+#tab-5:checked~.notif-tab-content #tab-item-5 {
     display: block
 }
 
