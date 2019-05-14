@@ -23,8 +23,30 @@ class ProductsController extends AuthController
      *
      * @return \Cake\Http\Response|void
      */
+	 
+	public function getDetail($slug= null){
+		$this->disableAutoRender();
+		if($this->request->is('Ajax')){
+			try {
+				$login = $this->Api->makeRequest()
+					->get('v1/products/'.$slug);
+				if ($response = $this->Api->success($login)) {
+					$json = $response->parse();
+					$details = ['is_error' => false, 'data' => $json['result']['data'], 'variant' => ['warna', 'ukuran']];
+				}
+			} catch(\GuzzleHttp\Exception\ClientException $e) {
+				$error = json_decode($e->getResponse()->getBody()->getContents(), true);
+				$details = ['is_error' => true, 'message' => 'Produk tidak ditemukan'];
+			}
+            return $this->response->withType('application/json')
+                ->withStringBody(json_encode($details)); 
+        }
+	}
+	
+	 
     public function detail($slug , $reff = null)
     {
+		
         $this->viewBuilder()->setLayout('detail');
         try {
             $login = $this->Api->makeRequest()
@@ -37,14 +59,8 @@ class ProductsController extends AuthController
             $error = json_decode($e->getResponse()->getBody()->getContents(), true);
             $details = ['is_error' => true, 'message' => 'Produk tidak ditemukan'];
         }
-
-        if($this->request->is('Ajax')){
-            $this->disableAutoRender();
-            return $this->response->withType('application/json')
-                ->withStringBody(json_encode($details));
-        }else{
-            $this->set(compact('details'));
-        }
+ 
+		$this->set(compact('details')); 
 
         if(!empty($details['data'])){
 
