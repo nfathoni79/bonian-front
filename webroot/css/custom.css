@@ -44475,7 +44475,8 @@ footer .footer-top .block-infos .info .inner i{
 
 .tabs>input,
 .tabs>span {
-    width: 20%;
+    /*width: 33%;*/
+    width: calc(100% / 3);
     height: 60px;
     line-height: 60px;
     position: absolute;
@@ -44524,12 +44525,12 @@ footer .footer-top .block-infos .info .inner i{
 
 #tab-2,
 #tab-2+span {
-    left: 20%
+    left: 33.4%
 }
 
 #tab-3,
 #tab-3+span {
-    left: 40%
+    left: 66.8%
 }
 
 #tab-4,
@@ -44599,7 +44600,7 @@ footer .footer-top .block-infos .info .inner i{
 
 .effect-3 .line {
     background: #c93535;
-    width: 20%;
+    width: 33.4%;
     height: 4px;
     position: absolute;
     top: 56px
@@ -44610,11 +44611,11 @@ footer .footer-top .block-infos .info .inner i{
 }
 
 #tab-2:checked~.line {
-    left: 20%
+    left: 33.4%
 }
 
 #tab-3:checked~.line {
-    left: 40%
+    left: 66.8%
 }
 
 #tab-4:checked~.line {
@@ -44650,6 +44651,9 @@ footer .footer-top .block-infos .info .inner i{
 .effect-5>input:hover+span i {
     font-size: 25px
 }
+
+
+
 
 
 
