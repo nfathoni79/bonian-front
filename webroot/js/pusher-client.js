@@ -5,7 +5,8 @@ const pusherClient = new Pusher('68012dd37c1a39994c74', {
     authEndpoint: basePath + '/login/end-point',
     auth: {
         headers: {
-            'X-CSRF-Token': $('meta[name="_csrfToken"]').attr('content')
+            'X-CSRF-Token': $('meta[name="_csrfToken"]').attr('content'),
+			'x-requested-with': 'XMLHttpRequest'
         }
     }
 });
