@@ -44340,6 +44340,7 @@ footer .footer-top .block-infos .info .inner i{
   background-color: #fff;
   /*min-height: 360px;*/
   max-height: 360px;
+  padding: 5px 0;
 }
 .zl-notif .dropdown-menu.notify-drop .notify-drop-title {
   border-bottom: 1px solid #e2e2e2;
