@@ -20,7 +20,7 @@
                     </div>
 
                     <div class="user-content-body">
-                        <h4>Informasi detail</h4>
+                        <h4><strong>Informasi detail</strong></h4>
                         <div class="row">
                             <div class="col-md-6">
                                 <table class="table table-condensed user-detail-info">
