@@ -133,7 +133,7 @@
 										<span class="col-sm-12 pd-0 tx-16 zl-tx-red--light"><?= !empty($vals['awb']) ? $vals['awb'] : '-';?></span>
 									</div>
 									<div class="col-sm-4 tx-right">
-										<a class="col-sm-12 mg-t-10 btn btn-danger btn-radius btn-sm"  data-toggle="modal" data-target="#modalTracking">Detil Pengiriman</a>
+										<a class="col-sm-12 mg-t-10 btn btn-danger btn-radius btn-sm"  data-toggle="modal" data-target="#modalTracking" onclick="shipping('<?= $vals['shipping_code']?>', '<?= $vals['awb']?>')">Detil Pengiriman</a>
 									</div>
 								</div>
 							</div>
@@ -272,8 +272,13 @@
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="color: #ffffff;">&times;</span></button>
 				<h4 class="modal-title" id="login-popupLabel" style="text-align: left;">Detil Pengiriman</h4>
 			</div>
-			<div class="modal-body">
-
+			<div class="modal-body"  style="overflow: auto;height: 300px;">
+				<div class="alert alert-info">
+					Kurir : <span class="courier"></span> <span class="service"></span> <span class="status"></span><br>
+					No. Resi : <span class="resi"></span>
+				</div>
+				<ul class="timeline">
+				</ul>
 			</div>
 			<div class="modal-footer">
 				<div class="row">
@@ -287,3 +292,39 @@
 		</div>
 	</div>
 </div>
+
+<?php $this->append('script'); ?>
+<script>
+    function shipping(courier, awb){
+		var basePath = $('meta[name="_basePath"]').attr('content');
+		$.ajax({
+			url: "<?= $this->Url->build(['action' => 'getShipping', 'prefix' => 'user']);?>",
+			type : 'POST',
+			data : {
+                _csrfToken : $('meta[name="_csrfToken"]').attr('content'),
+			    courier : courier.toLowerCase(),
+				awb : awb
+			},
+			dataType : 'json',
+			success: function(response){
+			    if(response.is_error){
+			        return false;
+				}
+			    $('.courier').html(response.data.result.summary.courier_code.toUpperCase());
+			    $('.service').html(response.data.result.summary.service_code.toUpperCase());
+			    $('.resi').html(response.data.result.summary.waybill_number.toUpperCase());
+			    $('.status').html('['+response.data.result.delivery_status.status.toUpperCase()+']');
+				var manifest = '';
+				for(var i=(response.data.result.manifest.length - 1);i >= 0; i--){
+                    manifest += '\n' +
+                        '<li>\n' +
+                        '<p class="mg-b-0">'+response.data.result.manifest[i].manifest_description+'</p>\n' +
+                        '<small>'+response.data.result.manifest[i].manifest_date+' '+response.data.result.manifest[i].manifest_time+'</small>\n' +
+                        '</li>';
+				}
+				$('.timeline').html(manifest);
+			}
+		});
+    }
+</script>
+<?php $this->end(); ?>

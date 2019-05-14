@@ -62,8 +62,40 @@ class HistoryController extends AuthController
             'settlement' => 'Success',
             'capture' => 'Success'
         ];
-//        debug($orders);
-//        exit;
         $this->set(compact('orders', 'transaction_statuses'));
     }
+
+
+    public function getShipping(){
+
+        $this->disableAutoRender();
+        $errors = [];
+        if($this->request->is('Ajax')){
+            try {
+                $shipping = $this->Api->makeRequest($this->Auth->user('token'))
+                    ->post('v1/web/orders/get-shipping/', [
+                        'form_params' => $this->request->getData()
+                    ]);
+    //                print_r($shipping->getBody()->getContents());
+    //                exit;
+                if ($response = $this->Api->success($shipping)) {
+                    $json = $response->parse();
+                    if(isset($json['error'])){
+                        $errors = ['is_error' => true, 'status' => 'OK', 'message' => 'Maaf, AWB tidak terdaftar'];
+                    }else{
+                        $errors = ['is_error' => false, 'status' => 'OK', 'data' => $json['result']['data']['rajaongkir']];
+                    }
+                }
+            } catch(\GuzzleHttp\Exception\ClientException $e) {
+                $errors = ['is_error' => true, 'status' => 'OK',  'message' => 'Maaf, AWB tidak terdaftar'];
+
+            }
+        }
+
+        return $this->response->withType('application/json')
+            ->withStringBody(json_encode($errors));
+    }
+
+
+
 }

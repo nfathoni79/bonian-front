@@ -31,6 +31,7 @@
                         <?= $this->element('Partials/Profile/navigation'); ?>
                     </div>
                     <div class="user-content-body">
+                        <h4><strong>Daftar Alamat</strong></h4>
                         <div class="table-responsive">
                             <table class="table table-striped table-hover table-red">
                                 <tr>
