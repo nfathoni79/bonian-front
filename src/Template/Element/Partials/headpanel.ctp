@@ -41,7 +41,7 @@
                                                 <li>
                                                     <div class="col-md-3 col-sm-3 col-xs-3">
                                                         <div class="notify-img">
-                                                            <img src="http://placehold.it/45x45" alt="">
+                                                            <img src="https://placehold.it/45x45" alt="" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-9 col-sm-9 col-xs-9 pd-l0">
