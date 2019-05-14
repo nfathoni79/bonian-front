@@ -44354,6 +44354,14 @@ footer .footer-top .block-infos .info .inner i{
   border-bottom: 1px solid #e2e2e2;
   padding: 5px 15px 10px 15px;
 }
+.zl-notif .dropdown-menu.notify-drop .notify-drop-loading {
+  padding: 5px 15px 10px 15px;
+  text-align: center;
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .zl-notif .dropdown-menu.notify-drop .drop-content {
   /*min-height: 280px;*/
   max-height: 280px;
