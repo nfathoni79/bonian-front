@@ -111,10 +111,11 @@ class AppController extends Controller
             $_categories = $this->getCategories();
             $_banners = $this->getTopHomeBanner();
             $_carts = $this->getCart();
+            $_notifications = $this->getNotification();
         }
 
 
-        $this->set(compact('_categories', '_banners', '_basePath','_carts'));
+        $this->set(compact('_categories', '_banners', '_basePath', '_carts', '_notifications'));
 
         return parent::beforeRender($event);
     }
@@ -172,5 +173,26 @@ class AppController extends Controller
         } catch(\Exception $e) {
             //TODO set log
         }
+    }
+
+    protected function getNotification()
+    {
+        if ($this->request->getSession()->check('Auth.Customers.token')) {
+            try {
+                $carts = $this->Api->makeRequest($this->request->getSession()->read('Auth.Customers.token'))
+                    ->get('v1/web/notifications');
+                if ($response = $this->Api->success($carts)) {
+                    $json = $response->parse();
+                    if ($json['result']) {
+                        $notifications = $json['result'];
+                        return $notifications;
+                    }
+
+                }
+            } catch(\Exception $e) {
+                //TODO set log
+            }
+        }
+
     }
 }
