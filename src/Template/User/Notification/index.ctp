@@ -5,7 +5,7 @@
             <?= $this->element('Partials/User/menu'); ?>
 
             <div id="content" class="col-md-9 col-sm-8">
-                <div class="user-content">
+                <div class="user-content overflow-hidden">
 
                     <!-- <div class="user-content-header">
                         <h4 class="tx-bold"><i class="fas fa-bell mg-r-10"></i>Notifikasi </h4>
@@ -27,7 +27,7 @@
                                     <div class="line ease"></div>
 
                                     <!-- tab-content -->
-                                    <div class="tab-content">
+                                    <div class="tab-content bd-0">
                                         <section id="tab-item-1">
 
                                             <ul class="row notif-list">
