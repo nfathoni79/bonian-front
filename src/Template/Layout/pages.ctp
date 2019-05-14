@@ -64,7 +64,8 @@
     <?= $this->Html->css([
     '/css/zolaku',
     '/css/zolaku-custom-min',
-    '/css/jquery.smartsuggest.css'
+    '/css/jquery.smartsuggest.css',
+    '/css/perfect-scrollbar'
     ]); ?>
 
 

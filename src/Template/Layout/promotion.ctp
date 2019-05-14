@@ -69,7 +69,8 @@
     '/css/zolaku',
     '/css/custom',
     '/css/zolaku-custom-min',
-    '/css/jquery.smartsuggest.css'
+    '/css/jquery.smartsuggest.css',
+    '/css/perfect-scrollbar'
     ]); ?>
 
 

@@ -22,7 +22,9 @@
                         <span class="product-ribbon"> 20% </span>
                     </div>
                     <div class="box">
-                      <div class="ribbon ribbon-top-left"><span>NEW</span></div>
+                        <?php if ($product['is_new']) : ?>
+                            <div class="ribbon ribbon-top-left"><span>NEW</span></div>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="right-block right-b">
