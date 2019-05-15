@@ -1,12 +1,3 @@
-<?php $this->append('style'); ?>
-<?php
-$this->Html->css([
-'/css/custom/flash-sale.css',
-], ['block' => true]);
-?>
-<?php $this->end(); ?>
-
-
 <?php if ($flashSales['end']) : ?>
 <!-- flash sale Products -->
 <div class="card-wrapper c-flash-wrapper">

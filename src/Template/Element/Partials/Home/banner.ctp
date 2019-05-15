@@ -16,7 +16,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 block-right">
-                        <div class="module">
+                        <div class="">
                             <div class="block-image-1">
                                 <ul class="static-image">
                                     <!-- <li><a href="#"><?php echo $this->Html->image('/images/catalog/banners/leaderboard.jpg', ['alt' => 'Leaderboard Zolaku']); ?></a></li>
