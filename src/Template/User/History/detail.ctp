@@ -245,7 +245,6 @@
 								<?= $alias[$orders['transactions'][0]['payment_type']];?> - <?= strtoupper($orders['transactions'][0]['bank']); ?>
 								<?= $orders['transactions'][0]['payment_type'] == 'credit_card' ? '[ '.$orders['transactions'][0]['masked_card'].' ]' : '' ; ?>
 							</div>
-							<div class="w-100p tx-medium tx-10 zl-tx-red--light">Pembayaran diterima pada Jumat, 06-05-2019 14:30 WIB</div>
 						</div>
 						<div class="col-sm-12 pd-0 bd-b pd-t-10 pd-b-10">
 							<div class="w-100p tx-medium tx-12">Alamat Kirim</div>
