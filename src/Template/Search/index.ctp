@@ -651,7 +651,7 @@ $this->Html->script([
                 _csrfToken: $('meta[name="_csrfToken"]').attr('content')
             },
             success: function(response){
-                $(".module.filter-by-brand").html(response);
+                $("#collapseThree").html(response);
                 //initialScrollbarBrand();
             },
             error: function () {
