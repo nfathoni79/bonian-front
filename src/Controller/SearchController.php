@@ -15,7 +15,7 @@ class SearchController  extends AuthController
     public function initialize()
     {
         parent::initialize();
-        $this->Auth->allow(['get', 'history', 'index', 'removeHistory', 'loadCategory', 'loadBrand', 'fetch']);
+        $this->Auth->allow(['get', 'history', 'index', 'removeHistory', 'loadCategory', 'loadBrand', 'loadVariant', 'fetch']);
     }
 
     public function locator(){
@@ -305,11 +305,12 @@ class SearchController  extends AuthController
 
     public function loadVariant()
     {
-        $this->disableAutoRender();
+        //$this->disableAutoRender();
         $query_string = $this->request->getQueryParams();
-        $data = $this->_variant($query_string);
-        return $this->response->withType('application/json')
-            ->withStringBody(json_encode($data));
+        $variants = $this->_variant($query_string);
+        //return $this->response->withType('application/json')
+        //    ->withStringBody(json_encode($data));
+        $this->set(compact('variants'));
     }
 
     public function loadBrand()

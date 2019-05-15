@@ -134,7 +134,7 @@
 
               <?php foreach($variants as $variant) : ?>
               <!-- start: componen variant -->
-              <div class="z-depth-0 bordered filter-by-brand">
+              <div class="z-depth-0 bordered filter-by-variant">
                 <div id="headingFour-<?= $variant['Options']['id']; ?>">
                   <div class="block-categories module mg-b-20-force pd-0-force br-none bs-none">
                       <h3 class="modtitle tx-mont">
@@ -147,18 +147,15 @@
                 </div>
                 <div id="collapseFour-<?= $variant['Options']['id']; ?>" class="collapse in" aria-labelledby="headingFour-<?= $variant['Options']['id']; ?>"
                   data-parent="#accordionExample275">
-                    <div class="module filter-by-variant br-none bs-none pd-r-0-force">
-                      <div class="table_layout filter-shopby pd-r-0-force">
-                          <div class="table_row">
                               <!-- - - - - - - - - - - - - - variant - - - - - - - - - - - - - - - - -->
-                              <div class="table_cell scrollable" style="overflow-x: hidden !important;">
+                              <div class="table_cell scrollable pd-20 pd-t-0-force" style="max-height: 175px; overflow: auto;">
                                   <div class="row">
                                       <?php foreach(array_chunk($variant['values'], ceil(count($variant['values']) / 1)) as $group) : ?>
                                           <div class="col-sm-12">
                                               <?php foreach($group as $value) : ?>
                                               <div>
                                                   <div class="pretty p-svg p-curve zl-tx-black">
-                                                      <input type="checkbox" data-id="<?= $value['option_value_id']; ?>" class="variant-value" />
+                                                      <input type="checkbox" data-id="<?= $value['option_value_id']; ?>" class="variant-value" <?= in_array($value['option_value_id'], array_values((array) $this->request->getQuery('variants'))) ? 'checked' : ''; ?> />
                                                       <div class="state p-danger">
                                                           <!-- svg path -->
                                                           <svg class="svg svg-icon" viewBox="0 0 20 20">
@@ -176,9 +173,6 @@
                               </div>
                               <!--/ .table_cell -->
                               <!-- - - - - - - - - - - - - - End variant - - - - - - - - - - - - - - - - -->
-                          </div>
-                      </div>
-                  </div>
                 </div>
               </div>
               <!-- end: componen variant -->
@@ -578,7 +572,7 @@ $this->Html->script([
         }
         //initialScrollbarBrand();
 
-        function refreshPage(target, updateCategory, updateBrand) {
+        function refreshPage(target, updateCategory, updateBrand, updateVariant) {
             //var parsed = queryString.parse(location.search, {arrayFormat: 'bracket'});
             target = target || location.search;
             $.ajax({
@@ -603,6 +597,9 @@ $this->Html->script([
             }
             if (updateBrand) {
                 loadBrands('<?= $this->Url->build(['action' => 'loadBrand', 'prefix' => false]); ?>' + location.search);
+            }
+            if (updateVariant) {
+                loadVariants('<?= $this->Url->build(['action' => 'loadVariant', 'prefix' => false]); ?>' + location.search);
             }
 
 
@@ -668,6 +665,23 @@ $this->Html->script([
         });
     }
 
+    function loadVariants(target) {
+        $.ajax({
+            url: target || location.search,
+            type : 'POST',
+            data : {
+                _csrfToken: $('meta[name="_csrfToken"]').attr('content')
+            },
+            success: function(response){
+                $(".filter-by-variant").remove();
+                $(response).insertAfter( ".content-aside .filter-by-brand" );
+            },
+            error: function () {
+
+            }
+        });
+    }
+
 
     function generateTree(url) {
         var $tree = $('#category_view').treeview({
@@ -714,7 +728,7 @@ $this->Html->script([
                     strict: true,
                     arrayFormat: 'index'
                 }));
-                refreshPage(null, false, true);
+                refreshPage(null, false, true, true);
 
             },
             onNodeUnselected: function (event, data) {
@@ -752,7 +766,7 @@ $this->Html->script([
         generateTree();
 
 
-        $('input.variant-value').change(function() {
+        $(document.body).on('change', 'input.variant-value', function() {
             parsed = querystringParse();
             parsed.variants = parsed.variants || [];
             var value = String($(this).data('id'));
@@ -767,7 +781,7 @@ $this->Html->script([
                 }
             }
             history.replaceState(null, null, '?' + queryString.stringify(parsed, {strict: true, arrayFormat: 'index'}));
-            refreshPage(null, true, true);
+            refreshPage(null, true, true, false);
         });
 
         $(document.body).on('change', 'input.brand-value', function() {
@@ -785,7 +799,7 @@ $this->Html->script([
                 }
             }
             history.replaceState(null, null, '?' + queryString.stringify(parsed, {strict: true, arrayFormat: 'index'}));
-            refreshPage(null, true, false);
+            refreshPage(null, true, false, true);
         });
 
 
@@ -796,7 +810,7 @@ $this->Html->script([
                parsed.sortBy = sorting[0];
                parsed.order = sorting[1];
                history.replaceState(null, null, '?' + queryString.stringify(parsed, {strict: true, arrayFormat: 'index'}));
-               refreshPage(null, false, false);
+               refreshPage(null, false, false, false);
            }
         });
 
@@ -835,7 +849,7 @@ $this->Html->script([
                     parsed.min_price = $(this).slider("values", 0);
                     parsed.max_price = $(this).slider("values", 1);
                     history.replaceState(null, null, '?' + queryString.stringify(parsed, {strict: true, arrayFormat: 'index'}));
-                    refreshPage(null, true, true);
+                    refreshPage(null, true, true, true);
 
                 },
                 create : function(event, ui){
@@ -895,7 +909,7 @@ $this->Html->script([
                 parsed.min_price = slider.slider("values", 0);
                 parsed.max_price = slider.slider("values", 1);
                 history.replaceState(null, null, '?' + queryString.stringify(parsed, {strict: true, arrayFormat: 'index'}));
-                refreshPage(null, true, true);
+                refreshPage(null, true, true, true);
                 $(this).addClass('hide');
 
             })
