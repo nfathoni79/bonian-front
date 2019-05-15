@@ -34,7 +34,7 @@ $this->Html->css([
                         </div>
                         <div class="row" style="margin-bottom: 20px;">
                             <div class="col-md-4">
-                               <span class="label label-danger">Riwayat Pembelian</span>
+                                <span class="label label-danger">Riwayat Pembelian</span>
                             </div>
                             <div class="col-md-8">
                                 <div class=" pull-right">
@@ -56,34 +56,33 @@ $this->Html->css([
                                             <div class="col-md-6">
                                                 <div class="title-panel pull-left">
                                                     <strong>Invoice No. <?= $order['invoice']; ?></strong>
-                                                    <p><?= date('d M Y H:i', strtotime($order['created'])); ?> WIB</p>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="title-panel pull-right">
-                                                    <strong>Invoice Status : <?= isset($order['transactions'][0]) && isset($transaction_statuses[$order['transactions'][0]['transaction_status']]) ? $transaction_statuses[$order['transactions'][0]['transaction_status']] : 'Pending'; ?></strong>
-                                                    <p>Dibayar pada : <?= isset($order['transactions'][0]) ? date('d M Y H:i', strtotime($order['transactions'][0]['modified'])) : '-'; ?> WIB</p>
+                                                    <strong><?= date('d M Y H:i', strtotime($order['created'])); ?> WIB</strong>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="panel-body">
                                         <?php foreach($order['order_details'] as $key => $detail) : ?>
-                                        <div class="pull-left">
-                                            <address>
-                                                <strong>Order ID : <?= $detail['awb']; ?></strong><br>
-                                                Shipping origin : <?= $detail['branch']['name']; ?>
-                                            </address>
+                                        <div class="row pd-10">
+                                            <div class="col-md-6">
+                                                <address>
+                                                    <strong>Order ID : <?= $order['invoice']; ?>-<?= $detail['id']; ?></strong><br>
+                                                    <strong>Shipping origin :</strong> <?= $detail['branch']['name']; ?>
+                                                </address>
+                                            </div>
+                                            <div class="col-md-6 text-right">
+                                                <address>
+                                                    <strong>Status : <?= $payment_status[$order['payment_status']]; ?></strong><br>
+                                                    <strong>Shipping destination :</strong> <?= $order['address']; ?>, <?= $order['subdistrict']['name']; ?>, <?= $order['city']['name']; ?>, <?= $order['province']['name']; ?>
+                                                </address>
+                                            </div>
                                         </div>
-                                        <div class="pull-right">
-                                            <address>
-                                                <strong>Rp. <?= $this->Number->format($detail['total']); ?></strong><br>
-                                                Barang dikirim
-                                            </address>
-                                        </div>
-                                        <div class="clearfix"></div>
                                         <?php if ($key >= 0 && $key < (count($order['order_details']) -1)  && count($order['order_details']) > 1) : ?>
-                                            <hr class="style3">
+                                        <hr class="style3">
                                         <?php endif; ?>
                                         <div class="clearfix"></div>
                                         <?php endforeach; ?>
@@ -109,9 +108,9 @@ $this->Html->css([
                                 if (isset($pagination) && $pagination instanceof \Pagination\Pagination) :
                                     //get indexes in page
                                     $indexes = $pagination->getIndexes(new \Pagination\StrategySimple(5));
-                                    $iterator = $indexes->getIterator();
-                                    if ($iterator->count() > 1) :
-                                    ?>
+                                $iterator = $indexes->getIterator();
+                                if ($iterator->count() > 1) :
+                                ?>
                                 <nav aria-label="Page navigation" style="margin: 0 auto; text-align: center;">
                                     <ul class="pagination">
                                         <li>
@@ -135,20 +134,20 @@ $this->Html->css([
                                             </a>
                                         </li>
                                         <?php while ($iterator->valid()): ?>
-                                            <?php
+                                        <?php
                                                 $isActive = $this->request->getQuery('page') == $iterator->current();
-                                            ?>
-                                            <li class="<?= $isActive ? 'active': ''; ?>">
-                                                <a href="<?= $this->Url->build([
+                                        ?>
+                                        <li class="<?= $isActive ? 'active': ''; ?>">
+                                            <a href="<?= $this->Url->build([
                                                     'controller' => 'History',
                                                     'action' => 'index',
                                                     'prefix' => 'user',
                                                     '?' => array_merge($this->request->getQuery(), ['page' => $iterator->current()])
                                                 ]); ?>">
-                                                    <?php echo $iterator->current() ?>
-                                                </a>
-                                            </li>
-                                            <?php $iterator->next(); endwhile; ?>
+                                                <?php echo $iterator->current() ?>
+                                            </a>
+                                        </li>
+                                        <?php $iterator->next(); endwhile; ?>
                                         <li>
                                             <a href="<?= $this->Url->build([
                                                 'controller' => 'History',
@@ -181,7 +180,3 @@ $this->Html->css([
         </div>
     </div>
 </div>
-
-<?php $this->append('script'); ?>
-
-<?php $this->end(); ?>

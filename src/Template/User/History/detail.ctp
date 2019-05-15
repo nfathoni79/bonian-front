@@ -23,7 +23,7 @@
 					<div class="overflow-hidden mg-20">
 
 						<div class="oh-title zl-bg-pink pd-10 zl-tx-black bd">
-							<div class="col-sm-6"><h4 class="tx-medium tx-18">Order ID : <?= $orders['invoice'];?></h4></div>
+							<div class="col-sm-6"><h4 class="tx-medium tx-18">Order ID : <?= $orders['invoice'];?>-<?= $vals['id'];?></h4></div>
 							<div class="col-sm-6 tx-right"><h4 class="tx-medium tx-14"> Shipping Origin : <strong><?= $vals['origin_name'];?></strong></h4></div>
 						</div>
 
@@ -48,15 +48,15 @@
 											</div>
 											<hr class="mg-t-5 mg-l-0 mg-l-10 mg-b-15">
 											<div class="row mg-0">
-												<div class="col-sm-3 pd-r-0 lh-3">
+												<div class="col-sm-4 pd-r-0 lh-3">
 													<span><?= $val['variant'];?></span>
 												</div>
-												<div class="col-sm-6 pd-r-0">
-													<div class="col-sm-4">50 Gr</div>
+												<div class="col-sm-5 pd-r-0 lh-3">
 													<div class="col-sm-6">
 														<span class="tx-bold d-lg-block">Rp. <?= $this->Number->format($val['price']);?></span>
+														<span><?= $val['weight']; ?> Gr</span>
 													</div>
-													<div class="col-sm-1"><?= $val['qty'];?></div>
+													<div class="col-sm-6 text-center"><span class="tx-bold d-lg-block">Qty : <?= $val['qty'];?> </span> </div>
 												</div>
 												<div class="col-sm-3 pd-r-0 tx-16 tx-bold tx-right">Rp. <?= $this->Number->format($val['total']);?></div>
 											</div>
@@ -99,10 +99,9 @@
 							<div class="row mg-0 ft-left wd-100p bd-b pd-t-10 pd-b-10">
 								<div class="col-sm-12 mg-0 tx-medium zl-tx-black tx-13 pd-10 tx-left">
 									  <ul class="col-sm-12 list-unstyled multi-steps">
-										<li>Menunggu Pembayaran</li>
-										<li class="is-active">Diproses</li>
-										<li>Dikirim</li>
-										<li>Selesai</li>
+										  <?php foreach($shipping_status as $keys => $value):?>
+											<li <?php echo $vals['shipping_status']['code'] ==  $keys ? 'class="is-active"' : '';?>><?php echo $value;?></li>
+										  <?php endforeach;?>
 									  </ul>
 								</div>
 							</div>
@@ -225,7 +224,7 @@
 									Potongan Point
 								</div>
 								<div class="col-sm-6 tx-right">
-									Rp. <?= isset($orders['use_point']) ? $this->Number->format($orders['use_point']) : '-';?>
+									<?= isset($orders['use_point']) ? $this->Number->format($orders['use_point']) : '-';?>
 								</div>
 							</div>
 						</div>
@@ -274,7 +273,7 @@
 			</div>
 			<div class="modal-body"  style="overflow: auto;height: 300px;">
 				<div class="alert alert-info">
-					Kurir : <span class="courier"></span> <span class="service"></span> <span class="status"></span><br>
+					Kurir : <span class="courier"></span> <span class="status"></span><br>
 					No. Resi : <span class="resi"></span>
 				</div>
 				<ul class="timeline">

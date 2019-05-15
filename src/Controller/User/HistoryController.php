@@ -13,12 +13,14 @@ class HistoryController extends AuthController
             $orders = $this->Api->makeRequest($this->Auth->user('token'))
                 ->get('v1/web/orders', [
                     'query' => [
-                        'limit' => 2,
+                        'limit' => 6,
                         'page' => $this->request->getQuery('page', 1)
                     ]
                 ]);
             if ($response = $this->Api->success($orders)) {
                 $response = $response->parse();
+//                debug($response);
+//                exit;
                 $orders = $response['result']['data'];
                 $paging = $response['paging'];
             }
@@ -31,14 +33,21 @@ class HistoryController extends AuthController
             $pagination = new Pagination($paging['count'], $paging['perPage'], $paging['page']);
         }
 
-
+        $payment_status = [
+            '1' => 'Pending',
+            '2' => 'Success',
+            '3' => 'Failed',
+            '4' => 'Expired',
+            '5' => 'Refund',
+            '6' => 'Cancel'
+        ];
         $transaction_statuses = [
             'pending' => 'Pending',
             'settlement' => 'Success',
             'capture' => 'Success'
         ];
 
-        $this->set(compact('orders', 'transaction_statuses', 'pagination'));
+        $this->set(compact('orders', 'transaction_statuses', 'pagination','payment_status'));
     }
 
     public function detail($invoice = null){
@@ -49,6 +58,8 @@ class HistoryController extends AuthController
                 ->get('v1/web/orders/view/'.$invoice);
             if ($response = $this->Api->success($orders)) {
                 $response = $response->parse();
+//                debug($response);
+//                exit;
                 $orders = $response['result']['data'];
             }
         } catch(\GuzzleHttp\Exception\ClientException $e) {
@@ -57,12 +68,19 @@ class HistoryController extends AuthController
         }
 
 
+        $shipping_status = [
+            '1' => 'Menunggu Pembayaran',
+            '2' => 'Diproses',
+            '3' => 'Dikirim',
+            '4' => 'Selesai',
+        ];
+
         $transaction_statuses = [
             'pending' => 'Pending',
             'settlement' => 'Success',
             'capture' => 'Success'
         ];
-        $this->set(compact('orders', 'transaction_statuses'));
+        $this->set(compact('orders', 'transaction_statuses','shipping_status'));
     }
 
 
