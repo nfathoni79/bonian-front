@@ -33,7 +33,19 @@
                     'title' => 'Notifikasi',
                     'url' => $this->Url->build(['controller' => 'Notification', 'action' => 'index', 'prefix' => 'user']),
                     'icon' =>'zl zl-notif',
-                    'controller' => 'Notification'
+                    'controller' => 'Notification',
+                    'children' => [
+                        [
+                            'title' => 'Pesanan',
+                            'url' => $this->Url->build(['controller' => 'Notification', 'action' => 'index', 'prefix' => 'user']),
+                            'controller' => 'Notification'
+                        ],
+                        [
+                            'title' => 'Update',
+                            'url' => $this->Url->build(['controller' => 'Notification', 'action' => 'update', 'prefix' => 'user']),
+                            'controller' => 'Notification'
+                        ],
+                    ]
                 ],
                 [
                     'title' => 'Voucher',
@@ -76,6 +88,15 @@
                         <a href="<?= $val['url']; ?>">
                             <i class="<?= $val['icon']; ?>" aria-hidden="true"></i>
                             <?= $val['title']; ?> </a>
+                        <?php if(!empty(@$val['children'])):?>
+                            <ul>
+                            <?php foreach($val['children'] as $value):?>
+                                <li>
+                                    <a href="<?= $value['url']; ?>"> <?= $value['title']; ?> </a>
+                                </li>
+                            <?php endforeach;?>
+                            </ul>
+                        <?php endif;?>
                     </li>
                 <?php endforeach; ?>
             </ul>
