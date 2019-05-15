@@ -44474,11 +44474,12 @@ footer .footer-top .block-infos .info .inner i{
 }
 
 .user-nav-child{
-  padding-left: 54px;
+  margin-left: 70px;
+  margin-bottom: 10px;
+  list-style-type: circle;
 }
 .user-nav-child a{
-  padding: 5px 10px;
-  display: block;
+  padding: 5px 0;
 } 
 
 
