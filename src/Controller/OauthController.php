@@ -109,8 +109,9 @@ class OauthController extends AuthController
                         'reffcode',
                         $json['result']['data']['reffcode'],
                         (new \DateTime())->add(new \DateInterval('P1M')),
-                        $this->request->getAttribute('base')
+                        '/'
                     );
+                    // old path //$this->request->getAttribute('base')
                     $this->response = $this->response->withCookie($cookie);
                 }
 
