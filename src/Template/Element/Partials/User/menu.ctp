@@ -91,7 +91,7 @@
                         <?php if(!empty(@$val['children'])):?>
                             <ul>
                             <?php foreach($val['children'] as $value):?>
-                                <li>
+                                <li class="user-nav-child lh-normal">
                                     <a href="<?= $value['url']; ?>"> <?= $value['title']; ?> </a>
                                 </li>
                             <?php endforeach;?>

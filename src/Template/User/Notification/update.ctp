@@ -8,7 +8,7 @@
                 <div class="user-content overflow-hidden">
 
                     <div class="user-content-header">
-                        <h4 class="tx-bold"><i class="fas fa-bell mg-r-10"></i>Pesanan </h4>
+                        <h4 class="tx-bold"><i class="fas fa-bell mg-r-10"></i>Update</h4>
                     </div>
 
                     <div class="user-content-body pd-t-0-force pd-b-0-force">

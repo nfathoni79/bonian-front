@@ -44473,6 +44473,14 @@ footer .footer-top .block-infos .info .inner i{
   border-bottom: none;
 }
 
+.user-nav-child{
+  padding-left: 54px;
+}
+.user-nav-child a{
+  padding: 5px 10px;
+  display: block;
+} 
+
 
 
 /*notif tabs*/
@@ -44681,7 +44689,6 @@ footer .footer-top .block-infos .info .inner i{
   color: #3d3d3d;
   font-weight: 500 !important;
 }
-
 
 .products-list.grid .product-item-container .right-block .cartinfo--static{
     position: relative !important;

@@ -31,4 +31,10 @@ class NotificationController extends AuthController{
             ->withStringBody(json_encode($data));
     }
 
+
+    public function update()
+    {
+
+    }
+
 }
