@@ -539,11 +539,6 @@
                         <h5>wishlist</h5>
                     </div>
 
-                    <div class="row">
-                        <div class="col-lg-12  mb-4 text-center">
-                            <?php echo $this->Html->link('Daftar whislist', ['controller' => 'Wishlist', 'action' => 'index', 'prefix' => 'user'],['class' => 'btn btn-danger btn-sm btn-radius']);?>
-                        </div>
-                    </div>
                     <!-- end: title -->
                     <?php if(!empty($wishlists)):?>
                     <?php foreach($wishlists as $vals):?>
@@ -618,6 +613,11 @@
                     <hr>
                     <?php endforeach;?>
 
+                    <div class="row">
+                        <div class="col-lg-12  mb-4 text-center">
+                            <?php echo $this->Html->link('Daftar whislist', ['controller' => 'Wishlist', 'action' => 'index', 'prefix' => 'user'],['class' => 'btn btn-danger btn-sm btn-radius']);?>
+                        </div>
+                    </div>
 
                     <?php else: ?>
 
