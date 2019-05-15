@@ -34,7 +34,7 @@
                     <div class="table_layout filter-shopby">
                         <div class="table_row">
                             <!-- - - - - - - - - - - - - - category - - - - - - - - - - - - - - - - -->
-                            <div class="table_cell">
+                            <div class="table_cell mg-0-force pd-0-force">
                                 <div id="category_view"></div>
                             </div>
                             <!--/ .table_cell -->
@@ -59,7 +59,7 @@
                 <div id="collapseTwo" class="collapse in" aria-labelledby="headingTwo"
                   data-parent="#accordionExample275">
                     <!-- - - - - - - - - - - - - - Price - - - - - - - - - - - - - - - - -->
-                    <div class="table_cell">
+                    <div class="table_cell pd-20 pd-t-0-force pd-b-0-force">
                         <fieldset>
                             <div id="pricing-range"
                                  class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
@@ -87,98 +87,96 @@
                                     <button type="button" class="btn btn-danger hide" id="apply-filter-price">Terapkan filter</button>
                                 </div>
                             </div>
-
-
                         </fieldset>
                     </div>
-                    <!--/ .table_cell -->
-
                     <!-- - - - - - - - - - - - - - End price - - - - - - - - - - - - - - - - -->
                 </div>
               </div>
 
-            </div>
-
-
-
-            <!-- <h3 class="modtitle mg-t-0">Filter Produk </h3> -->
-            <span id="close-sidebar" class="fa fa-times"></span>
-
-
-            
-
-            <!-- start: componen harga -->
-            <div class="module">
-                <h3 class="modtitle o-filter-title">Berdasarkan harga </h3>
-                <div class="table_layout filter-shopby">
-                    <div class="table_row">
-                        
-                    </div>
+              <!-- start: componen Brand -->
+              <div class="z-depth-0 bordered filter-by-brand">
+                <div id="headingThree">
+                  <div class="block-categories module mg-b-20-force pd-0-force br-none bs-none">
+                      <h3 class="modtitle tx-mont">
+                        <button class="btn btn-link tx-bold zl-tx-black pd-0" type="button" data-toggle="collapse" data-target="#collapseThree"
+                      aria-expanded="true" aria-controls="collapseThree">
+                        Berdasarkan Brand
+                      </button>
+                    </h3>
+                  </div>
                 </div>
-            </div>
-            <!-- end: componen harga -->
-
-            <!-- start: componen Brand -->
-            <div class="module filter-by-brand">
-                <h3 class="modtitle o-filter-title">Berdasarkan Brand</h3>
-                <div class="table_layout filter-shopby">
-                    <div class="table_row">
-                        <!-- - - - - - - - - - - - - - Brand - - - - - - - - - - - - - - - - -->
-                        <div class="table_cell" style="margin-top:20px;">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <?php foreach($brands as $value) : ?>
-                                        <div>
-                                            <div class="pretty p-default p-thick p-pulse">
-                                                <input type="checkbox" data-id="<?= $value['brand_id']; ?>" class="brand-value" />
-                                                <div class="state p-primary">
-                                                    <label><?= $value['name']; ?> <span class="category-counter">(<?= $value['total']; ?>)</span></label>
-                                                </div>
+                <div id="collapseThree" class="collapse in" aria-labelledby="headingThree"
+                  data-parent="#accordionExample275">
+                    <!-- - - - - - - - - - - - - - Brand - - - - - - - - - - - - - - - - -->
+                    <div class="table_cell scrollable pd-20 pd-t-0-force" style="max-height: 175px; overflow: auto;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <?php foreach($brands as $value) : ?>
+                                    <div>
+                                        <div class="pretty p-default p-thick p-pulse tx-12 zl-tx-black">
+                                            <input type="checkbox" data-id="<?= $value['brand_id']; ?>" class="brand-value" />
+                                            <div class="state p-primary">
+                                                <label><?= $value['name']; ?> <span class="category-counter">(<?= $value['total']; ?>)</span></label>
                                             </div>
                                         </div>
-                                    <?php endforeach; ?>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!--/ .table_cell -->
-                        <!-- - - - - - - - - - - - - - End Brand - - - - - - - - - - - - - - - - -->
-                    </div>
-                </div>
-            </div>
-            <!-- end: componen Brand -->
-
-            <?php foreach($variants as $variant) : ?>
-            <!-- start: componen variant -->
-            <div class="module filter-by-variant">
-                <h3 class="modtitle o-filter-title">Berdasarkan <?= $variant['Options']['name']; ?></h3>
-                <div class="table_layout filter-shopby">
-                    <div class="table_row">
-                        <!-- - - - - - - - - - - - - - variant - - - - - - - - - - - - - - - - -->
-                        <div class="table_cell" style="padding-top:20px;">
-                            <div class="row">
-                                <?php foreach(array_chunk($variant['values'], ceil(count($variant['values']) / 2)) as $group) : ?>
-                                    <div class="col-md-6">
-                                        <?php foreach($group as $value) : ?>
-                                            <div class="pretty p-default p-thick p-pulse">
-                                                <input type="checkbox" data-id="<?= $value['option_value_id']; ?>" class="variant-value" />
-                                                <div class="state p-primary">
-                                                    <label><?= $value['name']; ?></label>
-                                                </div>
-                                            </div>
-                                        <?php endforeach; ?>
-
                                     </div>
                                 <?php endforeach; ?>
                             </div>
                         </div>
-                        <!--/ .table_cell -->
-                        <!-- - - - - - - - - - - - - - End variant - - - - - - - - - - - - - - - - -->
                     </div>
+                    <!-- - - - - - - - - - - - - - End Brand - - - - - - - - - - - - - - - - -->
                 </div>
+              </div>
+
+              <?php foreach($variants as $variant) : ?>
+              <!-- start: componen variant -->
+              <div class="z-depth-0 bordered filter-by-brand">
+                <div id="headingFour-<?= $variant['Options']['id']; ?>">
+                  <div class="block-categories module mg-b-20-force pd-0-force br-none bs-none">
+                      <h3 class="modtitle tx-mont">
+                        <button class="btn btn-link tx-bold zl-tx-black pd-0" type="button" data-toggle="collapse" data-target="#collapseFour-<?= $variant['Options']['id']; ?>"
+                      aria-expanded="true" aria-controls="collapseThree">
+                        Berdasarkan <?= $variant['Options']['name']; ?>
+                      </button>
+                    </h3>
+                  </div>
+                </div>
+                <div id="collapseFour-<?= $variant['Options']['id']; ?>" class="collapse in" aria-labelledby="headingFour-<?= $variant['Options']['id']; ?>"
+                  data-parent="#accordionExample275">
+                    <div class="module filter-by-variant br-none bs-none pd-r-0-force">
+                      <div class="table_layout filter-shopby pd-r-0-force">
+                          <div class="table_row">
+                              <!-- - - - - - - - - - - - - - variant - - - - - - - - - - - - - - - - -->
+                              <div class="table_cell scrollable" style="overflow-x: hidden !important;">
+                                  <div class="row">
+                                      <?php foreach(array_chunk($variant['values'], ceil(count($variant['values']) / 1)) as $group) : ?>
+                                          <div class="col-sm-12">
+                                              <?php foreach($group as $value) : ?>
+                                              <div>
+                                                  <div class="pretty p-default p-thick p-pulse w-100p">
+                                                      <input type="checkbox" data-id="<?= $value['option_value_id']; ?>" class="variant-value" />
+                                                      <div class="state p-primary">
+                                                          <label><?= $value['name']; ?></label>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <?php endforeach; ?>
+
+                                          </div>
+                                      <?php endforeach; ?>
+                                  </div>
+                              </div>
+                              <!--/ .table_cell -->
+                              <!-- - - - - - - - - - - - - - End variant - - - - - - - - - - - - - - - - -->
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <!-- end: componen variant -->
+              <?php endforeach; ?>
+
             </div>
-            <!-- end: componen variant -->
-            <?php endforeach; ?>
 
             <?php /*
             <!-- start: componen fitur -->
@@ -557,8 +555,8 @@ $this->Html->script([
 
         //filter-by-brand
         function initialScrollbarBrand() {
-            if ($('.module.filter-by-brand').find('.table_cell').length) {
-                var tableCell = $('.module.filter-by-brand').find('.table_cell');
+            if ($('.filter-by-brand').find('.table_cell').length) {
+                var tableCell = $('.filter-by-brand').find('.table_cell');
                 var height = tableCell.innerHeight();
                 if (height > 165) {
                     tableCell.css('height', 165)
@@ -570,7 +568,7 @@ $this->Html->script([
 
             }
         }
-        initialScrollbarBrand();
+        //initialScrollbarBrand();
 
         function refreshPage(target, updateCategory, updateBrand) {
             //var parsed = queryString.parse(location.search, {arrayFormat: 'bracket'});
@@ -654,7 +652,7 @@ $this->Html->script([
             },
             success: function(response){
                 $(".module.filter-by-brand").html(response);
-                initialScrollbarBrand();
+                //initialScrollbarBrand();
             },
             error: function () {
 

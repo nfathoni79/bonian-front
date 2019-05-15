@@ -44676,6 +44676,12 @@ footer .footer-top .block-infos .info .inner i{
 
 /*Product Grid Style*/
 
+.pretty .state label{
+  font-size: 13px;
+  color: #3d3d3d;
+  font-weight: 500 !important;
+}
+
 
 .products-list.grid .product-item-container .right-block .cartinfo--static{
     position: relative !important;

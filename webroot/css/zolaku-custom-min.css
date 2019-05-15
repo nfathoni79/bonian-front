@@ -176,8 +176,13 @@ body {
     border-bottom-left-radius: 15px
 }
 
+.c-filter .filter-shopby .table_cell.scrollable {
+    overflow-x: hidden !important;
+    max-height: 175px;
+}
+
 .c-filter .filter-shopby .table_cell {
-    border-bottom: 0!important
+    border-bottom: 0!important;
 }
 
 .c-filter .ui-slider {
