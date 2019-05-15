@@ -44824,8 +44824,8 @@ footer .footer-top .block-infos .info .inner i{
 
 .product-detail .producttab .tabsslider.horizontal-tabs .nav-tabs li.active a, 
 .producttab .tabsslider.horizontal-tabs .nav-tabs li:hover a{
-    background: #dc5054;
-    color: #fff;
+    background: #fff;
+    color: #c93535;
 }
 
 .product-detail .producttab .tabsslider.horizontal-tabs .nav-tabs{

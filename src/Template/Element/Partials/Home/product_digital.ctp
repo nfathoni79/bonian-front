@@ -1,6 +1,6 @@
 <!-- produk digital -->
 <!-- title -->
-  <div class="o-flex o-justify-content--start o-align-items--center" style="margin-top: 20px;">
+  <div class="o-flex o-justify-content--start o-align-items--center mg-t-50">
       <h3 class="c-content--title">Produk Digital </h3>
       <p class="c-content--subtitle"> Poin tambah, penghasilan berlimpah</p>
   </div>

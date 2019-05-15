@@ -1,4 +1,4 @@
-<div class="card module topbrands pd-t-70">
+<div class="card module topbrands pd-t-55">
         <div class="box-title font-ct">
             <h2 class="modtitle">Top Brands</h2>
         </div>
