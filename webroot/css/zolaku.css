@@ -454,9 +454,10 @@ hr.style3 {
 
 .profile-usermenu .nav > li > a i.fa {
     font-size: 21px;
-    margin-right: 25px;
+    margin-right: 20px;
     height: 24px;
     vertical-align: middle;
+    padding-left: 5px;
 }
 
 .profile-usermenu .nav > li > a i.zl {
