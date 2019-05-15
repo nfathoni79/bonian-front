@@ -1,0 +1,22 @@
+<style>
+    .title-panel p{
+        margin : 0 0 0 0px;
+    }
+    .panel-heading{
+        background:  #d9534f !important;
+        color:  #ffffff !important;
+    }
+
+    .panel-footer{
+        background:  #FFF6F6 !important;
+    }
+
+    hr.style3 {
+        border-top: 1px dashed #8c8b8b;
+        margin-top : 0px !important;
+        margin-bottom : 0px !important;
+    }
+    address{
+        margin-bottom: 5px !important;
+    }
+</style>

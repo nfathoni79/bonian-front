@@ -1,25 +1,11 @@
-<style>
-    .title-panel p{
-        margin : 0 0 0 0px;
-    }
-    .panel-heading{
-        background:  #d9534f !important;
-        color:  #ffffff !important;
-    }
+<?php $this->append('style'); ?>
+<?php
+$this->Html->css([
+'/css/custom/history.css',
+], ['block' => true]);
+?>
+<?php $this->end(); ?>
 
-    .panel-footer{
-        background:  #FFF6F6 !important;
-    }
-
-    hr.style3 {
-        border-top: 1px dashed #8c8b8b;
-        margin-top : 0px !important;
-        margin-bottom : 0px !important;
-    }
-    address{
-        margin-bottom: 5px !important;
-    }
-</style>
 <div class="container">
     <div class="block block_0">
         <div class="row">
