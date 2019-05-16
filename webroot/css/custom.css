@@ -45111,21 +45111,23 @@ hr.title-line{
   float: left;
 }
 .people-list .search {
-  padding: 20px;
+  padding: 15px;
   background: #444753;
 }
 .people-list input {
   border-radius: 3px;
   border: none;
-  padding: 14px;
+  padding: 10px;
   color: white;
   background: #6A6C75;
-  width: 90%;
+  width: 100%;
   font-size: 14px;
 }
 .people-list .fa-search {
-  position: relative;
-  left: -25px;
+  position: absolute;
+  left: 210px;
+  top: 28px;
+  font-size: 20px;
 }
 .people-list ul {
   padding: 20px;
@@ -45158,9 +45160,12 @@ hr.title-line{
   color: #434651;
 }
 .chat .chat-header {
-  padding: 19px;
+  padding: .735em;
   border-left: 1px solid #7d7d7d;
   background: #444753;
+}
+.chat .chat-header .chat-about{
+  color: #fff;
 }
 .chat .chat-header img {
   float: left;
@@ -45182,7 +45187,8 @@ hr.title-line{
   float: right;
   color: #D8DADF;
   font-size: 20px;
-  margin-top: 12px;
+  margin-top: 18px;
+  margin-right: 10px;
 }
 .chat .chat-history {
   padding: 30px 30px 20px;
