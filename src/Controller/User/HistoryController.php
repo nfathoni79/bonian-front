@@ -2,6 +2,7 @@
 namespace App\Controller\User;
 
 use App\Controller\AuthController;
+use Cake\Core\Configure;
 use Pagination\Pagination;
 
 class HistoryController extends AuthController
@@ -25,8 +26,6 @@ class HistoryController extends AuthController
         }
 
         $params['limit'] = 5;
-
-
 
         $response = [];
         try {
@@ -88,7 +87,7 @@ class HistoryController extends AuthController
     }
 
     public function detail($invoice = null){
-
+        Configure::write('debug',0);
         $response = [];
         try {
             $orders = $this->Api->makeRequest($this->Auth->user('token'))
