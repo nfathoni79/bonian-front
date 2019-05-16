@@ -22,8 +22,7 @@ $(document).ready(function() {
                     <div class="row">
                         <div class="col-md-6 col-sm-6 col-xs-6">Daftar Notifikasi</div>
                         <div class="col-md-6 col-sm-6 col-xs-6 text-right"> 
-                        <a href="" class="rIcon allRead" data-tooltip="tooltip" data-placement="bottom" title="Baca semua">
-                        <i class="fa fa-dot-circle-o"></i></a></div>
+                        </div>
                     </div>
                 </div>
                 <!-- end notify title -->
@@ -35,6 +34,10 @@ $(document).ready(function() {
                         if (data.result.data[i].image) {
                             path_image = data.result.data[i].image_type ==1 ? baseImagePath + data.result.data[i].image : data.result.data[i].image;
                         }
+                        var link = '#';
+                        if (data.result.data[i].static_url) {
+                            link = data.result.data[i].static_url.match(/^http/) ? data.result.data[i].static_url : basePath + data.result.data[i].static_url;
+                        }
                         var img = '<img src="'+path_image+'" alt="" style="width:45px;" />';
                         out += `<li>
                         <div class="col-md-3 col-sm-3 col-xs-3">
@@ -43,9 +46,8 @@ $(document).ready(function() {
                             </div>
                         </div>
                         <div class="col-md-9 col-sm-9 col-xs-9 pd-l0">
-                             ${data.result.data[i].title} <a href="" class="rIcon"><i class="fa fa-dot-circle-o"></i></a>
+                             <a href="${link}" class="notify-link">${data.result.data[i].title}</a>
                             <p>${truncate(data.result.data[i].message.replace(/(<([^>]+)>)/ig,""), 50)}</p>
-                            <hr>
                             <p class="time">${data.result.data[i].time_ago}</p>
                         </div>
                     </li>`;
@@ -55,7 +57,7 @@ $(document).ready(function() {
 
                 out += `</div>
                 <div class="notify-drop-footer text-center">
-                    <a href="${basePath}/user/notification"><i class="fa fa-eye"></i> Lihat semua notifikasi</a>
+                    <a href="${basePath}/user/notification">Lihat semua notifikasi</a>
                 </div>`;
         /* jshint ignore:end */
         return out;
