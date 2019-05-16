@@ -30,5 +30,5 @@ $this->Html->css([
         </div>
     </div>
     <?= $this->element('Partials/Home/top_products', ['topProducts' => $topProducts]); ?>
-    <?= $this->element('Partials/Home/top_brand', ['topBrand' => $topBrand]); ?>
+    <?= $this->element('Partials/Home/top_brand', ['topBrand' => @$topBrand]); ?>
 </div>

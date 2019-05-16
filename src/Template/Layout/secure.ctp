@@ -153,6 +153,7 @@
 '/js/sweetalert/sweetalert.js',
 '/js/lib-tools.js',
 '/js/jquery.smartsuggest.js',
+'/js/jquery.waypoints.min.js',
 '/js/notification.js',
 ]); ?>
 

@@ -142,7 +142,7 @@
 
 <!-- Theme files -->
 <?= $this->Html->script([
-    '//js.pusher.com/4.4/pusher.min.js',
+    'https://js.pusher.com/4.4/pusher.min.js',
     '/js/pusher-client.js',
     '/js/themejs/application',
     '/js/themejs/homepage',
@@ -153,6 +153,7 @@
     '/js/sweetalert/sweetalert.js',
     '/js/lib-tools.js',
     '/js/jquery.smartsuggest.js',
+    '/js/jquery.waypoints.min.js',
     '/js/notification.js',
 ]); ?>
 

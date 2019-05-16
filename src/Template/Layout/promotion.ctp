@@ -147,6 +147,7 @@
     '/js/themejs/cpanel',
     '/js/custom-libs/validation-render',
     '/js/jquery.smartsuggest.js',
+    '/js/jquery.waypoints.min.js',
     '/js/notification.js',
 ]); ?>
 

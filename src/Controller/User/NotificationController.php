@@ -37,6 +37,29 @@ class NotificationController extends AuthController{
         $this->set(compact('notifications', 'pagination', 'notification_categories', 'notification_title'));
     }
 
+    public function mark()
+    {
+        $this->disableAutoRender();
+        $this->request->allowMethod('post');
+        $data = [];
+        try {
+            $notification = $this->Api->makeRequest($this->Auth->user('token'))
+                ->post('v1/web/notifications/mark', [
+                    'form_params' => $this->request->getData()
+                ]);
+            if ($response = $this->Api->success($notification)) {
+                $json = $response->parse();
+                $data = $json;
+
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $this->response = $this->response->withStatus($e->getResponse()->getStatusCode());
+        }
+
+        return $this->response->withType('application/json')
+            ->withStringBody(json_encode($data));
+    }
+
     public function getData()
     {
         $this->disableAutoRender();

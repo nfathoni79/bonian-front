@@ -39,7 +39,7 @@ $(document).ready(function() {
                             link = data.result.data[i].static_url.match(/^http/) ? data.result.data[i].static_url : basePath + data.result.data[i].static_url;
                         }
                         var img = '<img src="'+path_image+'" alt="" style="width:45px;" />';
-                        out += `<li>
+                        out += `<li class="notification-item" data-is-read="${data.result.data[i].is_read}" data-notification="${data.result.data[i].id}">
                         <div class="col-md-3 col-sm-3 col-xs-3">
                             <div class="notify-img">
                                 ${img}
@@ -75,6 +75,32 @@ $(document).ready(function() {
                 if (statusText === 'success') {
                     //console.log(response, xhr);
                     $('.zl-notif .dropdown-menu.notify-drop').html(ZlNotification(response));
+
+                    var selector = $('[data-is-read="false"]');
+                    var is_send = [];
+
+                    selector.waypoint({
+                        handler: function(direction) {
+                            var notif_id = $(this.element).data('notification');
+                            if($.inArray(notif_id, is_send) === -1) {
+                                is_send.push(notif_id);
+                                console.log('oke', notif_id)
+                                markNotification(notif_id);
+                            }
+
+                        },
+                        context: '.zl-notif .drop-content',
+                        offset: '50%'
+                    });
+                    selector.off('mouseenter').mouseenter(function () {
+                        var notif_id = $(this).data('notification');
+                        if($.inArray(notif_id, is_send) === -1) {
+                            is_send.push(notif_id);
+                            console.log('mouse', notif_id)
+                            markNotification(notif_id);
+                        }
+                    });
+
                 }
 
 
@@ -89,6 +115,17 @@ $(document).ready(function() {
         });
     }
 
+    function markNotification(id) {
+        $.ajax({
+            url: basePath + '/user/notification/mark',
+            type: 'POST',
+            data: {
+                _csrfToken: $('meta[name="_csrfToken"]').attr('content'),
+                notification_id: id
+            },
+            dataType: 'json'
+        });
+    }
 
     const channel = pusherClient.subscribe('private-notification');
     channel.bind('my-event-' + $.cookie('reffcode'), function(data) {

@@ -455,7 +455,7 @@
       </form>
     </div>
 </div> -->
-
+<?php $this->append('script'); ?>
 <script>
 function openForm() {
   document.getElementById("myForm").style.display = "block";
@@ -593,3 +593,4 @@ function closeForm() {
         </div>
     </li>
 </script>
+<?php $this->end(); ?>

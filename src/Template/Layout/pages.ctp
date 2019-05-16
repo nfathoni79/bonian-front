@@ -141,6 +141,7 @@
 '/js/custom-libs/validation-render',
 '/js/sweetalert/sweetalert.js',
 '/js/jquery.smartsuggest.js',
+'/js/jquery.appear.js',
 '/js/notification.js',
 ]); ?>
 
