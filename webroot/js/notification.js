@@ -2,6 +2,7 @@
 
 $(document).ready(function() {
     var basePath = $('meta[name="_basePath"]').attr('content');
+    var baseImagePath = $('meta[name="_baseImagePath"]').attr('content');
 
     $('.zl-notif .dropdown-toggle').mouseenter(function mouseEnter(e) {
         if(!$(this).data('loaded') || $(this).data('loaded') == 0) {
@@ -30,10 +31,15 @@ $(document).ready(function() {
                 <div class="drop-content">`;
                 if (data.result && data.result.data && data.result.data instanceof Array) {
                     for (var i in data.result.data) {
+                        var path_image = 'https://placehold.it/45x45';
+                        if (data.result.data[i].image) {
+                            path_image = data.result.data[i].image_type ==1 ? baseImagePath + data.result.data[i].image : data.result.data[i].image;
+                        }
+                        var img = '<img src="'+path_image+'" alt="" style="width:45px;" />';
                         out += `<li>
                         <div class="col-md-3 col-sm-3 col-xs-3">
                             <div class="notify-img">
-                                <img src="https://placehold.it/45x45" alt="" />
+                                ${img}
                             </div>
                         </div>
                         <div class="col-md-9 col-sm-9 col-xs-9 pd-l0">

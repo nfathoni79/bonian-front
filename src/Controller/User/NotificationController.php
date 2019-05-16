@@ -33,7 +33,7 @@ class NotificationController extends AuthController{
             $pagination = new Pagination($paging['count'], $paging['perPage'], $paging['page']);
         }
 
-
+        //debug($notifications);exit;
         $this->set(compact('notifications', 'pagination', 'notification_categories', 'notification_title'));
     }
 

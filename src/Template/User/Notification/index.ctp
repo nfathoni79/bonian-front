@@ -16,13 +16,21 @@
                         <ul class="row notif-list">
                             <?php foreach($notifications as $val) :?>
                             <li class="col-sm-12 pd-15 bd-b lh-base zl-hover notif-item">
-                                <div class="col-sm-1 pd-0"><img src="https://via.placeholder.com/150x150.png"></div>
+                                <div class="col-sm-1 pd-0">
+                                    <?php if ($val['image']) : ?>
+                                        <img src="<?= $val['image_type'] == 1 ? $_basePath . $val['image'] : $val['image']; ?>" style="width:150px;" />
+                                    <?php else : ?>
+                                        <img src="https://via.placeholder.com/150x150.png">
+                                    <?php endif; ?>
+
+                                </div>
                                 <div class="col-sm-9 pd-t-5 pd-b-5">
                                     <h2 class="tx-bold tx-14 mg-t-0"><?= $val['title']; ?></h2>
                                     <p class="tx-12 mg-0"><?= $val['message']; ?></p>
+                                    <p class="tx-12 mg-0"><?= date('d M Y H:i:s', strtotime($val['created'])); ?></p>
                                 </div>
                                 <div class="col-sm-2 pd-r-0 lh-5x">
-                                    <button class="btn zl-btn-default wd-100p zl-btn-hover-white br-5">Lihat Detail</button>
+                                    <a href="<?= $this->Url->build($val['static_url']); ?>" class="btn zl-btn-default wd-100p zl-btn-hover-white br-5">Lihat Detail</a>
                                 </div>
                             </li>
                             <?php endforeach; ?>
