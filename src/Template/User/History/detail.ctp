@@ -3,8 +3,7 @@
 	    <div class="row">
 	        <div class="col-sm-12">
 	                <div class="mg-t-10 mg-b-10">
-	                	<span class="ft-left tx-20 pd-r-10"><a href="#" class="zl-btn-hover-red"><i class="fas fa-arrow-left"></i></a></span>
-	                    <h2 class="mg-0 tx-mont tx-medium zl-tx-gray">Kembali</h2>
+	                	<span class="ft-left tx-20 pd-r-10"><a href="<?= $this->Url->build(['action' => 'index']);?>" ><i class="fas fa-arrow-left"></i> Kembali</a></span>
 	                </div>
 	         </div>
 	    </div>

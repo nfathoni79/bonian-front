@@ -8,19 +8,36 @@ class HistoryController extends AuthController
 {
 
     public function index(){
+
+
+        $params = $this->request->getQueryParams();
+        $params['page'] = $this->request->getQuery('page', 1);
+        $params['status'] = $this->request->getQuery('status', 'semua');
+
+        if($this->request->is('Post')){
+            $search = explode(' - ',$this->request->getData('datefilter'));
+            $params['start'] = $search[0];
+            $params['end'] = $search[1];
+            $params['search'] = $this->request->getData('invoice', '');
+            $params['page'] = 1;
+
+            return $this->redirect(['action' => 'index', 'prefix' => 'user', '?' => $params]);
+        }
+
+        $params['limit'] = 6;
+
+
+
         $response = [];
         try {
             $orders = $this->Api->makeRequest($this->Auth->user('token'))
                 ->get('v1/web/orders', [
-                    'query' => [
-                        'limit' => 6,
-                        'page' => $this->request->getQuery('page', 1)
-                    ]
+                    'query' => $params
                 ]);
+//            print_r($orders->getBody()->getContents());
+//            exit;
             if ($response = $this->Api->success($orders)) {
                 $response = $response->parse();
-//                debug($response);
-//                exit;
                 $orders = $response['result']['data'];
                 $paging = $response['paging'];
             }
@@ -41,13 +58,21 @@ class HistoryController extends AuthController
             '5' => 'Refund',
             '6' => 'Cancel'
         ];
+
+        $shipping_status = [
+            '1' => 'Menunggu Pembayaran',
+            '2' => 'Diproses',
+            '3' => 'Dikirim',
+            '4' => 'Selesai',
+        ];
+
         $transaction_statuses = [
             'pending' => 'Pending',
             'settlement' => 'Success',
             'capture' => 'Success'
         ];
 
-        $this->set(compact('orders', 'transaction_statuses', 'pagination','payment_status'));
+        $this->set(compact('orders', 'transaction_statuses', 'pagination','payment_status','shipping_status'));
     }
 
     public function detail($invoice = null){

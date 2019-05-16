@@ -45,7 +45,7 @@
                 ],
                 [
                     'title' => 'Riwayat pesanan',
-                    'url' => $this->Url->build(['controller' => 'History', 'action' => 'index', 'prefix' => 'user']),
+                    'url' => $this->Url->build(['controller' => 'History', 'action' => 'index', 'prefix' => 'user', '?' => ['status' => 'semua']]),
                     'icon' =>'zl zl-history',
                     'controller' => 'History'
                 ],
