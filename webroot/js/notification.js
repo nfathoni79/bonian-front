@@ -7,7 +7,7 @@ $(document).ready(function() {
         if(!$(this).data('loaded') || $(this).data('loaded') == 0) {
             $(this).data('loaded', 1);
             var self = this;
-            console.log('data', $(this).data('loaded'))
+            //console.log('data', $(this).data('loaded'))
             loadNotification(function() {
                 $(self).data('loaded', 0);
             });
@@ -49,7 +49,7 @@ $(document).ready(function() {
 
                 out += `</div>
                 <div class="notify-drop-footer text-center">
-                    <a href=""><i class="fa fa-eye"></i> Lihat semua notifikasi</a>
+                    <a href="${basePath}/user/notification"><i class="fa fa-eye"></i> Lihat semua notifikasi</a>
                 </div>`;
         /* jshint ignore:end */
         return out;

@@ -16,6 +16,26 @@
             <div class="divider"></div>
         </div>
         <?php
+
+            //debug($notification_categories);exit;
+            $notificationChildren = [];
+
+            if ($this->request->getParam('controller') == 'Notification') {
+                $notificationChildren = [];
+                if (is_array($notification_categories)) {
+                    foreach($notification_categories as $val) {
+                        $notificationChildren[] = [
+                            'title' => $val['name'],
+                            'url' => $this->Url->build(['controller' => 'Notification', 'action' => 'index', 'prefix' => 'user', $val['id']]),
+                            'controller' => 'Notification',
+                            'action' => 'index',
+                            'pass' => [$val['id']]
+                        ];
+                    }
+                }
+            }
+
+
             $nav = [
                 [
                     'title' => 'Profile Saya',
@@ -34,18 +54,7 @@
                     'url' => $this->Url->build(['controller' => 'Notification', 'action' => 'index', 'prefix' => 'user']),
                     'icon' =>'zl zl-notif',
                     'controller' => 'Notification',
-                    'children' => [
-                        [
-                            'title' => 'Pesanan',
-                            'url' => $this->Url->build(['controller' => 'Notification', 'action' => 'index', 'prefix' => 'user']),
-                            'controller' => 'Notification'
-                        ],
-                        [
-                            'title' => 'Update',
-                            'url' => $this->Url->build(['controller' => 'Notification', 'action' => 'update', 'prefix' => 'user']),
-                            'controller' => 'Notification'
-                        ],
-                    ]
+                    'children' => $notificationChildren
                 ],
                 [
                     'title' => 'Voucher',
@@ -90,8 +99,8 @@
                             <?= $val['title']; ?> </a>
                         <?php if(!empty(@$val['children'])):?>
                             <ul>
-                            <?php foreach($val['children'] as $value):?>
-                                <li class="user-nav-child lh-normal">
+                            <?php foreach($val['children'] as $value): ?>
+                                <li class="user-nav-child lh-normal <?= ($value['action'] == $this->request->getParam('action') &&  $value['pass'] == $this->request->getParam('pass')) ? 'active' : ''; ?>">
                                     <a href="<?= $value['url']; ?>"> <?= $value['title']; ?> </a>
                                 </li>
                             <?php endforeach;?>
