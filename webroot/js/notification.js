@@ -84,7 +84,7 @@ $(document).ready(function() {
                             var notif_id = $(this.element).data('notification');
                             if($.inArray(notif_id, is_send) === -1) {
                                 is_send.push(notif_id);
-                                console.log('oke', notif_id)
+                                //console.log('oke', notif_id)
                                 markNotification(notif_id);
                             }
 
@@ -96,7 +96,7 @@ $(document).ready(function() {
                         var notif_id = $(this).data('notification');
                         if($.inArray(notif_id, is_send) === -1) {
                             is_send.push(notif_id);
-                            console.log('mouse', notif_id)
+                            //console.log('mouse', notif_id)
                             markNotification(notif_id);
                         }
                     });
@@ -123,7 +123,14 @@ $(document).ready(function() {
                 _csrfToken: $('meta[name="_csrfToken"]').attr('content'),
                 notification_id: id
             },
-            dataType: 'json'
+            dataType: 'json',
+            success: function(response, statusText) {
+                if (statusText === 'success') {
+                    if (response.result && response.result.total) {
+                        $('.zl-notif .notification-count').text(response.result.total);
+                    }
+                }
+            }
         });
     }
 
