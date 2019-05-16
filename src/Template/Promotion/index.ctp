@@ -150,6 +150,7 @@
 
                             <!--Begin Items-->
                             <?php foreach($val as $v):?>
+                            <?php if(!empty($v['product']['name'])):?>
                             <div class="product-layout five-items">
                                 <div class="product-item-container">
                                     <div class="left-block left-b">
@@ -226,6 +227,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <?php endif;?>
                             <?php endforeach;?>
                             <!--//End Begin Items-->
                         </div>
