@@ -26,7 +26,18 @@ class PromotionController  extends AuthController
         } catch(\GuzzleHttp\Exception\ClientException $e) {
 
         }
-        $this->set(compact('promotion'));
+        try {
+            $banner = $this->Api->makeRequest()
+                ->get('v1/banner/promotion/'.$slug);
+
+            if ($response = $this->Api->success($banner)) {
+                $json = $response->parse();
+                $banner = $json['result'];
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+
+        }
+        $this->set(compact('promotion','banner'));
     }
 
     public function pointRedeem(){
