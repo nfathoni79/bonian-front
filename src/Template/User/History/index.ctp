@@ -14,17 +14,7 @@ $this->Html->script([
 ?>
 <script>
     $(document).ready(function () {
-        var start = moment().subtract(29, 'days');
-        var end = moment();
-
-        // function cb(start, end) {
-        //     $('#reportrange span').html(start.format('DD-MM-YYYY') + ' - ' + end.format('DD-MM-YYYY'));
-            // alert('oke')
-        // }
-
         $('#reportrange').daterangepicker({
-            // startDate: start,
-            // endDate: end,
             autoUpdateInput: false,
             ranges: {
                 'Today': [moment(), moment()],
@@ -42,7 +32,6 @@ $this->Html->script([
         $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
             $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
         });
-        // cb(start, end)/;
     })
 </script>
 <?php $this->end(); ?>
@@ -121,7 +110,38 @@ $this->Html->script([
                                             </div>
                                         </div>
                                         <div class="panel-body">
-                                            Produk digital
+                                            <!-- PRODUK DIGITAL -->
+                                            <?php
+                                                /* PULSA */
+                                                if($order['order_digital']['digital_detail']['digital_id'] == '1'):
+                                            ?>
+                                            <div class="row pd-10">
+                                                <div class="col-md-6">
+                                                    <dl class="dl-horizontal">
+                                                        <dt>Order ID</dt>
+                                                        <dd><?= $order['invoice']; ?>-<?= $order['order_digital']['id']; ?></dd>
+                                                        <dt>Tipe Produk </dt>
+                                                        <dd><?= $order['order_digital']['digital_detail']['operator']; ?> <?= ucfirst($order['order_digital']['digital_detail']['type']); ?></dd>
+                                                        <dt>Status Transaksi</dt>
+                                                        <dd><?= $digital_status[$order['order_digital']['status']]; ?></dd>
+                                                    </dl>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <dl class="dl-horizontal">
+                                                        <dt>Nomor Tujuan</dt>
+                                                        <dd><?= $order['order_digital']['customer_number']; ?></dd>
+                                                        <dt>Denom</dt>
+                                                        <dd><?= $this->Number->format($order['order_digital']['digital_detail']['denom']); ?></dd>
+                                                        <dt>Serial Number</dt>
+                                                        <?php $raw = json_decode($order['order_digital']['raw_response'],true);?>
+                                                        <dd><?= @$raw['serial_number'] ? $raw['serial_number'] : '-'; ?></dd>
+                                                    </dl>
+                                                </div>
+                                            </div>
+                                            <?php else :?>
+                                                Undefined Product Digitals
+                                            <?php endif;?>
+
                                         </div>
                                         <div class="panel-footer">
                                             <div class="pull-left">
@@ -153,16 +173,20 @@ $this->Html->script([
                                             <?php foreach($order['order_details'] as $key => $detail) : ?>
                                             <div class="row pd-10">
                                                 <div class="col-md-6">
-                                                    <address>
-                                                        <strong>Order ID : <?= $order['invoice']; ?>-<?= $detail['id']; ?></strong><br>
-                                                        <strong>Status Pengiriman: </strong> <?= @$shipping_status[$detail['order_shipping_details'][0]['status']] ? $shipping_status[$detail['order_shipping_details'][0]['status']] : '-'; ?>
-                                                    </address>
+                                                    <dl class="dl-horizontal">
+                                                        <dt>Order ID</dt>
+                                                        <dd><?= $order['invoice']; ?>-<?= $detail['id']; ?></dd>
+                                                        <dt>Status Pengiriman</dt>
+                                                        <dd><?= @$shipping_status[$detail['order_shipping_details'][0]['status']] ? $shipping_status[$detail['order_shipping_details'][0]['status']] : '-'; ?></dd>
+                                                    </dl>
                                                 </div>
-                                                <div class="col-md-6 text-right">
-                                                    <address>
-                                                        <strong>Shipping origin :</strong> <?= $detail['branch']['name']; ?><br>
-                                                        <strong>Shipping destination :</strong> <?= $order['address']; ?>, <?= $order['subdistrict']['name']; ?>, <?= $order['city']['name']; ?>, <?= $order['province']['name']; ?>
-                                                    </address>
+                                                <div class="col-md-6">
+                                                    <dl class="dl-horizontal">
+                                                        <dt>Shipping origin</dt>
+                                                        <dd><?= $detail['branch']['name']; ?></dd>
+                                                        <dt>Shipping destination</dt>
+                                                        <dd><?= $order['address']; ?>, <?= $order['subdistrict']['name']; ?>, <?= $order['city']['name']; ?>, <?= $order['province']['name']; ?></dd>
+                                                    </dl>
                                                 </div>
                                             </div>
                                             <?php if ($key >= 0 && $key < (count($order['order_details']) -1)  && count($order['order_details']) > 1) : ?>

@@ -2,6 +2,7 @@
 namespace App\Controller\User;
 
 use App\Controller\AuthController;
+use Cake\Core\Configure;
 use Pagination\Pagination;
 
 class HistoryController extends AuthController
@@ -24,9 +25,7 @@ class HistoryController extends AuthController
             return $this->redirect(['action' => 'index', 'prefix' => 'user', '?' => $params]);
         }
 
-        $params['limit'] = 6;
-
-
+        $params['limit'] = 5;
 
         $response = [];
         try {
@@ -34,8 +33,6 @@ class HistoryController extends AuthController
                 ->get('v1/web/orders', [
                     'query' => $params
                 ]);
-//            print_r($orders->getBody()->getContents());
-//            exit;
             if ($response = $this->Api->success($orders)) {
                 $response = $response->parse();
                 $orders = $response['result']['data'];
@@ -59,6 +56,12 @@ class HistoryController extends AuthController
             '6' => 'Cancel'
         ];
 
+        $digital_status = [
+            '0' => 'Pending',
+            '1' => 'Success',
+            '2' => 'Failed',
+        ];
+
         $shipping_status = [
             '1' => 'Menunggu Pembayaran',
             '2' => 'Diproses',
@@ -72,19 +75,25 @@ class HistoryController extends AuthController
             'capture' => 'Success'
         ];
 
-        $this->set(compact('orders', 'transaction_statuses', 'pagination','payment_status','shipping_status'));
+
+        $this->set(compact(
+            'orders',
+            'transaction_statuses',
+            'pagination',
+            'payment_status',
+            'shipping_status',
+            'digital_status'
+        ));
     }
 
     public function detail($invoice = null){
-
+        Configure::write('debug',0);
         $response = [];
         try {
             $orders = $this->Api->makeRequest($this->Auth->user('token'))
                 ->get('v1/web/orders/view/'.$invoice);
             if ($response = $this->Api->success($orders)) {
                 $response = $response->parse();
-//                debug($response);
-//                exit;
                 $orders = $response['result']['data'];
             }
         } catch(\GuzzleHttp\Exception\ClientException $e) {
@@ -93,6 +102,12 @@ class HistoryController extends AuthController
         }
 
 
+        $digital_status = [
+            '0' => 'Pending',
+            '1' => 'Success',
+            '2' => 'Failed',
+        ];
+
         $shipping_status = [
             '1' => 'Menunggu Pembayaran',
             '2' => 'Diproses',
@@ -105,7 +120,7 @@ class HistoryController extends AuthController
             'settlement' => 'Success',
             'capture' => 'Success'
         ];
-        $this->set(compact('orders', 'transaction_statuses','shipping_status'));
+        $this->set(compact('orders', 'transaction_statuses','shipping_status','digital_status'));
     }
 
 
@@ -119,8 +134,6 @@ class HistoryController extends AuthController
                     ->post('v1/web/orders/get-shipping/', [
                         'form_params' => $this->request->getData()
                     ]);
-    //                print_r($shipping->getBody()->getContents());
-    //                exit;
                 if ($response = $this->Api->success($shipping)) {
                     $json = $response->parse();
                     if(isset($json['error'])){
