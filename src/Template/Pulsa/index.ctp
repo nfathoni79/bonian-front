@@ -286,6 +286,9 @@
                         });
 
                         $('.form-package').html(opt);
+                        $('.package').on('click',function(){
+                            $(this).find("input:radio").prop("checked", true).trigger("click");
+                        })
                         $('.price').on('click',function(){
                             $('.radio').removeClass("active");
                             $(this).closest(".radio").addClass("active");
@@ -296,6 +299,8 @@
                             $('.bottom-pulsa').show();
                         });
                         $("input:radio:first").prop("checked", true).trigger("click");
+
+                        // $(".package").find('input:radio:first').prop("checked", true).trigger("click");
                     }
                 }
             })
