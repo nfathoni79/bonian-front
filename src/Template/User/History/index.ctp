@@ -60,6 +60,9 @@ $this->Html->script([
                             </div>
                             <?php
                                 $params = $this->request->getQueryParams();
+                                if (isset($params['page'])) {
+                                    unset($params['page']);
+                                }
                             ?>
                             <div class="col-md-8">
                                 <div class=" pull-right">
