@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AuthController;
+use Cake\Core\Configure;
 
 class PromotionController  extends AuthController
 {
@@ -14,6 +15,7 @@ class PromotionController  extends AuthController
 
     public function index($slug = null){
 
+//        Configure::write('debug',0);
         $this->viewBuilder()->setLayout('promotion');
         //get promotion by slug
         try {

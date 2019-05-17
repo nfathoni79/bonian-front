@@ -104,6 +104,20 @@ class ProductsController extends AuthController
             $this->set(compact('review','paginationReview'));
         }
 
+        $category = end($details['data']['categories']);
+
+        try {
+            $releted = $this->Api->makeRequest()
+                ->get('v1/products/releted/'.$category['id']);
+            if ($response = $this->Api->success($releted)) {
+                $json = $response->parse();
+                $releted = $json['result']['data'];
+            }
+        } catch(\Exception $e) {
+            //TODO set log
+        }
+
+        $this->set(compact('releted'));
     }
 
 
