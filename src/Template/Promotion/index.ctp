@@ -1,116 +1,10 @@
-<style type="text/css">
-    .producttab .tabsslider.horizontal-tabs .tab-content{
-        padding: 0;
-        border: unset;
-    }
-    .producttab .tabsslider.horizontal-tabs .nav-tabs li {
-        margin: -1px 0 0 0px;
-        list-style: none;
-        cursor: pointer;
-        font-size: 16px;
-        text-transform: uppercase;
-        border-right: 0px solid #e1e1e1;
-    }
-    .producttab .tabsslider.horizontal-tabs .nav-tabs li a{
-      color: #fff;
-    }
-    .nav-promo li{
-        background: #c93535;
-    }
-
-    .box-title h2{
-        background: #dc5054;
-        background: linear-gradient(160deg,#dc5054 0%, #a41d21 100%);
-        background: -webkit-linear-gradient(160deg,#dc5054 0%, #a41d21 100%);
-        background: -moz-linear-gradient(160deg,#dc5054 0%, #a41d21 100%);
-    }
-    .box-title h2 {
-        line-height: 48px;
-        background-color: #ff5e00;
-        font-size: 18px;
-        padding: 0 16px;
-        color: #fff;
-        margin-left: -25px;
-        margin-top: 8px;;
-        margin-bottom: 12px;
-        font-weight: bold;
-        border-radius: 0 7px 0 0;
-        position: relative;
-        text-transform: uppercase;
-        box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.1);
-    }
-    .box-title h2:before {
-        content: '';
-        width: 0;
-        height: 0;
-        border-bottom: 8px solid transparent;
-        bottom: -8px;
-        position: absolute;
-        border-right: 8px solid #cc4b00;
-        left: 1px;
-    }
-    .box-title {
-        position: relative;
-        top: -18px;
-        left: -9px;
-    }
-    .pd-l-20{
-        padding-left: 20px;
-    }
-    .pd-b-10{
-        padding-bottom: 10px;
-    }
-    .l-detail{
-        color: #dc5054;
-        font-size: 13px;
-        top: 50%;
-        bottom: 50%;
-        margin-right: 2%;
-        margin-top: 5px;
-    }
-    .terms-wrapper{
-        background: #fff;
-        padding: 14px;
-        margin-top: 0px;
-        margin-bottom: 50px;
-        border-radius: 0px 0px 10px 10px;
-        -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
-        -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
-        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
-    }
-    .products-list.grid .product-item-container .right-block{
-          clear: both;
-          padding: 10px 5px 20px 4px;
-          text-align: left;
-          position: relative;
-    }
-    .producttab .tabsslider.horizontal-tabs .nav-tabs li.active a{
-        background: #c93535;
-        color: white!important;
-    }
-    .producttab .tabsslider.horizontal-tabs .nav-tabs li.item_nonactive a{
-        background: #fff;
-    }
-    li.item a{
-        background: #fff;
-        color: black!important;
-    }
-    .share-txt{
-        display: block;
-    }
-    .mg-b-m13{
-      margin-bottom: -13px;
-    }
-</style>
-
-
-<div id="content" style="background: #FFF6F6; background-color: #dc5053; padding: 20px;">
-    <div class="container">
+<div id="content">
+    <div class="jumbotron jumbotron-fluid pd-0">
         <div class="block">
-            <div class="module sohomepage-slider ">
+            <div class="module sohomepage-slider">
                 <div class="yt-content-slider"  data-rtl="yes" data-autoplay="no" data-autoheight="no" data-delay="4" data-speed="0.6" data-margin="0" data-items_column0="1" data-items_column1="1" data-items_column2="1"  data-items_column3="1" data-items_column4="1" data-arrows="no" data-pagination="yes" data-lazyload="yes" data-loop="no" data-hoverpause="yes">
                     <div class="yt-content-slide">
-                        <a title="slide1" href="#"><div class="yt-content-slide"><img src="<?= $this->Url->build($_basePath . 'images/1170x400/'. $banner['banner']['image']); ?>" class="responsive"></div></a>
+                        <a title="slide1" href="#"><div class="yt-content-slide"><img src="<?= $this->Url->build($_basePath . 'images/1170x400/'. $banner['banner']['image']); ?>" class="responsive wd-100p"></div></a>
                     </div>
                 </div>
             </div>
@@ -161,19 +55,22 @@
                                                 <?php break; endforeach; ?>
                                             </a>
                                         </div>
-
                                         <div class="box-label">
                                             <?php $dics = 100 - (($v['product']['price_sale'] / $v['product']['price']) * 100);?>
                                             <?php if($v['product']['price_sale'] != $v['product']['price']):?>
-                                            <span class="label-product label-sale"> <?php echo  $this->Number->precision($dics, 0);?>% </span>
+                                            <span class="product-ribbon"> <?php echo  $this->Number->precision($dics, 0);?>% </span>
                                             <?php endif;?>
-                                            <?php if($v['product']['is_new']): ?>
-                                            <span class="label-product label-new"> New </span>
+                                            <?php if($vals['is_new']): ?>
+                                            <div class="box">
+                                              <div class="ribbon ribbon-top-left"><span>NEW</span></div>
+                                            </div>
                                             <?php endif;?>
                                         </div>
+
                                         <!--quickview-->
-                                        <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $v['product']['slug']]); ?>" title="<?= h($v['product']['name']); ?>" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span></span></a>
+                                        <!-- <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $v['product']['slug']]); ?>" title="<?= h($v['product']['name']); ?>" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span></span></a> -->
                                         <!--end quickview-->
+
                                     </div>
                                     <div class="right-block right-b">
 
@@ -192,11 +89,13 @@
                                                         ?>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-5 pd-0 mg-t-0-force tx-center"><span class="badge" ><?= $v['product']['point']; ?> Poin</span></div>
+
+                                                <div class="col-lg-5"><span class="mg-t-0-force float-right badge <?= $this->Badge->format($v['product']['point']); ?> "><?= $v['product']['point']; ?> Poin</span></div>
+
                                             </div>
                                             <h4><a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $v['product']['slug']]); ?>" title="<?= h($v['product']['name']); ?>" target="_self">  <?php echo $this->Text->truncate(
                                                 h($v['product']['name']),
-                                                30,
+                                                26,
                                                 [
                                                 'ellipsis' => '...',
                                                 'exact' => false
@@ -209,17 +108,13 @@
                                                 <span class="price-old">Rp. <?= $this->Number->format($v['product']['price']); ?></span>
                                                 <?php endif;?>
                                             </div>
-                                            <div class="button-group so-quickview cartinfo--static share-container pd-t-0-force mg-b-m13">
-                                                <span class="zl-tx-red tx-medium share-txt">Bagikan produk ini</span>
+                                            <div class="button-group so-quickview cartinfo--static share-container pd-t-5-force">
+                                                <span class="col-md-12 zl-tx-red tx-medium">Bagikan produk ini</span>
                                                 <div class="row pd-0">
-                                                    <button type="button" class="btn-share b-ig igShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $v['product']['slug'],'prefix' => false],true);?>" data-title="<?= $v['product']['name'];?>" data-price="<?= $v['product']['price_sale'];?>"><i class="fab fa-instagram"></i></button>
-                                                    <button type="button" class="btn-share b-fb fbShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $v['product']['slug'],'prefix' => false],true);?>" data-title="<?= $v['product']['name'];?>" data-price="<?= $v['product']['price_sale'];?>"><i class="fab fa-facebook"></i></button>
-                                                    <button type="button" class="btn-share b-wc smsShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $v['product']['slug'],'prefix' => false],true);?>" data-title="<?= $v['product']['name'];?>" data-price="<?= $v['product']['price_sale'];?>"><i class="fas fa-comment-dots"></i></button>
-                                                </div>
-                                                <div class="row pd-0">
-                                                    <button type="button" class="btn-share b-wa waShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $v['product']['slug'],'prefix' => false],true);?>" data-title="<?= $v['product']['name'];?>" data-price="<?= $v['product']['price_sale'];?>"><i class="fab fa-whatsapp"></i></button>
-                                                    <button type="button" class="btn-share b-ln lineShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $v['product']['slug'],'prefix' => false],true);?>" data-title="<?= $v['product']['name'];?>" data-price="<?= $v['product']['price_sale'];?>"><i class="fab fa-line"></i></button>
-                                                    <button type="button" class="btn-share b-tw twitterShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $v['product']['slug'],'prefix' => false],true);?>" data-title="<?= $v['product']['name'];?>" data-price="<?= $v['product']['price_sale'];?>"><i class="fab fa-twitter"></i></button>
+                                                  <button type="button" class="btn-share b-fb fbShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug'],'prefix' => false],true);?>" data-title="<?= $vals['name'];?>" data-price="<?= $vals['price_sale'];?>"><i class="fab fa-facebook"></i></button>
+                                                  <button type="button" class="btn-share b-wa waShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug'],'prefix' => false],true);?>" data-title="<?= $vals['name'];?>" data-price="<?= $vals['price_sale'];?>"><i class="fab fa-whatsapp"></i></button>
+                                                  <button type="button" class="btn-share b-ln lineShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug'],'prefix' => false],true);?>" data-title="<?= $vals['name'];?>" data-price="<?= $vals['price_sale'];?>"><i class="fab fa-line"></i></button>
+                                                  <button type="button" class="btn-share b-tw twitterShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['slug'],'prefix' => false],true);?>" data-title="<?= $vals['name'];?>" data-price="<?= $vals['price_sale'];?>"><i class="fab fa-twitter"></i></button>
                                                 </div>
 
                                             </div>

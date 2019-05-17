@@ -1,3 +1,10 @@
+<?php $this->append('style'); ?>
+<?php
+$this->Html->css([
+'/css/custom/homepage.css',
+], ['block' => true]);
+?>
+<?php $this->end(); ?>
 
 <!-- start: header part -->
 <div class="c-header__bg" style="z-index:0;">
@@ -16,11 +23,27 @@
 
 <div class="c-help-main mb-5">
     <div class="container">
+
+        <div class="block">
+            <div class="module sohomepage-slider">
+                <div class="yt-content-slider"  data-rtl="yes" data-autoplay="yes" data-autoheight="no" data-delay="4" data-speed="0.6" data-margin="0" data-items_column0="1" data-items_column1="1" data-items_column2="1"  data-items_column3="1" data-items_column4="1" data-arrows="no" data-pagination="yes" data-lazyload="yes" data-loop="no" data-hoverpause="yes">
+                    <div class="yt-content-slide">
+                        <a title="slide1" href="#"><div class="yt-content-slide"><img src="https://via.placeholder.com/1150x383.png" class="responsive wd-100p"></div></a>
+                    </div>
+                    <div class="yt-content-slide">
+                        <a title="slide1" href="#"><div class="yt-content-slide"><img src="https://via.placeholder.com/1150x383.png" class="responsive wd-100p"></div></a>
+                    </div>
+                    <div class="yt-content-slide">
+                        <a title="slide1" href="#"><div class="yt-content-slide"><img src="https://via.placeholder.com/1150x383.png" class="responsive wd-100p"></div></a>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div id="content" class="col-sm-12 item-article">
                 <div class="row box-1-about">
                     <div class="col-md-12 our-member">
-                        <div class="title-pages title-about-us">
+                        <div class="title-pages title-about-us mg-b-40-force">
                             <h2>Tukarkan point anda & dapatkan bonusnya</h2>
                         </div>
                         <div class="notification"></div>

@@ -76,7 +76,7 @@
 <div class="footer-center">
     <div class="container">
         <div class="row">
-            <div class="col-lg-2 col-md-2 col-sm-4 col-xxs-6 col-xs-12 col-style">
+            <div class="col-lg-3 col-md-3 col-sm-4 col-xxs-6 col-xs-12 col-style">
                 <div class="module custom_link ">
                     <div class="module clearfix">
                         <h3 class="footertitle">LAYANAN PELANGGAN</h3>
@@ -91,45 +91,23 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-2 col-md-2 col-sm-4 col-xxs-6 col-xs-12 col-style">
+            <div class="col-lg-3 col-md-3 col-sm-4 col-xxs-6 col-xs-12 col-style">
                 <div class="box-information box-footer">
                     <div class="module clearfix">
                         <h3 class="footertitle">Jelajahi Zolaku</h3>
                         <div class="modcontent">
                             <ul class="menu">
-                                <li><a href="#">Hubungi Kami</a></li>
-                                <li><a href="#">Forums</a></li>
-                                <li><a href="#">Pusat Bantuan</a></li>
-                                <li><a href="#">24/7 support</a></li>
-                                <li><a href="#">Karir</a></li>
-                                <li><a href="#">Kebijakan Zolaku</a></li>
-                                <li><a href="#">Kebijakan Privasi</a></li>
+                                <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'tentang-zolaku','prefix' => false]);?>">Tentang Zolaku</a></li>
+                                <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'cara-pembelian','prefix' => false]);?>">Cara Pembelian</a></li>
+                                <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'cara-pengembalian','prefix' => false]);?>"">Cara Pengembalian</a></li>
+                                <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'keuntungan-menjadi-member','prefix' => false]);?>"">Keuntungan Menjadi Member</a></li>
+                                <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'panduan-mencari-member','prefix' => false]);?>"">Panduan Mencari Member</a></li>
                                 <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'syarat-ketentuan','prefix' => false]);?>">Syarat & Ketentuan</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-2 col-md-2 col-sm-4 col-xxs-6 col-xs-12 col_q1wn  col-style">
-                <div class="module  ">
-                    <div class="footer-block">
-                        <div class="footer-block-title">
-                            <h3 class="footertitle">Pelanggan</h3>
-                        </div>
-                        <div class="footer-block-content">
-                            <ul class="links-footer">
-                                <li><a title="Account" href="#">Akun Saya</a></li>
-                                <li><a title="Checkout" href="#">Keranjang Belanja</a></li>
-                                <li><a title="History" href="#">Riwayat Pembelian</a></li>
-                                <li><a title="History" href="#">Jaringan Saya</a></li>
-                                <li><a title="History" href="#">Mutasi Point</a></li>
-                                <li><a title="History" href="#">Mutasi Saldo</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div class="col-lg-2 col-md-2 col-sm-6 col-xxs-6 col-xs-12 col-style">
                 <div class="box-service box-footer">
                     <div class="module clearfix">
@@ -147,25 +125,6 @@
                                         <span class="fab fa-instagram icon-social"></span> <span class="name-social">Instagram</span>
                                     </a>
                                 </li>
-                                <!--
-                                <li class="li-social google-social">
-                                    <a title="Google+" href="https://plus.google.com/#" target="_blank">
-                                        <span class="fab fa-google-plus-g icon-social"></span> <span class="name-social">Google+</span>
-                                    </a>
-                                </li>
-
-                                <li class="li-social linkedin-social">
-                                    <a title="Linkedin" href="#" target="_blank">
-                                        <span class="fab fa-linkedin icon-social"></span> <span class="name-social">Linkedin</span>
-                                    </a>
-                                </li>
-
-                                <li class="li-social pinterest-social">
-                                    <a title="Pinterest" href="#" target="_blank">
-                                        <span class="fab fa-pinterest icon-social"></span> <span class="name-social">Pinterest</span>
-                                    </a>
-                                </li>
-                                -->
                             </ul>
                         </div>
                     </div>
@@ -235,7 +194,7 @@
 
 
 <div class="chat-wrapper">
-    <button class="open-button" onclick="openForm()">Chat</button>
+    <button class="open-button" onclick="openForm()"><i class="fas fa-comment-lines tx-white"></i></button>
 
     <div class="chat-popup" id="myForm">
       <form action="/action_page.php" class="form-container">

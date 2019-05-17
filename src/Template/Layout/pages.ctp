@@ -31,6 +31,8 @@
     <?= $this->Html->css([
     '/css/bootstrap/css/bootstrap.min',
     '/css/font-awesome/css/font-awesome.min',
+    '/css/font-awesome-5/css/fontawesome.min',
+    '/css/font-awesome-5/css/all.min',
     '/js/datetimepicker/bootstrap-datetimepicker.min',
     '/js/owl-carousel/owl.carousel',
     '/css/themecss/lib',
@@ -63,6 +65,8 @@
     <!-- css custom other -->
     <?= $this->Html->css([
     '/css/zolaku',
+    '/css/custom',
+    '/css/custom/promotion',
     '/css/zolaku-custom-min',
     '/css/jquery.smartsuggest.css',
     '/css/perfect-scrollbar'
