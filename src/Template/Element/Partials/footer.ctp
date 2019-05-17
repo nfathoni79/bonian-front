@@ -194,7 +194,7 @@
 
 
 <div class="chat-wrapper">
-    <button class="open-button" onclick="openForm()"><i class="fas fa-comment-lines tx-white"></i></button>
+    <button class="open-button" onclick="openForm()"><i class="fas fa-comment"></i></button>
 
     <div class="chat-popup" id="myForm">
       <form action="/action_page.php" class="form-container">
@@ -313,7 +313,6 @@
 
                     <div class="chat-about">
                         <div class="chat-with">Chat with Vincent Porter</div>
-                        <div class="chat-num-messages">already 1 902 messages</div>
                     </div>
                     <i class="fas fa-window-close cancel" onclick="closeForm()"></i>
                     <!-- <i class="fa fa-star"></i> -->
