@@ -109,6 +109,7 @@ class ProductsController extends AuthController
         try {
             $releted = $this->Api->makeRequest()
                 ->get('v1/products/releted/'.$category['id']);
+
             if ($response = $this->Api->success($releted)) {
                 $json = $response->parse();
                 $releted = $json['result']['data'];

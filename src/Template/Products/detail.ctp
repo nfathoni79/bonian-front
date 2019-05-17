@@ -701,6 +701,75 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                 <!-- //Product Tabs -->
             </div>
         </div>
+
+
+        <div class="card-wrapper c-flash-wrapper">
+            <div class="card-wrapper-title mg-l-0 mg-t-0">Produk Terkait</div>
+            <div class="related flash-sale titleLine products-list grid module " style="margin-top: 20px;">
+                <div id="so_extra_slider_1" class="so-extraslider" >
+                    <div class="releate-products yt-content-slider products-list" data-rtl="no" data-loop="yes" data-autoplay="no" data-autoheight="yes" data-autowidth="no" data-delay="4" data-speed="0.6" data-margin="20" data-items_column0="4" data-items_column1="3" data-items_column2="3" data-items_column3="2" data-items_column4="1" data-arrows="yes" data-pagination="no" data-lazyload="yes" data-hoverpause="yes">
+
+                        <?php foreach($releted as $vals):?>
+                        <div class="item products">
+                            <div class="product-layout">
+                                <div class="product-item-container">
+                                    <div class="left-block left-b">
+                                        <div class="product-image-container">
+                                            <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['product']['slug']]); ?>" title="" target="_self">
+                                                <?php  foreach($vals['product']['images'] as $image) : ?>
+                                                <img src="<?= $this->Url->build($_basePath . 'images/213x150/' . $image); ?>" data-image-name="<?= $image; ?>"  class="img-responsive" alt="image">
+                                                <?php  break; endforeach; ?>
+                                            </a>
+                                        </div>
+                                        <div class="box-label"> <span class="product-ribbon"> <?= $vals['product']['percent']; ?>% </span></div>
+
+                                    </div>
+                                    <div class="right-block right-b">
+
+                                        <div class="caption">
+                                            <div class="row mg-l-0">
+                                                <h4 class="tx-bold"><a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail',$vals['product']['slug']]); ?>" title="title" target="_self">
+                                                    <?php echo $this->Text->truncate(
+                                                    h($vals['product']['name']),
+                                                    30,
+                                                    [
+                                                    'ellipsis' => '...',
+                                                    'exact' => false
+                                                    ]
+                                                    );?>
+                                                </a></h4>
+
+                                                <div class="col-lg-12 price text-left p-0">
+                                                    <span class="price-new tx-13-force">Rp. <?= $this->Number->format($vals['product']['price_sale']); ?></span>
+                                                    <?php if($vals['product']['price_sale'] != $vals['product']['price']):?>
+                                                    <span class="price-old tx-11-force">Rp. <?= $this->Number->format($vals['product']['price']); ?></span>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
+
+                                            <div class="button-group so-quickview cartinfo--static share-container">
+                                                <div class="row pd-0">
+                                                    <button type="button" class="btn-share b-fb fbShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['product']['slug'],'prefix' => false],true);?>" data-title="<?= $vals['product']['name'];?>" data-price="<?= $vals['product']['price_sale'];?>"><i class="fab fa-facebook"></i></button>
+                                                    <button type="button" class="btn-share b-wa waShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['product']['slug'],'prefix' => false],true);?>" data-title="<?= $vals['product']['name'];?>" data-price="<?= $vals['product']['price_sale'];?>"><i class="fab fa-whatsapp"></i></button>
+                                                    <button type="button" class="btn-share b-ln lineShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['product']['slug'],'prefix' => false],true);?>" data-title="<?= $vals['product']['name'];?>" data-price="<?= $vals['product']['price_sale'];?>"><i class="fab fa-line"></i></button>
+                                                    <button type="button" class="btn-share b-tw twitterShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $vals['product']['slug'],'prefix' => false],true);?>" data-title="<?= $vals['product']['name'];?>" data-price="<?= $vals['product']['price_sale'];?>"><i class="fab fa-twitter"></i></button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <?php endforeach;?>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 pd-r-0">

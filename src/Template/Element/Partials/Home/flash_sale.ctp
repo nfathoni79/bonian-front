@@ -1,7 +1,7 @@
 <?php if ($flashSales['end']) : ?>
 <!-- flash sale Products -->
 <div class="card-wrapper c-flash-wrapper">
-    <div class="card-wrapper-title"><i class="fa fa-tags"></i> Flash sale <small class="contertime" style="font-size: 12px; padding-left: 10px;">Berakhir dalam </small><span id="flashsale-timer" data-timer="<?= $flashSales['end']; ?>"></div>
+    <div class="card-wrapper-title"><i class="fa fa-tags"></i> Flash sale <small class="contertime" style="font-size: 12px; padding-left: 10px;">Berakhir dalam </small><span id="flashsale-timer" data-timer="<?= $flashSales['end']; ?>"></span></div>
     <div class="related flash-sale titleLine products-list grid module " style="margin-top: 20px;">
         <div id="so_extra_slider_1" class="so-extraslider" >
             <div class="releate-products yt-content-slider products-list" data-rtl="no" data-loop="yes" data-autoplay="no" data-autoheight="yes" data-autowidth="no" data-delay="4" data-speed="0.6" data-margin="20" data-items_column0="5" data-items_column1="3" data-items_column2="3" data-items_column3="2" data-items_column4="1" data-arrows="yes" data-pagination="no" data-lazyload="yes" data-hoverpause="yes">
