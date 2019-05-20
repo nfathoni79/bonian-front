@@ -8,6 +8,13 @@ use Pagination\Pagination;
 class HistoryController extends AuthController
 {
 
+    protected $transaction_statuses = [
+        'pending' => 'Pending',
+        'settlement' => 'Success',
+        'capture' => 'Success',
+        'expire' => 'Expire'
+    ];
+
     public function index(){
 
 
@@ -69,12 +76,7 @@ class HistoryController extends AuthController
             '4' => 'Selesai',
         ];
 
-        $transaction_statuses = [
-            'pending' => 'Pending',
-            'settlement' => 'Success',
-            'capture' => 'Success',
-            'expire' => 'Expire'
-        ];
+        $transaction_statuses = $this->transaction_statuses;
 
 
         $this->set(compact(
@@ -116,11 +118,8 @@ class HistoryController extends AuthController
             '4' => 'Selesai',
         ];
 
-        $transaction_statuses = [
-            'pending' => 'Pending',
-            'settlement' => 'Success',
-            'capture' => 'Success'
-        ];
+        $transaction_statuses = $this->transaction_statuses;
+        
         $this->set(compact('orders', 'transaction_statuses','shipping_status','digital_status'));
     }
 
