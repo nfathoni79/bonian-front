@@ -72,7 +72,8 @@ class HistoryController extends AuthController
         $transaction_statuses = [
             'pending' => 'Pending',
             'settlement' => 'Success',
-            'capture' => 'Success'
+            'capture' => 'Success',
+            'expire' => 'Expire'
         ];
 
 
