@@ -114,6 +114,7 @@ function processPayment(request) {
         error: function (text) {
             switch (text.status) {
                 case 406:
+                case 404:
                     swal(text.responseJSON.message);
                     break;
                 case 302:
