@@ -24,9 +24,16 @@ class RegisterController extends AppController
 
        $error = ['error' => []];
        try {
+           $getData = $this->request->getData();
+
+           $getData['activation_url'] = \Cake\Routing\Router::url([
+                'controller' => 'Register',
+                'action' => 'activation'
+           ], true);
+
            $login = $this->Api->makeRequest()
                ->post('v1/registers', [
-                   'form_params' => $this->request->getData()
+                   'form_params' => $getData
                ]);
            if ($response = $this->Api->success($login)) {
                $error = $response->parse();
@@ -38,6 +45,20 @@ class RegisterController extends AppController
 
        return $this->response->withType('application/json')
            ->withStringBody(json_encode($error));
+   }
+
+    /**
+     * @param null $code
+     * @return \Cake\Http\Response|null
+     */
+   public function verification($code = null)
+   {
+       $this->Flash->success(__('Proses verifikasi email berhasil.'));
+
+       return $this->redirect([
+           'controller' => 'Login',
+           'action' => 'auth'
+       ]);
    }
 
    public function otp()
