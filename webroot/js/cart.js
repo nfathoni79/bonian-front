@@ -19,11 +19,18 @@ target_checkboxes.forEach(function (checkbox) {
     });
 });
 
+$(document).ready(function() {
+    target_checkboxes.forEach(function (checkbox) {
+        $(checkbox).trigger('click');
+    });
+});
+
 
 check_all_button.addEventListener('click', function () {
     checked_all = !checked_all;
     target_checkboxes.forEach(function (checkbox) {
-        checkbox.checked = checked_all;
+        //checkbox.checked = checked_all;
+        $(checkbox).trigger('click');
     });
 });
 
