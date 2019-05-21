@@ -105,7 +105,8 @@ function processPayment(request) {
                 if (response.result.data.payment_method && response.result.data.payment_method === 'gopay') {
                     showBarcodeGopay(response.result.data);
                 } else if (response.result.data.payment_method && response.result.data.payment_method === 'credit_card') {
-                    location.href = basePath + '/payment/finish/' + response.result.data.payment.order_id;
+                    //location.href = basePath + '/payment/finish/' + response.result.data.payment.order_id;
+                    location.href = basePath + '/user/history/detail/' + response.result.data.payment.order_id;
                 } else {
                     location.href = basePath + '/payment/confirmation/' + response.result.data.payment.order_id;
                 }
@@ -196,7 +197,8 @@ body += `</div>`;
                 success: function(data) {
                     if (data.status_code && data.status_code === '200') {
                         is_finish_statuses = true;
-                        location.href = basePath + '/payment/finish/' + data.order_id;
+                        //location.href = basePath + '/payment/finish/' + data.order_id;
+                        location.href = basePath + '/user/history/detail/' + data.order_id;
                     }
                 },
                 error: function() {
