@@ -12,7 +12,6 @@ $this->Html->css([
         <div class="row">
             <ul class="breadcrumb">
                 <li><a href="<?php echo $this->Url->build('/'); ?>"><i class="fa fa-home"></i></a></li>
-                <li><a >Halaman</a></li>
                 <li><a href="<?php echo $this->Url->build(['controller' => 'Promotion','action' => 'pointRedeem']); ?>">Penukaran Point</a></li>
             </ul>
         </div>
@@ -53,8 +52,6 @@ $this->Html->css([
                                 <tr class="info">
                                     <th class="text-left">No</th>
                                     <th class="text-left">Point</th>
-                                    <th class="text-left">Kode Voucher</th>
-                                    <th class="text-left">Diskon</th>
                                     <th class="text-left">Nilai Voucher</th>
                                     <th class="text-left"></th>
                                 </tr>
@@ -65,8 +62,6 @@ $this->Html->css([
                                 <tr>
                                     <td><?= $no;?></td>
                                     <td><?= $vals['name'];?></td>
-                                    <td><?= $vals['code_voucher'];?></td>
-                                    <td><?= $vals['percent'];?>%</td>
                                     <td>Rp. <?php echo $this->Number->precision($vals['value'], 0);?></td>
                                     <td><a href="javascript:void(0);" class="btn btn-danger btn-sm btn-radius btn-claim" data-voucher="<?= $vals['code_voucher'];?>">Claim</a></td>
                                 </tr>
@@ -76,8 +71,12 @@ $this->Html->css([
                             </table>
                         </div>
                         <div class="alert alert-info">
-                            Consectetur adipiscing elit. Donec pellentesque venenatis elit, quis aliquet mauris malesuada vel. Donec vitae libero dolor, eget dapibus justo.
-                            <br>Aenean facilisis aliquet feugiat. Suspendisse lacinia congue est ac semper. Nulla ut elit magna, vitae volutpat magna.
+                            <ul>
+                                <li>- Point & Voucher ini tidak dapat diuangkan dan tidak dapat ditransfer ke akun pengguna Bonian yang lain.</li>
+                                <li>- Tidak ada minimal pembelanjaan untuk  memakain Voucher yang di redeem dari Point</li>
+                                <li>- Reedeem point hanya boleh Maksimal 5000 Point</li>
+                                <li>- Masa Expired Voucher 1 Bulan dari saat claim dari point ke Voucher </li>
+                            </ul>
                         </div>
 
                     </div>

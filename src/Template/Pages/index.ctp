@@ -4,7 +4,6 @@
         <div class="row">
             <ul class="breadcrumb">
                 <li><a href="<?php echo $this->Url->build('/'); ?>"><i class="fa fa-home"></i></a></li>
-                <li><a >Halaman</a></li>
                 <li><a href="<?php echo $this->Url->build(['controller' => 'pages','action' => 'index', $pages['slug']]); ?>"><?= $pages['title'];?></a></li>
             </ul>
         </div>

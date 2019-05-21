@@ -600,23 +600,26 @@ $(document).ready(function() {
 		cursor: 'pointer',
 		galleryActiveClass: "active"
 	});
+
+    var imgs = [];
+    $('.thumbnail ').each(function() {
+        var obj = {
+            src: $(this).data('image')
+        }
+        imgs.push(obj);
+    });
+
 	$('.large-image').magnificPopup({
-		items: [
-			{src: 'image/catalog/demo/product/electronic/600x600/3.jpg' },
-			{src: 'image/catalog/demo/product/electronic/600x600/3-1.jpg' },
-			{src: 'image/catalog/demo/product/electronic/600x600/3-2.jpg' },
-			{src: 'image/catalog/demo/product/electronic/600x600/2.jpg' },
-			{src: 'image/catalog/demo/product/electronic/600x600/2-1.jpg' },
-		],
-		gallery: { enabled: true, preload: [0,2] },
+		items: imgs,
+		gallery: { enabled: true,preload: [0,1]},
 		type: 'image',
 		mainClass: 'mfp-fade',
 		callbacks: {
 			open: function() {
-				
-				var activeIndex = parseInt($('#thumb-slider-vertical .img.active').attr('data-index'));
-				var magnificPopup = $.magnificPopup.instance;
-				magnificPopup.goTo(activeIndex);
+
+				// var activeIndex = parseInt($('#thumb-slider-vertical .img.active').attr('data-index'));
+				// var magnificPopup = $.magnificPopup.instance;
+				// magnificPopup.goTo(activeIndex);
 			}
 		}
 	});

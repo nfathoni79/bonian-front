@@ -139,7 +139,7 @@
 
 <!-- Theme files -->
 <?= $this->Html->script([
-    '//js.pusher.com/4.4/pusher.min.js',
+    'https://js.pusher.com/4.4/pusher.min.js',
     '/js/pusher-client.js',
     '/js/themejs/application',
     '/js/themejs/homepage',

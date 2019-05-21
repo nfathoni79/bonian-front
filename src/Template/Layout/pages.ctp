@@ -9,6 +9,8 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="width=1200" name="viewport">
     <meta content="<?= $this->request->getParam('_csrfToken'); ?>" name="_csrfToken" />
+    <meta content="<?= @$_basePath; ?>" name="_baseImagePath" />
+    <meta content="<?= $this->request->getAttribute('base'); ?>" name="_basePath" />
 
     <meta property="og:url" content="https://zolaku.com"/>
     <meta property="og:type" content="website"/>
@@ -132,11 +134,13 @@
 '/js/jquery-ui/jquery-ui.min',
 '/js/modernizr/modernizr-2.6.2.min',
 '/js/minicolors/jquery.miniColors.min',
+'/js/bundle',
 ]); ?>
 
 <!-- Theme files -->
 <?= $this->Html->script([
-'//js.pusher.com/4.4/pusher.min.js',
+'https://js.pusher.com/4.4/pusher.min.js',
+'/js/pusher-client.js',
 '/js/themejs/application',
 '/js/themejs/homepage',
 '/js/themejs/so_megamenu',
@@ -145,6 +149,7 @@
 '/js/custom-libs/validation-render',
 '/js/sweetalert/sweetalert.js',
 '/js/jquery.smartsuggest.js',
+'/js/jquery.waypoints.min.js',
 '/js/jquery.appear.js',
 '/js/notification.js',
 ]); ?>

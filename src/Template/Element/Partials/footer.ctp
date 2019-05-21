@@ -100,8 +100,8 @@
                                 <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'tentang-zolaku','prefix' => false]);?>">Tentang Zolaku</a></li>
                                 <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'cara-pembelian','prefix' => false]);?>">Cara Pembelian</a></li>
                                 <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'cara-pengembalian','prefix' => false]);?>"">Cara Pengembalian</a></li>
-                                <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'keuntungan-menjadi-member','prefix' => false]);?>"">Keuntungan Menjadi Member</a></li>
-                                <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'panduan-mencari-member','prefix' => false]);?>"">Panduan Mencari Member</a></li>
+                                <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'keuntungan-menjadi-member','prefix' => false]);?>">Keuntungan Menjadi Member</a></li>
+                                <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'panduan-mencari-member','prefix' => false]);?>">Panduan Mencari Member</a></li>
                                 <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'syarat-ketentuan','prefix' => false]);?>">Syarat & Ketentuan</a></li>
                             </ul>
                         </div>
