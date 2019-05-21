@@ -20,6 +20,57 @@
                         <li><a class="link-lg" data-toggle="modal" data-target="#login-popup">Login</a></li>
                         <li><a class="link-lg" data-toggle="modal" data-target="#modal-register">Daftar</a></li>
                         <?php else : ?>
+
+                        <li class="zl-notif">
+                            <!-- Collect the nav links, forms, and other content for toggling -->
+                            <div id="bs-example-navbar-collapse-1">
+                                <ul>
+                                    <li class="dropdown">
+                                        <span class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-bell mg-r-10"></i>Notifikasi (<span class="notification-count"><?= $_notifications; ?></span>)</span>
+                                        <ul class="dropdown-menu notify-drop">
+                                            <?php /*<div class="notify-drop-title">
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-6 col-xs-6">Notifikasi (<b><?= $_notifications['count']; ?></b>)</div>
+                                                <div class="col-md-6 col-sm-6 col-xs-6 text-right"><a href="" class="rIcon allRead" data-tooltip="tooltip" data-placement="bottom" title="Baca semua"><i class="fa fa-dot-circle-o"></i></a></div>
+                                            </div>
+                            </div>
+                            <!-- end notify title -->
+                            <!-- notify content -->
+                            <div class="drop-content">
+                                <?php if ($_notifications['count'] > 0) : ?>
+                                <?php foreach($_notifications['data'] as $notification) : ?>
+                                <li>
+                                    <div class="col-md-3 col-sm-3 col-xs-3">
+                                        <div class="notify-img">
+                                            <img src="https://placehold.it/45x45" alt="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9 col-sm-9 col-xs-9 pd-l0">
+                                        <?= h($notification['title']); ?><a href="" class="rIcon"><i class="fa fa-dot-circle-o"></i></a>
+                                        <p><?= $notification['message']; ?></p>
+                                        <hr>
+                                        <p class="time"></p>
+                                    </div>
+                                </li>
+                                <?php endforeach; ?>
+                                <?php endif; ?>
+                            </div>
+                            <div class="notify-drop-footer text-center">
+                                <a href="<?= $this->Url->build(['controller' => 'Notification', 'prefix' => 'user']); ?>"><i class="fa fa-eye"></i> Lihat semua notifikasi</a>
+                            </div> */ ?>
+                            <div class="notify-drop-loading">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        Loading ...
+                                    </div>
+                                </div>
+                            </div>
+
+                            </ul>
+                            </li>
+                            </ul>
+                        </div><!-- /.navbar-collapse -->
+                        </li>
                         <li class="account" id="my_account">
                             <a href="my-account.html" title="My Account " class="btn-xs dropdown-toggle" data-toggle="dropdown"> <span class="hidden-xs">My Account </span> <span class="fa fa-angle-down"></span></a>
                             <ul class="dropdown-menu ">
