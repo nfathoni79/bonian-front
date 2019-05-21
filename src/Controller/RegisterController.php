@@ -54,7 +54,20 @@ class RegisterController extends AppController
    public function verification($code = null)
    {
        $this->Flash->success(__('Proses verifikasi email berhasil.'));
-
+       try {
+           $verify = $this->Api->makeRequest()
+               ->get('v1/registers/verification', [
+                   'query' => [
+                       'code' => $code
+                   ]
+               ]);
+           if ($response = $this->Api->success($verify)) {
+               $json = $response->parse();
+               $this->Flash->success(__('Proses verifikasi email berhasil.'));
+           }
+       } catch(\GuzzleHttp\Exception\ClientException $e) {
+           $this->Flash->error(__('Proses verifikasi email gagal.'));
+       }
        return $this->redirect([
            'controller' => 'Login',
            'action' => 'auth'
