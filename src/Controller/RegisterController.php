@@ -51,7 +51,7 @@ class RegisterController extends AppController
      * @param null $code
      * @return \Cake\Http\Response|null
      */
-   public function verification($code = null)
+   public function activation($code = null)
    {
        $this->Flash->success(__('Proses verifikasi email berhasil.'));
        try {
