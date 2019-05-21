@@ -114,7 +114,7 @@
                                 <?php foreach($brands as $value) : ?>
                                     <div>
                                         <div class="pretty p-svg p-curve zl-tx-black">
-                                            <input type="checkbox" data-id="<?= $value['brand_id']; ?>" class="brand-value" />
+                                            <input type="checkbox" data-id="<?= $value['brand_id']; ?>" class="brand-value" <?= in_array($value['brand_id'], array_values((array) $this->request->getQuery('brands'))) ? 'checked' : ''; ?> />
                                             <div class="state p-danger">
                                                 <!-- svg path -->
                                                 <svg class="svg svg-icon" viewBox="0 0 20 20">
