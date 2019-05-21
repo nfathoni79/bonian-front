@@ -30,7 +30,7 @@
 
                                 <div class="form-group">
                                     <label></label>
-                                    <button type="submit" class="btn btn-danger btn-radius">Edit profil</button>
+                                    <button type="submit" class="btn btn-danger btn-radius">Simpan Perubahan</button>
                                 </div>
 
                                 <?= $this->Form->end(); ?>

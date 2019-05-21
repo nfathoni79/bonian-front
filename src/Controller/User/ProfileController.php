@@ -96,7 +96,10 @@ class ProfileController extends AuthController
                         ]);
                     if ($response = $this->Api->success($edit)) {
                         $json = $response->parse();
-
+                        $this->Flash->success('Update profile berhasil');
+                        return $this->redirect([
+                            'action' => 'index'
+                        ]);
 
                     }
                 } catch(\GuzzleHttp\Exception\ClientException $e) {
