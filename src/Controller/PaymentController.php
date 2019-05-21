@@ -133,6 +133,13 @@ class PaymentController  extends AuthController
         } catch(\GuzzleHttp\Exception\ClientException $e) {
             $this->Api->handle($e);
             $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+            $this->response = $this->response->withStatus(406);
+            if (!empty($error['error'])) {
+                foreach($error['error'] as $key => $val) {
+                    $error['message'] = array_values($val)[0];
+                    break;
+                }
+            }
             $this->response = $this->response->withStatus($e->getResponse()->getStatusCode());
         }
 
