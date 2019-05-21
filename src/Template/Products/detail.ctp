@@ -180,9 +180,11 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                                     <span>Dapatkan Sekarang</span>
                                                 </div>
                                             </div>
+                                            <!--
                                             <span class="help-btn">
                                                 <strong><a href="javascript:void(0);" class="question" data-container="body" data-toggle="popover" data-placement="top" tabindex="0"><i class="fa fa-question-circle"></i></a></strong>
                                             </span>
+                                            -->
 
                                         </div>
                                     </div>
