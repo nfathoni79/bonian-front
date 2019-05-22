@@ -30,6 +30,36 @@ class FlashsaleController extends AppController
      */
     public function index()
     {
-        
+        try {
+            $time_sale = $this->Api->makeRequest()
+                ->get('v1/flash-sale/time');
+            if ($response = $this->Api->success($time_sale)) {
+                $json = $response->parse();
+                $time_sale = $json['result']['timeList'];
+            }
+        } catch(\Exception $e) {
+            //TODO set log
+        }
+        $this->set(compact('time_sale'));
+    }
+
+    public function getList($id_product_deals = null)
+    {
+        $this->disableAutoRender();
+        if($this->request->is('Ajax')){
+
+            try {
+                $listProduct = $this->Api->makeRequest()
+                    ->get('v1/flash-sale/by-id/'.$id_product_deals);
+                if ($response = $this->Api->success($listProduct)) {
+                    $json = $response->parse();
+                    $listProduct = $json['result']['flashsale'];
+                }
+            } catch(\Exception $e) {
+                //TODO set log
+            }
+            return $this->response->withType('application/json')
+                ->withStringBody(json_encode($listProduct));
+        }
     }
 }
