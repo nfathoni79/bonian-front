@@ -279,7 +279,7 @@
             </div>
         </div>
         <div class="col-sm-12 tx-center bd-t pd-t-15 tx-medium">
-          <a href="#">
+          <a href="<?= $this->Url->build(['controller' => 'search', 'action' => 'index']); ?>">
                 <span class="zl-tx-red tx-13">Selengkapnya</span>
           </a>
         </div>

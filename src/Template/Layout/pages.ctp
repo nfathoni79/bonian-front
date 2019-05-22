@@ -71,7 +71,8 @@
     '/css/custom/promotion',
     '/css/zolaku-custom-min',
     '/css/jquery.smartsuggest.css',
-    '/css/perfect-scrollbar'
+    '/css/perfect-scrollbar',
+    '/css/custom/pages',
     ]); ?>
 
 

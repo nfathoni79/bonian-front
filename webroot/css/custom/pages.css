@@ -1,0 +1,8 @@
+ol{
+	list-style: decimal;
+	padding: 0;
+}
+
+ol li{
+	font-weight: 500;
+}
