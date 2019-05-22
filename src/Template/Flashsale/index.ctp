@@ -121,7 +121,8 @@ $this->Html->script([
                         }
                     })
                 }
-            })
+            });
+            $("#tab-1").trigger('click');
         })
 
         $(document.body).on('mouseenter', '.product-card__gallery .item-img' ,function(){
