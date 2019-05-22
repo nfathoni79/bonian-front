@@ -59,9 +59,10 @@ class ApiComponent extends Component
 
     /**
      * @param null $withToken
+     * @param null $withCustomer
      * @return Client
      */
-    public function makeRequest($withToken = null)
+    public function makeRequest($withToken = null, $withCustomer = false)
     {
         $api = Configure::read('Api');
         $this->base_uri = rtrim($api[$this->_defaultConfig['provider']], '/') . '/';
@@ -72,6 +73,12 @@ class ApiComponent extends Component
 
         if ($withToken) {
             $headers['Authorization'] = 'Bearer ' . $withToken;
+        }
+
+        if ($withCustomer) {
+            if ($customer_id = $this->getController()->request->getSession()->read('Auth.Customers.id')) {
+                $headers['customer-id'] = $customer_id;
+            }
         }
 
         $headers = array_merge($headers, $this->_headers);

@@ -55,7 +55,7 @@ class HomeController extends AppController
 
         //new arrivals
         try {
-            $topProducts = $this->Api->makeRequest()
+            $topProducts = $this->Api->makeRequest(null, true)
                 ->get('v1/products/best-sellers');
             if ($response = $this->Api->success($topProducts)) {
                 $json = $response->parse();
@@ -66,7 +66,7 @@ class HomeController extends AppController
         }
 
         try {
-            $popularProducts = $this->Api->makeRequest()
+            $popularProducts = $this->Api->makeRequest(null, true)
                 ->get('v1/products/popular-products');
             if ($response = $this->Api->success($popularProducts)) {
                 $json = $response->parse();
@@ -78,7 +78,7 @@ class HomeController extends AppController
 
 
         try {
-            $newProducts = $this->Api->makeRequest()
+            $newProducts = $this->Api->makeRequest(null, true)
                 ->get('v1/products/new-arrivals');
             if ($response = $this->Api->success($newProducts)) {
                 $json = $response->parse();

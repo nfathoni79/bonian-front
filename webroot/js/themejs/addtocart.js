@@ -119,4 +119,58 @@ function cartDropdown(){
     }
 
 }
+
+$(document).ready(function () {
+	$(document).on('click', '.product-image-container .product-wishlist', function(e) {
+		var wish_id = $(this).data('wish-id');
+		var basePath = $('meta[name="_basePath"]').attr('content');
+		var baseImagePath = $('meta[name="_baseImagePath"]').attr('content');
+		var image = $(this).parents('.products').find('img');
+		image = baseImagePath + 'images/50x50/' + image.data('image-name');
+
+		var self = this;
+		var url = '';
+		var data = {
+			_csrfToken: $('meta[name="_csrfToken"]').attr('content')
+		};
+
+		if ($(this).hasClass('not-wish')) {
+			url = '/wishlist';
+			data.product_id = $(this).data('product-id');
+		}else if ($(self).hasClass('in-wish')) {
+			url = '/wishlist/delete';
+			data.wishlist_id = $(this).data('wishlist-id');
+		}
+
+
+		$.ajax({
+			url: basePath + url,
+			type : 'POST',
+			data : data,
+			dataType : 'json',
+			success: function(response){
+
+				if (response && response.status === "OK") {
+					if ($(self).hasClass('not-wish')) {
+						$(self).removeClass('not-wish')
+							.addClass('in-wish')
+							.data('wishlist-id', response.result.data.wishlist_id);
+					} else if ($(self).hasClass('in-wish')) {
+						$(self).removeClass('in-wish')
+							.addClass('not-wish')
+							.data('wishlist-id', "");
+					}
+
+					addProductNotice('Berhasil ditambahkan ke Wishlist', '<img src="'+image+'" alt="">', response.result.data.name, 'success');
+				} else {
+					addProductNotice('Sudah ada dalam wishlist', '<img src="'+image+'" alt="">', '', 'success');
+				}
+			},
+			error: function () {
+				$("#login-popup").modal('show');
+			}
+		});
+	});
+});
+
 cartDropdown();

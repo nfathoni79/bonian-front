@@ -44712,6 +44712,46 @@ footer .footer-top .block-infos .info .inner i{
     overflow: hidden;
 }
 
+.products-list.grid .product-item-container .product-wishlist {
+  position: absolute;
+  bottom: -3px;
+  left: -3px;
+  font-size: 19px;
+  z-index: 1;
+  background: #ffffff;
+  padding: 5px;
+  display: none;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.products-list.grid .product-item-container .product-wishlist.in-wish:before {
+  content: "\f004";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  background: #ffffff;
+  color: #EC6E6E;
+}
+
+.products-list.grid .product-item-container .product-wishlist.not-wish:before {
+    content: "\f004";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 400;
+    background: transparent;
+}
+
+.products-list.grid .product-item-container .product-wishlist.not-wish:hover {
+  color: #EC6E6E;
+}
+
+.products-list.grid .product-item-container:hover .product-wishlist {
+  display: inline-block;
+}
+
+
+
 /* The ribbon */
 
 .product-ribbon {
