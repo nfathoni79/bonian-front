@@ -467,7 +467,8 @@ class ProfileController extends AuthController
 
             $profile['activation_url'] = \Cake\Routing\Router::url([
                 'controller' => 'Register',
-                'action' => 'activation'
+                'action' => 'activation',
+                'prefix' => false
             ], true);
             try {
                 $update = $this->Api->makeRequest($this->Auth->user('token'))
