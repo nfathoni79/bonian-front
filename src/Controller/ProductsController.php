@@ -49,7 +49,7 @@ class ProductsController extends AuthController
 		
         $this->viewBuilder()->setLayout('detail');
         try {
-            $login = $this->Api->makeRequest()
+            $login = $this->Api->makeRequest(null, true)
                 ->get('v1/products/'.$slug);
             if ($response = $this->Api->success($login)) {
                 $json = $response->parse();
@@ -58,7 +58,7 @@ class ProductsController extends AuthController
         } catch(\GuzzleHttp\Exception\ClientException $e) {
             $error = json_decode($e->getResponse()->getBody()->getContents(), true);
             $details = ['is_error' => true, 'message' => 'Produk tidak ditemukan'];
-        }
+        }//debug($this->request->getSession()->read());exit;
  
 		$this->set(compact('details')); 
 

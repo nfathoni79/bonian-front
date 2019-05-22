@@ -39,7 +39,7 @@
                                                             <img src="<?= $this->Url->build($_basePath . 'images/213x150/' . $image); ?>" data-image-name="<?= $image; ?>"  class="img-responsive" alt="image">
                                                             <?php break; endforeach; ?>
                                                         </a>
-                                                        <button class="product-wishlist <?= !empty($vals['wishlist_id']) ? 'in-wish' : 'not-wish'; ?>" data-product-id="<?= $vals['id']; ?>" data-wishlist-id="<?= $vals['wishlist_id']; ?>"></button>
+                                                        <?php /*<button class="product-wishlist <?= !empty($vals['wishlist_id']) ? 'in-wish' : 'not-wish'; ?>" data-product-id="<?= $vals['id']; ?>" data-wishlist-id="<?= $vals['wishlist_id']; ?>"></button>*/ ?>
                                                     </div>
                                                     <div class="box-label">
                                                         <?php $dics = 100 - (($vals['price_sale'] / $vals['price']) * 100);?>
@@ -122,7 +122,7 @@
                                                           <img src="<?= $this->Url->build($_basePath . 'images/213x150/' . $image); ?>" data-image-name="<?= $image; ?>"  class="img-responsive" alt="image">
                                                           <?php break; endforeach; ?>
                                                       </a>
-                                                      <button class="product-wishlist <?= !empty($vals['wishlist_id']) ? 'in-wish' : 'not-wish'; ?>" data-product-id="<?= $vals['id']; ?>" data-wishlist-id="<?= $vals['wishlist_id']; ?>"></button>
+                                                      <?php /*<button class="product-wishlist <?= !empty($vals['wishlist_id']) ? 'in-wish' : 'not-wish'; ?>" data-product-id="<?= $vals['id']; ?>" data-wishlist-id="<?= $vals['wishlist_id']; ?>"></button>*/ ?>
                                                   </div>
                                                   <div class="box-label">
                                                       <?php $dics = 100 - (($vals['price_sale'] / $vals['price']) * 100);?>
@@ -205,7 +205,7 @@
                                                           <img src="<?= $this->Url->build($_basePath . 'images/213x150/' . $image); ?>" data-image-name="<?= $image; ?>"  class="img-responsive" alt="image">
                                                           <?php break; endforeach; ?>
                                                       </a>
-                                                      <button class="product-wishlist <?= !empty($vals['wishlist_id']) ? 'in-wish' : 'not-wish'; ?>" data-product-id="<?= $vals['id']; ?>" data-wishlist-id="<?= $vals['wishlist_id']; ?>"></button>
+                                                      <?php /*<button class="product-wishlist <?= !empty($vals['wishlist_id']) ? 'in-wish' : 'not-wish'; ?>" data-product-id="<?= $vals['id']; ?>" data-wishlist-id="<?= $vals['wishlist_id']; ?>"></button>*/ ?>
                                                   </div>
                                                   <div class="box-label">
                                                       <?php $dics = 100 - (($vals['price_sale'] / $vals['price']) * 100);?>

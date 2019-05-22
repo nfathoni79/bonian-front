@@ -192,20 +192,42 @@ label.color-name{
     border: 1px solid #ddd;
 }
 .btn-pay{
-    padding: 15px 40px;
+    padding: 15px 25px;
     text-transform: uppercase;
     font-size: 14px;
     font-weight: 600;
     margin-right: 10px;
 }
 .btn-add{
-    padding: .875em 40px;
+    padding: .875em 25px;
     font-size: 14px;
     font-weight: 600;
     background: #fff;
     border: 1px solid #d9534f;
     color: #d9534f;
 }
+
+.btn-wishlist {
+    padding: 15px 25px;
+    font-size: 14px;
+    margin-right: 10px;
+    background: #ffffff;
+    border: 1px solid #dddddd;
+}
+
+.btn-wishlist.in-wish {
+    color: #EC6E6E;
+}
+
+.btn-wishlist:hover {
+    color: #EC6E6E;
+}
+
+.btn-wishlist i {
+    font-size: 18px;
+    margin-right: 8px;
+}
+
 .btn-add:hover{
     color: #d9534f;
 }

@@ -64,6 +64,66 @@ $(document).ready(function() {
 			sendFrom();
 		});
 
+		$('.btn-wishlist').click(function () {
+			var basePath = $('meta[name="_basePath"]').attr('content');
+
+			var self = this;
+			var url = '';
+
+			var data = {
+				product_id: $(self).data('product-id'),
+				_csrfToken: $('meta[name="_csrfToken"]').attr('content')
+			};
+
+			if (!$(this).hasClass('in-wish')) {
+				wishlist('/wishlist', data, $('.btn-wishlist'));
+			}else {
+				wishlist('/wishlist/delete', data, $('.btn-wishlist'));
+
+			}
+
+
+
+		});
+
+		function wishlist(url, data, self) {
+			data.wishlist_id = $(self).attr('data-wishlist-id');
+			$.ajax({
+				url: basePath + url,
+				type : 'POST',
+				data : data,
+				dataType : 'json',
+				success: function(response){
+					var wishCount, total;
+					if (response && response.status === "OK") {
+						if (!$(self).hasClass('in-wish')) {
+							data.wishlist_id = response.result.data.wishlist_id;
+							$(self).addClass('in-wish')
+								.attr('data-wishlist-id', response.result.data.wishlist_id)
+								.find('i.fa-heart')
+								.removeClass('far')
+								.addClass('fas');
+							 wishCount = $(self).find('.wish-count');
+							 total = parseInt(wishCount.text()) + 1;
+							wishCount.text(total);
+						} else {
+							$(self).removeClass('in-wish')
+								.removeAttr('data-wishlist-id')
+								.find('i.fa-heart')
+								.removeClass('fas')
+								.addClass('far');
+							 wishCount = $(self).find('.wish-count');
+							 total = parseInt(wishCount.text()) - 1;
+							wishCount.text(total);
+						}
+					}
+				},
+				error: function () {
+					$("#login-popup").modal('show');
+				}
+			});
+		}
+
 		if ($('.discuss-list .bg-red').length > 10) {
 			$('.discuss-list .bg-red:gt(10)').hide();
 			$('.show-more').show();

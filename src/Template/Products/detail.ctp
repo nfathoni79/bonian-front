@@ -269,8 +269,14 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                                 </div>
                                             <?php endforeach;?>
                                         </div>
-                                    </div>
+                                    </div><? debug($details); exit; ?>
+
                                     <div class="mg-t-40">
+                                        <button type="button" class="btn btn-lg btn-radius btn-wishlist <?= !empty($details['data']['wishlist_id']) ? 'in-wish' : ''; ?>" data-wishlist-id="<?= $details['data']['wishlist_id']; ?>" data-product-id="<?= $details['data']['id']; ?>">
+                                            <i class="<?= !empty($details['data']['wishlist_id']) ? 'fas' : 'far'; ?> fa-heart"></i>
+                                            <span class="wish-count"><?= $details['data']['wishlist_count']; ?></span>
+                                            Wishlist
+                                        </button>
                                         <a class="btn btn-lg btn-radius btn-danger btn-pay">Bayar sekarang</a>
                                         <a class="btn btn-lg btn-radius btn-add"><i class="fa fa-shopping-cart"></i> Tambah ke keranjang</a>
                                     </div>
