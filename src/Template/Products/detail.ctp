@@ -1,12 +1,12 @@
-<style>
-.dash-line{
-    border:1px dashed #E2E2E2;
-    margin-bottom:10px;
-}
-.mg-t-m25{
-    margin-top: -25px;
-}
-</style>
+
+<?php $this->append('style'); ?>
+<?php
+$this->Html->css([
+'/css/custom/product-detail.css',
+], ['block' => true]);
+?>
+<?php $this->end(); ?>
+
 <?php $this->assign('title', trim($details['data']['name'])); ?>
 
 <?php
@@ -713,7 +713,7 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
 
         <div class="card-wrapper c-flash-wrapper">
             <div class="card-wrapper-title mg-l-0 mg-t-0">Produk Terkait</div>
-            <div class="related flash-sale titleLine products-list grid module " style="margin-top: 20px;">
+            <div class="related flash-sale titleLine products-list grid module " style="padding: 20px;">
                 <div id="so_extra_slider_1" class="so-extraslider" >
                     <div class="releate-products yt-content-slider products-list" data-rtl="no" data-loop="yes" data-autoplay="no" data-autoheight="yes" data-autowidth="no" data-delay="4" data-speed="0.6" data-margin="20" data-items_column0="4" data-items_column1="3" data-items_column2="3" data-items_column3="2" data-items_column4="1" data-arrows="yes" data-pagination="no" data-lazyload="yes" data-hoverpause="yes">
 
@@ -734,7 +734,7 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                     </div>
                                     <div class="right-block right-b">
 
-                                        <div class="caption">
+                                        <div class="caption tx-left">
                                             <div class="row mg-l-0">
                                                 <h4 class="tx-bold"><a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail',$vals['product']['slug']]); ?>" title="title" target="_self">
                                                     <?php echo $this->Text->truncate(

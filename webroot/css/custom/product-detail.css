@@ -1,0 +1,13 @@
+.dash-line{
+    border:1px dashed #E2E2E2;
+    margin-bottom:10px;
+}
+.mg-t-m25{
+    margin-top: -25px;
+}
+.products-list.grid .product-item-container .right-block.right-b .caption{
+    height: 75px;
+}
+.producttab .tabsslider.horizontal-tabs .nav-tabs li.active, .producttab .tabsslider.horizontal-tabs .nav-tabs li:hover{
+    border-color: #fff;
+}
