@@ -14,12 +14,14 @@
         <div class="row">
             <?= $this->element('Partials/User/menu'); ?>
             <div id="content" class="col-md-9 col-sm-8">
+                <?= $this->element('Partials/Profile/verification'); ?>
                 <div class="user-content">
                     <div class="user-content-header">
                         <?= $this->element('Partials/Profile/navigation'); ?>
                     </div>
 
                     <div class="user-content-body">
+
                         <h4><strong>Informasi detail</strong></h4>
                         <?= $this->Flash->render();?>
                         <div class="row">
@@ -39,9 +41,13 @@
                                         <td>Email</td>
                                         <td><?= $profile['email']; ?></td>
                                     </tr>
+                                    <tr>
+                                        <td>Kode Referal</td>
+                                        <td><?= $profile['reffcode']; ?></td>
+                                    </tr>
 
                                     <tr>
-                                        <td>Referal</td>
+                                        <td>Referal Anda</td>
                                         <td><?= !empty($profile['referral_customer']) ? $profile['referral_customer']['username'] :
                                                 '<a class="link-referral" data-container="body" data-toggle="popover" data-placement="bottom" tabindex="0">+ Tambah referal</a>';
                                         ?></td>
@@ -63,9 +69,19 @@
                                     </tr>
 
                                     <tr>
-                                        <td>Verifikasi</td>
+                                        <td>Verifikasi No. Telpon</td>
                                         <td>
                                             <?php if ($profile['is_verified']) : ?>
+                                                <span class="label label-success"><i class="fa fa-check-circle" aria-hidden="true"></i> Terverifikasi</span>
+                                            <?php else : ?>
+                                                <span class="label label-danger"><i class="fa fa-close" aria-hidden="true"></i> Belum terverifikasi</span>
+                                            <?php endif;?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Verifikasi Alamat Email</td>
+                                        <td>
+                                            <?php if ($profile['is_email_verified']) : ?>
                                                 <span class="label label-success"><i class="fa fa-check-circle" aria-hidden="true"></i> Terverifikasi</span>
                                             <?php else : ?>
                                                 <span class="label label-danger"><i class="fa fa-close" aria-hidden="true"></i> Belum terverifikasi</span>
@@ -132,14 +148,16 @@
 
 <div id="template-popover-referral" style="display:none">
     <div class="leaderboard-popover">
+        <!--
         <button type="button" class="btn btn-default">
             <i class="fa fa-qrcode"></i> Scan QR Code
         </button>
-        <button type="button" class="btn btn-default">
-            <i class="fa fa-graduation-cap"></i> Leaderboard list
-        </button>
-        <div style="margin-top: 15px;">
-            Tambah referal anda dan dapatkan keuntungan menjadi bagian zolaku. <a>Pelajari lebih lanjut</a>
+        -->
+        <a href="<?= $this->Url->build(['controller' => 'Leaderboard','action' => 'index','prefix' => 'user'])?>" class="btn btn-default">
+            <i class="zl zl-leaderboard"></i> Leaderboard
+        </a>
+        <div class="mg-t-15">
+            Tambah referal anda dan dapatkan keuntungan menjadi bagian zolaku.
         </div>
     </div>
 

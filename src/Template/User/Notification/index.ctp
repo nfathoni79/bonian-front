@@ -5,6 +5,7 @@
             <?= $this->element('Partials/User/menu'); ?>
 
             <div id="content" class="col-md-9 col-sm-8">
+                <?= $this->element('Partials/Profile/verification'); ?>
                 <div class="user-content overflow-hidden">
 
                     <div class="user-content-header">

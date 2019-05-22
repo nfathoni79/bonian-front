@@ -43,6 +43,7 @@
                     </div>
 
                     <div class="user-content-body">
+                        <?= $this->element('Partials/Profile/verification'); ?>
                         <div class="row">
                             <?php
                                 $colored = ['1' => 'v-colored-box', '2' => 'v-colored-box-off', '3' => 'v-colored-box-off'];

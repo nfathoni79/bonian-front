@@ -3,6 +3,7 @@
         <div class="row">
             <?= $this->element('Partials/User/menu'); ?>
             <div id="content" class="col-md-9 col-sm-8">
+                <?= $this->element('Partials/Profile/verification'); ?>
                 <div class="user-content">
                     <div class="user-content-header">
                         <h4>Mutasi Point</h4>

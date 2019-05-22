@@ -43,6 +43,16 @@
             ]
         ];
 
+        if(($_profile['is_email_verified'] == false) || ($_profile['is_verified'] == '0')){
+            $navigations[] = [
+                'title' => 'Verifikasi Akun',
+                'url' => [
+                    'controller' => 'Profile',
+                    'action' => 'verification',
+                    'prefix' => 'user'
+                ]
+            ];
+        }
 
 
     ?>

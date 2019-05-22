@@ -84,6 +84,7 @@ class ProfileController extends AuthController
         $this->set(compact('profile'));
     }
 
+
     public function edit()
     {
         $customer = new CustomerForm();
@@ -452,4 +453,36 @@ class ProfileController extends AuthController
         $this->set(compact('cards'));
     }
 
+    public function verification(){
+        $profile = $this->getProfile();
+        if(($profile['is_email_verified']) && ($profile['is_verified'] == 1)){
+            $this->redirect(['action' => 'index']);
+        }
+    }
+    public function verifyEmail(){
+        $this->disableAutoRender();
+        if($this->request->is('Ajax')){
+            $profile = $this->getProfile();
+
+            try {
+                $update = $this->Api->makeRequest($this->Auth->user('token'))
+                    ->post('v1/web/verification/email', [
+                        'form_params' => [
+                            'email' => $profile['email']
+                        ]
+                    ]);
+                if ($response = $this->Api->success($update)) {
+                    $error = $response->parse();
+                }
+            } catch(\GuzzleHttp\Exception\ClientException $e) {
+                $this->Api->handle($e);
+                $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+                debug($error);
+                exit;
+            }
+
+            return $this->response->withType('application/json')
+                ->withStringBody(json_encode($error));
+        }
+    }
 }

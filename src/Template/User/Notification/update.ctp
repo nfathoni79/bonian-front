@@ -5,6 +5,8 @@
             <?= $this->element('Partials/User/menu'); ?>
 
             <div id="content" class="col-md-9 col-sm-8">
+
+                <?= $this->element('Partials/Profile/verification'); ?>
                 <div class="user-content overflow-hidden">
 
                     <div class="user-content-header">
@@ -12,7 +14,6 @@
                     </div>
 
                     <div class="user-content-body pd-t-0-force pd-b-0-force">
-
                         <ul class="row notif-list">
                             <li class="col-sm-12 pd-15 bd-b lh-base zl-hover notif-item">
                                 <div class="col-sm-1 pd-0"><img src="https://via.placeholder.com/150x150.png"></div>
