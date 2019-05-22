@@ -357,6 +357,10 @@ class ProfileController extends AuthController
             ->withStringBody(json_encode($error));
     }
 
+    public function changePass(){
+        $customer = new CustomerForm();
+        $this->set(compact('customer'));
+    }
 
     protected function _unmask($number)
     {

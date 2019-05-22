@@ -26,6 +26,14 @@
                 ]
             ],
             [
+                'title' => 'Ubah Kata sandi',
+                'url' => [
+                    'controller' => 'Profile',
+                    'action' => 'changePass',
+                    'prefix' => 'user'
+                ]
+            ],
+            [
                 'title' => 'Pembayaran',
                 'url' => [
                     'controller' => 'Profile',
