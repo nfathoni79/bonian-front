@@ -1,7 +1,7 @@
 
 $(document).ready(function() {
 	var path = location.pathname.split('/');
-	var slug = path[path.length - 1];
+	var slug = path[3]; //path[path.length - 1];
 	var data = null;
 	var variantAll = null;
 	var basePath = $('meta[name="_basePath"]').attr('content');
