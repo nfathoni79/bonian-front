@@ -12,6 +12,7 @@
                     <div class="user-content-body">
                         <h4><strong>Verifikasi Akun</strong></h4>
                         <?= $this->Flash->render();?>
+                        <div class="zl-notif"></div>
                         <div class="row">
                             <div class="col-md-6">
                                 <table class="table table-condensed user-detail-info">
@@ -43,6 +44,7 @@
                     _csrfToken: $('meta[name="_csrfToken"]').attr('content')
                 },
                 success:function(data){
+                    $('.zl-notif').html('<div class="alert alert-success">Email berhasil di kirim, silahkan ikuti petunjuk aktivasi dari email anda.</div>');
                     $('.verify-email').hide();
                 },
                 error: function(data){
