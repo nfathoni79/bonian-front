@@ -6,11 +6,13 @@
         <div class="container">
             <div class="row">
                 <div class="header-top-left  col-lg-5 col-sm-5 col-md-6 hidden-xs">
-                    <ul class="list-inlines">
-                        <li class="hidden-xs">
-                            Default welcome msg!
-                        </li>
-                    </ul>
+                    <?php if ($this->request->getSession()->check('Auth.Customers')) : ?>
+                        <ul class="list-inlines">
+                            <li class="hidden-xs">
+                                Happy Shopping, <?= $this->request->getSession()->read('Auth.Customers.first_name'); ?>!
+                            </li>
+                        </ul>
+                    <?php endif; ?>
                 </div>
                 <div class="header-top-right collapsed-block col-lg-7 col-md-6 col-sm-7 col-xs-12">
                     <ul class="top-link list-inline">
