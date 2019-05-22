@@ -53,7 +53,7 @@ class RegisterController extends AppController
      */
    public function activation($code = null)
    {
-       $this->Flash->success(__('Proses verifikasi email berhasil.'));
+
        try {
            $verify = $this->Api->makeRequest()
                ->get('v1/registers/verification', [
