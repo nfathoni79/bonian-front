@@ -112,7 +112,7 @@ class AppController extends Controller
             $_banners = $this->getTopHomeBanner();
             $_carts = $this->getCart();
             $_notifications = $this->getNotificationCount();
-            $_profile = $this->getProfile();
+            $_profile = $this->getProfiles();
         }
 
 
@@ -121,19 +121,19 @@ class AppController extends Controller
         return parent::beforeRender($event);
     }
 
-    protected function getProfile()
+    protected function getProfiles()
     {
+
         if ($this->request->getSession()->check('Auth.Customers.token')) {
             try {
-                $customer = $this->Api->makeRequest($this->request->getSession()->check('Auth.Customers.token'))
+                $customer = $this->Api->makeRequest($this->request->getSession()->read('Auth.Customers.token'))
                     ->get('v1/web/profile');
                 if ($response = $this->Api->success($customer)) {
                     $response = $response->parse();
                     return $response['result']['data'];
                 }
             } catch(\Exception $e) {
-//                $this->Api->handle($e);
-//                $response = json_decode($e->getResponse()->getBody()->getContents(), true);
+                //TODO set log
             }
         }
     }
