@@ -464,11 +464,17 @@ class ProfileController extends AuthController
         if($this->request->is('Ajax')){
             $profile = $this->getProfile();
 
+
+            $profile['activation_url'] = \Cake\Routing\Router::url([
+                'controller' => 'Register',
+                'action' => 'activation'
+            ], true);
             try {
                 $update = $this->Api->makeRequest($this->Auth->user('token'))
                     ->post('v1/web/verification/email', [
                         'form_params' => [
-                            'email' => $profile['email']
+                            'email' => $profile['email'],
+                            'activation_url' => $profile['activation_url'],
                         ]
                     ]);
                 if ($response = $this->Api->success($update)) {
@@ -477,8 +483,6 @@ class ProfileController extends AuthController
             } catch(\GuzzleHttp\Exception\ClientException $e) {
                 $this->Api->handle($e);
                 $error = json_decode($e->getResponse()->getBody()->getContents(), true);
-                debug($error);
-                exit;
             }
 
             return $this->response->withType('application/json')
