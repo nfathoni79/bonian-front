@@ -212,11 +212,11 @@ label.color-name{
     font-size: 14px;
     margin-right: 10px;
     background: #ffffff;
-    border: 1px solid #dddddd;
+    border: 1px solid #d9534f;
 }
 
 .btn-wishlist.in-wish {
-    color: #EC6E6E;
+    color: #d9534f;
 }
 
 .btn-wishlist:hover {
