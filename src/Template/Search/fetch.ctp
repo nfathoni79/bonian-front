@@ -19,6 +19,7 @@
                                 <img src="<?= $this->Url->build($_basePath . 'images/195x195/' . $image); ?>" data-image-name="<?= $image; ?>"  class="img-responsive" alt="image">
                                 <?php break; endforeach; ?>
                         </a>
+                        <button class="product-wishlist <?= !empty($product['wishlist_id']) ? 'in-wish' : 'not-wish'; ?>" data-product-id="<?= $product['id']; ?>" data-wishlist-id="<?= $product['wishlist_id']; ?>"></button>
                         <span class="product-ribbon"> 20% </span>
                     </div>
                     <div class="box">

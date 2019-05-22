@@ -44714,8 +44714,8 @@ footer .footer-top .block-infos .info .inner i{
 
 .products-list.grid .product-item-container .product-wishlist {
   position: absolute;
-  bottom: -3px;
-  left: -3px;
+  bottom: 0;
+  left: 0;
   font-size: 19px;
   z-index: 1;
   background: #ffffff;

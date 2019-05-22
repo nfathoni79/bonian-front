@@ -114,7 +114,7 @@ class SearchController  extends AuthController
     {
         try {
             $this->Api->addHeader('bid', $this->request->getCookie('bid'));
-            $search = $this->Api->makeRequest()
+            $search = $this->Api->makeRequest(null, true)
                 ->get('v1/product-filters', [
                     'query' => array_filter($this->request->getQueryParams())
                 ]); //print_r($search->getBody()->getContents());exit;
@@ -141,7 +141,7 @@ class SearchController  extends AuthController
         try {
             $query_string['limit'] = 16;
             $this->Api->addHeader('bid', $this->request->getCookie('bid'));
-            $search = $this->Api->makeRequest()
+            $search = $this->Api->makeRequest(null, true)
                 ->get('v1/product-filters', [
                     'query' => array_filter($query_string)
                 ]); //print_r($search->getBody()->getContents());exit;
