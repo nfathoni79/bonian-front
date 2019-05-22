@@ -19,7 +19,8 @@
     background: #fff;
     -webkit-box-shadow: 0 0px 5px 0px rgba(0, 0, 0, 0.1);
     box-shadow: 0 0px 5px 0px rgba(0, 0, 0, 0.1);
-    min-height: 300px
+    min-height: 300px;
+    overflow: hidden;
 }
 
 .c-checkout-main .c-checkout-card__item {
@@ -494,8 +495,8 @@
 }
 
 
-.sidebar {
+.sticky-side {
   position: -webkit-sticky;
   position: sticky;
-  top: 25.5%;
+  top: 16.5%;
 }

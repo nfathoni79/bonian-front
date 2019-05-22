@@ -278,6 +278,11 @@
                 </div>
             </div>
         </div>
+        <div class="col-sm-12 tx-center bd-t pd-t-15 tx-medium">
+          <a href="#">
+                <span class="zl-tx-red tx-13">Selengkapnya</span>
+          </a>
+        </div>
     </div>
     <!-- end Listing tabs -->
 </div>

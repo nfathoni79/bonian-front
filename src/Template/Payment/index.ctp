@@ -2,14 +2,14 @@
 <div class="c-header__bg" style="z-index:0;">
     <div class="container">
         <div class="row">
-            <div class="col-lg-9 text-left">
+            <div class="col-lg-12 text-left">
                 <h1 class="o-header-title">Konfirmasi pembayaran</h1>
             </div>
-            <div class="col-lg-3 text-center">
+            <!-- <div class="col-lg-3 text-center">
                 <button type="button" class="btn btn-danger btn-lg btn-block c-header-button">
                     lanjut berbelanja
                 </button>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
@@ -20,7 +20,7 @@
 <!-- start: checkout -->
 <div class="c-checkout-main tx-medium">
     <div class="container">
-        <div class="row">
+        <div class="row" style="position: relative;">
 
             <div class="col-lg-8">
                 <!-- start: card alamat -->
@@ -251,9 +251,9 @@
 
             </div>
 
-            <div class="col-lg-4 sidebar">
+            <div class="col-lg-4 sidebar" style="position: absolute;right: 0; height: 100%">
                 <!-- start: card Pembayaran -->
-                <div class="c-cart-card-pembayaran mg-t-10">
+                <div class="c-cart-card-pembayaran sticky-side">
                     <!-- start: title -->
                     <div class="c-cart-card-pembayaran__title text-center mg-t-m35">
                         <h5 class="title-pembayaran">Detail pembayaran</h5>

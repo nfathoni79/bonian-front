@@ -45086,10 +45086,10 @@ hr.title-line{
 /*chat popup style*/
 /* Button used to open the chat form - fixed at the bottom of the page */
 .open-button {
-  background: #dc5054;
-  background: linear-gradient(160deg,#dc5054 0%, #a41d21 100%);
-  background: -webkit-linear-gradient(160deg,#dc5054 0%, #a41d21 100%);
-  background: -moz-linear-gradient(160deg,#dc5054 0%, #a41d21 100%);
+  background: #9dba5f;
+  background: linear-gradient(45deg,#9dba5f 0%, #6a8830 100%);
+  background: -webkit-linear-gradient(45deg,#9dba5f 0%, #6a8830 100%);
+  background: -moz-linear-gradient(45deg,#9dba5f 0%, #6a8830 100%);
   color: white;
   padding: 8px 20px;
   border: none;

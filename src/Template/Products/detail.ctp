@@ -739,7 +739,7 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                                 <h4 class="tx-bold"><a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'detail',$vals['product']['slug']]); ?>" title="title" target="_self">
                                                     <?php echo $this->Text->truncate(
                                                     h($vals['product']['name']),
-                                                    30,
+                                                    25,
                                                     [
                                                     'ellipsis' => '...',
                                                     'exact' => false

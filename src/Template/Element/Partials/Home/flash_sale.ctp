@@ -85,6 +85,11 @@
 
             </div>
         </div>
+        <div class="col-sm-12 tx-center bd-t pd-t-15 tx-medium">
+          <a href="<?= $this->Url->build(['controller' => 'Flashsale', 'action' => 'index']); ?>" target="_self">
+                <span class="zl-tx-red tx-13">Selengkapnya</span>
+          </a>
+        </div>
     </div>
 </div>
 

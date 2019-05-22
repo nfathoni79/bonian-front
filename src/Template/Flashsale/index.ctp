@@ -20,39 +20,45 @@ $this->Html->css([
                     <!-- tab-title -->
                     <input type="radio" id="tab-1" name="tab" checked="checked">
                     <span href="#tab-item-1">
-                        <!--countdown box-->
-                        <div class="countdown_box hidden-xs">
-                            <div class="countdown_inner">
-                                <div class="item-timer">
-                                    <div class="defaultCountdown-30">
-                                        <div class="time-item time-day">
-                                            <div class="num-time">235</div>
-                                            <div class="name-time">Day </div>
-                                        </div>
-                                        <div class="time-item time-hour">
-                                            <div class="num-time">08</div>
-                                            <div class="name-time">Hour </div>
-                                        </div>
-                                        <div class="time-item time-min">
-                                            <div class="num-time">32</div>
-                                            <div class="name-time">Min </div>
-                                        </div>
-                                        <div class="time-item time-sec">
-                                            <div class="num-time">40</div>
-                                            <div class="name-time">Sec </div>
-                                        </div>
-                                    </div>
-                                </div>
+                        <!--sale nav-->
+                        <div class="current-sale lh-1 pd-20">
+                            <div class="sale-time tx-32 tx-bold">
+                                16:00
+                            </div>
+                            <div class="sale-text tx-medium">
+                                Sedang Berjalan
                             </div>
                         </div>
-                        <!--end countdown box-->
+                        <!--end sale nav-->
                     </span>
 
                     <input type="radio" id="tab-2" name="tab">
-                    <span href="#tab-item-2">Update</span>
+                    <span href="#tab-item-2">
+                        <!--sale nav-->
+                        <div class="current-sale lh-1 pd-20">
+                            <div class="sale-time tx-32 tx-bold">
+                                19:00
+                            </div>
+                            <div class="sale-text tx-medium">
+                                Akan Datang
+                            </div>
+                        </div>
+                        <!--end sale nav-->
+                    </span>
 
                     <input type="radio" id="tab-3" name="tab">
-                    <span href="#tab-item-3">Promosi</span>
+                    <span href="#tab-item-3">
+                        <!--sale nav-->
+                        <div class="current-sale lh-1 pd-20">
+                            <div class="sale-time tx-32 tx-bold">
+                                21:00
+                            </div>
+                            <div class="sale-text tx-medium">
+                                Akan Datang
+                            </div>
+                        </div>
+                        <!--end sale nav-->
+                    </span>
 
                     <div class="line ease"></div>
 
