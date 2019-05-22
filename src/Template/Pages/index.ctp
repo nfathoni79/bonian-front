@@ -21,7 +21,7 @@
                         <div class="title-pages title-about-us">
                             <h2><?= $pages['title'];?></h2>
                         </div>
-                        <div class="short-des pages-content mt-5" style="text-align:justify;"><?= $pages['content'];?></div>
+                        <div class="mt-5" style="text-align:justify;"><?= $pages['content'];?></div>
                     </div>
                 </div>
              </div>
