@@ -5,4 +5,15 @@ ol{
 
 ol li{
 	font-weight: 500;
+	padding-left: 10px;
+}
+
+a.img-thumb{
+	width: 50%;margin:40px auto; display:block;
+}
+
+@media (min-width: 768px){
+	.modal-dialog {
+		width:960px;
+	}
 }
