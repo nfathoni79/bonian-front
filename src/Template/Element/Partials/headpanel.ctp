@@ -362,10 +362,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="input-email">Verifikasi Captcha</label>
-                            <input type="text" name="captcha" value="" placeholder="Masukan kode captcha" class="form-control" />
-                        </div>
+                        <div class="g-recaptcha" data-sitekey="<?= \Cake\Core\Configure::read('GoogleCaptcha.siteKey'); ?>"></div>
 
                         <div class="form-group">
                             <label for="input-email"></label>
@@ -399,6 +396,19 @@
     </div>
 </div>
 <!-- end modal login -->
+
+<?php $this->append('css'); ?>
+<style>
+    .grecaptcha-badge{
+        margin : 0 auto 30px auto;
+    }
+</style>
+<?php $this->end(); ?>
+<?php
+$this->Html->script([
+'https://www.google.com/recaptcha/api.js'
+], ['block' => true]);
+?>
 
 <?php $this->append('script'); ?>
 <script>
@@ -480,6 +490,10 @@
         });
 
         formReg.submit(function(e) {
+            var captcha = grecaptcha.getResponse();
+            console.log(captcha);
+            console.log(formReg.find(':input'));
+
             var ajaxRequest = new ajaxValidation(formReg);
             ajaxRequest.post(formReg.attr('action'), formReg.find(':input'), function(response, data) {
                 if (response.success) {
