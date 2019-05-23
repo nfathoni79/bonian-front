@@ -505,6 +505,9 @@ class ProfileController extends AuthController
             }
         } catch(\GuzzleHttp\Exception\ClientException $e) {
             $error = $this->Api->handle($e);//debug($e->getResponse()->getBody()->getContents());
+            if ($e->getResponse()->getStatusCode() == 404) {
+                return $this->redirect(['action' => 'changePhone']);
+            }
             if (isset($error['error'])) {
                 $customer->setErrors($error['error']);
             }
@@ -528,7 +531,7 @@ class ProfileController extends AuthController
                 //debug($url_wizard[$this->request->getQuery('step', '1')]);
                 //debug($data);
                 //debug($customer->getErrors());
-                if ($data && isset($data['result']['data'])) {
+                if (is_array($data) && isset($data['result']['data'])) {
                     return $this->redirect([
                         '?' => [
                             'step' => $data['result']['data']['step']
