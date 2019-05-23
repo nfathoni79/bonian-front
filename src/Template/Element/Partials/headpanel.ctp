@@ -490,10 +490,6 @@ $this->Html->script([
         });
 
         formReg.submit(function(e) {
-            var captcha = grecaptcha.getResponse();
-            console.log(captcha);
-            console.log(formReg.find(':input'));
-
             var ajaxRequest = new ajaxValidation(formReg);
             ajaxRequest.post(formReg.attr('action'), formReg.find(':input'), function(response, data) {
                 if (response.success) {

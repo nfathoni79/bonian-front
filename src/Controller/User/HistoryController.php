@@ -153,5 +153,4 @@ class HistoryController extends AuthController
     }
 
 
-
 }

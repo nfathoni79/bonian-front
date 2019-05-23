@@ -45,3 +45,6 @@
 .zl-user:before {
   content: "\e906";
 }
+.zl-box-open:before {
+  content: "\f49e";
+}
