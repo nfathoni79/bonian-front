@@ -490,4 +490,55 @@ class ProfileController extends AuthController
                 ->withStringBody(json_encode($error));
         }
     }
+
+
+    protected function makeRequestPhone(CustomerForm $customer, $url = 'change-phone')
+    {
+        try {
+            $edit = $this->Api->makeRequest($this->Auth->user('token'))
+                ->post('v1/web/' . $url, [
+                    'form_params' => $this->request->getData() + ['session_id' => $this->request->getSession()->id()]
+                ]);//debug($edit->getBody()->getContents());
+            if ($response = $this->Api->success($edit)) {
+                $json = $response->parse();
+                return $json;
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $error = $this->Api->handle($e);//debug($e->getResponse()->getBody()->getContents());
+            if (isset($error['error'])) {
+                $customer->setErrors($error['error']);
+            }
+        }
+    }
+
+    public function changePhone()
+    {
+        $customer = new CustomerForm();
+
+        $url_wizard = [
+            '1' => 'change-phone',
+            '2' => 'change-phone/set-phone',
+            '3' => 'change-phone/verification',
+            '4' => '',
+        ];
+
+        if ($this->request->is('post')) {
+            if ($customer->execute($this->request->getData()) && isset($url_wizard[$this->request->getQuery('step', '1')])) {
+                $data = $this->makeRequestPhone($customer, $url_wizard[$this->request->getQuery('step', '1')]);
+                //debug($url_wizard[$this->request->getQuery('step', '1')]);
+                //debug($data);
+                //debug($customer->getErrors());
+                if ($data && isset($data['result']['data'])) {
+                    return $this->redirect([
+                        '?' => [
+                            'step' => $data['result']['data']['step']
+                        ]
+                    ]);
+                }
+            }
+        }
+
+
+        $this->set(compact('customer', 'data'));
+    }
 }

@@ -44490,6 +44490,13 @@ footer .footer-top .block-infos .info .inner i{
 }
 
 
+/* profile index */
+a.change-phone-number {
+  color: #c93535;
+  font-weight: normal;
+}
+
+
 
 /*notif tabs*/
 

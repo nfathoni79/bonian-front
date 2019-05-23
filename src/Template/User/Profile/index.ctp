@@ -55,7 +55,10 @@
 
                                     <tr>
                                         <td>Telepon</td>
-                                        <td><?= $profile['phone']; ?></td>
+                                        <td><?= $profile['phone']; ?> <?= !empty($profile['phone']) ?
+                                                $this->Html->link('Ubah', ['action' => 'changePhone'], ['class' => 'change-phone-number'])  :
+                                                ''; ?>
+                                        </td>
                                     </tr>
 
                                     <tr>

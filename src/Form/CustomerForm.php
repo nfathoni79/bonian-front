@@ -19,7 +19,10 @@ class CustomerForm extends Form
         return $schema->addField('name', 'string')
             ->addField('email', ['type' => 'string'])
             ->addField('dob', ['type' => 'string'])
-            ->addField('gender', ['type', 'string']);
+            ->addField('gender', ['type', 'string'])
+            ->addField('password', ['type' => 'string'])
+            ->addField('phone', ['type' => 'string'])
+            ->addField('otp', ['type' => 'string']);
     }
 
     protected function _execute(array $data)
