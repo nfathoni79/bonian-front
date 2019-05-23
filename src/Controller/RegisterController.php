@@ -23,23 +23,43 @@ class RegisterController extends AppController
        $this->request->allowMethod('post');
 
        $error = ['error' => []];
-       try {
-           $getData = $this->request->getData();
 
-           $getData['activation_url'] = \Cake\Routing\Router::url([
-                'controller' => 'Register',
-                'action' => 'activation'
-           ], true);
+       $secret = Configure::read('GoogleCaptcha.secretKey');
+       $gResponse = $this->request->getData('g-recaptcha-response');
+       $verify = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$gResponse);
+       $res = json_decode($verify);
 
-           $login = $this->Api->makeRequest()
-               ->post('v1/registers', [
-                   'form_params' => $getData
-               ]);
-           if ($response = $this->Api->success($login)) {
-               $error = $response->parse();
+       if($res->success){
+           try {
+               $getData = $this->request->getData();
+
+               $getData['activation_url'] = \Cake\Routing\Router::url([
+                   'controller' => 'Register',
+                   'action' => 'activation'
+               ], true);
+
+               $login = $this->Api->makeRequest()
+                   ->post('v1/registers', [
+                       'form_params' => $getData
+                   ]);
+               if ($response = $this->Api->success($login)) {
+                   $error = $response->parse();
+               }
+           } catch(\GuzzleHttp\Exception\ClientException $e) {
+               $error = json_decode($e->getResponse()->getBody()->getContents(), true);
            }
-       } catch(\GuzzleHttp\Exception\ClientException $e) {
-           $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+       }else{
+           $response = [
+               "status" => "ERROR",
+               "code" => 406,
+               "message" => "Failed to registers",
+               "error" => [
+                   "g-recaptcha-response" => [
+                       "_empty" => "Invalid captcha"
+                   ]
+               ]
+           ];
+           $error = $response;
        }
 
 
