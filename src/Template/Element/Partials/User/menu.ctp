@@ -50,6 +50,12 @@
                     'controller' => 'History'
                 ],
                 [
+                    'title' => 'Ulasan',
+                    'url' => $this->Url->build(['controller' => 'Review', 'action' => 'index', 'prefix' => 'user']),
+                    'icon' =>'zl zl-box-open',
+                    'controller' => 'History'
+                ],
+                [
                     'title' => 'Notifikasi',
                     'url' => $this->Url->build(['controller' => 'Notification', 'action' => 'index', 'prefix' => 'user']),
                     'icon' =>'zl zl-notif',
