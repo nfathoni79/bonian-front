@@ -35,7 +35,8 @@ class RegisterController extends AppController
 
                $getData['activation_url'] = \Cake\Routing\Router::url([
                    'controller' => 'Register',
-                   'action' => 'activation'
+                   'action' => 'activation',
+                   'prefix' => false
                ], true);
 
                $login = $this->Api->makeRequest()
