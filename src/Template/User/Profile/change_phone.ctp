@@ -17,7 +17,7 @@
                                     <?php
                                         $wizard = [
                                                 '1' => 'Verifikasi Password',
-                                                '2' => 'Ganti Nomor',
+                                                '2' => 'Input Nomor Baru',
                                                 '3' => 'Konfirmasi OTP',
                                                 '4' => 'Selesai',
                                         ];
@@ -61,13 +61,14 @@
                         <?php elseif ($this->request->getQuery('step', '1') == 2) : ?>
                             <div class="col-md-12">
                                 <div class="mg-b-15 mg-t-15">
-                                    Silahkan masukkan nomor handphone baru.
+                                    silahkan masukkan / lengkapi data yang berisi * (asterisk) pada kolom No handphone lama, <br/> dan masukkan nomor handphone baru yang akan diganti
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="notif-change"></div>
 
-                                <?= $this->Form->control('phone', ['type' => 'text','label' => 'Handphone', 'class' => 'form-control']); ?>
+                                <?= $this->Form->control('old_phone', ['type' => 'text','label' => 'No handphone lama', 'class' => 'form-control']); ?>
+                                <?= $this->Form->control('phone', ['type' => 'text','label' => 'No handphone baru', 'class' => 'form-control']); ?>
 
                                 <div class="form-group">
                                     <label></label>

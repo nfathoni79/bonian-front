@@ -539,6 +539,18 @@ class ProfileController extends AuthController
                     ]);
                 }
             }
+        } else if ($this->request->getQuery('step') == 2) {
+            try {
+                $edit = $this->Api->makeRequest($this->Auth->user('token'))
+                    ->get('v1/web/' . $url_wizard[$this->request->getQuery('step', '1')]);//debug($edit->getBody()->getContents());
+                if ($response = $this->Api->success($edit)) {
+                    $data = $response->parse();
+                    $customer->setData(['old_phone' => $data['result']['data']['phone']]);
+                }
+            } catch(\GuzzleHttp\Exception\ClientException $e) {
+                $error = $this->Api->handle($e);//debug($e->getResponse()->getBody()->getContents());
+
+            }
         }
 
 
