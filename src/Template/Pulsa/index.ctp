@@ -1,35 +1,35 @@
 <style type="text/css">
-    
-.fullwidth-section{
-    background: #fff;
-    width: 100%;
-    left: 0;
-}
-.fullwidth-section .container{
-    padding-bottom: 75px;
-}
-.dp-pulsa-content div .dp-pulsa-text{
-    text-align: center;
-}
-.dp-pulsa-content div .dp-pulsa-text h2{
-    color: #777;
-    font-weight: 700;
-}
-.dp-pulsa-content div .img-item{
-    margin: 75px 0 25px 0; 
-}
-.dp-pulsa-content div .img-item img{
-    height: 200px;
-}
-.dp-pulsa-content{
-    margin-top: 75px;
-}
-.dp-pulsa-content h1{
-    font-size: 2.35em;
-    text-transform: uppercase;
-    font-weight: 700;
-    color: #222;
-}
+
+    .fullwidth-section{
+        background: #fff;
+        width: 100%;
+        left: 0;
+    }
+    .fullwidth-section .container{
+        padding-bottom: 75px;
+    }
+    .dp-pulsa-content div .dp-pulsa-text{
+        text-align: center;
+    }
+    .dp-pulsa-content div .dp-pulsa-text h2{
+        color: #777;
+        font-weight: 700;
+    }
+    .dp-pulsa-content div .img-item{
+        margin: 75px 0 25px 0;
+    }
+    .dp-pulsa-content div .img-item img{
+        height: 200px;
+    }
+    .dp-pulsa-content{
+        margin-top: 75px;
+    }
+    .dp-pulsa-content h1{
+        font-size: 2.35em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: #222;
+    }
 
 </style>
 
@@ -274,6 +274,8 @@
                     }
                     else
                     {
+ 
+
                         $('#input-phone').closest('.form-group').removeClass('has-error');
                         $('#input-phone').closest('.form-group').addClass('has-success');
                         $('.zl-provider').html('<img src="<?= $this->Url->build($_basePath); ?>/img/provider/'+response.data.logo+'"  class="img-responsive" alt="provider" style="height: 41px !important;">');
@@ -282,28 +284,31 @@
                         $('#submitForm').prop("disabled", false);
                         var opt = '<span class="result-title">Pilih nominal pulsa</span>';
                         $.each(response.data.options, function(k,v){
-                            opt += '<div class="package col-sm-4"> <div class="col-sm-12 radio"> <div class="left-content"> <label> <input type="radio" class="price" name="code" data-provider="'+v.operator+'"  data-point="'+v.point+'" data-denom="'+v.denom+'" data-value="'+v.price+'" value="'+v.code+'"> Pulsa '+parseInt(v.denom).format(0, 3, '.', ',')+'</label> <span class="badge">'+v.point+' Poin</span> </div> <div class="right-content"> <label>Harga<br><span class="result-price">Rp '+parseInt(v.price).format(0, 3, '.', ',')+'</span></label> </div> </div> </div>';
+                            opt += '<div class="package col-sm-4"> <div class="col-sm-12 radio"> <div class="left-content"> <label> <input type="radio" class="price" name="code" data-provider="'+v.operator+'"  data-point="'+v.point+'" data-denom="'+v.denom+'" data-value="'+v.price+'" value="'+v.code+'"> Pulsa '+parseInt(v.denom).format(0, 3, '.', ',')+'</label> <span class="badge">'+v.point+' Poin</span> </div> <div class="right-content"> <label>Harga<br><span class="result-price">Rp '+numeral(v.price).format('0,0')+'</span></label> </div> </div> </div>';
                         });
 
                         $('.form-package').html(opt);
-                        $('.package').on('click',function(){
-                            $(this).find("input:radio").prop("checked", true).trigger("click");
-                        })
-                        $('.price').on('click',function(){
+
+                        $('.price').on('click',function(e){
+                            e.stopPropagation();
                             $('.radio').removeClass("active");
-                            $(this).closest(".radio").addClass("active");
+                            $(this).find(".radio").addClass("active");
                             $('.img-provider').html('<img src="<?= $this->Url->build($_basePath); ?>/img/provider/'+response.data.logo+'"  class="img-responsive" alt="provider"  style="width:83px !important;">');
                             $('.title-provider').html($(this).data('provider')+' '+parseInt($(this).data('denom')).format(0, 3, '.', ',') );
                             $('.point-provider').html('Point didapatkan sebesar '+$(this).data('point')+' Point.');
-                            $('.price-provider').html('Rp. '+parseInt($(this).data('value')).format(0, 3, '.', ',')+',-');
+                            $('.price-provider').html('Rp. '+numeral($(this).data('value')).format('0,0')+',-');
                             $('.bottom-pulsa').show();
                         });
-                        $("input:radio:first").prop("checked", true).trigger("click");
 
+                        $("input:radio:first").prop("checked", true).trigger("click");
                         // $(".package").find('input:radio:first').prop("checked", true).trigger("click");
                     }
                 }
             })
+        });
+
+        $(document.body).on('click', '.package' ,function(){
+            $(this).find('input:radio:first').prop("checked", true).trigger("click");
         });
 
         $('#form-pulsa').submit(function(e) {
