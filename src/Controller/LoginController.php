@@ -36,6 +36,7 @@ class LoginController extends AuthController
        try {
            $this->Api->addHeader('bid', $this->request->getCookie('bid'));
            $this->Api->addHeader('User-Agent', env('HTTP_USER_AGENT'));
+           $this->Api->addHeader('ip', env('REMOTE_ADDR'));
            $login = $this->Api->makeRequest()
                ->post('v1/web/login', [
                    'form_params' => [

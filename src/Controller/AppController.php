@@ -87,7 +87,7 @@ class AppController extends Controller
                                 'bid',
                                 $randomString,
                                 (new \DateTime())->add(new \DateInterval('P5Y')),
-                                $this->request->getAttribute('base')
+                                '/' //$this->request->getAttribute('base')
                             );
                             $this->response = $this->response->withCookie($cookie);
                         }
