@@ -45366,3 +45366,111 @@ hr.title-line{
   clear: both;
   height: 0;
 }
+
+
+/* bootbox modal custom style */
+.bootbox .modal-header {
+  background-color: #ec6e6e;
+  font-weight: 300!important
+}
+
+.bootbox .modal-content {
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px
+}
+
+.bootbox .modal-header {
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  color: #fff
+}
+
+.bootbox .modal-header .close {
+  color: #fff
+}
+
+.bootbox .modal-body {
+  /*padding-bottom: 0!important*/
+}
+
+.bootbox .c-modal-item {
+  padding: 20px;
+  min-height: 60px;
+  background-color: #fff6f6;
+  border-radius: 10px;
+  border: 1px solid #e2e2e2;
+  margin-bottom: 20px
+}
+
+.bootbox .c-modal-item .c-modal-item__name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+  margin-top: 0!important;
+  text-transform: capitalize
+}
+
+.bootbox .c-modal-item .c-modal-item__phone {
+  font-weight: 500;
+  margin-bottom: 0!important
+}
+
+.bootbox .c-modal-item .c-modal-item__btn-groups {
+  margin-top: 10px;
+  margin-bottom: 10px
+}
+
+.bootbox .modal-footer {
+  /*border-top: none!important;
+  padding-top: 0!important*/
+}
+
+.bootbox .modal-footer .c-info {
+  background-color: #edf5dc;
+  border: 1px solid #d6e2bd;
+  text-align: center;
+  color: #8cae47;
+  border-radius: 5px
+}
+
+.bootbox .o-modal-item__btn {
+  background-color: #dc5054;
+  color: #fff;
+  border: none!important;
+  border-radius: 5px!important
+}
+
+.bootbox .o-modal-item__btn,
+.bootbox .o-modal-item__btn--secondary {
+  margin-top: 2em!important;
+  text-transform: capitalize;
+  font-size: 1em;
+  font-weight: 600;
+  max-width: 250px;
+  min-height: 40px
+}
+
+.bootbox .o-modal-item__btn--secondary {
+  background-color: transparent;
+  color: #fff;
+  border-radius: 5px!important;
+  border: 1px solid #dfdfdf!important;
+  color: #dc5054;
+  font-size: .9em
+}
+
+/*custom bootbox header */
+.bootbox.forgot-password .modal-header {
+  background: #FFF6F6;
+}
+
+.bootbox.forgot-password .modal-header .close {
+  color: #555;
+}
+
+.bootbox.forgot-password .modal-dialog, .bootbox.medium-size .modal-dialog  {
+  width: 420px;
+}
+
+
+/* bootbox modal custom style */

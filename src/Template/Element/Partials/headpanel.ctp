@@ -261,7 +261,7 @@
                 </div>
 
                 <div class="text-center forgot-password-text">
-                    <a>Lupa Password?</a>
+                    <a id="forgot-password">Lupa Password?</a>
                 </div>
 
 
@@ -420,6 +420,65 @@ $this->Html->script([
                     <span class="error-message">${message}</span>
                 </div>`);
         }
+
+        function loadContentForgotPassword(url, session_id) {
+            $.ajax({
+                type: 'GET',
+                url: url || '<?= $this->Url->build(['controller' => 'Login', 'action' => 'forgotPassword']); ?>',
+                success: function (content) {
+                    bootbox.dialog({
+                        className: "forgot-passwordx medium-size",
+                        title: "Lupa password",
+                        message: content,
+                        size: "oke",
+                        buttons: {
+                            cancel: {
+                                label: 'Batal',
+                                className: 'btn-default'
+                            },
+                            confirm: {
+                                label: 'Lanjutkan',
+                                className: 'btn-danger',
+                                callback: function() {
+                                    var form = $(this).find('form');
+                                    if (session_id) {
+                                        form.find('input[name="session_id"]').val(session_id)
+                                    }
+                                    var ajaxRequest = new ajaxValidation(form);
+                                    ajaxRequest.post(form.attr('action'), form.find(':input,:hidden'), function(response, data) {
+                                        if (response.success) {
+                                            if (data.result.url) {
+                                                bootbox.hideAll();
+                                                loadContentForgotPassword(data.result.url, data.result.data ? data.result.data.session_id : null);
+                                            }
+                                            if (data.result.data && data.result.data.finish) {
+                                                bootbox.hideAll();
+                                                $("#login-popup").modal('show');
+                                            }
+
+                                        } else {
+
+                                        }
+                                    });
+                                    return false; // important to prevent close of dialog box
+                                }
+                            }
+                        },
+                        callback: function (result) {
+
+                        }
+                    });
+                }
+            });
+        }
+
+        $("#forgot-password").click(function() {
+            loadContentForgotPassword();
+            $("#login-popup").modal('hide')
+
+        })
+
+
 
         //sticky header
         $(window).scroll(function() {

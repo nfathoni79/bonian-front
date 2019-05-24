@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Cake\Core\Configure;
 use Cake\Http\Cookie\CookieInterface;
+use Cake\Routing\Route;
 use Cake\Utility\Security;
 use Cake\Http\Cookie\Cookie;
 
@@ -17,7 +18,13 @@ class LoginController extends AuthController
     public function initialize()
     {
         parent::initialize();
-        $this->Auth->allow(['index','auth']);
+        $this->Auth->allow([
+            'index',
+            'auth',
+            'forgotPassword',
+            'showOtp',
+            'setPassword'
+        ]);
     }
 
     /**
@@ -133,5 +140,94 @@ class LoginController extends AuthController
 
        return $this->response->withType('application/json')
            ->withStringBody(json_encode($endpoint));
+   }
+
+
+   public function setPassword()
+   {
+       if ($this->request->is('ajax') && $this->request->is('post')) {
+           try {
+               $login = $this->Api->makeRequest()
+                   ->post('v1/forgot-password/set-password', [
+                       'form_params' => $this->request->getData()
+                   ]);
+               if ($response = $this->Api->success($login)) {
+                   $error = $response->parse();
+
+
+               }
+           } catch(\GuzzleHttp\Exception\ClientException $e) {
+               $error = $this->Api->handle($e, true);
+           }
+           return $this->response->withType('application/json')
+               ->withStringBody(json_encode($error));
+       }
+   }
+
+
+   public function showOtp()
+   {
+       $this->getRequest()->getSession()->start();
+       $session_id = $this->getRequest()->getSession()->id();
+
+
+       if ($this->request->is('ajax') && $this->request->is('post')) {
+           try {
+               $login = $this->Api->makeRequest()
+                   ->post('v1/forgot-password/otp', [
+                       'form_params' => [
+                           'otp' => $this->request->getData('otp'),
+                           'session_id' => $this->request->getData('session_id')
+                       ]
+                   ]);
+               if ($response = $this->Api->success($login)) {
+                   $error = $response->parse();
+                   $error['result'] += [
+                       'url' => \Cake\Routing\Router::url([
+                           'action' => 'setPassword'
+                       ])
+                   ];
+
+               }
+           } catch(\GuzzleHttp\Exception\ClientException $e) {
+               $error = $this->Api->handle($e, true);
+           }
+           return $this->response->withType('application/json')
+               ->withStringBody(json_encode($error));
+       }
+
+
+   }
+
+   public function forgotPassword()
+   {
+
+       ///$this->getRequest()->getSession()->start();
+       //$session_id = $this->getRequest()->getSession()->id();
+
+        if ($this->request->is('ajax') && $this->request->is('post')) {
+            try {
+                $login = $this->Api->makeRequest()
+                    ->post('v1/forgot-password', [
+                        'form_params' => [
+                            'email' => $this->request->getData('email'),
+                            //'session_id' => $session_id
+                        ]
+                    ]);
+                if ($response = $this->Api->success($login)) {
+                    $error = $response->parse();
+                    $error['result'] += [
+                        'url' => \Cake\Routing\Router::url([
+                            'action' => 'showOtp'
+                        ])
+                    ];
+
+                }
+            } catch(\GuzzleHttp\Exception\ClientException $e) {
+                $error = $this->Api->handle($e, true);
+            }
+            return $this->response->withType('application/json')
+                ->withStringBody(json_encode($error));
+        }
    }
 }
