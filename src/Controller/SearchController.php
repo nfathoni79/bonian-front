@@ -236,7 +236,7 @@ class SearchController  extends AuthController
                 ]);
             if ($response = $this->Api->success($data)) {
                 $json = $response->parse();
-                $data = $json['result']['data'];
+                $data = isset($json['result']['data']) ? $json['result']['data'] : [];
             }
         } catch(\GuzzleHttp\Exception\ClientException $e) {
             //debug($e->getResponse()->getBody()->getContents());exit;
