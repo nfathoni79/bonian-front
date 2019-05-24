@@ -412,12 +412,15 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                                                 <div class="col-sm-12">
                                                                     <div class="row">
                                                                         <div class="col-sm-1">
-                                                                            <div><img src="<?= $this->Url->build($_basePath . 'files/Customers/avatar/' . $val['customer']['avatar']); ?>" class="img-rounded"></div>
+                                                                            <?php $img = $val['is_admin'] ? 'avatar.jpg' : $val['customer']['avatar'];?>
+                                                                            <div><img src="<?= $this->Url->build($_basePath . 'files/Customers/avatar/' . $img); ?>" class="img-rounded"></div>
                                                                         </div>
                                                                         <div class="col-sm-11">
                                                                             <div>
                                                                                 <span>
-                                                                                    <strong><?= $val['customer']['full_name']?> </strong>  |
+                                                                                    <strong>
+                                                                                    <?= $val['is_admin'] ? 'Administrator - '.$val['user']['first_name'] : $val['customer']['full_name'];?>
+                                                                                    </strong>  |
                                                                                     <i class="fa fa-clock"></i> <?php
                                                                                         echo $this->Time->timeAgoInWords(
                                                                                                $val['created'], array(
@@ -428,7 +431,8 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                                                                         );
                                                                                     ?>
                                                                                     <?php if($this->request->getSession()->check('Auth.Customers.email')):?>
-                                                                                    | <a href="javascript:void(0);" class="label label-danger reply-msg" data-for-name="<?= $vals['customer']['full_name']?>" data-for-id="<?= $vals['id']?>"> Reply </a>
+                                                                                    <?php $name = $val['is_admin'] ? 'Administrator - '.$val['user']['first_name'] : $val['customer']['full_name'];?>
+                                                                                    | <a href="javascript:void(0);" class="label label-danger reply-msg" data-for-name="<?= $name;?>" data-for-id="<?= $vals['id']?>"> Reply </a>
                                                                                     <?php endif;?>
                                                                                     <?php if($this->request->getSession()->read('Auth.Customers.email') == $val['customer']['email']):?>
                                                                                      <a href="javascript:void(0);" class="label label-danger delete-msg ml-2" data-for-name="<?= $val['customer']['full_name']?>" data-for-id="<?= $val['id']?>"> Delete </a>

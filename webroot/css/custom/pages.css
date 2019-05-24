@@ -12,6 +12,15 @@ a.img-thumb{
 	width: 50%;margin:40px auto; display:block;
 }
 
+.item-article h2{
+	margin-bottom: 20px;
+	color: #000;
+}
+
+p{
+	font-weight: 500;
+}
+
 @media (min-width: 768px){
 	.modal-dialog {
 		width:960px;
