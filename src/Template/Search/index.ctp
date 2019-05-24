@@ -634,7 +634,8 @@ $this->Html->script([
                 if (e.target.href) {
                     refreshPage(e.target.href, false, false);
                 }
-            })
+            });
+            $('body,html').animate({scrollTop:0}, 1200);
         }
         paginationClicked();
 
