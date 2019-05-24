@@ -75,6 +75,12 @@
                     'controller' => 'Point'
                 ],
                 [
+                    'title' => 'Balance saya',
+                    'url' => $this->Url->build(['controller' => 'Wallet', 'action' => 'index', 'prefix' => 'user']),
+                    'icon' =>'zl zl-point',
+                    'controller' => 'Point'
+                ],
+                [
                     'title' => 'Jaringan',
                     'url' => $this->Url->build(['controller' => 'Network', 'action' => 'index', 'prefix' => 'user']),
                     'icon' =>'zl zl-network',
