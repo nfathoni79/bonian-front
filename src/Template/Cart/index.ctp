@@ -6,7 +6,7 @@
                 <h1 class="o-header-title">keranjang belanja</h1>
             </div>
             <div class="col-lg-3 text-center">
-                <button onclick="location.href='<?php echo $this->Url->build(['controller' => 'Search', 'action' => 'index']);?>'" type="button" class="btn btn-danger btn-lg btn-block c-header-button">
+                <button onclick="location.href='<?php echo $this->Url->build(['controller' => 'Search', 'action' => 'index']);?>'" type="button" class="btn zl-btn-hover-red btn-lg btn-block c-header-button">
                     lanjut berbelanja
                 </button>
             </div>
