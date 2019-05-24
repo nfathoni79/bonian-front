@@ -289,17 +289,6 @@
                             <?php endif; ?>
 
                             <div class="col-lg-7">
-                                <h3 class="tx-15">Use Point</h3>
-                            </div>
-                            <div class="col-lg-5 mg-t-15">
-                                <h5 class="tx-black tx-15"> <?php echo (empty($data['point']))  ? '0' : $data['point']; ?> Point </h5>
-                            </div>
-
-                            <div class="col-lg-12">
-                                <div style="border:1px dashed #E2E2E2; margin-top:1px;"></div>
-                            </div>
-
-                            <div class="col-lg-7">
                                 <h3>Total tagihan</h3>
                             </div>
                             <div class="col-lg-5 mg-t-15">
