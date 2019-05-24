@@ -33,7 +33,7 @@
                     <div class="row card mg-t-30 mg-l-0 mg-r-0">
 
                         <div class="box-title font-ct d-lg-inline-block" >
-                            <h2 class="modtitle"><span>Kategori <?php echo $vals['product_category']['name']; ?> Pada Fashion Wanita</span></h2>
+                            <h2 class="modtitle"><span>Kategori <?php echo $vals['product_category']['name']; ?> </span></h2>
                         </div>
                         <a class="l-detail tx-medium ft-right d-lg-inline-block" href="" >Lihat Selengkapnya</a>
                         <?php
