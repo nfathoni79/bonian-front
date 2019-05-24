@@ -250,9 +250,8 @@
 
         <!-- start: bagian kanan -->
         <div id="content" class="col-md-9 col-sm-12">
-            <div class="products-category c-main-content">
-
-                
+            <div class="products-category c-main-content banner">
+                <?php if ($banners) : ?>
                 <!-- start: banner atas -->
                 <div class="mg-b-30 card pd-0">
                     <div class="row">
@@ -274,6 +273,7 @@
                         </div>
                     </div>
                 </div>
+                <?php endif; ?>
             </div>
                 <!-- end: banner atas -->
 
@@ -698,7 +698,7 @@ $this->Html->script([
                 _csrfToken: $('meta[name="_csrfToken"]').attr('content')
             },
             success: function(response){
-                $(".banners").html(response);
+                $(".products-category.c-main-content.banner").html(response);
                 buildSliderBanner();
             },
             error: function () {
