@@ -89,7 +89,7 @@ $this->Html->script([
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="title-panel pull-right">
-                                                    <strong>Tanggal Order: <?= date('d M Y, H : i',strtotime($order['transactions'][0]['modified'])); ?></strong>
+                                                    <strong>Tanggal Order: <?= date('d M Y, H : i',strtotime($order['created'])); ?></strong>
                                                 </div>
                                             </div>
                                         </div>
@@ -121,10 +121,26 @@ $this->Html->script([
                                                                 <div><?php echo $value['product']['name'];?></div>
                                                                 <?php if($value['status'] == 0):?>
                                                                     <small>Belum Diulas</small>
-                                                                    <div><a href="" class="btn btn-sm btn-danger btn-radius"> Tulis Ulasan</a></div>
+                                                                    <div><a href="<?php echo $this->Url->build(['controller' => 'Review', 'action' => 'add', $value['order_id'], $value['id']]);?>" class="btn btn-sm btn-danger btn-radius"> Tulis Ulasan</a></div>
                                                                 <?php else:?>
-                                                                    <small>* * * * *</small>
-                                                                    <div><a href="" class="btn btn-sm btn-danger btn-radius"> Lihat Ulasan</a></div>
+                                                                    <div class="caption">
+                                                                        <div class="rate-history">
+                                                                            <div class="ratings">
+                                                                                <div class="rating-box">
+                                                                                    <?php
+                                                                                        $rate = (int) $value['rating'];
+                                                                                        for ($x = 0; $x < $rate; $x++) {
+                                                                                            echo '<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>';
+                                                                                        }
+                                                                                        for ($x = 0; $x < 5-$rate; $x++) {
+                                                                                            echo '<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>';
+                                                                                        }
+                                                                                    ?>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div><a href="<?php echo $this->Url->build(['controller' => 'Review', 'action' => 'view', $value['order_id'], $value['id']]);?>" class="btn btn-sm btn-danger btn-radius"> Lihat Ulasan</a></div>
                                                                 <?php endif;?>
                                                             </div>
                                                         </div>
@@ -174,7 +190,7 @@ $this->Html->script([
                                         </li>
                                         <?php while ($iterator->valid()): ?>
                                         <?php
-                                                $isActive = $this->request->getQuery('page') == $iterator->current();
+                                            $isActive = $this->request->getQuery('page') == $iterator->current();
                                         ?>
                                         <li class="<?= $isActive ? 'active': ''; ?>">
                                             <a href="<?= $this->Url->build([

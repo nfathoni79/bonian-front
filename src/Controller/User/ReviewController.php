@@ -32,7 +32,7 @@ class ReviewController extends AuthController
             return $this->redirect(['action' => 'index', 'prefix' => 'user', '?' => $params]);
         }
 
-        $params['limit'] = 1;
+        $params['limit'] = 4;
 
         $response = [];
         try {
@@ -86,6 +86,30 @@ class ReviewController extends AuthController
             'shipping_status',
             'digital_status'
         ));
+    }
+
+    function add($order_id, $id = null){
+        try {
+            $rating = $this->Api->makeRequest($this->Auth->user('token'))
+                ->post('v1/web/product-ratings/view', [
+                    'form_params' => [
+                        'order_id' => $order_id,
+                        'id' => $id,
+                    ]
+                ]);
+            if ($response = $this->Api->success($rating)) {
+                $response = $response->parse();
+                $rating = $response['result']['data'];
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $this->Api->handle($e);
+            $rating = json_decode($e->getResponse()->getBody()->getContents(), true);
+        }
+        $this->set(compact('rating'));
+    }
+
+    function view(){
+
     }
 
     function history(){
