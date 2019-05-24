@@ -269,7 +269,7 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                                 </div>
                                             <?php endforeach;?>
                                         </div>
-                                    </div><? debug($details); exit; ?>
+                                    </div>
 
                                     <div class="mg-t-40">
                                         <button type="button" class="btn btn-lg btn-radius btn-wishlist <?= !empty($details['data']['wishlist_id']) ? 'in-wish' : ''; ?>" data-wishlist-id="<?= $details['data']['wishlist_id']; ?>" data-product-id="<?= $details['data']['id']; ?>">

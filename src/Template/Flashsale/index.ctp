@@ -7,16 +7,45 @@ $this->Html->css([
 ?>
 <?php $this->end(); ?>
 
-
-<div class="jumbotron jumbotron-fluid pd-0">
-    <img src="images/flashsale-banner/banner.jpg" width="100%">
+<!-- start: header part -->
+<div class="c-header__bg" style="z-index:0;"> 
+    <div class="container">
+        <div class="row">
+            <ul class="breadcrumb">
+                <li><a href="<?php echo $this->Url->build('/'); ?>"><i class="fa fa-home"></i></a></li>
+                <li>Flashsale</li>
+            </ul>
+        </div>
+    </div>
 </div>
+<!-- end: header part -->
 
 
 <div class="c-dp-main mb-5 flashsale-content">
     <div class="container">
         <div class="row">
             <div id="content" class="col-sm-12 item-article">
+
+                <!-- <div class="pd-25">
+                    <img src="images/flashsale-banner/banner.jpg" width="100%">
+                </div> -->
+
+                <div class="module sohomepage-slider pd-25">
+                    <div class="yt-content-slider"  data-rtl="yes" data-autoplay="yes" data-autoheight="no" data-delay="4" data-speed="0.6" data-margin="0" data-items_column0="1" data-items_column1="1" data-items_column2="1"  data-items_column3="1" data-items_column4="1" data-arrows="no" data-pagination="yes" data-lazyload="yes" data-loop="no" data-hoverpause="yes">
+                        <!-- <div class="yt-content-slide">
+                            <a title="slide1" href="#"><div class="yt-content-slide"><img src="<?= $this->Url->build($_basePath . 'images/1150x317/'. $banner['banner']['image']); ?>" class="responsive wd-100p"></div></a>
+                        </div> -->
+                        <div class="yt-content-slide">
+                            <a title="slide1" href="#"><div class="yt-content-slide"><img src="images/flashsale-banner/banner.jpg" class="responsive wd-100p"></div></a>
+                        </div>
+                        <div class="yt-content-slide">
+                            <a title="slide1" href="#"><div class="yt-content-slide"><img src="images/flashsale-banner/banner.jpg" class="responsive wd-100p"></div></a>
+                        </div>
+                        <div class="yt-content-slide">
+                            <a title="slide1" href="#"><div class="yt-content-slide"><img src="images/flashsale-banner/banner.jpg" class="responsive wd-100p"></div></a>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="tabs effect-3 br-10 overflow-hidden">
 
