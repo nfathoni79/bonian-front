@@ -15,7 +15,7 @@ class SearchController  extends AuthController
     public function initialize()
     {
         parent::initialize();
-        $this->Auth->allow(['get', 'history', 'index', 'removeHistory', 'loadCategory', 'loadBrand', 'loadVariant', 'fetch']);
+        $this->Auth->allow(['get', 'history', 'index', 'removeHistory', 'loadCategory', 'loadBrand', 'loadVariant', 'loadBanner', 'fetch']);
     }
 
     public function locator(){
@@ -210,9 +210,38 @@ class SearchController  extends AuthController
 
         $variants = $this->_variant($query_string);
         $brands = $this->_brand($query_string);
+        $banners = $this->_banner($query_string);
 
-        $this->set(compact('products', 'pagination', 'pricing', 'variants', 'brands'));
+        $this->set(compact('products', 'pagination', 'pricing', 'variants', 'brands', 'banners'));
 
+    }
+
+    public function loadBanner()
+    {
+        //$this->disableAutoRender();
+        $query_string = $this->request->getQueryParams();
+        $banners = $this->_banner($query_string);
+        $this->set(compact('banners'));
+    }
+
+
+    protected function _banner($query_string)
+    {
+        $data = [];
+        try {
+            $this->Api->addHeader('bid', $this->request->getCookie('bid'));
+            $data = $this->Api->makeRequest()
+                ->get('v1/product-filters/banners', [
+                    'query' => array_filter($query_string)
+                ]);
+            if ($response = $this->Api->success($data)) {
+                $json = $response->parse();
+                $data = $json['result']['data'];
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            //debug($e->getResponse()->getBody()->getContents());exit;
+        }
+        return $data;
     }
 
     public function loadCategory()

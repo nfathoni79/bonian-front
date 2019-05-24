@@ -258,9 +258,16 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="banners">
-                                <div>
-                                    <a href="#"><img src="https://via.placeholder.com/870x290.png/ffffff/c93535" alt="img cate"
-                                                     style="border-radius:15px;"><br></a>
+                                <div class="module sohomepage-slider ">
+                                    <div class="yt-content-slider"  data-rtl="yes" data-autoplay="no" data-autoheight="no" data-delay="4" data-speed="0.6" data-margin="0" data-items_column0="1" data-items_column1="1" data-items_column2="1"  data-items_column3="1" data-items_column4="1" data-arrows="no" data-pagination="yes" data-lazyload="yes" data-loop="no" data-hoverpause="yes">
+
+                                        <?php foreach($banners as $banner) : ?>
+                                            <div class="yt-content-slide">
+                                                <a href="<?php echo $banner['url'];?>"><img src="<?= $this->Url->build($_basePath . 'images/870x290/' . $banner['name']); ?>" alt="slide img" class="responsive"></a>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                    <div class="loadeding"></div>
                                 </div>
                             </div>
 
@@ -683,6 +690,73 @@ $this->Html->script([
         });
     }
 
+    function loadBanners(target) {
+        $.ajax({
+            url: target || location.search,
+            type : 'POST',
+            data : {
+                _csrfToken: $('meta[name="_csrfToken"]').attr('content')
+            },
+            success: function(response){
+                $(".banners").html(response);
+                buildSliderBanner();
+            },
+            error: function () {
+
+            }
+        });
+    }
+
+    function buildSliderBanner() {
+        $('.yt-content-slider').each(function () {
+            var $slider = $(this),
+                $panels = $slider.children('div'),
+                data = $slider.data();
+            // Remove unwanted br's
+            //$slider.children(':not(.yt-content-slide)').remove();
+            // Apply Owl Carousel
+
+            $slider.owlCarousel2({
+                responsiveClass: true,
+                mouseDrag: true,
+                video:true,
+                lazyLoad: (data.lazyload == 'yes') ? true : false,
+                autoplay: (data.autoplay == 'yes') ? true : false,
+                autoHeight: (data.autoheight == 'yes') ? true : false,
+                autoplayTimeout: data.delay * 1000,
+                smartSpeed: data.speed * 1000,
+                autoplayHoverPause: (data.hoverpause == 'yes') ? true : false,
+                center: (data.center == 'yes') ? true : false,
+                loop: (data.loop == 'yes') ? true : false,
+                dots: (data.pagination == 'yes') ? true : false,
+                nav: (data.arrows == 'yes') ? true : false,
+                dotClass: "owl2-dot",
+                dotsClass: "owl2-dots",
+                margin: data.margin,
+                navText: ['',''],
+
+                responsive: {
+                    0: {
+                        items: data.items_column4
+                    },
+                    480: {
+                        items: data.items_column3
+                    },
+                    768: {
+                        items: data.items_column2
+                    },
+                    992: {
+                        items: data.items_column1
+                    },
+                    1200: {
+                        items: data.items_column0
+                    }
+                }
+            });
+
+        });
+    }
+
 
     function generateTree(url) {
         var $tree = $('#category_view').treeview({
@@ -730,6 +804,7 @@ $this->Html->script([
                     arrayFormat: 'index'
                 }));
                 refreshPage(null, false, true, true);
+                loadBanners('<?= $this->Url->build(['action' => 'loadBanner', 'prefix' => false]); ?>' + location.search);
 
             },
             onNodeUnselected: function (event, data) {
