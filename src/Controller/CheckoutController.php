@@ -105,9 +105,21 @@ class CheckoutController  extends AuthController
             $this->Api->handle($e);
         }
 
+        //list balance
+        try {
+            $balance = $this->Api->makeRequest($this->Auth->user('token'))
+                ->get('v1/web/customers/get-balance');
+            if ($response = $this->Api->success($balance)) {
+                $json = $response->parse();
+                $balance = $json['result']['data']['balance'];
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $this->Api->handle($e);
+        }
+
         //debug($data);exit;
 
-        $this->set(compact('data','address', 'creditcards'));
+        $this->set(compact('data','address', 'creditcards', 'balance'));
 
     }
 

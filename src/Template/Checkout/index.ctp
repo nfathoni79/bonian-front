@@ -541,6 +541,44 @@
                                         </div>
                                         <!-- end:item #1-->
 
+
+                                        <?php if ($balance > 0) : ?>
+                                        <!-- start: title -->
+                                        <div>
+                                            <h5 class="c-card-pembayaran__title tx-black tx-bold-force">
+                                                Saldo
+                                            </h5>
+                                        </div>
+                                        <!-- end: title -->
+
+                                        <!-- start:item #1-->
+                                        <div class="row" style="padding: 5px 20px">
+                                            <div class="col-lg-2 pd-t-10 text-center">
+                                                <div class="pretty p-default p-round p-pulse p-bigger">
+                                                    <input type="radio" name="payment_method"  value="wallet">
+                                                    <div class="state p-danger">
+                                                        <label> </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-10 pd-t-10">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <h5 class="tx-bank" style="text-align:left !important;">Rp. <?= $this->Number->format($balance); ?></h5>
+                                                    </div>
+
+                                                    <div class="col-lg-12">
+                                                        <p>
+                                                            Pembayaran instant menggunakan saldo balance anda.
+
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end:item #1-->
+                                        <?php endif; ?>
+
                                     </div>
                                     <!-- end: content -->
 

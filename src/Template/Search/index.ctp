@@ -590,7 +590,7 @@ $this->Html->script([
                     _csrfToken: $('meta[name="_csrfToken"]').attr('content')
                 },
                 success: function(response){
-                    $("#product-container-layout").html(response);
+                    $("#product-container-layout").hide().html(response).fadeIn('show');
                     history.replaceState(null, null, target);
                     paginationClicked()
                 },
@@ -698,8 +698,15 @@ $this->Html->script([
             data : {
                 _csrfToken: $('meta[name="_csrfToken"]').attr('content')
             },
-            success: function(response){
-                $(".products-category.c-main-content.banner").html(response);
+            success: function(response) {
+                var containerBanner = $(".products-category.c-main-content.banner");
+                if (response === '') {
+                    containerBanner.fadeOut('slow');
+                } else {
+                    containerBanner.hide().html(response).fadeIn('slow');
+                }
+
+                //$(".products-category.c-main-content.banner").hide().html(response).fadeIn('slow');
                 buildSliderBanner();
             },
             error: function () {
