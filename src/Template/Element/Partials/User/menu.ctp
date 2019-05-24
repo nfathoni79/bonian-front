@@ -53,7 +53,7 @@
                     'title' => 'Ulasan',
                     'url' => $this->Url->build(['controller' => 'Review', 'action' => 'index', 'prefix' => 'user']),
                     'icon' =>'fa fa-comments-o mg-r-15 tx-normal',
-                    'controller' => 'History'
+                    'controller' => 'Review'
                 ],
                 [
                     'title' => 'Notifikasi',
