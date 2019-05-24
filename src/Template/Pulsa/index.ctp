@@ -274,7 +274,7 @@
                     }
                     else
                     {
- 
+
 
                         $('#input-phone').closest('.form-group').removeClass('has-error');
                         $('#input-phone').closest('.form-group').addClass('has-success');

@@ -78,17 +78,18 @@ $this->Html->script([
 
                         <div class="row">
                             <div class="col-md-12">
+                                <?php foreach($orders as $order) : ?>
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="title-panel pull-left">
-                                                    <strong>Invoice No. 190514144514BC</strong>
+                                                    <strong>Invoice No. <?= $order['invoice']; ?></strong>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="title-panel pull-right">
-                                                    <strong>Pesanan diterima: 22 Mei 2019, 19:07</strong>
+                                                    <strong>Tanggal Order: <?= date('d M Y, H : i',strtotime($order['transactions'][0]['modified'])); ?></strong>
                                                 </div>
                                             </div>
                                         </div>
@@ -97,61 +98,37 @@ $this->Html->script([
                                         <div class="row pd-10">
                                             <div class="col-md-5">
                                                 <dl class="dl-horizontal">
-                                                    <dt>Order ID</dt>
-                                                    <dd>190514144514BC-16</dd>
-                                                    <dt>Status Pengiriman</dt>
-                                                    <dd>-</dd>
-                                                    <dt>Shipping origin</dt>
-                                                    <dd>Jakarta</dd>
+                                                    <dt>Nama Penerima</dt>
+                                                    <dd><?= $order['recipient_name']; ?></dd>
+                                                    <dt>Nomor Telpon</dt>
+                                                    <dd><?= $order['recipient_phone']; ?></dd>
                                                     <dt>Shipping destination</dt>
-                                                    <dd>Jl. Sanggar kencana 23 no 1, Buahbatu (Margacinta), Bandung, Jawa Barat</dd>
+                                                    <dd><?= $order['address']; ?>, <?= $order['subdistrict']['name']; ?>, <?= $order['city']['name']; ?>, <?= $order['province']['name']; ?></dd>
                                                 </dl>
                                             </div>
                                             <div class="col-md-7">
-                                                <h4 class="pd-0 mg-0 mg-b-10">Daftar Produk</h4>
                                                 <div style="height:200px; position: relative;">
                                                     <div style="height:100%;max-height: 100%;overflow-y: auto;overflow-x: hidden; ">
-
+                                                        <?php foreach($order['product_ratings'] as $value):?>
                                                         <div class="row mg-b-15">
                                                             <div class="col-md-3">
-                                                                <img src="http://zolaku.nevsky.tech/images/250x250/f579ae52bacf41eca28d6cb871d0f253.jpg" class="img-responsive">
+                                                                <?php foreach($value['product']['images'] as $image):?>
+                                                                <img class="img-responsive" src="<?= $this->Url->build($_basePath . 'images/250x250/' . $image); ?>" >
+                                                                <?php break;?>
+                                                                <?php endforeach;?>
                                                             </div>
                                                             <div class="col-md-9">
-                                                                <div>SSD SanDisk Plus 240GB SDSSDA-240G-G26</div>
-                                                                <small>Belum Diulas</small>
-                                                                <div><a href="" class="btn btn-sm btn-danger btn-radius"> Tulis Ulasan</a></div>
+                                                                <div><?php echo $value['product']['name'];?></div>
+                                                                <?php if($value['status'] == 0):?>
+                                                                    <small>Belum Diulas</small>
+                                                                    <div><a href="" class="btn btn-sm btn-danger btn-radius"> Tulis Ulasan</a></div>
+                                                                <?php else:?>
+                                                                    <small>* * * * *</small>
+                                                                    <div><a href="" class="btn btn-sm btn-danger btn-radius"> Lihat Ulasan</a></div>
+                                                                <?php endif;?>
                                                             </div>
                                                         </div>
-                                                        <div class="row mg-b-15">
-                                                            <div class="col-md-3">
-                                                                <img src="http://zolaku.nevsky.tech/images/250x250/f579ae52bacf41eca28d6cb871d0f253.jpg" class="img-responsive">
-                                                            </div>
-                                                            <div class="col-md-9">
-                                                                <div>SSD SanDisk Plus 240GB SDSSDA-240G-G26</div>
-                                                                <small>Belum Diulas</small>
-                                                                <div><a href="" class="btn btn-sm btn-danger btn-radius"> Tulis Ulasan</a></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mg-b-15">
-                                                            <div class="col-md-3">
-                                                                <img src="http://zolaku.nevsky.tech/images/250x250/f579ae52bacf41eca28d6cb871d0f253.jpg" class="img-responsive">
-                                                            </div>
-                                                            <div class="col-md-9">
-                                                                <div>SSD SanDisk Plus 240GB SDSSDA-240G-G26</div>
-                                                                <small>Belum Diulas</small>
-                                                                <div><a href="" class="btn btn-sm btn-danger btn-radius"> Tulis Ulasan</a></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mg-b-15">
-                                                            <div class="col-md-3">
-                                                                <img src="http://zolaku.nevsky.tech/images/250x250/f579ae52bacf41eca28d6cb871d0f253.jpg" class="img-responsive">
-                                                            </div>
-                                                            <div class="col-md-9">
-                                                                <div>SSD SanDisk Plus 240GB SDSSDA-240G-G26</div>
-                                                                <small>Belum Diulas</small>
-                                                                <div><a href="" class="btn btn-sm btn-danger btn-radius"> Tulis Ulasan</a></div>
-                                                            </div>
-                                                        </div>
+                                                        <?php endforeach;?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -159,9 +136,83 @@ $this->Html->script([
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>
+                                <?php endforeach;?>
+
                             </div>
                         </div>
 
+                        <div class="row">
+                            <div class="col-md-12">
+                                <?php
+                                if (isset($pagination) && $pagination instanceof \Pagination\Pagination) :
+                                    //get indexes in page
+                                    $indexes = $pagination->getIndexes(new \Pagination\StrategySimple(5));
+                                $iterator = $indexes->getIterator();
+                                if ($iterator->count() > 1) :
+                                ?>
+                                <nav aria-label="Page navigation" style="margin: 0 auto; text-align: center;">
+                                    <ul class="pagination">
+                                        <li>
+                                            <a href="<?= $this->Url->build([
+                                                'controller' => 'Review',
+                                                'action' => 'index',
+                                                'prefix' => 'user',
+                                                '?' => array_merge($this->request->getQuery(), ['page' => $pagination->getFirstPage()])
+                                            ]); ?>" aria-label="First">
+                                                <span aria-hidden="true">First</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="<?= $this->Url->build([
+                                                'controller' => 'Review',
+                                                'action' => 'index',
+                                                'prefix' => 'user',
+                                                '?' => array_merge($this->request->getQuery(), ['page' => $pagination->getPreviousPage()])
+                                            ]); ?>" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+                                        <?php while ($iterator->valid()): ?>
+                                        <?php
+                                                $isActive = $this->request->getQuery('page') == $iterator->current();
+                                        ?>
+                                        <li class="<?= $isActive ? 'active': ''; ?>">
+                                            <a href="<?= $this->Url->build([
+                                                    'controller' => 'Review',
+                                                    'action' => 'index',
+                                                    'prefix' => 'user',
+                                                    '?' => array_merge($this->request->getQuery(), ['page' => $iterator->current()])
+                                                ]); ?>">
+                                                <?php echo $iterator->current() ?>
+                                            </a>
+                                        </li>
+                                        <?php $iterator->next(); endwhile; ?>
+                                        <li>
+                                            <a href="<?= $this->Url->build([
+                                                'controller' => 'Review',
+                                                'action' => 'index',
+                                                'prefix' => 'user',
+                                                '?' => array_merge($this->request->getQuery(), ['page' => $pagination->getNextPage()])
+                                            ]); ?>" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="<?= $this->Url->build([
+                                                'controller' => 'Review',
+                                                'action' => 'index',
+                                                'prefix' => 'user',
+                                                '?' => array_merge($this->request->getQuery(), ['page' => $pagination->getLastPage()])
+                                            ]); ?>" aria-label="Last">
+                                                <span aria-hidden="true">Last</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                                <?php endif; ?>
+                                <?php endif; ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
