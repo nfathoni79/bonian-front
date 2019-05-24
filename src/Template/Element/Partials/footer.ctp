@@ -84,8 +84,7 @@
                             <li><a class="item-link" href="#"><span class="menu-title">Pusat Bantuan</span></a></li>
                             <li><a class="item-link" href="#"><span class="menu-title">Pembayaran</span></a></li>
                             <li><a class="item-link" href="#"><span class="menu-title">Point Zolaku</span></a></li>
-                            <li><a class="item-link" href="#"><span class="menu-title">Lacak Pesanan Pembeli</span></a></li>
-                            <li><a class="item-link" href="#"><span class="menu-title">Lacak Pengiriman Penjual</span></a></li>
+                            <li><a class="item-link" href="#"><span class="menu-title">Lacak Pesanan</span></a></li>
                             <li><a class="item-link" href="#"><span class="menu-title">Pengembalian Barang & Dana</span></a></li>
                         </ul>
                     </div>

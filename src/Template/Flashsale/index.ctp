@@ -13,7 +13,7 @@ $this->Html->css([
         <div class="row">
             <ul class="breadcrumb">
                 <li><a href="<?php echo $this->Url->build('/'); ?>"><i class="fa fa-home"></i></a></li>
-                <li>Flashsale</li>
+                <li><span class="tx-white tx-medium">Flashsale</span></li>
             </ul>
         </div>
     </div>
