@@ -20,7 +20,7 @@
                                             <th>Tipe</th>
                                             <th>Deksripsi</th>
                                             <th>Nilai</th>
-                                            <th>Saldo Point</th>
+                                            <th>Saldo Balance</th>
                                         </tr>
                                     </thead>
                                     <tbody>
