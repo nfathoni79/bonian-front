@@ -82,10 +82,10 @@
                         <h3 class="footertitle">LAYANAN PELANGGAN</h3>
                         <ul id="menu-our-shops" class="menu">
                             <li><a class="item-link" href="#"><span class="menu-title">Pusat Bantuan</span></a></li>
-                            <li><a class="item-link" href="#"><span class="menu-title">Pembayaran</span></a></li>
-                            <li><a class="item-link" href="#"><span class="menu-title">Point Zolaku</span></a></li>
-                            <li><a class="item-link" href="#"><span class="menu-title">Lacak Pesanan</span></a></li>
-                            <li><a class="item-link" href="#"><span class="menu-title">Pengembalian Barang & Dana</span></a></li>
+                            <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'pembayaran','prefix' => false]);?>">Pembayaran</a></li>
+                            <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'point-zolaku','prefix' => false]);?>">Point Zolaku</a></li>
+                            <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'lacak-pesanan','prefix' => false]);?>">Lacak Pesanan</a></li>
+                            <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'pengembalian-barang-dana','prefix' => false]);?>">Pengembalian Barang & Dana</a></li>
                         </ul>
                     </div>
                 </div>
