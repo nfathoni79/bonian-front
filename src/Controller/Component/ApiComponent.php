@@ -107,16 +107,17 @@ class ApiComponent extends Component
 
     /**
      * @param \Exception $e
+     * @param \Exception $return
      * @return \Cake\Http\Response|null|array
      */
-    public function handle(\Exception $e)
+    public function handle(\Exception $e, $return = false)
     {
         if ($e->getCode() == 401) {
             $this->getController()->Auth->logout();
             return $this->getController()->redirect(['controller' => 'Home', 'prefix' => false]);
         }
 
-        if ($e instanceof \GuzzleHttp\Exception\ClientException) {
+        if ($return && $e instanceof \GuzzleHttp\Exception\ClientException) {
             return json_decode($e->getResponse()->getBody()->getContents(), true);
         }
 

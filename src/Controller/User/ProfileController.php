@@ -504,7 +504,7 @@ class ProfileController extends AuthController
                 return $json;
             }
         } catch(\GuzzleHttp\Exception\ClientException $e) {
-            $error = $this->Api->handle($e);//debug($e->getResponse()->getBody()->getContents());
+            $error = $this->Api->handle($e, true);//debug($e->getResponse()->getBody()->getContents());
             if ($e->getResponse()->getStatusCode() == 404) {
                 return $this->redirect(['action' => 'changePhone']);
             }
@@ -548,7 +548,7 @@ class ProfileController extends AuthController
                     $customer->setData(['old_phone' => $data['result']['data']['phone']]);
                 }
             } catch(\GuzzleHttp\Exception\ClientException $e) {
-                $error = $this->Api->handle($e);//debug($e->getResponse()->getBody()->getContents());
+                $error = $this->Api->handle($e, true);//debug($e->getResponse()->getBody()->getContents());
 
             }
         }
