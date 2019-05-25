@@ -2,7 +2,7 @@
 <div class="render-alert"></div>
 
 <div>
-    Silahkan masukkan OTP yang telah dikirim ke email anda.
+    Silahkan masukkan OTP yang telah dikirim ke email / handphone anda.
 </div>
 
 <?= $this->Form->create(null, [
