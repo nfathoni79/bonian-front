@@ -2,7 +2,7 @@
 <div class="render-alert"></div>
 
 <div>
-    Masukkan alamat email  yang terdaftar di Zolaku
+    Masukkan alamat email atau nomor handphone yang terdaftar di Zolaku
 </div>
 
 <?= $this->Form->create(null, [
@@ -15,8 +15,8 @@
     'class' => 'ajax-helper'
 ]); ?>
 <div class="form-group">
-    <label for="input-email">Email</label>
-    <input type="text" name="email" value="" placeholder="Masukkan email anda" class="form-control" />
+    <label for="input-email">Email / handphone</label>
+    <input type="text" name="email" value="" placeholder="Masukkan email / handphone anda" class="form-control" />
 </div>
 
 
