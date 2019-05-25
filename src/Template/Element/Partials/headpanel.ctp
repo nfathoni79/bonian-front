@@ -444,14 +444,9 @@ $this->Html->script([
                                     if (session_id) {
                                         form.find('input[name="session_id"]').val(session_id)
                                     }
-                                    var serialize = form.serializeArray();
-                                    for(var i in serialize) {
-                                        if (serialize[i].name == 'password' || serialize[i].name == 'repeat_password') {
-                                            serialize[i].value = encrypt(serialize[i].value);
-                                        }
-                                    }
+
                                     var ajaxRequest = new ajaxValidation(form); //serializeArray form.find(':input,:hidden')
-                                    ajaxRequest.post(form.attr('action'), serialize, function(response, data) {
+                                    ajaxRequest.post(form.attr('action'), form.serializeArray(), function(response, data) {
                                         if (response.success) {
                                             if (data.result.url) {
                                                 bootbox.hideAll();
