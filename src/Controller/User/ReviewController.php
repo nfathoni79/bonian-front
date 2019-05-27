@@ -4,6 +4,7 @@ namespace App\Controller\User;
 use App\Controller\AuthController;
 use Cake\Core\Configure;
 use Pagination\Pagination;
+use Cake\Validation\Validator;
 
 class ReviewController extends AuthController
 {
@@ -104,7 +105,7 @@ class ReviewController extends AuthController
         } catch(\GuzzleHttp\Exception\ClientException $e) {
             $this->Api->handle($e);
             $rating = json_decode($e->getResponse()->getBody()->getContents(), true);
-        }
+        } 
         $this->set(compact('rating'));
     }
 
@@ -115,5 +116,86 @@ class ReviewController extends AuthController
     function history(){
 
     }
+
+    function validate(){
+
+        $this->disableAutoRender();
+        $this->request->allowMethod('post');
+        $error = ['error' => []];
+
+        $validator = new Validator();
+        $validator->requirePresence('rating')
+            ->notBlank('rating','Silahkan berikan rating terhadap produk');
+        $validator->requirePresence('comment')
+            ->notBlank('comment','Komentar tidak boleh kosong');
+
+//        $images = new Validator();
+//        foreach($this->request->getData('images') as $vals){
+//            $images
+//                ->requirePresence('images');
+//                ->add('images', 'file', [
+//                    'rule' => ['uploadedFile', ['types' => ['image/png', 'image/jpeg']]], // It's what I expect to check
+//                    'message' => "Format yang di ijinkan : .jpg, .png"
+//                ]);
+//                ->add('images', 'file', [
+//                    'rule' => ['uploadedFile', ['maxSize' => ['2048']]], // It's what I expect to check
+//                    'message' =>"Ukuran file terlalu besar"
+//                ]);
+//        }
+
+
+//        $validator->addNestedMany('images', $images);
+        $error['error'] = $validator->errors($this->request->getData());
+        $errors = []; 
+        if (empty($error['error'])) {
+
+            /* POST ACTION */
+
+            try {
+
+                $ratings = $this->Api->makeRequest($this->Auth->user('token'))
+                    ->post('v1/web/product-ratings/add', [
+                        'form_params' => $this->request->getData()
+                    ]);
+
+                if ($response = $this->Api->success($ratings)) {
+                    $json = $response->parse();
+
+                    if(!empty($json['error'])){
+                        foreach($json['error'] as $val){
+                            $errors['error']['data'] = $val['validExtension'];
+                            break;
+                        }
+                    }else{
+//                        $fileAvatar = $json['result']['data'];
+//                        $session = $this->request->getSession()->write('Auth.Customers.avatar', $fileAvatar);
+                    }
+
+                }
+
+            } catch(\GuzzleHttp\Exception\ClientException $e) {
+                $errors = json_decode($e->getResponse()->getBody()->getContents(), true);
+            }
+        }else{
+            foreach($error['error'] as $key => $vals){
+                if($key != 'images'){
+                    $errors['error']['data']= ['is_error' => true, 'message' => $vals['_empty']];
+                }else{
+                    foreach($vals as $k => $value){
+                        if(!empty($value['images']['_required'])){
+                            $errors['error']['data'] = ['is_error' => true, 'message' => 'Gambar ke '.($k+1).' '.$value['images']['_required']];
+                        }else{
+                            $errors['error']['data'] =  ['is_error' => true, 'message' =>  'Format gambar atau ukuran tidak sesuai'];
+                        }
+                    }
+                }
+                break;
+            }
+        }
+
+        return $this->response->withType('application/json')
+            ->withStringBody(json_encode($errors));
+    }
+
 
 }

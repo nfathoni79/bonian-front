@@ -1,11 +1,9 @@
 <?php $this->append('style'); ?>
 <?php
 $this->Html->css([
-'/css/custom/history.css',
-'/css/daterangepicker/daterangepicker.css',
 '/css/bar-rate/themes/fontawesome-stars.css',
-'https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css',
-'https://unpkg.com/filepond/dist/filepond.min.css',
+'/css/filepond/filepond-plugin-image-preview.min.css',
+'/css/filepond/filepond.min.css',
 '/css/custom/filepond-custom.css',
 ], ['block' => true]); ?>
 <?php $this->end(); ?>
@@ -13,35 +11,17 @@ $this->Html->css([
 <?php $this->append('script'); ?>
 <?php
 $this->Html->script([
-'/js/daterangepicker/daterangepicker.min.js',
 '/js/jquery.barrating.min.js',
-'https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.min.js',
-'https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.min.js',
-'https://unpkg.com/filepond-plugin-image-exif-orientation/dist/filepond-plugin-image-exif-orientation.min.js',
-'https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.js',
-'https://unpkg.com/filepond/dist/filepond.min.js',
+'/js/filepond/filepond-plugin-file-encode.min.js',
+'/js/filepond/filepond-plugin-file-validate-size.min.js',
+'/js/filepond/filepond-plugin-image-exif-orientation.min.js',
+'/js/filepond/filepond-plugin-image-preview.min.js',
+'/js/filepond/filepond-plugin-file-validate-type.js',
+'/js/filepond/filepond.min.js',
 ], ['block' => true]);
 ?>
 <script>
     $(document).ready(function () {
-        $('#reportrange').daterangepicker({
-            autoUpdateInput: false,
-            ranges: {
-                'Today': [moment(), moment()],
-                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                'This Month': [moment().startOf('month'), moment().endOf('month')],
-                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-            },
-            locale : {
-                format: 'DD-MM-YYYY'
-            }
-        });
-
-        $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
-            $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-        });
 
         $(function() {
            $('#product_rating').barrating({
@@ -49,28 +29,22 @@ $this->Html->script([
            });
         });
 
-        /*
-          We want to preview images, so we need to register the Image Preview plugin
-          */
-          FilePond.registerPlugin(
-            
-            // encodes the file as base64 data
-            FilePondPluginFileEncode,
-            
-            // validates the size of the file
-            FilePondPluginFileValidateSize,
-            
-            // corrects mobile image orientation
-            FilePondPluginImageExifOrientation,
-            
-            // previews dropped images
-            FilePondPluginImagePreview
-          );
+        FilePond.registerPlugin(
 
-          // Select the file input and use create() to turn it into a pond
-          FilePond.create(
-            document.querySelector('input.filepond')
-          );
+            FilePondPluginFileValidateType,
+            FilePondPluginFileValidateSize,
+            FilePondPluginImagePreview
+        );
+
+        // Select the file input and use create() to turn it into a pond
+        FilePond.create(
+            document.querySelector('input.filepond'),{
+                acceptedFileTypes: ['image/png','image/jpeg','image/jpg',],
+                fileValidateTypeDetectType: (source, type) => new Promise((resolve, reject) => {
+                    resolve(type);
+                })
+            }
+        );
     })
 </script>
 <?php $this->end(); ?>
@@ -89,17 +63,35 @@ $this->Html->script([
                     <div class="user-content-body pd-20">
                         <div class="row mg-0">
                             <div class="col-sm-12 bd bg-gray-100 pd-10">
-                                <span class="col-sm-6 tx-left tx-medium">Invoice No. 1905040256EF49</span>
-                                <span class="col-sm-6 tx-right">Pesanan diterima: 17 Apr 2019, 16:38</span>
+                                <span class="col-sm-6 tx-left tx-medium">Invoice No. <?= $rating['order']['invoice'];?>-<?= $rating['order']['id'];?></span>
+                                <span class="col-sm-6 tx-right tx-medium">Tanggal Order: <?= date('d M Y, H : i',strtotime($rating['created'])); ?></span>
                             </div>
+
+                            <?= $this->Form->create(null, [
+                            'url' => [
+                                'controller' => 'Review',
+                                    'action' => 'validate',
+                                    'prefix' => 'user'
+                                ],
+                                'id' => 'add-form',
+                                'class' => 'ajax-helpers',
+                                'type' => 'file'
+                            ]); ?>
+                            <input type="hidden" name="order_id" value="<?= $rating['order']['id'];?>">
+                            <input type="hidden" name="product_id" value="<?= $rating['product']['id'];?>">
+                            <div class="alert alert-danger alert-msg" style="display:none;"></div>
                             <div class="col-sm-12 bd pd-t-20 pd-b-20 bd-t-0">
                                 <div class="col-sm-3">
-                                    <img class="img-responsive bd" src="http://zolaku.nevsky.tech/images/600x600/fe5e66e6bd724cd7b8279b429b7d64e3.jpg">
+                                    <?php foreach($rating['product']['images'] as $image):?>
+                                    <img class="img-responsive" src="<?= $this->Url->build($_basePath . 'images/600x600/' . $image); ?>" >
+                                    <?php break;?>
+                                    <?php endforeach;?>
                                 </div>
                                 <div class="col-sm-9">
-                                    <h4 class="zl-tx-black tx-bold tx-16 mg-t-0">GTMAN Celana Dalam Boxer Pria 4PCS</h4>
+                                    <h4 class="zl-tx-black tx-bold tx-16 mg-t-0"><?php echo $rating['product']['name'];?></h4>
                                     <span>Bagaimana kualitas produk ini ?</span>
-                                    <select id="product_rating">
+                                    <select id="product_rating" name="rating">
+                                      <option value=""></option>
                                       <option value="1">1</option>
                                       <option value="2">2</option>
                                       <option value="3">3</option>
@@ -110,30 +102,29 @@ $this->Html->script([
                                         <span>Berikan ulasan untuk produk ini.</span>
                                         <div class="col-lg-12 pd-0" style="">
                                             <div class="form-group">
-                                                <textarea class="form-control note tx-13 ht-120" name="note[102]" placeholder="Tulis Ulasan Barang" value=""></textarea>
+                                                <textarea class="form-control note tx-13 ht-120" name="comment" placeholder="Tulis Ulasan Barang" value=""></textarea>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 pd-0">
                                         <span>Tambahkan gambar.</span>
-                                        <!-- <div class="col-lg-12 pd-0" style="">
-                                                <img src="https://via.placeholder.com/100x100.png/ffffff/c93535" class="bd pd-5 mg-t-10">
-                                        </div> -->
-                                        <!-- The classic file input element we'll enhance to a file pond -->
                                         <input type="file" 
                                                class="filepond wd-300"
-                                               name="filepond"
+                                               name="images[]"
+                                               id="images"
                                                multiple
-                                               data-max-file-size="3MB"
+                                               accept="image/jpeg, image/png"
+                                               data-min-file-size="250KB"
+                                               data-max-file-size="1000KB"
                                                data-max-files="3" />
-                                        <!-- file upload itself is disabled in this pen -->
                                     </div>
                                     <div class="col-sm-12 mg-t-20 tx-right">
-                                        <a class="btn btn-md btn-radius btn-danger">Kirim</a>
+                                        <button type="submit" class="btn btn-md btn-radius btn-danger">Kirim</button>
                                         <a class="btn btn-md btn-radius btn-default">Batal</a>
                                     </div>
                                 </div>
                             </div>
+                            <?= $this->Form->end(); ?>
                         </div>
                     </div>
                 </div>
@@ -141,3 +132,24 @@ $this->Html->script([
         </div>
     </div>
 </div>
+
+
+<?php $this->append('script'); ?>
+<script>
+    $(document).ready(function () {
+
+        var formEl = $("#add-form");
+        formEl.submit(function(e) {
+            var ajaxRequest = new ajaxValidation(formEl);
+            ajaxRequest.post(formEl.attr('action'), formEl.find(':input'), function(response, data) {
+                if(data.error.data.is_error){
+                    swal(data.error.data.message);
+                }else {
+                    // location.href = '<?= $this->Url->build(); ?>';
+                }
+            });
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+        });
+    })
+</script>
+<?php $this->end(); ?>
