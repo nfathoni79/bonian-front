@@ -137,6 +137,7 @@
 '/js/jquery-ui/jquery-ui.min',
 '/js/modernizr/modernizr-2.6.2.min',
 '/js/minicolors/jquery.miniColors.min',
+'/js/bootbox.all.min',
 '/js/bundle',
 ]); ?>
 
