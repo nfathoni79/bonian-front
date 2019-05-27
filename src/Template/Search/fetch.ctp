@@ -20,7 +20,10 @@
                                 <?php break; endforeach; ?>
                         </a>
                         <?php /*<button class="product-wishlist <?= !empty($product['wishlist_id']) ? 'in-wish' : 'not-wish'; ?>" data-product-id="<?= $product['id']; ?>" data-wishlist-id="<?= $product['wishlist_id']; ?>"></button>*/ ?>
-                        <span class="product-ribbon"> 20% </span>
+                        <?php $dics = 100 - (($product['price_sale'] / $product['price']) * 100);?>
+                        <?php if($product['price_sale'] != $product['price']):?>
+                            <span class="product-ribbon"> <?php echo  $this->Number->precision($dics, 0);?>% </span>
+                        <?php endif;?>
                     </div>
                     <div class="box">
                         <?php if ($product['is_new']) : ?>

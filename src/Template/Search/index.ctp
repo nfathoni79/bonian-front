@@ -347,7 +347,10 @@
                                             <div class="ribbon ribbon-top-left"><span>NEW</span></div>
                                         <?php endif; ?>
                                     </div>
-                                    <span class="product-ribbon"> 20% </span>
+                                    <?php $dics = 100 - (($product['price_sale'] / $product['price']) * 100);?>
+                                    <?php if($product['price_sale'] != $product['price']):?>
+                                        <span class="product-ribbon"> <?php echo  $this->Number->precision($dics, 0);?>% </span>
+                                    <?php endif;?>
                                 </div>
                                 <div class="right-block right-b">
                                     <?php /*
