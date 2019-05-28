@@ -111,7 +111,6 @@ $this->Html->script([
                                                 <div style="height:200px; position: relative;">
                                                     <div style="height:100%;max-height: 100%;overflow-y: auto;overflow-x: hidden; ">
                                                         <?php foreach($order['product_ratings'] as $value):?>
-                                                        <?php if($value['status'] != 0):?>
                                                         <div class="row mg-b-15">
                                                             <div class="col-md-3">
                                                                 <?php foreach($value['product']['images'] as $image):?>
@@ -121,6 +120,10 @@ $this->Html->script([
                                                             </div>
                                                             <div class="col-md-9">
                                                                 <div><?php echo $value['product']['name'];?></div>
+                                                                <?php if($value['status'] == 0):?>
+                                                                <small>Belum Diulas</small>
+                                                                <div><a href="<?php echo $this->Url->build(['controller' => 'Review', 'action' => 'add', $value['order_id'], $value['id']]);?>" class="btn btn-sm btn-danger btn-radius"> Tulis Ulasan</a></div>
+                                                                <?php else:?>
                                                                 <div class="caption">
                                                                     <div class="rate-history">
                                                                         <div class="ratings">
@@ -139,9 +142,9 @@ $this->Html->script([
                                                                     </div>
                                                                 </div>
                                                                 <div><a href="<?php echo $this->Url->build(['controller' => 'Review', 'action' => 'view', $value['order_id'], $value['id']]);?>" class="btn btn-sm btn-danger btn-radius"> Lihat Ulasan</a></div>
+                                                                <?php endif;?>
                                                             </div>
                                                         </div>
-                                                        <?php endif;?>
                                                         <?php endforeach;?>
                                                     </div>
                                                 </div>

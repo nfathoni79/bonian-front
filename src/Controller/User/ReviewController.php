@@ -243,29 +243,23 @@ class ReviewController extends AuthController
         $validator->requirePresence('comment')
             ->notBlank('comment','Komentar tidak boleh kosong');
 
-//        $images = new Validator();
-//        foreach($this->request->getData('images') as $vals){
-//            $images
-//                ->requirePresence('images');
-//                ->add('images', 'file', [
-//                    'rule' => ['uploadedFile', ['types' => ['image/png', 'image/jpeg']]], // It's what I expect to check
-//                    'message' => "Format yang di ijinkan : .jpg, .png"
-//                ]);
-//                ->add('images', 'file', [
-//                    'rule' => ['uploadedFile', ['maxSize' => ['2048']]], // It's what I expect to check
-//                    'message' =>"Ukuran file terlalu besar"
-//                ]);
-//        }
+        $images = new Validator();
+        foreach($getData['images'] as $vals){
+            $images
+                ->notBlank('images')
+                ->add('images', 'file', [
+                    'rule' => ['uploadedFile', ['types' => ['image/png', 'image/jpeg', 'image/jpg']]], // It's what I expect to check
+                    'message' => "Format yang di ijinkan : .jpg, .png"
+                ]);
+        }
 
 
-//        $validator->addNestedMany('images', $images);
+        $validator->addNestedMany('images', $images);
         $error['error'] = $validator->errors($getData);
+
         $errors = [];
         if (empty($error['error'])) {
 
-            /* POST ACTION */
-            /* Bagaimana caranya agar proses post image menggunakan tmp_name karena plugins javascript filepond
-            mengirimkan format gambar base64. hal ini di tolak oleh serve API. */
             try {
 
                 $ratings = $this->Api->makeRequest($this->Auth->user('token'))
@@ -282,14 +276,17 @@ class ReviewController extends AuthController
                             break;
                         }
                     }else{
-//                        $fileAvatar = $json['result']['data'];
-//                        $session = $this->request->getSession()->write('Auth.Customers.avatar', $fileAvatar);
+
+                        $this->Flash->success(__('Ulasan berhasil disimpan, Terima kasih telah memberikan ulasan.'));
+                        $errors['error']['data'] = ['is_error' => false];
                     }
 
                 }
 
             } catch(\GuzzleHttp\Exception\ClientException $e) {
-                $errors = json_decode($e->getResponse()->getBody()->getContents(), true);
+                $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+                $errors['error']['data'] =  ['is_error' => true, 'message' =>  $error['message']];
+
             }
         }else{
             foreach($error['error'] as $key => $vals){

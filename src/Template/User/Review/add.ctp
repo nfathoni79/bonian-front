@@ -30,7 +30,7 @@ $this->Html->script([
         });
 
         FilePond.registerPlugin(
-
+            FilePondPluginFileEncode,
             FilePondPluginFileValidateType,
             FilePondPluginFileValidateSize,
             FilePondPluginImagePreview
@@ -113,9 +113,9 @@ $this->Html->script([
                                                name="images[]"
                                                id="images"
                                                multiple
-                                               accept="image/jpeg, image/png"
-                                               data-min-file-size="250KB"
-                                               data-max-file-size="1000KB"
+                                               accept="image/jpeg, image/png, image/jpg"
+                                               data-min-file-size="50KB"
+                                               data-max-file-size="250KB"
                                                data-max-files="3" />
                                     </div>
                                     <div class="col-sm-12 mg-t-20 tx-right">
@@ -145,7 +145,7 @@ $this->Html->script([
                 if(data.error.data.is_error){
                     swal(data.error.data.message);
                 }else {
-                    // location.href = '<?= $this->Url->build(); ?>';
+                    location.href = "<?= $this->Url->build(['action' => 'index']); ?>";
                 }
             });
             e.preventDefault(); // avoid to execute the actual submit of the form.

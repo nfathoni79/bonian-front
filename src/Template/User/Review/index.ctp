@@ -62,6 +62,7 @@ $this->Html->script([
                         }
                     ?>
                     <div class="user-content-body">
+                        <?= $this->Flash->render();?>
                         <?php echo $this->Form->create(null, ['id' => 'filter']);?>
                         <div class="row mg-b-20">
                             <div class="col-md-4">
