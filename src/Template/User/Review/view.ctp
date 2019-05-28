@@ -61,7 +61,7 @@ $this->Html->script([
                                         <div class="col-md-4">
                                             <div class="thumbnail">
                                                 <a href="<?= $this->Url->build($_basePath . 'files/ProductRatingImages/' . $vals['name']); ?>">
-                                                    <img class="img-responsive" src="<?= $this->Url->build($_basePath . 'images/600x600/' . $vals['name']); ?>" >
+                                                    <img class="img-responsive" src="<?= $this->Url->build($_basePath . 'files/ProductRatingImages/' . $vals['name']); ?>" >
                                                 </a>
                                             </div>
                                         </div>
