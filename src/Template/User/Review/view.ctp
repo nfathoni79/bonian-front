@@ -60,7 +60,7 @@ $this->Html->script([
                                         <?php foreach($rating['product_rating_images'] as $vals ):?>
                                         <div class="col-md-4">
                                             <div class="thumbnail">
-                                                <a href="<?= $this->Url->build($_basePath . 'files/ProductRatingImages/' . $vals['name']); ?>">
+                                                <a class="image-popup-vertical-fit" href="<?= $this->Url->build($_basePath . 'files/ProductRatingImages/' . $vals['name']); ?>">
                                                     <img class="img-responsive" src="<?= $this->Url->build($_basePath . 'files/ProductRatingImages/' . $vals['name']); ?>" >
                                                 </a>
                                             </div>
@@ -79,4 +79,17 @@ $this->Html->script([
 
 
 <?php $this->append('script'); ?>
+<script>
+    $(document).ready(function () { 
+        $('.image-popup-vertical-fit').magnificPopup({
+            type: 'image',
+            closeOnContentClick: true,
+            mainClass: 'mfp-img-mobile',
+            image: {
+                verticalFit: true
+            }
+
+        });
+    })
+</script>
 <?php $this->end(); ?>
