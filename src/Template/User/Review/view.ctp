@@ -80,7 +80,7 @@ $this->Html->script([
 
 <?php $this->append('script'); ?>
 <script>
-    $(document).ready(function () { 
+    $(document).ready(function () {
         $('.image-popup-vertical-fit').magnificPopup({
             type: 'image',
             closeOnContentClick: true,

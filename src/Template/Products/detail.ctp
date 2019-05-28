@@ -604,6 +604,17 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                                         </div>
                                                         <br />
                                                         <p><?= $vals['comment']?></p>
+                                                        <?php if(!empty($vals['product_rating_images'])): ?>
+                                                            <?php foreach($vals['product_rating_images'] as $val ):?>
+                                                                <div class="col-sm-3">
+                                                                    <div class="thumbnail">
+                                                                        <a class="image-popup-vertical-fit" href="<?= $this->Url->build($_basePath . 'files/ProductRatingImages/' . $val['name']); ?>">
+                                                                            <img class="img-responsive" src="<?= $this->Url->build($_basePath . 'files/ProductRatingImages/' . $val['name']); ?>" >
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            <?php endforeach; ?>
+                                                        <?php endif; ?>
                                                     </div>
                                                 </div>
                                             </div>
