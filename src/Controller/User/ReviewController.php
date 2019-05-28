@@ -209,6 +209,34 @@ class ReviewController extends AuthController
         $this->request->allowMethod('post');
         $error = ['error' => []];
 
+        $getData = $this->request->getData();
+
+        if (isset($getData['images'])) {
+            foreach($getData['images'] as $key => $val) {
+                if (is_string($val)) {
+                    $object = json_decode($val, true);
+                    if ($object) {
+                        $tmp_name = tempnam(sys_get_temp_dir(), "review");
+                        $size = file_put_contents($tmp_name, $object['data']);
+                        $tmp_file = [
+                            'name' => $object['name'],
+                            'type' => $object['type'],
+                            'size' => $size,
+                            'error' => 0,
+                            'tmp_name' => $tmp_name
+
+                        ];
+
+                        $getData['images'][$key] = $tmp_file;
+                    }
+
+
+                }
+            }
+        }
+
+
+
         $validator = new Validator();
         $validator->requirePresence('rating')
             ->notBlank('rating','Silahkan berikan rating terhadap produk');
@@ -231,7 +259,7 @@ class ReviewController extends AuthController
 
 
 //        $validator->addNestedMany('images', $images);
-        $error['error'] = $validator->errors($this->request->getData());
+        $error['error'] = $validator->errors($getData);
         $errors = [];
         if (empty($error['error'])) {
 
@@ -242,7 +270,7 @@ class ReviewController extends AuthController
 
                 $ratings = $this->Api->makeRequest($this->Auth->user('token'))
                     ->post('v1/web/product-ratings/add', [
-                        'form_params' => $this->request->getData()
+                        'form_params' => $getData
                     ]);
 
                 if ($response = $this->Api->success($ratings)) {
