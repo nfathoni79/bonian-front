@@ -80,6 +80,7 @@ $this->Html->script([
                         <div class="row">
                             <div class="col-md-12">
                                 <?php foreach($orders as $order) : ?>
+								<?php if($order['payment_status'] == 2):?>
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <div class="row">
@@ -153,6 +154,7 @@ $this->Html->script([
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>
+								<?php endif;?>
                                 <?php endforeach;?>
 
                             </div>

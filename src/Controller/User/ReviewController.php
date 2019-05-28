@@ -17,10 +17,11 @@ class ReviewController extends AuthController
     ];
 
     public function index(){
-
+		 
         $params = $this->request->getQueryParams();
         $params['page'] = $this->request->getQuery('page', 1);
         $params['status'] = $this->request->getQuery('status', 'semua');
+        $params['limit'] = 5;
 
         if($this->request->is('Post')){
             $search = explode(' - ',$this->request->getData('datefilter'));
@@ -28,11 +29,11 @@ class ReviewController extends AuthController
             $params['end'] = $search[1];
             $params['search'] = $this->request->getData('invoice', '');
             $params['page'] = 1;
+			$params['limit'] = 50;
 
             return $this->redirect(['action' => 'index', 'prefix' => 'user', '?' => $params]);
         }
 
-        $params['limit'] = 50;
 
         $response = [];
         try {
@@ -76,8 +77,7 @@ class ReviewController extends AuthController
             '4' => 'Selesai',
         ];
 
-        $transaction_statuses = $this->transaction_statuses;
- 
+        $transaction_statuses = $this->transaction_statuses; 
         $this->set(compact(
             'orders',
             'transaction_statuses',
@@ -135,6 +135,7 @@ class ReviewController extends AuthController
         $params = $this->request->getQueryParams();
         $params['page'] = $this->request->getQuery('page', 1);
         $params['status'] = $this->request->getQuery('status', 'semua');
+        $params['limit'] = 5;
 
         if($this->request->is('Post')){
             $search = explode(' - ',$this->request->getData('datefilter'));
@@ -142,11 +143,11 @@ class ReviewController extends AuthController
             $params['end'] = $search[1];
             $params['search'] = $this->request->getData('invoice', '');
             $params['page'] = 1;
+			$params['limit'] = 50;
 
             return $this->redirect(['action' => 'history', 'prefix' => 'user', '?' => $params]);
         }
 
-        $params['limit'] = 50;
 
         $response = [];
         try {
