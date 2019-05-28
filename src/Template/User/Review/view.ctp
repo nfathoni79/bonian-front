@@ -60,7 +60,7 @@ $this->Html->script([
                                         <?php foreach($rating['product_rating_images'] as $vals ):?>
                                         <div class="col-md-4">
                                             <div class="thumbnail">
-                                                <a href="<?= $this->Url->build($_basePath . 'images/600x600/' . $vals['name']); ?>">
+                                                <a href="<?= $this->Url->build($_basePath . 'files/ProductRatingImages/' . $vals['name']); ?>">
                                                     <img class="img-responsive" src="<?= $this->Url->build($_basePath . 'images/600x600/' . $vals['name']); ?>" >
                                                 </a>
                                             </div>
