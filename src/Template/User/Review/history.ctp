@@ -47,6 +47,116 @@ $this->Html->script([
                         <?= $this->element('Partials/Review/navigation'); ?>
                     </div>
 
+                    <?php
+                        if(!empty($this->request->getQuery('start'))){
+                    $dateFilter = $this->request->getQuery('start').' - '.$this->request->getQuery('end');
+                    }
+                    if(!empty($this->request->getQuery('search'))){
+                    $search = $this->request->getQuery('search');
+                    }
+                    ?>
+                    <?php
+                        $params = $this->request->getQueryParams();
+                    if (isset($params['page'])) {
+                    unset($params['page']);
+                    }
+                    ?>
+                    <div class="user-content-body">
+                        <?php echo $this->Form->create(null, ['id' => 'filter']);?>
+                        <div class="row mg-b-20">
+                            <div class="col-md-4">
+                                <?php echo $this->Form->control('datefilter', ['div' => false, 'label' => false, 'id' => 'reportrange', 'class' => 'form-control', 'value' => @$dateFilter, 'placeholder' => 'Tanggal Pencarian']);?>
+                            </div>
+                            <div class="col-md-4">
+                                <?php echo $this->Form->control('invoice', ['div' => false, 'label' => false, 'placeholder' => 'Cari Invoice', 'value' => @$search, 'class' => 'form-control']);?>
+                            </div>
+                            <div class="col-md-4">
+                                <button class="btn btn-md btn-danger btn-radius"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                        <?php echo $this->Form->end();?>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <?php foreach($orders as $order) : ?>
+                                <?php if(!empty($order['product_ratings'])): ?>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="title-panel pull-left">
+                                                    <strong>Invoice No. <?= $order['invoice']; ?></strong>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="title-panel pull-right">
+                                                    <strong>Tanggal Order: <?= date('d M Y, H : i',strtotime($order['created'])); ?></strong>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row pd-10">
+                                            <div class="col-md-5">
+                                                <dl class="dl-horizontal">
+                                                    <dt>Nama Penerima</dt>
+                                                    <dd><?= $order['recipient_name']; ?></dd>
+                                                    <dt>Nomor Telpon</dt>
+                                                    <dd><?= $order['recipient_phone']; ?></dd>
+                                                    <dt>Shipping destination</dt>
+                                                    <dd><?= $order['address']; ?>, <?= $order['subdistrict']['name']; ?>, <?= $order['city']['name']; ?>, <?= $order['province']['name']; ?></dd>
+                                                </dl>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <div style="height:200px; position: relative;">
+                                                    <div style="height:100%;max-height: 100%;overflow-y: auto;overflow-x: hidden; ">
+                                                        <?php foreach($order['product_ratings'] as $value):?>
+                                                        <?php if($value['status'] != 0):?>
+                                                        <div class="row mg-b-15">
+                                                            <div class="col-md-3">
+                                                                <?php foreach($value['product']['images'] as $image):?>
+                                                                <img class="img-responsive" src="<?= $this->Url->build($_basePath . 'images/250x250/' . $image); ?>" >
+                                                                <?php break;?>
+                                                                <?php endforeach;?>
+                                                            </div>
+                                                            <div class="col-md-9">
+                                                                <div><?php echo $value['product']['name'];?></div>
+                                                                <div class="caption">
+                                                                    <div class="rate-history">
+                                                                        <div class="ratings">
+                                                                            <div class="rating-box">
+                                                                                <?php
+                                                                                        $rate = (int) $value['rating'];
+                                                                                        for ($x = 0; $x < $rate; $x++) {
+                                                                                            echo '<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>';
+                                                                                }
+                                                                                for ($x = 0; $x < 5-$rate; $x++) {
+                                                                                echo '<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>';
+                                                                                }
+                                                                                ?>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div><a href="<?php echo $this->Url->build(['controller' => 'Review', 'action' => 'view', $value['order_id'], $value['id']]);?>" class="btn btn-sm btn-danger btn-radius"> Lihat Ulasan</a></div>
+                                                            </div>
+                                                        </div>
+                                                        <?php endif;?>
+                                                        <?php endforeach;?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <?php endif;?>
+                                <?php endforeach;?>
+
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
