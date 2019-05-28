@@ -492,7 +492,7 @@ class ProfileController extends AuthController
     }
 
 
-    protected function makeRequestPhone(CustomerForm $customer, $url = 'change-phone')
+    protected function makeRequestChange(CustomerForm $customer, $url = 'change-phone', $action = 'changePhone')
     {
         try {
             $edit = $this->Api->makeRequest($this->Auth->user('token'))
@@ -506,7 +506,7 @@ class ProfileController extends AuthController
         } catch(\GuzzleHttp\Exception\ClientException $e) {
             $error = $this->Api->handle($e, true);//debug($e->getResponse()->getBody()->getContents());
             if ($e->getResponse()->getStatusCode() == 404) {
-                return $this->redirect(['action' => 'changePhone']);
+                return $this->redirect(['action' => $action]);
             }
             if (isset($error['error'])) {
                 $customer->setErrors($error['error']);
@@ -527,7 +527,7 @@ class ProfileController extends AuthController
 
         if ($this->request->is('post')) {
             if ($customer->execute($this->request->getData()) && isset($url_wizard[$this->request->getQuery('step', '1')])) {
-                $data = $this->makeRequestPhone($customer, $url_wizard[$this->request->getQuery('step', '1')]);
+                $data = $this->makeRequestChange($customer, $url_wizard[$this->request->getQuery('step', '1')]);
                 //debug($url_wizard[$this->request->getQuery('step', '1')]);
                 //debug($data);
                 //debug($customer->getErrors());
@@ -551,6 +551,40 @@ class ProfileController extends AuthController
                 $error = $this->Api->handle($e, true);//debug($e->getResponse()->getBody()->getContents());
 
             }
+        }
+
+
+        $this->set(compact('customer', 'data'));
+    }
+
+
+    public function changeEmail()
+    {
+        //debug(\Cake\Utility\Inflector::variable('keren-bgt'));
+        $customer = new CustomerForm();
+
+        $url_wizard = [
+            '1' => 'change-email',
+            '2' => 'change-email/set-email',
+            '3' => '',
+        ];
+
+        if ($this->request->is('post')) {
+            if ($customer->execute($this->request->getData()) && isset($url_wizard[$this->request->getQuery('step', '1')])) {
+                $data = $this->makeRequestChange($customer, $url_wizard[$this->request->getQuery('step', '1')], 'changeEmail');
+                //debug($url_wizard[$this->request->getQuery('step', '1')]);
+                //debug($data);
+                //debug($customer->getErrors());
+                if (is_array($data) && isset($data['result']['data'])) {
+                    return $this->redirect([
+                        '?' => [
+                            'step' => $data['result']['data']['step']
+                        ]
+                    ]);
+                }
+            }
+        } else if ($this->request->getQuery('step') == 2) {
+
         }
 
 

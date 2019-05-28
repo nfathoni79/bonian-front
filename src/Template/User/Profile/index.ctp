@@ -39,7 +39,9 @@
 
                                     <tr>
                                         <td>Email</td>
-                                        <td><?= $profile['email']; ?></td>
+                                        <td><?= $profile['email']; ?> <?= !empty($profile['email']) ?
+                                                $this->Html->link('Ubah', ['action' => 'changeEmail'], ['class' => 'change-phone-number'])  :
+                                                ''; ?></td>
                                     </tr>
                                     <tr>
                                         <td>Kode Referal</td>
