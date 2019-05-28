@@ -217,7 +217,7 @@ class ReviewController extends AuthController
                     $object = json_decode($val, true);
                     if ($object) {
                         $tmp_name = tempnam(sys_get_temp_dir(), "review");
-                        $size = file_put_contents($tmp_name, $object['data']);
+                        $size = file_put_contents($tmp_name, base64_decode($object['data']));
                         $tmp_file = [
                             'name' => $object['name'],
                             'type' => $object['type'],
