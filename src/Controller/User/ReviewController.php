@@ -32,7 +32,7 @@ class ReviewController extends AuthController
             return $this->redirect(['action' => 'index', 'prefix' => 'user', '?' => $params]);
         }
 
-        $params['limit'] = 4;
+        $params['limit'] = 50;
 
         $response = [];
         try {
@@ -77,7 +77,7 @@ class ReviewController extends AuthController
         ];
 
         $transaction_statuses = $this->transaction_statuses;
-
+ 
         $this->set(compact(
             'orders',
             'transaction_statuses',
@@ -125,8 +125,6 @@ class ReviewController extends AuthController
             $this->Api->handle($e);
             $rating = json_decode($e->getResponse()->getBody()->getContents(), true);
         }
-//        debug($rating);
-//        exit;
         $this->set(compact('rating'));
 
     }
