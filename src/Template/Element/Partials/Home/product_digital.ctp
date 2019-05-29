@@ -12,7 +12,7 @@
             <div class="o-flex o-justify-content--between o-align-items--center">
                 <!-- #pulsa -->
                 <a href="<?= $this->Url->build(['controller' => 'Pulsa', 'prefix' => false]); ?>" id="pulsa" class="c-category--item">
-                    <img class="u-img--fluid o-block" src="<?= $this->Url->build('/images/png/icon-produk-digital/pulsa.png'); ?>" width="32" alt="icon pulsa">
+                    <img class="u-img--fluid o-block" src="<?= $this->Url->build('/images/digital_product/pulsa.svg'); ?>" width="32" alt="icon pulsa">
                     <p class="c-content--cat__title u-fg--softest-blue" style="display:inline; padding-left:10px; font-size:15px; color:#63a1c3;">Pulsa</p>
                 </a>
 
