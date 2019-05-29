@@ -74,6 +74,7 @@ class HistoryController extends AuthController
             '2' => 'Diproses',
             '3' => 'Dikirim',
             '4' => 'Selesai',
+            '5' => 'Dibatalkan',
         ];
 
         $transaction_statuses = $this->transaction_statuses;
