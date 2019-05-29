@@ -144,7 +144,7 @@
 										</div>
 									</div>
 								</div>
-
+								<?php if($vals['shipping_status']['code'] != 5):?>
 								<div class="row mg-0 ft-left wd-100p bd-b pd-t-10 pd-b-10">
 									<div class="col-sm-12 mg-0 tx-medium zl-tx-black tx-13 pd-10 tx-left">
 										<ul class="col-sm-12 list-unstyled multi-steps">
@@ -185,6 +185,7 @@
 										</div>
 									</div>
 								</div>
+								<?php endif;?>
 
 							</div>
 
