@@ -272,7 +272,7 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                     </div>
 
                                     <div class="mg-t-40">
-                                        <button type="button" class="btn btn-lg btn-radius btn-wishlist <?= !empty($details['data']['wishlist_id']) ? 'in-wish' : ''; ?>" data-wishlist-id="<?= $details['data']['wishlist_id']; ?>" data-product-id="<?= $details['data']['id']; ?>">
+                                        <button type="button" class="btn btn-lg btn-radius btn-wishlist zl-tx-red--light tx-medium <?= !empty($details['data']['wishlist_id']) ? 'in-wish' : ''; ?>" data-wishlist-id="<?= $details['data']['wishlist_id']; ?>" data-product-id="<?= $details['data']['id']; ?>">
                                             <i class="<?= !empty($details['data']['wishlist_id']) ? 'fas' : 'far'; ?> fa-heart"></i>
                                             <span class="wish-count"><?= $details['data']['wishlist_count']; ?></span>
                                             Wishlist

@@ -15,7 +15,7 @@
                 </div>
                 <div class="header-top-right collapsed-block col-lg-7 col-md-6 col-sm-7 col-xs-12">
                     <ul class="top-link list-inline">
-                        <li><a class="link-lg" href="#">Menjadi Member Zolaku</a></li>
+                        <li><a class="link-lg" href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'keuntungan-menjadi-member','prefix' => false]);?>">Menjadi Member Zolaku</a></li>
                         <li><a class="link-lg" href="<?= $this->Url->build(['controller' => 'Promotion', 'action' => 'pointRedeem', 'prefix' => false]);?>">Penukaran Point</a></li>
 
                         <?php if (!$this->request->getSession()->check('Auth.Customers')) : ?>
