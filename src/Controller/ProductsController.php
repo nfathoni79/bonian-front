@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Core\Configure;
 use Cake\I18n\Number;
 use Pagination\Pagination;
 /**
@@ -46,7 +47,7 @@ class ProductsController extends AuthController
 	 
     public function detail($slug , $reff = null)
     {
-		
+		Configure::write('debug',0);
         $this->viewBuilder()->setLayout('detail');
         try {
             $login = $this->Api->makeRequest(null, true)
