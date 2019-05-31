@@ -44,8 +44,8 @@ class NotificationController extends AuthController{
         $data = [];
         try {
             $notification = $this->Api->makeRequest($this->Auth->user('token'))
-                ->post('v1/web/notifications/mark', [
-                    'form_params' => $this->request->getData()
+                ->post('v1/web/notifications/mark-all', [
+                    //'form_params' => $this->request->getData()
                 ]);
             if ($response = $this->Api->success($notification)) {
                 $json = $response->parse();
