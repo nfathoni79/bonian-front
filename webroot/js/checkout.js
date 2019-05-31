@@ -182,6 +182,7 @@ function processPayment(request, cb) {
         error: function (text) {
             switch (text.status) {
                 case 406:
+                case 404:
                     if (typeof cb === 'function') {
                         cb(false, text);
                         return;
@@ -223,7 +224,8 @@ function processPaymentWallet(request) {
                     request.password = password.val();
                     processPayment(request, function(success, response) {
                         if (success) {
-
+                            console.log('response', response);
+                            location.href = basePath + '/user/history/detail/' + response.result.data.payment.order_id;
                         } else {
                             if (response.responseJSON.error && response.responseJSON.error.password) {
                                 for(var i in response.responseJSON.error.password) {

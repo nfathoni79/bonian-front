@@ -12,7 +12,8 @@ class HistoryController extends AuthController
         'pending' => 'Pending',
         'settlement' => 'Success',
         'capture' => 'Success',
-        'expire' => 'Expire'
+        'expire' => 'Expire',
+        'success' => 'Success'
     ];
 
     public function index(){
