@@ -4,13 +4,13 @@
         <div class="row">
             <div class="col-lg-9 text-left">
                 <div class="col-lg-6 pd-0 text-left">
-                    <button onclick="location.href='<?php echo $this->Url->build(['controller' => 'Cart', 'action' => 'index']);?>'" type="button" class="btn btn-danger btn-lg btn-block c-header-button">
+                    <button onclick="location.href='<?php echo $this->Url->build(['controller' => 'Cart', 'action' => 'index']);?>'" type="button" class="btn zl-btn-reversed btn-lg btn-block c-header-button">
                         <i class="fas fa-arrow-left"></i> Kembali ke keranjang belanja
                     </button>
                 </div>
             </div>
             <div class="col-lg-3 text-center">
-                <button type="button" class="btn btn-danger btn-lg btn-block c-header-button">
+                <button type="button" class="btn zl-btn-reversed btn-lg btn-block c-header-button">
                     lanjut berbelanja
                 </button>
             </div>

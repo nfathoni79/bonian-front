@@ -226,7 +226,7 @@
                                     <a href="JavaScript:void(0);" class="zl-tx-red--light zl-note" data-id="<?= $cart['cartid'];?>"><i class="fa fa-pencil-alt"></i> catatan barang</a>
                                     <div class="col-lg-12 zl-note-<?= $cart['cartid'];?>" style="display: none;">
                                         <div class="form-group">
-                                            <textarea class="form-control note" name="note[<?= $cart['cartid'];?>]" placeholder="Tulis Catatan Barang" value="<?= $cart['comment'];?>"><?= $cart['comment'];?></textarea>
+                                            <textarea class="form-control note tx-12 tx-medium pd-10" name="note[<?= $cart['cartid'];?>]" placeholder="Tulis Catatan Barang" value="<?= $cart['comment'];?>"><?= $cart['comment'];?></textarea>
                                         </div>
                                     </div>
                                 </div>
