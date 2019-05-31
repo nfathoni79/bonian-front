@@ -76,6 +76,11 @@ $(document).ready(function() {
                     //console.log(response, xhr);
                     $('.zl-notif .dropdown-menu.notify-drop').html(ZlNotification(response));
 
+                    if ($('.zl-notif .notification-count').text() !== '0') {
+                        markNotification();
+                    }
+
+                    /*
                     var selector = $('[data-is-read="false"]');
                     var is_send = [];
 
@@ -101,6 +106,8 @@ $(document).ready(function() {
                         }
                     });
 
+                     */
+
                 }
 
 
@@ -121,12 +128,13 @@ $(document).ready(function() {
             type: 'POST',
             data: {
                 _csrfToken: $('meta[name="_csrfToken"]').attr('content'),
-                notification_id: id
+                //notification_id: id
             },
             dataType: 'json',
             success: function(response, statusText) {
                 if (statusText === 'success') {
-                    if (response.result && response.result.total) {
+                    if (response.result && response.result.total >= 0) {
+                        console.log(response.result.total);
                         $('.zl-notif .notification-count').text(response.result.total);
                     }
                 }
