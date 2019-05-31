@@ -539,17 +539,34 @@ class ProfileController extends AuthController
                     ]);
                 }
             }
-        } else if ($this->request->getQuery('step') == 2) {
+        } else if ($this->request->getQuery('step', '1') >= 2) {
             try {
                 $edit = $this->Api->makeRequest($this->Auth->user('token'))
-                    ->get('v1/web/' . $url_wizard[$this->request->getQuery('step', '1')]);//debug($edit->getBody()->getContents());
+                    ->post('v1/web/change-phone/get-step/' . $this->request->getQuery('step', '1'), [
+                        'form_params' => ['session_id' => $this->request->getSession()->id()]
+                    ]);//debug($edit->getBody()->getContents());exit;
                 if ($response = $this->Api->success($edit)) {
                     $data = $response->parse();
-                    $customer->setData(['old_phone' => $data['result']['data']['phone']]);
                 }
             } catch(\GuzzleHttp\Exception\ClientException $e) {
-                $error = $this->Api->handle($e, true);//debug($e->getResponse()->getBody()->getContents());
+                $error = $this->Api->handle($e, true);
+                if ($e->getResponse()->getStatusCode() == 404) {
+                    return $this->redirect(['action' => 'changePhone']);
+                }
+            }
 
+            if ($this->request->getQuery('step') == 2) {
+                try {
+                    $edit = $this->Api->makeRequest($this->Auth->user('token'))
+                        ->get('v1/web/' . $url_wizard[$this->request->getQuery('step', '1')]);
+                    if ($response = $this->Api->success($edit)) {
+                        $data = $response->parse();
+                        $customer->setData(['old_phone' => $data['result']['data']['phone']]);
+                    }
+                } catch(\GuzzleHttp\Exception\ClientException $e) {
+                    $error = $this->Api->handle($e, true);//debug($e->getResponse()->getBody()->getContents());
+
+                }
             }
         }
 
@@ -583,7 +600,21 @@ class ProfileController extends AuthController
                     ]);
                 }
             }
-        } else if ($this->request->getQuery('step') == 2) {
+        } else if ($this->request->getQuery('step', '1') >= 2) {
+            try {
+                $edit = $this->Api->makeRequest($this->Auth->user('token'))
+                    ->post('v1/web/change-email/get-step/' . $this->request->getQuery('step', '1'), [
+                        'form_params' => ['session_id' => $this->request->getSession()->id()]
+                    ]);
+                if ($response = $this->Api->success($edit)) {
+                    $data = $response->parse();
+                }
+            } catch(\GuzzleHttp\Exception\ClientException $e) {
+                $error = $this->Api->handle($e, true);
+                if ($e->getResponse()->getStatusCode() == 404) {
+                    return $this->redirect(['action' => 'changeEmail']);
+                }
+            }
 
         }
 
