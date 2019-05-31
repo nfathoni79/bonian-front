@@ -333,7 +333,11 @@
                     }
                 }
             });
-        })
+        });
+
+
+        var hash = window.location.hash;
+        $('.nav-tabs a[href="' + hash + '"]').tab('show');
     });
 
 </script>

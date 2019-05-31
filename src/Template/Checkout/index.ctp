@@ -447,7 +447,7 @@
                                                     </div>
                                                     <div class="col-lg-8">
                                                         <h5 class="tx-bank">
-                                                            Bank BRI
+                                                            Bank BNI
                                                         </h5>
                                                     </div>
                                                 </div>

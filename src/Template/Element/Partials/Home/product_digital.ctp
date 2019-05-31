@@ -17,31 +17,31 @@
                 </a>
 
                 <!-- #paket_data -->
-                <a href="" id="paket_data" class="c-category--item" style="padding-left:50px;">
+                <a href="<?= $this->Url->build(['controller' => 'Pulsa', 'prefix' => false]); ?>#tab-2" id="paket_data" class="c-category--item" style="padding-left:50px;">
                     <img class="u-img--fluid o-block" src="<?= $this->Url->build('/images/png/icon-produk-digital/paket_data.png'); ?>" width="32" alt="icon paket data">
                     <p class="c-content--cat__title u-fg--soft-green" style="display:inline; padding-left:10px; font-size:15px; color:#a2bf64;">Paket Data</p>
                 </a>
 
                 <!-- #listrik -->
-                <a href="" id="listrik" class="c-category--item" style="padding-left:50px;">
+                <a href="<?= $this->Url->build(['controller' => 'Pulsa', 'prefix' => false]); ?>#tab-3" id="listrik" class="c-category--item" style="padding-left:50px;">
                     <img class="u-img--fluid o-block" src="<?= $this->Url->build('/images/png/icon-produk-digital/listrik.png'); ?>" width="32" alt="icon listrik">
                     <p class="c-content--cat__title u-fg--soft-orange" style="display:inline; padding-left:10px; font-size:15px; color:#dd956d;">Listrik</p>
                 </a>
 
                 <!-- #pdam -->
-                <a href="" id="pdam" class="c-category--item" style="padding-left:50px;">
+                <a href="<?= $this->Url->build(['controller' => 'Pulsa', 'prefix' => false]); ?>#tab-4" id="pdam" class="c-category--item" style="padding-left:50px;">
                     <img class="u-img--fluid o-block" src="<?= $this->Url->build('/images/png/icon-produk-digital/pdam.png'); ?>" width="32" alt="icon pdam">
                     <p class="c-content--cat__title u-fg--soft-teal-blue" style="display:inline; padding-left:10px; font-size:15px; font-weight:500; color:#35b0c0;">PDAM</p>
                 </a>
 
                 <!-- #bpjs -->
-                <a href="" id="bpjs" class="c-category--item" style="padding-left:50px;">
+                <a href="<?= $this->Url->build(['controller' => 'Pulsa', 'prefix' => false]); ?>#tab-5" id="bpjs" class="c-category--item" style="padding-left:50px;">
                     <img class="u-img--fluid o-block" src="<?= $this->Url->build('/images/png/icon-produk-digital/bpjs.png'); ?>" width="32" alt="icon bpjs">
                     <p class="c-content--cat__title u-fg--soft-red" style="display:inline; padding-left:10px; font-size:15px; color:#db4342;">BPJS</p>
                 </a>
 
                 <!-- #tagihan -->
-                <a href="" id="tagihan" class="c-category--item" style="padding-left:50px;">
+                <a href="<?= $this->Url->build(['controller' => 'Pulsa', 'prefix' => false]); ?>#tab-6" id="tagihan" class="c-category--item" style="padding-left:50px;">
                     <img class="u-img--fluid o-block" src="<?= $this->Url->build('/images/png/icon-produk-digital/tagihan.png'); ?>" width="32" alt="icon tagihan">
                     <p class="c-content--cat__title u-fg--soft-purple" style="display:inline; padding-left:10px; font-size:15px; color:#bd69a5;">Tagihan</p>
                 </a>
