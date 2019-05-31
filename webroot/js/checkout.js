@@ -153,7 +153,7 @@ function getSelectedImageCC(object)
         .css('width', '52px');
 }
 
-function processPayment(request) {
+function processPayment(request, cb) {
     var basePath = $('meta[name="_basePath"]').attr('content');
     $.ajax({
         url: basePath + '/checkout/process',
@@ -162,6 +162,11 @@ function processPayment(request) {
         dataType : 'json',
         success: function(response){
             //location.href = basePath + '/checkout';
+            if (typeof cb === 'function') {
+                cb(true, response);
+                return;
+            }
+
             if (response.result && response.result.data && response.result.data.payment) {
                 //location.href = basePath + '/checkout/success/' + response.result.data.payment.order_id;
                 if (response.result.data.payment_method && response.result.data.payment_method === 'gopay') {
@@ -177,6 +182,10 @@ function processPayment(request) {
         error: function (text) {
             switch (text.status) {
                 case 406:
+                    if (typeof cb === 'function') {
+                        cb(false, text);
+                        return;
+                    }
                     swal(text.responseJSON.message);
                     break;
                 case 302:
@@ -184,6 +193,54 @@ function processPayment(request) {
                     $("#login-popup").modal('show');
                     break;
             }
+        }
+    });
+}
+
+function processPaymentWallet(request) {
+    var amount = $('.c-cart-card-pembayaran__content .zl-subtotal').text();
+    bootbox.dialog({
+        className: "medium-size",
+        title: "Checkout menggunakan saldo",
+        message: `Anda akan melakukan checkout sebesar Rp. ${amount}  menggunakan saldo, 
+        silahkan konfirmasi password anda untuk melanjutkan.
+        <div class="form-group">
+            <label for="input-email">Konfirmasi password</label>
+            <input type="password" name="password" value="" placeholder="Masukkan password anda" class="form-control">
+        </div>
+        `,
+        buttons: {
+            cancel: {
+                label: 'Batal',
+                className: 'btn-default'
+            },
+            confirm: {
+                label: 'Lanjutkan',
+                className: 'btn-danger',
+                callback: function() {
+                    var password = $(this).find('input[name="password"]');
+                    password.next('.help-block').remove();
+                    request.password = password.val();
+                    processPayment(request, function(success, response) {
+                        if (success) {
+
+                        } else {
+                            if (response.responseJSON.error && response.responseJSON.error.password) {
+                                for(var i in response.responseJSON.error.password) {
+                                    console.log(response.responseJSON.error.password[i]);
+                                    password.after(`<div class="help-block">${response.responseJSON.error.password[i]}</div>`);
+                                }
+                            }else {
+                                swal(response.responseJSON.message);
+                            }
+                        }
+                    });
+                    return false; // important to prevent close of dialog box
+                }
+            }
+        },
+        callback: function (result) {
+
         }
     });
 }
@@ -384,6 +441,9 @@ $("#pay-now").on('click', function(e) {
         break;
         case 'gopay':
             processPayment(request);
+        break;
+        case 'wallet':
+            processPaymentWallet(request);
         break;
 
         default:

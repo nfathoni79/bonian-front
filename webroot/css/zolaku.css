@@ -298,7 +298,7 @@ form .form-group label {
     font-weight: 500;
 }
 
-form .form-group.error .help-block {
+form .form-group.error .help-block, .form-group .help-block {
     color: #ef5d61;
     font-size: 11px;
     line-height: 12px;
