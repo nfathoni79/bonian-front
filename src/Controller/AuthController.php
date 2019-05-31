@@ -40,7 +40,7 @@ class AuthController extends AppController
             'flash' => [
                 'element' => 'error'
             ],
-            'authError' => 'Your session expired, please login again',
+            'authError' => 'Sesi login berakhir, silahkan login kembali.',
             'unauthorizedRedirectx' => [
                 'controller' => 'Login',
                 'action' => 'auth',
