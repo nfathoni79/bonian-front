@@ -100,7 +100,7 @@
                 <!-- //end Logo -->
 
                 <!-- Main menu -->
-                <div class="header-center-right col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                <div class="header-center-right col-lg-10 col-md-10 col-sm-12 col-xs-12 mg-t-8-force">
                     <!-- Search -->
                     <div class="header_search">
                         <div id="sosearchpro" class="sosearchpro-wrapper so-search">
