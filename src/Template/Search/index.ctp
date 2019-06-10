@@ -353,6 +353,23 @@
                                     <?php endif;?>
                                 </div>
                                 <div class="right-block right-b">
+                                    <?php /*<div class="row">
+                                        <div class="col-lg-7"  style="width: 52% !important; display: inline-block;">
+                                            <div class="rating" style="">
+                                                <?php
+                                                $rate = $product['rating'];
+                                                for ($x = 0; $x < $rate; $x++) {
+                                                    echo '<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>';
+                                                }
+                                                for ($x = 0; $x < 5-$rate; $x++) {
+                                                    echo '<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>';
+                                                }
+                                                ?>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-lg-5" style="width: 46% !important; display: inline-block;"><span style="margin-top: 0; padding: 5px 10px;" class="badge <?= $this->Badge->format($product['point']); ?> "><?= $product['point']; ?> Poin</span></div>
+                                    </div>*/ ?>
                                     <?php /*
                                     <ul class="colorswatch">
                                         <li class="item-img active"
@@ -397,7 +414,7 @@
                                                 </div>
                                                 <a class="rating-num" href="#" target="_blank">(<?= $product['rating_count']; ?>)</a>
                                             </div>
-                                            <div class="order-num">Orders (0)</div>
+                                            <div class="order-num">Orders (<?= $product['item_sold']; ?>)</div>
                                         </div>
                                         <div class="price">
                                             <span class="price-new tx-13-force">Rp. <?= $this->Number->format($product['price_sale']); ?></span>
