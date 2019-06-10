@@ -336,7 +336,9 @@ $( ".number-box" ).change(function() {
 
 
 
-$('#point').on('change',function(){
+$('#point').on('change keypress',function(){
+    var n = Math.round($(this).val());
+    $(this).val(n);
     grandTotal();
 })
 $('.btn-v-ok').on('click',function(){
