@@ -235,8 +235,9 @@ formCCconfirm.submit(function(e) {
 
     var ajaxRequest = new ajaxValidation(formCCconfirm);
     ajaxRequest.post(formCCconfirm.attr('action'), request, function(response, data) {
+
         if (response.success) {
-            console.log(response, data.result.token);
+            //console.log(response, data.result.token);
 
             if (data.result.token && data.result.token.redirect_url) {
                 var win = $.fancybox.open({
@@ -257,6 +258,16 @@ formCCconfirm.submit(function(e) {
             //render_error_message(data.error.message);
             //var alert = $("#login-popup .alert");
             //alert.removeClass('hide');
+            switch (data.status) {
+                case 406:
+                case 404:
+                    swal(data.responseJSON.message);
+                break;
+                case 302:
+                case 401:
+                    $("#login-popup").modal('show');
+                break;
+            }
         }
     });
 

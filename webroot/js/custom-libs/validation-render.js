@@ -188,7 +188,8 @@ ajaxValidation.prototype.post = function(url, input, callback) {
                 }
             },
             error: function(data) {
-                console.log('error', data.status, data);
+                //console.log('error', data.status, data);
+                callback({success: false}, data);
             },
         });
     }
