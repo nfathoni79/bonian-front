@@ -138,7 +138,9 @@ class CheckoutController  extends AuthController
             }
         } catch(\GuzzleHttp\Exception\ClientException $e) {
             $this->Api->handle($e);
-            $error = json_decode($e->getResponse()->getBody()->getContents(), true);
+            $r = $e->getResponse();
+            $error = json_decode($r->getBody()->getContents(), true);
+            $this->setResponse($this->response->withStatus($r->getStatusCode()));
 
         }
 

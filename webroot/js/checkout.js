@@ -78,13 +78,14 @@ formCC.submit(function(e) {
     var ajaxRequest = new ajaxValidation(formCC);
     ajaxRequest.post(formCC.attr('action'), formCC.find(':input'), function(response, data) {
         if (response.success) {
-            console.log(response, data.result.data);
             wrapperHtmlCC(data.result.data.id, data.result.data['masked_card'], data.result.data.type);
             formCC.parents('.modal').modal('hide');
         } else {
             //render_error_message(data.error.message);
             //var alert = $("#login-popup .alert");
             //alert.removeClass('hide');
+
+
         }
     });
     e.preventDefault(); // avoid to execute the actual submit of the form.
@@ -356,7 +357,6 @@ formCCconfirm.submit(function(e) {
     var ajaxRequest = new ajaxValidation(formCCconfirm);
     ajaxRequest.post(formCCconfirm.attr('action'), request, function(response, data) {
         if (response.success) {
-            console.log(response, data.result.token);
 
             if (data.result.token && data.result.token.redirect_url) {
                 var win = $.fancybox.open({
@@ -377,6 +377,16 @@ formCCconfirm.submit(function(e) {
             //render_error_message(data.error.message);
             //var alert = $("#login-popup .alert");
             //alert.removeClass('hide');
+            switch (data.status) {
+                case 406:
+                case 404:
+                    swal(data.responseJSON.message);
+                    break;
+                case 302:
+                case 401:
+                    $("#login-popup").modal('show');
+                    break;
+            }
         }
     });
 
