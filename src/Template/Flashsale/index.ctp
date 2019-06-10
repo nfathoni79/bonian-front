@@ -26,28 +26,29 @@ $this->Html->css([
         <div class="row">
             <div id="content" class="col-sm-12 item-article">
 
-                <div class="module sohomepage-slider pd-25">
+                <!-- <div class="pd-25">
+                    <img src="images/flashsale-banner/banner.jpg" width="100%">
+                </div> -->
 
+                <div class="module sohomepage-slider pd-25">
                     <div class="yt-content-slider"  data-rtl="yes" data-autoplay="yes" data-autoheight="no" data-delay="4" data-speed="0.6" data-margin="0" data-items_column0="1" data-items_column1="1" data-items_column2="1"  data-items_column3="1" data-items_column4="1" data-arrows="no" data-pagination="yes" data-lazyload="yes" data-loop="no" data-hoverpause="yes">
-                            <!-- <div class="yt-content-slide">
-                                <a title="slide1" href="#"><div class="yt-content-slide"><img src="<?= $this->Url->build($_basePath . 'images/1150x317/'. $banner['banner']['image']); ?>" class="responsive wd-100p"></div></a>
-                            </div> -->
-                            <div class="yt-content-slide">
-                                <a title="slide1" href="#"><div class="yt-content-slide"><img src="images/flashsale-banner/Flashsale-1.jpg" class="responsive wd-100p"></div></a>
-                            </div>
-                            <div class="yt-content-slide">
-                                <a title="slide1" href="#"><div class="yt-content-slide"><img src="images/flashsale-banner/Flashsale-2.jpg" class="responsive wd-100p"></div></a>
-                            </div>
+                        <!-- <div class="yt-content-slide">
+                            <a title="slide1" href="#"><div class="yt-content-slide"><img src="<?= $this->Url->build($_basePath . 'images/1150x317/'. $banner['banner']['image']); ?>" class="responsive wd-100p"></div></a>
+                        </div> -->
+                        <div class="yt-content-slide">
+                            <a title="slide1" href="#"><div class="yt-content-slide"><img src="images/flashsale-banner/Flashsale-1.jpg" class="responsive wd-100p"></div></a>
                         </div>
-                        
+                        <div class="yt-content-slide">
+                            <a title="slide1" href="#"><div class="yt-content-slide"><img src="images/flashsale-banner/Flashsale-2.jpg" class="responsive wd-100p"></div></a>
+                        </div>
                     </div>
                 </div>
 
                 <div class="tabs effect-3 br-10 overflow-hidden">
 
                     <?php foreach($time_sale as $key => $vals):?>
-                    <input type="radio" id="tab-<?= $vals['id']?>" name="tab" value="<?= $vals['id']?>">
-                    <span href="#tab-item-<?= $vals['id']?>">
+                    <input type="radio" id="tab-<?= ($key+1);?>" name="tab" value="<?= ($key+1);?>" data-tabactive="<?= $vals['id']?>">
+                    <span href="#tab-item-<?= ($key+1);?>">
                         <div class="current-sale lh-1 pd-20">
                             <div class="sale-time tx-32 tx-bold">
                                 <?= $vals['time']?>
@@ -65,7 +66,7 @@ $this->Html->css([
                     <div class="notif-tab-content bd-0">
 
                         <?php foreach($time_sale as $key => $vals):?>
-                        <section id="tab-item-<?= $vals['id']?>">
+                        <section id="tab-item-<?= ($key+1);?>">
 
 
                         </section>
@@ -88,10 +89,11 @@ $this->Html->script([
         $(document).ready(function () {
             $("input:radio").on('change',function(){
                 var active = $(this).val();
+                var tabactive = $(this).data('tabactive');
                 if(active){
                     var basePath = $('meta[name="_basePath"]').attr('content');
                     $.ajax({
-                        url: "<?php echo $this->Url->build(['action' => 'get-list']);?>/"+active,
+                        url: "<?php echo $this->Url->build(['action' => 'get-list']);?>/"+tabactive,
                         type : 'GET',
                         dataType : 'json',
                         success: function(response){
