@@ -45,9 +45,10 @@ class ProductsController extends AuthController
 	}
 	
 	 
-    public function detail($slug , $reff = null)
+    public function detail($slug , $media = null, $reff = null)
     {
-		Configure::write('debug',0);
+		//Configure::write('debug',0);
+
         $this->viewBuilder()->setLayout('detail');
         try {
             $login = $this->Api->makeRequest(null, true)
@@ -64,6 +65,35 @@ class ProductsController extends AuthController
 		$this->set(compact('details')); 
 
         if(!empty($details['data'])){
+
+            //process share statistic
+            //debug($this->referer());
+            if ($media && $reff) {
+                try {
+                    $share = $this->Api->makeRequest()
+                        ->post('v1/products/share', [
+                            'form_params' => [
+                                'product_id' => $details['data']['id'],
+                                'media_type' => $media,
+                                'reffcode' => $reff,
+                                'clicked' => $this->referer() == '/' ? 0 : 1
+                            ]
+                        ]);
+                    if ($response = $this->Api->success($share)) {
+                        $json = $response->parse();
+                    }
+                } catch(\GuzzleHttp\Exception\ClientException $e) {
+
+                }
+
+                if ($this->referer() != '/') {
+                    return $this->redirect([
+                        'action' => 'detail',
+                        $slug
+                    ]);
+                }
+            }
+
 
             try {
                 $discuss = $this->Api->makeRequest()
