@@ -77,14 +77,14 @@ function wrapperHtmlCC(id, masked_card, type) {
 
 function getSelectedNumberCC(object)
 {
-    return $(object.parents('.row')
+    return $(object.parents('.credit-card-wrapper')
         .get(0))
         .find('.tx-bank').text().trim();
 }
 
 function getSelectedImageCC(object)
 {
-    return $(object.parents('.row')
+    return $(object.parents('.credit-card-wrapper')
         .get(0))
         .clone()
         .find('img')

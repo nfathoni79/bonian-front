@@ -161,7 +161,7 @@
                             </div>
 
                             <?php foreach($creditcards as $creditcard) : ?>
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 credit-card-wrapper">
                                     <div class="bd br-10 ft-left pd-10">
                                         <div class="col-lg-2">
                                             <div class="col-lg-2 pd-t-10 text-center">
