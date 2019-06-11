@@ -41,7 +41,7 @@ $this->Html->script([
                                     <h4 class="zl-tx-black tx-bold tx-16 mg-t-0"><?php echo $rating['product']['name'];?></h4>
 
                                     <?php
-                                    $rate = (int) $rating['rating'];
+                                    $rate = ceil($rating['rating']);
                                     for ($x = 0; $x < $rate; $x++) {
                                         echo '<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>';
                                     }

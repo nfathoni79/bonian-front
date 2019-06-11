@@ -556,7 +556,7 @@
                                         <div class="ratings">
                                             <div class="rating-box">
                                                 <?php
-                                                    $rate = (int) $vals['product']['rating'];
+                                                    $rate = ceil($vals['product']['rating']);
                                                     for ($x = 0; $x < $rate; $x++) {
                                                         echo '<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>';
                                                 }
