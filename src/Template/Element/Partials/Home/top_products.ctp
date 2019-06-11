@@ -100,6 +100,11 @@
                                     </div>
                                 </div>
 
+                                <div class="col-sm-12 tx-center bd-t pd-t-15 tx-medium">
+                                    <a href="<?= $this->Url->build(['controller' => 'search', 'action' => 'index', '?' => ['order' => 'desc', 'sortBy' => 'rating']]); ?>">
+                                        <span class="zl-tx-red tx-13">Selengkapnya</span>
+                                    </a>
+                                </div>
                             </div>
                             <!-- Best seller-->
 
@@ -179,6 +184,11 @@
                                     </div>
                                 </div>
 
+                                <div class="col-sm-12 tx-center bd-t pd-t-15 tx-medium">
+                                    <a href="<?= $this->Url->build(['controller' => 'search', 'action' => 'index', '?' => ['order' => 'desc', 'sortBy' => 'view']]); ?>">
+                                        <span class="zl-tx-red tx-13">Selengkapnya</span>
+                                    </a>
+                                </div>
                             </div>
                             <!-- Popular Products -->
 
@@ -258,6 +268,11 @@
                                     </div>
                                 </div>
 
+                                <div class="col-sm-12 tx-center bd-t pd-t-15 tx-medium">
+                                    <a href="<?= $this->Url->build(['controller' => 'search', 'action' => 'index', '?' => ['order' => 'desc', 'sortBy' => 'created']]); ?>">
+                                        <span class="zl-tx-red tx-13">Selengkapnya</span>
+                                    </a>
+                                </div>
                             </div>
                             <!-- Popular Products -->
 
@@ -266,11 +281,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-12 tx-center bd-t pd-t-15 tx-medium">
-            <a href="<?= $this->Url->build(['controller' => 'search', 'action' => 'index']); ?>">
-                <span class="zl-tx-red tx-13">Selengkapnya</span>
-            </a>
         </div>
     </div>
     <!-- end Listing tabs -->
