@@ -35,7 +35,10 @@
                         <div class="box-title font-ct d-lg-inline-block" >
                             <h2 class="modtitle"><span>Kategori <?php echo $vals['product_category']['name']; ?> </span></h2>
                         </div>
-                        <a class="l-detail tx-medium ft-right d-lg-inline-block" href="" >Lihat Selengkapnya</a>
+
+                        <a class="l-detail tx-medium ft-right d-lg-inline-block" href="<?= $this->Url->build(['controller' => 'search', 'action' => 'index', '?' => ['category_id' => $vals['product_category']['id']]]); ?>">
+                            Lihat Selengkapnya
+                        </a>
                         <?php
                             $chunk = array_chunk($vals['product_category']['products'],10);
                         ?>
