@@ -91,7 +91,7 @@ function getSelectedImageCC(object)
         .css('width', '52px');
 }
 
-function processPayment(request) {
+function processPayment(request, cb) {
     var basePath = $('meta[name="_basePath"]').attr('content');
     $.ajax({
         url: basePath + '/payment/process',
@@ -100,6 +100,10 @@ function processPayment(request) {
         dataType : 'json',
         success: function(response){
             //location.href = basePath + '/checkout';
+            if (typeof cb === 'function') {
+                cb(true, response);
+                return;
+            }
             if (response.result && response.result.data && response.result.data.payment) {
                 //location.href = basePath + '/checkout/success/' + response.result.data.payment.order_id;
                 if (response.result.data.payment_method && response.result.data.payment_method === 'gopay') {
@@ -116,6 +120,10 @@ function processPayment(request) {
             switch (text.status) {
                 case 406:
                 case 404:
+                    if (typeof cb === 'function') {
+                        cb(false, text);
+                        return;
+                    }
                     swal(text.responseJSON.message);
                     break;
                 case 302:
@@ -378,12 +386,10 @@ function processPaymentWallet(request) {
                     request.password = password.val();
                     processPayment(request, function(success, response) {
                         if (success) {
-                            console.log('response', response);
                             location.href = basePath + '/user/history/detail/' + response.result.data.payment.order_id;
                         } else {
                             if (response.responseJSON.error && response.responseJSON.error.password) {
                                 for(var i in response.responseJSON.error.password) {
-                                    console.log(response.responseJSON.error.password[i]);
                                     password.after(`<div class="help-block">${response.responseJSON.error.password[i]}</div>`);
                                 }
                             }else {
