@@ -61,7 +61,7 @@
                                                         <div class="col-lg-7" style="width: 47.333333%!important; display: inline-block;">
                                                             <div class="rating" style="margin-left: 15px;">
                                                                 <?php
-                                                                        $rate = $vals['rating'];
+                                                                        $rate = ceil($vals['rating']);
                                                                         for ($x = 0; $x < $rate; $x++) {
                                                                             echo '<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>';
                                                                         }
@@ -145,7 +145,7 @@
                                                         <div class="col-lg-7" style="width: 47.333333%!important; display: inline-block;">
                                                             <div class="rating" style="margin-left: 15px;">
                                                                 <?php
-                                                                        $rate = $vals['rating'];
+                                                                        $rate = ceil($vals['rating']);
                                                                         for ($x = 0; $x < $rate; $x++) {
                                                                             echo '<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>';
                                                                         }
@@ -229,7 +229,7 @@
                                                         <div class="col-lg-7" style="width: 47.333333%!important; display: inline-block;">
                                                             <div class="rating" style="margin-left: 15px;">
                                                                 <?php
-                                                                        $rate = $vals['rating'];
+                                                                        $rate = ceil($vals['rating']);
                                                                         for ($x = 0; $x < $rate; $x++) {
                                                                             echo '<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>';
                                                                         }

@@ -96,7 +96,7 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                                 <div class="rating-box">
 
                                                     <?php
-                                                    $rate = $details['data']['rating'];
+                                                    $rate = ceil($details['data']['rating']);
                                                     for ($x = 0; $x < $rate; $x++) {
                                                         echo '<span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span> ';
                                                     }
@@ -478,13 +478,13 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                                     <div class="row">
                                                         <div class="col-sm-12">
                                                             <div class="col-sm-2 tx-center">
-                                                                <h1 class="zl-tx-red--light"><?php echo $details['data']['rating'];?> <small>dari 5</small></h1>
+                                                                <h1 class="zl-tx-red--light"><?php echo round($details['data']['rating'],1);?> <small>dari 5</small></h1>
                                                                 <div class="rating">
                                                                     <div class="rating-box">
                                                                         <?php
                                                                             $max = 5;
-                                                                            $sisa = $max - $details['data']['rating'];
-                                                                            for($i=0;$i<=($details['data']['rating'] -1 );$i++){
+                                                                            $sisa = $max - ceil($details['data']['rating']);
+                                                                            for($i=0;$i<=(ceil($details['data']['rating']) -1 );$i++){
                                                                                 echo '<span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>';
                                                                         }
                                                                         for($i=0;$i<= ($sisa -1);$i++){
