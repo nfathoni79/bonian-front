@@ -671,29 +671,29 @@ $(document).ready(function() {
 	}
 
 
-    $('.waShare').on('click',function(){
+    $(document).on('click', '.waShare',function(){
         window.open('https://api.whatsapp.com/send?text=Beli '+$(this).data('title')+' '+$(this).data('url')+'/wa/'+reff+' Harga Promo Rp. '+numeral($(this).data('price')).format('0,0')+' hanya di Bonian! Dapatkan Bonus Point '+numeral($(this).data('point')).format('0,0')+' serta dapatkan Potongan Kupon dan Voucher Diskon, Beli Sekarang ! ','_blank','width=600, height=368');
         return false;
     });
-    $('.igShare').on('click',function(){
+    $(document).on('click', '.igShare',function(){
         // window.open("https://web.whatsapp.com//send?text=Temukan "+$(this).data('title')+" Dapatkan segera di zolaku "+$(this).data('url'),"height=368,width=600,left=100,top=100,menubar=0");
         // return false;
     });
-    $('.smsShare').on('click',function(){
+    $(document).on('click', '.smsShare',function(){
         window.open('sms:;?&body=Beli '+$(this).data('title')+' '+$(this).data('url')+'/sms/'+reff+' Harga Promo Rp. '+numeral($(this).data('price')).format('0,0')+' hanya di Bonian! Dapatkan Bonus Point '+numeral($(this).data('point')).format('0,0')+' serta dapatkan Potongan Kupon dan Voucher Diskon, Beli Sekarang ! ','_self','width=600, height=368')
         return false;
     });
 
-    $('.fbShare').on('click',function(){
+    $(document).on('click', '.fbShare', function(){
         window.open('https://www.facebook.com/sharer.php?u='+$(this).data('url')+'/fb/'+reff+'','_blank','width=600, height=368');
         return false;
     });
 
-    $('.lineShare').on('click',function(){
+    $(document).on('click', '.lineShare', function(){
         window.open('https://lineit.line.me/share/ui?url='+$(this).data('url')+'/ln/'+reff+'&text=Beli '+$(this).data('title')+' Harga Promo Rp. '+numeral($(this).data('price')).format('0,0')+' hanya di Bonian! Dapatkan Bonus Point '+numeral($(this).data('point')).format('0,0')+' serta dapatkan Potongan Kupon dan Voucher Diskon, Beli Sekarang ! ','_blank','width=600, height=368');
         return false;
     });
-    $('.twitterShare').on('click',function(){
+    $(document).on('click', '.twitterShare',function(){
         window.open('https://twitter.com/share?url='+$(this).data('url')+'/tw/'+reff+'&text=Beli '+$(this).data('title')+' Harga Promo Rp. '+numeral($(this).data('price')).format('0,0')+' hanya di Bonian! Dapatkan Bonus Point '+numeral($(this).data('point')).format('0,0')+' serta dapatkan Potongan Kupon dan Voucher Diskon, Beli Sekarang ! ','_blank','width=600, height=368');
         return false;
     });

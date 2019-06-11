@@ -422,10 +422,10 @@
                                         <div class="button-group so-quickview cartinfo--static share-container">
                                             <span class="col-md-12 zl-tx-red tx-medium">Bagikan produk ini</span>
                                             <div class="row pd-0">
-                                                <button type="button" class="btn-share b-fb fbShare" data-url="" data-title="" data-price=""><i class="fab fa-facebook"></i></button>
-                                                <button type="button" class="btn-share b-wa waShare" data-url="" data-title="" data-price=""><i class="fab fa-whatsapp"></i></button>
-                                                <button type="button" class="btn-share b-ln lineShare" data-url="" data-title="" data-price=""><i class="fab fa-line"></i></button>
-                                                <button type="button" class="btn-share b-tw twitterShare" data-url="" data-title="" data-price=""><i class="fab fa-twitter"></i></button>
+                                                <button type="button" class="btn-share b-fb fbShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $product['slug'],'prefix' => false],true);?>" data-title="<?= h($product['name']); ?>" data-price="<?= $product['price_sale'];?>"><i class="fab fa-facebook"></i></button>
+                                                <button type="button" class="btn-share b-wa waShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $product['slug'],'prefix' => false],true);?>" data-title="<?= h($product['name']); ?>" data-price="<?= $product['price_sale'];?>"><i class="fab fa-whatsapp"></i></button>
+                                                <button type="button" class="btn-share b-ln lineShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $product['slug'],'prefix' => false],true);?>" data-title="<?= h($product['name']); ?>" data-price="<?= $product['price_sale'];?>"><i class="fab fa-line"></i></button>
+                                                <button type="button" class="btn-share b-tw twitterShare" data-url="<?php echo $this->Url->build(['controller' => 'Products', 'action' => 'detail', $product['slug'],'prefix' => false],true);?>" data-title="<?= h($product['name']); ?>" data-price="<?= $product['price_sale'];?>"><i class="fab fa-twitter"></i></button>
                                             </div>
 
                                         </div>
