@@ -2,7 +2,7 @@
     <!-- Listing tabs -->
     <div class="module custom-listingtab top-product-home default-nav" style="margin-top: -20px; margin-left: -20px; margin-right: -20px;">
         <div class="box-title font-ct">
-            <h2 class="modtitle">Produk Teratas</h2>
+            <h2 class="modtitle">Top Products</h2>
         </div>
         <div class="modcontent">
             <div id="so_listing_tabs_1" class="so-listing-tabs first-load">
@@ -25,7 +25,7 @@
                         <!--Begin Items-->
 
                             <!-- Best seller-->
-                            <div class="ltabs-items ltabs-items-selected items-category-bestseller" data-total="16">
+                            <div class="ltabs-items ltabs-items-selected items-category-bestseller" data-total="15">
 
                                 <div id="product-container-layout">
                                     <div class="products-list row nopadding-xs so-filter-gird grid pd-20">
@@ -104,7 +104,7 @@
                             <!-- Best seller-->
 
                             <!-- Popular Products -->
-                            <div class="ltabs-items items-category-popularproduct grid" data-total="16">
+                            <div class="ltabs-items items-category-popularproduct grid" data-total="15">
 
                                 <div id="product-container-layout">
                                     <div class="products-list row nopadding-xs so-filter-gird grid pd-20">
@@ -183,7 +183,7 @@
                             <!-- Popular Products -->
 
                             <!-- Popular Products -->
-                            <div class="ltabs-items  items-category-arrivals grid" data-total="16">
+                            <div class="ltabs-items  items-category-arrivals grid" data-total="15">
 
                                 <div id="product-container-layout">
                                     <div class="products-list row nopadding-xs so-filter-gird grid pd-20">
