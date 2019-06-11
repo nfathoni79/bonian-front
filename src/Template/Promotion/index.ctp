@@ -79,7 +79,7 @@
                                                 <div class="col-lg-7">
                                                     <div class="rating">
                                                         <?php
-                                                            $rate = $v['product']['rating'];
+                                                            $rate = ceil($v['product']['rating']);
                                                             for ($x = 0; $x < $rate; $x++) {
                                                                 echo '<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>';
                                                             }
