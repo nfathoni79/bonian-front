@@ -338,6 +338,9 @@ $("#pay-now").on('click', function(e) {
         case 'gopay':
             processPayment(request);
         break;
+        case 'wallet':
+            processPaymentWallet(request);
+        break;
 
         default:
             swal('Silahkan pilih metode pembayaran anda');
@@ -347,3 +350,53 @@ $("#pay-now").on('click', function(e) {
 
 
 });
+
+
+function processPaymentWallet(request) {
+    var amount = $('.c-cart-card-pembayaran__content .zl-subtotal').text();
+    bootbox.dialog({
+        className: "medium-size",
+        title: "Checkout menggunakan saldo",
+        message: `Anda akan melakukan checkout sebesar Rp. ${amount}  menggunakan saldo, 
+        silahkan konfirmasi password anda untuk melanjutkan.
+        <div class="form-group">
+            <label for="input-email">Konfirmasi password</label>
+            <input type="password" name="password" value="" placeholder="Masukkan password anda" class="form-control">
+        </div>
+        `,
+        buttons: {
+            cancel: {
+                label: 'Batal',
+                className: 'btn-default'
+            },
+            confirm: {
+                label: 'Lanjutkan',
+                className: 'btn-danger',
+                callback: function() {
+                    var password = $(this).find('input[name="password"]');
+                    password.next('.help-block').remove();
+                    request.password = password.val();
+                    processPayment(request, function(success, response) {
+                        if (success) {
+                            console.log('response', response);
+                            location.href = basePath + '/user/history/detail/' + response.result.data.payment.order_id;
+                        } else {
+                            if (response.responseJSON.error && response.responseJSON.error.password) {
+                                for(var i in response.responseJSON.error.password) {
+                                    console.log(response.responseJSON.error.password[i]);
+                                    password.after(`<div class="help-block">${response.responseJSON.error.password[i]}</div>`);
+                                }
+                            }else {
+                                swal(response.responseJSON.message);
+                            }
+                        }
+                    });
+                    return false; // important to prevent close of dialog box
+                }
+            }
+        },
+        callback: function (result) {
+
+        }
+    });
+}

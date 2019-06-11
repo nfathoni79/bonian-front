@@ -243,7 +243,51 @@
 
                             </div>
                         </div>
+                        <?php if ($balance > 0) : ?>
+                        <div class="row mg-0 mg-b-40">
+                            <div class="mg-b-20">
 
+                                <div class="col-sm-12 block block_0">
+                                    <div class="block-categories module mg-b-20-force">
+                                        <h3 class="modtitle tx-mont"><span>Saldo</span></h3>
+                                    </div>
+                                </div>
+
+                                <!-- start:item-->
+                                <div class="col-sm-12 flex-container">
+
+                                    <div class="wd-100p-force">
+                                        <div class="col-sm-12 bd br-10 pd-10">
+                                            <div class="col-sm-1" style="line-height: 68px;">
+                                                <div class="pretty p-default p-round p-pulse p-bigger">
+                                                    <input type="radio" name="payment_method"  value="wallet">
+                                                    <div class="state p-danger">
+                                                        <label> </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-11 pd-t-15">
+                                                <div class="col-sm-3">
+                                                    <div class="row">
+                                                        <h5 class="tx-bank">
+                                                            Rp. <?= $this->Number->format($balance); ?>
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p class="tx-left lh-base tx-13 tx-medium">Pembayaran instant menggunakan saldo balance anda.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <?php endif; ?>
 
                     </div>
                 </div>
