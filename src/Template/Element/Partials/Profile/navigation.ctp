@@ -26,7 +26,7 @@
                 ]
             ],
             [
-                'title' => 'Ubah Kata sandi',
+                'title' => 'Ubah Kata Sandi',
                 'url' => [
                     'controller' => 'Profile',
                     'action' => 'changePass',
