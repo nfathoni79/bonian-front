@@ -191,7 +191,7 @@
 </div>
 <div class="back-to-top"><i class="fa fa-angle-up"></i></div>
 
-
+<?php if ($this->request->getSession()->check('Auth.Customers')) : ?>
 <div class="chat-wrapper">
     <button class="open-button" onclick="openForm()"><i class="fas fa-comment"></i></button>
 
@@ -200,177 +200,33 @@
         <div class="zl-chat-container clearfix">
             <div class="people-list" id="people-list">
                 <div class="search">
-                    <input type="text" placeholder="search" />
+                    <input type="text" id="searchInput" placeholder="search" onkeyup="searchFunction()" />
                     <i class="fa fa-search"></i>
                 </div>
-                <ul class="list">
-                    <li class="clearfix">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="avatar" />
-                        <div class="about">
-                            <div class="name">Vincent Porter</div>
-                            <div class="status">
-                                <i class="fa fa-circle online"></i> online
-                            </div>
-                        </div>
-                    </li>
+                <ul class="list" id="list-invoice">
 
-                    <li class="clearfix">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_02.jpg" alt="avatar" />
-                        <div class="about">
-                            <div class="name">Aiden Chavez</div>
-                            <div class="status">
-                                <i class="fa fa-circle offline"></i> left 7 mins ago
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="clearfix">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_03.jpg" alt="avatar" />
-                        <div class="about">
-                            <div class="name">Mike Thomas</div>
-                            <div class="status">
-                                <i class="fa fa-circle online"></i> online
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="clearfix">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_04.jpg" alt="avatar" />
-                        <div class="about">
-                            <div class="name">Erica Hughes</div>
-                            <div class="status">
-                                <i class="fa fa-circle online"></i> online
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="clearfix">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_05.jpg" alt="avatar" />
-                        <div class="about">
-                            <div class="name">Ginger Johnston</div>
-                            <div class="status">
-                                <i class="fa fa-circle online"></i> online
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="clearfix">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_06.jpg" alt="avatar" />
-                        <div class="about">
-                            <div class="name">Tracy Carpenter</div>
-                            <div class="status">
-                                <i class="fa fa-circle offline"></i> left 30 mins ago
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="clearfix">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_07.jpg" alt="avatar" />
-                        <div class="about">
-                            <div class="name">Christian Kelly</div>
-                            <div class="status">
-                                <i class="fa fa-circle offline"></i> left 10 hours ago
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="clearfix">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_08.jpg" alt="avatar" />
-                        <div class="about">
-                            <div class="name">Monica Ward</div>
-                            <div class="status">
-                                <i class="fa fa-circle online"></i> online
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="clearfix">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_09.jpg" alt="avatar" />
-                        <div class="about">
-                            <div class="name">Dean Henry</div>
-                            <div class="status">
-                                <i class="fa fa-circle offline"></i> offline since Oct 28
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="clearfix">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_10.jpg" alt="avatar" />
-                        <div class="about">
-                            <div class="name">Peyton Mckinney</div>
-                            <div class="status">
-                                <i class="fa fa-circle online"></i> online
-                            </div>
-                        </div>
-                    </li>
                 </ul>
             </div>
 
             <div class="chat">
                 <div class="chat-header clearfix">
-                    <!-- <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01_green.jpg" alt="avatar" /> -->
-
                     <div class="chat-about">
-                        <div class="chat-with">Chat with Vincent Porter</div>
+                        <div class="chat-with">Chat with Administrator</div>
                     </div>
                     <i class="fas fa-window-close cancel" onclick="closeForm()"></i>
-                    <!-- <i class="fa fa-star"></i> -->
                 </div>
-                <!-- end chat-header -->
 
                 <div class="chat-history">
-                    <ul>
-                        <li class="clearfix">
-                            <div class="message-data align-right">
-                                <span class="message-data-time">10:10 AM, Today</span> &nbsp; &nbsp;
-                                <span class="message-data-name">Olia</span> <i class="fa fa-circle me"></i>
-
+                    <div class="panel">
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-1">
+                                No Pesanan : <span class="no-pesanan">-</span> <br>
+                                Total : Rp.<span class="total-pesanan">-</span><br>
+                                <span class="status-pesanan">Selesai</span>
                             </div>
-                            <div class="message other-message float-right">
-                                Hi Vincent, how are you? How is the project coming along?
-                            </div>
-                        </li>
-
-                        <li>
-                            <div class="message-data">
-                                <span class="message-data-name"><i class="fa fa-circle online"></i> Vincent</span>
-                                <span class="message-data-time">10:12 AM, Today</span>
-                            </div>
-                            <div class="message my-message">
-                                Are we meeting today? Project has been already finished and I have results to show you.
-                            </div>
-                        </li>
-
-                        <li class="clearfix">
-                            <div class="message-data align-right">
-                                <span class="message-data-time">10:14 AM, Today</span> &nbsp; &nbsp;
-                                <span class="message-data-name">Olia</span> <i class="fa fa-circle me"></i>
-
-                            </div>
-                            <div class="message other-message float-right">
-                                Well I am not sure. The rest of the team is not here yet. Maybe in an hour or so? Have you faced any problems at the last phase of the project?
-                            </div>
-                        </li>
-
-                        <li>
-                            <div class="message-data">
-                                <span class="message-data-name"><i class="fa fa-circle online"></i> Vincent</span>
-                                <span class="message-data-time">10:20 AM, Today</span>
-                            </div>
-                            <div class="message my-message">
-                                Actually everything was fine. I'm very excited to show this to our team.
-                            </div>
-                        </li>
-
-                        <li>
-                            <div class="message-data">
-                                <span class="message-data-name"><i class="fa fa-circle online"></i> Vincent</span>
-                                <span class="message-data-time">10:31 AM, Today</span>
-                            </div>
-                            <i class="fa fa-circle online"></i>
-                            <i class="fa fa-circle online" style="color: #AED2A6"></i>
-                            <i class="fa fa-circle online" style="color:#DAE9DA"></i>
-                        </li>
+                        </div>
+                    </div>
+                    <ul id="messages"> 
 
                     </ul>
 
@@ -397,157 +253,205 @@
     </div>
 </div>
 
-<!-- <div class="chat-wrapper">
-    <button class="open-button" onclick="openForm()">Chat</button>
-
-    <div class="chat-popup" id="myForm">
-      <form action="/action_page.php" class="form-container">
-        <h1>Chat</h1>
-
-        <label for="msg"><b>Message</b></label>
-        <textarea placeholder="Type message.." name="msg" required></textarea>
-
-        <button type="submit" class="btn">Send</button>
-        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-      </form>
-    </div>
-</div> -->
 <?php $this->append('script'); ?>
+<script src="https://unpkg.com/@pusher/chatkit-client@1.5.0/dist/web/chatkit.js"></script>
 <script>
-function openForm() {
-  document.getElementById("myForm").style.display = "block";
-}
+    function openForm() {
+        document.getElementById("myForm").style.display = "block";
+    }
 
-function closeForm() {
-  document.getElementById("myForm").style.display = "none";
-}
-
-(function() {
-
-    var chat = {
-        messageToSend: '',
-        messageResponses: [
-            'Why did the web developer leave the restaurant? Because of the table layout.',
-            'How do you comfort a JavaScript bug? You console it.',
-            'An SQL query enters a bar, approaches two tables and asks: "May I join you?"',
-            'What is the most used language in programming? Profanity.',
-            'What is the object-oriented way to become wealthy? Inheritance.',
-            'An SEO expert walks into a bar, bars, pub, tavern, public house, Irish pub, drinks, beer, alcohol'
-        ],
-        init: function() {
-            this.cacheDOM();
-            this.bindEvents();
-            this.render();
+    function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+    }
+    var cid = "<?= $this->request->getSession()->read('Auth.Customers.id'); ?>";
+    $.ajax({
+        url: '<?= $this->Url->build(['controller' => 'Chat', 'action' => 'list-invoice', 'prefix' => 'user']); ?>',
+        type : 'POST',
+        data : {
+            cust_id : cid,
+            _csrfToken: $('meta[name="_csrfToken"]').attr('content')
         },
-        cacheDOM: function() {
-            this.$chatHistory = $('.chat-history');
-            this.$button = $('button');
-            this.$textarea = $('#message-to-send');
-            this.$chatHistoryList = this.$chatHistory.find('ul');
-        },
-        bindEvents: function() {
-            this.$button.on('click', this.addMessage.bind(this));
-            this.$textarea.on('keyup', this.addMessageEnter.bind(this));
-        },
-        render: function() {
-            this.scrollToBottom();
-            if (this.messageToSend.trim() !== '') {
-                var template = Handlebars.compile($("#message-template").html());
-                var context = {
-                    messageOutput: this.messageToSend,
-                    time: this.getCurrentTime()
-                };
+        //dataType : 'json',
+        success: function(response){
 
-                this.$chatHistoryList.append(template(context));
-                this.scrollToBottom();
-                this.$textarea.val('');
-
-                // responses
-                var templateResponse = Handlebars.compile($("#message-response-template").html());
-                var contextResponse = {
-                    response: this.getRandomItem(this.messageResponses),
-                    time: this.getCurrentTime()
-                };
-
-                setTimeout(function() {
-                    this.$chatHistoryList.append(templateResponse(contextResponse));
-                    this.scrollToBottom();
-                }.bind(this), 1500);
-
-            }
-
-        },
-
-        addMessage: function() {
-            this.messageToSend = this.$textarea.val()
-            this.render();
-        },
-        addMessageEnter: function(event) {
-            // enter was pressed
-            if (event.keyCode === 13) {
-                this.addMessage();
-            }
-        },
-        scrollToBottom: function() {
-            this.$chatHistory.scrollTop(this.$chatHistory[0].scrollHeight);
-        },
-        getCurrentTime: function() {
-            return new Date().toLocaleTimeString().
-            replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
-        },
-        getRandomItem: function(arr) {
-            return arr[Math.floor(Math.random() * arr.length)];
-        }
-
-    };
-
-    chat.init();
-
-    var searchFilter = {
-        options: {
-            valueNames: ['name']
-        },
-        init: function() {
-            var userList = new List('people-list', this.options);
-            var noItems = $('<li id="no-items-found">No items found</li>');
-
-            userList.on('updated', function(list) {
-                if (list.matchingItems.length === 0) {
-                    $(list.list).append(noItems);
-                } else {
-                    noItems.detach();
+            var domInvoice = '';
+            $.each(response, function(key, value){
+                if(value.order_details){
+                    $.each(value.order_details, function(k,v){
+                        domInvoice += '<li class="clearfix">\n' +
+                            '<a href="javascript:void(0);" class="about invoice-order" data-total="'+v.total+'">\n' +
+                            '<div class="status">Nomor Pesanan</div>\n' +
+                            '<div class="name">'+value.invoice+'-'+v.id+'</div> \n' +
+                            '</a>\n' +
+                            '</li>';
+                    })
+                }
+                if(value.order_digital){
+                    domInvoice += '<li class="clearfix">\n' +
+                        '<a  href="javascript:void(0);" class="about invoice-order"  data-total="'+value.total+'">\n' +
+                        '<div class="status">Nomor Pesanan</div>\n' +
+                        '<div class="name">'+value.invoice+'-'+value.order_digital.id+'</div> \n' +
+                        '</a>\n' +
+                        '</li>';
                 }
             });
+            $('#list-invoice').html(domInvoice);
+        },
+        error: function () {
+
         }
-    };
+    });
 
-    searchFilter.init();
+    $(document.body).on('click', '.invoice-order' ,function(){
+        var noInvoice = $(this).find('.name').text();
+        $('.no-pesanan').html(noInvoice);
+        $('.total-pesanan').html(numeral($(this).data('total')).format('0,0'));
 
-})();
 
-</script>
 
-<script id="message-template" type="text/x-handlebars-template">
-    <li class="clearfix">
-        <div class="message-data align-right">
-            <span class="message-data-time">{{time}}, Today</span> &nbsp; &nbsp;
-            <span class="message-data-name">Olia</span> <i class="fa fa-circle me"></i>
-        </div>
-        <div class="message other-message float-right">
-            {{messageOutput}}
-        </div>
-    </li>
-</script>
+        const INSTANCE_LOCATOR = "v1:us1:643558e4-7a90-485c-b398-56de24a33bff"
+        const TOKEN_PROVIDER_URL = "https://us1.pusherplatform.io/services/chatkit_token_provider/v1/643558e4-7a90-485c-b398-56de24a33bff/token"
+        const USER_ID = "zolaku"
 
-<script id="message-response-template" type="text/x-handlebars-template">
-    <li>
-        <div class="message-data">
-            <span class="message-data-name"><i class="fa fa-circle online"></i> Vincent</span>
-            <span class="message-data-time">{{time}}, Today</span>
-        </div>
-        <div class="message my-message">
-            {{response}}
-        </div>
-    </li>
+        let currentUser
+        let room
+
+        const tokenProvider = new Chatkit.TokenProvider({
+            url: TOKEN_PROVIDER_URL,
+        })
+
+        const noopLogger = (...items) => {}
+
+        const chatManager = new Chatkit.ChatManager({
+            instanceLocator: INSTANCE_LOCATOR,
+            tokenProvider: tokenProvider,
+            userId: USER_ID,
+            logger: {
+                info: console.log,
+                warn: console.log,
+                error: console.log,
+                debug: console.log,
+                verbose: console.log,
+            },
+        })
+
+
+
+        chatManager
+            .connect({
+                onAddedToRoom: room => {
+                    console.log("added to room: ", room)
+                },
+                onRemovedFromRoom: room => {
+                    console.log("removed from room: ", room)
+                },
+                onUserJoinedRoom: (room, user) => {
+                    console.log("user: ", user, " joined room: ", room)
+                },
+                onUserLeftRoom: (room, user) => {
+                    console.log("user: ", user, " left room: ", room)
+                },
+                onPresenceChanged: ({ previous, current }, user) => {
+                    console.log("user: ", user, " was ", previous, " but is now ", current)
+                },
+            })
+            .then(cUser => {
+                currentUser = cUser
+                window.currentUser = cUser
+                const roomToSubscribeTo = currentUser.rooms[0]
+
+                if (roomToSubscribeTo) {
+                    room = roomToSubscribeTo
+                    console.log("Going to subscribe to", roomToSubscribeTo)
+                    currentUser.subscribeToRoom({
+                        roomId: roomToSubscribeTo.id,
+                        hooks: {
+                            onMessage: message => {
+                                console.log("new message:", message)
+                                const messagesList = document.getElementById("messages")
+                                const messageItem = document.createElement("li")
+                                console.log(("<?= $this->request->getSession()->read('Auth.Customers.username'); ?>").toUpperCase());
+                                console.log(message.senderId.toUpperCase());
+                                if(("<?= $this->request->getSession()->read('Auth.Customers.username'); ?>").toUpperCase() == message.senderId.toUpperCase() ){
+                                    messageItem.className = ""
+                                    messagesList.append(messageItem)
+                                    const textDiv = document.createElement("div")
+                                    textDiv.innerHTML = '<div class="message-data">\n' +
+                                        '<span class="message-data-time">'+moment(message.createdAt).fromNow()+'</span> &nbsp; &nbsp;\n' +
+                                        '<span class="message-data-name">'+message.sender.name+'</span> <i class="fa fa-circle me"></i> \n' +
+                                        '</div>\n' +
+                                        '<div class="message my-message">'+message.text+'</div>';
+                                    messageItem.appendChild(textDiv)
+                                }else{
+                                    messageItem.className = "clearfix"
+                                    messagesList.append(messageItem)
+                                    const textDiv = document.createElement("div")
+                                    textDiv.innerHTML = '<div class="message-data align-right">\n' +
+                                        '<span class="message-data-time">'+moment(message.createdAt).fromNow()+'</span> &nbsp; &nbsp;\n' +
+                                        '<span class="message-data-name">'+message.sender.name+'</span> <i class="fa fa-circle me"></i> \n' +
+                                        '</div>\n' +
+                                        '<div class="message other-message float-right">'+message.text+'</div>';
+                                    messageItem.appendChild(textDiv)
+                                }
+
+                                if (message.attachment) {
+                                    let attachment
+                                    switch (message.attachment.type) {
+                                        case "image":
+                                            attachment = document.createElement("img")
+                                            break
+                                        case "video":
+                                            attachment = document.createElement("video")
+                                            attachment.controls = "controls"
+                                            break
+                                        case "audio":
+                                            attachment = document.createElement("audio")
+                                            attachment.controls = "controls"
+                                            break
+                                        default:
+                                            break
+                                    }
+
+                                    attachment.className += " attachment"
+                                    attachment.width = "400"
+                                    attachment.src = message.attachment.link
+                                    messageItem.appendChild(attachment)
+                                }
+                            },
+                        },
+                    })
+                } else {
+                    console.log("No room to subscribe to")
+                }
+                console.log("Successful connection", currentUser)
+            })
+            .catch(err => {
+                console.log("Error on connection: ", err)
+            })
+
+
+
+    });
+
+
+    function searchFunction() {
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("list-invoice");
+        li = ul.getElementsByTagName("li");
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("a")[0];
+            txtValue = a.textContent || a.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    }
+
+
 </script>
 <?php $this->end(); ?>
+<?php endif;?>
