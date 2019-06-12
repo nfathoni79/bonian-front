@@ -142,6 +142,34 @@ class LoginController extends AuthController
            ->withStringBody(json_encode($endpoint));
    }
 
+   public function chatEndPoint()
+   {
+       $this->disableAutoRender();
+       $this->request->allowMethod('post');
+       $endpoint = [];
+
+       try {
+           $pusher = $this->Api->makeRequest($this->Auth->user('token'))
+               ->post('v1/web/login/chat-end-point', [
+                   'form_params' => [
+                       'user_id' => $this->request->getSession()->read('Auth.Customers.username')
+                   ]
+               ]);
+           if ($response = $this->Api->success($pusher)) {
+               $endpoint = $response->parse();
+               $endpoint = $endpoint['result']['auth']['body'];
+           }
+       } catch(\GuzzleHttp\Exception\ClientException $e) {
+           $this->Api->handle($e);
+           $this->response = $this->response->withStatus($e->getResponse()->getStatusCode(), $e->getResponse()->getReasonPhrase());
+           $endpoint = json_decode($e->getResponse()->getBody()->getContents(), true);
+       }
+
+
+       return $this->response->withType('application/json')
+           ->withStringBody(json_encode($endpoint));
+   }
+
 
    public function setPassword()
    {

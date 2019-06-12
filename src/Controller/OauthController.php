@@ -32,9 +32,10 @@ class OauthController extends AuthController
 
         $query = $this->request->getQueryParams();
         $provider = $this->request->getQuery('provider');
+        $action = $this->request->getQuery('action', 'cb');
         if ($provider) {
             $callback = parse_url(Router::url(null, true));
-            $callback_url = $callback['scheme'] . '://' . $callback['host'] . $callback['path'] . '/cb/' . $provider;
+            $callback_url = $callback['scheme'] . '://' . $callback['host'] . $callback['path'] . '/'. $action .'/' . $provider;
 
             try {
                 $this->Api->addHeader('bid', $this->request->getCookie('bid'));
@@ -67,6 +68,41 @@ class OauthController extends AuthController
             }
         }
 
+    }
+
+    public function register($provider)
+    {
+        $this->disableAutoRender();
+        $query = $this->request->getQueryParams();
+        $callback = parse_url(Router::url(null, true));
+        $callback_url = $callback['scheme'] . '://' . $callback['host'] . $callback['path'];
+        $oauth = [];
+        try {
+            $this->Api->addHeader('bid', $this->request->getCookie('bid'));
+            $this->Api->addHeader('User-Agent', env('HTTP_USER_AGENT'));
+            $this->Api->addHeader('callback', $callback_url);
+            $register = $this->Api->makeRequest()
+                ->get('v1/web/oauth/cb/' . $provider, [
+                    'query' => $query,
+                    'on_stats' => function (TransferStats $stats) use (&$url) {
+                        if (in_array($stats->getResponse()->getStatusCode(), [301, 302])) {
+                            $url = (string)$stats->getEffectiveUri();
+                        }
+
+                    }
+                ]);
+
+            if ($response = $this->Api->success($register)) {
+                $json = $response->parse();
+                $oauth = $json['result']['oauth'];
+
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+
+        }
+
+        return $this->response->withType('application/json')
+            ->withStringBody(json_encode($oauth));
     }
 
     /**

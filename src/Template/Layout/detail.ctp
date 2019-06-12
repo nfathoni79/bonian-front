@@ -137,6 +137,7 @@
 <!-- Theme files -->
 <?= $this->Html->script([
 '//js.pusher.com/4.4/pusher.min.js',
+'/js/chatkit',
 '/js/pusher-client.js',
 '/js/themejs/application',
 '/js/themejs/homepage',
