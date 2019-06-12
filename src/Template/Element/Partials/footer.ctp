@@ -190,13 +190,12 @@
     </div>
 </div>
 <div class="back-to-top"><i class="fa fa-angle-up"></i></div>
-
 <?php if ($this->request->getSession()->check('Auth.Customers')) : ?>
 <div class="chat-wrapper">
-    <button class="open-button" onclick="openForm()"><i class="fas fa-comment"></i></button>
+    <button class="open-button open-chat"><i class="fas fa-comment"></i></button>
 
-    <div class="chat-popup" id="myForm">
-      <form action="/action_page.php" class="form-container">
+    <div class="chat-popup" id="myForm" data-user-id="<?= $this->request->getSession()->read('Auth.Customers.username'); ?>">
+      <form action="" class="form-container">
         <div class="zl-chat-container clearfix">
             <div class="people-list" id="people-list">
                 <div class="search">
@@ -213,7 +212,7 @@
                     <div class="chat-about">
                         <div class="chat-with">Chat with Administrator</div>
                     </div>
-                    <i class="fas fa-window-close cancel" onclick="closeForm()"></i>
+                    <i class="fas fa-window-close cancel close-chat"></i>
                 </div>
 
                 <div class="chat-history">
@@ -226,7 +225,7 @@
                             </div>
                         </div>
                     </div>
-                    <ul id="messages"> 
+                    <ul id="messages">
 
                     </ul>
 
@@ -254,8 +253,8 @@
 </div>
 
 <?php $this->append('script'); ?>
-<script src="https://unpkg.com/@pusher/chatkit-client@1.5.0/dist/web/chatkit.js"></script>
 <script>
+    <?php /*
     function openForm() {
         document.getElementById("myForm").style.display = "block";
     }
@@ -431,7 +430,7 @@
 
 
 
-    });
+    }); */ ?>
 
 
     function searchFunction() {
