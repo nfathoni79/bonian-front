@@ -228,7 +228,7 @@
                     <ul id="messages">
 
                     </ul>
-
+                    <span class="typing">&nbsp;</span>
                 </div>
                 <!-- end chat-history -->
 

@@ -45483,3 +45483,12 @@ hr.title-line{
 .chat-popup .wrapper-invoice-order.unread {
   font-weight: bold;
 }
+
+.chat-popup .invoice-order .badge {
+  min-width: 0;
+}
+
+.chat-history .typing {
+  font-style: italic;
+  font-size: 11px;
+}
