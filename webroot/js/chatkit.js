@@ -31,6 +31,10 @@ $(document).ready(function () {
             var elementMessage = $('.chat-popup').find('#messages')
                 .attr('active-room-id', roomId);
             elementMessage.html(''); //clear html
+
+            $('.wrapper-invoice-order').removeClass('active');
+            $(this).parents('li').addClass('active').removeClass('unread');
+
             if (typeof messages[roomId] != 'undefined') {
                 for(var i in messages[roomId]) {
                     renderChatMessages(messages[roomId][i]);
@@ -120,16 +124,22 @@ $(document).ready(function () {
                                         messages[message.roomId] = [];
                                     }
                                     messages[message.roomId].push(message);
+
+
+
+
                                     var elementMessage = $('.chat-popup').find('#messages');
                                     if (elementMessage.attr('active-room-id') === message.roomId) {
                                         renderChatMessages(message);
                                         $('.chat-popup').find('.chat-history')
                                             .scrollTop(elementMessage.height());
+                                    } else {
+                                        $('.wrapper-invoice-order[data-room-id="'+message.roomId+'"]').addClass('unread');
                                     }
                                 },
                             },
                         });
-                        domInvoice += '<li class="clearfix" data-room-id="'+rooms[i].id+'">\n' +
+                        domInvoice += '<li class="clearfix wrapper-invoice-order" data-room-id="'+rooms[i].id+'">\n' +
                             '<a href="javascript:void(0);" class="about invoice-order">\n' +
                             '<div class="status">Nomor Pesanan</div>\n' +
                             '<div class="name">'+rooms[i].name+'</div> \n' +

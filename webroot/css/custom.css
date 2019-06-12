@@ -45474,3 +45474,12 @@ hr.title-line{
 
 
 /* bootbox modal custom style */
+
+
+.chat-popup .wrapper-invoice-order.active {
+  background: #efefef;
+}
+
+.chat-popup .wrapper-invoice-order.unread {
+  font-weight: bold;
+}
