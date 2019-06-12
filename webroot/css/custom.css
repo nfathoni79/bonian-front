@@ -45187,14 +45187,14 @@ hr.title-line{
   font-size: 20px;
 }
 .people-list ul {
-  padding: 20px;
   height: 390px;
   overflow-y: scroll;
 }
 .people-list ul li {
   padding-bottom: 5px;
-  margin-bottom: 5px;
   border-bottom: 1px solid #eaeaea;
+  padding-left: 5px;
+  padding-top: 5px;
 }
 .people-list img {
   float: left;
