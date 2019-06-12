@@ -16,10 +16,10 @@
                                 <div class="col-md-3">
                                     <img src="<?= $this->Url->build('/images/logo_cc/' . $card['type'] . '.png'); ?>" width="60" />
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-5">
                                     <h4 style="margin-top: 20px;"><?= $card['mask']; ?></h4>
                                 </div>
-                                <div class="col-lg-3">
+                                <div class="col-lg-4">
                                     <?php if($card['is_primary']):?>
                                         <button class="btn btn-danger btn-radius btn-md btn-block" style="margin-bottom: 10px;"><i class="fa fa-check-square-o"></i> Kartu kredit utama</button>
                                     <?php else:?>

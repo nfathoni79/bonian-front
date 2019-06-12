@@ -293,7 +293,7 @@
 								</div>
 							</div>
 						</div>
-						<?php $alias = ['gopay' => 'Gopay', 'bank_transfer' => 'Bank Transfer', 'credit_card' => 'Kartu Kredit', 'wallet' => 'Wallet']; ?>
+						<?php $alias = ['gopay' => 'Gopay', 'bank_transfer' => 'Bank Transfer / Virtual Account', 'credit_card' => 'Kartu Kredit / Debit', 'wallet' => 'Saldo Wallet']; ?>
 						<div class="col-sm-12 pd-0 bd-b pd-t-10 pd-b-10">
 							<div class="w-100p tx-medium tx-12">Metode Bayar</div>
 							<div class="w-100p tx-semibold tx-16">
