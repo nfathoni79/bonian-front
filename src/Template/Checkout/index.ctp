@@ -375,7 +375,7 @@
                                         <!-- start: title -->
                                         <div>
                                             <h5 class="c-card-pembayaran__title tx-bold-force tx-black">
-                                                Bank Transfer
+                                                Bank Transfer / Virtual Account
                                             </h5>
                                         </div>
                                         <!-- end: title -->
@@ -458,7 +458,7 @@
 
                                         <div>
                                             <h5 class="c-card-pembayaran__title credit-card-input-wrapper tx-black tx-bold-force">
-                                                Kartu kredit
+                                                Kartu Kredit / Debit
                                             </h5>
                                         </div>
                                         <!-- end: title -->
@@ -546,7 +546,7 @@
                                         <!-- start: title -->
                                         <div>
                                             <h5 class="c-card-pembayaran__title tx-black tx-bold-force">
-                                                Saldo
+                                                Saldo Wallet
                                             </h5>
                                         </div>
                                         <!-- end: title -->

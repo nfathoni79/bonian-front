@@ -70,7 +70,7 @@
 
                                 <div class="col-sm-12 block block_0">
                                     <div class="block-categories module mg-b-20-force">
-                                        <h3 class="modtitle tx-mont"><span>Bank Transfer</span></h3>
+                                        <h3 class="modtitle tx-mont"><span>Bank Transfer / Virtual Account</span></h3>
                                     </div>
                                 </div>
 
@@ -156,7 +156,7 @@
 
                             <div class="col-sm-12 block block_0">
                                 <div class="block-categories module mg-b-20-force">
-                                    <h3 class="modtitle tx-mont"><span>Kartu Kredit</span></h3>
+                                    <h3 class="modtitle tx-mont"><span>Kartu Kredit / Debit</span></h3>
                                 </div>
                             </div>
 
@@ -249,7 +249,7 @@
 
                                 <div class="col-sm-12 block block_0">
                                     <div class="block-categories module mg-b-20-force">
-                                        <h3 class="modtitle tx-mont"><span>Saldo</span></h3>
+                                        <h3 class="modtitle tx-mont"><span>Saldo Wallet</span></h3>
                                     </div>
                                 </div>
 
