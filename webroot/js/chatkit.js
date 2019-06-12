@@ -29,9 +29,9 @@ $(document).ready(function () {
 
         $(document.body).on('click', '.invoice-order' ,function(){
             var roomId = $(this).parents('li').data('room-id');
-            var elementMessage = $('.chat-popup').find('#messages')
+            var elementMessage = $('.chat-popup').find('.chat-history')
                 .attr('active-room-id', roomId);
-            elementMessage.html(''); //clear html
+            elementMessage.find('#messages').html(''); //clear html
 
             $('.wrapper-invoice-order').removeClass('active');
             $(this).parents('li').addClass('active').removeClass('unread');
@@ -41,7 +41,7 @@ $(document).ready(function () {
                     renderChatMessages(messages[roomId][i]);
                 }
                 $('.chat-popup').find('.chat-history')
-                    .scrollTop(elementMessage.height());
+                    .scrollTop(elementMessage.find('#messages').height());
                     //.animate({ scrollTop: elementMessage.height() }, 1000);
 
                 //elementMessage.append(`<li class="typing">&nbsp;</li>`);
@@ -49,22 +49,22 @@ $(document).ready(function () {
         });
 
         $('#message-to-send').keyup(function () {
-            console.log('sedang menulis');
-            var roomId = $('.chat-popup').find('#messages')
+            //console.log('sedang menulis');
+            var roomId = $('.chat-popup').find('.chat-history')
                 .attr('active-room-id');
             currentUser.isTypingIn({ roomId: roomId })
                 .then(() => {
                     //console.log('Success!')
                 })
                 .catch(err => {
-                    console.log(`Error sending typing indicator: ${err}`)
+                    //console.log(`Error sending typing indicator: ${err}`)
                 });
         });
 
         $('.chat-popup').find('form').submit(function(e) {
             e.preventDefault();
             var messageToSend = $(this).find('#message-to-send');
-            var roomId = $(this).find('#messages').attr('active-room-id');
+            var roomId = $(this).find('.chat-history').attr('active-room-id');
             //console.log(messageToSend.val());
 
             currentUser
@@ -112,13 +112,13 @@ $(document).ready(function () {
 
                 },
                 onUserJoinedRoom: (room, user) => {
-                    console.log("user: ", user, " joined room: ", room)
+                    //console.log("user: ", user, " joined room: ", room)
                 },
                 onUserLeftRoom: (room, user) => {
                     //console.log("user: ", user, " left room: ", room)
                 },
                 onPresenceChanged: ({ previous, current }, user) => {
-                    console.log("user: ", user, " was ", previous, " but is now ", current)
+                    //console.log("user: ", user, " was ", previous, " but is now ", current)
                 },
             })
             .then(cUser => {
@@ -134,7 +134,7 @@ $(document).ready(function () {
                 }
                 $('#list-invoice').html(domInvoice);
                 $('#list-invoice .invoice-order:first').trigger('click');
-                console.log("Successful connection", currentUser);
+                //console.log("Successful connection", currentUser);
                 setTimeout(function () {
                     initial = true;
                 }, 3000);
@@ -161,7 +161,7 @@ $(document).ready(function () {
 
 
                         var elementMessage = $('.chat-popup').find('#messages');
-                        if (elementMessage.attr('active-room-id') === message.roomId) {
+                        if ($('.chat-history').attr('active-room-id') === message.roomId) {
                             renderChatMessages(message);
                             $('.chat-popup').find('.chat-history')
                                 .scrollTop(elementMessage.height());
@@ -171,12 +171,12 @@ $(document).ready(function () {
                     },
 
                     onUserStartedTyping: user => {
-                        //console.log(`User ${user.name} started typing`);
-                        var elementMessage = $('.chat-history').find('.typing').text(`${user.name} started typing`);
+                        //console.log(`User ${user.name} started typing`, user);
+                        var elementMessage = $('.chat-history[active-room-id="'+room.id+'"]').find('.typing').text(`${user.name} started typing`);
                     },
                     onUserStoppedTyping: user => {
                         //console.log(`User ${user.name} stopped typing`);
-                        var elementMessage = $('.chat-history').find('.typing').html('&nbsp; ');
+                        var elementMessage = $('.chat-history[active-room-id="'+room.id+'"]').find('.typing').html('&nbsp; ');
                     }
                 },
             });
