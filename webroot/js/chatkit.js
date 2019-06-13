@@ -3,6 +3,7 @@ let currentUser
 let room;
 var messages = {};
 var initial = false;
+var unreadCount = 0;
 
 
 $(document).ready(function () {
@@ -34,10 +35,30 @@ $(document).ready(function () {
             elementMessage.find('#messages').html(''); //clear html
 
             $('.wrapper-invoice-order').removeClass('active');
-            $(this).parents('li').addClass('active').removeClass('unread');
+            var unreadElement = $(this).parents('li').addClass('active');
 
             if (typeof messages[roomId] != 'undefined') {
                 for(var i in messages[roomId]) {
+                    if (unreadElement.hasClass('unread')) {
+                        currentUser.setReadCursor({
+                            roomId: messages[roomId][i].roomId,
+                            position: messages[roomId][i].id
+                        })
+                        .then(() => {
+                            //console.log('Success!')
+                            --unreadCount;
+                            var b = getChatBadge();
+                            if (unreadCount <= 0) {
+                                b.hide();
+                            } else {
+                                b.show().text(unreadCount);
+                            }
+                        })
+                        .catch(err => {
+                            //console.log(`Error setting cursor: ${err}`)
+                        });
+                    }
+
                     renderChatMessages(messages[roomId][i]);
                 }
                 $('.chat-popup').find('.chat-history')
@@ -46,6 +67,10 @@ $(document).ready(function () {
 
                 //elementMessage.append(`<li class="typing">&nbsp;</li>`);
             }
+
+            unreadElement.removeClass('unread');
+
+
         });
 
         $('#message-to-send').keyup(function () {
@@ -137,7 +162,7 @@ $(document).ready(function () {
                 //console.log("Successful connection", currentUser);
                 setTimeout(function () {
                     initial = true;
-                }, 3000);
+                }, 5000);
 
             })
             .catch(err => {
@@ -147,6 +172,7 @@ $(document).ready(function () {
 
         function subscribeRoom(room) {
             //console.log("Going to subscribe to", room)
+            unreadCount += room.unreadCount;
             currentUser.subscribeToRoom({
                 roomId: room.id,
                 hooks: {
@@ -157,9 +183,6 @@ $(document).ready(function () {
                         }
                         messages[message.roomId].push(message);
 
-
-
-
                         var elementMessage = $('.chat-popup').find('#messages');
                         if ($('.chat-history').attr('active-room-id') === message.roomId) {
                             renderChatMessages(message);
@@ -167,6 +190,10 @@ $(document).ready(function () {
                                 .scrollTop(elementMessage.height());
                         } else if (initial) {
                             $('.wrapper-invoice-order[data-room-id="'+message.roomId+'"]').addClass('unread');
+                        }
+
+                        if (initial) {
+                            getChatBadge().show().text(++unreadCount);
                         }
                     },
 
@@ -180,14 +207,29 @@ $(document).ready(function () {
                     }
                 },
             });
-            var unreadCount = room.unreadCount > 0 ? `<span class="badge">${room.unreadCount}</span>` : '';
-            unreadCount = '';
-            return '<li class="clearfix wrapper-invoice-order" data-room-id="'+room.id+'">\n' +
+
+
+            var chatBadge = getChatBadge();
+            if (unreadCount > 0) {
+                chatBadge.show().text(unreadCount);
+            } else {
+                chatBadge.hide().text('0');
+            }
+            var unreadClass = '';
+            if (room.unreadCount > 0) {
+                unreadClass = 'unread';
+            }
+
+            return '<li class="clearfix wrapper-invoice-order '+unreadClass+'" data-room-id="'+room.id+'">\n' +
                 '<a href="javascript:void(0);" class="about invoice-order">\n' +
                 '<div class="status">Nomor Pesanan</div>\n' +
-                '<div class="name">'+room.name+' '+ unreadCount +'</div> \n' +
+                '<div class="name">'+room.name+'</div> \n' +
                 '</a>\n' +
                 '</li>';
+        }
+
+        function getChatBadge() {
+            return  $('.chat-wrapper .open-button .chat__badge');
         }
 
         function renderChatMessages(message) {
