@@ -204,26 +204,26 @@ $(document).ready(function () {
                 .catch(err => {
                     console.log(`Error setting cursor: ${err}`)
                 });*/
-
+            var textDiv;
             if (user_id.toUpperCase() === message.senderId.toUpperCase()) {
-                messageItem.className = ""
-                messagesList.append(messageItem)
-                var textDiv = document.createElement("div")
-                textDiv.innerHTML = '<div class="message-data" data-message-id="'+message.id+'">\n' +
-                    '<i class="fa fa-circle me"></i> <span class="message-data-name">'+message.sender.name+'</span> \n' +
-                    '<span class="message-data-time">'+ moment(message.createdAt).calendar(null, {sameElse: 'YYYY-MM-DD h:MM A'}) +'</span> &nbsp; &nbsp;\n' +
-                    '</div>\n' +
-                    '<div class="message my-message">'+message.text+'</div>';
-                messageItem.appendChild(textDiv);
-            } else {
                 messageItem.className = "clearfix"
                 messagesList.append(messageItem)
-                var textDiv = document.createElement("div")
+                textDiv = document.createElement("div")
                 textDiv.innerHTML = '<div class="message-data align-right" data-message-id="'+message.id+'">\n' +
                     '<span class="message-data-time">'+ moment(message.createdAt).calendar(null, {sameElse: 'YYYY-MM-DD h:MM A'}) +'</span> &nbsp; &nbsp;\n' +
                     '<span class="message-data-name">'+message.sender.name+'</span> <i class="fa fa-circle me"></i> \n' +
                     '</div>\n' +
                     '<div class="message other-message float-right">'+message.text+'</div>';
+                messageItem.appendChild(textDiv);
+            } else {
+                messageItem.className = ""
+                messagesList.append(messageItem)
+                textDiv = document.createElement("div")
+                textDiv.innerHTML = '<div class="message-data" data-message-id="'+message.id+'">\n' +
+                    '<i class="fa fa-circle me"></i> <span class="message-data-name">'+message.sender.name+'</span> \n' +
+                    '<span class="message-data-time">'+ moment(message.createdAt).calendar(null, {sameElse: 'YYYY-MM-DD h:MM A'}) +'</span> &nbsp; &nbsp;\n' +
+                    '</div>\n' +
+                    '<div class="message my-message">'+message.text+'</div>';
                 messageItem.appendChild(textDiv);
             }
 
