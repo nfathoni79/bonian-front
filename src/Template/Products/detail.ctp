@@ -468,7 +468,7 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                             <div id="tab-ulasan" class="tab-pane fade">
                                 <h4 class="tx-mont tx-semibold zl-tx-black tx-16 mg-b-20"><i class="fas fa-pencil-alt mg-r-10"></i><strong> Rating & Ulasan Produk</strong></h4>
 
-                                <?php if(!empty($review)):?>
+
                                 <div class="row">
                                     <div class="col-md-12">
                                         <br />
@@ -566,6 +566,7 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                         <br />
                                     </div>
                                 </div>
+                                <?php if(!empty($review)):?>
                                 <?php foreach($review as $vals):?>
                                 <div class="row">
                                     <div class="col-md-12">
