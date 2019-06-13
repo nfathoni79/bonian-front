@@ -22,6 +22,7 @@ $(document).ready(function () {
 
         $('.open-chat').click(function(e) {
             $('.chat-popup').show();
+            $('#list-invoice .invoice-order:first').trigger('click');
         });
 
         $('.close-chat').click(function(e) {
@@ -39,7 +40,8 @@ $(document).ready(function () {
 
             if (typeof messages[roomId] != 'undefined') {
                 for(var i in messages[roomId]) {
-                    if (unreadElement.hasClass('unread') || unreadCount > 0) {
+                    if (unreadElement.hasClass('unread')) {
+                        //console.log('do unread')
                         currentUser.setReadCursor({
                             roomId: messages[roomId][i].roomId,
                             position: messages[roomId][i].id
@@ -103,7 +105,17 @@ $(document).ready(function () {
                     attachment: undefined
                 })
                 .then(messageId => {
-                    console.log("Success!", messageId)
+                    console.log("Success!", messageId);
+                    currentUser.setReadCursor({
+                        roomId: roomId,
+                        position: messageId
+                    })
+                    .then(() => {
+
+                    })
+                    .catch(err => {
+                        //console.log(`Error setting cursor: ${err}`)
+                    });
                     messageToSend.val('');
                 })
                 .catch(error => {
@@ -121,6 +133,7 @@ $(document).ready(function () {
             tokenProvider: tokenProvider,
             userId: user_id
         });
+        
 
         chatManager
             .connect({
@@ -158,11 +171,10 @@ $(document).ready(function () {
                     }
                 }
                 $('#list-invoice').html(domInvoice);
-                $('#list-invoice .invoice-order:first').trigger('click');
                 //console.log("Successful connection", currentUser);
                 setTimeout(function () {
                     initial = true;
-                }, 5000);
+                }, 2000);
 
             })
             .catch(err => {
@@ -188,13 +200,26 @@ $(document).ready(function () {
                             renderChatMessages(message);
                             $('.chat-popup').find('.chat-history')
                                 .scrollTop(elementMessage.height());
+
+                            currentUser.setReadCursor({
+                                roomId: message.roomId,
+                                position: message.id
+                            })
+                            .then(() => {
+
+                            })
+                            .catch(err => {
+                                //console.log(`Error setting cursor: ${err}`)
+                            });
+
                         } else if (initial) {
                             $('.wrapper-invoice-order[data-room-id="'+message.roomId+'"]').addClass('unread');
                         }
 
-                        if (initial) {
+                        if (initial && user_id.toUpperCase() !== message.senderId.toUpperCase()) {
                             getChatBadge().show().text(++unreadCount);
                         }
+
                     },
 
                     onUserStartedTyping: user => {
@@ -236,16 +261,7 @@ $(document).ready(function () {
             var messagesList = document.getElementById("messages");
             var messageItem = document.createElement("li");
 
-            /*currentUser.setReadCursor({
-                roomId: message.roomId,
-                position: message.id
-            })
-                .then(() => {
-                    console.log('Success!')
-                })
-                .catch(err => {
-                    console.log(`Error setting cursor: ${err}`)
-                });*/
+
             var textDiv;
             if (user_id.toUpperCase() === message.senderId.toUpperCase()) {
                 messageItem.className = "clearfix"
@@ -267,6 +283,7 @@ $(document).ready(function () {
                     '</div>\n' +
                     '<div class="message my-message">'+message.text+'</div>';
                 messageItem.appendChild(textDiv);
+
             }
 
         }
