@@ -192,7 +192,7 @@
 <div class="back-to-top"><i class="fa fa-angle-up"></i></div>
 <?php if ($this->request->getSession()->check('Auth.Customers')) : ?>
 <div class="chat-wrapper">
-    <button class="open-button open-chat"><i class="fas fa-comment"></i></button>
+    <button class="open-button open-chat"><i class="fas fa-comment"></i><span class="chat__badge">4</span></button>
 
     <div class="chat-popup" id="myForm" data-user-id="<?= $this->request->getSession()->read('Auth.Customers.username'); ?>">
       <form action="" class="form-container">
