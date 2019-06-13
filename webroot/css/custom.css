@@ -45091,6 +45091,21 @@ hr.title-line{
 
 
 /*chat popup style*/
+.chat__badge {
+    background-color: #df0024;
+    border-radius: 50%;
+    color: #fff;
+    padding: 3px;
+    font-size: 9px;
+    position: absolute;
+    top: 4px;
+    right: 15px;
+    width: 15px;
+    height: 15px;
+    line-height: 8px;
+    font-weight: 500;
+
+}
 /* Button used to open the chat form - fixed at the bottom of the page */
 .open-button {
   background: #9dba5f;
