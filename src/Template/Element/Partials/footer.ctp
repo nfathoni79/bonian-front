@@ -93,7 +93,7 @@
             <div class="col-lg-3 col-md-3 col-sm-4 col-xxs-6 col-xs-12 col-style">
                 <div class="box-information box-footer">
                     <div class="module clearfix">
-                        <h3 class="footertitle">Jelajahi Zolaku</h3>
+                        <h3 class="footertitle">Jelajahi Bonian</h3>
                         <div class="modcontent">
                             <ul class="menu">
                                 <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'tentang-zolaku','prefix' => false]);?>">Tentang Zolaku</a></li>
@@ -184,7 +184,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 copyright">
-                Copyright © 2019 www.zolaku.com All rights reserved.
+                Copyright © 2019 www.bonian.id All rights reserved.
             </div>
         </div>
     </div>
@@ -210,7 +210,7 @@
             <div class="chat">
                 <div class="chat-header clearfix">
                     <div class="chat-about">
-                        <div class="chat-with">Chat with Administrator</div>
+                        <div class="chat-with">Chat dengan Admin</div>
                     </div>
                     <i class="fas fa-window-close cancel close-chat"></i>
                 </div>
@@ -233,10 +233,9 @@
                 <!-- end chat-history -->
 
                 <div class="chat-message clearfix">
-                    <textarea name="message-to-send" id="message-to-send" placeholder="Type your message" rows="3"></textarea>
+                    <input type="text" name="message-to-send" id="message-to-send" placeholder="Tulis pesan anda disini" >
 
-                    <!-- <i class="far fa-file tx-16"></i> &nbsp;&nbsp;&nbsp;
-                    <i class="fa fa-file-image-o"></i> -->
+                    <i class="fa fa-file-image-o"></i>
 
                     <button>Send</button>
 
@@ -254,185 +253,6 @@
 
 <?php $this->append('script'); ?>
 <script>
-    <?php /*
-    function openForm() {
-        document.getElementById("myForm").style.display = "block";
-    }
-
-    function closeForm() {
-        document.getElementById("myForm").style.display = "none";
-    }
-    var cid = "<?= $this->request->getSession()->read('Auth.Customers.id'); ?>";
-    $.ajax({
-        url: '<?= $this->Url->build(['controller' => 'Chat', 'action' => 'list-invoice', 'prefix' => 'user']); ?>',
-        type : 'POST',
-        data : {
-            cust_id : cid,
-            _csrfToken: $('meta[name="_csrfToken"]').attr('content')
-        },
-        //dataType : 'json',
-        success: function(response){
-
-            var domInvoice = '';
-            $.each(response, function(key, value){
-                if(value.order_details){
-                    $.each(value.order_details, function(k,v){
-                        domInvoice += '<li class="clearfix">\n' +
-                            '<a href="javascript:void(0);" class="about invoice-order" data-total="'+v.total+'">\n' +
-                            '<div class="status">Nomor Pesanan</div>\n' +
-                            '<div class="name">'+value.invoice+'-'+v.id+'</div> \n' +
-                            '</a>\n' +
-                            '</li>';
-                    })
-                }
-                if(value.order_digital){
-                    domInvoice += '<li class="clearfix">\n' +
-                        '<a  href="javascript:void(0);" class="about invoice-order"  data-total="'+value.total+'">\n' +
-                        '<div class="status">Nomor Pesanan</div>\n' +
-                        '<div class="name">'+value.invoice+'-'+value.order_digital.id+'</div> \n' +
-                        '</a>\n' +
-                        '</li>';
-                }
-            });
-            $('#list-invoice').html(domInvoice);
-        },
-        error: function () {
-
-        }
-    });
-
-    $(document.body).on('click', '.invoice-order' ,function(){
-        var noInvoice = $(this).find('.name').text();
-        $('.no-pesanan').html(noInvoice);
-        $('.total-pesanan').html(numeral($(this).data('total')).format('0,0'));
-
-
-
-        const INSTANCE_LOCATOR = "v1:us1:643558e4-7a90-485c-b398-56de24a33bff"
-        const TOKEN_PROVIDER_URL = "https://us1.pusherplatform.io/services/chatkit_token_provider/v1/643558e4-7a90-485c-b398-56de24a33bff/token"
-        const USER_ID = "zolaku"
-
-        let currentUser
-        let room
-
-        const tokenProvider = new Chatkit.TokenProvider({
-            url: TOKEN_PROVIDER_URL,
-        })
-
-        const noopLogger = (...items) => {}
-
-        const chatManager = new Chatkit.ChatManager({
-            instanceLocator: INSTANCE_LOCATOR,
-            tokenProvider: tokenProvider,
-            userId: USER_ID,
-            logger: {
-                info: console.log,
-                warn: console.log,
-                error: console.log,
-                debug: console.log,
-                verbose: console.log,
-            },
-        })
-
-
-
-        chatManager
-            .connect({
-                onAddedToRoom: room => {
-                    console.log("added to room: ", room)
-                },
-                onRemovedFromRoom: room => {
-                    console.log("removed from room: ", room)
-                },
-                onUserJoinedRoom: (room, user) => {
-                    console.log("user: ", user, " joined room: ", room)
-                },
-                onUserLeftRoom: (room, user) => {
-                    console.log("user: ", user, " left room: ", room)
-                },
-                onPresenceChanged: ({ previous, current }, user) => {
-                    console.log("user: ", user, " was ", previous, " but is now ", current)
-                },
-            })
-            .then(cUser => {
-                currentUser = cUser
-                window.currentUser = cUser
-                const roomToSubscribeTo = currentUser.rooms[0]
-
-                if (roomToSubscribeTo) {
-                    room = roomToSubscribeTo
-                    console.log("Going to subscribe to", roomToSubscribeTo)
-                    currentUser.subscribeToRoom({
-                        roomId: roomToSubscribeTo.id,
-                        hooks: {
-                            onMessage: message => {
-                                console.log("new message:", message)
-                                const messagesList = document.getElementById("messages")
-                                const messageItem = document.createElement("li")
-                                console.log(("<?= $this->request->getSession()->read('Auth.Customers.username'); ?>").toUpperCase());
-                                console.log(message.senderId.toUpperCase());
-                                if(("<?= $this->request->getSession()->read('Auth.Customers.username'); ?>").toUpperCase() == message.senderId.toUpperCase() ){
-                                    messageItem.className = ""
-                                    messagesList.append(messageItem)
-                                    const textDiv = document.createElement("div")
-                                    textDiv.innerHTML = '<div class="message-data">\n' +
-                                        '<span class="message-data-time">'+moment(message.createdAt).fromNow()+'</span> &nbsp; &nbsp;\n' +
-                                        '<span class="message-data-name">'+message.sender.name+'</span> <i class="fa fa-circle me"></i> \n' +
-                                        '</div>\n' +
-                                        '<div class="message my-message">'+message.text+'</div>';
-                                    messageItem.appendChild(textDiv)
-                                }else{
-                                    messageItem.className = "clearfix"
-                                    messagesList.append(messageItem)
-                                    const textDiv = document.createElement("div")
-                                    textDiv.innerHTML = '<div class="message-data align-right">\n' +
-                                        '<span class="message-data-time">'+moment(message.createdAt).fromNow()+'</span> &nbsp; &nbsp;\n' +
-                                        '<span class="message-data-name">'+message.sender.name+'</span> <i class="fa fa-circle me"></i> \n' +
-                                        '</div>\n' +
-                                        '<div class="message other-message float-right">'+message.text+'</div>';
-                                    messageItem.appendChild(textDiv)
-                                }
-
-                                if (message.attachment) {
-                                    let attachment
-                                    switch (message.attachment.type) {
-                                        case "image":
-                                            attachment = document.createElement("img")
-                                            break
-                                        case "video":
-                                            attachment = document.createElement("video")
-                                            attachment.controls = "controls"
-                                            break
-                                        case "audio":
-                                            attachment = document.createElement("audio")
-                                            attachment.controls = "controls"
-                                            break
-                                        default:
-                                            break
-                                    }
-
-                                    attachment.className += " attachment"
-                                    attachment.width = "400"
-                                    attachment.src = message.attachment.link
-                                    messageItem.appendChild(attachment)
-                                }
-                            },
-                        },
-                    })
-                } else {
-                    console.log("No room to subscribe to")
-                }
-                console.log("Successful connection", currentUser)
-            })
-            .catch(err => {
-                console.log("Error on connection: ", err)
-            })
-
-
-
-    }); */ ?>
-
-
     function searchFunction() {
         var input, filter, ul, li, a, i, txtValue;
         input = document.getElementById("searchInput");

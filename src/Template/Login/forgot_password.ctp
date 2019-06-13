@@ -2,7 +2,7 @@
 <div class="render-alert"></div>
 
 <div>
-    Masukkan alamat email atau nomor handphone yang terdaftar di Zolaku
+    Masukkan alamat email atau nomor handphone yang terdaftar di Bonian
 </div>
 
 <?= $this->Form->create(null, [

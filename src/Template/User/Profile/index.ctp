@@ -162,7 +162,7 @@
             <i class="zl zl-leaderboard"></i> Leaderboard
         </a>
         <div class="mg-t-15">
-            Tambah referal anda dan dapatkan keuntungan menjadi bagian zolaku.
+            Tambah referal anda dan dapatkan keuntungan menjadi bagian bonian.
         </div>
     </div>
 

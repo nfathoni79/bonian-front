@@ -3,7 +3,7 @@
 <head>
     <title><?= $this->fetch('title') ?></title>
     <meta charset="utf-8">
-    <meta name="author" content="PT. Zolaku | Zolaku Indonesia">
+    <meta name="author" content="PT. Bonian | Bonian Indonesia">
 
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="width=1200" name="viewport">
@@ -20,7 +20,7 @@
 
 
     <!-- mobile screen -->
-    <link href="https://m.zolaku.com/" media="only screen and (max-width: 640px)" rel="alternate">
+    <link href="https://m.bonian.id/" media="only screen and (max-width: 640px)" rel="alternate">
 
     <!-- css link vendor -->
     <?= $this->Html->css([

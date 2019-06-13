@@ -4,7 +4,7 @@
 
     <meta charset="utf-8">
     <meta name="description" content="Pengalaman berbelanja terbaik di Indonesia">
-    <meta name="author" content="PT. Zolaku | Zolaku Indonesia">
+    <meta name="author" content="PT. Bonian | Bonian Indonesia">
 
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="width=1200" name="viewport">
@@ -12,12 +12,12 @@
     <meta content="<?= @$_basePath; ?>" name="_baseImagePath" />
     <meta content="<?= $this->request->getAttribute('base'); ?>" name="_basePath" />
 
-    <meta property="og:url" content="https://zolaku.com"/>
+    <meta property="og:url" content="https://bonian.id"/>
     <meta property="og:type" content="website"/>
 
-    <meta property="og:title" content="Zolaku | Pengalaman berbelanja terbaik di Indonesia"/>
+    <meta property="og:title" content="Bonian | Pengalaman berbelanja terbaik di Indonesia"/>
     <meta property="og:description" content="Pengalaman berbelanja terbaik di Indonesia"/>
-    <meta property="og:image" content="https://zolaku.com/images/logo-wide.png"/>
+    <meta property="og:image" content="https://bonian.id/images/logo-wide.png"/>
 
     <?= $this->fetch('meta') ?>
 
@@ -27,7 +27,7 @@
 
 
     <!-- mobile screen -->
-    <link href="https://m.zolaku.com/" media="only screen and (max-width: 640px)" rel="alternate">
+    <link href="https://m.bonian.id/" media="only screen and (max-width: 640px)" rel="alternate">
 
     <!-- css link vendor -->
     <?= $this->Html->css([

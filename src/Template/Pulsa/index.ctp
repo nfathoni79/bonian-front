@@ -207,7 +207,7 @@
             <div class="dp-pulsa-content">
 
                 <div class="row">
-                    <h1 class="text-center">Mengapa Beli Pulsa di Zolaku ?</h1>
+                    <h1 class="text-center">Mengapa Beli Pulsa di Bonian ?</h1>
                     <div class="col-sm-4">
                         <div class="img-item">
                             <img src="images/digital_product/img-pulsa/img-1.png"  class="img-responsive">

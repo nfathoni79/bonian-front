@@ -9,7 +9,7 @@
                         <ol class="payment-list" type="1">
                             <li>Pilih > <span class="tx-bold">Transaksi Lainnya</span> > <span class="tx-bold">Transfer</span> > <span class="tx-bold">ke Rek Mandiri Virtual Account.</span></li>
                             <li>Masukan nomor virtual account <span class="tx-bold zl-tx-red"><?= $data['va_number']; ?></span> dan pilih <span class="tx-bold">Benar</span>.</li>
-                            <li>Periksa informasi yang tertera dilayar. Pastikan <span class="tx-bold">Merchant</span> adalah <span class="tx-bold">Zolaku</span>, dan <span class="tx-bold">Total Tagihan</span> sudah benar. Username anda <span class="tx-bold">User123</span> dan nama penerima anda <span class="tx-bold">User Name</span>. Jika benar, pilih <span class="tx-bold">Ya</span>.</li>
+                            <li>Periksa informasi yang tertera dilayar. Pastikan <span class="tx-bold">Merchant</span> adalah <span class="tx-bold">Bonian</span>, dan <span class="tx-bold">Total Tagihan</span> sudah benar. Username anda <span class="tx-bold">User123</span> dan nama penerima anda <span class="tx-bold">User Name</span>. Jika benar, pilih <span class="tx-bold">Ya</span>.</li>
                         </ol>
                     </div>
                 </li>
@@ -19,7 +19,7 @@
                         <ol class="payment-list" type="1">
                             <li>Pilih > <span class="tx-bold">Transaksi Lainnya</span> > <span class="tx-bold">Transfer</span> > <span class="tx-bold">ke Rek Mandiri Virtual Account.</span></li>
                             <li>Masukan nomor virtual account <span class="tx-bold zl-tx-red"><?= $data['va_number']; ?></span> dan pilih <span class="tx-bold">Benar</span>.</li>
-                            <li>Periksa informasi yang tertera dilayar. Pastikan <span class="tx-bold">Merchant</span> adalah <span class="tx-bold">Zolaku</span>, dan <span class="tx-bold">Total Tagihan</span> sudah benar. Username anda <span class="tx-bold">User123</span> dan nama penerima anda <span class="tx-bold">User Name</span>. Jika benar, pilih <span class="tx-bold">Ya</span>.</li>
+                            <li>Periksa informasi yang tertera dilayar. Pastikan <span class="tx-bold">Merchant</span> adalah <span class="tx-bold">Bonian</span>, dan <span class="tx-bold">Total Tagihan</span> sudah benar. Username anda <span class="tx-bold">User123</span> dan nama penerima anda <span class="tx-bold">User Name</span>. Jika benar, pilih <span class="tx-bold">Ya</span>.</li>
                         </ol>
                     </div>
                 </li>
@@ -29,7 +29,7 @@
                         <ol class="payment-list" type="1">
                             <li>Pilih > <span class="tx-bold">Transaksi Lainnya</span> > <span class="tx-bold">Transfer</span> > <span class="tx-bold">ke Rek Mandiri Virtual Account.</span></li>
                             <li>Masukan nomor virtual account <span class="tx-bold zl-tx-red"><?= $data['va_number']; ?></span> dan pilih <span class="tx-bold">Benar</span>.</li>
-                            <li>Periksa informasi yang tertera dilayar. Pastikan <span class="tx-bold">Merchant</span> adalah <span class="tx-bold">Zolaku</span>, dan <span class="tx-bold">Total Tagihan</span> sudah benar. Username anda <span class="tx-bold">User123</span> dan nama penerima anda <span class="tx-bold">User Name</span>. Jika benar, pilih <span class="tx-bold">Ya</span>.</li>
+                            <li>Periksa informasi yang tertera dilayar. Pastikan <span class="tx-bold">Merchant</span> adalah <span class="tx-bold">Bonian</span>, dan <span class="tx-bold">Total Tagihan</span> sudah benar. Username anda <span class="tx-bold">User123</span> dan nama penerima anda <span class="tx-bold">User Name</span>. Jika benar, pilih <span class="tx-bold">Ya</span>.</li>
                         </ol>
                     </div>
                 </li>

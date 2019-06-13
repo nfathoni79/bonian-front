@@ -1,7 +1,7 @@
 
 <div class="c-help-main mb-5 bg-login">
     <div class="auth-container tx-center mg-l-auto mg-r-auto mg-t-100">
-        <a href="<?= $this->Url->build('/');?>"><img src="<?= $this->Url->build('/images/png/logo/logo-wide.png');?>" alt="Zolaku" width="155" class="mg-b-50"></a>
+        <a href="<?= $this->Url->build('/');?>"><img src="<?= $this->Url->build('/images/png/logo/logo-wide.png');?>" alt="Bonian" width="155" class="mg-b-50"></a>
     </div>
 
     <div class="auth-container container mg-t-0-force pd-b-0-force">
@@ -64,7 +64,7 @@
                                 <a>Lupa Password?</a>
                             </div>
                             <div class="modal-footer bottom-fix">
-                                Belum memiliki akun zolaku? <a data-toggle="modal" data-target="#modal-register" data-dismiss="modal">Daftar Sekarang</a>
+                                Belum memiliki akun bonian? <a data-toggle="modal" data-target="#modal-register" data-dismiss="modal">Daftar Sekarang</a>
                             </div>  
                         </div>
                     </div>

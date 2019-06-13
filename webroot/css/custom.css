@@ -1,4 +1,4 @@
-/*!
+.chat .chat-message textarea/*!
  * Zolaku Style Guide
  * Version: 1.0
  * Author: Grayscale-Intensity
@@ -45299,6 +45299,15 @@ hr.title-line{
 }
 .chat .chat-message {
   padding: 15px;
+}
+.chat .chat-message input {
+  width: 100%;
+  border: none;
+  padding: 10px 20px;
+  font: 14px/22px "Lato", Arial, sans-serif;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  resize: none;
 }
 .chat .chat-message textarea {
   width: 100%;
