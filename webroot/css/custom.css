@@ -45183,8 +45183,8 @@ hr.title-line{
 .people-list .fa-search {
   position: absolute;
   left: 225px;
-  top: 12px;
-  font-size: 20px;
+  top: 15px;
+  font-size: 14px;
 }
 .people-list ul {
   height: 390px;
@@ -45254,7 +45254,7 @@ hr.title-line{
   padding: 30px 30px 20px;
   border-bottom: 2px solid white;
   overflow-y: scroll;
-  height: 250px;
+  height: 292px;
 }
 .chat .chat-history .message-data {
   margin-bottom: 15px;
@@ -45267,12 +45267,12 @@ hr.title-line{
   color: white;
   padding: 10px;
   line-height: 16px;
-  font-size: 14px;
+  /*font-size: 14px;*/
   border-radius: 7px;
   margin-bottom: 20px;
   width: 90%;
   position: relative;
-  font-family: roboto;
+  /*font-family: roboto;*/
 }
 .chat .chat-history .message:after {
   bottom: 100%;
@@ -45298,7 +45298,7 @@ hr.title-line{
   left: 93%;
 }
 .chat .chat-message {
-  padding: 15px;
+  padding: 10px;
 }
 .chat .chat-message input {
   width: 100%;
