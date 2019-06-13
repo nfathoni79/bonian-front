@@ -45100,7 +45100,7 @@ hr.title-line{
     position: absolute;
     top: 4px;
     right: 15px;
-    width: 15px;
+    min-width: 15px;
     height: 15px;
     line-height: 8px;
     font-weight: 500;
