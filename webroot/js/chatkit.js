@@ -195,8 +195,10 @@ $(document).ready(function () {
                         }
                         messages[message.roomId].push(message);
 
-                        var elementMessage = $('.chat-popup').find('#messages');
-                        if ($('.chat-history').attr('active-room-id') === message.roomId) {
+                        var chatPopup = $('.chat-popup');
+                        var elementMessage = chatPopup.find('#messages');
+                        if ($('.chat-history').attr('active-room-id') === message.roomId && chatPopup.is(':visible')) {
+                            console.log('visible')
                             renderChatMessages(message);
                             $('.chat-popup').find('.chat-history')
                                 .scrollTop(elementMessage.height());
@@ -214,11 +216,15 @@ $(document).ready(function () {
 
                         } else if (initial) {
                             $('.wrapper-invoice-order[data-room-id="'+message.roomId+'"]').addClass('unread');
+                            if (user_id.toUpperCase() !== message.senderId.toUpperCase()) {
+                                getChatBadge().show().text(++unreadCount);
+                            }
+
                         }
 
-                        if (initial && user_id.toUpperCase() !== message.senderId.toUpperCase()) {
-                            getChatBadge().show().text(++unreadCount);
-                        }
+                        //if (initial && user_id.toUpperCase() !== message.senderId.toUpperCase()) {
+                        //    getChatBadge().show().text(++unreadCount);
+                        //}
 
                     },
 
