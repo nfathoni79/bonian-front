@@ -39,7 +39,7 @@ $(document).ready(function () {
 
             if (typeof messages[roomId] != 'undefined') {
                 for(var i in messages[roomId]) {
-                    if (unreadElement.hasClass('unread')) {
+                    if (unreadElement.hasClass('unread') || unreadCount > 0) {
                         currentUser.setReadCursor({
                             roomId: messages[roomId][i].roomId,
                             position: messages[roomId][i].id
