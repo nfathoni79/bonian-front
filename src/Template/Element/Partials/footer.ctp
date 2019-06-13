@@ -233,13 +233,13 @@
                 <!-- end chat-history -->
 
                 <div class="chat-message clearfix"> 
-                    <input type="text" name="message-to-send" id="message-to-send" autocomplete="off" placeholder="Tulis pesan anda disini" >
-                    <!--<i class="fa fa-file-image-o"></i>-->
+                    <input type="text" name="message-to-send" id="message-to-send" autocomplete="off" placeholder="Tulis pesan anda disini" > 
+                    <!--<i class="fa fa-file-image-o"></i>--> 
                     <button>Send</button>
 
                 </div>  
-            </div>
-        </div>
+            </div>  
+        </div> 
       </form>
     </div>
 </div>
