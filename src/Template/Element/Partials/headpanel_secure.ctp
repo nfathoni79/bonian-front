@@ -16,7 +16,7 @@
                 </div>
                 <div class="header-top-right collapsed-block col-lg-7 col-md-6 col-sm-7 col-xs-12">
                     <ul class="top-link list-inline">
-                        <li><a class="link-lg" href="#">Menjadi Member Bonian</a></li>
+                        <li><a class="link-lg" href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'keuntungan-menjadi-member','prefix' => false]);?>">Menjadi Member Bonian</a></li>
                         <li><a class="link-lg" href="<?= $this->Url->build(['controller' => 'Promotion', 'action' => 'pointRedeem', 'prefix' => false]);?>">Penukaran Point</a></li>
                         <?php if (!$this->request->getSession()->check('Auth.Customers')) : ?>
                         <li><a class="link-lg" data-toggle="modal" data-target="#login-popup">Login</a></li>
@@ -96,7 +96,7 @@
             <div class="row">
                 <!-- Logo -->
                 <div class="navbar-logo col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <div class="logo"><a href="/"><?php echo $this->Html->image('/images/png/logo/logo-wide.png', ['alt' => 'Zolaku', 'width' => '155']); ?></a> <span class="text-danger ml-4">CHECKOUT</span></div>
+                    <div class="logo"><a href="/"><?php echo $this->Html->image('/images/png/logo/logo-wide.png', ['alt' => 'Bonian', 'width' => '155']); ?></a> <span class="text-danger ml-4">CHECKOUT</span></div>
 
                 </div>
                 <!-- //end Logo -->
@@ -175,7 +175,7 @@
 
             </div>
             <div class="modal-footer">
-                Belum memiliki akun zolaku? <a data-toggle="modal" data-target="#modal-register" data-dismiss="modal">Daftar Sekarang</a>
+                Belum memiliki akun bonian? <a data-toggle="modal" data-target="#modal-register" data-dismiss="modal">Daftar Sekarang</a>
             </div>
         </div>
     </div>

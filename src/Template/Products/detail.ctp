@@ -28,7 +28,7 @@ $this->Html->meta('og:title', trim($details['data']['name']), ['block' => true])
 $this->Html->meta('og:description', $description, ['block' => true]);
 $this->Html->meta('og:image', $this->Url->build($_basePath . 'images/150x150/' . $img), ['block' => true]);
 $this->Html->meta('og:url', $this->Url->build(), ['block' => true]);
-$this->Html->meta('og:site_name', 'Zolaku', ['block' => true]);
+$this->Html->meta('og:site_name', 'Bonian', ['block' => true]);
 $this->Html->meta('og:type', 'product', ['block' => true]);
 $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['data']['price_sale']), ['block' => true]);
 ?>

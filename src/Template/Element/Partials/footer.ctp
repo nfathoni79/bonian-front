@@ -83,7 +83,7 @@
                         <ul id="menu-our-shops" class="menu">
                             <li><a class="item-link" href="#"><span class="menu-title">Pusat Bantuan</span></a></li>
                             <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'pembayaran','prefix' => false]);?>">Pembayaran</a></li>
-                            <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'point-zolaku','prefix' => false]);?>">Point Zolaku</a></li>
+                            <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'point-bonian','prefix' => false]);?>">Point Bonian</a></li>
                             <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'lacak-pesanan','prefix' => false]);?>">Lacak Pesanan</a></li>
                             <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'pengembalian-barang-dana','prefix' => false]);?>">Pengembalian Barang & Dana</a></li>
                         </ul>
@@ -96,7 +96,7 @@
                         <h3 class="footertitle">Jelajahi Bonian</h3>
                         <div class="modcontent">
                             <ul class="menu">
-                                <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'tentang-zolaku','prefix' => false]);?>">Tentang Zolaku</a></li>
+                                <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'tentang-bonian','prefix' => false]);?>">Tentang Bonian</a></li>
                                 <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'cara-pembelian','prefix' => false]);?>">Cara Pembelian</a></li>
                                 <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'cara-pengembalian','prefix' => false]);?>">Cara Pengembalian</a></li>
                                 <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'keuntungan-menjadi-member','prefix' => false]);?>">Keuntungan Menjadi Member</a></li>
@@ -134,7 +134,7 @@
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-style footer-contact">
                 <div class="module">
                     <div class="module footer-contact clearfix">
-                        <h3 class="footertitle">DOWNLOAD APLIKASI ZOLAKU</h3>
+                        <h3 class="footertitle">DOWNLOAD APLIKASI BONIAN</h3>
                         <div class="row" style="margin-top: 10px;">
                             <div class="col-sm-6">
                                 <?php echo $this->Html->image('/images/logo_apps/google_play.png', ['alt' => 'logo bca','class' => 'img-responsive']); ?>

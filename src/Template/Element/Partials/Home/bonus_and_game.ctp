@@ -15,7 +15,7 @@
                 <a href="#" id="poin_gratis" class="c-card c-card--bounty u-bg-grad--red-v__v2" >
                     <div class="c-bounty--item__box" style="background-image: linear-gradient(#cd6064, #9d363a);">
                         <h1 class="u-txt--center u-mrg-b--15" style="text-align: center;">
-                            <img src="<?= $this->Url->build('/images/png/logo/logo-small.png'); ?>" width="31" alt="icon zolaku small">
+                            <img src="<?= $this->Url->build('/images/png/logo/logo-small.png'); ?>" width="31" alt="icon bonian small">
                         </h1>
                         <p class="c-bounty--title" style="text-align: center; color:#ffffff;">Poin Gratis</p>
                     </div>
@@ -26,7 +26,7 @@
                 <a href="#" id="tukar_poin" class="c-card c-card--bounty u-bg-grad--soft-blue-v__v1">
                     <div class="c-bounty--item__box" style="background-image: linear-gradient(#33adbc, #2d808c);">
                         <h1 class="u-txt--center u-mrg-b--15" style="text-align: center;">
-                            <img src="<?= $this->Url->build('/images/png/logo/logo-small.png'); ?>" width="31" alt="icon zolaku small">
+                            <img src="<?= $this->Url->build('/images/png/logo/logo-small.png'); ?>" width="31" alt="icon bonian small">
                         </h1>
                         <p class="c-bounty--title" style="text-align: center; color:#ffffff;">Tukar Poin</p>
                     </div>
@@ -37,7 +37,7 @@
                 <a href="#" id="guest_box" class="c-card c-card--bounty u-bg-grad--green-v__v1">
                     <div class="c-bounty--item__box" style="background-image: linear-gradient(#9dba5f, #6a8830);">
                         <h1 class="u-txt--center u-mrg-b--15" style="text-align: center;">
-                            <img src="<?= $this->Url->build('/images/png/logo/logo-small.png'); ?>" width="31" alt="icon zolaku small">
+                            <img src="<?= $this->Url->build('/images/png/logo/logo-small.png'); ?>" width="31" alt="icon bonian small">
                         </h1>
                         <p class="c-bounty--title" style="text-align: center; color:#ffffff;">Guest Box</p>
                     </div>
@@ -48,7 +48,7 @@
                 <a href="#" id="flip_win" class="c-card c-card--bounty u-bg-grad--purple-v__v1">
                     <div class="c-bounty--item__box" style="background-image: linear-gradient(#b66ba1, #873271);">
                         <h1 class="u-txt--center u-mrg-b--15" style="text-align: center;">
-                            <img src="<?= $this->Url->build('/images/png/logo/logo-small.png'); ?>" width="31" alt="icon zolaku small">
+                            <img src="<?= $this->Url->build('/images/png/logo/logo-small.png'); ?>" width="31" alt="icon bonian small">
                         </h1>
                         <p class="c-bounty--title" style="text-align: center; color:#ffffff;">Flip Win</p>
                     </div>
@@ -59,7 +59,7 @@
                 <a href="#" id="sell_challange" class="c-card c-card--bounty u-bg-grad--brown-v__v1">
                     <div class="c-bounty--item__box" style="background-image: linear-gradient(#d89b4b, #996826);">
                         <h1 class="u-txt--center u-mrg-b--15" style="text-align: center;">
-                            <img src="<?= $this->Url->build('/images/png/logo/logo-small.png'); ?>" width="31" alt="icon zolaku small">
+                            <img src="<?= $this->Url->build('/images/png/logo/logo-small.png'); ?>" width="31" alt="icon bonian small">
                         </h1>
                         <p class="c-bounty--title" style="text-align: center; color:#ffffff;">Sell Challange</p>
                     </div>
@@ -70,7 +70,7 @@
                 <a href="#" id="treasure_hunt" class="c-card c-card--bounty u-bg-grad--dark-blue-v__v1">
                     <div class="c-bounty--item__box" style="background-image: linear-gradient(#5699c2, #337295);">
                         <h1 class="u-txt--center u-mrg-b--15" style="text-align: center;">
-                            <img src="<?= $this->Url->build('/images/png/logo/logo-small.png'); ?>" width="31" alt="icon zolaku small">
+                            <img src="<?= $this->Url->build('/images/png/logo/logo-small.png'); ?>" width="31" alt="icon bonian small">
                         </h1>
                         <p class="c-bounty--title" style="text-align: center; color:#ffffff;">Treasure Hunt</p>
                     </div>
@@ -81,7 +81,7 @@
                 <a href="#" id="wheel_of_fortune" class="c-card c-card--bounty u-bg-grad--pink-v__v1">
                     <div class="c-bounty--item__box" style="background-image: linear-gradient(#db5e7c, #b05b70);">
                         <h1 class="u-txt--center u-mrg-b--15" style="text-align: center;">
-                            <img src="<?= $this->Url->build('/images/png/logo/logo-small.png'); ?>" width="31" alt="icon zolaku small">
+                            <img src="<?= $this->Url->build('/images/png/logo/logo-small.png'); ?>" width="31" alt="icon bonian small">
                         </h1>
                         <p class="c-bounty--title" style="text-align: center; color:#ffffff;">Wheel of Fortune</p>
                     </div>
