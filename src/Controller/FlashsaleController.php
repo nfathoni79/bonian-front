@@ -40,7 +40,18 @@ class FlashsaleController extends AppController
         } catch(\Exception $e) {
             //TODO set log
         }
-        $this->set(compact('time_sale'));
+
+        try {
+            $banner = $this->Api->makeRequest()
+                ->get('v1/banner/flash-sale');
+            if ($response = $this->Api->success($banner)) {
+                $json = $response->parse();
+                $banner_sale = $json['result']['banner'];
+            }
+        } catch(\Exception $e) {
+            //TODO set log
+        }
+        $this->set(compact('time_sale','banner_sale'));
     }
 
     public function getList($id_product_deals = null)
