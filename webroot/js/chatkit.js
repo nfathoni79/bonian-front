@@ -224,7 +224,6 @@ $(document).ready(function () {
             let room = listRooms[roomId];
             if (room) {
                 if (room.customData && typeof room.customData.order_detail_id != 'undefined') {
-
                     var images = '';
                     if (room.customData.images.length > 0) {
                         for(var i in room.customData.images) {
@@ -235,7 +234,7 @@ $(document).ready(function () {
                                 break;
                             }
                         }
-                        var moreImages = room.customData.images.length - (i + 1);
+                        var moreImages = room.customData.images.length - (parseInt(i) + 1);
                         if (moreImages > 0) {
                             images += `<li class="avatars__item">
                                         <span class="avatars__others">+${moreImages}</span>
