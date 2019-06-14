@@ -158,6 +158,11 @@ $(document).ready(function () {
 
         });
 
+        FilePond.registerPlugin(
+            FilePondPluginFileValidateType,
+            FilePondPluginFileValidateSize,
+        );
+
         var pond = FilePond.create();
         pond.setOptions({
             maxFiles: 2,
@@ -181,7 +186,7 @@ $(document).ready(function () {
 
         pond.on('addfile', (error, file) => {
             if (error) {
-                console.log('Oh no');
+                swal('File yang di upload harus berupa gambar / image');
                 return;
             }
 
