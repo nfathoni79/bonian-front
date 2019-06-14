@@ -209,7 +209,7 @@ $(document).ready(function () {
                         var chatPopup = $('.chat-popup');
                         var elementMessage = chatPopup.find('#messages');
                         if ($('.chat-history').attr('active-room-id') === message.roomId && chatPopup.is(':visible')) {
-                            console.log('visible')
+                            //console.log('visible')
                             renderChatMessages(message);
                             $('.chat-popup').find('.chat-history')
                                 .scrollTop(elementMessage.height());
