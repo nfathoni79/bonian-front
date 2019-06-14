@@ -40,29 +40,37 @@ $(document).ready(function () {
 
             if (typeof messages[roomId] != 'undefined') {
                 for(var i in messages[roomId]) {
+                    renderChatMessages(messages[roomId][i]);
+                }
+
+                var last = _.last(messages[roomId]);
+                if (last) {
                     if (unreadElement.hasClass('unread')) {
                         //console.log('do unread')
                         currentUser.setReadCursor({
-                            roomId: messages[roomId][i].roomId,
-                            position: messages[roomId][i].id
+                            roomId: last.roomId,
+                            position: last.id
                         })
-                        .then(() => {
-                            //console.log('Success!')
-                            --unreadCount;
-                            var b = getChatBadge();
-                            if (unreadCount <= 0) {
-                                b.hide();
-                            } else {
-                                b.show().text(unreadCount);
-                            }
-                        })
-                        .catch(err => {
-                            //console.log(`Error setting cursor: ${err}`)
-                        });
+                            .then(() => {
+                                var element = $('.wrapper-invoice-order[data-room-id="'+last.roomId+'"]')
+                                var total_unread = element.attr('data-unread-count');
+                                element.attr('data-unread-count', 0)
+                                unreadCount -= parseInt(total_unread);
+                                var b = getChatBadge();
+                                if (unreadCount <= 0) {
+                                    unreadCount = 0;
+                                    b.hide();
+                                } else {
+                                    b.show().text(unreadCount);
+                                }
+                            })
+                            .catch(err => {
+                                //console.log(`Error setting cursor: ${err}`)
+                            });
                     }
-
-                    renderChatMessages(messages[roomId][i]);
                 }
+
+
                 $('.chat-popup').find('.chat-history')
                     .scrollTop(elementMessage.find('#messages').height());
                     //.animate({ scrollTop: elementMessage.height() }, 1000);
@@ -105,7 +113,7 @@ $(document).ready(function () {
                     attachment: undefined
                 })
                 .then(messageId => {
-                    console.log("Success!", messageId);
+                    //console.log("Success!", messageId);
                     currentUser.setReadCursor({
                         roomId: roomId,
                         position: messageId
@@ -158,11 +166,14 @@ $(document).ready(function () {
                 onPresenceChanged: ({ previous, current }, user) => {
                     //console.log("user: ", user, " was ", previous, " but is now ", current)
                 },
+                onNewReadCursor: cursor => {
+                    //console.log('cursor', cursor);
+                }
             })
             .then(cUser => {
                 currentUser = cUser
                 window.currentUser = cUser
-                const roomToSubscribeTo = currentUser.rooms[0]
+                //const roomToSubscribeTo = currentUser.rooms[0]
                 var domInvoice = '';
                 var rooms = currentUser.rooms.reverse();
                 for(var i in rooms) {
@@ -193,7 +204,7 @@ $(document).ready(function () {
                         if (typeof messages[message.roomId] === 'undefined') {
                             messages[message.roomId] = [];
                         }
-                        messages[message.roomId].push(message);
+                        var index = messages[message.roomId].push(message);
 
                         var chatPopup = $('.chat-popup');
                         var elementMessage = chatPopup.find('#messages');
@@ -215,16 +226,15 @@ $(document).ready(function () {
                             });
 
                         } else if (initial) {
-                            $('.wrapper-invoice-order[data-room-id="'+message.roomId+'"]').addClass('unread');
+                            var invoiceListElement = $('.wrapper-invoice-order[data-room-id="'+message.roomId+'"]').addClass('unread');
                             if (user_id.toUpperCase() !== message.senderId.toUpperCase()) {
+                                var currentUnread = parseInt(invoiceListElement.attr('data-unread-count'));
+                                invoiceListElement.attr('data-unread-count', ++currentUnread);
                                 getChatBadge().show().text(++unreadCount);
                             }
 
                         }
 
-                        //if (initial && user_id.toUpperCase() !== message.senderId.toUpperCase()) {
-                        //    getChatBadge().show().text(++unreadCount);
-                        //}
 
                     },
 
@@ -251,7 +261,7 @@ $(document).ready(function () {
                 unreadClass = 'unread';
             }
 
-            return '<li class="clearfix wrapper-invoice-order '+unreadClass+'" data-room-id="'+room.id+'">\n' +
+            return '<li class="clearfix wrapper-invoice-order '+unreadClass+'" data-room-id="'+room.id+'" data-unread-count="'+room.unreadCount+'">\n' +
                 '<a href="javascript:void(0);" class="about invoice-order">\n' +
                 '<div class="status">Nomor Pesanan</div>\n' +
                 '<div class="name">'+room.name+'</div> \n' +
