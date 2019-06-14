@@ -175,7 +175,9 @@ $(document).ready(function () {
                 window.currentUser = cUser
                 //const roomToSubscribeTo = currentUser.rooms[0]
                 var domInvoice = '';
-                var rooms = currentUser.rooms.reverse();
+                //var rooms = currentUser.rooms.reverse();
+                var rooms = _.sortBy(currentUser.rooms, [function(o) { return o.lastMessageAt ? o.lastMessageAt : o.updatedAt; }]);
+                rooms = rooms.reverse();
                 for(var i in rooms) {
                     if (rooms[i]) {
                         domInvoice += subscribeRoom(rooms[i]);
@@ -208,6 +210,8 @@ $(document).ready(function () {
 
                         var chatPopup = $('.chat-popup');
                         var elementMessage = chatPopup.find('#messages');
+                        var invoiceListElement = $('.wrapper-invoice-order[data-room-id="'+message.roomId+'"]');
+                        invoiceListElement.attr('data-last-message', message.createdAt);
                         if ($('.chat-history').attr('active-room-id') === message.roomId && chatPopup.is(':visible')) {
                             //console.log('visible')
                             renderChatMessages(message);
@@ -226,13 +230,17 @@ $(document).ready(function () {
                             });
 
                         } else if (initial) {
-                            var invoiceListElement = $('.wrapper-invoice-order[data-room-id="'+message.roomId+'"]').addClass('unread');
+                            invoiceListElement.addClass('unread');
                             if (user_id.toUpperCase() !== message.senderId.toUpperCase()) {
                                 var currentUnread = parseInt(invoiceListElement.attr('data-unread-count'));
                                 invoiceListElement.attr('data-unread-count', ++currentUnread);
                                 getChatBadge().show().text(++unreadCount);
                             }
 
+                        }
+
+                        if (initial) {
+                            tinysort('ul#list-invoice>li',{data:'last-message',order:'desc'});
                         }
 
 
@@ -261,7 +269,7 @@ $(document).ready(function () {
                 unreadClass = 'unread';
             }
 
-            return '<li class="clearfix wrapper-invoice-order '+unreadClass+'" data-room-id="'+room.id+'" data-unread-count="'+room.unreadCount+'">\n' +
+            return '<li class="clearfix wrapper-invoice-order '+unreadClass+'" data-room-id="'+room.id+'" data-unread-count="'+room.unreadCount+'" data-last-message="'+(room.lastMessageAt ? room.lastMessageAt : room.createdAt)+'">\n' +
                 '<a href="javascript:void(0);" class="about invoice-order">\n' +
                 '<div class="status">Nomor Pesanan</div>\n' +
                 '<div class="name">'+room.name+'</div> \n' +
@@ -301,6 +309,8 @@ $(document).ready(function () {
                 messageItem.appendChild(textDiv);
 
             }
+
+
 
         }
     }

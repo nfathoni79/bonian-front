@@ -132,6 +132,7 @@
 '/js/minicolors/jquery.miniColors.min',
 '/js/bootbox.all.min',
 '/js/bundle',
+'/js/tinysort.min'
 ]); ?>
 
 <!-- Theme files -->
