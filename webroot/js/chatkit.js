@@ -7,6 +7,30 @@ var unreadCount = 0;
 
 
 $(document).ready(function () {
+
+    var requestAudio = false;
+    var audio = $('#chat-notification-sound');
+    if (audio.length > 0) {
+        audio = audio.get(0);
+        $(document).focus(function () {
+            if (!requestAudio) {
+                audio.volume = 0;
+                audio.play();
+                requestAudio = true;
+            }
+        });
+
+        $(document).click(function () {
+            if (!requestAudio) {
+                audio.volume = 0;
+                audio.play();
+                requestAudio = true;
+            }
+        });
+    }
+
+
+
     if ($('.chat-popup').length > 0) {
         const user_id = $('.chat-popup').data('user-id');
         const tokenProvider = new Chatkit.TokenProvider({
@@ -241,6 +265,12 @@ $(document).ready(function () {
 
                         if (initial) {
                             tinysort('ul#list-invoice>li',{data:'last-message',order:'desc'});
+                            if (requestAudio && user_id.toUpperCase() !== message.senderId.toUpperCase()) {
+                                audio.volume = 0.4;
+                                audio.play();
+                            }
+
+
                         }
 
 

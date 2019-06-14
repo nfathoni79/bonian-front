@@ -244,6 +244,12 @@
     </div>
 </div>
 
+<audio id="chat-notification-sound" controls>
+    <source src="<?= $this->Url->build('/audio/notify.ogg');?>" type="audio/ogg">
+    <source src="<?= $this->Url->build('/audio/notify.mp3');?>" type="audio/mpeg">
+    <source src="<?= $this->Url->build('/audio/notify.wav');?>" type="audio/wav">
+</audio>
+
 <?php $this->append('script'); ?>
 <script>
     function searchFunction() {
