@@ -4,6 +4,7 @@ let room;
 var messages = {};
 var initial = false;
 var unreadCount = 0;
+var listRooms = {};
 
 
 $(document).ready(function () {
@@ -61,7 +62,7 @@ $(document).ready(function () {
 
             $('.wrapper-invoice-order').removeClass('active');
             var unreadElement = $(this).parents('li').addClass('active');
-
+            renderPanel(roomId);
             if (typeof messages[roomId] != 'undefined') {
                 for(var i in messages[roomId]) {
                     renderChatMessages(messages[roomId][i]);
@@ -172,6 +173,7 @@ $(document).ready(function () {
                 onAddedToRoom: room => {
                     //console.log("added to room: ", room);
                     $('#list-invoice').prepend(subscribeRoom(room));
+                    listRooms[room.id] = room;
 
                 },
                 onRemovedFromRoom: room => {
@@ -218,9 +220,59 @@ $(document).ready(function () {
                 console.log("Error on connection: ", err)
             });
 
+        function renderPanel(roomId) {
+            let room = listRooms[roomId];
+            if (room) {
+                if (room.customData && typeof room.customData.order_detail_id != 'undefined') {
+
+                    var images = '';
+                    if (room.customData.images.length > 0) {
+                        for(var i in room.customData.images) {
+                            images += `<li class="avatars__item">
+                                        <img src="${room.customData.images[i]}" class="avatars__img" />
+                                    </li>`;
+                            if (i >= 1) {
+                                break;
+                            }
+                        }
+                        var moreImages = room.customData.images.length - (i + 1);
+                        if (moreImages > 0) {
+                            images += `<li class="avatars__item">
+                                        <span class="avatars__others">+${moreImages}</span>
+                                    </li>`;
+                        }
+                    }
+
+                    if (images !== '') {
+                        images = `<div class="col-md-4">
+                                <ul class="avatars" style="padding: 13px 0px 7px 7px">
+                                    ${images}
+                                </ul>
+                            </div>`;
+                    }
+
+                    var t = `<div class="row">
+                            ${images}
+                            <div class="${images !== '' ? 'col-md-6' : 'col-md-10 col-md-offset-1'}">
+                                No Pesanan : <span class="no-pesanan">${room.name}</span> <br>
+                                Total : Rp.<span class="total-pesanan">${numeral(room.customData.total).format('0,0')}</span><br>
+                                <!-- <span class="status-pesanan">Selesai</span> -->
+                            </div>
+                        </div>`;
+                    $('.chat-history[active-room-id="'+room.id+'"]').find('.panel').removeClass('hide').html(t);
+                } else {
+                    $('.chat-history').find('.panel').addClass('hide').html('');
+                }
+
+            } else {
+                $('.chat-history').find('.panel').addClass('hide').html('');
+            }
+
+        }
 
         function subscribeRoom(room) {
             //console.log("Going to subscribe to", room)
+            listRooms[room.id] = room;
             unreadCount += room.unreadCount;
             currentUser.subscribeToRoom({
                 roomId: room.id,

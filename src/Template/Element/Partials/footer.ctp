@@ -216,14 +216,8 @@
                 </div>
 
                 <div class="chat-history">
-                    <div class="panel">
-                        <div class="row">
-                            <div class="col-md-10 col-md-offset-1">
-                                No Pesanan : <span class="no-pesanan">-</span> <br>
-                                Total : Rp.<span class="total-pesanan">-</span><br>
-                                <span class="status-pesanan">Selesai</span>
-                            </div>
-                        </div>
+                    <div class="panel hide">
+
                     </div>
                     <ul id="messages">
 
@@ -233,8 +227,8 @@
                 <!-- end chat-history -->
 
                 <div class="chat-message clearfix"> 
-                    <input type="text" name="message-to-send" id="message-to-send" autocomplete="off" placeholder="Tulis pesan anda disini" > 
-                    <!--<i class="fa fa-file-image-o"></i>--> 
+                    <input type="text" name="message-to-send" id="message-to-send" autocomplete="off" placeholder="Tulis pesan anda disini" >
+                    <i class="fas fa-file-image" style="font-size: 16px; color: #999999"></i>
                     <button>Send</button>
 
                 </div>  
