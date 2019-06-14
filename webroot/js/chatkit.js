@@ -104,7 +104,7 @@ $(document).ready(function () {
 
             currentUser
                 .sendMessage({
-                    text: messageToSend.val(),
+                    text: messageToSend.val().replace(/(<([^>]+)>)/ig,""),
                     roomId: roomId,
                     // attachment: {
                     //   link: 'https://assets.zeit.co/image/upload/front/api/deployment-state.png',
