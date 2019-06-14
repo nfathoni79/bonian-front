@@ -91,7 +91,7 @@
                                 $iterator = $indexes->getIterator();
                                 if ($iterator->count() > 1) :
                                 ?>
-                                <nav aria-label="Page navigation" style="margin: 0 auto; text-align: right;">
+                                <nav aria-label="Page navigation" style="margin: 0 auto; text-align: center;">
                                     <ul class="pagination">
                                         <li>
                                             <a href="<?= $this->Url->build([
