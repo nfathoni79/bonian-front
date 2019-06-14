@@ -158,6 +158,95 @@ $(document).ready(function () {
 
         });
 
+        var pond = FilePond.create();
+        pond.setOptions({
+            maxFiles: 2,
+            required: true,
+            acceptedFileTypes: ['image/png','image/jpeg','image/jpg'],
+            fileValidateTypeDetectType: (source, type) => new Promise((resolve, reject) => {
+                console.log(type)
+                resolve(type);
+            }),
+            server: {
+                url: basePath + '/',
+                process: {
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="_csrfToken"]').attr('content')
+                    }
+                }
+            }
+        });
+
+
+
+        pond.on('addfile', (error, file) => {
+            if (error) {
+                console.log('Oh no');
+                return;
+            }
+
+            if ($(`.chat-upload-progress-${pond.random}`).length > 0) {
+                swal('Silahkan tunggu sampai upload selesai');
+                return;
+            }
+
+            console.log('File added', file);
+            pond.random = parseInt(Math.random() * 10000);
+            $('ul#messages').append(`<li class="chat-process-file chat-upload-progress-${pond.random}" style="margin-bottom: 40px;"><div style="height: 3px; position: relative;"></div></li>`);
+            pond.bar = new ProgressBar.Line(`.chat-upload-progress-${pond.random} div`, {
+                strokeWidth: 2,
+                easing: 'easeInOut',
+                //duration: 1400,
+                color: '#555',
+                trailColor: '#eee',
+                trailWidth: 1,
+                svgStyle: {width: '100%', height: '100%'},
+                text: {
+                    style: {
+                        // Text color.
+                        // Default: same as stroke color (options.color)
+                        color: '#999',
+                        position: 'absolute',
+                        right: '0',
+                        top: '20px',
+                        padding: 0,
+                        margin: 0,
+                        fontSize: '12px',
+                        transform: null
+                    },
+                    autoStyleContainer: false
+                },
+                from: {color: '#FFEA82'},
+                to: {color: '#ED6A5A'},
+                step: (state, bar) => {
+                    bar.setText(Math.round(bar.value() * 100) + ' %');
+                }
+            });
+
+            pond.processFile().then(file => {
+                // File has been processed
+                console.log('process', file)
+            });
+        });
+
+        pond.on('processfileprogress', (file, progress) => {
+            //console.log(file, progress)
+            pond.bar.animate(progress);
+        });
+
+        pond.on('processfile', (error, file) => {
+            console.log(error, file)
+            $(`.chat-upload-progress-${pond.random}`).remove();
+        });
+
+        $('.chat-upload-image').click(function() {
+            if ($(`.chat-upload-progress-${pond.random}`).length > 0) {
+                swal('Silahkan tunggu sampai upload selesai');
+                return;
+            }
+            pond.browse();
+        });
+
 
         const noopLogger = (...items) => {}
 

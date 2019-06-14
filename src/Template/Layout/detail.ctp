@@ -67,6 +67,12 @@
     '/css/perfect-scrollbar'
     ]); ?>
 
+    <?= $this->Html->css([
+        '/css/filepond/filepond-plugin-image-preview.min.css',
+        '/css/filepond/filepond.min.css',
+        '/css/custom/filepond-custom.css',
+    ]); ?>
+
 
     <?= $this->fetch('css') ?>
     <!-- Google web fonts
@@ -134,6 +140,16 @@
 '/js/bundle',
 '/js/tinysort.min'
 ]); ?>
+
+<?= $this->Html->script([
+    '/js/filepond/filepond-plugin-file-encode.min.js',
+    '/js/filepond/filepond-plugin-file-validate-size.min.js',
+    '/js/filepond/filepond-plugin-image-exif-orientation.min.js',
+    '/js/filepond/filepond-plugin-image-preview.min.js',
+    '/js/filepond/filepond-plugin-file-validate-type.js',
+    '/js/filepond/filepond.min.js',
+]);
+?>
 
 <!-- Theme files -->
 <?= $this->Html->script([

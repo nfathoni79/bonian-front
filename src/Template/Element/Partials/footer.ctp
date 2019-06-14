@@ -228,7 +228,7 @@
 
                 <div class="chat-message clearfix"> 
                     <input type="text" name="message-to-send" id="message-to-send" autocomplete="off" placeholder="Tulis pesan anda disini" >
-                    <i class="fas fa-file-image" style="font-size: 16px; color: #999999"></i>
+                    <a class="chat-upload-image"><i class="fas fa-file-image" style="font-size: 16px; color: #999999"></i></a>
                     <button>Send</button>
 
                 </div>  
