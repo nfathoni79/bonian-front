@@ -248,7 +248,7 @@ $(document).ready(function () {
         $(document).on('click', '.chat-header .chat-order-detail', function() {
             var roomId = $('.chat-popup .chat-history').attr('active-room-id');
             if(typeof listRooms[roomId] !== 'undefined') {
-                location.href = basePath + '/user/history/detail/' + listRooms[roomId].name.split('-')[0];
+                location.href = basePath + '/user/history/detail/' + String(listRooms[roomId].name.split('-')[0]).trim();
             }
         });
 
