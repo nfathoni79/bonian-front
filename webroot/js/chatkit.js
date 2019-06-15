@@ -48,6 +48,7 @@ $(document).ready(function () {
         $('.open-chat').click(function(e) {
             $('.chat-popup').show();
             $('#list-invoice .invoice-order:first').trigger('click');
+            $('.chat-popup .chat-history').trigger('contentchanged');
         });
 
         $('.close-chat').click(function(e) {
@@ -98,15 +99,55 @@ $(document).ready(function () {
 
                 $('.chat-popup').find('.chat-history')
                     .scrollTop(elementMessage.find('#messages').height());
-                    //.animate({ scrollTop: elementMessage.height() }, 1000);
+
+
+                    //.animate({ scrollTop: elementMessage.find('#messages').height() }, 1000);
 
                 //elementMessage.append(`<li class="typing">&nbsp;</li>`);
             }
 
             unreadElement.removeClass('unread');
 
+            elementMessage.trigger('contentchanged');
+
+
+
 
         });
+
+        $('.chat-history').bind('contentchanged', function() {
+            // do something after the div content has changed
+
+            $('.chat-history img').one('load',function() {
+                // fire when image loads
+                $(this).parent().magnificPopup({
+                    type: 'image',
+                    closeOnContentClick: true,
+                    mainClass: 'mfp-img-mobile',
+                    image: {
+                        verticalFit: true
+                    }
+                });
+
+                var chatHistory = $('.chat-popup').find('.chat-history');
+                chatHistory.scrollTop(chatHistory.find('#messages').height());
+
+            });
+
+
+            /*$('.chat-image-popup-vertical-fit').magnificPopup({
+                type: 'image',
+                closeOnContentClick: true,
+                mainClass: 'mfp-img-mobile',
+                image: {
+                    verticalFit: true
+                }
+            });*/
+        });
+
+
+
+
 
         $('#message-to-send').keyup(function () {
             //console.log('sedang menulis');
@@ -191,6 +232,8 @@ $(document).ready(function () {
         $(document).on('focus', '#message-to-send', function (e) {
             $('.chat-emoji-picker').popover('hide');
         });
+
+
 
         FilePond.registerPlugin(
             FilePondPluginFileValidateType,
@@ -548,7 +591,7 @@ $(document).ready(function () {
                 attachment.width = "400"
                 attachment.style = "margin-top: 10px"
                 attachment.src = message.attachment.link;
-                m_attachment = attachment.outerHTML;
+                m_attachment = `<a class="chat-image-popup-vertical-fit" href="${message.attachment.link}">` + attachment.outerHTML + `</a>`;
             }
 
             var textDiv;
