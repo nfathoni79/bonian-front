@@ -125,7 +125,7 @@ class RegisterController extends AppController
                $error = json_decode($e->getResponse()->getBody()->getContents(), true);
                $error['error'] = [
                    'phone' => [
-                       '_invalid' => 'Tunggu 15 menit sampai habis.'
+                       '_invalid' => $error['message']
                    ]
                ];
            }
