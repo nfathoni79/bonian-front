@@ -499,7 +499,8 @@ $(document).ready(function () {
             var messageItem = document.createElement("li");
 
 
-            let attachment, m_attachment;
+            let attachment;
+            var m_attachment = '';
             if (message.attachment) {
                 switch (message.attachment.type) {
                     case "image":
