@@ -528,14 +528,17 @@ $(document).ready(function () {
                             //console.log('visible')
                             renderChatMessages(message);
 
-                            //$('.chat-popup').find('.chat-history')
-                            //    .scrollTop(elementMessage.height());
+                            $('.chat-popup').find('.chat-history')
+                                .scrollTop(elementMessage.height());
 
-                            $('.chat-history img').one('load',function() {
-                                // fire when image loads
-                                $('.chat-popup').find('.chat-history')
-                                    .scrollTop(elementMessage.height());
-                            });
+                            var hasImage = $('.chat-history img');
+                            if (hasImage.length > 0) {
+                                hasImage.one('load',function() {
+                                    // fire when image loads
+                                    $('.chat-popup').find('.chat-history')
+                                        .scrollTop(elementMessage.height());
+                                });
+                            }
 
                             currentUser.setReadCursor({
                                 roomId: message.roomId,
