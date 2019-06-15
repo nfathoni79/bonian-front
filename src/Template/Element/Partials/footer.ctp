@@ -238,7 +238,7 @@
     </div>
 </div>
 
-<audio id="chat-notification-sound" controls>
+<audio id="chat-notification-sound" style="display:none;" controls>
     <source src="<?= $this->Url->build('/audio/notify.ogg');?>" type="audio/ogg">
     <source src="<?= $this->Url->build('/audio/notify.mp3');?>" type="audio/mpeg">
     <source src="<?= $this->Url->build('/audio/notify.wav');?>" type="audio/wav">
