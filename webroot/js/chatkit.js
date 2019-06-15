@@ -158,6 +158,40 @@ $(document).ready(function () {
 
         });
 
+        const emojiLists = [
+            '😀', '😁', '😂', '🤣', '😉', '😊', '😋', '😎',
+            '😍', '😘', '😴', '😌', '😛', '😜', '😝', '🤤', '😒', '😓', '😔', '😭', '🥰',
+            '🤝', '👍', '👇', '🧥', '👚', '👕', '👖',
+            '👔', '👗', '👙', '👘', '👠', '👡', '👢',
+            '👞', '👟', '🥾', '👛',
+            '👜', '💼', '❤️', '💔', '🕐', '😬', '👌', '🥼', '🙏', '✍️', '⚽️', '🏀', '🏸', '🚚', '✈️'
+        ];
+
+        function renderEmoji() {
+            var o = '<ul class="emoji-list">';
+            for(var i in emojiLists) {
+                o += `<li data-emoji="${emojiLists[i]}" style="display: inline-block; width: 16px; height: 16px; font-size: 16px; word-break: keep-all; margin-right: 5px; cursor: pointer;">${emojiLists[i]}</li>`;
+            }
+            o += '</ul>';
+            return o;
+        }
+
+        $('.chat-emoji-picker').popover({
+            html: true,
+            title: false,
+            content: renderEmoji()
+        });
+
+        $(document).on('click', 'ul.emoji-list li', function (e) {
+           var message = $('#message-to-send');
+           message.val(message.val() + ' ' + $(this).data('emoji'));
+            $('.chat-emoji-picker').popover('hide');
+        });
+
+        $(document).on('focus', '#message-to-send', function (e) {
+            $('.chat-emoji-picker').popover('hide');
+        });
+
         FilePond.registerPlugin(
             FilePondPluginFileValidateType,
             FilePondPluginFileValidateSize,
