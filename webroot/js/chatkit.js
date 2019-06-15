@@ -167,16 +167,52 @@ $(document).ready(function () {
         pond.setOptions({
             maxFiles: 2,
             required: true,
+            name: 'image',
             acceptedFileTypes: ['image/png','image/jpeg','image/jpg'],
             fileValidateTypeDetectType: (source, type) => new Promise((resolve, reject) => {
-                console.log(type)
                 resolve(type);
             }),
             server: {
-                url: basePath + '/',
+                url: basePath + '/user/attachments/image',
                 process: {
                     headers: {
                         'X-CSRF-Token': $('meta[name="_csrfToken"]').attr('content')
+                    },
+                    onload: (res) => {
+                        // select the right value in the response here and return
+                        try {
+                            var obj = JSON.parse(res);
+                            if (obj.type) {
+                                currentUser.sendMultipartMessage({
+                                    roomId: pond.roomId,
+                                    parts: [
+                                        { type: "text/plain", content: obj.name },
+                                        {
+                                            type: obj.type,
+                                            url: obj.url,
+                                        }
+                                    ],
+                                })
+                                    .then(messageId => {
+                                        currentUser.setReadCursor({
+                                            roomId: pond.roomId,
+                                            position: messageId
+                                        })
+                                            .then(() => {
+
+                                            })
+                                            .catch(err => {
+                                                //console.log(`Error setting cursor: ${err}`)
+                                            });
+                                    })
+                                    .catch(err => {
+                                        console.log(`Error adding message to ${myRoom.name}: ${err}`)
+                                    })
+                            }
+                        } catch(e) {
+
+                        }
+                        return res;
                     }
                 }
             }
@@ -190,12 +226,15 @@ $(document).ready(function () {
                 return;
             }
 
+
             if ($(`.chat-upload-progress-${pond.random}`).length > 0) {
                 swal('Silahkan tunggu sampai upload selesai');
                 return;
             }
 
-            console.log('File added', file);
+            var roomId = $('.chat-history').attr('active-room-id');
+            pond.roomId = roomId;
+
             pond.random = parseInt(Math.random() * 10000);
             $('ul#messages').append(`<li class="chat-process-file chat-upload-progress-${pond.random}" style="margin-bottom: 40px;"><div style="height: 3px; position: relative;"></div></li>`);
             pond.bar = new ProgressBar.Line(`.chat-upload-progress-${pond.random} div`, {
@@ -230,7 +269,7 @@ $(document).ready(function () {
 
             pond.processFile().then(file => {
                 // File has been processed
-                console.log('process', file)
+                //console.log('process', file)
             });
         });
 
@@ -240,7 +279,6 @@ $(document).ready(function () {
         });
 
         pond.on('processfile', (error, file) => {
-            console.log(error, file)
             $(`.chat-upload-progress-${pond.random}`).remove();
         });
 
@@ -461,6 +499,23 @@ $(document).ready(function () {
             var messageItem = document.createElement("li");
 
 
+            let attachment, m_attachment;
+            if (message.attachment) {
+                switch (message.attachment.type) {
+                    case "image":
+                        attachment = document.createElement("img")
+                        break
+                    default:
+                        break
+                }
+
+                attachment.className += " attachment"
+                attachment.width = "400"
+                attachment.style = "margin-top: 10px"
+                attachment.src = message.attachment.link;
+                m_attachment = attachment.outerHTML;
+            }
+
             var textDiv;
             if (user_id.toUpperCase() === message.senderId.toUpperCase()) {
                 messageItem.className = "clearfix"
@@ -470,7 +525,7 @@ $(document).ready(function () {
                     '<span class="message-data-time">'+ moment(message.createdAt).calendar(null, {sameElse: 'YYYY-MM-DD h:MM A'}) +'</span> &nbsp; &nbsp;\n' +
                     '<span class="message-data-name">'+message.sender.name+'</span> <i class="fa fa-circle me"></i> \n' +
                     '</div>\n' +
-                    '<div class="message other-message float-right">'+message.text+'</div>';
+                    '<div class="message other-message float-right">'+message.text + m_attachment +'</div>';
                 messageItem.appendChild(textDiv);
             } else {
                 messageItem.className = ""
@@ -480,10 +535,12 @@ $(document).ready(function () {
                     '<i class="fa fa-circle me"></i> <span class="message-data-name">'+message.sender.name+'</span> \n' +
                     '<span class="message-data-time">'+ moment(message.createdAt).calendar(null, {sameElse: 'YYYY-MM-DD h:MM A'}) +'</span> &nbsp; &nbsp;\n' +
                     '</div>\n' +
-                    '<div class="message my-message">'+message.text+'</div>';
+                    '<div class="message my-message">'+message.text + m_attachment +'</div>';
                 messageItem.appendChild(textDiv);
 
             }
+
+
 
 
 
