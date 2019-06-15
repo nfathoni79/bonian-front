@@ -120,18 +120,8 @@ $(document).ready(function () {
 
             $('.chat-history img').one('load',function() {
                 // fire when image loads
-                $(this).parent().magnificPopup({
-                    type: 'image',
-                    closeOnContentClick: true,
-                    mainClass: 'mfp-img-mobile',
-                    image: {
-                        verticalFit: true
-                    }
-                });
-
                 var chatHistory = $('.chat-popup').find('.chat-history');
                 chatHistory.scrollTop(chatHistory.find('#messages').height());
-
             });
 
 
@@ -233,6 +223,35 @@ $(document).ready(function () {
             $('.chat-emoji-picker').popover('hide');
         });
 
+        $(document).on('click', '.chat-delete-room', function () {
+            var roomId = $('.chat-popup .chat-history').attr('active-room-id');
+            if(typeof listRooms[roomId] !== 'undefined' && confirm(`Apakah anda yakin untuk hapus chat ${listRooms[roomId].name} ini?`)) {
+                $.ajax({
+                    url: basePath + '/user/profile/delete-room',
+                    type : 'POST',
+                    data : {
+                        room_id : roomId,
+                        _csrfToken: $('meta[name="_csrfToken"]').attr('content')
+                    },
+                    //dataType : 'json',
+                    success: function(response){
+                        $(`[data-room-id="${roomId}"]`).remove();
+                        $('#list-invoice .invoice-order:first').trigger('click');
+                    },
+                    error: function () {
+
+                    }
+                });
+            }
+        });
+
+        $(document).on('click', '.chat-header .chat-order-detail', function() {
+            var roomId = $('.chat-popup .chat-history').attr('active-room-id');
+            if(typeof listRooms[roomId] !== 'undefined') {
+                location.href = basePath + '/user/history/detail/' + listRooms[roomId].name.split('-')[0];
+            }
+        });
+
 
 
         FilePond.registerPlugin(
@@ -309,6 +328,8 @@ $(document).ready(function () {
                 return;
             }
 
+
+
             var roomId = $('.chat-history').attr('active-room-id');
             pond.roomId = roomId;
 
@@ -344,9 +365,16 @@ $(document).ready(function () {
                 }
             });
 
+            //scroll to bottom
+            var chatHistory = $('.chat-popup').find('.chat-history');
+            chatHistory.scrollTop(chatHistory.find('#messages').height());
+
             pond.processFile().then(file => {
                 // File has been processed
                 //console.log('process', file)
+
+
+
             });
         });
 
@@ -499,8 +527,15 @@ $(document).ready(function () {
                         if ($('.chat-history').attr('active-room-id') === message.roomId && chatPopup.is(':visible')) {
                             //console.log('visible')
                             renderChatMessages(message);
-                            $('.chat-popup').find('.chat-history')
-                                .scrollTop(elementMessage.height());
+
+                            //$('.chat-popup').find('.chat-history')
+                            //    .scrollTop(elementMessage.height());
+
+                            $('.chat-history img').one('load',function() {
+                                // fire when image loads
+                                $('.chat-popup').find('.chat-history')
+                                    .scrollTop(elementMessage.height());
+                            });
 
                             currentUser.setReadCursor({
                                 roomId: message.roomId,
@@ -619,7 +654,16 @@ $(document).ready(function () {
             }
 
 
-
+            if (m_attachment) {
+                $('.chat-history .chat-image-popup-vertical-fit').magnificPopup({
+                    type: 'image',
+                    closeOnContentClick: true,
+                    mainClass: 'mfp-img-mobile',
+                    image: {
+                        verticalFit: true
+                    }
+                });
+            }
 
 
         }

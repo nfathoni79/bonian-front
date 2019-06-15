@@ -621,4 +621,25 @@ class ProfileController extends AuthController
 
         $this->set(compact('customer', 'data'));
     }
+
+
+    public function deleteRoom()
+    {
+        $this->disableAutoRender();
+        $this->request->allowMethod('post');
+        try {
+            $edit = $this->Api->makeRequest($this->Auth->user('token'))
+                ->post('v1/web/chatkit/delete-room/' . $this->request->getData('room_id'), [
+                    'form_params' => []
+                ]);
+            if ($response = $this->Api->success($edit)) {
+                $data = $response->parse();
+            }
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            $data = $this->Api->handle($e, true);
+        }
+
+        return $this->response->withType('application/json')
+            ->withStringBody(json_encode($data));
+    }
 }
