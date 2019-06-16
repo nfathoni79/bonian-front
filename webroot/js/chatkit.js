@@ -413,6 +413,11 @@ $(document).ready(function () {
                     listRooms[room.id] = room;
 
                 },
+                onRoomDeleted: room => {
+                    //console.log("delete to room: ", room);
+                    $(`[data-room-id="${room.id}"]`).remove();
+                    $('#list-invoice .invoice-order:first').trigger('click');
+                },
                 onRemovedFromRoom: room => {
                     //console.log("removed from room: ", room);
                     var elementInvoiceList = $('.wrapper-invoice-order[data-room-id="'+room.id+'"]');
