@@ -19,7 +19,7 @@ class OauthController extends AuthController
     public function initialize()
     {
         parent::initialize();
-        $this->Auth->allow(['index', 'cb']);
+        $this->Auth->allow(['index', 'cb', 'register']);
     }
 
 
@@ -72,17 +72,19 @@ class OauthController extends AuthController
 
     public function register($provider)
     {
-        $this->disableAutoRender();
+        //$this->disableAutoRender();
+        $this->viewBuilder()->setLayout('ajax');
         $query = $this->request->getQueryParams();
         $callback = parse_url(Router::url(null, true));
         $callback_url = $callback['scheme'] . '://' . $callback['host'] . $callback['path'];
         $oauth = [];
+        $result = [];
         try {
             $this->Api->addHeader('bid', $this->request->getCookie('bid'));
             $this->Api->addHeader('User-Agent', env('HTTP_USER_AGENT'));
             $this->Api->addHeader('callback', $callback_url);
             $register = $this->Api->makeRequest()
-                ->get('v1/web/oauth/cb/' . $provider, [
+                ->get('v1/web/oauth/register/' . $provider, [
                     'query' => $query,
                     'on_stats' => function (TransferStats $stats) use (&$url) {
                         if (in_array($stats->getResponse()->getStatusCode(), [301, 302])) {
@@ -94,15 +96,40 @@ class OauthController extends AuthController
 
             if ($response = $this->Api->success($register)) {
                 $json = $response->parse();
-                $oauth = $json['result']['oauth'];
+                $result = $json['result'];
+
+                $this->Auth->setUser($result['data']);
+
+                if (!empty($result['data']['reffcode'])) {
+                    $cookie = new Cookie(
+                        'reffcode',
+                        $result['data']['reffcode'],
+                        (new \DateTime())->add(new \DateInterval('P1M')),
+                        '/'
+                    );
+                    // old path //$this->request->getAttribute('base')
+                    $this->response = $this->response->withCookie($cookie);
+                }
+
+
+                try {
+                    $this->Api->makeRequest($result['data']['token'])
+                        ->post('v1/web/customers/save-browser', [
+                            'form_params' => [
+                                'ip' => env('REMOTE_ADDR'),
+                                //'browser' => env('HTTP_USER_AGENT'),
+                            ]
+                        ]);
+                } catch(\GuzzleHttp\Exception\ClientException $e) {
+
+                }
 
             }
         } catch(\GuzzleHttp\Exception\ClientException $e) {
-
+            //debug($e->getResponse()->getBody()->getContents());exit;
         }
 
-        return $this->response->withType('application/json')
-            ->withStringBody(json_encode($oauth));
+
     }
 
     /**

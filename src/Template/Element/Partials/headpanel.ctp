@@ -381,12 +381,12 @@
                         Atau daftar dengan
                     </div>
                     <div class="col-md-3">
-                        <a class="btn btn-primary btn-block google">
+                        <a class="btn btn-primary btn-block google btn-register-social-media" href="<?= $this->Url->build(['controller' => 'Oauth', '?' => ['provider' => 'google', 'redirect_url' => '/', 'action' => 'register']]); ?>">
                             <img src="<?= $this->Url->build('/images/png/logo-media-social/google.png'); ?>" /> Google
                         </a>
                     </div>
                     <div class="col-md-3">
-                        <a class="btn btn-primary btn-block facebook">
+                        <a class="btn btn-primary btn-block facebook btn-register-social-media" href="<?= $this->Url->build(['controller' => 'Oauth', '?' => ['provider' => 'facebook', 'redirect_url' => '/', 'action' => 'register']]); ?>">
                             Facebook
                         </a>
                     </div>
@@ -640,7 +640,11 @@ $this->Html->script([
 
         $('[data-tooltip="tooltip"]').tooltip();
 
-
+        $('.btn-register-social-media').click(function(e) {
+            e.preventDefault();
+            var href = $(this).attr('href');
+            window.open(href, "", "width=400,height=500");
+        });
 
 
     });
