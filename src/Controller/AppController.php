@@ -103,7 +103,7 @@ class AppController extends Controller
 
         if ($this->request->getSession()->check('Auth.Customers')) {
             if ($this->request->getParam('controller') != 'Auth' && $this->request->getParam('action') != 'logout') {
-                if ($this->request->getSession()->read('Auth.Customers.phone') == '' || $this->request->getSession()->read('Auth.Customers.is_verified') != '1') {
+                if ($this->request->getSession()->read('Auth.Customers.phone') == '' && $this->request->getSession()->read('Auth.Customers.is_verified') != '1') {
                     if ($this->request->getParam('controller') != 'Verifications'
                         && !in_array($this->request->getParam('action'), ['phone', 'phoneOtp'])) {
                         return $this->redirect(['controller' => 'Verifications', 'action' => 'phone', 'prefix' => 'user']);
