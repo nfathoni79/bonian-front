@@ -214,7 +214,7 @@
                     </div>
                     <i class="fas fa-window-close cancel close-chat"></i>
                     <div class="dropdown">
-                        <i class="fas fa-bars chat-menu dropdown-toggle" data-toggle="dropdown"></i>
+                        <i class="fas fa-bars chat-menu dropdown-toggle hide" data-toggle="dropdown"></i>
                         <ul class="dropdown-menu" style="">
                             <li><a href="javascript:void(0);" class="chat-order-detail">Lihat Detail Order</a></li>
                             <li><a href="javascript:void(0);" class="chat-delete-room">Hapus</a></li>

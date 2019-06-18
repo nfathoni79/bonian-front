@@ -34,6 +34,18 @@ $(document).ready(function () {
 
     if ($('.chat-popup').length > 0) {
         const user_id = $('.chat-popup').data('user-id');
+
+        $('.open-chat').click(function(e) {
+            $('.chat-popup').show();
+            $('#list-invoice .invoice-order:first').trigger('click');
+            $('.chat-popup .chat-history').trigger('contentchanged');
+        });
+
+        $('.close-chat').click(function(e) {
+            $('.chat-popup').hide();
+        });
+
+        if (!user_id) return;
         const tokenProvider = new Chatkit.TokenProvider({
             url: basePath + '/login/chat-end-point',
             queryParams: {
@@ -45,15 +57,7 @@ $(document).ready(function () {
             }
         })
 
-        $('.open-chat').click(function(e) {
-            $('.chat-popup').show();
-            $('#list-invoice .invoice-order:first').trigger('click');
-            $('.chat-popup .chat-history').trigger('contentchanged');
-        });
 
-        $('.close-chat').click(function(e) {
-            $('.chat-popup').hide();
-        });
 
         $(document.body).on('click', '.invoice-order' ,function(){
             var roomId = $(this).parents('li').data('room-id');
@@ -107,6 +111,7 @@ $(document).ready(function () {
             }
 
             unreadElement.removeClass('unread');
+            $('.chat-menu').removeClass('hide');
 
             elementMessage.trigger('contentchanged');
 
