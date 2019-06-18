@@ -59,7 +59,7 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                             Produk tidak ditemukan
                         <?php else:?>
 
-                        <div class="content-product-left class-honizol col-md-5 col-sm-12 col-xs-12">
+                        <div class="content-product-left class-honizol col-md-5 col-sm-12 ">
                                 <div class="large-image">
                                     <?php foreach($details['data']['images'] as $image):?>
                                         <img itemprop="image" class="product-image-zoom" src="<?= $this->Url->build($_basePath . 'images/600x600/' . $image); ?>" data-zoom-image="<?= $this->Url->build($_basePath . 'images/600x600/' . $image); ?>" data-image-name="<?= $image;?>" data-price="<?=  $details['data']['price_sale'];?>" title="<?php echo $details['data']['name']; ?>" alt="<?php echo $details['data']['name']; ?>">
@@ -80,7 +80,7 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
 
                             </div>
 
-                            <div class="content-product-right col-md-7 col-sm-12 col-xs-12 tx-mont">
+                            <div class="content-product-right col-md-7 col-sm-12  tx-mont">
 
                                 <form id="form-cart">
                                     <input type="hidden" name="stock_id" value="" id="stockId">
@@ -298,11 +298,11 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
 
 <div class="container mg-r-auto mg-l-auto pd-0">
 
-    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 pd-l-0">
+    <div class="col-lg-9 col-md-9 col-sm-12  pd-l-0">
         <div class="card product-detail pd-0">
             <div class="panel mb-0">
                 <div class="producttab clearfix mg-0">
-                    <div class="tabsslider horizontal-tabs col-xs-12">
+                    <div class="tabsslider horizontal-tabs ">
                         <ul class="nav nav-tabs zl-bg-white bd-none" id="myTab">
                             <li class="active zl-bg-gray"><a data-toggle="tab" href="#tab-deskripsi" class="pd-15-force"><i class="fa fa-file-text tx-18 mg-r-10"></i> Deskripsi Produk</a></li>
                             <li class="item_nonactive zl-bg-gray"><a data-toggle="tab" href="#tab-highlight" class="pd-15-force"><i class="fab fa-dropbox tx-18 mg-r-10"></i> Highlight Produk</a></li>
@@ -797,7 +797,7 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
 
     </div>
 
-    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 pd-r-0">
+    <div class="col-lg-3 col-md-3 col-sm-12  pd-r-0">
         <div class="card product-detail ">
             <div class="panel mb-0">
                 <div class="producttab">

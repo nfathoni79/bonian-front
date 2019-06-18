@@ -76,7 +76,7 @@
 <div class="footer-center">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-4 col-xxs-6 col-xs-12 col-style">
+            <div class="col-lg-3 col-md-3 col-sm-4 col-xxs-6  col-style">
                 <div class="module custom_link ">
                     <div class="module clearfix">
                         <h3 class="footertitle">LAYANAN PELANGGAN</h3>
@@ -90,7 +90,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-4 col-xxs-6 col-xs-12 col-style">
+            <div class="col-lg-3 col-md-3 col-sm-4 col-xxs-6  col-style">
                 <div class="box-information box-footer">
                     <div class="module clearfix">
                         <h3 class="footertitle">Jelajahi Bonian</h3>
@@ -107,7 +107,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-2 col-md-2 col-sm-6 col-xxs-6 col-xs-12 col-style">
+            <div class="col-lg-2 col-md-2 col-sm-6 col-xxs-6  col-style">
                 <div class="box-service box-footer">
                     <div class="module clearfix">
                         <h3 class="footertitle">Ikuti Kami</h3>
@@ -131,7 +131,7 @@
             </div>
 
 
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-style footer-contact">
+            <div class="col-lg-4 col-md-4 col-sm-6  col-style footer-contact">
                 <div class="module">
                     <div class="module footer-contact clearfix">
                         <h3 class="footertitle">DOWNLOAD APLIKASI BONIAN</h3>

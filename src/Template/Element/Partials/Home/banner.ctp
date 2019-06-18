@@ -2,7 +2,7 @@
     <div class="container">
         <div class="block-slide--none">
                 <div class="row">
-                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 block-left">
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 block-left">
                         <div class="module sohomepage-slider ">
                             <div class="yt-content-slider"  data-rtl="yes" data-autoplay="yes" data-autoheight="no" data-delay="4" data-speed="0.6" data-margin="0" data-items_column0="1" data-items_column1="1" data-items_column2="1"  data-items_column3="1" data-items_column4="1" data-arrows="no" data-pagination="yes" data-lazyload="yes" data-loop="no" data-hoverpause="yes">
 
@@ -15,7 +15,7 @@
                             <div class="loadeding"></div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 block-right">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 block-right">
                         <div class="">
                             <div class="block-image-1">
                                 <ul class="static-image">

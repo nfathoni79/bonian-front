@@ -16,7 +16,7 @@
 <!-- Promotion Tabs -->
 <div class="producttab clearfix">
 
-    <div class="tabsslider horizontal-tabs col-xs-12">
+    <div class="tabsslider horizontal-tabs ">
         <ul class="nav nav-tabs nav-promo">
             <li class="ft-left wd-50p tx-center item active" data-active-content=".items-category-71"><a data-toggle="tab" href="#tab-product">Tentang Promo</a></li>
             <li class="ft-left wd-50p tx-center item" data-active-content=".items-category-72"><a data-toggle="tab" href="#tab-rules">Syarat & Ketentuan</a></li>

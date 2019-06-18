@@ -4,7 +4,7 @@
     <div class="header-top hidden-compact">
         <div class="container">
             <div class="row">
-                <div class="header-top-left  col-lg-5 col-sm-5 col-md-6 hidden-xs">
+                <div class="header-top-left  col-lg-5 col-sm-5 col-md-5 hidden-xs">
                     <?php if ($this->request->getSession()->check('Auth.Customers')) : ?>
                     <ul class="list-inlines">
                         <li class="hidden-xs">
@@ -13,7 +13,7 @@
                     </ul>
                     <?php endif; ?>
                 </div>
-                <div class="header-top-right collapsed-block col-lg-7 col-md-6 col-sm-7 col-xs-12">
+                <div class="header-top-right collapsed-block col-lg-7 col-md-7 col-sm-7 ">
                     <ul class="top-link list-inline">
                         <li><a class="link-lg" href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'keuntungan-menjadi-member','prefix' => false]);?>">Menjadi Member Bonian</a></li>
                         <li><a class="link-lg" href="<?= $this->Url->build(['controller' => 'Promotion', 'action' => 'pointRedeem', 'prefix' => false]);?>">Penukaran Point</a></li>
@@ -94,13 +94,13 @@
         <div class="container">
             <div class="row">
                 <!-- Logo -->
-                <div class="navbar-logo col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                <div class="navbar-logo col-lg-2 col-md-2 col-sm-2 col-xs-2">
                     <div class="logo"><a href="/"><?php echo $this->Html->image('/images/png/logo/logo-wide.png', ['alt' => 'Bonian', 'width' => '155']); ?></a></div>
                 </div>
                 <!-- //end Logo -->
 
                 <!-- Main menu -->
-                <div class="header-center-right col-lg-10 col-md-10 col-sm-12 col-xs-12 mg-t-8-force">
+                <div class="header-center-right col-lg-10 col-md-10 col-sm-10 col-xs-10 mg-t-8-force">
                     <!-- Search -->
                     <div class="header_search">
                         <div id="sosearchpro" class="sosearchpro-wrapper so-search">
@@ -117,7 +117,7 @@
                         </div>
                     </div>
 
-                    <div class="block_link hidden-sm hidden-xs">
+                    <div class="block_link">
                         <a href="<?= $this->Url->build(['controller' => 'Wishlist', 'prefix' => 'user']); ?>" id="wishlist-total" class="top-link-wishlist zl-btn-reversed-force zl-btn-hover-red-force" title="Wish List (0) "><i class="fa fa-heart"></i></a>
                     </div>
                     <!--cart-->

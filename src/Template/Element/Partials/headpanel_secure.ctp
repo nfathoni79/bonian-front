@@ -5,16 +5,16 @@
     <div class="header-top hidden-compact">
         <div class="container">
             <div class="row">
-                <div class="header-top-left  col-lg-5 col-sm-5 col-md-6 hidden-xs">
+                <div class="header-top-left  col-lg-5 col-sm-5 col-md-6 ">
                     <?php if ($this->request->getSession()->check('Auth.Customers')) : ?>
                         <ul class="list-inlines">
-                            <li class="hidden-xs">
+                            <li class="">
                                 Happy Shopping, <?= $this->request->getSession()->read('Auth.Customers.first_name'); ?>!
                             </li>
                         </ul>
                     <?php endif; ?>
                 </div>
-                <div class="header-top-right collapsed-block col-lg-7 col-md-6 col-sm-7 col-xs-12">
+                <div class="header-top-right collapsed-block col-lg-7 col-md-6 col-sm-7 ">
                     <ul class="top-link list-inline">
                         <li><a class="link-lg" href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'keuntungan-menjadi-member','prefix' => false]);?>">Menjadi Member Bonian</a></li>
                         <li><a class="link-lg" href="<?= $this->Url->build(['controller' => 'Promotion', 'action' => 'pointRedeem', 'prefix' => false]);?>">Penukaran Point</a></li>
@@ -74,7 +74,7 @@
                         </div><!-- /.navbar-collapse -->
                         </li>
                         <li class="account" id="my_account">
-                            <a href="my-account.html" title="My Account " class="btn-xs dropdown-toggle" data-toggle="dropdown"> <span class="hidden-xs">My Account </span> <span class="fa fa-angle-down"></span></a>
+                            <a href="my-account.html" title="My Account " class="btn-xs dropdown-toggle" data-toggle="dropdown"> <span class="">My Account </span> <span class="fa fa-angle-down"></span></a>
                             <ul class="dropdown-menu ">
                                 <li><a href="<?= $this->Url->build(['controller' => 'Profile', 'prefix' => 'user']); ?>">My Account </a></li>
                                 <li><a href="<?= $this->Url->build('/auth/logout'); ?>">Logout</a></li>
@@ -95,7 +95,7 @@
         <div class="container">
             <div class="row">
                 <!-- Logo -->
-                <div class="navbar-logo col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="navbar-logo col-lg-6 col-md-6 col-sm-12 ">
                     <div class="logo"><a href="/"><?php echo $this->Html->image('/images/png/logo/logo-wide.png', ['alt' => 'Bonian', 'width' => '155']); ?></a> <span class="text-danger ml-4">CHECKOUT</span></div>
 
                 </div>
