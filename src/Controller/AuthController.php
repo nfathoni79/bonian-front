@@ -55,6 +55,11 @@ class AuthController extends AppController
         $this->Auth->allow('logout');
     }
 
+    public function beforeFilter(Event $event)
+    {
+        return parent::beforeFilter($event);
+    }
+
     public function logout()
     {
         $this->disableAutoRender();

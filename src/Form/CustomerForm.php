@@ -22,7 +22,8 @@ class CustomerForm extends Form
             ->addField('gender', ['type', 'string'])
             ->addField('password', ['type' => 'string'])
             ->addField('phone', ['type' => 'string'])
-            ->addField('otp', ['type' => 'string']);
+            ->addField('otp', ['type' => 'string'])
+            ->addField('username', ['type' => 'string']);
     }
 
     protected function _execute(array $data)

@@ -68,6 +68,7 @@ class AppController extends Controller
      */
     public function beforeFilter(Event $event)
     {
+
         if (!$this->request->getCookie('bid')) {
             if (property_exists($this, 'Api')) {
                 try {
@@ -98,8 +99,24 @@ class AppController extends Controller
 
 
             }
-
         }
+
+        if ($this->request->getSession()->check('Auth.Customers')) {
+            if ($this->request->getParam('controller') != 'Auth' && $this->request->getParam('action') != 'logout') {
+                if ($this->request->getSession()->read('Auth.Customers.phone') == '' || $this->request->getSession()->read('Auth.Customers.is_verified') != '1') {
+                    if ($this->request->getParam('controller') != 'Verifications'
+                        && !in_array($this->request->getParam('action'), ['phone', 'phoneOtp'])) {
+                        return $this->redirect(['controller' => 'Verifications', 'action' => 'phone', 'prefix' => 'user']);
+                    }
+                }  else if ($this->request->getSession()->read('Auth.Customers.username') == '') {
+                    if ($this->request->getParam('controller') != 'Verifications'
+                        && $this->request->getParam('action') != 'username') {
+                        return $this->redirect(['controller' => 'Verifications', 'action' => 'username', 'prefix' => 'user']);
+                    }
+                }
+            }
+        }
+
         return parent::beforeFilter($event);
     }
 
