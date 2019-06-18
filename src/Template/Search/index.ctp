@@ -286,7 +286,7 @@
                         <?php endif; ?>
                     </div>
 
-                    <div class="short-by-show form-inline text-right col-md-5 col-sm-9 col-xs-12">
+                    <div class="short-by-show form-inline text-right col-md-5 col-sm-9 ">
                         <div class="form-group short-by">
                             <label class="control-label o-control-label" for="input-sort">Urutkan
                                 berdasarkan</label>
@@ -300,7 +300,7 @@
                         </div>
                     </div>
                     <?php /*
-                    <div class="col-md-2 col-sm-3 col-xs-12 view-mode">
+                    <div class="col-md-2 col-sm-3  view-mode">
 
                         <div class="list-view">
                             <button class="btn btn-default grid active" data-view="grid" data-toggle="tooltip"
@@ -323,7 +323,7 @@
                 <div class="products-list row nopadding-xs so-filter-gird" style="margin-top: 15px;">
                     <?php foreach($products as $product) : ?>
                         <!-- start: item Produk -->
-                        <div class="product-layout products col-lg-3 col-md-4 col-sm-4 col-xxs-6 col-xs-12">
+                        <div class="product-layout products col-lg-3 col-md-4 col-sm-4 col-xxs-6 ">
                             <div class="product-item-container">
                                 <div class="left-block left-b">
                                     <div class="product-card__gallery product-card__left">

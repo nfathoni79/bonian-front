@@ -2,7 +2,7 @@
 <div class="products-list row nopadding-xs so-filter-gird grid" style="margin-top: 15px;">
     <?php foreach($products as $product) : ?>
         <!-- start: item Produk -->
-        <div class="product-layout products col-lg-3 col-md-4 col-sm-4 col-xxs-6 col-xs-12">
+        <div class="product-layout products col-lg-3 col-md-4 col-sm-4 col-xxs-6 ">
             <div class="product-item-container">
                 <div class="left-block left-b">
                     <div class="product-card__gallery product-card__left">

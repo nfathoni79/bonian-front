@@ -9,7 +9,7 @@
 	    </div>
 	</div>
 	<div class="row mg-t-30">
-		<div class="col-sm-8 col-sm-8 col-sm-12 col-xs-12">
+		<div class="col-sm-8 col-sm-8 col-sm-12 ">
 			<div class="card overflow-hidden pd-0">
 				<div class="oh-detail zl-bg-red pd-10 tx-white pd-l-20">
 					<h4 class="tx-medium tx-18">Rincian Belanja</h4>
@@ -200,7 +200,7 @@
 			
 			</div>	
 		</div>
-		<div class="col-sm-4 col-sm-4 col-sm-12 col-xs-12">
+		<div class="col-sm-4 col-sm-4 col-sm-12 ">
 			<div class="card overflow-hidden pd-0">
 				<div class="oh-detail zl-bg-red pd-10 tx-white pd-l-20">
 					<h4 class="tx-medium tx-18">Rincian Pembayaran</h4>

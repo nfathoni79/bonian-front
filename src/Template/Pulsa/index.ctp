@@ -53,7 +53,7 @@
             <div id="content" class="col-sm-12 item-article">
                 <!-- Product Tabs -->
                 <div class="producttab">
-                    <div class="tabsslider horizontal-tabs col-xs-12">
+                    <div class="tabsslider horizontal-tabs ">
                         <ul class="nav nav-tabs">
                             <li class="item pulsa active"><a data-toggle="tab" href="#tab-1"><img src="images/digital_product/pulsa.svg">Pulsa</a></li>
                             <li class="item paket-data"><a data-toggle="tab" href="#tab-2"><img src="images/digital_product/paket-data.svg">Paket Data</a></li>

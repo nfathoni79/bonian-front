@@ -31,7 +31,7 @@
 
 
                             <!-- start: item Produk -->
-                            <div class="product-layout col-lg-3 col-md-4 col-sm-4 col-xxs-6 col-xs-12">
+                            <div class="product-layout col-lg-3 col-md-4 col-sm-4 col-xxs-6 ">
                                 <div class="product-item-container">
                                     <div class="left-block left-b">
                                         <div class="product-image-container">

@@ -51,7 +51,7 @@
                 	</div>
                     <hr class="line">
                     <div class="row pd-10">
-	                    <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12 pd-0">
+	                    <div class="col-lg-8 col-md-8 col-sm-6  pd-0">
 		                    <div class="tx-medium">
 		                    	No. Virtual Account:
 		                    </div>
@@ -59,7 +59,7 @@
 		                    	<?= $data['va_number']; ?>
 	                    	</div>
 	                    </div>
-                    	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mg-t-8">
+                    	<div class="col-lg-4 col-md-4 col-sm-6  mg-t-8">
                     		<a href="#" class="btn zl-btn-default wd-100p zl-btn-hover-red ">Salin</a>
                     	</div>
 	                </div>
