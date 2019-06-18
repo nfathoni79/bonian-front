@@ -643,7 +643,7 @@ $this->Html->script([
         $('.btn-register-social-media').click(function(e) {
             e.preventDefault();
             var href = $(this).attr('href');
-            window.open(href, "", "width=400,height=500");
+            window.open(href, "", "width=600,height=500");
         });
 
 
