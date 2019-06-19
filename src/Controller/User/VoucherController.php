@@ -26,9 +26,9 @@ class VoucherController  extends AuthController
                 $voucher = $response['result']['data'];
                 $paging = $response['paging'];
             }
-        } catch(\GuzzleHttp\Exception\ClientException $e) {
-            $this->Api->handle($e);
-            $response = json_decode($e->getResponse()->getBody()->getContents(), true);
+        } catch(\Exception $e) {
+            // $this->Api->handle($e);
+            // $response = json_decode($e->getResponse()->getBody()->getContents(), true);
         }
         if ($paging && $paging['count'] > 0) {
             $pagination = new Pagination($paging['count'], $paging['perPage'], $paging['page']);
