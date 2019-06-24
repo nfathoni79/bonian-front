@@ -550,12 +550,15 @@ $this->Html->script([
         });
 
         formReg.submit(function(e) {
+            $('.g-recaptcha-error-message').remove();
             var ajaxRequest = new ajaxValidation(formReg);
             ajaxRequest.post(formReg.attr('action'), formReg.find(':input'), function(response, data) {
                 if (response.success) {
                     location.href = '<?= $this->Url->build(); ?>';
                 } else {
-
+                    if (data.error && (data.error['g-recaptcha-response'] && data.error['g-recaptcha-response']['_empty'])) {
+                        $('div.g-recaptcha').append('<div class="help-block g-recaptcha-error-message">'+data.error['g-recaptcha-response']['_empty']+'</div>');
+                    }
                 }
             });
             e.preventDefault(); // avoid to execute the actual submit of the form.
