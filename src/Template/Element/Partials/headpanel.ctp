@@ -24,7 +24,7 @@
                         <?php else : ?>
                         <li class="zl-notif">
                             <!-- Collect the nav links, forms, and other content for toggling -->
-                            <div id="bs-example-navbar-collapse-1">
+                            <div id="bs-notification-navbar-dropdown">
                                 <ul>
                                     <li class="dropdown">
                                         <span class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-bell mg-r-10"></i>Notifikasi (<span class="notification-count"><?= $_notifications; ?></span>)</span>

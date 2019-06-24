@@ -3,8 +3,8 @@
 $(document).ready(function() {
     var basePath = $('meta[name="_basePath"]').attr('content');
     var baseImagePath = $('meta[name="_baseImagePath"]').attr('content');
-
-    $('.zl-notif .dropdown-toggle').mouseenter(function mouseEnter(e) {
+    //.zl-notif .dropdown-toggle
+    $('#bs-notification-navbar-dropdown').mouseenter(function mouseEnter(e) {
         if(!$(this).data('loaded') || $(this).data('loaded') == 0) {
             $(this).data('loaded', 1);
             var self = this;
