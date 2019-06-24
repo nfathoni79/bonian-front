@@ -558,8 +558,11 @@ $this->Html->script([
                 } else {
                     if (data.error && (data.error['g-recaptcha-response'] && data.error['g-recaptcha-response']['_empty'])) {
                         $('div.g-recaptcha').append('<div class="help-block g-recaptcha-error-message">'+data.error['g-recaptcha-response']['_empty']+'</div>');
+                    } else {
+                        grecaptcha.reset();
                     }
                 }
+
             });
             e.preventDefault(); // avoid to execute the actual submit of the form.
         });
