@@ -194,7 +194,7 @@
 <div class="chat-wrapper">
     <button class="open-button open-chat"><i class="fas fa-comment"></i><span class="chat__badge" style="display:none;">0</span></button>
 
-    <div class="chat-popup" id="myForm" data-user-id="<?= $this->request->getSession()->read('Auth.Customers.username'); ?>">
+    <div class="chat-popup" id="myForm" data-instance-locator="<?= Cake\Core\Configure::read('ChatKit.instance_locator') ?>" data-user-id="<?= $this->request->getSession()->read('Auth.Customers.username'); ?>">
       <form action="" class="form-container">
         <div class="zl-chat-container clearfix">
             <div class="people-list" id="people-list">

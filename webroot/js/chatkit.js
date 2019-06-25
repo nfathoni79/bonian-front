@@ -404,7 +404,7 @@ $(document).ready(function () {
         const noopLogger = (...items) => {}
 
         const chatManager = new Chatkit.ChatManager({
-            instanceLocator: 'v1:us1:643558e4-7a90-485c-b398-56de24a33bff',
+            instanceLocator: $('.chat-popup').data('instance-locator'),
             tokenProvider: tokenProvider,
             userId: user_id
         });
