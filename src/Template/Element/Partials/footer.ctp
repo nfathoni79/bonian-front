@@ -81,7 +81,7 @@
                     <div class="module clearfix">
                         <h3 class="footertitle">LAYANAN PELANGGAN</h3>
                         <ul id="menu-our-shops" class="menu">
-                            <li><a class="item-link" href="https://zolaku-help.nevsky.tech"><span class="menu-title">Pusat Bantuan</span></a></li>
+                            <li><a class="item-link" href="http://zolaku-help.nevsky.tech"><span class="menu-title">Pusat Bantuan</span></a></li>
                             <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'pembayaran','prefix' => false]);?>">Pembayaran</a></li>
                             <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'point-bonian','prefix' => false]);?>">Point Bonian</a></li>
                             <li><a href="<?php echo $this->Url->build(['controller' => 'Pages', 'action' => 'index', 'lacak-pesanan','prefix' => false]);?>">Lacak Pesanan</a></li>
