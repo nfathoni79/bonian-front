@@ -5,6 +5,7 @@ use Cake\Controller\Component;
 use Cake\Controller\ComponentRegistry;
 use Cake\Core\Configure;
 use GuzzleHttp\Client;
+use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\RequestOptions;
 
 /**
@@ -41,6 +42,8 @@ class ApiComponent extends Component
 
     protected $_headers = [];
 
+    protected $_cookies = [];
+
     /**
      * initialize components
      * @param array $config
@@ -55,6 +58,14 @@ class ApiComponent extends Component
     {
         $this->_headers[$name] = $value;
         return $this;
+    }
+
+    public function addCookies($cookie, $domain = '/') {
+        $api = Configure::read('Api');
+        $parse_url = parse_url($api[$this->_defaultConfig['provider']]);
+        $domain = isset($parse_url['host']) ? $parse_url['host'] : $domain;
+        $this->_cookies = CookieJar::fromArray($cookie, $domain);
+        return $this->_cookies;
     }
 
     /**
@@ -89,7 +100,8 @@ class ApiComponent extends Component
             'base_uri' => $this->base_uri,
             // You can set any number of default request options.
             'timeout'  => 30.0,
-            'headers' => $headers
+            'headers' => $headers,
+            'cookies' => $this->_cookies
         ]);
     }
 

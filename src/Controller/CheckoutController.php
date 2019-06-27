@@ -54,6 +54,7 @@ class CheckoutController  extends AuthController
         $this->viewBuilder()->setLayout('secure');
         $errors = [];
         try {
+            $this->Api->addCookies(['share_product' => $this->request->getCookie('share_product')]); //required for share product
             $claim = $this->Api->makeRequest($this->Auth->user('token'))
                 ->get('v1/web/checkout', [
                     'form_params' => []
@@ -162,6 +163,7 @@ class CheckoutController  extends AuthController
         //return $this->response->withType('application/json')
         //    ->withStringBody($error);
         try {
+            $this->Api->addCookies(['share_product' => $this->request->getCookie('share_product')]); //required for share product
             $card = $this->Api->makeRequest($this->Auth->user('token'))
                 ->post('v1/web/checkout/process', [
                     'form_params' => $this->request->getData()

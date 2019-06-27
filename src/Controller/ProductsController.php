@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Core\Configure;
+use Cake\Http\Cookie\Cookie;
 use Cake\I18n\Number;
 use Pagination\Pagination;
 /**
@@ -81,6 +82,13 @@ class ProductsController extends AuthController
                         ]);
                     if ($response = $this->Api->success($share)) {
                         $json = $response->parse();
+                        $cookie = new Cookie(
+                            'share_product',
+                            $json['result']['data'],
+                            (new \DateTime())->add(new \DateInterval('P7D')),
+                            '/' //$this->request->getAttribute('base')
+                        );
+                        $this->response = $this->response->withCookie($cookie);
                     }
                 } catch(\GuzzleHttp\Exception\ClientException $e) {
 
