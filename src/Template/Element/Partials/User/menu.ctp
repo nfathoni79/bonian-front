@@ -25,7 +25,7 @@
                 if (is_array($notification_categories)) {
                     foreach($notification_categories as $val) {
                         $notificationChildren[] = [
-                            'title' => $val['name'],
+                            'title' => ucfirst($val['name']),
                             'url' => $this->Url->build(['controller' => 'Notification', 'action' => 'index', 'prefix' => 'user', $val['id']]),
                             'controller' => 'Notification',
                             'action' => 'index',
