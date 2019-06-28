@@ -13,8 +13,8 @@
                         <div class="ltabs-tabs-wrap">
                             <span class="ltabs-tab-selected">Penjualan Terbaik</span> <span class="ltabs-tab-arrow">▼</span>
                             <ul class="ltabs-tabs cf font-ct list-sub-cat">
-                                <li class="ltabs-tab tab-sel toptab"data-category-id="bestseller" data-url="home/top/" data-active-content=".items-category-bestseller"> <span class="ltabs-tab-label">Penjualan Terbaik</span> </li>
-                                <li class="ltabs-tab toptab" data-category-id="popularproduct" data-url="home/top/" data-active-content=".items-category-popularproduct"> <span class="ltabs-tab-label">Produk Populer</span> </li>
+                                <li class="ltabs-tab toptab"data-category-id="bestseller" data-url="home/top/" data-active-content=".items-category-bestseller"> <span class="ltabs-tab-label">Penjualan Terbaik</span> </li>
+                                <li class="ltabs-tab tab-sel toptab" data-category-id="popularproduct" data-url="home/top/" data-active-content=".items-category-popularproduct"> <span class="ltabs-tab-label">Produk Populer</span> </li>
                                 <li class="ltabs-tab toptab" data-category-id="arrivals" data-url="home/top/" data-active-content=".items-category-arrivals"> <span class="ltabs-tab-label">Produk Terbaru</span> </li>
                             </ul>
                         </div>
@@ -25,7 +25,7 @@
                         <!--Begin Items-->
 
                             <!-- Best seller-->
-                            <div class="ltabs-items ltabs-items-selected items-category-bestseller" data-total="15">
+                            <div class="ltabs-items items-category-bestseller" data-total="15">
 
                                 <div id="product-container-layout">
                                     <div class="products-list row nopadding-xs so-filter-gird grid pd-20">
@@ -109,7 +109,7 @@
                             <!-- Best seller-->
 
                             <!-- Popular Products -->
-                            <div class="ltabs-items items-category-popularproduct grid" data-total="15">
+                            <div class="ltabs-items ltabs-items-selected items-category-popularproduct grid" data-total="15">
 
                                 <div id="product-container-layout">
                                     <div class="products-list row nopadding-xs so-filter-gird grid pd-20">
