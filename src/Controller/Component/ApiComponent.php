@@ -101,7 +101,8 @@ class ApiComponent extends Component
             // You can set any number of default request options.
             'timeout'  => 30.0,
             'headers' => $headers,
-            'cookies' => $this->_cookies
+            'cookies' => $this->_cookies,
+			'verify' => false
         ]);
     }
 
