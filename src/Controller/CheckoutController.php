@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AuthController;
+use Cake\Http\Cookie\Cookie;
 use Cake\Validation\Validator;
 
 class CheckoutController  extends AuthController
@@ -170,6 +171,9 @@ class CheckoutController  extends AuthController
                 ]);
             if ($response = $this->Api->success($card)) {
                 $error = $response->parse();
+                //delete cookie after success
+                $this->response = $this->response->withExpiredCookie(new Cookie('share_product'));
+
             }
         } catch(\GuzzleHttp\Exception\ClientException $e) {
             $this->Api->handle($e);
