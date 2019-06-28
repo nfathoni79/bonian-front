@@ -247,6 +247,7 @@ body {
 
 .products-list .product-layout{
     padding: 5px;
+    min-height: 385px;
 }
 
 .products-list .product-layout .product-item-container {
