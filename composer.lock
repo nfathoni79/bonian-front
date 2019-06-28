@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8053ef31ffca02f3afe71a309a960647",
+    "content-hash": "6a197cb9b43893df9fb456a787f18995",
     "packages": [
         {
             "name": "aura/intl",
@@ -526,6 +526,69 @@
                 "php mobile detect"
             ],
             "time": "2018-09-01T15:05:15+00:00"
+        },
+        {
+            "name": "muffin/throttle",
+            "version": "1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/UseMuffin/Throttle.git",
+                "reference": "70d070714c380c4804b03f2c86418a327376155c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/UseMuffin/Throttle/zipball/70d070714c380c4804b03f2c86418a327376155c",
+                "reference": "70d070714c380c4804b03f2c86418a327376155c",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "^3.5"
+            },
+            "require-dev": {
+                "cakephp/cakephp-codesniffer": "^3.0",
+                "phpunit/phpunit": "^5.7.14|^6.0"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Muffin\\Throttle\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jad Bitar",
+                    "homepage": "http://jadb.io",
+                    "role": "Author"
+                },
+                {
+                    "name": "ADmad",
+                    "homepage": "https://github.com/ADmad",
+                    "role": "Author"
+                },
+                {
+                    "name": "Others",
+                    "homepage": "https://github.com/usemuffin/throttle/graphs/contributors"
+                },
+                {
+                    "name": "Bravo Kernel",
+                    "homepage": "https://github.com/bravo-kernel",
+                    "role": "Contributor"
+                }
+            ],
+            "description": "(API) Rate limiting requests in CakePHP 3",
+            "homepage": "https://github.com/usemuffin/throttle",
+            "keywords": [
+                "Rate",
+                "cakephp",
+                "limit",
+                "muffin",
+                "throttle"
+            ],
+            "time": "2019-06-12T08:34:31+00:00"
         },
         {
             "name": "php-pagination/php-pagination",

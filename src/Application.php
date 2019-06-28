@@ -20,6 +20,8 @@ use Cake\Error\Middleware\ErrorHandlerMiddleware;
 use Cake\Http\BaseApplication;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
+use Muffin\Throttle\Middleware\ThrottleMiddleware;
+use Psr\Http\Message\ServerRequestInterface;
 
 /**
  * Application setup class.
@@ -34,6 +36,8 @@ class Application extends BaseApplication
      */
     public function bootstrap()
     {
+
+
         // Call parent to load bootstrap from files.
         parent::bootstrap();
 
@@ -53,6 +57,10 @@ class Application extends BaseApplication
          */
         if (Configure::read('debug')) {
             $this->addPlugin(\DebugKit\Plugin::class);
+        }
+
+        if (Configure::read('throttle')) {
+            $this->addPlugin('Muffin/Throttle');
         }
     }
 
@@ -79,6 +87,23 @@ class Application extends BaseApplication
             // pass null as cacheConfig, example: `new RoutingMiddleware($this)`
             // you might want to disable this cache in case your routing is extremely simple
             ->add(new RoutingMiddleware($this, '_cake_routes_'));
+
+        $throttle = Configure::read('throttle');
+        if ($throttle) {
+            $throttleMiddleware = new ThrottleMiddleware([
+                'response' => [
+                    'body' => 'Rate limit exceeded'
+                ],
+                'interval' => $throttle['interval'],
+                'limit' => $throttle['limit'],
+                'identifier' => function (ServerRequestInterface $request) {
+                    return $request->clientIp();
+                }
+            ]);
+
+            $middlewareQueue->add($throttleMiddleware);
+        }
+
 
         return $middlewareQueue;
     }

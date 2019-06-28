@@ -11,6 +11,7 @@
         "cakephp/plugin-installer": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
         "mobiledetect/mobiledetectlib": "2.*",
+        "muffin/throttle": "^1.2",
         "php-pagination/php-pagination": "^2.0"
     },
     "require-dev": {
