@@ -62,7 +62,7 @@ $this->Html->script([
             title: 'Sponsor',
             target: 2,
             data: function (item) {
-                return item.refferal ? item.refferal.username : '-'; 
+                return item.refferal ? item.refferal.username : '-';
             }
         },
         {
