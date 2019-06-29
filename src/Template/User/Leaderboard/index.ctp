@@ -1,3 +1,4 @@
+
 <div class="container">
     <div class="block block_0">
         <div class="row">
@@ -15,12 +16,27 @@
                                 <div class="alert alert-info">
                                     Anda tidak dapat melakukan follow, apabila refferal akun anda sudah terdaftar ke jaringan.
                                 </div>
+
+                                <div class="row">
+                                    <?php echo $this->Form->create(null, ['id' => 'filter']);?>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <?php echo $this->Form->control('search', ['div' => false, 'label' => false,  'value' => @$this->request->getQuery('search'),'class' => 'form-control', 'placeholder' => 'Username, Nama Depan, Nama Belakang, Kode Refferal ...']);?>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <button class="btn btn-md btn-danger btn-radius"><i class="fa fa-search"></i></button>
+                                    </div>
+                                    <?php echo $this->Form->end();?>
+                                </div>
+
                                 <table id="table-leaderboard" class="table table-striped table-hover table-red" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>Username</th>
+                                            <th>Nama Lengkap</th>
+                                            <th>Kode Refferal</th>
                                             <th>Jumlah Follower</th>
-                                            <th>Last Active</th>
                                             <th>Follow</th>
                                         </tr>
                                     </thead>
@@ -28,9 +44,10 @@
                                         <?php foreach($leaderboard as $val):?>
                                         <tr>
                                             <td><?= $val['username']; ?></td>
-                                            <td><?= $val['count']; ?></td>
-                                            <td><?= $val['last_active']; ?></td>
-                                            <?php if($val['refferal_id'] != $reff_cus_id):?>
+                                            <td><?= $val['full_name']; ?></td>
+                                            <td><?= $val['reffcode']; ?></td>
+                                            <td><?= $val['total']; ?></td>
+                                            <?php if($val['id'] != $reff_cus_id):?>
                                                 <?php if($reff_cus_id == 0):?>
                                                     <td><a class="btn btn-danger btn-radius btn-sm btn-confirm"  href="javascript:void(0);" data-reffcode="<?= $val['reffcode'];?>" data-username="<?= $val['username'];?>"><span>Follow</span></a></td>
                                                 <?php else:?>

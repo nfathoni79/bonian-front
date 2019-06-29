@@ -32,13 +32,21 @@ class LeaderboardController extends AuthController{
 
         $reff_cus_id = $this->getProfile()['refferal_customer_id'];
 
+        $params = $this->request->getQuery('search', '');
+
+        if($this->request->is('Post')){
+            $params['search'] = $this->request->getData('search', '');
+            return $this->redirect(['action' => 'index', 'prefix' => 'user', '?' => $params]);
+        }
+
         $response = [];
         try {
             $leaderboard = $this->Api->makeRequest($this->Auth->user('token'))
                 ->get('v1/web/leaderboards', [
                     'query' => [
-                        'limit' => 100,
-                        'page' => $this->request->getQuery('page', 1)
+                        'limit' => 5,
+                        'page' => $this->request->getQuery('page', 1),
+                        'search' => $params
                     ]
                 ]);
             if ($response = $this->Api->success($leaderboard)) {
