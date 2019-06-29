@@ -44,7 +44,7 @@ class LeaderboardController extends AuthController{
             $leaderboard = $this->Api->makeRequest($this->Auth->user('token'))
                 ->get('v1/web/leaderboards', [
                     'query' => [
-                        'limit' => 5,
+                        'limit' => 10,
                         'page' => $this->request->getQuery('page', 1),
                         'search' => $params
                     ]
