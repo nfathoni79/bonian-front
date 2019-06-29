@@ -55,14 +55,14 @@ $this->Html->script([
             title: 'Username',
             target: 1,
             data: function (item) {
-                return item.customer.username;
+                return item.customer ? item.customer.username : '-';
             }
         },
         {
             title: 'Sponsor',
             target: 2,
             data: function (item) {
-                return item.refferal.username;
+                return item.refferal ? item.refferal.username : '-'; 
             }
         },
         {
