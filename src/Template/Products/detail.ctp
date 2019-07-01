@@ -128,9 +128,10 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                     </div>
                                     <div class="product_page_price price" itemprop="offerDetails" itemscope="">
                                         <span class="price-new"><span itemprop="price" id="price-special">Rp.<?php echo $this->Number->format($details['data']['price_sale']); ?></span></span>
+                                        <?php if($details['data']['percent'] > 0):?>
                                         <span class="price-old mg-t-3" id="price-old">Rp.<?php echo $this->Number->format($details['data']['price']); ?></span>
                                         <span class="label-product label-sale"><?= $details['data']['percent']; ?>%</span>
-
+                                        <?php endif;?>
                                         <?php if($details['data']['is_flash_sale']):?>
                                             <span class="label-product label-sale">On flash sale now</span>
                                         <?php endif;?>
