@@ -767,7 +767,9 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                                 <?php  break; endforeach; ?>
                                             </a>
                                         </div>
+                                        <?php if($vals['product']['percent'] > 0):?>
                                         <div class="box-label"> <span class="product-ribbon"> <?= $vals['product']['percent']; ?>% </span></div>
+                                        <?php endif;?>
 
                                     </div>
                                     <div class="right-block right-b">
