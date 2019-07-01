@@ -45,7 +45,11 @@ $(document).ready(function() {
 				return false;
 			}
 			$(this).addClass('active').siblings().removeClass('active');
-			$(this).find(':input').prop('checked',true);
+			var radio = $(this).find(':input').prop('checked',true);
+			var sku = radio.data('sku');
+			if (sku) {
+				$(`a[data-sku="${sku}"]`).trigger('click');
+			}
 			// var selected = $(this).find(':input:checked').val();
 			var selected = $(this).data('label');
 			var variant = $(this).data('option');

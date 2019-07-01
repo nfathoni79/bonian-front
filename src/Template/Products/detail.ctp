@@ -72,7 +72,16 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                 <div id="thumb-slider" class="yt-content-slider full_slider owl-drag" data-rtl="yes" data-autoplay="no" data-autoheight="no" data-delay="4" data-speed="0.6" data-margin="10" data-items_column0="4" data-items_column1="3" data-items_column2="5"  data-items_column3="3" data-items_column4="2" data-arrows="yes" data-pagination="no" data-lazyload="yes" data-loop="no" data-hoverpause="yes">
 
                                     <?php foreach($details['data']['images'] as $k => $image):?>
-                                    <a data-index="<?php echo $k;?>" class="img thumbnail " data-image="<?= $this->Url->build($_basePath . 'images/600x600/' . $image); ?>" title="Chicken swinesha">
+                                    <?php
+                                        $sku = '';
+                                        foreach($details['data']['variant'] as $key => $variant)  {
+                                            if (in_array($image, $variant['images'])) {
+                                                $sku = $variant['sku'];
+                                                break;
+                                            }
+                                        }
+                                    ?>
+                                    <a data-index="<?php echo $k;?>" class="img thumbnail " data-sku="<?=$sku; ?>" data-image="<?= $this->Url->build($_basePath . 'images/600x600/' . $image); ?>" title="Chicken swinesha">
                                         <img src="<?= $this->Url->build($_basePath . 'images/90x90/' . $image); ?>" title="<?php echo $details['data']['name']; ?>" alt="<?php echo $details['data']['name']; ?>">
                                     </a>
                                     <?php endforeach;?>
@@ -235,9 +244,20 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                             <div class="color-form-wrapper">
                                                 <div class="form-group">
                                                     <?php foreach($vals as $k => $v):?>
+                                                        <?php
+                                                        $sku = '';
+                                                        foreach($details['data']['variant'] as $variant) {
+                                                            foreach($variant['options'] as $k2 => $opt) {
+                                                                if ($key == $k2 && $opt == $v) {
+                                                                    $sku = $variant['sku'];
+                                                                    break;
+                                                                }
+                                                            }
+                                                        }
+                                                        ?>
                                                         <!-- active - inactive-->
                                                         <div class="color-item zl-color <?php echo $key;?>" data-item="<?php echo $i;?>" data-option="<?php echo $key;?>" data-label="<?php echo $v;?>">
-                                                            <input type="radio" name="<?php echo strtolower($key);?>" value="<?= $v;?>">
+                                                            <input type="radio" data-sku="<?= $sku; ?>" name="<?php echo strtolower($key);?>" value="<?= $v;?>">
                                                             <label class="color-name"><?= $v;?></label>
                                                         </div>
                                                     <?php endforeach;?>

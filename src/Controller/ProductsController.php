@@ -62,6 +62,7 @@ class ProductsController extends AuthController
             $error = json_decode($e->getResponse()->getBody()->getContents(), true);
             $details = ['is_error' => true, 'message' => 'Produk tidak ditemukan'];
         }//debug($this->request->getSession()->read());exit;
+        //debug($details);exit;
  
 		$this->set(compact('details')); 
 
