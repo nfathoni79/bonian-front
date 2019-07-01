@@ -14,7 +14,7 @@
                         <div class="ltabs-tabs-wrap">
                             <span class="ltabs-tab-selected">Penjualan Terbaik</span> <span class="ltabs-tab-arrow">▼</span>
                             <ul class="ltabs-tabs cf font-ct list-sub-cat">
-                                <?php if(is_array($topProducts)):?>
+                                <?php if(!empty($topProducts)):?>
                                     <li class="ltabs-tab tab-sel toptab"data-category-id="bestseller" data-url="home/top/" data-active-content=".items-category-bestseller"> <span class="ltabs-tab-label">Penjualan Terbaik</span> </li>
                                     <li class="ltabs-tab toptab" data-category-id="popularproduct" data-url="home/top/" data-active-content=".items-category-popularproduct"> <span class="ltabs-tab-label">Produk Populer</span> </li>
                                 <?php else:?>
@@ -29,7 +29,7 @@
                         <div class="ltabs-items-container">
                         <!--Begin Items-->
 
-                            <?php if(is_array($topProducts)):?>
+                            <?php if(!empty($topProducts)):?>
 
                                 <!-- Best seller-->
                                 <div class="ltabs-items  ltabs-items-selected  items-category-bestseller" data-total="15">
