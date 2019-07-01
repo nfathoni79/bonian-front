@@ -246,19 +246,19 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                                 <div class="form-group">
                                                     <?php foreach($vals as $k => $v):?>
                                                         <?php
-                                                        $sku = '';
+                                                        $sku = [];
                                                         foreach($details['data']['variant'] as $variant) {
                                                             foreach($variant['options'] as $k2 => $opt) {
                                                                 if ($key == $k2 && $opt == $v) {
-                                                                    $sku = $variant['sku'];
-                                                                    break;
+                                                                    $sku[] = $variant['sku'];
+                                                                    //break;
                                                                 }
                                                             }
                                                         }
                                                         ?>
                                                         <!-- active - inactive-->
                                                         <div class="color-item zl-color <?php echo $key;?>" data-item="<?php echo $i;?>" data-option="<?php echo $key;?>" data-label="<?php echo $v;?>">
-                                                            <input type="radio" data-sku="<?= $sku; ?>" name="<?php echo strtolower($key);?>" value="<?= $v;?>">
+                                                            <input type="radio" data-sku="<?= implode(' ', $sku); ?>" name="<?php echo strtolower($key);?>" value="<?= $v;?>">
                                                             <label class="color-name"><?= $v;?></label>
                                                         </div>
                                                     <?php endforeach;?>

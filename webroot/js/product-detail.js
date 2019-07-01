@@ -46,10 +46,21 @@ $(document).ready(function() {
 			}
 			$(this).addClass('active').siblings().removeClass('active');
 			var radio = $(this).find(':input').prop('checked',true);
-			var sku = radio.data('sku');
-			if (sku) {
-				$(`a[data-sku="${sku}"]`).trigger('click');
+			var skus = [];
+			$('.zl-color.active').each(function() {
+				var sku = String($(this).find('input:checked').data('sku'));
+				if (sku) {
+					skus.push(sku.split(/\s+/i));
+				}
+			});
+
+			if (skus.length > 0) {
+				var intersection = _.intersection.apply(this, skus);
+				if (intersection) {
+					$(`a[data-sku="${intersection[0]}"]`).trigger('click');
+				}
 			}
+
 			// var selected = $(this).find(':input:checked').val();
 			var selected = $(this).data('label');
 			var variant = $(this).data('option');
