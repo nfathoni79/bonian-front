@@ -57,7 +57,7 @@ $(document).ready(function() {
 			if (skus.length > 0) {
 				var intersection = _.intersection.apply(this, skus);
 				if (intersection) {
-					$(`a[data-sku="${intersection[0]}"]`).trigger('click');
+					$(`a[data-sku="${intersection[0]}"]:first`).trigger('click');
 				}
 			}
 
