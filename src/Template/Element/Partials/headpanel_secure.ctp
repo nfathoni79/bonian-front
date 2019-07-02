@@ -135,7 +135,7 @@
                 ]); ?>
                 <div class="form-group">
                     <label for="input-email">Email atau nomor HP</label>
-                    <input type="text" name="email" value="" placeholder="Masukan nomor telepon di awali +62" class="form-control" />
+                    <input type="text" name="email" value="" placeholder="Masukkan email atau nomor telepon" class="form-control" />
                 </div>
 
                 <div class="form-group">
