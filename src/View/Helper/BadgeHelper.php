@@ -12,19 +12,19 @@ class BadgeHelper extends Helper
         $badges = [
             'silver' => [
                 'min' => 1,
-                'max' => 30
+                'max' => 500
             ],
             'blue' => [
-                'min' => 31,
-                'max' => 50
+                'min' => 501,
+                'max' => 1500
             ],
             'gold' => [
-                'min' => 51,
-                'max' => 100
+                'min' => 1501,
+                'max' => 3000
             ],
             'diamond' => [
-                'min' => 101,
-                'max' => 5000
+                'min' => 3001,
+                'max' => 10000
             ],
         ];
         $badge = '';
