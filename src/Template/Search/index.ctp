@@ -932,7 +932,7 @@ $this->Html->script([
                 min: 0,
                 max: max_price,
                 values : window.startRangeValues,
-                step : 1000,
+                step : 10,
 
                 slide : function(event, ui){
 
