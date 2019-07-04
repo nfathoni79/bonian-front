@@ -9115,7 +9115,9 @@ div.module.custom-listingtab {
   .common-home .slider-full {
     padding-top: 20px;
     padding-bottom: 20px;
-    background-color: rgba(220, 80, 84, 1); }
+    /*background-color: rgba(220, 80, 84, 1); */
+    background-color: #a51f27; 
+  }
   .common-home .container-megamenu.vertical .vertical-wrapper {
     display: block; }
   @media (min-width: 1200px) {
