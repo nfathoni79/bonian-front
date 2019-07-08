@@ -53,7 +53,11 @@ class ProductsController extends AuthController
         $this->viewBuilder()->setLayout('detail');
         try {
             $login = $this->Api->makeRequest(null, true)
-                ->get('v1/products/'.$slug);
+                ->get('v1/products/'.$slug, [
+                    'query' => [
+                        'counter' => 0
+                    ]
+                ]);
             if ($response = $this->Api->success($login)) {
                 $json = $response->parse();
                 $details = ['is_error' => false, 'data' => $json['result']['data'], 'variant' => ['warna', 'ukuran']];
