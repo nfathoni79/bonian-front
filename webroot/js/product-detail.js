@@ -247,31 +247,42 @@ $(document).ready(function() {
 	}
 
 	function triggerCheckPrice(){
-		var warna =  $('.zl-color').find(':input[name="warna"]:checked').val();
-		var ukuran =  $('.zl-color').find(':input[name="ukuran"]:checked').val();
-		var stock = $('input[name="stock"]:checked').val();
-		$.each(data.variant, function(key, value){
-			if((value.options.Warna == warna) && (value.options.Ukuran == ukuran) ){
-				if(value.price != 0){
-					$('.text-add-price').html('Rp.'+addCommas(value.price))
-					$('.add-price').show();
-				}else{
-					$('.add-price').hide();
-				}
-				$('#priceId').val(value.price_id);
-				$('#sku').val(value.sku);
-				$.each(value.stocks, function(k,v){
-					if(v.branch_name == stock){
-						$('#stockId').val(v.stock_id);
-						return false;
-					}
-				})
 
-				$.each(value.stocks, function(k,v){
-					$('.wh-'+v.branch_name).html(v.stock+' Stock');
-				})
+		var opt = {};
+		for(var key in data.options) {
+			var selected = $('.zl-color').find(`:input[name="${key.toLowerCase()}"]:checked`).val();
+			if (selected) {
+				opt[key] = selected;
 			}
-		})
+
+		}
+
+		//var warna =  $('.zl-color').find(':input[name="warna"]:checked').val();
+		//var ukuran =  $('.zl-color').find(':input[name="ukuran"]:checked').val();
+		var stock = $('input[name="stock"]:checked').val();
+
+		var index = _.filter(data.variant, {options: opt});
+		if (index.length === 1) {
+			var value = index[0];
+			if(value.price != 0){
+				$('.text-add-price').html('Rp.'+addCommas(value.price))
+				$('.add-price').show();
+			}else{
+				$('.add-price').hide();
+			}
+			$('#priceId').val(value.price_id);
+			$('#sku').val(value.sku);
+			$.each(value.stocks, function(k,v){
+				if(v.branch_name == stock){
+					$('#stockId').val(v.stock_id);
+					return false;
+				}
+			});
+
+			$.each(value.stocks, function(k,v){
+				$('.wh-'+v.branch_name).html(v.stock+' Stok');
+			});
+		}
 	}
 
 	function comboEnabeled(variant, selected, item){
