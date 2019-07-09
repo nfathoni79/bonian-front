@@ -307,7 +307,7 @@ body {
 .c-header__bg {
     min-height: 250px;
     min-width: 100%;
-    background-color: #dc5054;
+    background-color: #a52427;
     background-image: url(../images/bg-cart.png)
 }
 
@@ -349,6 +349,14 @@ body {
     background-color: #fff6f6;
     border-radius: 10px;
     border: 1px solid #e2e2e2
+}
+
+.c-cart-main .c-cart-card__item.cart-error{
+    background-color: #eaeaea;  
+}
+
+.c-cart-main .c-cart-card__item.cart-error .zl-tx-red--light{
+    color: #333 !important;
 }
 
 .c-cart-main .o-card__item-hapus {
