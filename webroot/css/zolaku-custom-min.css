@@ -355,6 +355,10 @@ body {
     background-color: #eaeaea;  
 }
 
+.c-cart-main .c-cart-card__item.cart-error .zl-tx-red--light{
+    color: #333 !important;
+}
+
 .c-cart-main .o-card__item-hapus {
     font-weight: 500;
     text-transform: capitalize;
