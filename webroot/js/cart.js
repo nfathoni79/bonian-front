@@ -263,6 +263,30 @@ if(hash){
     $(hash).modal('show');
 }
 
+function ObjectLength(object) {
+    var length = 0;
+    for( var [key, value] of Object.entries(object) ) {
+        if (typeof value === 'object') {
+            length += 1 + ObjectLength(value);
+        }
+    }
+    return length;
+}
+
+function flattenObject(obj, inRet, inPrefix) {
+    const ret = inRet || {};
+    const prefix = inPrefix || '';
+    if (typeof obj === 'object' && obj != null && ObjectLength(obj) >= 1) {
+        Object.keys(obj).forEach((key) => {
+            flattenObject(obj[key], ret, prefix === '' ? key : `${prefix}[${key}]`);
+        });
+    } else if (prefix !== '') {
+        ret[prefix] = obj;
+    }
+
+    return ret;
+}
+
 $('.zl-checkout').on('click',function(){
 
     var basePath = $('meta[name="_basePath"]').attr('content');
@@ -290,6 +314,9 @@ $('.zl-checkout').on('click',function(){
     });
 
 
+    $('.option.quantity .error').remove();
+    $('.c-cart-card__item').removeClass('cart-error');
+
 
     $.ajax({
         url: basePath + '/checkout/validation',
@@ -306,7 +333,20 @@ $('.zl-checkout').on('click',function(){
 
                     break;
                 case 406:
-                    swal(text.responseJSON.message);
+                    if (typeof text.responseJSON.message === 'string') {
+                        swal(text.responseJSON.message);
+                    } else if (typeof text.responseJSON.message === 'object' && text.responseJSON.error) {
+                        var parseError = flattenObject(text.responseJSON.error);
+                        if (parseError) {
+                            for(var [key, value] of Object.entries(parseError)) {
+                                //console.log(key, JSON.stringify(Object.values(value)[0]));
+                                $(`input[name="${key}"]`).parents('.c-cart-card__item').addClass('cart-error');
+                                $(`input[name="${key}"]`).parents('.option.quantity')
+                                    .append(`<span class="error" style="color: red;">tidak tersedia</span>`);
+                            }
+                        }
+                        swal('Tidak dapat melanjutkan pembayaran.');
+                    }
                     break;
                 case 302:
                 case 401:
