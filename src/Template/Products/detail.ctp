@@ -456,7 +456,7 @@ $this->Html->meta('product:price:amount', 'Rp.'.$this->Number->format($details['
                                                                                     <?php $name = $val['is_admin'] ? 'Administrator - '.$val['user']['first_name'] : $val['customer']['full_name'];?>
                                                                                     | <a href="javascript:void(0);" class="label label-danger reply-msg" data-for-name="<?= $name;?>" data-for-id="<?= $vals['id']?>"> Reply </a>
                                                                                     <?php endif;?>
-                                                                                    <?php if($this->request->getSession()->read('Auth.Customers.email') == $val['customer']['email']):?>
+                                                                                    <?php if($val['is_admin'] != 1 && $this->request->getSession()->read('Auth.Customers.email') == $val['customer']['email']):?>
                                                                                      <a href="javascript:void(0);" class="label label-danger delete-msg ml-2" data-for-name="<?= $val['customer']['full_name']?>" data-for-id="<?= $val['id']?>"> Delete </a>
                                                                                     <?php endif;?>
                                                                                 </span>
