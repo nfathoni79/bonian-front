@@ -23,10 +23,13 @@ class ReviewController extends AuthController
         $params['status'] = $this->request->getQuery('status', 'semua');
         $params['limit'] = 5;
 
-        if($this->request->is('Post')){
+        if($this->request->is('post')){
             $search = explode(' - ',$this->request->getData('datefilter'));
-            $params['start'] = $search[0];
-            $params['end'] = $search[1];
+            if ($search) {
+                $params['start'] = $search[0];
+                $params['end'] = $search[1];
+            }
+
             $params['search'] = $this->request->getData('invoice', '');
             $params['page'] = 1;
 			$params['limit'] = 50;
@@ -139,8 +142,11 @@ class ReviewController extends AuthController
 
         if($this->request->is('Post')){
             $search = explode(' - ',$this->request->getData('datefilter'));
-            $params['start'] = $search[0];
-            $params['end'] = $search[1];
+            if ($search) {
+                $params['start'] = $search[0];
+                $params['end'] = $search[1];
+            }
+
             $params['search'] = $this->request->getData('invoice', '');
             $params['page'] = 1;
 			$params['limit'] = 50;
