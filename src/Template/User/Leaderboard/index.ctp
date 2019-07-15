@@ -18,7 +18,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <?php echo $this->Form->create(null, ['id' => 'filter']);?>
+                                    <?php echo $this->Form->create(null, ['id' => 'filter', 'type' => 'get']);?>
                                     <div class="col-md-5">
                                         <div class="form-group">
                                             <?php echo $this->Form->control('search', ['div' => false, 'label' => false,  'value' => @$this->request->getQuery('search'),'class' => 'form-control', 'placeholder' => 'Username, Nama Depan, Nama Belakang, Kode Refferal ...']);?>
