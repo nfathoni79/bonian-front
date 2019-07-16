@@ -248,18 +248,21 @@ class ReviewController extends AuthController
         $validator->requirePresence('comment')
             ->notBlank('comment','Komentar tidak boleh kosong');
 
-        $images = new Validator();
-        foreach($getData['images'] as $vals){
-            $images
-                ->notBlank('images')
-                ->add('images', 'file', [
-                    'rule' => ['uploadedFile', ['types' => ['image/png', 'image/jpeg', 'image/jpg']]], // It's what I expect to check
-                    'message' => "Format yang di ijinkan : .jpg, .png"
-                ]);
+        if (isset($getData['images'])) {
+            $images = new Validator();
+            foreach ($getData['images'] as $vals) {
+                $images
+                    ->notBlank('images')
+                    ->add('images', 'file', [
+                        'rule' => ['uploadedFile', ['types' => ['image/png', 'image/jpeg', 'image/jpg']]], // It's what I expect to check
+                        'message' => "Format yang di ijinkan : .jpg, .png"
+                    ]);
+            }
+
+
+            $validator->addNestedMany('images', $images);
         }
 
-
-        $validator->addNestedMany('images', $images);
         $error['error'] = $validator->errors($getData);
 
         $errors = [];
