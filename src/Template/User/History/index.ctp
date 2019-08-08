@@ -81,7 +81,7 @@ $this->Html->script([
                             <?php echo $this->Form->create(null, ['id' => 'filter']);?>
                             <div class="col-md-5">
                                 <div class="form-group">
-                                    <?php echo $this->Form->control('datefilter', ['div' => false, 'label' => false, 'id' => 'reportrange', 'autocomplete' => false, 'class' => 'form-control', 'value' => @$dateFilter, 'placeholder' => 'Tanggal Pencarian']);?>
+                                    <?php echo $this->Form->control('datefilter', ['div' => false, 'label' => false, 'id' => 'reportrange', 'autocomplete' => 'off', 'class' => 'form-control', 'value' => @$dateFilter, 'placeholder' => 'Tanggal Pencarian']);?>
                                 </div>
                             </div>
                             <div class="col-md-6">
