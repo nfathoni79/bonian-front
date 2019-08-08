@@ -25,8 +25,12 @@ class HistoryController extends AuthController
 
         if($this->request->is('Post')){
             $search = explode(' - ',$this->request->getData('datefilter'));
-            $params['start'] = $search[0];
-            $params['end'] = $search[1];
+
+            if (!empty($search[0] && !empty($search[1]))) {
+                $params['start'] = $search[0];
+                $params['end'] = $search[1];
+            }
+
             $params['search'] = $this->request->getData('invoice', '');
             $params['page'] = 1;
 
