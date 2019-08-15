@@ -461,7 +461,7 @@ $("#pay-now").on('click', function(e) {
 
 
 
-    console.log(request);
+    //console.log(request);
 
 });
 
