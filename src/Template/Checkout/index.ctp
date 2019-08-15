@@ -554,7 +554,7 @@
                                         <div class="row" style="padding: 5px 20px">
                                             <div class="col-lg-2 pd-t-10 text-center">
                                                 <div class="pretty p-default p-round p-pulse p-bigger">
-                                                    <input type="radio" name="payment_method"  value="online_payment">
+                                                    <input type="radio" name="payment_method"  value="online_payment" checked>
                                                     <div class="state p-danger">
                                                         <label> </label>
                                                     </div>
