@@ -414,6 +414,59 @@ $('#create-token-cc').on('click', function(e) {
 
 });
 
+/**
+ * midtrans snap
+ */
+
+$("#pay-now").on('click', function(e) {
+    var request = {
+        address_id: $("#addressId").val()
+    };
+    var payment_method = $('input[name="payment_method"]:checked');
+    var shipping = {};
+    $('.shipping-option').each(function (i) {
+        var id = $(this).data('origin-id');
+        shipping[id] = shipping[id] || {};
+        var selected = $(this).find('option:selected');
+        shipping[id].code = selected.val();
+        shipping[id].service = selected.data('service');
+
+    });
+
+    request.payment_method = payment_method.val();
+    request.shipping = shipping;
+
+    request._csrfToken = $('meta[name="_csrfToken"]').attr('content');
+
+    processPayment(request, function(status, response) {
+        var basePath = $('meta[name="_basePath"]').attr('content');
+        if (status && response.result.data) {
+            snap.pay(response.result.data.snap_token, {
+                onSuccess: function(result){
+                    //console.log('onSuccess', result);
+                    location.href = basePath + '/user/history/detail/' + result.order_id;
+                },
+                // Optional
+                onPending: function(result){
+                    //console.log('onPending', result);
+                    location.href = basePath + '/checkout/confirmation/' + result.order_id;
+                },
+                // Optional
+                onError: function(result){
+                    console.log('onError', result);
+                }
+            });
+        }
+    });
+
+
+
+    console.log(request);
+
+});
+
+/*
+midtrans core API
 
 $("#pay-now").on('click', function(e) {
     var request = {
@@ -466,3 +519,4 @@ $("#pay-now").on('click', function(e) {
 
 
 });
+*/

@@ -372,6 +372,7 @@
                                     <!-- start:content -->
                                     <div class="row c-card-pembayaran__content" style="padding: 10px;">
 
+                                        <?php /*
                                         <!-- start: title -->
                                         <div>
                                             <h5 class="c-card-pembayaran__title tx-bold-force tx-black">
@@ -540,8 +541,41 @@
                                             </div>
                                         </div>
                                         <!-- end:item #1-->
+ */ ?>
 
+                                        <div>
+                                            <h5 class="c-card-pembayaran__title tx-black tx-bold-force">
+                                                Online Payment
+                                            </h5>
+                                        </div>
+                                        <!-- end: title -->
 
+                                        <!-- start:item #1-->
+                                        <div class="row" style="padding: 5px 20px">
+                                            <div class="col-lg-2 pd-t-10 text-center">
+                                                <div class="pretty p-default p-round p-pulse p-bigger">
+                                                    <input type="radio" name="payment_method"  value="online_payment">
+                                                    <div class="state p-danger">
+                                                        <label> </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-10 pd-t-10">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <h5 class="tx-bank" style="text-align:left !important;"> Instant</h5>
+                                                    </div>
+
+                                                    <div class="col-lg-12">
+                                                        <p>
+                                                            Pembayaran instant menggunakan online payment gateway
+
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end:item #1-->
                                         <?php if ($balance > 0) : ?>
                                         <!-- start: title -->
                                         <div>
@@ -864,6 +898,12 @@ $this->Html->css([
 ], ['block' => true]);
 ?>
 <?php
+
+$this->Html->script('https://app.' .
+    \Cake\Core\Configure::read('Midtrans.status', 'sandbox') .
+    '.midtrans.com/snap/snap.js'
+    , ['block' => true, 'data-client-key' => \Cake\Core\Configure::read('Midtrans.clientKey')]);
+
 $this->Html->script([
 '/js/jquery.fancybox.min.js',
 '/js/checkout.js',
