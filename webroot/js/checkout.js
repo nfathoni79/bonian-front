@@ -438,26 +438,39 @@ $("#pay-now").on('click', function(e) {
 
     request._csrfToken = $('meta[name="_csrfToken"]').attr('content');
 
-    processPayment(request, function(status, response) {
-        var basePath = $('meta[name="_basePath"]').attr('content');
-        if (status && response.result.data) {
-            snap.pay(response.result.data.snap_token, {
-                onSuccess: function(result){
-                    //console.log('onSuccess', result);
-                    location.href = basePath + '/user/history/detail/' + result.order_id;
-                },
-                // Optional
-                onPending: function(result){
-                    //console.log('onPending', result);
-                    location.href = basePath + '/checkout/confirmation/' + result.order_id;
-                },
-                // Optional
-                onError: function(result){
-                    console.log('onError', result);
+    switch(payment_method.val()) {
+        case 'online_payment':
+            processPayment(request, function(status, response) {
+                var basePath = $('meta[name="_basePath"]').attr('content');
+                if (status && response.result.data) {
+                    snap.pay(response.result.data.snap_token, {
+                        onSuccess: function(result){
+                            //console.log('onSuccess', result);
+                            location.href = basePath + '/user/history/detail/' + result.order_id;
+                        },
+                        // Optional
+                        onPending: function(result){
+                            //console.log('onPending', result);
+                            location.href = basePath + '/checkout/confirmation/' + result.order_id;
+                        },
+                        // Optional
+                        onError: function(result){
+                            console.log('onError', result);
+                        }
+                    });
                 }
             });
-        }
-    });
+        break;
+        case 'wallet':
+            processPaymentWallet(request);
+            break;
+        default:
+            swal('Silahkan pilih metode pembayaran anda');
+            break;
+
+    }
+
+
 
 
 
