@@ -311,6 +311,7 @@ $('#create-token-cc').on('click', function(e) {
 });
 
 
+/*
 $("#pay-now").on('click', function(e) {
     var request = {};
     var payment_method = $('input[name="payment_method"]:checked');
@@ -353,6 +354,58 @@ $("#pay-now").on('click', function(e) {
         default:
             swal('Silahkan pilih metode pembayaran anda');
         break;
+    }
+
+
+
+}); */
+
+$("#pay-now").on('click', function(e) {
+    var request = {};
+    var payment_method = $('input[name="payment_method"]:checked');
+    request.payment_method = payment_method.val();
+    var parsed = queryString.parse(location.search, {arrayFormat: 'index'});
+    if (parsed.inquiry_id) {
+        request.inquiry_id = parsed.inquiry_id;
+    }
+    if (parsed.type) {
+        request.type = parsed.type;
+    }
+
+    request._csrfToken = $('meta[name="_csrfToken"]').attr('content');
+
+    console.log(request);
+
+    switch(payment_method.val()) {
+        case 'online_payment':
+            processPayment(request, function(status, response) {
+                var basePath = $('meta[name="_basePath"]').attr('content');
+                if (status && response.result.data) {
+                    snap.pay(response.result.data.snap_token, {
+                        onSuccess: function(result){
+                            //console.log('onSuccess', result);
+                            location.href = basePath + '/user/history/detail/' + result.order_id;
+                        },
+                        // Optional
+                        onPending: function(result){
+                            //console.log('onPending', result);
+                            location.href = basePath + '/checkout/confirmation/' + result.order_id;
+                        },
+                        // Optional
+                        onError: function(result){
+                            console.log('onError', result);
+                        }
+                    });
+                }
+            });
+            break;
+        case 'wallet':
+            processPaymentWallet(request);
+            break;
+
+        default:
+            swal('Silahkan pilih metode pembayaran anda');
+            break;
     }
 
 

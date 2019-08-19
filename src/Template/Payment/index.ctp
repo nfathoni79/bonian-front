@@ -65,6 +65,7 @@
                         </div>
                         <!-- end: title -->
 
+                        <?php /*
                         <div class="row mg-0 mg-b-40">
                             <div class="mg-b-20">
 
@@ -232,6 +233,49 @@
                                                     <p class="tx-left lh-base tx-13 tx-medium">
                                                         Menerima pembayaran melalui aplikasi Go-Jek dan
                                                         dikonfirmasi otomatis
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div> */ ?>
+                        <div class="row mg-0 mg-b-40">
+                            <div class="mg-b-20">
+
+                                <div class="col-sm-12 block block_0">
+                                    <div class="block-categories module mg-b-20-force">
+                                        <h3 class="modtitle tx-mont"><span>Online payment</span></h3>
+                                    </div>
+                                </div>
+
+                                <!-- start:item-->
+                                <div class="col-sm-12 flex-container">
+
+                                    <div class="wd-100p-force">
+                                        <div class="col-sm-12 bd br-10 pd-10">
+                                            <div class="col-sm-1" style="line-height: 68px;">
+                                                <div class="pretty p-default p-round p-pulse p-bigger">
+                                                    <input type="radio" name="payment_method"  value="online_payment" checked>
+                                                    <div class="state p-danger">
+                                                        <label> </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-11 pd-t-15">
+                                                <div class="col-sm-3">
+                                                    <div class="row">
+                                                        <h5 class="tx-bank">
+                                                            Instant
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p class="tx-left lh-base tx-13 tx-medium">Pembayaran instant menggunakan online payment gateway.
                                                     </p>
                                                 </div>
                                             </div>
@@ -559,6 +603,12 @@ $this->Html->css([
 ], ['block' => true]);
 ?>
 <?php
+
+$this->Html->script('https://app.' .
+    \Cake\Core\Configure::read('Midtrans.status', 'sandbox') .
+    '.midtrans.com/snap/snap.js'
+    , ['block' => true, 'data-client-key' => \Cake\Core\Configure::read('Midtrans.clientKey')]);
+
 $this->Html->script([
 '/js/jquery.fancybox.min.js',
 '/js/payment.js',
