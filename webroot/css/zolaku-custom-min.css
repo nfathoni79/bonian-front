@@ -247,7 +247,7 @@ body {
 
 .products-list .product-layout{
     padding: 5px;
-    min-height: 385px;
+    /*min-height: 385px;*/
 }
 
 .products-list .product-layout .product-item-container {
@@ -1180,4 +1180,8 @@ ul.timeline > li:before {
     width: 15px;
     height: 15px;
     z-index: 400;
+}
+
+.products-list.grid .product-item-container{
+    margin: 0 !important; 
 }
