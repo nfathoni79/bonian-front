@@ -384,12 +384,18 @@ $("#pay-now").on('click', function(e) {
                     snap.pay(response.result.data.snap_token, {
                         onSuccess: function(result){
                             //console.log('onSuccess', result);
-                            location.href = basePath + '/user/history/detail/' + result.order_id;
+                            request.snap_token = response.result.data.snap_token;
+                            processPayment(request, function(newStatus, newResponse) {
+                                location.href = basePath + '/user/history/detail/' + result.order_id;
+                            });
                         },
                         // Optional
                         onPending: function(result){
                             //console.log('onPending', result);
-                            location.href = basePath + '/checkout/confirmation/' + result.order_id;
+                            request.snap_token = response.result.data.snap_token;
+                            processPayment(request, function(newStatus, newResponse) {
+                                location.href = basePath + '/checkout/confirmation/' + result.order_id;
+                            });
                         },
                         // Optional
                         onError: function(result){
