@@ -450,7 +450,7 @@ $("#pay-now").on('click', function(e) {
                             request.snap_token = response.result.data.snap_token;
 
                             processPayment(request, function(newStatus, newResponse) {
-                                location.href = basePath + '/user/history/detail/' + result.order_id;
+                                location.href = basePath + '/user/history';
                             });
 
                         },
