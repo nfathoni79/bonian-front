@@ -676,7 +676,7 @@ $(document).ready(function() {
         return false;
     });
     $(document).on('click', '.igShare',function(){
-        // window.open("https://web.whatsapp.com//send?text=Temukan "+$(this).data('title')+" Dapatkan segera di zolaku "+$(this).data('url'),"height=368,width=600,left=100,top=100,menubar=0");
+        // window.open("https://web.whatsapp.com//send?text=Temukan "+$(this).data('title')+" Dapatkan segera di bonian "+$(this).data('url'),"height=368,width=600,left=100,top=100,menubar=0");
         // return false;
     });
     $(document).on('click', '.smsShare',function(){
