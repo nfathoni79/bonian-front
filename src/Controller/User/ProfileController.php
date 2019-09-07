@@ -339,11 +339,14 @@ class ProfileController extends AuthController
         $this->disableAutoRender();
         $this->request->allowMethod('post');
 
+        $data = $this->request->getData();
+        $data['dont_request_token'] = 1;
+
         $error = ['error' => []];
         try {
             $updateAddress = $this->Api->makeRequest($this->Auth->user('token'))
                 ->post('v1/web/profile/change-password', [
-                    'form_params' => $this->request->getData()
+                    'form_params' => $data
                 ]);
             if ($response = $this->Api->success($updateAddress)) {
                 $error = $response->parse();
