@@ -469,6 +469,13 @@ $("#pay-now").on('click', function(e) {
                             console.log('onError', result);
                         }
                     });
+                } else if (!status) {
+                    if (response.responseJSON && response.responseJSON.error && response.responseJSON.error.address_id) {
+                        swal('Alamat pengiriman belum diisi.');
+                    } else if (response.responseJSON && response.responseJSON.error && response.responseJSON.error.shipping) {
+                        swal('Silahkan pilih opsi pengiriman.');
+                    }
+
                 }
             });
         break;

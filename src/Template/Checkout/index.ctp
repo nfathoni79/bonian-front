@@ -621,7 +621,7 @@
                             <!-- end: metode pembayaran -->
 
                             <div class="col-lg-12 text-center">
-                                <button type="button" id="pay-now" style="margin-top: 10px;" class="btn btn-danger btn-lg btn-block c-pembayaran-button rounded-5" <?php echo (empty($data['customer_address']['recipient_name'])) ? 'disabled' : '';?>>
+                                <button type="button" id="pay-now" style="margin-top: 10px;" class="btn btn-danger btn-lg btn-block c-pembayaran-button rounded-5" >
                                 Bayar sekarang
                                 </button>
                             </div>
