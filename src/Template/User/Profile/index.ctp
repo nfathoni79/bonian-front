@@ -57,7 +57,7 @@
 
                                     <tr>
                                         <td>Telepon</td>
-                                        <td><?= $profile['phone']; ?> <?= !empty($profile['phone']) ?
+                                        <td><?= $profile['phone_masked']; ?> <?= !empty($profile['phone']) ?
                                                 $this->Html->link('Ubah', ['action' => 'changePhone'], ['class' => 'change-phone-number'])  :
                                                 ''; ?>
                                         </td>
